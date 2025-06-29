@@ -1,0 +1,74 @@
+<!-- /Users/simeon/Desktop/proj1/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Verb Conjugator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Prevent flash of unstyled content by hiding the answer container immediately -->
+    <style>
+      #answer-container { visibility: hidden; }
+    </style>
+</head>
+<body>
+
+    <div id="app-container">
+        <!-- View 1: Flashcard Flow -->
+        <div id="flashcard-view">
+            <div id="flashcard" class="card">
+                <div class="card-content-before">
+                    <h1 id="verb-infinitive"></h1>
+                    <p id="verb-translation"></p>
+                    <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
+                </div>
+                <div class="meta-container">
+                    <p id="verb-pronoun" class="meta-info"></p>
+                    <p id="verb-tense" class="meta-info"></p>
+                    <p id="verb-frequency" class="meta-info frequency-tag"></p>
+                </div>
+
+                <div id="answer-container">
+                    <h2 id="conjugated-verb"></h2>
+                    <button id="conjugated-audio-btn" class="audio-btn">🔊</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="back-btn">Back</button>
+                <button id="explorer-toggle-btn">📖 Verb Explorer</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </div>
+
+        <!-- View 2: Verb Explorer List -->
+        <div id="explorer-list-view" class="hidden">
+            <div class="explorer-header">
+                <button id="back-to-flashcard-btn">← Back to Flashcards</button>
+                <input type="text" id="search-bar" placeholder="Search for a verb (e.g. etre)...">
+            </div>
+            <div id="verb-list-container">
+                <!-- Simple list of verbs will be populated here -->
+            </div>
+        </div>
+
+        <!-- View 3: Verb Detail View -->
+        <div id="explorer-detail-view" class="hidden">
+            <div class="explorer-header">
+                <button id="back-to-list-btn">← Back to Verb List</button>
+            </div>
+            <div id="verb-detail-container">
+                <!-- The full conjugation table will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Data and Logic Scripts -->
+    <script src="js/verbs.full.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
