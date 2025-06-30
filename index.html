@@ -12,6 +12,34 @@
     <!-- Prevent flash of unstyled content by hiding the answer container immediately -->
     <style>
       #answer-container { visibility: hidden; }
+      #verb-pronoun,
+      #verb-tense {
+        font-size: 1.2rem; /* Make pronoun and tense larger */
+        font-weight: 600; /* Make pronoun and tense bolder */
+      }
+      .verb-phrase {
+        font-style: italic;
+        color: #7f8c8d; /* --meta-color */
+        margin-top: 0.75rem;
+        font-size: 1.1rem; /* Make phrase slightly larger for easier tapping */
+        user-select: text; /* Allow phrase to be selected */
+        cursor: text;
+      }
+      .back-link-btn {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0.5rem 0;
+      }
+      .highlight {
+        background-color: #f1c40f22; /* Light yellow flash */
+        transition: background-color 1.5s ease-out;
+        border-radius: 8px;
+        margin: -0.5rem; /* Adjust for padding */
+        padding: 0.5rem;
+      }
     </style>
 </head>
 <body>
@@ -21,9 +49,12 @@
         <div id="flashcard-view">
             <div id="flashcard" class="card">
                 <div class="card-content-before">
-                    <h1 id="verb-infinitive"></h1>
+                    <div class="infinitive-line">
+                        <button id="go-to-verb-btn" class="audio-btn">📖</button>
+                        <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
+                        <h1 id="verb-infinitive"></h1>
+                    </div>
                     <p id="verb-translation"></p>
-                    <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
                 </div>
                 <div class="meta-container">
                     <p id="verb-pronoun" class="meta-info"></p>
@@ -32,22 +63,26 @@
                 </div>
 
                 <div id="answer-container">
-                    <h2 id="conjugated-verb"></h2>
-                    <button id="conjugated-audio-btn" class="audio-btn">🔊</button>
+                    <div class="conjugated-line">
+                        <button id="conjugated-audio-btn" class="audio-btn">🔊</button>
+                        <h2 id="conjugated-verb"></h2>
+                    </div>
+                    <p id="verb-phrase" class="verb-phrase"></p>
                 </div>
             </div>
 
             <div class="navigation">
                 <button id="back-btn">Back</button>
-                <button id="explorer-toggle-btn">📖 Verb Explorer</button>
+                <button id="explorer-toggle-btn">📖 Verb List</button>
                 <button id="next-btn">Next</button>
+                <button id="options-toggle-btn">⚙️</button>
             </div>
         </div>
 
         <!-- View 2: Verb Explorer List -->
         <div id="explorer-list-view" class="hidden">
             <div class="explorer-header">
-                <button id="back-to-flashcard-btn">← Back to Flashcards</button>
+                <button id="back-to-flashcard-btn" class="back-link-btn">← Back to Flashcards</button>
                 <input type="text" id="search-bar" placeholder="Search for a verb (e.g. etre)...">
             </div>
             <div id="verb-list-container">
@@ -58,16 +93,49 @@
         <!-- View 3: Verb Detail View -->
         <div id="explorer-detail-view" class="hidden">
             <div class="explorer-header">
-                <button id="back-to-list-btn">← Back to Verb List</button>
+                <button id="back-to-list-btn" class="back-link-btn">← Back</button>
             </div>
             <div id="verb-detail-container">
                 <!-- The full conjugation table will be populated here -->
+            </div>
+        </div>
+
+        <!-- View 4: Options -->
+        <div id="options-view" class="hidden">
+            <div class="options-header">
+                <button id="back-to-flashcard-from-options-btn" class="back-link-btn">← Back</button>
+                <h2>Options</h2>
+            </div>
+            <div id="options-container">
+                <div class="option-group">
+                    <label for="hierarchical-toggle">Hierarchical Selection</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="hierarchical-toggle" class="toggle-input">
+                        <label for="hierarchical-toggle" class="toggle-label"></label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label for="show-phrases-toggle">Show Example Phrases</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="show-phrases-toggle" class="toggle-input">
+                        <label for="show-phrases-toggle" class="toggle-label"></label>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3>Tense Weights</h3>
+                    <div id="tense-weights-container"></div>
+                </div>
+                <div class="option-group">
+                    <h3>Frequency Weights</h3>
+                    <div id="frequency-weights-container"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Data and Logic Scripts -->
     <script src="js/verbs.full.js"></script>
+    <script src="js/sentences.js"></script>
     <script src="js/script.js"></script>
 
 </body>

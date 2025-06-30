@@ -1,5 +1,6 @@
 import os
 import re
+import base64
 
 # --- Configuration ---
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -9,7 +10,8 @@ HTML_TEMPLATE_PATH = os.path.join(ROOT_DIR, 'index.html')
 CSS_PATH = os.path.join(ROOT_DIR, 'css', 'style.css')
 VERBS_JS_PATH = os.path.join(ROOT_DIR, 'js', 'verbs.full.js')
 SCRIPT_JS_PATH = os.path.join(ROOT_DIR, 'js', 'script.js')
-
+SENTENCES_JS_PATH = os.path.join(ROOT_DIR, 'js', 'sentences.js')
+IMAGE_PATH = os.path.join(ROOT_DIR, 'bg.png')
 HTML_OUTPUT_PATH = os.path.join(DIST_DIR, 'french-verbs.html')
 
 def build():
@@ -25,11 +27,23 @@ def build():
             css_content = f.read()
         with open(VERBS_JS_PATH, 'r', encoding='utf-8') as f:
             verbs_js_content = f.read()
+        with open(SENTENCES_JS_PATH, 'r', encoding='utf-8') as f:
+            sentences_js_content = f.read()
+        
         with open(SCRIPT_JS_PATH, 'r', encoding='utf-8') as f:
             script_js_content = f.read()
+        
+        # Read and encode the image to a data URI
+        print("   - Encoding background image...")
+        with open(IMAGE_PATH, 'rb') as f:
+            image_data = f.read()
+        base64_image = base64.b64encode(image_data).decode('utf-8')
+        image_data_uri = f'data:image/png;base64,{base64_image}'
 
         # 2. Inject CSS content
         print("   - Injecting CSS...")
+        # First, replace the relative image path with the Base64 data URI
+        css_content = css_content.replace("../bg.png", image_data_uri)
         # Use a lambda for replacement to prevent re.sub from processing backslashes in the content.
         # This is safer, though less likely to be an issue for CSS.
         replacement_css_block = f'<style>\n{css_content}\n</style>'
@@ -37,11 +51,14 @@ def build():
 
         # 3. Combine and inject JavaScript content
         print("   - Injecting JavaScript...")
-        combined_js = f"\n// --- verbs.js ---\n{verbs_js_content}\n\n// --- script.js ---\n{script_js_content}\n"
+        # combined_js = f"\n// --- verbs.js ---\n{verbs_js_content}\n\n// --- script.js ---\n{script_js_content}\n"
+        combined_js = f"\n// --- verbs.full.js ---\n{verbs_js_content}\n\n// --- sentences.js ---\n{sentences_js_content}\n\n// --- script.js ---\n{script_js_content}\n"
+
         replacement_js_block = f'<script>{combined_js}</script>'
         # Use a lambda for the replacement. This is the crucial fix. It tells the `re` module
         # to use the returned string literally, without processing backslash escapes (like \u).
-        final_html = re.sub(r'<script src="js/verbs.full.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
+        # final_html = re.sub(r'<script src="js/verbs.full.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
+        final_html = re.sub(r'<script src="js/verbs.full.js"></script>\s*<script src="js/sentences.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
 
         # 4. Ensure the output directory exists
         os.makedirs(DIST_DIR, exist_ok=True)
