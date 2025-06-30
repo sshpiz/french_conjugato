@@ -678,15 +678,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Info Panel Logic
-    infoBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        infoPanel.classList.toggle('hidden');
-    });
-    document.addEventListener('click', (e) => {
-        if (!infoPanel.classList.contains('hidden') && !infoPanel.contains(e.target) && e.target !== infoBtn) {
-            infoPanel.classList.add('hidden');
+    function setupInfoPanel() {
+        const infoBtn = document.getElementById('info-btn');
+        const infoPanel = document.getElementById('info-panel');
+        if (infoBtn && infoPanel) {
+            infoBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                infoPanel.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!infoPanel.classList.contains('hidden') && !infoPanel.contains(e.target) && e.target !== infoBtn) {
+                    infoPanel.classList.add('hidden');
+                }
+            });
         }
-    });
+    }
+    setupInfoPanel();
+
     // Options controls
     hierarchicalToggle.addEventListener('change', (e) => {
         cardGenerationOptions.hierarchical = e.target.checked;
