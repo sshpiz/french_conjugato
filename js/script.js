@@ -200,7 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (tenseWeight === 0) continue;
 
                 for (const verbInfo of verbsInFrequency) {
-                    const conjugations = tenses[tenseName]?.[verbInfo.infinitive];
+                    const tenseData = tenses[tenseName];
+                    const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
                         for (const pronoun of pronouns) {
                             if (conjugations[pronoun]) {
@@ -229,7 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const score = tenseWeight * freqWeight;
                     if (score === 0) continue;
 
-                    const conjugations = tenses[tenseName]?.[verbInfo.infinitive];
+                    const tenseData = tenses[tenseName];
+                    const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
                         for (const pronoun of pronouns) {
                             if (conjugations[pronoun]) {
@@ -282,7 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
         verbPhraseEl.classList.remove('tappable-audio');
         if (cardGenerationOptions.showPhrases) {
             const phraseKey = tenseKeyToPhraseKey[card.tense];
-            const phrase = phrasebook[card.verb.infinitive]?.[phraseKey];
+            const verbPhrases = phrasebook[card.verb.infinitive];
+            const phrase = verbPhrases && verbPhrases[phraseKey];
             if (phrase) {
                 verbPhraseEl.textContent = phrase;
                 verbPhraseEl.classList.add('tappable-audio');
@@ -361,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pushState && targetView) {
             // We only push a new state if it's different from the current one
             // to avoid duplicate entries when handling popstate.
-            if (window.history.state?.view !== viewId) {
+            if (!window.history.state || window.history.state.view !== viewId) {
                 window.history.pushState({ view: viewId }, '', `#${viewId}`);
             }
         }

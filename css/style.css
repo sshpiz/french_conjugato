@@ -47,6 +47,7 @@ body {
     justify-content: flex-start; /* Align content to top */
     gap: 1.5rem; /* Add space between content blocks */
     transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
     /* Add background image with a semi-transparent white overlay for readability */
     background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('../bg.png');
     background-size: cover;
