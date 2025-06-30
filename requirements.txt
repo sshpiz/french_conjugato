@@ -1,3 +1,4 @@
 verbecc
 tqdm
 openai
+pillow

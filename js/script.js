@@ -309,6 +309,25 @@ document.addEventListener('DOMContentLoaded', () => {
         return newCard;
     };
 
+    // --- Autotalk French prompt template ---
+    function getFrenchPrompt(card) {
+      // Example: "Comment dire [VERB] au [TENSE] pour [PRONOUN] ?"
+      // You can refine this template as needed for natural French
+      const tenseMap = {
+        'present': 'présent',
+        'passeCompose': 'passé composé',
+        'imparfait': 'imparfait',
+        'futurSimple': 'futur simple',
+        'plusQueParfait': 'plus-que-parfait',
+        'subjonctifPresent': 'subjonctif présent',
+        'conditionnelPresent': 'conditionnel présent'
+      };
+      const pronoun = card.pronoun;
+      const verb = card.verb.infinitive;
+      const tense = tenseMap[card.tense] || card.tense;
+      return `Comment dire « ${verb} » au ${tense} pour « ${pronoun} » ?`;
+    }
+
     const displayCard = (card) => {
         currentCard = card;
         const verbFrequency = card.verb.frequency || 'common'; 
@@ -384,12 +403,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 verbPhraseEl.classList.add('tappable-audio');
             }
         }
+
+        // --- AUTOTALK: Speak prompt if enabled ---
+        const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+        if (autosayOn) {
+          const prompt = getFrenchPrompt(card);
+          speak(prompt);
+        }
     };
 
     const showAnswer = () => {
         if (!isAnswerVisible) {
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
+            if (window.incrementDailyCount) window.incrementDailyCount();
+            // --- AUTOTALK: Speak answer if enabled ---
+            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+            if (autosayOn && currentCard) {
+              // Match the answer display logic for pronoun + conjugated
+              let answerText = currentCard.pronoun + ' ' + currentCard.conjugated;
+              if (currentCard.pronoun === 'je' && currentCard.conjugated.trim().toLowerCase().startsWith("j'")) {
+                answerText = currentCard.conjugated;
+              }
+              speak(answerText);
+            }
         }
     };
 
@@ -441,7 +478,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- View Management & Routing ---
-    const views = [flashcardView, explorerListView, explorerDetailView, optionsView];
+    const mnemonicsView = document.getElementById('mnemonics-view');
+    const views = [flashcardView, explorerListView, explorerDetailView, optionsView, mnemonicsView];
 
     function showView(viewId, pushState = true) {
         let targetView = null;
@@ -474,6 +512,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showOptions = () => {
         showView('options-view');
+    };
+
+    const showMnemonics = () => {
+        showView('mnemonics-view');
     };
 
     const showVerbDetail = (verbInfinitive, tenseToFocus = null) => {
@@ -726,6 +768,11 @@ document.addEventListener('DOMContentLoaded', () => {
     backToFlashcardBtn.addEventListener('click', () => window.history.back());
     backToFlashcardFromOptionsBtn.addEventListener('click', () => window.history.back());
     backToListBtn.addEventListener('click', () => window.history.back());
+    // Mnemonics back button
+    const backToOptionsBtn = document.getElementById('back-to-options-btn');
+    if (backToOptionsBtn) {
+        backToOptionsBtn.addEventListener('click', () => window.history.back());
+    }
 
     // Event listener for browser's back/forward buttons
     window.addEventListener('popstate', (event) => {
@@ -785,6 +832,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- AUTOSAY READY MODAL LOGIC ---
+    const autosayToggleBtn = document.getElementById('autosay-toggle-btn');
+    // --- AUTOSAY TOGGLE BUTTON LOGIC ---
+    if (autosayToggleBtn) {
+        autosayToggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const emojiSpan = autosayToggleBtn.querySelector('span');
+            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+            if (autosayOn) {
+                localStorage.setItem('autosay-enabled', 'false');
+                if (emojiSpan) emojiSpan.textContent = '🔇';
+                autosayToggleBtn.setAttribute('aria-pressed', 'false');
+                autosayToggleBtn.classList.remove('autosay-on');
+                autosayToggleBtn.classList.add('autosay-off');
+            } else {
+                localStorage.setItem('autosay-enabled', 'true');
+                if (emojiSpan) emojiSpan.textContent = '🔊';
+                autosayToggleBtn.setAttribute('aria-pressed', 'true');
+                autosayToggleBtn.classList.remove('autosay-off');
+                autosayToggleBtn.classList.add('autosay-on');
+            }
+        });
+        // Set initial state on load
+        const emojiSpan = autosayToggleBtn.querySelector('span');
+        const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+        if (emojiSpan) emojiSpan.textContent = autosayOn ? '🔊' : '🔇';
+        autosayToggleBtn.setAttribute('aria-pressed', autosayOn ? 'true' : 'false');
+        autosayToggleBtn.classList.toggle('autosay-on', autosayOn);
+        autosayToggleBtn.classList.toggle('autosay-off', !autosayOn);
+    }
+    const autosayReadyModal = document.getElementById('autosay-ready-modal');
+    const autosayReadyContinueBtn = document.getElementById('autosay-ready-continue-btn');
+    let firstCardReady = false;
+
+    function showAutosayReadyModalIfNeeded(startAppCallback) {
+      const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+      if (autosayOn && autosayReadyModal) {
+        autosayReadyModal.style.display = 'flex';
+        // Remove any previous listeners
+        autosayReadyModal.onclick = function() {
+          autosayReadyModal.style.display = 'none';
+          firstCardReady = true;
+          startAppCallback();
+        };
+        // Optionally, focus the button for accessibility
+        if (autosayReadyContinueBtn) autosayReadyContinueBtn.focus();
+      } else {
+        firstCardReady = true;
+        startAppCallback();
+      }
+    }
+
     // --- Initial Load ---
     const initializeApp = () => {
         loadOptions();
@@ -799,5 +898,24 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.replaceState({ view: 'flashcard-view' }, '', '#flashcard-view');
     };
 
-    initializeApp();
+    // Expose showView globally for inline script
+    window.showView = showView;
+
+    // Patch initializeApp to wait for ready modal if needed
+    const originalInitializeApp = initializeApp;
+    window.initializeApp = function() {
+      showAutosayReadyModalIfNeeded(function() {
+        if (typeof originalInitializeApp === 'function') originalInitializeApp();
+      });
+    };
+
+    // Patch displayCard to not play prompt until ready
+    const originalDisplayCard = window.displayCard || displayCard;
+    window.displayCard = function(card) {
+      if (!firstCardReady) return; // Don't show/play until ready
+      originalDisplayCard(card);
+    };
+
+    // Call the patched initializeApp
+    window.initializeApp();
 });

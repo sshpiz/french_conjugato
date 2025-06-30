@@ -1,3 +1,192 @@
+/* --- AUTOSAY READY MODAL: Ensure always on top and clickable --- */
+#autosay-ready-modal {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+#autosay-ready-modal * {
+  pointer-events: auto !important;
+}
+
+/* --- Toggle Switches: Improved visibility for dark mode and better row layout --- */
+@media (prefers-color-scheme: dark) {
+  .toggle-switch .toggle-label {
+    background-color: #444 !important;
+    border: 1px solid #222 !important;
+  }
+  .toggle-switch .toggle-label:before {
+    background-color: #222 !important;
+    box-shadow: 0 1px 4px #0008;
+  }
+  .toggle-input:checked + .toggle-label {
+    background-color: #6ec6ff !important;
+    border: 1px solid #6ec6ff !important;
+  }
+  .toggle-input:checked + .toggle-label:before {
+    background-color: #222 !important;
+    box-shadow: 0 1px 8px #6ec6ff44;
+  }
+}
+
+/* Place dark mode options-container override at the end for max specificity */
+@media (prefers-color-scheme: dark) {
+  #options-container {
+    background: #181c1f !important;
+    color: #f4f7f9 !important;
+    border-color: #23272b !important;
+  }
+  #options-container * {
+    color: #f4f7f9 !important;
+    background: transparent !important;
+    border-color: #23272b !important;
+  }
+  .option-group > label, .option-group h3, .slider-group label {
+    color: #b0b8c1 !important;
+  }
+  .slider-group .slider-value {
+    color: #6ec6ff !important;
+  }
+  .toggle-switch .toggle-label {
+    background-color: #263040 !important;
+  }
+  .toggle-input:checked + .toggle-label {
+    background-color: #6ec6ff !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  /* Conjugated verb: dark, bold, easy to read */
+  #conjugated-verb, .conjugated-line h2 {
+    color: #1a2633 !important;
+    font-weight: 700;
+    text-shadow: 0 1px 2px #fff4, 0 0px 1px #fff2;
+  }
+  /* Phrase: dark, italic, readable */
+  .verb-phrase {
+    color: #263040 !important;
+    font-style: italic;
+    text-shadow: 0 1px 2px #fff3;
+    max-width: 380px;
+    width: 90%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+    max-height: 45px;
+    font-size: clamp(0.9em, 2.5vw, 1.1em);
+  }
+  /* Infinitive: light, glowing */
+  .infinitive-line h1, #verb-infinitive {
+    color: #f7fafc !important;
+    text-shadow: 0 2px 8px #000a, 0 1px 2px #0006;
+    font-weight: 800;
+  }
+  /* Translation: darker, subtle */
+  #verb-translation {
+    color: #b0b8c1 !important;
+    font-weight: 400;
+  }
+  /* Book icon button: dark bg, light icon */
+  #go-to-verb-btn {
+    background: #1a2633 !important;
+    color: #f7fafc !important;
+    border: none;
+    box-shadow: 0 2px 8px #0004;
+  }
+  #go-to-verb-btn:active {
+    background: #263040 !important;
+  }
+  /* Navigation buttons: dark bg, accent text */
+  .navigation {
+    background: #181c1f !important;
+    border-top: 1px solid #23272b !important;
+    box-shadow: 0 -2px 12px #0002;
+  }
+  .navigation button {
+    background-color: #23272b !important;
+    /* color: #6ec6ff !important; */
+    border: none;
+    box-shadow: 0 1px 4px #0002;
+  }
+  .navigation button#next-btn {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+  }
+  .navigation button:hover {
+    background-color: #263040 !important;
+    color: #fff !important;
+  }
+  /* Options/settings panel: dark bg, light text */
+  #options-container {
+    background: #23272b !important;
+    color: #f4f7f9 !important;
+    box-shadow: 0 4px 15px #0004;
+  }
+  .option-group > label, .option-group h3, .slider-group label {
+    color: #b0b8c1 !important;
+  }
+  .slider-group .slider-value {
+    color: #6ec6ff !important;
+  }
+  .toggle-switch .toggle-label {
+    background-color: #263040 !important;
+  }
+  .toggle-input:checked + .toggle-label {
+    background-color: #6ec6ff !important;
+  }
+}
+/* --- DARK MODE --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-bg: #181c1f !important;
+    --card-bg: #23272b !important;
+    --text-color: #f4f7f9 !important;
+    --accent-color: #6ec6ff !important;
+    --meta-color: #b0b8c1 !important;
+    --border-color: #2c3136 !important;
+    --shadow: 0 4px 15px rgba(0,0,0,0.32) !important;
+    --tense-present: #2e7d5b !important;
+    --tense-passe-compose: #b77b3a !important;
+    --tense-imparfait: #5c5a7e !important;
+    --tense-futur-simple: #357ca5 !important;
+    --tense-plus-que-parfait: #a24d6a !important;
+    --tense-subjonctif-present: #b2b16a !important;
+    --tense-conditionnel-present: #7ea24d !important;
+  }
+  body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+  }
+  #verb-detail-container, #options-container, .mnemonic-card, #verb-list-container {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    box-shadow: var(--shadow);
+  }
+  .tab-button {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+  .tab-button.active {
+    background: var(--accent-color);
+    color: #181c1f;
+  }
+  .mnemonic-card {
+    background: linear-gradient(120deg, #23272b 60%, #181c1f 100%) !important;
+  }
+  .meta-info, .frequency-tag {
+    background: #23272b !important;
+    color: var(--meta-color) !important;
+  }
+  /* .verb-phrase color in dark mode is set above for max specificity */
+  .highlight {
+    background-color: #b77b3a44 !important;
+  }
+  #info-panel {
+    background: #23272b !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+  }
+}
 /* Verb list mode toggle styles */
 .mode-toggle-btn {
   background: #eaf6fb;
@@ -57,7 +246,7 @@
   margin: 0.7em 0 0.2em 0;
   text-align: left;
 }
-# Tense color variables (soft, harmonious with bg)
+/* Tense color variables (soft, harmonious with bg) */
 :root {
   --tense-present: #b3d8c5;           /* soft green */
   --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
@@ -102,6 +291,7 @@
     --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
     --tense-subjonctif-present: #e8e7c7;/* soft yellow */
     --tense-conditionnel-present: #d6e8c7;/* soft lime */
+}
 #verb-tense {
   border-radius: 0.7em;
   padding: 0.1em 0.7em;
@@ -173,6 +363,18 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    /* iOS Safari full screen support */
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+  }
+  body {
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: contain;
   }
   #answer-container, #answer-container.is-visible {
     margin-top: 0;
@@ -252,6 +454,7 @@ body {
 }
 
 /* --- Flashcard View --- */
+/* --- Flashcard View --- */
 #flashcard {
     border-radius: 16px;
     padding: 2rem 1rem 1.5rem 1rem;
@@ -274,6 +477,16 @@ body {
     background-position: center;
 }
 
+/* Dark mode flashcard background image */
+@media (prefers-color-scheme: dark) {
+  #flashcard {
+    background: linear-gradient(rgba(24, 28, 31, 0.12), rgba(24, 28, 31, 0.12)), url('../bg.dark.png');
+    background-size: cover;
+    background-position: center;
+  }
+}
+}
+
 #flashcard:active {
     transform: scale(0.98);
 }
@@ -290,7 +503,7 @@ body {
     width: 100%;
     z-index: 2;
     align-items: center;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .infinitive-line {
@@ -408,7 +621,7 @@ body {
     flex: 1 1 auto;
     margin-top: 0;
     position: absolute;
-    top: 38%;
+    top: 35%;
     left: 0;
     width: 100%;
     z-index: 3;
@@ -451,13 +664,14 @@ body {
 
 .navigation button {
     background-color: var(--card-bg);
+    color: var(--text-color);
     padding: 0.75rem 1rem;
     border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s, box-shadow 0.2s;
-    margin: 0 0.25rem; 
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+    margin: 0 0.25rem;
     flex-basis: 0; /* Allow buttons to shrink */
 }
 
@@ -471,11 +685,11 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-#next-btn {
+/* #next-btn {
     background-color: var(--accent-color);
-    color: white;
+    /* color: white; */
     border-color: var(--accent-color);
-}
+} */
 
 /* --- Verb Explorer --- */
 .explorer-header {
@@ -519,7 +733,7 @@ body {
     color: var(--text-color);
 }
 .verb-list-item-text .translation {
-    font-size: 0.9rem
+    font-size: 0.9rem;
     color: var(--meta-color);
     display: block; /* Ensure it appears on a new line */
 }
@@ -673,6 +887,64 @@ body {
 .toggle-input:checked + .toggle-label { background-color: var(--accent-color); }
 .toggle-input:checked + .toggle-label:before { transform: translateX(22px); }
 
+/* Autosay Toggle Button */
+#autosay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.18em;
+  font-weight: 600;
+  padding: 0.13em 0.5em;
+  border-radius: 1.2em;
+  border: 1.5px solid #b0b8c1;
+  background: #eaf6fb;
+  color: #3498db;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+  min-width: unset;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+#autosay-toggle-btn.autosay-on {
+  background: #d1f5e0;
+  color: #218c4a;
+  border-color: #218c4a;
+}
+#autosay-toggle-btn.autosay-off {
+  background: #f7eaea;
+  color: #b03a2e;
+  border-color: #b03a2e;
+}
+#autosay-toggle-btn:active {
+  filter: brightness(0.97);
+}
+#autosay-toggle-btn .autosay-emoji {
+  font-size: 1.0em;
+  margin-right: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+  #autosay-toggle-btn {
+    background: #23272b;
+    color: #6ec6ff;
+    border: 1.5px solid #444a55;
+  }
+  #autosay-toggle-btn.autosay-on {
+    background: #1e3a2a;
+    color: #6ef6a0;
+    border-color: #6ef6a0;
+  }
+  #autosay-toggle-btn.autosay-off {
+    background: #2a2323;
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+}
+
 /* Utility Class */
 .hidden {
     display: none !important;
@@ -696,26 +968,31 @@ body {
   z-index: 10;
 }
 
-#go-to-verb-btn {
-  position: absolute;
-  right: 1.2rem;
-  bottom: 1.2rem;
+#go-to-verb-btn, #go-to-verb-btn-2 {
+  position: static !important;
+  right: auto;
+  bottom: auto;
   margin: 0;
-  z-index: 10;
-  display: flex;
+  z-index: auto;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.85);
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(52,152,219,0.10);
-  font-size: 1.5rem;
-  padding: 0.5rem;
+  justify-content: flex-start;
+  background: #eaf6fb;
+  color: #3498db;
+  border-radius: 0.8em;
+  box-shadow: 0 2px 8px #0001;
+  font-size: 1.18em;
+  padding: 0.18em 0.7em;
   border: none;
   cursor: pointer;
-  transition: box-shadow 0.2s, background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+  outline: none;
+  /* min-width: 70px; */
+  text-align: left;
 }
-#go-to-verb-btn:active {
-  background: #e0e6ed;
+#go-to-verb-btn:active, #go-to-verb-btn-2:active {
+  background: #d0e6f7;
 }
 
 /* Pronoun and tense below infinitive */

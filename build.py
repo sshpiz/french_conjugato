@@ -1,6 +1,12 @@
+
 import os
 import re
 import base64
+try:
+    from PIL import Image
+    PIL_AVAILABLE = True
+except ImportError:
+    PIL_AVAILABLE = False
 
 # --- Configuration ---
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -10,13 +16,17 @@ HTML_TEMPLATE_PATH = os.path.join(ROOT_DIR, 'index.html')
 CSS_PATH = os.path.join(ROOT_DIR, 'css', 'style.css')
 JS_DIR = os.path.join(ROOT_DIR, 'js')
 IMAGE_PATH = os.path.join(ROOT_DIR, 'bg.png')
+DARK_IMAGE_PATH = os.path.join(ROOT_DIR, 'bg.dark.png')
 FAVICON_PATH = os.path.join(ROOT_DIR, 'favicon_big.png')
 HTML_OUTPUT_PATH = os.path.join(DIST_DIR, 'franconjugue.html')
 
-def build():
+
+def build(force_jpeg=False):
     """Reads source files, injects content, and writes a standalone HTML file."""
     try:
         print("🚀 Starting build process...")
+        if force_jpeg:
+            print("   - Forcing JPEG output for backgrounds.")
 
         # 1. Read all source files
         print("   - Reading source files...")
@@ -50,24 +60,74 @@ def build():
             with open(fpath, 'r', encoding='utf-8') as f:
                 js_contents.append(f"\n// --- {os.path.basename(fpath)} ---\n" + f.read())
         
-        # Read and encode the image to a data URI
-        print("   - Encoding background image...")
-        with open(IMAGE_PATH, 'rb') as f:
-            image_data = f.read()
-        base64_image = base64.b64encode(image_data).decode('utf-8')
-        image_data_uri = f'data:image/png;base64,{base64_image}'
 
-        # Read and encode the favicon to a data URI
-        print("   - Encoding favicon...")
-        with open(FAVICON_PATH, 'rb') as f:
-            favicon_data = f.read()
+
+
+        def process_image(path, max_width=900, quality=75):
+            if not PIL_AVAILABLE:
+                with open(path, 'rb') as f:
+                    return f.read(), 'png'
+            img = Image.open(path)
+            # Always use JPEG if flag is set, else auto-detect
+            if force_jpeg:
+                fmt = 'JPEG'
+            else:
+                fmt = 'JPEG' if img.mode in ('RGB', 'L') else 'PNG'
+            if img.width > max_width:
+                h = int(img.height * max_width / img.width)
+                img = img.resize((max_width, h), Image.LANCZOS)
+            from io import BytesIO
+            buf = BytesIO()
+            if fmt == 'JPEG':
+                img = img.convert('RGB')
+                img.save(buf, format=fmt, quality=quality, optimize=True)
+            else:
+                img.save(buf, format=fmt, optimize=True)
+            return buf.getvalue(), 'jpeg' if fmt == 'JPEG' else 'png'
+
+        print("   - Processing and encoding background image (light)...")
+        image_data, image_fmt = process_image(IMAGE_PATH)
+        base64_image = base64.b64encode(image_data).decode('utf-8')
+        image_data_uri = f'data:image/{image_fmt};base64,{base64_image}'
+
+        print("   - Processing and encoding background image (dark)...")
+        dark_image_data, dark_image_fmt = process_image(DARK_IMAGE_PATH)
+        base64_dark_image = base64.b64encode(dark_image_data).decode('utf-8')
+        dark_image_data_uri = f'data:image/{dark_image_fmt};base64,{base64_dark_image}'
+
+        if not PIL_AVAILABLE:
+            print("\n⚠️  Pillow (PIL) not installed. Images will not be resized or compressed.\n   To enable image optimization, run: pip install pillow\n")
+
+        # Read and encode the favicon to a data URI, making white transparent if possible
+        print("   - Encoding favicon (white to transparent)...")
+        favicon_data = None
+        if PIL_AVAILABLE:
+            from io import BytesIO
+            with Image.open(FAVICON_PATH) as im:
+                im = im.convert('RGBA')
+                datas = im.getdata()
+                newData = []
+                for item in datas:
+                    # If pixel is white (tolerant to near-white)
+                    if item[0] > 250 and item[1] > 250 and item[2] > 250 and item[3] > 0:
+                        newData.append((255, 255, 255, 0))
+                    else:
+                        newData.append(item)
+                im.putdata(newData)
+                buffer = BytesIO()
+                im.save(buffer, format="PNG")
+                favicon_data = buffer.getvalue()
+        if favicon_data is None:
+            with open(FAVICON_PATH, 'rb') as f:
+                favicon_data = f.read()
         base64_favicon = base64.b64encode(favicon_data).decode('utf-8')
         favicon_data_uri = f'data:image/png;base64,{base64_favicon}'
 
         # 2. Inject CSS content
         print("   - Injecting CSS...")
-        # First, replace the relative image path with the Base64 data URI
+        # First, replace the relative image paths with the Base64 data URIs
         css_content = css_content.replace("../bg.png", image_data_uri)
+        css_content = css_content.replace("../bg.dark.png", dark_image_data_uri)
         replacement_css_block = f'<style>\n{css_content}\n</style>'
         final_html = re.sub(r'<link rel="stylesheet" href=".*">', lambda m: replacement_css_block, html_template)
 
@@ -102,4 +162,6 @@ def build():
         print(f"\n❌ An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
-    build()
+    import sys
+    force_jpeg = '--jpeg' in sys.argv
+    build(force_jpeg=force_jpeg)
