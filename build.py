@@ -98,10 +98,28 @@ def build(force_jpeg=False):
         if not PIL_AVAILABLE:
             print("\n⚠️  Pillow (PIL) not installed. Images will not be resized or compressed.\n   To enable image optimization, run: pip install pillow\n")
 
-        # Read and encode the favicon to a data URI
-        print("   - Encoding favicon...")
-        with open(FAVICON_PATH, 'rb') as f:
-            favicon_data = f.read()
+        # Read and encode the favicon to a data URI, making white transparent if possible
+        print("   - Encoding favicon (white to transparent)...")
+        favicon_data = None
+        if PIL_AVAILABLE:
+            from io import BytesIO
+            with Image.open(FAVICON_PATH) as im:
+                im = im.convert('RGBA')
+                datas = im.getdata()
+                newData = []
+                for item in datas:
+                    # If pixel is white (tolerant to near-white)
+                    if item[0] > 250 and item[1] > 250 and item[2] > 250 and item[3] > 0:
+                        newData.append((255, 255, 255, 0))
+                    else:
+                        newData.append(item)
+                im.putdata(newData)
+                buffer = BytesIO()
+                im.save(buffer, format="PNG")
+                favicon_data = buffer.getvalue()
+        if favicon_data is None:
+            with open(FAVICON_PATH, 'rb') as f:
+                favicon_data = f.read()
         base64_favicon = base64.b64encode(favicon_data).decode('utf-8')
         favicon_data_uri = f'data:image/png;base64,{base64_favicon}'
 

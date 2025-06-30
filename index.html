@@ -205,7 +205,12 @@
                     <p id="verb-tense" class="meta-info"></p>
                 </div>
 
-                <button id="go-to-verb-btn" title="Go to verb detail">📖</button>
+                <div id="go-to-verb-btn-container" style="position: absolute; right: 1.2em; bottom: 1.2em; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; z-index: 10;">
+                  <button id="go-to-verb-btn" title="Go to verb detail">📖</button>
+                  <button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off" title="Toggle autosay">
+                    <span class="autosay-emoji" aria-hidden="true">🔇</span> 
+                  </button>
+                </div>
 
                 <div id="answer-container">
                     <div class="conjugated-line">
@@ -341,6 +346,15 @@
                 <p><strong>Example:</strong> <code>acheter</code> → j’achète, tu achètes, nous achetons</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Ready? Autosay modal (hidden by default) -->
+        <div id="autosay-ready-modal" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100vw; height:100vh; background:rgba(30,32,36,0.85); color:#fff; align-items:center; justify-content:center;">
+          <div style="background:#23272b; border-radius:1.2em; box-shadow:0 4px 24px #0008; padding:2.5em 2em 2em 2em; text-align:center; max-width:90vw;">
+            <div style="font-size:2.1em; font-weight:700; margin-bottom:0.7em;">Prêt&nbsp;?</div>
+            <div style="font-size:1.1em; margin-bottom:1.5em;">La lecture automatique est activée.<br>Appuyez sur Continuer pour commencer.</div>
+            <button id="autosay-ready-continue-btn" style="font-size:1.2em; padding:0.5em 2em; border-radius:0.7em; background:#6ec6ff; color:#23272b; border:none; font-weight:600; cursor:pointer;">Continuer</button>
           </div>
         </div>
     </div>

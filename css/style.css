@@ -1,3 +1,12 @@
+/* --- AUTOSAY READY MODAL: Ensure always on top and clickable --- */
+#autosay-ready-modal {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+#autosay-ready-modal * {
+  pointer-events: auto !important;
+}
+
 /* --- Toggle Switches: Improved visibility for dark mode and better row layout --- */
 @media (prefers-color-scheme: dark) {
   .toggle-switch .toggle-label {
@@ -55,6 +64,16 @@
     color: #263040 !important;
     font-style: italic;
     text-shadow: 0 1px 2px #fff3;
+    max-width: 380px;
+    width: 90%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+    max-height: 45px;
+    font-size: clamp(0.9em, 2.5vw, 1.1em);
   }
   /* Infinitive: light, glowing */
   .infinitive-line h1, #verb-infinitive {
@@ -85,13 +104,13 @@
   }
   .navigation button {
     background-color: #23272b !important;
-    color: #6ec6ff !important;
+    /* color: #6ec6ff !important; */
     border: none;
     box-shadow: 0 1px 4px #0002;
   }
   .navigation button#next-btn {
-    background-color: #6ec6ff !important;
-    color: #181c1f !important;
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
   }
   .navigation button:hover {
     background-color: #263040 !important;
@@ -645,13 +664,14 @@ body {
 
 .navigation button {
     background-color: var(--card-bg);
+    color: var(--text-color);
     padding: 0.75rem 1rem;
     border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s, box-shadow 0.2s;
-    margin: 0 0.25rem; 
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+    margin: 0 0.25rem;
     flex-basis: 0; /* Allow buttons to shrink */
 }
 
@@ -665,11 +685,11 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-#next-btn {
+/* #next-btn {
     background-color: var(--accent-color);
-    color: white;
+    /* color: white; */
     border-color: var(--accent-color);
-}
+} */
 
 /* --- Verb Explorer --- */
 .explorer-header {
@@ -867,6 +887,64 @@ body {
 .toggle-input:checked + .toggle-label { background-color: var(--accent-color); }
 .toggle-input:checked + .toggle-label:before { transform: translateX(22px); }
 
+/* Autosay Toggle Button */
+#autosay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.18em;
+  font-weight: 600;
+  padding: 0.13em 0.5em;
+  border-radius: 1.2em;
+  border: 1.5px solid #b0b8c1;
+  background: #eaf6fb;
+  color: #3498db;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+  min-width: unset;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+#autosay-toggle-btn.autosay-on {
+  background: #d1f5e0;
+  color: #218c4a;
+  border-color: #218c4a;
+}
+#autosay-toggle-btn.autosay-off {
+  background: #f7eaea;
+  color: #b03a2e;
+  border-color: #b03a2e;
+}
+#autosay-toggle-btn:active {
+  filter: brightness(0.97);
+}
+#autosay-toggle-btn .autosay-emoji {
+  font-size: 1.0em;
+  margin-right: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+  #autosay-toggle-btn {
+    background: #23272b;
+    color: #6ec6ff;
+    border: 1.5px solid #444a55;
+  }
+  #autosay-toggle-btn.autosay-on {
+    background: #1e3a2a;
+    color: #6ef6a0;
+    border-color: #6ef6a0;
+  }
+  #autosay-toggle-btn.autosay-off {
+    background: #2a2323;
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+}
+
 /* Utility Class */
 .hidden {
     display: none !important;
@@ -890,26 +968,31 @@ body {
   z-index: 10;
 }
 
-#go-to-verb-btn {
-  position: absolute;
-  right: 1.2rem;
-  bottom: 1.2rem;
+#go-to-verb-btn, #go-to-verb-btn-2 {
+  position: static !important;
+  right: auto;
+  bottom: auto;
   margin: 0;
-  z-index: 10;
-  display: flex;
+  z-index: auto;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.85);
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(52,152,219,0.10);
-  font-size: 1.5rem;
-  padding: 0.5rem;
+  justify-content: flex-start;
+  background: #eaf6fb;
+  color: #3498db;
+  border-radius: 0.8em;
+  box-shadow: 0 2px 8px #0001;
+  font-size: 1.18em;
+  padding: 0.18em 0.7em;
   border: none;
   cursor: pointer;
-  transition: box-shadow 0.2s, background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+  outline: none;
+  /* min-width: 70px; */
+  text-align: left;
 }
-#go-to-verb-btn:active {
-  background: #e0e6ed;
+#go-to-verb-btn:active, #go-to-verb-btn-2:active {
+  background: #d0e6f7;
 }
 
 /* Pronoun and tense below infinitive */
