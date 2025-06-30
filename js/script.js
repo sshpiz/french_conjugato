@@ -313,11 +313,51 @@ document.addEventListener('DOMContentLoaded', () => {
         currentCard = card;
         const verbFrequency = card.verb.frequency || 'common'; 
 
+        // Set infinitive and translation separately for proper styling
+        let translation = card.verb.translation || '';
+        if (translation && !/^to\s/i.test(translation)) {
+            translation = 'to ' + translation;
+        }
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
-        verbTranslationEl.textContent = card.verb.translation;
-        verbPronounEl.textContent = card.pronoun;
+        verbTranslationEl.textContent = translation ? '(' + translation + ')' : '';
+        // Add emoji to pronoun
+        const pronounEmojiMap = {
+            'je': '🧑',
+            "j'": '🧑',
+            'tu': '🫵',
+            'il': '👦',
+            'elle': '👧',
+            'on': '👥',
+            'nous': '👨‍👩‍👧‍👦',
+            'vous': '🫵🫵',
+            'ils': '👦👦',
+            'elles': '👧👧'
+        };
+        let pronounDisplay = card.pronoun;
+        // Handle split pronouns like "il/elle/on"
+        if (pronounDisplay.includes('/')) {
+            pronounDisplay = pronounDisplay.split('/').map(p => (pronounEmojiMap[p.trim()] || '') + ' ' + p.trim()).join(' / ');
+        } else {
+            pronounDisplay = (pronounEmojiMap[pronounDisplay] || '') + ' ' + pronounDisplay;
+        }
+        verbPronounEl.textContent = pronounDisplay.trim();
         verbTenseEl.textContent = card.tense;
+        // Remove any previous tense color classes
+        verbTenseEl.className = 'meta-info';
+        // Add tense color class if known
+        const tenseClassMap = {
+            'present': 'tense-present',
+            'passeCompose': 'tense-passeCompose',
+            'imparfait': 'tense-imparfait',
+            'futurSimple': 'tense-futurSimple',
+            'plusQueParfait': 'tense-plusQueParfait',
+            'subjonctifPresent': 'tense-subjonctifPresent',
+            'conditionnelPresent': 'tense-conditionnelPresent'
+        };
+        if (tenseClassMap[card.tense]) {
+            verbTenseEl.classList.add(tenseClassMap[card.tense]);
+        }
 
         const frequencyText = verbFrequency.replace('-', ' ');
         verbFrequencyEl.textContent = frequencyText;
@@ -460,25 +500,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const populateExplorerList = (filter = '') => {
+    // --- Verb List Modes (no modules, file:// compatible) ---
+    // (Mode toggle functionality removed; always show frequency mode)
+    function groupVerbsByFrequency(verbs) {
+        const groups = { common: [], 'less-common': [], rare: [] };
+        verbs.forEach(v => {
+            const freq = v.frequency || 'common';
+            if (groups[freq]) groups[freq].push(v);
+        });
+        return groups;
+    }
+
+    function populateExplorerList(filter = '') {
         verbListContainer.innerHTML = '';
         const normalizedFilter = removeAccents(filter.toLowerCase());
         const filteredVerbs = uniqueVerbs.filter(v => removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter));
-
-        filteredVerbs.forEach(verb => {
-            const item = document.createElement('div');
-            item.className = 'verb-list-item';
-            item.dataset.infinitive = verb.infinitive;
-            item.innerHTML = `
-                <div class="verb-list-item-text">
-                    <span class="infinitive">${verb.infinitive}</span>
-                    <span class="translation">${verb.translation}</span>
-                </div>
-                <button class="audio-btn" data-speak="${verb.infinitive}">🔊</button>
-            `;
-            verbListContainer.appendChild(item);
+        const groups = groupVerbsByFrequency(filteredVerbs);
+        const freqLabels = { common: 'Common', 'less-common': 'Less Common', rare: 'Rare' };
+        ['common','less-common','rare'].forEach(freq => {
+            if (groups[freq] && groups[freq].length) {
+                const section = document.createElement('div');
+                section.innerHTML = `<div class="frequency-section-header">${freqLabels[freq]}</div>`;
+                groups[freq].forEach(verb => {
+                    const item = document.createElement('div');
+                    item.className = 'verb-list-item';
+                    item.dataset.infinitive = verb.infinitive;
+                    item.innerHTML = `
+                        <div class="verb-list-item-text">
+                            <span class="infinitive">${verb.infinitive}</span>
+                            <span class="translation">${verb.translation}</span>
+                        </div>
+                        <button class="audio-btn" data-speak="${verb.infinitive}">🔊</button>
+                    `;
+                    section.appendChild(item);
+                });
+                verbListContainer.appendChild(section);
+            }
         });
-    };
+    }
 
     const populateVerbDetail = (verb, tenseToFocus = null) => {
         verbDetailContainer.innerHTML = ''; // Clear previous content

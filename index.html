@@ -54,17 +54,19 @@
             <div id="flashcard" class="card">
                 <div class="card-content-before">
                     <div class="infinitive-line">
-                        <button id="go-to-verb-btn" class="audio-btn" title="Go to verb detail">📖</button>
                         <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
                         <h1 id="verb-infinitive" tabindex="0" role="button" aria-label="Hear infinitive" title="Tap to hear" class="tappable-audio"></h1>
                     </div>
+                    
                     <p id="verb-translation"></p>
                 </div>
+                <p id="verb-frequency" class="meta-info frequency-tag"></p>
                 <div class="meta-container">
                     <p id="verb-pronoun" class="meta-info"></p>
                     <p id="verb-tense" class="meta-info"></p>
-                    <p id="verb-frequency" class="meta-info frequency-tag"></p>
                 </div>
+
+                <button id="go-to-verb-btn" title="Go to verb detail">📖</button>
 
                 <div id="answer-container">
                     <div class="conjugated-line">
@@ -76,7 +78,7 @@
             </div>
 
             <div class="navigation">
-                <button id="back-btn">Back</button>
+                <button id="back-btn">Previous</button>
                 <button id="explorer-toggle-btn">📖 Verb List</button>
                 <button id="next-btn">Next</button>
                 <button id="options-toggle-btn">⚙️</button>
@@ -89,8 +91,14 @@
                 <button id="back-to-flashcard-btn" class="back-link-btn">← Back to Flashcards</button>
                 <input type="text" id="search-bar" placeholder="Search for a verb (e.g. etre)...">
             </div>
-            <div id="verb-list-container">
-                <!-- Simple list of verbs will be populated here -->
+            <div style="position:relative;">
+                <div id="verb-list-mode-toggle" style="position:absolute;top:0.2em;left:0.2em;z-index:11;visibility: hidden;">
+                  <button id="mode-alpha" class="mode-toggle-btn" aria-label="Alphabetical">A-Z</button>
+                  <button id="mode-freq" class="mode-toggle-btn" aria-label="Frequency">★</button>
+                </div>
+                <div id="verb-list-container">
+                    <!-- Simple list of verbs will be populated here -->
+                </div>
             </div>
         </div>
 

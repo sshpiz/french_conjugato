@@ -1,3 +1,89 @@
+/* Verb list mode toggle styles */
+.mode-toggle-btn {
+  background: #eaf6fb;
+  border: none;
+  color: #3498db;
+  font-size: 1.1em;
+  font-weight: 700;
+  border-radius: 0.7em;
+  margin-right: 0.3em;
+  padding: 0.2em 0.7em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mode-toggle-btn.active {
+  background: #3498db;
+  color: #fff;
+}
+/* Alphabet scroller styles */
+.alphabet-scroller {
+  position: absolute;
+  right: 0.2em;
+  top: 0.5em;
+  bottom: 0.5em;
+  width: 1.7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  background: rgba(255,255,255,0.7);
+  border-radius: 1em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0.2em 0.1em;
+}
+.alphabet-letter {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.95em;
+  padding: 0.1em 0;
+  cursor: pointer;
+  border-radius: 0.5em;
+  transition: background 0.2s, color 0.2s;
+}
+.alphabet-letter:hover, .alphabet-letter.active {
+  background: #3498db22;
+  color: #3498db;
+}
+/* Frequency section headers */
+.frequency-section-header {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #3498db;
+  background: #eaf6fb;
+  padding: 0.3em 0.7em;
+  border-radius: 0.7em;
+  margin: 0.7em 0 0.2em 0;
+  text-align: left;
+}
+# Tense color variables (soft, harmonious with bg)
+:root {
+  --tense-present: #b3d8c5;           /* soft green */
+  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
+  --tense-imparfait: #c9c7e8;         /* soft lavender */
+  --tense-futur-simple: #b2d6f7;      /* soft blue */
+  --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
+  --tense-subjonctif-present: #e8e7c7;/* soft yellow */
+  --tense-conditionnel-present: #d6e8c7;/* soft lime */
+}
+#verb-tense {
+  border-radius: 0.7em;
+  padding: 0.1em 0.7em;
+  background: var(--tense-present); /* default, will be overridden by class */
+  color: #2c3e50;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+/* Tense-specific background colors */
+.tense-present        { background: var(--tense-present) !important; }
+.tense-passeCompose   { background: var(--tense-passe-compose) !important; }
+.tense-imparfait      { background: var(--tense-imparfait) !important; }
+.tense-futurSimple    { background: var(--tense-futur-simple) !important; }
+.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
+.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
+.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
 /* style.css */
 /* Basic Reset & Font */
 :root {
@@ -8,6 +94,31 @@
     --meta-color: #7f8c8d;
     --border-color: #e0e6ed;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* Tense color variables (soft, harmonious with bg) */
+    --tense-present: #b3d8c5;           /* soft green */
+    --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
+    --tense-imparfait: #c9c7e8;         /* soft lavender */
+    --tense-futur-simple: #b2d6f7;      /* soft blue */
+    --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
+    --tense-subjonctif-present: #e8e7c7;/* soft yellow */
+    --tense-conditionnel-present: #d6e8c7;/* soft lime */
+#verb-tense {
+  border-radius: 0.7em;
+  padding: 0.1em 0.7em;
+  background: var(--tense-present); /* default, will be overridden by class */
+  color: #2c3e50;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+/* Tense-specific background colors */
+.tense-present        { background: var(--tense-present) !important; }
+.tense-passeCompose   { background: var(--tense-passe-compose) !important; }
+.tense-imparfait      { background: var(--tense-imparfait) !important; }
+.tense-futurSimple    { background: var(--tense-futur-simple) !important; }
+.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
+.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
+.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
 }
 
 * {
@@ -156,6 +267,7 @@ body {
     gap: 1.5rem;
     transition: transform 0.2s ease;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
     /* Add background image with a semi-transparent white overlay for readability */
     background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('../bg.png');
     background-size: cover;
@@ -171,7 +283,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    margin-top: 2.5vh;
+    margin-top: 0;
+    position: absolute;
+    top: 3%;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    align-items: center;
+    pointer-events: none;
 }
 
 .infinitive-line {
@@ -179,18 +298,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    
     gap: 0.5rem;
 }
 
 .infinitive-line h1 {
+    
     margin: 0; /* Override default h1 margin for better flex alignment */
 }
 
+/* Smaller, not bold, translation font for flashcard */
 #verb-translation {
-    min-height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--meta-color);
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
 }
 
 .conjugated-line {
@@ -229,11 +354,19 @@ body {
 
 /* Container for meta tags to keep them on one line */
 .meta-container {
-    min-height: 32px;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    min-height: 32px;
+    z-index: 3;
 }
 
 /* --- Frequency Tag Styling --- */
@@ -263,26 +396,27 @@ body {
 
 /* Answer Styling */
 #answer-container {
-    /* Keep the element in the layout but invisible by default */
+    /* Always keep layout and position consistent, only toggle visibility/opacity */
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     min-height: 80px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex: 1 1 auto;
-    margin-top: 18vh;
+    margin-top: 0;
+    position: absolute;
+    top: 38%;
+    left: 0;
+    width: 100%;
+    z-index: 3;
 }
 
 #answer-container.is-visible {
     visibility: visible;
     opacity: 1;
-    justify-content: flex-start;
-    align-items: center;
-    display: flex;
-    margin-top: 18vh;
 }
 
 #conjugated-verb {
@@ -293,6 +427,7 @@ body {
 
 /* Audio Buttons */
 .audio-btn {
+    display: none !important;
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -300,10 +435,6 @@ body {
     opacity: 0.7;
     transition: opacity 0.2s;
     padding: 0.5rem;
-}
-
-.audio-btn:hover {
-    opacity: 1;
 }
 
 /* Navigation Buttons */
@@ -320,8 +451,6 @@ body {
 
 .navigation button {
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
     padding: 0.75rem 1rem;
     border-radius: 10px;
     font-size: 1rem;
@@ -390,7 +519,7 @@ body {
     color: var(--text-color);
 }
 .verb-list-item-text .translation {
-    font-size: 0.9rem;
+    font-size: 0.9rem
     color: var(--meta-color);
     display: block; /* Ensure it appears on a new line */
 }
@@ -556,4 +685,55 @@ body {
     justify-content: stretch;
     min-height: 0;
     height: auto;
+}
+
+/* Move frequency tag to bottom left and verb detail icon below it */
+#verb-frequency {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1.2rem;
+  margin: 0;
+  z-index: 10;
+}
+
+#go-to-verb-btn {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  margin: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+#go-to-verb-btn:active {
+  background: #e0e6ed;
+}
+
+/* Pronoun and tense below infinitive */
+.meta-container {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 32px;
+  z-index: 3;
+}
+#verb-pronoun, #verb-tense {
+  position: static;
 }

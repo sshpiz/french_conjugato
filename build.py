@@ -8,12 +8,10 @@ DIST_DIR = os.path.join(ROOT_DIR, 'dist')
 
 HTML_TEMPLATE_PATH = os.path.join(ROOT_DIR, 'index.html')
 CSS_PATH = os.path.join(ROOT_DIR, 'css', 'style.css')
-VERBS_JS_PATH = os.path.join(ROOT_DIR, 'js', 'verbs.full.js')
-SCRIPT_JS_PATH = os.path.join(ROOT_DIR, 'js', 'script.js')
-SENTENCES_JS_PATH = os.path.join(ROOT_DIR, 'js', 'sentences.js')
+JS_DIR = os.path.join(ROOT_DIR, 'js')
 IMAGE_PATH = os.path.join(ROOT_DIR, 'bg.png')
 FAVICON_PATH = os.path.join(ROOT_DIR, 'favicon_big.png')
-HTML_OUTPUT_PATH = os.path.join(DIST_DIR, 'franconjuge.html')
+HTML_OUTPUT_PATH = os.path.join(DIST_DIR, 'franconjugue.html')
 
 def build():
     """Reads source files, injects content, and writes a standalone HTML file."""
@@ -26,13 +24,31 @@ def build():
             html_template = f.read()
         with open(CSS_PATH, 'r', encoding='utf-8') as f:
             css_content = f.read()
-        with open(VERBS_JS_PATH, 'r', encoding='utf-8') as f:
-            verbs_js_content = f.read()
-        with open(SENTENCES_JS_PATH, 'r', encoding='utf-8') as f:
-            sentences_js_content = f.read()
-        
-        with open(SCRIPT_JS_PATH, 'r', encoding='utf-8') as f:
-            script_js_content = f.read()
+
+        # Collect all relevant JS files in a logical order
+        js_files = []
+        preferred_order = [
+            'verbs.full.js',
+            'sentences.js',
+            'main.js',
+            'alphabetScroller.js',
+            'verbListModes.js',
+            'script.js',
+        ]
+        # Add preferred files if they exist
+        for fname in preferred_order:
+            fpath = os.path.join(JS_DIR, fname)
+            if os.path.exists(fpath):
+                js_files.append(fpath)
+        # Add any other .js files not already included (skip backups, test, bak, copy, etc)
+        for fname in os.listdir(JS_DIR):
+            if fname.endswith('.js') and fname not in preferred_order and not any(x in fname for x in ['bak', 'copy', 'test', 'disabled']):
+                js_files.append(os.path.join(JS_DIR, fname))
+        # Read and concatenate
+        js_contents = []
+        for fpath in js_files:
+            with open(fpath, 'r', encoding='utf-8') as f:
+                js_contents.append(f"\n// --- {os.path.basename(fpath)} ---\n" + f.read())
         
         # Read and encode the image to a data URI
         print("   - Encoding background image...")
@@ -62,7 +78,8 @@ def build():
 
         # 4. Combine and inject JavaScript content
         print("   - Injecting JavaScript...")
-        combined_js = f"\n// --- verbs.full.js ---\n{verbs_js_content}\n\n// --- sentences.js ---\n{sentences_js_content}\n\n// --- script.js ---\n{script_js_content}\n"
+
+        combined_js = '\n'.join(js_contents)
 
         replacement_js_block = f'<script>{combined_js}</script>'
         # Use a lambda for the replacement. This is the crucial fix. It tells the `re` module
