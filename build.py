@@ -30,9 +30,9 @@ def build():
         preferred_order = [
             'verbs.full.js',
             'sentences.js',
-            'main.js',
-            'alphabetScroller.js',
-            'verbListModes.js',
+            # 'main.js',
+            # 'alphabetScroller.js',
+            # 'verbListModes.js',
             'script.js',
         ]
         # Add preferred files if they exist
@@ -40,10 +40,10 @@ def build():
             fpath = os.path.join(JS_DIR, fname)
             if os.path.exists(fpath):
                 js_files.append(fpath)
-        # Add any other .js files not already included (skip backups, test, bak, copy, etc)
-        for fname in os.listdir(JS_DIR):
-            if fname.endswith('.js') and fname not in preferred_order and not any(x in fname for x in ['bak', 'copy', 'test', 'disabled']):
-                js_files.append(os.path.join(JS_DIR, fname))
+        # # Add any other .js files not already included (skip backups, test, bak, copy, etc)
+        # for fname in os.listdir(JS_DIR):
+        #     if fname.endswith('.js') and fname not in preferred_order and not any(x in fname for x in ['bak', 'copy', 'test', 'disabled']):
+        #         js_files.append(os.path.join(JS_DIR, fname))
         # Read and concatenate
         js_contents = []
         for fpath in js_files:
