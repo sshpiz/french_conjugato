@@ -9,10 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!phrasebook[item.verb]) {
                 phrasebook[item.verb] = {};
             }
-            // Only store one sentence per verb/tense pair
             if (!phrasebook[item.verb][item.tense]) {
-                phrasebook[item.verb][item.tense] = item.sentence;
+                phrasebook[item.verb][item.tense] = [];
             }
+            phrasebook[item.verb][item.tense].push({
+                pronoun: item.pronoun,
+                sentence: item.sentence
+            });
         }
     }
 
@@ -396,11 +399,19 @@ document.addEventListener('DOMContentLoaded', () => {
         verbPhraseEl.classList.remove('tappable-audio');
         if (cardGenerationOptions.showPhrases) {
             const phraseKey = tenseKeyToPhraseKey[card.tense];
-            const verbPhrases = phrasebook[card.verb.infinitive];
-            const phrase = verbPhrases && verbPhrases[phraseKey];
-            if (phrase) {
-                verbPhraseEl.textContent = phrase;
-                verbPhraseEl.classList.add('tappable-audio');
+            const verbPhrases = phrasebook[card.verb.infinitive] && phrasebook[card.verb.infinitive][phraseKey];
+            let filtered = [];
+            if (verbPhrases && verbPhrases.length) {
+                // 1. Try to match verb+tense+pronoun
+                filtered = verbPhrases.filter(p => p.pronoun === card.pronoun);
+                // 2. If none, match verb+tense
+                if (filtered.length === 0) filtered = verbPhrases;
+                // 3. Pick random if any
+                if (filtered.length > 0) {
+                    const chosen = filtered[Math.floor(Math.random() * filtered.length)];
+                    verbPhraseEl.textContent = chosen.sentence;
+                    verbPhraseEl.classList.add('tappable-audio');
+                }
             }
         }
 
@@ -620,6 +631,45 @@ document.addEventListener('DOMContentLoaded', () => {
             tenseBlock.appendChild(grid);
             verbDetailContainer.appendChild(tenseBlock);
         });
+
+        // --- All Example Phrases Section ---
+        const phrasebookForVerb = phrasebook[verb.infinitive];
+        if (phrasebookForVerb) {
+            const phrasesSection = document.createElement('section');
+            phrasesSection.className = 'all-phrases-section';
+            phrasesSection.style.marginTop = '2.5em';
+            phrasesSection.innerHTML = `<h3 style="margin-bottom:0.5em;font-size:1.2em;color:#3498db;">Exemples de phrases</h3>`;
+            const pronounOrder = ["je", "tu", "il", "elle", "nous", "vous", "ils", "elles"];
+            Object.entries(phrasebookForVerb).forEach(([tense, phraseArr]) => {
+                if (!Array.isArray(phraseArr) || phraseArr.length === 0) return;
+                // Sort phraseArr by pronoun order
+                const sortedArr = [...phraseArr].sort((a, b) => {
+                    const idxA = pronounOrder.indexOf(a.pronoun);
+                    const idxB = pronounOrder.indexOf(b.pronoun);
+                    // If not found, put at end
+                    return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
+                });
+                const tenseBlock = document.createElement('div');
+                tenseBlock.className = 'all-phrases-tense-block';
+                tenseBlock.innerHTML = `<div style="font-weight:600;margin-top:1em;">${tense}</div>`;
+                sortedArr.forEach(p => {
+                    const pEl = document.createElement('div');
+                    pEl.className = 'all-phrases-item tappable-audio';
+                    pEl.style.margin = '0.2em 0 0.2em 1.2em';
+                    pEl.style.fontSize = '1em';
+                    pEl.dataset.speak = p.sentence;
+                    pEl.innerHTML = `<span style='color:#888;'>${p.pronoun}:</span> <span>${p.sentence}</span> <span style='font-size:0.95em;opacity:0.7;cursor:pointer;margin-left:0.4em;'>🔊</span>`;
+                    pEl.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        if (pEl.dataset.speak) speak(pEl.dataset.speak);
+                    });
+                    tenseBlock.appendChild(pEl);
+                });
+                // (No global tappable-audio handler here; only phrase items get their own handler)
+                phrasesSection.appendChild(tenseBlock);
+            });
+            verbDetailContainer.appendChild(phrasesSection);
+        }
 
         // After populating, scroll to the focused tense if provided
         highlightAndScrollToTense(tenseToFocus);
