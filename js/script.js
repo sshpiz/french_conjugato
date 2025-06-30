@@ -390,6 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isAnswerVisible) {
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
+            if (window.incrementDailyCount) window.incrementDailyCount();
         }
     };
 
@@ -441,7 +442,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- View Management & Routing ---
-    const views = [flashcardView, explorerListView, explorerDetailView, optionsView];
+    const mnemonicsView = document.getElementById('mnemonics-view');
+    const views = [flashcardView, explorerListView, explorerDetailView, optionsView, mnemonicsView];
 
     function showView(viewId, pushState = true) {
         let targetView = null;
@@ -474,6 +476,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showOptions = () => {
         showView('options-view');
+    };
+
+    const showMnemonics = () => {
+        showView('mnemonics-view');
     };
 
     const showVerbDetail = (verbInfinitive, tenseToFocus = null) => {
@@ -726,6 +732,11 @@ document.addEventListener('DOMContentLoaded', () => {
     backToFlashcardBtn.addEventListener('click', () => window.history.back());
     backToFlashcardFromOptionsBtn.addEventListener('click', () => window.history.back());
     backToListBtn.addEventListener('click', () => window.history.back());
+    // Mnemonics back button
+    const backToOptionsBtn = document.getElementById('back-to-options-btn');
+    if (backToOptionsBtn) {
+        backToOptionsBtn.addEventListener('click', () => window.history.back());
+    }
 
     // Event listener for browser's back/forward buttons
     window.addEventListener('popstate', (event) => {
@@ -798,6 +809,9 @@ document.addEventListener('DOMContentLoaded', () => {
         showView('flashcard-view', false);
         window.history.replaceState({ view: 'flashcard-view' }, '', '#flashcard-view');
     };
+
+    // Expose showView globally for inline script
+    window.showView = showView;
 
     initializeApp();
 });

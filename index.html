@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
     <title>franconjugue</title>
     <link rel="icon" href="favicon_big.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
@@ -41,6 +41,136 @@
         margin: -0.5rem; /* Adjust for padding */
         padding: 0.5rem;
       }
+      /* Mnemonics specific styles */
+      .mnemonic-tabs {
+        margin-top: 1em;
+      }
+      .tab-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 0.5em;
+      }
+      .tab-button {
+        background: none;
+        border: 1px solid #3498db;
+        border-radius: 16px;
+        color: #3498db;
+        cursor: pointer;
+        font-weight: 600;
+        padding: 0.5em 1em;
+        transition: background 0.3s, color 0.3s;
+      }
+      .tab-button.active {
+        background: #3498db;
+        color: white;
+      }
+      .tab-panel {
+        display: none;
+        animation: fadeIn 0.5s;
+      }
+      .tab-panel.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .mnemonic-card {
+        background: linear-gradient(120deg, #f7fafc 60%, #eaf6fb 100%);
+        border-radius: 18px;
+        box-shadow: 0 4px 18px rgba(44,62,80,0.08);
+        padding: 2.2em 1.2em 1.2em 1.2em;
+        margin: 2em auto 1.5em auto;
+        max-width: 480px;
+      }
+      .mnemonic-tabs h2 {
+        color: #3498db;
+        margin-top: 0.5em;
+      }
+      .tab-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.5em;
+        margin-bottom: 1.2em;
+      }
+      .tab-button {
+        background: #eaf6fb;
+        border: none;
+        color: #3498db;
+        font-size: 1.1em;
+        font-weight: 700;
+        border-radius: 0.7em;
+        padding: 0.3em 1.1em;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+      }
+      .tab-button.active {
+        background: #3498db;
+        color: #fff;
+      }
+      .tab-panel {
+        display: none;
+        animation: fadeIn 0.3s;
+      }
+      .tab-panel.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .singsong {
+        background: #fffbe6;
+        border-radius: 0.5em;
+        padding: 0.15em 0.5em;
+        font-style: italic;
+        color: #b86b00;
+        font-size: 1.08em;
+        cursor: pointer;
+        transition: background 0.2s;
+        display: inline-block;
+      }
+      .singsong:hover {
+        background: #ffe9b3;
+      }
+      .small-audio {
+        font-size: 1em;
+        margin-left: 0.2em;
+        vertical-align: middle;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #3498db;
+        padding: 0;
+      }
+      #daily-progress-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3em;
+        margin: 0 0 0.5em 0;
+      }
+      #daily-progress-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        margin-right: 0.1em;
+      }
+      #daily-progress-circle svg {
+        display: block;
+      }
+      #daily-progress-label {
+        font-size: 0.82em;
+        color: #888;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        min-width: 32px;
+        text-align: right;
+        margin-left: 0;
+      }
     </style>
 </head>
 <body>
@@ -52,6 +182,15 @@
         <!-- View 1: Flashcard Flow -->
         <div id="flashcard-view">
             <div id="flashcard" class="card">
+                <div id="daily-progress-container">
+                  <span id="daily-progress-circle">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                      <circle cx="16" cy="16" r="14" fill="none" stroke="#eaf6fb" stroke-width="4"/>
+                      <circle id="daily-progress-circle-bar" cx="16" cy="16" r="14" fill="none" stroke="#27ae60" stroke-width="4" stroke-linecap="round" stroke-dasharray="87.96" stroke-dashoffset="87.96"/>
+                    </svg>
+                  </span>
+                  <span id="daily-progress-label"></span>
+                </div>
                 <div class="card-content-before">
                     <div class="infinitive-line">
                         <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
@@ -138,19 +277,21 @@
                 <h2>Options</h2>
             </div>
             <div id="options-container">
-                <div class="option-group">
+                <div class="option-group" style="display: flex; flex-direction: row; align-items: center; gap: 2.5em; justify-content: flex-start;">
+                  <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
                     <label for="hierarchical-toggle">Hierarchical Selection</label>
                     <div class="toggle-switch">
                         <input type="checkbox" id="hierarchical-toggle" class="toggle-input">
                         <label for="hierarchical-toggle" class="toggle-label"></label>
                     </div>
-                </div>
-                <div class="option-group">
+                  </div>
+                  <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
                     <label for="show-phrases-toggle">Show Example Phrases</label>
                     <div class="toggle-switch">
                         <input type="checkbox" id="show-phrases-toggle" class="toggle-input">
                         <label for="show-phrases-toggle" class="toggle-label"></label>
                     </div>
+                  </div>
                 </div>
                 <div class="option-group">
                     <h3>Tense Weights</h3>
@@ -162,9 +303,155 @@
                 </div>
             </div>
         </div>
+
+        <!-- Mnemonics Page (hidden by default) -->
+        <div id="mnemonics-view" class="hidden">
+          <button id="back-to-options-btn" class="back-link-btn">← Back to Options</button>
+          <h1 style="margin-top:0.5em;">French Verb Mnemonics & Tips</h1>
+          <div class="mnemonic-tabs mnemonic-card">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="er">-ER Verbs</button>
+              <button class="tab-button" data-tab="ir">-IR Verbs</button>
+              <button class="tab-button" data-tab="re">-RE Verbs</button>
+              <button class="tab-button" data-tab="boot">Boot Verbs</button>
+            </div>
+            <div class="tab-content">
+              <div class="tab-panel active" id="er">
+                <h2>-ER Verbs Mnemonic</h2>
+                <p><strong>Mnemonic:</strong> <code>e, es, e, ons, ez, ent</code></p>
+                <p><strong>Rhyme:</strong> <span class="singsong" data-say="Je e, Tu es, Il e, Nous ons, Vous ez, Ils ent">“Je -e, Tu -es, Il -e... Nous -ons, Vous -ez, Ils -ent.” <button class="audio-btn small-audio" title="Hear this">🔊</button></span></p>
+                <p><strong>Example:</strong> <code>parler</code> → je parle, tu parles, il parle, nous parlons...</p>
+              </div>
+              <div class="tab-panel" id="ir">
+                <h2>-IR Verbs Mnemonic</h2>
+                <p><strong>Mnemonic:</strong> <code>is, is, it, issons, issez, issent</code></p>
+                <p><strong>Phrase:</strong> <span class="singsong" data-say="is, is, it, issons, issez, issent">"IS, IS, IT – ISSONS, ISSEZ, ISSENT" <button class="audio-btn small-audio" title="Hear this">🔊</button></span></p>
+                <p><strong>Example:</strong> <code>finir</code> → je finis, tu finis, il finit, nous finissons...</p>
+              </div>
+              <div class="tab-panel" id="re">
+                <h2>-RE Verbs Mnemonic</h2>
+                <p><strong>Mnemonic:</strong> <code>s, s, –, ons, ez, ent</code></p>
+                <p><strong>Note:</strong> “Il/Elle gets nothing — they’re shy.”</p>
+                <p><strong>Example:</strong> <code>vendre</code> → je vends, tu vends, il vend, nous vendons...</p>
+              </div>
+              <div class="tab-panel" id="boot">
+                <h2>Boot Verbs (Stem-changing)</h2>
+                <p><strong>Mnemonic:</strong> Think of a <span style="color:#3498db;font-weight:bold">boot</span> shape covering forms: je, tu, il/elle, ils/elles</p>
+                <p><strong>Rule:</strong> Stem changes apply <span style="color:#27ae60;font-weight:bold">inside the boot</span>, but not to <code>nous</code> and <code>vous</code>.</p>
+                <p><strong>Example:</strong> <code>acheter</code> → j’achète, tu achètes, nous achetons</p>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!-- Data and Logic Scripts -->
+    <script>
+      // Mnemonics tab logic and soundable singsong
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.tab-button');
+        const panels = document.querySelectorAll('.tab-panel');
+        buttons.forEach(button => {
+          button.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+            button.classList.add('active');
+            const target = document.getElementById(button.dataset.tab);
+            if (target) target.classList.add('active');
+          });
+        });
+        // Navigation for mnemonics page
+        const mnemonicsView = document.getElementById('mnemonics-view');
+        const optionsView = document.getElementById('options-view');
+        const backToOptionsBtn = document.getElementById('back-to-options-btn');
+        // Add a button to options to open mnemonics
+        const optionsContainer = document.getElementById('options-container');
+        if (optionsContainer && !document.getElementById('open-mnemonics-btn')) {
+          const mnemonicsBtn = document.createElement('button');
+          mnemonicsBtn.id = 'open-mnemonics-btn';
+          mnemonicsBtn.className = 'back-link-btn';
+          mnemonicsBtn.style.marginTop = '1em';
+          mnemonicsBtn.textContent = '📚 Mnemonics & Tips';
+          mnemonicsBtn.onclick = function() {
+            if (window.showView) window.showView('mnemonics-view');
+          };
+          optionsContainer.appendChild(mnemonicsBtn);
+        }
+        // (No-op: back button handler is set in main JS for history support)
+        // Singsong audio logic
+        function speak(text) {
+          if (window.speechSynthesis) {
+            const utter = new window.SpeechSynthesisUtterance(text);
+            utter.lang = 'fr-FR';
+            utter.rate = 0.95;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utter);
+          }
+        }
+        document.querySelectorAll('.singsong').forEach(el => {
+          el.addEventListener('click', function(e) {
+            speak(el.dataset.say);
+          });
+          const btn = el.querySelector('.audio-btn');
+          if (btn) {
+            btn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              speak(el.dataset.say);
+            });
+          }
+        });
+      });
+    </script>
+    <script>
+      // Daily counter/progress bar logic (circular)
+      const DAILY_GOAL = 100; // Change this to 10, 50, etc. to test
+      function getTodayKey() {
+        const d = new Date();
+        return `verbDailyCount_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`;
+      }
+      function getDailyCount() {
+        return parseInt(localStorage.getItem(getTodayKey()) || '0', 10);
+      }
+      function setDailyCount(val) {
+        localStorage.setItem(getTodayKey(), val);
+      }
+      function updateDailyProgressBar() {
+        const count = getDailyCount();
+        const pct = Math.min(1, count / DAILY_GOAL);
+        const pct100 = Math.min(100, Math.round(pct * 100));
+        const label = document.getElementById('daily-progress-label');
+        label.textContent = `${count} / ${DAILY_GOAL}`;
+        // Circular bar logic
+        const circle = document.getElementById('daily-progress-circle-bar');
+        if (circle) {
+          const r = 14;
+          const circ = 2 * Math.PI * r;
+          circle.setAttribute('stroke-dasharray', circ.toFixed(2));
+          circle.setAttribute('stroke-dashoffset', (circ * (1 - pct)).toFixed(2));
+          // Color logic
+          let color;
+          if (count < DAILY_GOAL) {
+            color = '#27ae60'; // green
+          } else if (count < DAILY_GOAL * 1.5) {
+            color = '#f1c40f'; // gold
+          } else if (count < DAILY_GOAL * 2) {
+            color = '#e67e22'; // orange
+          } else {
+            color = '#e74c3c'; // red
+          }
+          circle.setAttribute('stroke', color);
+        }
+      }
+      // Increment on each new card (answer shown)
+      function incrementDailyCount() {
+        setDailyCount(getDailyCount() + 1);
+        updateDailyProgressBar();
+      }
+      // Expose for script.js
+      window.incrementDailyCount = incrementDailyCount;
+      window.updateDailyProgressBar = updateDailyProgressBar;
+      document.addEventListener('DOMContentLoaded', updateDailyProgressBar);
+    </script>
     <script src="js/verbs.full.js"></script>
     <script src="js/sentences.js"></script>
     <script src="js/script.js"></script>
