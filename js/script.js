@@ -133,6 +133,37 @@ document.addEventListener('DOMContentLoaded', () => {
         frequencyWeights,
     };
 
+    // --- Local Storage for Options ---
+    const saveOptions = () => {
+        try {
+            localStorage.setItem('frenchVerbsOptions', JSON.stringify(cardGenerationOptions));
+        } catch (e) {
+            console.warn("Could not save options to localStorage:", e);
+        }
+    };
+
+    const loadOptions = () => {
+        try {
+            const savedOptionsJSON = localStorage.getItem('frenchVerbsOptions');
+            if (savedOptionsJSON) {
+                const savedOptions = JSON.parse(savedOptionsJSON);
+
+                // Update toggles, checking for undefined to not break on old saves
+                if (typeof savedOptions.hierarchical === 'boolean') {
+                    cardGenerationOptions.hierarchical = savedOptions.hierarchical;
+                }
+                if (typeof savedOptions.showPhrases === 'boolean') {
+                    cardGenerationOptions.showPhrases = savedOptions.showPhrases;
+                }
+
+                // Update weights by merging into the existing objects
+                if (savedOptions.tenseWeights) { Object.assign(tenseWeights, savedOptions.tenseWeights); }
+                if (savedOptions.frequencyWeights) { Object.assign(frequencyWeights, savedOptions.frequencyWeights); }
+            }
+        } catch (e) {
+            console.warn("Could not load options from localStorage:", e);
+        }
+    };
     // --- Audio Synthesis ---
     const synth = window.speechSynthesis;
     const speak = (text) => {
@@ -510,6 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newValue = parseInt(e.target.value, 10);
                 sliderValue.textContent = newValue;
                 cardGenerationOptions[weightType][e.target.dataset.key] = newValue;
+                saveOptions();
             });
 
             sliderGroup.appendChild(label);
@@ -579,9 +611,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Options controls
     hierarchicalToggle.addEventListener('change', (e) => {
         cardGenerationOptions.hierarchical = e.target.checked;
+        saveOptions();
     });
     showPhrasesToggle.addEventListener('change', (e) => {
         cardGenerationOptions.showPhrases = e.target.checked;
+        saveOptions();
     });
 
     // Explorer Search and Audio
@@ -607,6 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Load ---
     const initializeApp = () => {
+        loadOptions();
         populateOptions();
         nextCard();
         backBtn.disabled = true;
