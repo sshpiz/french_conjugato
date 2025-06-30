@@ -28,26 +28,88 @@ body {
 }
 
 #app-container {
-    width: 100%;
-    max-width: 400px;
+    width: 100vw;
+    max-width: 480px;
+    min-height: 100vh;
+    height: 100vh;
+    padding: 0;
+    margin: 0 auto;
+    position: relative; /* For positioning info button */
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+/* Info Button and Panel */
+.info-container {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 100;
+}
+
+#info-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+    transition: box-shadow 0.2s, background 0.2s;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+#info-btn:hover, #info-btn:focus {
+    box-shadow: 0 4px 16px rgba(52,152,219,0.18);
+    background: #eaf6fb;
+}
+
+#info-panel {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 280px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     padding: 1rem;
+    box-shadow: var(--shadow);
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+#info-panel p {
+    margin-bottom: 0.5rem;
+}
+
+#info-panel ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
 }
 
 /* --- Flashcard View --- */
 #flashcard {
     border-radius: 16px;
-    padding: 2rem;
+    padding: 2rem 1rem 1.5rem 1rem;
     box-shadow: var(--shadow);
     text-align: center;
     cursor: pointer;
     user-select: none;
-    min-height: 350px;
+    min-height: 0;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content to top */
-    gap: 1.5rem; /* Add space between content blocks */
+    justify-content: center;
+    gap: 1.5rem;
     transition: transform 0.2s ease;
-    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
     /* Add background image with a semi-transparent white overlay for readability */
     background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('../bg.png');
     background-size: cover;
@@ -320,11 +382,12 @@ body {
 
 .tappable-audio {
     cursor: pointer;
-    transition: color 0.2s;
-    position: relative;
+    transition: background 0.15s;
+    border-radius: 8px;
 }
-.tappable-audio:hover {
-    color: var(--accent-color);
+.tappable-audio:active, .tappable-audio:focus {
+    background: #eaf6fb;
+    outline: none;
 }
 
 /* --- Options View --- */

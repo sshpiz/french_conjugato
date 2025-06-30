@@ -46,6 +46,23 @@
 <body>
 
     <div id="app-container">
+        <div class="info-container">
+            <button id="info-btn" aria-label="Info" title="About this app">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="14" cy="14" r="13" fill="#fff" stroke="#3498db" stroke-width="2"/>
+                  <text x="14" y="20" text-anchor="middle" font-size="16" font-family="Arial, sans-serif" fill="#3498db" font-weight="bold">i</text>
+                </svg>
+            </button>
+            <div id="info-panel" class="hidden">
+                <p><strong>Welcome to Franconjugue!</strong></p>
+                <p>This app helps you learn French verb conjugations.</p>
+                <ul>
+                    <li>Tap the card to reveal the answer, and again for the next card.</li>
+                    <li>Use the buttons below to navigate, explore all verbs, or change settings.</li>
+                    <li>To get a new random set of verbs, refresh the page.</li>
+                </ul>
+            </div>
+        </div>
         <!-- View 1: Flashcard Flow -->
         <div id="flashcard-view">
             <div id="flashcard" class="card">
@@ -53,7 +70,7 @@
                     <div class="infinitive-line">
                         <button id="go-to-verb-btn" class="audio-btn">📖</button>
                         <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
-                        <h1 id="verb-infinitive"></h1>
+                        <h1 id="verb-infinitive" tabindex="0" role="button" aria-label="Hear infinitive" title="Tap to hear" class="tappable-audio"></h1>
                     </div>
                     <p id="verb-translation"></p>
                 </div>
@@ -66,7 +83,7 @@
                 <div id="answer-container">
                     <div class="conjugated-line">
                         <button id="conjugated-audio-btn" class="audio-btn">🔊</button>
-                        <h2 id="conjugated-verb"></h2>
+                        <h2 id="conjugated-verb" tabindex="0" role="button" aria-label="Hear conjugation" title="Tap to hear" class="tappable-audio"></h2>
                     </div>
                     <p id="verb-phrase" class="verb-phrase"></p>
                 </div>

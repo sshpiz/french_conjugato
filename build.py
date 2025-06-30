@@ -13,7 +13,7 @@ SCRIPT_JS_PATH = os.path.join(ROOT_DIR, 'js', 'script.js')
 SENTENCES_JS_PATH = os.path.join(ROOT_DIR, 'js', 'sentences.js')
 IMAGE_PATH = os.path.join(ROOT_DIR, 'bg.png')
 FAVICON_PATH = os.path.join(ROOT_DIR, 'favicon_big.png')
-HTML_OUTPUT_PATH = os.path.join(DIST_DIR, 'french-verbs.html')
+HTML_OUTPUT_PATH = os.path.join(DIST_DIR, 'franconjuge.html')
 
 def build():
     """Reads source files, injects content, and writes a standalone HTML file."""

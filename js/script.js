@@ -88,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
 
+    const infoBtn = document.getElementById('info-btn');
+    const infoPanel = document.getElementById('info-panel');
+
     // --- State ---
     let currentCard = null;
     let currentDetailVerb = null;
@@ -234,13 +237,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        for (const pronoun of pronouns) {
-                            if (conjugations[pronoun]) {
-                                weightedDeck.push({
-                                    card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronoun] },
-                                    score: tenseWeight
-                                });
+                        // Randomly select one pronoun with a conjugation for this verb/tense
+                        const availablePronouns = pronouns.filter(p => conjugations[p]);
+                        if (availablePronouns.length > 0) {
+                            let pronounKey = availablePronouns[Math.floor(Math.random() * availablePronouns.length)];
+                            let pronoun = pronounKey;
+                            if (pronounKey.includes('/')) {
+                                const options = pronounKey.split('/');
+                                pronoun = options[Math.floor(Math.random() * options.length)];
                             }
+                            weightedDeck.push({
+                                card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
+                                score: tenseWeight
+                            });
                         }
                     }
                 }
@@ -264,13 +273,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        for (const pronoun of pronouns) {
-                            if (conjugations[pronoun]) {
-                                weightedDeck.push({
-                                    card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronoun] },
-                                    score: score
-                                });
+                        // Randomly select one pronoun with a conjugation for this verb/tense
+                        const availablePronouns = pronouns.filter(p => conjugations[p]);
+                        if (availablePronouns.length > 0) {
+                            let pronounKey = availablePronouns[Math.floor(Math.random() * availablePronouns.length)];
+                            let pronoun = pronounKey;
+                            if (pronounKey.includes('/')) {
+                                const options = pronounKey.split('/');
+                                pronoun = options[Math.floor(Math.random() * options.length)];
                             }
+                            weightedDeck.push({
+                                card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
+                                score: score
+                            });
                         }
                     }
                 }
@@ -299,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const verbFrequency = card.verb.frequency || 'common'; 
 
         verbInfinitiveEl.textContent = card.verb.infinitive;
+        verbInfinitiveEl.classList.add('tappable-audio');
         verbTranslationEl.textContent = card.verb.translation;
         verbPronounEl.textContent = card.pronoun;
         verbTenseEl.textContent = card.tense;
@@ -308,7 +324,13 @@ document.addEventListener('DOMContentLoaded', () => {
         verbFrequencyEl.className = 'meta-info frequency-tag';
         verbFrequencyEl.classList.add(verbFrequency);
 
-        conjugatedVerbEl.textContent = card.conjugated;
+        // Show answer as pronoun + conjugated verb, but handle j' edge case
+        let answerText = card.pronoun + ' ' + card.conjugated;
+        if (card.pronoun === 'je' && card.conjugated.trim().toLowerCase().startsWith("j'")) {
+            answerText = card.conjugated;
+        }
+        conjugatedVerbEl.textContent = answerText;
+        conjugatedVerbEl.classList.add('tappable-audio');
 
         // --- New Phrase Logic ---
         verbPhraseEl.textContent = ''; // Clear by default
@@ -575,7 +597,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     conjugatedAudioBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        speak(currentCard.conjugated);
+        if (currentCard && currentCard.pronoun && currentCard.conjugated) {
+            let audioText = currentCard.pronoun + ' ' + currentCard.conjugated;
+            if (currentCard.pronoun === 'je' && currentCard.conjugated.trim().toLowerCase().startsWith("j'")) {
+                audioText = currentCard.conjugated;
+            }
+            speak(audioText);
+        } else if (currentCard && currentCard.conjugated) {
+            speak(currentCard.conjugated);
+        }
+    });
+
+    // Make infinitive tappable for audio (keyboard and click)
+    function playInfinitiveAudio() {
+        if (currentCard && currentCard.verb.infinitive) {
+            speak(currentCard.verb.infinitive);
+        }
+    }
+    verbInfinitiveEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playInfinitiveAudio();
+    });
+    verbInfinitiveEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            playInfinitiveAudio();
+        }
+    });
+
+    // Make conjugated verb tappable for audio (keyboard and click)
+    function playConjugatedAudio() {
+        if (currentCard && currentCard.pronoun && currentCard.conjugated) {
+            let audioText = currentCard.pronoun + ' ' + currentCard.conjugated;
+            if (currentCard.pronoun === 'je' && currentCard.conjugated.trim().toLowerCase().startsWith("j'")) {
+                audioText = currentCard.conjugated;
+            }
+            speak(audioText);
+        } else if (currentCard && currentCard.conjugated) {
+            speak(currentCard.conjugated);
+        }
+    }
+    conjugatedVerbEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playConjugatedAudio();
+    });
+    conjugatedVerbEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            playConjugatedAudio();
+        }
     });
 
     goToVerbBtn.addEventListener('click', (e) => {
@@ -606,6 +674,17 @@ document.addEventListener('DOMContentLoaded', () => {
             showView(event.state.view, false); // false to prevent re-pushing state
         } else {
             showView('flashcard-view', false); // Default to flashcard view
+        }
+    });
+
+    // Info Panel Logic
+    infoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        infoPanel.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+        if (!infoPanel.classList.contains('hidden') && !infoPanel.contains(e.target) && e.target !== infoBtn) {
+            infoPanel.classList.add('hidden');
         }
     });
     // Options controls
