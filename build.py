@@ -157,9 +157,14 @@ def build(force_jpeg=False):
         # 6. Write the final HTML file
         with open(HTML_OUTPUT_PATH, 'w', encoding='utf-8') as f:
             f.write(final_html)
+        INDEX_HTML_PATH = os.path.join(DIST_DIR, 'index.html')
 
+        with open(INDEX_HTML_PATH, 'w', encoding='utf-8') as f:
+            f.write(final_html)
+
+        
         print(f"\n✅ Build successful!")
-        print(f"   Standalone file created at: {HTML_OUTPUT_PATH}")
+        print(f"   Standalone file created at: {HTML_OUTPUT_PATH} + index.html with same content")
 
     except FileNotFoundError as e:
         print(f"\n❌ Build failed: File not found - {e.filename}")
