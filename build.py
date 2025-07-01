@@ -14,6 +14,7 @@ DIST_DIR = os.path.join(ROOT_DIR, 'dist')
 
 HTML_TEMPLATE_PATH = os.path.join(ROOT_DIR, 'index.html')
 CSS_PATH = os.path.join(ROOT_DIR, 'css', 'style.css')
+DICTATE_CSS_PATH = os.path.join(ROOT_DIR, 'css', 'dictate-btn.css')
 JS_DIR = os.path.join(ROOT_DIR, 'js')
 IMAGE_PATH = os.path.join(ROOT_DIR, 'bg.png')
 DARK_IMAGE_PATH = os.path.join(ROOT_DIR, 'bg.dark.png')
@@ -34,6 +35,10 @@ def build(force_jpeg=False):
             html_template = f.read()
         with open(CSS_PATH, 'r', encoding='utf-8') as f:
             css_content = f.read()
+        # Read dictate-btn.css and append
+        if os.path.exists(DICTATE_CSS_PATH):
+            with open(DICTATE_CSS_PATH, 'r', encoding='utf-8') as f:
+                css_content += '\n' + f.read()
 
         # Collect all relevant JS files in a logical order
         js_files = []

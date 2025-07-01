@@ -1,5 +1,7 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Dictation (Speech Recognition) ---
+    // (Moved to after DOM element assignments)
     // --- Phrasebook Creation ---
     // This processes the raw sentences into a fast-lookup structure.
     // It maps verb -> tense -> sentence.
@@ -93,6 +95,132 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const infoBtn = document.getElementById('info-btn');
     const infoPanel = document.getElementById('info-panel');
+
+    // --- Dictation (Speech Recognition) ---
+    const dictateBtn = document.getElementById('dictate-btn');
+    let recognition = null;
+    let isDictating = false;
+    let dictationResultEl = null;
+
+    function setupDictation() {
+        console.log("Setting up dictation...");
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            if (dictateBtn) dictateBtn.disabled = true;
+            return;
+        }
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = 'fr-FR';
+        recognition.interimResults = true;
+        recognition.continuous = false;
+
+        // Create or get the result element as an overlay inside the flashcard
+        dictationResultEl = document.getElementById('dictation-result');
+        if (!dictationResultEl) {
+            dictationResultEl = document.createElement('div');
+            dictationResultEl.id = 'dictation-result';
+            dictationResultEl.style.position = 'absolute';
+            dictationResultEl.style.left = '50%';
+            dictationResultEl.style.transform = 'translateX(-50%)';
+            dictationResultEl.style.top = '75%';
+            dictationResultEl.style.width = '80%';
+            dictationResultEl.style.boxShadow = '0 8px 32px rgba(44,62,80,0.18)';
+            dictationResultEl.style.borderRadius = '18px';
+            dictationResultEl.style.padding = '1em 1.2em';
+            dictationResultEl.style.fontSize = '1.25em';
+            dictationResultEl.style.minHeight = '2.2em';
+            dictationResultEl.style.display = 'none';
+            dictationResultEl.style.zIndex = '100';
+            dictationResultEl.style.textAlign = 'center';
+            dictationResultEl.style.pointerEvents = 'none';
+            dictationResultEl.style.transition = 'opacity 0.5s';
+            flashcard.style.position = 'relative';
+            // Color scheme aware background/text
+            const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (isDark) {
+                dictationResultEl.style.background = 'rgba(24, 32, 48, 0.92)';
+                dictationResultEl.style.color = '#eaf6fb';
+                dictationResultEl.style.border = '2px solid #2c3e50';
+            } else {
+                dictationResultEl.style.background = 'rgba(255,255,255,0.92)';
+                dictationResultEl.style.color = '#222';
+                dictationResultEl.style.border = '2px solid #3498db55';
+            }
+            flashcard.appendChild(dictationResultEl);
+        }
+        // Update overlay style on color scheme change
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!dictationResultEl) return;
+                if (e.matches) {
+                    dictationResultEl.style.background = 'rgba(24, 32, 48, 0.92)';
+                    dictationResultEl.style.color = '#eaf6fb';
+                    dictationResultEl.style.border = '2px solid #2c3e50';
+                } else {
+                    dictationResultEl.style.background = 'rgba(255,255,255,0.92)';
+                    dictationResultEl.style.color = '#222';
+                    dictationResultEl.style.border = '2px solid #3498db55';
+                }
+            });
+        }
+
+        function showDictationOverlay(text, type = 'normal') {
+            let html = '';
+            if (type === 'prompt') {
+                html = `<span style="color:#888;font-style:italic;">${text}</span>`;
+            } else if (type === 'error') {
+                html = `<span style="color:#c0392b;font-style:italic;">${text}</span>`;
+            } else {
+                html = `<span style="color:#2166af;font-weight:700;letter-spacing:0.01em;">${text}</span>`;
+            }
+            dictationResultEl.innerHTML = html;
+            dictationResultEl.style.opacity = '1';
+            dictationResultEl.style.display = 'block';
+        }
+        function hideDictationOverlay() {
+            dictationResultEl.style.opacity = '0';
+            setTimeout(() => {
+                dictationResultEl.style.display = 'none';
+            }, 500);
+        }
+
+        recognition.onstart = () => {
+            isDictating = true;
+            dictateBtn.textContent = '🛑';
+            showDictationOverlay('Parlez maintenant...', 'prompt');
+        };
+        recognition.onend = () => {
+            isDictating = false;
+            dictateBtn.textContent = '🎤';
+            if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
+                showDictationOverlay('Aucune parole détectée.', 'prompt');
+            }
+            setTimeout(hideDictationOverlay, 1200);
+        };
+        recognition.onerror = (event) => {
+            isDictating = false;
+            dictateBtn.textContent = '🎤 Dictate';
+            showDictationOverlay('Erreur: ' + (event.error || 'inconnue'), 'error');
+            setTimeout(hideDictationOverlay, 1800);
+        };
+        recognition.onresult = (event) => {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                transcript += event.results[i][0].transcript;
+            }
+            showDictationOverlay(transcript, 'normal');
+        };
+
+        dictateBtn.addEventListener('click', () => {
+            if (isDictating) {
+                recognition.stop();
+            } else {
+                showDictationOverlay('');
+                recognition.start();
+            }
+        });
+    }
+    if (dictateBtn) setupDictation();
 
     // --- State ---
     let currentCard = null;

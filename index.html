@@ -7,6 +7,7 @@
     <title>franconjugue</title>
     <link rel="icon" href="favicon_big.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dictate-btn.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -198,6 +199,7 @@
                     </div>
                     
                     <p id="verb-translation"></p>
+                <!-- Dictate button moved to go-to-verb-btn-container below -->
                 </div>
                 <p id="verb-frequency" class="meta-info frequency-tag"></p>
                 <div class="meta-container">
@@ -206,7 +208,10 @@
                 </div>
 
                 <div id="go-to-verb-btn-container" style="position: absolute; right: 1.2em; bottom: 1.2em; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; z-index: 10;">
-                  <button id="go-to-verb-btn" title="Go to verb detail">📖</button>
+                  <button id="dictate-btn" title="Dictate (speech to text)">🎤</button>
+                  <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <button id="go-to-verb-btn" title="Go to verb detail">📖</button>
+                  </div>
                   <button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off" title="Toggle autosay">
                     <span class="autosay-emoji" aria-hidden="true">🔇</span> 
                   </button>
