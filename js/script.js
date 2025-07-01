@@ -211,7 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showDictationOverlay(transcript, 'normal');
         };
 
-        dictateBtn.addEventListener('click', () => {
+        dictateBtn.addEventListener('click', (e) => {
+            // Prevent this click from bubbling up to the flashcard
+            e.stopPropagation();
             if (isDictating) {
                 recognition.stop();
             } else {
