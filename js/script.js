@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl.style.left = '50%';
             dictationResultEl.style.transform = 'translateX(-50%)';
             dictationResultEl.style.top = '75%';
-            dictationResultEl.style.width = '80%';
+            dictationResultEl.style.width = '58%';
             dictationResultEl.style.boxShadow = '0 8px 32px rgba(44,62,80,0.18)';
             dictationResultEl.style.borderRadius = '18px';
             dictationResultEl.style.padding = '1em 1.2em';
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        function showDictationOverlay(text, type = 'normal') {
+        function showDictationOverlay(text, type = 'normal', persistMs = 3000) {
             let html = '';
             if (type === 'prompt') {
                 html = `<span style="color:#888;font-style:italic;">${text}</span>`;
@@ -176,6 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl.innerHTML = html;
             dictationResultEl.style.opacity = '1';
             dictationResultEl.style.display = 'block';
+            // Only auto-hide if not a prompt or error
+            if (type === 'normal' && persistMs > 0) {
+                clearTimeout(dictationResultEl._hideTimeout);
+                dictationResultEl._hideTimeout = setTimeout(hideDictationOverlay, persistMs);
+            }
         }
         function hideDictationOverlay() {
             dictationResultEl.style.opacity = '0';
@@ -189,38 +194,54 @@ document.addEventListener('DOMContentLoaded', () => {
             dictateBtn.textContent = '🛑';
             showDictationOverlay('Parlez maintenant...', 'prompt');
         };
-        recognition.onend = () => {
-            isDictating = false;
-            dictateBtn.textContent = '🎤';
-            if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
-                showDictationOverlay('Aucune parole détectée.', 'prompt');
-            }
-            setTimeout(hideDictationOverlay, 1200);
-        };
-        recognition.onerror = (event) => {
-            isDictating = false;
-            dictateBtn.textContent = '🎤 Dictate';
-            showDictationOverlay('Erreur: ' + (event.error || 'inconnue'), 'error');
-            setTimeout(hideDictationOverlay, 1800);
-        };
-        recognition.onresult = (event) => {
-            let transcript = '';
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-                transcript += event.results[i][0].transcript;
-            }
-            showDictationOverlay(transcript, 'normal');
-        };
-
+        // --- Dictation: 10s max or until stop pressed ---
+        let dictationTimeout = null;
         dictateBtn.addEventListener('click', (e) => {
-            // Prevent this click from bubbling up to the flashcard
             e.stopPropagation();
             if (isDictating) {
                 recognition.stop();
+                clearTimeout(dictationTimeout);
             } else {
                 showDictationOverlay('');
                 recognition.start();
+                dictationTimeout = setTimeout(() => {
+                    if (isDictating) recognition.stop();
+                }, 10000); // 10 seconds max
             }
         });
+        recognition.onend = () => {
+            isDictating = false;
+            dictateBtn.textContent = '🎤';
+            clearTimeout(dictationTimeout);
+            if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
+                showDictationOverlay('Aucune parole détectée.', 'prompt', 1800);
+            } else {
+                setTimeout(hideDictationOverlay, 4000);
+            }
+        };
+        recognition.onerror = (event) => {
+            isDictating = false;
+            dictateBtn.textContent = '🎤';
+            clearTimeout(dictationTimeout);
+            showDictationOverlay('Erreur: ' + (event.error || 'inconnue'), 'error', 2200);
+            setTimeout(hideDictationOverlay, 2200);
+        };
+        recognition.onresult = (event) => {
+            let html = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                const alternatives = event.results[i];
+                for (let j = 0; j < alternatives.length; ++j) {
+                    const alt = alternatives[j];
+                    // Use confidence for opacity, min 0.4 for visibility
+                    let opacity = 0.4 + 0.6 * (alt.confidence || 0);
+                    if (opacity > 1) opacity = 1;
+                    if (opacity < 0.4) opacity = 0.4;
+                    const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
+                    html += `<div style="opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;">${alt.transcript}${conf}</div>`;
+                }
+            }
+            showDictationOverlay(html, 'normal');
+        };
     }
     if (dictateBtn) setupDictation();
 
