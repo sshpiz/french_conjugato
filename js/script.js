@@ -1,4 +1,20 @@
 // script.js
+// Use language-specific helpers from window (French for now)
+const pronounEmojiMap = window.frenchPronounEmojiMap;
+const tenseKeyToPhraseKey = window.frenchTenseKeyToLabel;
+const pronounOrder = window.frenchPronounOrder;
+const getPrompt = window.getFrenchPrompt;
+const UIStrings = window.frenchUIStrings;
+const localStorageKey = window.frenchLocalStorageKey;
+const speechLang = window.frenchSpeechLang;
+
+// Ensure language-specific last change handler exists
+if (typeof window.handleLanguageSpecificLastChange !== 'function') {
+    window.handleLanguageSpecificLastChange = function(pronoun, conjugated) {
+        return pronoun + ' ' + conjugated;
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
@@ -101,20 +117,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let recognition = null;
     let isDictating = false;
     let dictationResultEl = null;
+    let dictationTimeout = null;
+
+    // Overlay helpers (already defined above)
+    // function showDictationOverlay(...) {...}
+    // function hideDictationOverlay() {...}
 
     function setupDictation() {
-        console.log("Setting up dictation...");
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
             if (dictateBtn) dictateBtn.disabled = true;
             return;
         }
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SpeechRecognition();
-        recognition.lang = 'fr-FR';
-        recognition.interimResults = true;
-        recognition.continuous = false;
-
-        // Create or get the result element as an overlay inside the flashcard
         dictationResultEl = document.getElementById('dictation-result');
         if (!dictationResultEl) {
             dictationResultEl = document.createElement('div');
@@ -163,85 +176,81 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-
-        function showDictationOverlay(text, type = 'normal', persistMs = 3000) {
-            let html = '';
-            if (type === 'prompt') {
-                html = `<span style="color:#888;font-style:italic;">${text}</span>`;
-            } else if (type === 'error') {
-                html = `<span style="color:#c0392b;font-style:italic;">${text}</span>`;
-            } else {
-                html = `<span style="color:#2166af;font-weight:700;letter-spacing:0.01em;">${text}</span>`;
-            }
-            dictationResultEl.innerHTML = html;
-            dictationResultEl.style.opacity = '1';
-            dictationResultEl.style.display = 'block';
-            // Only auto-hide if not a prompt or error
-            if (type === 'normal' && persistMs > 0) {
-                clearTimeout(dictationResultEl._hideTimeout);
-                dictationResultEl._hideTimeout = setTimeout(hideDictationOverlay, persistMs);
-            }
-        }
-        function hideDictationOverlay() {
-            dictationResultEl.style.opacity = '0';
-            setTimeout(() => {
-                dictationResultEl.style.display = 'none';
-            }, 500);
-        }
-
-        recognition.onstart = () => {
-            isDictating = true;
-            dictateBtn.textContent = '🛑';
-            showDictationOverlay('Parlez maintenant...', 'prompt');
-        };
-        // --- Dictation: 10s max or until stop pressed ---
-        let dictationTimeout = null;
-        dictateBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isDictating) {
-                recognition.stop();
-                clearTimeout(dictationTimeout);
-            } else {
-                showDictationOverlay('');
-                recognition.start();
-                dictationTimeout = setTimeout(() => {
-                    if (isDictating) recognition.stop();
-                }, 10000); // 10 seconds max
-            }
-        });
-        recognition.onend = () => {
-            isDictating = false;
-            dictateBtn.textContent = '🎤';
-            clearTimeout(dictationTimeout);
-            if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
-                showDictationOverlay('Aucune parole détectée.', 'prompt', 1800);
-            } else {
-                setTimeout(hideDictationOverlay, 4000);
-            }
-        };
-        recognition.onerror = (event) => {
-            isDictating = false;
-            dictateBtn.textContent = '🎤';
-            clearTimeout(dictationTimeout);
-            showDictationOverlay('Erreur: ' + (event.error || 'inconnue'), 'error', 2200);
-            setTimeout(hideDictationOverlay, 2200);
-        };
-        recognition.onresult = (event) => {
-            let html = '';
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-                const alternatives = event.results[i];
-                for (let j = 0; j < alternatives.length; ++j) {
-                    const alt = alternatives[j];
-                    // Use confidence for opacity, min 0.4 for visibility
-                    let opacity = 0.4 + 0.6 * (alt.confidence || 0);
-                    if (opacity > 1) opacity = 1;
-                    if (opacity < 0.4) opacity = 0.4;
-                    const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
-                    html += `<div style="opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;">${alt.transcript}${conf}</div>`;
+        // Attach click handler ONCE
+        if (!dictateBtn._dictationHandlerAttached) {
+            dictateBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                // If already dictating, stop
+                if (isDictating && recognition) {
+                    recognition.stop();
+                    return;
                 }
-            }
-            showDictationOverlay(html, 'normal');
-        };
+                // Clean up any previous session
+                if (recognition) {
+                    try { recognition.abort(); } catch (e) {}
+                    recognition = null;
+                }
+                clearTimeout(dictationTimeout);
+                isDictating = true;
+                dictateBtn.textContent = '🛑';
+                // Reset overlay for new session
+                dictationResultEl.textContent = '';
+                dictationResultEl.style.display = 'block';
+                showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
+                // Create new recognition instance
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.lang = speechLang;
+                recognition.interimResults = true;
+                recognition.continuous = true; // Allow continuous dictation, not just single utterance
+                recognition.onstart = () => {
+                    isDictating = true;
+                    dictateBtn.textContent = '🛑';
+                    dictationResultEl.textContent = '';
+                    dictationResultEl.style.display = 'block';
+                    showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
+                };
+                recognition.onend = () => {
+                    isDictating = false;
+                    dictateBtn.textContent = '🎤';
+                    clearTimeout(dictationTimeout);
+                    if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
+                        showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
+                    } else {
+                        showDictationOverlay(dictationResultEl.innerHTML, 'normal', 4000, true, true);
+                    }
+                };
+                recognition.onerror = (event) => {
+                    isDictating = false;
+                    dictateBtn.textContent = '🎤';
+                    clearTimeout(dictationTimeout);
+                    showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
+                };
+                recognition.onresult = (event) => {
+                    let html = '';
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        const alternatives = event.results[i];
+                        for (let j = 0; j < alternatives.length; ++j) {
+                            const alt = alternatives[j];
+                            // Use confidence for opacity, min 0.4 for visibility
+                            let opacity = 0.4 + 0.6 * (alt.confidence || 0);
+                            if (opacity > 1) opacity = 1;
+                            if (opacity < 0.4) opacity = 0.4;
+                            const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
+                            html += `<div style="opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;">${alt.transcript}${conf}</div>`;
+                        }
+                    }
+                    showDictationOverlay(html, 'normal', 0, true, false);
+                };
+                recognition.start();
+                // Safety: stop after 10s if not already ended
+                dictationTimeout = setTimeout(() => {
+                    if (isDictating && recognition) recognition.stop();
+                }, 10000);
+            });
+            dictateBtn._dictationHandlerAttached = true;
+        }
     }
     if (dictateBtn) setupDictation();
 
@@ -291,9 +300,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Local Storage for Options ---
+    // Use generic localStorageKey for options
     const saveOptions = () => {
         try {
-            localStorage.setItem('frenchVerbsOptions', JSON.stringify(cardGenerationOptions));
+            localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
         } catch (e) {
             console.warn("Could not save options to localStorage:", e);
         }
@@ -301,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loadOptions = () => {
         try {
-            const savedOptionsJSON = localStorage.getItem('frenchVerbsOptions');
+            const savedOptionsJSON = localStorage.getItem(localStorageKey);
             if (savedOptionsJSON) {
                 const savedOptions = JSON.parse(savedOptionsJSON);
 
@@ -322,13 +332,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     // --- Audio Synthesis ---
+    // Use generic speechLang for speech synthesis, and allow user-selected voice
     const synth = window.speechSynthesis;
     const speak = (text) => {
         if (synth.speaking) {
             synth.cancel();
         }
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'fr-FR';
+        utterance.lang = speechLang;
+        // Use user-selected voice if set
+        const voiceName = localStorage.getItem('ttsVoiceName');
+        if (voiceName) {
+            const voices = synth.getVoices();
+            // Use all matching voices, but pick the first (browser order)
+            const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
+            if (matches.length > 0) utterance.voice = matches[0];
+        }
         utterance.rate = 0.9;
         synth.speak(utterance);
     };
@@ -463,8 +482,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return newCard;
     };
 
-    // --- Autotalk French prompt template ---
-    function getFrenchPrompt(card) {
+    // --- Autotalk prompt template ---
+    function getPromptTemplate(card) {
       // Example: "Comment dire [VERB] au [TENSE] pour [PRONOUN] ?"
       // You can refine this template as needed for natural French
       const tenseMap = {
@@ -472,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'passeCompose': 'passé composé',
         'imparfait': 'imparfait',
         'futurSimple': 'futur simple',
-        'plusQueParfait': 'plus-que-parfait',
+        'plusQueParfait': 'tense-plusQueParfait',
         'subjonctifPresent': 'subjonctif présent',
         'conditionnelPresent': 'conditionnel présent'
       };
@@ -494,21 +513,8 @@ document.addEventListener('DOMContentLoaded', () => {
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
         verbTranslationEl.textContent = translation ? '(' + translation + ')' : '';
-        // Add emoji to pronoun
-        const pronounEmojiMap = {
-            'je': '🧑',
-            "j'": '🧑',
-            'tu': '🫵',
-            'il': '👦',
-            'elle': '👧',
-            'on': '👥',
-            'nous': '👨‍👩‍👧‍👦',
-            'vous': '🫵🫵',
-            'ils': '👦👦',
-            'elles': '👧👧'
-        };
+        // Add emoji to pronoun (language-specific)
         let pronounDisplay = card.pronoun;
-        // Handle split pronouns like "il/elle/on"
         if (pronounDisplay.includes('/')) {
             pronounDisplay = pronounDisplay.split('/').map(p => (pronounEmojiMap[p.trim()] || '') + ' ' + p.trim()).join(' / ');
         } else {
@@ -537,11 +543,8 @@ document.addEventListener('DOMContentLoaded', () => {
         verbFrequencyEl.className = 'meta-info frequency-tag';
         verbFrequencyEl.classList.add(verbFrequency);
 
-        // Show answer as pronoun + conjugated verb, but handle j' edge case
-        let answerText = card.pronoun + ' ' + card.conjugated;
-        if (card.pronoun === 'je' && card.conjugated.trim().toLowerCase().startsWith("j'")) {
-            answerText = card.conjugated;
-        }
+        // Show answer as pronoun + conjugated verb, but handle language-specific edge case
+        let answerText = window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated);
         conjugatedVerbEl.textContent = answerText;
         conjugatedVerbEl.classList.add('tappable-audio');
 
@@ -583,10 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
             if (autosayOn && currentCard) {
               // Match the answer display logic for pronoun + conjugated
-              let answerText = currentCard.pronoun + ' ' + currentCard.conjugated;
-              if (currentCard.pronoun === 'je' && currentCard.conjugated.trim().toLowerCase().startsWith("j'")) {
-                answerText = currentCard.conjugated;
-              }
+              let answerText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
               speak(answerText);
             }
         }
@@ -797,8 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sortedArr = [...phraseArr].sort((a, b) => {
                     const idxA = pronounOrder.indexOf(a.pronoun);
                     const idxB = pronounOrder.indexOf(b.pronoun);
-                    // If not found, put at end
-                    return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
+                    return idxA - idxB;
                 });
                 const tenseBlock = document.createElement('div');
                 tenseBlock.className = 'all-phrases-tense-block';
@@ -900,10 +899,7 @@ document.addEventListener('DOMContentLoaded', () => {
     conjugatedAudioBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (currentCard && currentCard.pronoun && currentCard.conjugated) {
-            let audioText = currentCard.pronoun + ' ' + currentCard.conjugated;
-            if (currentCard.pronoun === 'je' && currentCard.conjugated.trim().toLowerCase().startsWith("j'")) {
-                audioText = currentCard.conjugated;
-            }
+            let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
             speak(audioText);
         } else if (currentCard && currentCard.conjugated) {
             speak(currentCard.conjugated);
@@ -929,10 +925,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make conjugated verb tappable for audio (keyboard and click)
     function playConjugatedAudio() {
         if (currentCard && currentCard.pronoun && currentCard.conjugated) {
-            let audioText = currentCard.pronoun + ' ' + currentCard.conjugated;
-            if (currentCard.pronoun === 'je' && currentCard.conjugated.trim().toLowerCase().startsWith("j'")) {
-                audioText = currentCard.conjugated;
-            }
+            let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
             speak(audioText);
         } else if (currentCard && currentCard.conjugated) {
             speak(currentCard.conjugated);
@@ -1116,6 +1109,28 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!firstCardReady) return; // Don't show/play until ready
       originalDisplayCard(card);
     };
+
+    // Use generic UIStrings for overlays and UI
+    function showDictationOverlay(text, type = 'prompt', duration = 1800, isHtml = false, allowTimeout = true) {
+        if (isHtml) {
+            dictationResultEl.innerHTML = text;
+        } else {
+            dictationResultEl.textContent = text;
+        }
+        dictationResultEl.style.display = 'block';
+        dictationResultEl.style.opacity = '1'; // Ensure visible every time
+        dictationResultEl.className = 'dictation-result ' + (type || 'prompt');
+        clearTimeout(dictationTimeout);
+        if (allowTimeout) {
+            dictationTimeout = setTimeout(hideDictationOverlay, duration);
+        }
+    }
+    function hideDictationOverlay() {
+        dictationResultEl.style.opacity = '0';
+        setTimeout(() => {
+            dictationResultEl.style.display = 'none';
+        }, 500);
+    }
 
     // Call the patched initializeApp
     window.initializeApp();

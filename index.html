@@ -319,6 +319,11 @@
                     <h3>Frequency Weights</h3>
                     <div id="frequency-weights-container"></div>
                 </div>
+                <!-- TTS Voice Selection Dropdown -->
+                <div class="option-group" id="tts-voice-group">
+                  <label for="voice-select" style="margin-right:0.5em;">TTS Voice:</label>
+                  <select id="voice-select" style="margin-right:1em;"></select>
+                </div>
             </div>
         </div>
 
@@ -479,9 +484,93 @@
       window.updateDailyProgressBar = updateDailyProgressBar;
       document.addEventListener('DOMContentLoaded', updateDailyProgressBar);
     </script>
+    <script>
+    // --- Language-specific helpers and data structures for French ---
+    window.frenchPronounEmojiMap = {
+        'je': '🧑',
+        "j'": '🧑',
+        'tu': '🫵',
+        'il': '👦',
+        'elle': '👧',
+        'on': '👥',
+        'nous': '👨‍👩‍👧‍👦',
+        'vous': '🫵🫵',
+        'ils': '👦👦',
+        'elles': '👧👧'
+    };
+
+    window.frenchTenseKeyToLabel = {
+        'present': 'présent',
+        'passeCompose': 'passé composé',
+        'imparfait': 'imparfait',
+        'futurSimple': 'futur simple',
+        'plusQueParfait': 'plus-que-parfait',
+        'subjonctifPresent': 'subjonctif présent',
+        'conditionnelPresent': 'conditionnel présent'
+    };
+
+    window.frenchPronounOrder = ["je", "tu", "il", "elle", "nous", "vous", "ils", "elles"];
+
+    window.handleLanguageSpecificLastChange = function(pronoun, conjugated) {
+        if (pronoun === 'je' && conjugated && conjugated.trim().toLowerCase().startsWith("j'")) {
+            return conjugated;
+        }
+        return pronoun + ' ' + conjugated;
+    };
+
+    window.getFrenchPrompt = function(card) {
+        const tenseMap = window.frenchTenseKeyToLabel;
+        const pronoun = card.pronoun;
+        const verb = card.verb.infinitive;
+        const tense = tenseMap[card.tense] || card.tense;
+        return `Comment dire « ${verb} » au ${tense} pour « ${pronoun} » ?`;
+    };
+
+    window.frenchUIStrings = {
+        noSpeech: 'Aucune parole détectée.',
+        error: 'Erreur',
+        unknown: 'inconnue',
+        examplePhrases: 'Exemples de phrases'
+    };
+
+    window.frenchLocalStorageKey = 'frenchVerbsOptions';
+    window.frenchSpeechLang = 'fr-FR';
+    </script>
     <script src="js/verbs.full.js"></script>
     <script src="js/sentences.js"></script>
     <script src="js/script.js"></script>
+    <script>
+function populateVoiceSelect() {
+    const voiceSelect = document.getElementById('voice-select');
+    if (!voiceSelect) return;
+    const voices = window.speechSynthesis.getVoices();
+    // Only show fr-FR voices, not English
+    const frenchVoices = voices.filter(v => v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
+    // Add a blank/default option
+    voiceSelect.innerHTML = '<option value="">(Default browser voice)</option>';
+    frenchVoices.forEach(voice => {
+        const opt = document.createElement('option');
+        opt.value = voice.name;
+        opt.textContent = `${voice.name} (${voice.lang})`;
+        voiceSelect.appendChild(opt);
+    });
+    // Restore saved selection
+    const saved = localStorage.getItem('ttsVoiceName');
+    if (saved) voiceSelect.value = saved;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    populateVoiceSelect();
+    // Repopulate voices if voiceschanged fires (async load)
+    window.speechSynthesis.onvoiceschanged = populateVoiceSelect;
+    const select = document.getElementById('voice-select');
+    if (select) {
+        select.addEventListener('change', function() {
+            localStorage.setItem('ttsVoiceName', select.value);
+        });
+    }
+});
+</script>
 
 </body>
 </html>
