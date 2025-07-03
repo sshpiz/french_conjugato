@@ -229,6 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 recognition.onresult = (event) => {
                     let html = '';
+                    let bestTranscript = '';
+                    let bestConfidence = 0;
                     for (let i = event.resultIndex; i < event.results.length; ++i) {
                         const alternatives = event.results[i];
                         for (let j = 0; j < alternatives.length; ++j) {
@@ -238,9 +240,58 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (opacity > 1) opacity = 1;
                             if (opacity < 0.4) opacity = 0.4;
                             const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
-                            html += `<div style="opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;">${alt.transcript}${conf}</div>`;
+                            html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${alt.transcript}${conf}</div>`;
+                            if (j === 0 && (!bestTranscript || (alt.confidence || 0) > bestConfidence)) {
+                                bestTranscript = alt.transcript.trim();
+                                bestConfidence = alt.confidence || 0;
+                            }
                         }
                     }
+                    // --- AUTOSKIP ON CORRECT DICTATION (CONTAINS) ---
+                    const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+                    if (autosayOn && !isAnswerVisible && currentCard && !autoskipLock) {
+                        let expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
+                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
+                        const normExpected = normalize(expected);
+                        const normTranscript = normalize(bestTranscript);
+                        if (normTranscript.includes(normExpected)) {
+                            autoskipLock = true;
+                            dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                            dictationResultEl.style.display = 'block';
+                            dictationResultEl.style.opacity = '1';
+                            showAnswer();
+                            setTimeout(() => {
+                                if (recognition) {
+                                    try { recognition.stop(); } catch (e) {}
+                                }
+                                handleNext(); // No auto dictation
+                            }, 1500); // 1.5s delay for Bravo
+                            return;
+                        }
+                    }
+                    // In recognition.onresult, use correctDictationNextQuestion flag for Bravo autoskip
+                    const correctDictationNextQuestion = localStorage.getItem('correct-dictation-next-question') === 'true';
+                    if (correctDictationNextQuestion && !isAnswerVisible && currentCard && !autoskipLock) {
+                        let expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
+                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
+                        const normExpected = normalize(expected);
+                        const normTranscript = normalize(bestTranscript);
+                        if (normTranscript.includes(normExpected)) {
+                            autoskipLock = true;
+                            dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                            dictationResultEl.style.display = 'block';
+                            dictationResultEl.style.opacity = '1';
+                            showAnswer();
+                            setTimeout(() => {
+                                if (recognition) {
+                                    try { recognition.stop(); } catch (e) {}
+                                }
+                                handleNext();
+                            }, 1500);
+                            return;
+                        }
+                    }
+                    // Only update overlay if not autoskipping
                     showDictationOverlay(html, 'normal', 0, true, false);
                 };
                 recognition.start();
@@ -582,13 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
             if (window.incrementDailyCount) window.incrementDailyCount();
-            // --- AUTOTALK: Speak answer if enabled ---
-            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
-            if (autosayOn && currentCard) {
-              // Match the answer display logic for pronoun + conjugated
-              let answerText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
-              speak(answerText);
-            }
+            // Do NOT speak the answer automatically
         }
     };
 
@@ -597,25 +642,9 @@ document.addEventListener('DOMContentLoaded', () => {
         isAnswerVisible = false;
     };
 
-    const handleNext = () => {
-        if (isAnswerVisible) {
-            hideAnswer();
-            setTimeout(nextCard, 300);
-        } else {
-            nextCard();
-        }
-    };
-
-    const handlePrev = () => {
-        if (isAnswerVisible) {
-            hideAnswer();
-            setTimeout(prevCard, 300);
-        } else {
-            prevCard();
-        }
-    };
-
+    // --- Card advance logic ---
     const nextCard = () => {
+        autoskipLock = false;
         if (historyIndex < history.length - 1 && history.length > 0) {
             historyIndex++;
             displayCard(history[historyIndex]);
@@ -628,6 +657,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayCard(newCard);
                 backBtn.disabled = historyIndex === 0;
             }
+        }
+        // Do NOT start dictation automatically
+    };
+
+    const handleNext = () => {
+        if (isAnswerVisible) {
+            hideAnswer();
+            setTimeout(() => {
+                nextCard();
+            }, 300);
+        } else {
+            nextCard();
+        }
+    };
+
+    const handlePrev = () => {
+        if (isAnswerVisible) {
+            hideAnswer();
+            setTimeout(prevCard, 300);
+        } else {
+            prevCard();
         }
     };
 
@@ -712,6 +762,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const freq = v.frequency || 'common';
             if (groups[freq]) groups[freq].push(v);
         });
+        return groups;
+    }
+
+    function populateExplorerList(filter = '') {
+        verbListContainer.innerHTML = '';
+        const normalizedFilter = removeAccents(filter.toLowerCase());
+        const filteredVerbs = uniqueVerbs.filter(v => removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter));
+        const groups = groupVerbsByFrequency(filteredVerbs);
+        const freqLabels = { common: 'Common', 'less-common': 'Less Common', rare: 'Rare' };
         return groups;
     }
 
@@ -1005,6 +1064,17 @@ document.addEventListener('DOMContentLoaded', () => {
         saveOptions();
     });
 
+    // --- Correct Dictation Next Question Toggle Logic ---
+    const correctDictationToggle = document.getElementById('correct-dictation-toggle');
+    if (correctDictationToggle) {
+        // Set initial state from localStorage
+        const enabled = localStorage.getItem('correct-dictation-next-question') === 'true';
+        correctDictationToggle.checked = enabled;
+        correctDictationToggle.addEventListener('change', function() {
+            localStorage.setItem('correct-dictation-next-question', correctDictationToggle.checked ? 'true' : 'false');
+        });
+    }
+
     // Explorer Search and Audio
     searchBar.addEventListener('input', (e) => populateExplorerList(e.target.value));
     
@@ -1109,6 +1179,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!firstCardReady) return; // Don't show/play until ready
       originalDisplayCard(card);
     };
+
+    // Add a per-card autoskip lock
+let autoskipLock = false;
 
     // Use generic UIStrings for overlays and UI
     function showDictationOverlay(text, type = 'prompt', duration = 1800, isHtml = false, allowTimeout = true) {
