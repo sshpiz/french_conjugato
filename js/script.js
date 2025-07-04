@@ -1205,6 +1205,26 @@ let autoskipLock = false;
         }, 500);
     }
 
+    // --- Tips Button Logic ---
+    const tipsBtn = document.getElementById('tips-btn');
+    if (tipsBtn && flashcard) {
+        tipsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Show all tip-labels inside the flashcard
+            flashcard.querySelectorAll('.tip-label').forEach(span => {
+                span.hidden = false;
+                span.classList.add('show');
+            });
+            // Hide them again after 3 seconds
+            setTimeout(() => {
+                flashcard.querySelectorAll('.tip-label').forEach(span => {
+                    span.hidden = true;
+                    span.classList.remove('show');
+                });
+            }, 3000);
+        });
+    }
+
     // Call the patched initializeApp
     window.initializeApp();
 });

@@ -2296,6 +2296,54 @@ body {
         text-align: right;
         margin-left: 0;
       }
+      :root {
+        --help-btn-bg: #eaf6fb;
+        --help-btn-fg: #3498db;
+        --tip-label-bg: #fffbe6;
+        --tip-label-fg: #23272b;
+        --tip-label-shadow: 0 2px 8px rgba(44,62,80,0.10);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --help-btn-bg: #27384a;
+          --help-btn-fg: #eaf6fb;
+          --tip-label-bg: #2c3e50;
+          --tip-label-fg: #ffe066;
+          --tip-label-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+      }
+      #help-btn:hover, #tips-btn:hover {
+        background: #d0e8fa;
+      }
+      @media (prefers-color-scheme: dark) {
+        #help-btn:hover, #tips-btn:hover {
+          background: #35506b;
+        }
+      }
+      .tip-label {
+        display: inline;
+        font-size: 1.08em;
+        color: #fffbe6;
+        background: #23272b;
+        border-radius: 0.6em;
+        padding: 0.08em 0.6em 0.08em 0.5em;
+        margin-right: 0.4em;
+        font-weight: 500;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+      }
+      .tip-label[hidden] {
+        display: none;
+      }
+      @media (prefers-color-scheme: light) {
+        .tip-label {
+          color: #23272b;
+          background: #fffbe6;
+        }
+      }
+      .tip-inline {
+        display: inline-flex;
+        align-items: center;
+      }
     </style>
 </head>
 <body>
@@ -2306,7 +2354,11 @@ body {
         </div>
         <!-- View 1: Flashcard Flow -->
         <div id="flashcard-view">
-            <div id="flashcard" class="card">
+            <div id="flashcard" class="card" style="position:relative;">
+                <!-- Remove tip for help button -->
+                <button id="help-btn" title="Show help" style="display:none;position:absolute;top:0.7em;right:2.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#3498db);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">❓</button>
+                <!-- Remove tip for tips button -->
+                <button id="tips-btn" title="Show tips" style="position:absolute;top:0.7em;right:0.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#f1c40f);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">💡</button>
                 <div id="daily-progress-container">
                   <span id="daily-progress-circle">
                     <svg width="32" height="32" viewBox="0 0 32 32">
@@ -2318,34 +2370,42 @@ body {
                 </div>
                 <div class="card-content-before">
                     <div class="infinitive-line">
+                        <!-- Remove tip for infinitive audio button -->
                         <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
+                        <!-- Remove tip for verb-infinitive -->
                         <h1 id="verb-infinitive" tabindex="0" role="button" aria-label="Hear infinitive" title="Tap to hear" class="tappable-audio"></h1>
                     </div>
                     
                     <p id="verb-translation"></p>
                 <!-- Dictate button moved to go-to-verb-btn-container below -->
                 </div>
+                <!-- Remove tip for frequency -->
                 <p id="verb-frequency" class="meta-info frequency-tag"></p>
                 <div class="meta-container">
+                    <!-- Remove tip for pronoun -->
                     <p id="verb-pronoun" class="meta-info"></p>
+                    <!-- Remove tip for tense -->
                     <p id="verb-tense" class="meta-info"></p>
                 </div>
 
                 <div id="go-to-verb-btn-container" style="position: absolute; right: 1.2em; bottom: 1.2em; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; z-index: 10;">
-                  <button id="dictate-btn" title="Dictate (speech to text)">🎤</button>
+                  <span class="tip-inline"><span class="tip-label" hidden>💡 Dictate (speech to text)</span><button id="dictate-btn" title="Dictate (speech to text)">🎤</button></span>
                   <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
-                    <button id="go-to-verb-btn" title="Go to verb detail">📖</button>
+                    <span class="tip-inline"><span class="tip-label" hidden>💡 See verb details</span><button id="go-to-verb-btn" title="Go to verb detail">📖</button></span>
                   </div>
-                  <button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off" title="Toggle autosay">
-                    <span class="autosay-emoji" aria-hidden="true">🔇</span> 
-                  </button>
+                  <span class="tip-inline"><span class="tip-label" hidden>💡 Autotalk toggle</span><button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off" title="Toggle autosay">
+                    <span class="autosay-emoji" aria-hidden="true">🔇</span>
+                  </button></span>
                 </div>
 
                 <div id="answer-container">
                     <div class="conjugated-line">
+                        <!-- Remove tip for conjugated audio button -->
                         <button id="conjugated-audio-btn" class="audio-btn">🔊</button>
+                        <!-- Remove tip for conjugated verb -->
                         <h2 id="conjugated-verb" tabindex="0" role="button" aria-label="Hear conjugation" title="Tap to hear" class="tappable-audio"></h2>
                     </div>
+                    <!-- Remove tip for example phrase -->
                     <p id="verb-phrase" class="verb-phrase"></p>
                 </div>
             </div>
@@ -2394,18 +2454,35 @@ body {
                   <text x="14" y="20" text-anchor="middle" font-size="16" font-family="Arial, sans-serif" fill="#3498db" font-weight="bold">i</text>
                 </svg>
             </button>
-            <div id="info-panel" class="hidden">
-                <h2 style="margin-top:0">Welcome to Franconjugue!</h2>
-                <p>This app helps you master French verb conjugations through interactive flashcards and a verb explorer.</p>
+            <div id="info-panel" class="hidden" style="max-height:60vh; overflow-y:auto; padding-right:0.5em;">
+                <h2 style="margin-top:0">About Franconjugue</h2>
+                <p>Franconjugue helps you master French verb conjugations with fast, focused practice.</p>
                 <ul>
-                    <li><strong>Flashcards:</strong> Tap the card to reveal the answer, and tap again for the next card. Each card tests you on a random verb, tense, and pronoun.</li>
-                    <li><strong>Audio:</strong> Tap the verb or conjugation to hear it pronounced. Use the 🔊 buttons for quick listening.</li>
-                    <li><strong>Verb Explorer:</strong> Browse all verbs and their full conjugation tables. Tap 📖 to jump to the current verb in the explorer.</li>
-                    <li><strong>Settings:</strong> Adjust which tenses and verb frequencies appear in flashcards. You can also enable or disable example phrases.</li>
-                    <li><strong>Progress:</strong> The app remembers your settings and history for a smooth learning experience.</li>
+                    <li><b>Dictate (🎤):</b> Try saying the answer out loud—get instant feedback on your pronunciation.</li>
+                    <li><b>Verb Details (📖):</b> Jump to a full conjugation table for any verb.</li>
+                    <li><b>Autotalk (🔊):</b> Automatically hear the question spoken for each card.</li>
                 </ul>
-                <p style="margin-bottom:0.5em">Tip: For best results, use the app in full-screen mode on your device.</p>
-                <p style="font-size:0.95em;color:#888;margin-bottom:0;">Created with ❤️ for language learners.</p>
+                <details style="margin-bottom:0.7em;">
+                  <summary style="font-size:1.08em;font-weight:600;cursor:pointer;">Options &amp; Settings</summary>
+                  <ul style="margin-top:0.5em;">
+                      <li><b>Balance verb randomizer:</b><br>
+                          <span style="font-size:0.97em;">
+                          <b>When ON:</b> The app first chooses a frequency category (common, less common, rare) based on your weights, then picks a verb from that category. (If all weights are equal, you’ll see each category equally often.)<br>
+                          <b>When OFF:</b> The app picks from all verbs at once, using the weights per category. (If all weights are equal, you’ll see more rare verbs, since there are more of them.)
+                          </span>
+                      </li>
+                      <li><b>Tense Weights:</b> Choose which tenses appear in your practice.</li>
+                      <li><b>Frequency Weights:</b> Adjust how often common, less common, or rare verbs show up.</li>
+                      <li><b>TTS Voice:</b> Pick your preferred French voice for audio.</li>
+                  </ul>
+                </details>
+                <h3 style="margin-bottom:0.3em;">Tips for Practice Modes</h3>
+                <ul style="margin-top:0.5em;">
+                    <li>To start, set only “present” tense and “common” verbs for quick, everyday practice.</li>
+                    <li>Want to expand your vocabulary? Increase the frequency for less common or rare verbs.</li>
+                    <li>Ready for a challenge? Enable more tenses to cover a wider range of conjugations.</li>
+                </ul>
+                <p style="margin-bottom:0.5em">Your progress and settings are saved automatically. Happy learning!</p>
             </div>
             <div class="options-header">
                 <h2>Options</h2>
@@ -2413,23 +2490,22 @@ body {
             <div id="options-container">
                 <div class="option-group" style="display: flex; flex-direction: row; align-items: center; gap: 2.5em; justify-content: flex-start;">
                   <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
-                    <label for="hierarchical-toggle">Hierarchical Selection</label>
+                    <label for="hierarchical-toggle">Balance verb randomizer</label>
                     <div class="toggle-switch">
                         <input type="checkbox" id="hierarchical-toggle" class="toggle-input">
                         <label for="hierarchical-toggle" class="toggle-label"></label>
                     </div>
                   </div>
-                  <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                  <div style="display: none; flex-direction: row; align-items: center; gap: 0.5em;">
                     <label for="show-phrases-toggle">Show Example Phrases</label>
                     <div class="toggle-switch">
                         <input type="checkbox" id="show-phrases-toggle" class="toggle-input">
                         <label for="show-phrases-toggle" class="toggle-label"></label>
                     </div>
                   </div>
-                </div>
-                <div class="option-group" style="margin-top: 1em; display: flex; flex-direction: row; align-items: center; gap: 2.5em; justify-content: flex-start;">
+                
                   <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
-                    <label for="correct-dictation-toggle">Next on Correct Dictation</label>
+                    <label for="correct-dictation-toggle">Next Card on<br> Correct Dictation</label>
                     <div class="toggle-switch">
                         <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
                         <label for="correct-dictation-toggle" class="toggle-label"></label>
@@ -2500,6 +2576,25 @@ body {
             <button id="autosay-ready-continue-btn" style="font-size:1.2em; padding:0.5em 2em; border-radius:0.7em; background:#6ec6ff; color:#23272b; border:none; font-weight:600; cursor:pointer;">Continuer</button>
           </div>
         </div>
+
+        <!-- FTUE/Help Overlay -->
+        <div id="ftue-help-overlay" style="display:none; position:fixed; z-index:99999; top:0; left:0; width:100vw; height:100vh; background:rgba(30,32,36,0.92); color:#fff; align-items:center; justify-content:center; flex-direction:column;">
+          <div style="max-width: 480px; margin: 2em auto; background:rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 8px 32px rgba(44,62,80,0.18); padding: 2em 2.5em 1.5em 2.5em; position:relative;">
+            <button id="ftue-help-close" style="position:absolute;top:1em;right:1em;font-size:1.5em;background:none;border:none;color:#fff;cursor:pointer;">✕</button>
+            <h2 style="margin-top:0">Bienvenue sur Franconjugue!</h2>
+            <p style="font-size:1.1em;line-height:1.5;margin-bottom:1.2em;">Practice French verbs conjugations with interactive flashcards, audio, and speech recognition. Designed by a procrastinating language learner</p>
+            <ul style="font-size:1.05em;line-height:1.6;margin-bottom:1.2em;">
+              <li><b>Tap the card</b> to reveal the answer, then tap again for the next card.</li>
+              <li><b>Dictate</b>: Tap the mic to try saying the answer out loud.</li>
+              <li><b>Audio</b>: Tap the verb or conjugation to hear it spoken.</li>
+              <li><b>Options</b>: Adjust tenses, frequencies, and more.</li>
+              <li><b>Verb List</b>: Browse verbs and their conjugations.</li>
+            </ul>
+
+            
+          </div>
+        </div>
+        
     </div>
 
     <!-- Data and Logic Scripts -->
@@ -49081,6 +49176,26 @@ let autoskipLock = false;
         }, 500);
     }
 
+    // --- Tips Button Logic ---
+    const tipsBtn = document.getElementById('tips-btn');
+    if (tipsBtn && flashcard) {
+        tipsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Show all tip-labels inside the flashcard
+            flashcard.querySelectorAll('.tip-label').forEach(span => {
+                span.hidden = false;
+                span.classList.add('show');
+            });
+            // Hide them again after 3 seconds
+            setTimeout(() => {
+                flashcard.querySelectorAll('.tip-label').forEach(span => {
+                    span.hidden = true;
+                    span.classList.remove('show');
+                });
+            }, 3000);
+        });
+    }
+
     // Call the patched initializeApp
     window.initializeApp();
 });
@@ -49115,6 +49230,87 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('ttsVoiceName', select.value);
         });
     }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var overlay = document.getElementById('ftue-help-overlay');
+  var closeBtn = document.getElementById('ftue-help-close');
+  var helpBtn = document.getElementById('help-btn');
+  var tipsBtn = document.getElementById('tips-btn');
+  if (!localStorage.getItem('ftue-shown')) {
+    overlay.style.display = 'flex';
+    localStorage.setItem('ftue-shown', 'true');
+  }
+  helpBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    overlay.style.display = 'flex';
+  });
+  closeBtn.addEventListener('click', function() {
+    overlay.style.display = 'none';
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.style.display = 'none';
+  });
+
+  // --- Tips Button Logic ---
+  tipsBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    // Remove any existing tip labels
+    // document.querySelectorAll('.tip-label').forEach(el => el.remove());
+    // // Map of button IDs to tip labels
+    // const tips = [
+    //   { id: 'dictate-btn', label: 'Dictate (speech to answer)' },
+    //   { id: 'go-to-verb-btn', label: 'See verb details' },
+    //   { id: 'autosay-toggle-btn', label: 'Autotalk toggle' },
+    //   { id: 'conjugated-verb', label: 'Tap for audio' },
+    //   { id: 'verb-infinitive', label: 'Tap for audio' }
+    // ];
+    // tips.forEach(tip => {
+    //   const btn = document.getElementById(tip.id);
+    //   if (btn) {
+    //     const rect = btn.getBoundingClientRect();
+    //     const parentRect = btn.offsetParent ? btn.offsetParent.getBoundingClientRect() : {left:0,top:0};
+    //     const label = document.createElement('div');
+    //     label.className = 'tip-label';
+    //     label.textContent = tip.label;
+    //     // Position label above or to the right of the button
+    //     label.style.left = (rect.left - parentRect.left + rect.width/2 - 40) + 'px';
+    //     label.style.top = (rect.top - parentRect.top - 36) + 'px';
+    //     document.getElementById('flashcard').appendChild(label);
+    //     setTimeout(() => label.classList.add('show'), 10);
+    //   }
+    // });
+    // // General tips
+    // const card = document.getElementById('flashcard');
+    // if (card) {
+    //   // Centered tip
+    //   const tip1 = document.createElement('div');
+    //   tip1.className = 'tip-label show';
+    //   tip1.textContent = 'Tap almost anywhere to move along';
+    //   tip1.style.left = '50%';
+    //   tip1.style.top = '55%';
+    //   tip1.style.transform = 'translate(-50%, -50%)';
+    //   card.appendChild(tip1);
+    //   // Lower tip
+    //   const tip2 = document.createElement('div');
+    //   tip2.className = 'tip-label show';
+    //   tip2.textContent = 'Tap French for audio';
+    //   tip2.style.left = '50%';
+    //   tip2.style.top = '75%';
+    //   tip2.style.transform = 'translate(-50%, 0)';
+    //   card.appendChild(tip2);
+    // }
+    // Fade out and remove after 3 seconds
+    setTimeout(() => {
+      document.querySelectorAll('.tip-label').forEach(el => {
+        el.classList.remove('show');
+        setTimeout(() => el.remove(), 60000);
+      });
+    }, 3000);
+  });
 });
 </script>
  
