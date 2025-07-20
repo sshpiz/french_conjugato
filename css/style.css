@@ -685,12 +685,6 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* #next-btn {
-    background-color: var(--accent-color);
-    /* color: white; */
-    border-color: var(--accent-color);
-} */
-
 /* --- Verb Explorer --- */
 .explorer-header {
     display: flex;
@@ -1015,4 +1009,41 @@ body {
 }
 #verb-pronoun, #verb-tense {
   position: static;
+}
+
+/* --- GAP SENTENCE PLACEHOLDER STYLING --- */
+.gap-placeholder {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 2px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+  cursor: help;
+}
+
+.gap-verb {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px dashed #1976d2;
+}
+
+.gap-aux {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+  border: 1px dashed #8e24aa;
+}
+
+.gap-pronoun {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px dashed #388e3c;
+}
+
+.gap-placeholder:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }

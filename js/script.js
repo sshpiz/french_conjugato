@@ -15,6 +15,21 @@ if (typeof window.handleLanguageSpecificLastChange !== 'function') {
     };
 }
 
+// Simple function to enhance gap sentences with styled placeholders
+function enhanceGapSentence(text) {
+    if (!text) return '';
+    return text
+        .replace(/\[VERB\]/g, '<span class="gap-placeholder gap-verb">______</span>')
+        .replace(/\[AUX\]/g, '<span class="gap-placeholder gap-aux">____</span>')
+        .replace(/\[PRONOUN\]/g, '<span class="gap-placeholder gap-pronoun">____</span>');
+}
+
+// Simple function to prepare text for speech (replace placeholders with "blanc")
+function prepareTextForSpeech(text) {
+    if (!text) return '';
+    return text.replace(/\[VERB\]/g, 'blanc').replace(/\[AUX\]/g, 'blanc').replace(/\[PRONOUN\]/g, 'blanc');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
@@ -399,7 +414,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (synth.speaking) {
             synth.cancel();
         }
-        const utterance = new SpeechSynthesisUtterance(text);
+        // Replace placeholders with "blanc" for speech
+        const textToSpeak = prepareTextForSpeech(text);
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = speechLang;
         // Use user-selected voice if set
         const voiceName = localStorage.getItem('ttsVoiceName');
@@ -729,7 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // If we have an exact match AND a gap sentence, show it in question container
                     if (hasExactMatch && chosen.gap_sentence) {
                         const questionPhrase = document.createElement('div');
-                        questionPhrase.textContent = chosen.gap_sentence;
+                        questionPhrase.innerHTML = enhanceGapSentence(chosen.gap_sentence);
                         questionPhrase.classList.add('tappable-audio');
                         questionPhrase.style.cursor = 'pointer';
                         

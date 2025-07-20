@@ -35,6 +35,54 @@
         user-select: text; /* Allow phrase to be selected */
         cursor: text;
       }
+      
+      /* Phrase container manages both question and answer phases */
+      #phrase-container {
+        position: absolute;
+        top: 35%;
+        left: 0;
+        width: 100%;
+        min-height: 120px;
+        z-index: 3;
+      }
+      
+      /* Question phrase positioning */
+      #question-phrase {
+        display: none; /* Initially hidden, shown only when gap sentence available */
+        text-align: center;
+        margin: 1rem auto;
+        max-width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        z-index: 2;
+      }
+      
+      /* Answer container should fill the phrase container and match original positioning */
+      #answer-container {
+        position: static;
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1 1 auto;
+        margin-top: 0;
+      }
+      
+      #answer-container.is-visible {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      #verb-phrase {
+        display: block; /* Should be visible when answer container is visible */
+      }
       .back-link-btn {
         background: none;
         border: none;
@@ -282,15 +330,21 @@
                   </button></span>
                 </div>
 
-                <div id="answer-container">
-                    <div class="conjugated-line">
-                        <!-- Remove tip for conjugated audio button -->
-                        <button id="conjugated-audio-btn" class="audio-btn">🔊</button>
-                        <!-- Remove tip for conjugated verb -->
-                        <h2 id="conjugated-verb" tabindex="0" role="button" aria-label="Hear conjugation" title="Tap to hear" class="tappable-audio"></h2>
+                <!-- Phrase container wraps both question and answer phases -->
+                <div id="phrase-container">
+                    <!-- Question phrase (gap sentence, shows before answer reveal) -->
+                    <p id="question-phrase" class="verb-phrase"></p>
+                    
+                    <div id="answer-container">
+                        <div class="conjugated-line">
+                            <!-- Remove tip for conjugated audio button -->
+                            <button id="conjugated-audio-btn" class="audio-btn">🔊</button>
+                            <!-- Remove tip for conjugated verb -->
+                            <h2 id="conjugated-verb" tabindex="0" role="button" aria-label="Hear conjugation" title="Tap to hear" class="tappable-audio"></h2>
+                        </div>
+                        <!-- Answer phrase (shows after answer reveal) -->
+                        <p id="verb-phrase" class="verb-phrase"></p>
                     </div>
-                    <!-- Remove tip for example phrase -->
-                    <p id="verb-phrase" class="verb-phrase"></p>
                 </div>
             </div>
 
@@ -393,6 +447,15 @@
                     <div class="toggle-switch">
                         <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
                         <label for="correct-dictation-toggle" class="toggle-label"></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-group" style="display: flex; flex-direction: row; align-items: center; gap: 2.5em; justify-content: flex-start;">
+                  <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
+                    <label for="verbs-with-sentences-toggle">Verbs with interactive gaps only</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="verbs-with-sentences-toggle" class="toggle-input">
+                        <label for="verbs-with-sentences-toggle" class="toggle-label"></label>
                     </div>
                   </div>
                 </div>
@@ -614,11 +677,58 @@
     };
 
     window.frenchPronounOrder = ["je", "tu", "il", "elle", "nous", "vous", "ils", "elles"];
+    // Support for combined pronouns from generated data
+    window.frenchPronounMapping = {
+        "il/elle": ["il", "elle"],
+        "il/elle/on": ["il", "elle", "on"],
+        "ils/elles": ["ils", "elles"]
+    };
 
     window.handleLanguageSpecificLastChange = function(pronoun, conjugated) {
-        if (pronoun === 'je' && conjugated && conjugated.trim().toLowerCase().startsWith("j'")) {
+        if (!conjugated) return pronoun;
+        
+        // Handle contracted forms like "j'abandonne"
+        if (pronoun === 'je' && conjugated.trim().toLowerCase().startsWith("j'")) {
             return conjugated;
         }
+        
+        // Check if conjugated form already starts with the pronoun
+        const conjugatedLower = conjugated.trim().toLowerCase();
+        const pronounLower = pronoun.toLowerCase();
+        
+        // For combined pronouns like "il/elle", check if it starts with any variant
+        if (pronoun.includes('/')) {
+            const pronounVariants = pronoun.split('/');
+            for (const variant of pronounVariants) {
+                if (conjugatedLower.startsWith(variant.toLowerCase() + ' ')) {
+                    return conjugated;
+                }
+            }
+        } else {
+            // Check if it already starts with the pronoun
+            if (conjugatedLower.startsWith(pronounLower + ' ')) {
+                return conjugated;
+            }
+            
+            // Check if it starts with an equivalent pronoun (for ils/elles case)
+            if ((pronoun === 'ils' || pronoun === 'elles') && 
+                (conjugatedLower.startsWith('ils ') || conjugatedLower.startsWith('elles '))) {
+                // Replace the conjugated pronoun with the card pronoun
+                const conjugatedParts = conjugated.trim().split(' ');
+                conjugatedParts[0] = pronoun;
+                return conjugatedParts.join(' ');
+            }
+            
+            // Similar handling for il/elle
+            if ((pronoun === 'il' || pronoun === 'elle') && 
+                (conjugatedLower.startsWith('il ') || conjugatedLower.startsWith('elle '))) {
+                const conjugatedParts = conjugated.trim().split(' ');
+                conjugatedParts[0] = pronoun;
+                return conjugatedParts.join(' ');
+            }
+        }
+        
+        // If not, combine pronoun + conjugated
         return pronoun + ' ' + conjugated;
     };
 
@@ -640,8 +750,8 @@
     window.frenchLocalStorageKey = 'frenchVerbsOptions';
     window.frenchSpeechLang = 'fr-FR';
     </script>
-    <script src="js/verbs.full.js"></script>
-    <script src="js/sentences.js"></script>
+    <script src="js/verbs.full.generated.js"></script>
+    <script src="sentences.generated.js"></script>
     <script src="js/script.js"></script>
     <script>
 function populateVoiceSelect() {
