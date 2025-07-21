@@ -8,6 +8,9 @@ const UIStrings = window.frenchUIStrings;
 const localStorageKey = window.frenchLocalStorageKey;
 const speechLang = window.frenchSpeechLang;
 
+// Feature flag to control gap sentence behavior
+const ENABLE_GAP_SENTENCES = false;
+
 // Ensure language-specific last change handler exists
 if (typeof window.handleLanguageSpecificLastChange !== 'function') {
     window.handleLanguageSpecificLastChange = function(pronoun, conjugated) {
@@ -645,6 +648,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayCard = (card) => {
         currentCard = card;
+        
+        // Update URL hash with current card parameters
+        updateHashParams(card);
+        
         const verbFrequency = card.verb.frequency || 'common'; 
 
         // Set infinitive and translation separately for proper styling
@@ -744,7 +751,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentCard.chosenPhrase = chosen; // Store for answer reveal
                     
                     // If we have an exact match AND a gap sentence, show it in question container
-                    if (hasExactMatch && chosen.gap_sentence) {
+                    if (ENABLE_GAP_SENTENCES && hasExactMatch && chosen.gap_sentence) {
                         const questionPhrase = document.createElement('div');
                         questionPhrase.innerHTML = enhanceGapSentence(chosen.gap_sentence);
                         questionPhrase.classList.add('tappable-audio');
@@ -765,23 +772,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     answerPhrase.classList.add('tappable-audio');
                     answerPhrase.style.cursor = 'pointer';
                     
-                    // Create collapsible details section
-                    const detailsSection = document.createElement('details');
-                    detailsSection.style.marginTop = '0.5em';
-                    detailsSection.style.fontSize = '0.9em';
-                    detailsSection.style.opacity = '0.8';
+                    // Add answer phrase to answer container
+                    verbPhraseEl.appendChild(answerPhrase);
                     
-                    const summary = document.createElement('summary');
-                    summary.textContent = 'Détails';
-                    summary.style.cursor = 'pointer';
-                    summary.style.fontSize = '0.8em';
-                    summary.style.color = '#666';
-                    
-                    const detailsContent = document.createElement('div');
-                    detailsContent.style.marginTop = '0.3em';
-                    detailsContent.style.paddingLeft = '1em';
-                    
-                    // Add English translation if available
+                    // Add English translation if available (directly visible)
                     if (chosen.translation) {
                         const translationDiv = document.createElement('div');
                         // Clean translation by removing [PRONOUN] and other markers
@@ -790,24 +784,33 @@ document.addEventListener('DOMContentLoaded', () => {
                             .replace(/\s+/g, ' ')
                             .trim();
                         translationDiv.innerHTML = `<strong>Traduction:</strong> ${cleanTranslation}`;
+                        translationDiv.style.marginTop = '5em';
+                        translationDiv.style.fontSize = '0.9em';
                         translationDiv.style.marginBottom = '0.3em';
-                        detailsContent.appendChild(translationDiv);
+                        // Better visibility in dark mode
+                        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                            translationDiv.style.color = '#f4f7f9';
+                            translationDiv.style.opacity = '0.9';
+                        } else {
+                            translationDiv.style.opacity = '0.8';
+                        }
+                        verbPhraseEl.appendChild(translationDiv);
                     }
                     
-                    // Add source if available
+                    // Add source if available (directly visible)
                     if (chosen.source) {
                         const sourceDiv = document.createElement('div');
                         sourceDiv.innerHTML = `<strong>Source:</strong> ${chosen.source}`;
-                        detailsContent.appendChild(sourceDiv);
-                    }
-                    
-                    detailsSection.appendChild(summary);
-                    detailsSection.appendChild(detailsContent);
-                    
-                    // Add answer phrase and details to answer container
-                    verbPhraseEl.appendChild(answerPhrase);
-                    if (chosen.translation || chosen.source) {
-                        verbPhraseEl.appendChild(detailsSection);
+                        sourceDiv.style.marginTop = '0.3em';
+                        sourceDiv.style.fontSize = '0.9em';
+                        // Better visibility in dark mode
+                        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                            sourceDiv.style.color = '#f4f7f9';
+                            sourceDiv.style.opacity = '0.9';
+                        } else {
+                            sourceDiv.style.opacity = '0.8';
+                        }
+                        verbPhraseEl.appendChild(sourceDiv);
                     }
                     
                     // Make phrase container clickable for audio
@@ -848,7 +851,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hideAnswer = () => {
         answerContainer.classList.remove('is-visible');
         // Show question phrase again if it was visible before (now they are siblings)
-        if (currentCard && currentCard.chosenPhrase && currentCard.chosenPhrase.gap_sentence) {
+        if (ENABLE_GAP_SENTENCES && currentCard && currentCard.chosenPhrase && currentCard.chosenPhrase.gap_sentence) {
             questionPhraseEl.style.display = 'block';
         }
         isAnswerVisible = false;
@@ -1402,14 +1405,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializeApp = () => {
         loadOptions();
         populateOptions();
-        nextCard();
+        
+        // Check for URL parameters for initial card
+        const params = parseHashParams();
+        if (params.pronoun && params.verb && params.tense) {
+            const customCard = generateCardFromParams(params.pronoun, params.verb, params.tense);
+            if (customCard) {
+                history.push(customCard);
+                historyIndex = history.length - 1;
+                displayCard(customCard);
+                backBtn.disabled = historyIndex === 0;
+            } else {
+                nextCard(); // Fall back to random card if params are invalid
+            }
+        } else {
+            nextCard(); // Normal random card
+        }
+        
         backBtn.disabled = true;
         populateExplorerList();
 
         // Set initial state without adding to history, then replace it
         // to have a state for the initial page.
         showView('flashcard-view', false);
-        window.history.replaceState({ view: 'flashcard-view' }, '', '#flashcard-view');
+        // Don't overwrite hash if we have card parameters
+        const currentHash = window.location.hash;
+        if (!currentHash.includes('pronoun=') || !currentHash.includes('verb=') || !currentHash.includes('tense=')) {
+            window.history.replaceState({ view: 'flashcard-view' }, '', '#flashcard-view');
+        }
     };
 
     // Expose showView globally for inline script
@@ -1475,6 +1498,112 @@ let autoskipLock = false;
         });
     }
 
+    // --- URL Parameter Support ---
+    const parseHashParams = () => {
+        const hash = window.location.hash.substring(1); // Remove the # symbol
+        const params = {};
+        if (hash) {
+            hash.split('&').forEach(param => {
+                const [key, value] = param.split('=');
+                if (key && value) {
+                    params[decodeURIComponent(key)] = decodeURIComponent(value);
+                }
+            });
+        }
+        return params;
+    };
+
+    const generateCardFromParams = (pronoun, verb, tense) => {
+        // Validate tense exists
+        if (!tenses[tense]) {
+            console.warn(`Invalid tense: ${tense}`);
+            return null;
+        }
+
+        // Find verb info
+        const verbInfo = uniqueVerbs.find(v => v.infinitive === verb);
+        if (!verbInfo) {
+            console.warn(`Verb not found: ${verb}`);
+            return null;
+        }
+
+        // Check if conjugation exists for this verb/tense/pronoun
+        const tenseData = tenses[tense];
+        const conjugations = tenseData && tenseData[verb];
+        if (!conjugations) {
+            console.warn(`No conjugations found for ${verb} ${tense}`);
+            return null;
+        }
+
+        // Handle pronoun mapping - find the correct pronoun key in the data
+        let actualPronounKey = pronoun;
+        
+        // If direct match doesn't exist, try to find the combined form
+        if (!conjugations[pronoun]) {
+            // Map individual pronouns to their combined forms in the data
+            const pronounMapping = {
+                'il': 'il/elle/on',
+                'elle': 'il/elle/on', 
+                'on': 'il/elle/on',
+                'ils': 'ils/elles',
+                'elles': 'ils/elles'
+            };
+            
+            if (pronounMapping[pronoun]) {
+                actualPronounKey = pronounMapping[pronoun];
+            }
+        }
+        
+        // Check if we have the conjugation
+        if (!conjugations[actualPronounKey]) {
+            console.warn(`No conjugation found for ${pronoun} (tried ${actualPronounKey}) ${verb} ${tense}`);
+            return null;
+        }
+
+        // Create the card with the original pronoun for display, but use the actual key for conjugation
+        return {
+            verb: verbInfo,
+            tense: tense,
+            pronoun: pronoun, // Keep the original pronoun for display
+            pronounKey: actualPronounKey, // Store the actual key used for lookup
+            conjugated: conjugations[actualPronounKey]
+        };
+    };
+
+    const updateHashParams = (card) => {
+        const params = new URLSearchParams();
+        params.set('pronoun', card.pronoun);
+        params.set('verb', card.verb.infinitive);
+        params.set('tense', card.tense);
+        window.location.hash = params.toString();
+    };
+
+    // --- Initial Card Loading ---
+    const loadCardFromHash = () => {
+        const params = parseHashParams();
+        if (params.pronoun && params.verb && params.tense) {
+            const card = generateCardFromParams(params.pronoun, params.verb, params.tense);
+            if (card) {
+                // Directly display the card without going through history
+                displayCard(card);
+                history = [card]; // Reset history to just this card
+                historyIndex = 0;
+                backBtn.disabled = true;
+                return;
+            }
+        }
+        // If no valid card found, fall back to regular card generation
+        const newCard = generateNewCard(cardGenerationOptions);
+        if (newCard) {
+            history.push(newCard);
+            historyIndex = history.length - 1;
+            displayCard(newCard);
+            backBtn.disabled = historyIndex === 0;
+        }
+    };
+
     // Call the patched initializeApp
     window.initializeApp();
+    // Load card from URL hash on initial load
+    loadCardFromHash();
 });
