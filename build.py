@@ -43,7 +43,7 @@ def build(force_jpeg=False):
         # Collect all relevant JS files in a logical order
         js_files = []
         preferred_order = [
-            'verbs.full.js',
+            'verbs.full.generated.js',
             'sentences.js',
             # 'main.js',
             # 'alphabetScroller.js',
@@ -149,7 +149,7 @@ def build(force_jpeg=False):
         replacement_js_block = f'<script>{combined_js}</script>'
         # Use a lambda for the replacement. This is the crucial fix. It tells the `re` module
         # to use the returned string literally, without processing backslash escapes (like \u).
-        final_html = re.sub(r'<script src="js/verbs.full.js"></script>\s*<script src="js/sentences.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
+        final_html = re.sub(r'<script src="js/verbs.full.generated.js"></script>\s*<script src="sentences.generated.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
 
         # 5. Ensure the output directory exists
         os.makedirs(DIST_DIR, exist_ok=True)
@@ -171,7 +171,73 @@ def build(force_jpeg=False):
     except Exception as e:
         print(f"\n❌ An unexpected error occurred: {e}")
 
+
+
+import os
+import time
+import sys
+
+# Base path of the project (safe fallback if __file__ is not defined)
+try:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+except NameError:
+    BASE_DIR = os.getcwd()
+
+# --- CONFIG: files to watch ---
+WATCHED_FILES = [
+    'index.html',
+    'css/style.css',
+    'css/dictate-btn.css',
+    'js/verbs.full.generated.js',
+    'sentences.generated.js',
+    'js/script.js',
+    'bg.png',
+    'bg.dark.png',
+    'favicon_big.png',
+]
+WATCHED_FILES = [os.path.join(BASE_DIR, f) for f in WATCHED_FILES]
+
+def files_mtime(files):
+    return {f: os.path.getmtime(f) for f in files if os.path.exists(f)}
+
+def watch_and_build(force_jpeg=False, debounce_sec=5):
+    print("👀 Watching for changes...")
+    last_mtimes = files_mtime(WATCHED_FILES)
+
+    while True:
+        time.sleep(1)
+        current_mtimes = files_mtime(WATCHED_FILES)
+
+        if current_mtimes != last_mtimes:
+            print("🔧 Change detected, waiting for stability...")
+            stable = False
+            wait_start = time.time()
+
+            while not stable:
+                time.sleep(0.5)
+                new_mtimes = files_mtime(WATCHED_FILES)
+                if new_mtimes == current_mtimes:
+                    if time.time() - wait_start >= debounce_sec:
+                        stable = True
+                else:
+                    current_mtimes = new_mtimes
+                    wait_start = time.time()
+
+            print("🔁 File system is stable. Running build...")
+            build(force_jpeg=force_jpeg)
+            last_mtimes = current_mtimes
+
 if __name__ == "__main__":
-    import sys
-    force_jpeg = '--jpeg' in sys.argv
-    build(force_jpeg=force_jpeg)
+    # force_jpeg = '--jpeg' in sys.argv
+    force_jpeg = True
+    if '--watch' in sys.argv:
+        watch_and_build(force_jpeg=force_jpeg)
+    else:
+        build(force_jpeg=force_jpeg)
+
+
+
+# if __name__ == "__main__":
+#     import sys
+#     force_jpeg = '--jpeg' in sys.argv
+#     build(force_jpeg=force_jpeg)

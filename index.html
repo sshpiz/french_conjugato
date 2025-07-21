@@ -719,8 +719,8 @@
                 return conjugatedParts.join(' ');
             }
             
-            // Similar handling for il/elle
-            if ((pronoun === 'il' || pronoun === 'elle') && 
+            // Similar handling for il/elle/on
+            if ((pronoun === 'il' || pronoun === 'elle' || pronoun === 'on') && 
                 (conjugatedLower.startsWith('il ') || conjugatedLower.startsWith('elle '))) {
                 const conjugatedParts = conjugated.trim().split(' ');
                 conjugatedParts[0] = pronoun;

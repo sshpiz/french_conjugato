@@ -1,0 +1,21 @@
+{
+  "name": "franconjugue",
+  "short_name": "franconjugue",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#3498db",
+  "theme_color": "#3498db",
+  "description": "Master French verb conjugations with interactive flashcards.",
+  "icons": [
+    {
+      "src": "favicon_big.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon_big.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

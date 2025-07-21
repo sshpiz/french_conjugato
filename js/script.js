@@ -11,6 +11,49 @@ const speechLang = window.frenchSpeechLang;
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
 
+// --- Seeded Random Number Generator ---
+let seedValue = null;
+
+// Simple hash function to convert string to number
+function hashString(str) {
+    let hash = 0;
+    if (str.length === 0) return hash;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash);
+}
+
+// Linear Congruential Generator for seeded random
+function seededRandom() {
+    if (seedValue === null) {
+        return Math.random(); // Fallback to normal random if no seed
+    }
+    seedValue = (seedValue * 1664525 + 1013904223) % 4294967296;
+    return seedValue / 4294967296;
+}
+
+// Parse seed from URL query params and initialize seeded random
+function initializeSeededRandom() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const seedParam = urlParams.get('seed');
+    
+    if (seedParam) {
+        seedValue = hashString(seedParam);
+        console.log(`🎲 Using seed: "${seedParam}" (numeric: ${seedValue})`);
+        
+        // Override Math.random with our seeded version
+        Math.random = seededRandom;
+    } else {
+        console.log(`🎲 No seed provided, using normal random`);
+    }
+}
+
+// Initialize seeded random before anything else
+initializeSeededRandom();
+
 // Ensure language-specific last change handler exists
 if (typeof window.handleLanguageSpecificLastChange !== 'function') {
     window.handleLanguageSpecificLastChange = function(pronoun, conjugated) {
