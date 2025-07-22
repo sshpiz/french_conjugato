@@ -767,6 +767,7 @@ def process_phrases_for_sentences(df, conjugations_data=None, max_per_source=5, 
         'missing_verb_lemma': 0,
         'missing_french': 0,
         'empty_french': 0,
+        'too_long_sentence': 0,
         'infinitive_verb': 0,
         'verb_form_mismatch': 0,
         'processing_error': 0,
@@ -798,6 +799,12 @@ def process_phrases_for_sentences(df, conjugations_data=None, max_per_source=5, 
             
             if not french_text:
                 skipped_reasons['empty_french'] += 1
+                continue
+            
+            # Check if sentence is too long (more than 15 words)
+            word_count = len(french_text.split())
+            if word_count > 20:
+                skipped_reasons['too_long_sentence'] += 1
                 continue
             
             # Debug: Check what we have in this row
