@@ -901,6 +901,52 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+<!-- Version Check and Cache Clearing -->
+<script>
+(function() {
+    const APP_VERSION = '{{APP_VERSION}}'; // Will be replaced by build script
+    const VERSION_KEY = 'franconjugue_app_version';
+    
+    function clearAppData() {
+        console.log('Clearing app data due to version change...');
+        // Clear localStorage but preserve specific user preferences
+        const preserveKeys = ['ttsVoiceName', 'ftue-shown'];
+        const preserved = {};
+        preserveKeys.forEach(key => {
+            if (localStorage.getItem(key) !== null) {
+                preserved[key] = localStorage.getItem(key);
+            }
+        });
+        
+        localStorage.clear();
+        
+        // Restore preserved preferences
+        Object.keys(preserved).forEach(key => {
+            localStorage.setItem(key, preserved[key]);
+        });
+        
+        // Clear session storage
+        sessionStorage.clear();
+        
+        // Clear cache if available
+        if ('caches' in window) {
+            caches.keys().then(names => {
+                names.forEach(name => caches.delete(name));
+            });
+        }
+        
+        console.log('App data cleared, setting new version:', APP_VERSION);
+        localStorage.setItem(VERSION_KEY, APP_VERSION);
+    }
+    
+    // Check version on page load
+    const currentVersion = localStorage.getItem(VERSION_KEY);
+    if (!currentVersion || currentVersion !== APP_VERSION) {
+        clearAppData();
+    }
+})();
+</script>
  
 </body>
 </html>

@@ -153,10 +153,16 @@ def build(force_jpeg=False):
         # to use the returned string literally, without processing backslash escapes (like \u).
         final_html = re.sub(r'<script src="js/verbs.full.generated.js"></script>\s*<script src="sentences.generated.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
 
-        # 5. Ensure the output directory exists
+        # 5. Inject version string for cache busting
+        print("   - Injecting version string...")
+        from datetime import datetime
+        app_version = datetime.now().strftime('%Y%m%d_%H%M%S')
+        final_html = final_html.replace('{{APP_VERSION}}', app_version)
+
+        # 6. Ensure the output directory exists
         os.makedirs(DIST_DIR, exist_ok=True)
 
-        # 6. Write the final HTML file
+        # 7. Write the final HTML file
         with open(HTML_OUTPUT_PATH, 'w', encoding='utf-8') as f:
             f.write(final_html)
         INDEX_HTML_PATH = os.path.join(DIST_DIR, 'index.html')
