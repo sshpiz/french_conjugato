@@ -1,0 +1,19 @@
+{
+  "name": "franconjugue",
+  "short_name": "franconjugue", 
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#3498db",
+  "theme_color": "#3498db",
+  "description": "Master French verb conjugations",
+  "icons": [
+    {
+      "src": "favicon_big.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
