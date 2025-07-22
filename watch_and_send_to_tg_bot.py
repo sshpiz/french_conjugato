@@ -2,6 +2,7 @@ import os
 import time
 import argparse
 import asyncio
+import shutil
 from telegram import Bot
 
 async def send_with_retry(bot, chat_id, file_path, max_retries=3):
