@@ -804,12 +804,31 @@ body {
 
 .tappable-audio {
     cursor: pointer;
-    transition: background 0.15s;
-    border-radius: 8px;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+    /* Remove all visual feedback */
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: none !important;
+    /* Ensure tap area is only the text */
+    border: none;
+    background: none;
+    text-decoration: none;
 }
-.tappable-audio:active, .tappable-audio:focus {
-    background: #eaf6fb;
-    outline: none;
+
+.tappable-audio:focus,
+.tappable-audio:active,
+.tappable-audio:hover,
+.tappable-audio:visited {
+    background: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    border: none !important;
 }
 
 /* --- Options View --- */

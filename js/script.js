@@ -402,31 +402,45 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     }
-                    // --- AUTOSKIP ON CORRECT DICTATION (CONTAINS) ---
-                    const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
-                    if (autosayOn && !isAnswerVisible && currentCard && !autoskipLock) {
+                    // --- CHECK FOR CORRECT DICTATION (ALWAYS SHOW BRAVO) ---
+                    if (!isAnswerVisible && currentCard && !autoskipLock) {
                         let expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
                         const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
                         const normExpected = normalize(expected);
                         const normTranscript = normalize(bestTranscript);
                         if (normTranscript.includes(normExpected)) {
                             autoskipLock = true;
+                            // Always show Bravo for correct answers
                             dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                             dictationResultEl.style.display = 'block';
                             dictationResultEl.style.opacity = '1';
                             showAnswer();
-                            setTimeout(() => {
-                                if (recognition) {
-                                    try { recognition.stop(); } catch (e) {}
-                                }
-                                handleNext(); // No auto dictation
-                            }, 1500); // 1.5s delay for Bravo
+                            
+                            // Check if auto-advance is enabled
+                            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+                            const correctDictationNextQuestion = localStorage.getItem('correct-dictation-next-question') === 'true';
+                            
+                            if (autosayOn || correctDictationNextQuestion) {
+                                // Auto-advance to next question
+                                setTimeout(() => {
+                                    if (recognition) {
+                                        try { recognition.stop(); } catch (e) {}
+                                    }
+                                    handleNext();
+                                }, 1500); // 1.5s delay for Bravo
+                            } else {
+                                // Just stop recognition, don't auto-advance
+                                setTimeout(() => {
+                                    if (recognition) {
+                                        try { recognition.stop(); } catch (e) {}
+                                    }
+                                }, 1500);
+                            }
                             return;
                         }
                     }
-                    // In recognition.onresult, use correctDictationNextQuestion flag for Bravo autoskip
-                    const correctDictationNextQuestion = localStorage.getItem('correct-dictation-next-question') === 'true';
-                    if (correctDictationNextQuestion && !isAnswerVisible && currentCard && !autoskipLock) {
+                    // Only update overlay if not showing Bravo
+                    showDictationOverlay(html, 'normal', 0, true, false);
                         let expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
                         const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
                         const normExpected = normalize(expected);
@@ -441,13 +455,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (recognition) {
                                     try { recognition.stop(); } catch (e) {}
                                 }
-                                handleNext();
+                                if(localStorage.getItem('correct-dictation-next-question') === 'true'){
+                                    handleNext();
+                                }
                             }, 1500);
                             return;
                         }
-                    }
-                    // Only update overlay if not autoskipping
-                    showDictationOverlay(html, 'normal', 0, true, false);
                 };
                 recognition.start();
                 // Safety: stop after 10s if not already ended
@@ -540,23 +553,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use generic speechLang for speech synthesis, and allow user-selected voice
     const synth = window.speechSynthesis;
     const speak = (text) => {
-        if (synth.speaking) {
-            synth.cancel();
-        }
         // Replace placeholders with "blanc" for speech
         const textToSpeak = prepareTextForSpeech(text);
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = speechLang;
-        // Use user-selected voice if set
-        const voiceName = localStorage.getItem('ttsVoiceName');
-        if (voiceName) {
-            const voices = synth.getVoices();
-            // Use all matching voices, but pick the first (browser order)
-            const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
-            if (matches.length > 0) utterance.voice = matches[0];
+        
+        // Cancel current speech only if different text
+        if (synth.speaking) {
+            synth.cancel();
+            // Small delay to ensure cancellation completes
+            setTimeout(() => {
+                // Use user-selected voice if set
+                const voiceName = localStorage.getItem('ttsVoiceName');
+                if (voiceName) {
+                    const voices = synth.getVoices();
+                    const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
+                    if (matches.length > 0) utterance.voice = matches[0];
+                }
+                utterance.rate = 0.9;
+                synth.speak(utterance);
+            }, 100);
+        } else {
+            // Use user-selected voice if set
+            const voiceName = localStorage.getItem('ttsVoiceName');
+            if (voiceName) {
+                const voices = synth.getVoices();
+                const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
+                if (matches.length > 0) utterance.voice = matches[0];
+            }
+            utterance.rate = 0.9;
+            synth.speak(utterance);
         }
-        utterance.rate = 0.9;
-        synth.speak(utterance);
     };
 
     // Helper function to check if two pronouns are equivalent (same person/number)
@@ -887,7 +914,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // If we have an exact match AND a gap sentence, show it in question container
                     if (ENABLE_GAP_SENTENCES && hasExactMatch && chosen.gap_sentence) {
-                        const questionPhrase = document.createElement('div');
+                        const questionPhrase = document.createElement('span');
                         questionPhrase.innerHTML = enhanceGapSentence(chosen.gap_sentence);
                         questionPhrase.classList.add('tappable-audio');
                         questionPhrase.style.cursor = 'pointer';
@@ -902,7 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     
                     // Always prepare the full sentence for the answer container
-                    const answerPhrase = document.createElement('div');
+                    const answerPhrase = document.createElement('span');
                     answerPhrase.textContent = chosen.sentence;
                     answerPhrase.classList.add('tappable-audio');
                     answerPhrase.style.cursor = 'pointer';
@@ -950,8 +977,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         verbPhraseEl.appendChild(sourceDiv);
                     }
                     
-                    // Make phrase container clickable for audio
-                    verbPhraseEl.classList.add('tappable-audio');
+                    // Don't make the entire phrase container clickable - only the sentence itself is tappable
+                    // verbPhraseEl.classList.add('tappable-audio'); // Removed to fix large tap area
                     console.log('Added phrase elements to answer:', {
                         questionHasContent: questionPhraseEl.children.length > 0,
                         answerHasContent: verbPhraseEl.children.length > 0,
@@ -1344,6 +1371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     verbInfinitiveEl.addEventListener('click', (e) => {
         e.stopPropagation();
+        e.preventDefault();
         playInfinitiveAudio();
     });
     verbInfinitiveEl.addEventListener('keydown', (e) => {
@@ -1363,6 +1391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     conjugatedVerbEl.addEventListener('click', (e) => {
         e.stopPropagation();
+        e.preventDefault();
         playConjugatedAudio();
     });
     conjugatedVerbEl.addEventListener('keydown', (e) => {
@@ -1380,24 +1409,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     verbPhraseEl.addEventListener('click', (e) => {
         e.stopPropagation();
-        // Find the main phrase (first div with tappable-audio class or first text node)
-        const mainPhraseDiv = verbPhraseEl.querySelector('.tappable-audio');
-        if (mainPhraseDiv && mainPhraseDiv.textContent) {
-            speak(mainPhraseDiv.textContent);
-        } else if (verbPhraseEl.textContent) {
-            // Fallback for old structure
-            speak(verbPhraseEl.textContent);
+        e.preventDefault();
+        
+        // Only handle clicks on tappable-audio elements, not the container
+        if (e.target.classList.contains('tappable-audio') && e.target.textContent) {
+            speak(e.target.textContent);
         }
     });
 
     questionPhraseEl.addEventListener('click', (e) => {
         e.stopPropagation();
-        // Find the main phrase in question container
-        const mainPhraseDiv = questionPhraseEl.querySelector('.tappable-audio');
-        if (mainPhraseDiv && mainPhraseDiv.textContent) {
-            speak(mainPhraseDiv.textContent);
-        } else if (questionPhraseEl.textContent) {
-            speak(questionPhraseEl.textContent);
+        e.preventDefault();
+        
+        // Only handle clicks on tappable-audio elements, not the container
+        if (e.target.classList.contains('tappable-audio') && e.target.textContent) {
+            speak(e.target.textContent);
         }
     });
 
@@ -1760,4 +1786,13 @@ let autoskipLock = false;
     window.initializeApp();
     // Load card from URL hash on initial load
     loadCardFromHash();
+
+    // --- General Event Handler for Tappable Audio Elements ---
+    // Handle clicks on tappable-audio elements with data-speak attribute (in detail view)
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.tappable-audio') && e.target.dataset.speak) {
+            e.stopPropagation(); // Keep this to prevent bubbling
+            speak(e.target.dataset.speak);
+        }
+    });
 });

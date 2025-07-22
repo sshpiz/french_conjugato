@@ -12,9 +12,9 @@
     <meta name="apple-mobile-web-app-title" content="franconjugue">
     <meta name="theme-color" content="#3498db">
     <!-- Cache-busting headers for development -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate">
+    <!-- <meta http-equiv="Pragma" content="no-cache"> -->
+    <!-- <meta http-equiv="Expires" content="0"> -->
     <link rel="apple-touch-icon" href="favicon_big.png">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon_big.png" type="image/png">
@@ -23,6 +23,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Register service worker for PWA compliance -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(() => console.log('Service worker registered'))
+                .catch(() => console.log('Service worker registration failed'));
+        }
+    </script>
     <!-- Prevent flash of unstyled content by hiding the answer container immediately -->
     <style>
       #answer-container { visibility: hidden; }
@@ -37,8 +45,14 @@
         margin-top: 0.75rem;
         font-size: 1.1rem; /* Make phrase slightly larger for easier tapping */
         user-select: text; /* Allow phrase to be selected */
-        cursor: text;
+        cursor: default; /* Changed from text to default */
         min-height: 1.5em; /* Ensure it takes up space even when empty */
+      }
+      
+      /* Individual tappable phrase elements */
+      .verb-phrase .tappable-audio {
+        cursor: pointer; /* Pointer cursor for tappable elements */
+        user-select: text; /* Allow text selection */
       }
       
       /* Phrase container manages both question and answer phases */
@@ -900,52 +914,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
   });
 });
-</script>
-
-<!-- Version Check and Cache Clearing -->
-<script>
-(function() {
-    const APP_VERSION = '{{APP_VERSION}}'; // Will be replaced by build script
-    const VERSION_KEY = 'franconjugue_app_version';
-    
-    function clearAppData() {
-        console.log('Clearing app data due to version change...');
-        // Clear localStorage but preserve specific user preferences
-        const preserveKeys = ['ttsVoiceName', 'ftue-shown'];
-        const preserved = {};
-        preserveKeys.forEach(key => {
-            if (localStorage.getItem(key) !== null) {
-                preserved[key] = localStorage.getItem(key);
-            }
-        });
-        
-        localStorage.clear();
-        
-        // Restore preserved preferences
-        Object.keys(preserved).forEach(key => {
-            localStorage.setItem(key, preserved[key]);
-        });
-        
-        // Clear session storage
-        sessionStorage.clear();
-        
-        // Clear cache if available
-        if ('caches' in window) {
-            caches.keys().then(names => {
-                names.forEach(name => caches.delete(name));
-            });
-        }
-        
-        console.log('App data cleared, setting new version:', APP_VERSION);
-        localStorage.setItem(VERSION_KEY, APP_VERSION);
-    }
-    
-    // Check version on page load
-    const currentVersion = localStorage.getItem(VERSION_KEY);
-    if (!currentVersion || currentVersion !== APP_VERSION) {
-        clearAppData();
-    }
-})();
 </script>
  
 </body>
