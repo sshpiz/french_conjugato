@@ -67,12 +67,10 @@
     max-width: 380px;
     width: 90%;
     display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;
     white-space: normal;
     word-break: break-word;
     line-height: 1.2;
-    max-height: 45px;
     font-size: clamp(0.9em, 2.5vw, 1.1em);
   }
   /* Infinitive: light, glowing */
@@ -150,7 +148,7 @@
     --tense-imparfait: #5c5a7e !important;
     --tense-futur-simple: #357ca5 !important;
     --tense-plus-que-parfait: #a24d6a !important;
-    --tense-subjonctif-present: #b2b16a !important;
+    --tense-subjonctif-present: #d4c5e8 !important;
     --tense-conditionnel-present: #7ea24d !important;
   }
   body {
@@ -253,7 +251,7 @@
   --tense-imparfait: #c9c7e8;         /* soft lavender */
   --tense-futur-simple: #b2d6f7;      /* soft blue */
   --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
-  --tense-subjonctif-present: #e8e7c7;/* soft yellow */
+  --tense-subjonctif-present: #d4c5e8;/* soft purple */
   --tense-conditionnel-present: #d6e8c7;/* soft lime */
 }
 #verb-tense {
@@ -285,11 +283,11 @@
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     /* Tense color variables (soft, harmonious with bg) */
     --tense-present: #b3d8c5;           /* soft green */
-    --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
+  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
     --tense-imparfait: #c9c7e8;         /* soft lavender */
     --tense-futur-simple: #b2d6f7;      /* soft blue */
     --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
-    --tense-subjonctif-present: #e8e7c7;/* soft yellow */
+    --tense-subjonctif-present: #d4c5e8;/* soft purple */
     --tense-conditionnel-present: #d6e8c7;/* soft lime */
 }
 #verb-tense {
@@ -309,7 +307,6 @@
 .tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
 .tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
 .tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
-}
 
 * {
     box-sizing: border-box;
@@ -372,6 +369,15 @@ body {
     -webkit-overflow-scrolling: touch;
     touch-action: manipulation;
   }
+  
+  /* Allow scrolling for options view */
+  #options-view {
+    overflow-y: auto;
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: 1rem 0.5rem;
+  }
+  
   body {
     overscroll-behavior-y: contain;
     overscroll-behavior-x: contain;
@@ -485,7 +491,6 @@ body {
     background-position: center;
   }
 }
-}
 
 #flashcard:active {
     transform: scale(0.98);
@@ -528,7 +533,6 @@ body {
   margin-top: 0.2rem;
   margin-bottom: 0.5rem;
   text-align: center;
-}
 }
 
 .conjugated-line {
@@ -811,6 +815,10 @@ body {
 /* --- Options View --- */
 #options-view {
     padding: 1rem 0;
+    overflow-y: auto;
+    height: 100%;
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
 }
 
 .options-header {
@@ -956,12 +964,29 @@ body {
 }
 
 /* Move frequency tag to bottom left and verb detail icon below it */
-#verb-frequency {
+#verb-meta-buttons {
   position: absolute;
   left: 1.2rem;
   bottom: 1.2rem;
   margin: 0;
   z-index: 10;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#verb-frequency {
+  margin: 0;
+}
+
+#verb-irregular {
+  margin: 0;
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 #go-to-verb-btn, #go-to-verb-btn-2 {
@@ -1046,4 +1071,68 @@ body {
 .gap-placeholder:hover {
   transform: scale(1.05);
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* English translation elements - match styling of French elements */
+#english-verb-infinitive {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+#english-verb-translation {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--meta-color);
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+#english-verb-phrase {
+    font-style: italic;
+    color: #7f8c8d;
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    user-select: text;
+    cursor: text;
+}
+
+#english-infinitive-line {
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#english-infinitive-line h1 {
+    margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    #english-verb-infinitive {
+        color: #f7fafc !important;
+        text-shadow: 0 2px 8px #000a, 0 1px 2px #0006;
+        font-weight: 800;
+    }
+    
+    #english-verb-translation {
+        color: #b0b8c1 !important;
+        font-weight: 400;
+    }
+    
+    #english-verb-phrase {
+        color: #263040 !important;
+        font-style: italic;
+        text-shadow: 0 1px 2px #fff3;
+        max-width: 380px;
+        width: 90%;
+        display: block;
+        overflow: visible;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
+        font-size: clamp(0.9em, 2.5vw, 1.1em);
+    }
 }

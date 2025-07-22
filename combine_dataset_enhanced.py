@@ -239,10 +239,16 @@ def map_tense_from_feats(feats_str):
     return 'présent'  # default fallback
 
 def generate_conjugation_data(cache_file="conjugation_cache.json"):
-    """Generate complete conjugation data using verbecc with caching."""
+    """Generate complete conjugation data using verbecc with caching.
+    
+    Returns:
+        tuple: (conjugations_data, verb_translations) where:
+            - conjugations_data: dict of tense -> verb -> pronoun -> conjugated_form  
+            - verb_translations: dict of infinitive -> english_translation
+    """
     if not VERBECC_AVAILABLE:
         print("Cannot generate conjugation data without verbecc")
-        return {}
+        return {}, {}
     
     # Check if cached file exists
     cache_path = Path(cache_file)
@@ -251,8 +257,19 @@ def generate_conjugation_data(cache_file="conjugation_cache.json"):
         try:
             with open(cache_path, 'r', encoding='utf-8') as f:
                 cached_data = json.load(f)
-            print(f"Loaded {len(cached_data)} tenses from cache")
-            return cached_data
+            
+            # Handle both old and new cache formats
+            if isinstance(cached_data, dict) and 'tenses' in cached_data:
+                # New format with translations
+                tenses = cached_data['tenses']
+                translations = cached_data.get('translations', {})
+                print(f"Loaded {len(tenses)} tenses and {len(translations)} translations from cache")
+                return tenses, translations
+            else:
+                # Old format - just tenses, no translations
+                print(f"Loaded {len(cached_data)} tenses from cache (old format, no translations)")
+                print("Note: Regenerating to get translations...")
+                # Fall through to regenerate
         except Exception as e:
             print(f"Error loading cache: {e}, regenerating...")
     
@@ -285,6 +302,9 @@ def generate_conjugation_data(cache_file="conjugation_cache.json"):
         for app_tense in mood_mappings.values():
             tenses[app_tense] = {}
     
+    # Store verb translations separately
+    verb_translations = {}
+    
     processed = 0
     for infinitive in all_verbs:
         if processed % 1000 == 0:
@@ -293,6 +313,16 @@ def generate_conjugation_data(cache_file="conjugation_cache.json"):
         try:
             conj = conjugator.conjugate(infinitive)
             moods = conj['moods']
+            
+            # Extract English translation from verbecc
+            if 'verb' in conj and 'translation_en' in conj['verb']:
+                translation = conj['verb']['translation_en']
+                # Add "to" prefix if not present
+                if translation and not translation.startswith('to '):
+                    translation = 'to ' + translation
+                verb_translations[infinitive] = translation
+            else:
+                verb_translations[infinitive] = infinitive  # fallback
             
             # Process each mood and tense
             for mood, mood_tenses in MOOD_TENSE_MAPPING.items():
@@ -329,21 +359,29 @@ def generate_conjugation_data(cache_file="conjugation_cache.json"):
             for mood_mappings in MOOD_TENSE_MAPPING.values():
                 for app_tense in mood_mappings.values():
                     tenses[app_tense][infinitive] = {p: "" for p in PRONOUNS}
+            # Use infinitive as fallback translation
+            verb_translations[infinitive] = infinitive
         
         processed += 1
     
     print(f"Generated conjugations for {len(all_verbs)} verbs across {len(tenses)} tenses")
+    print(f"Extracted translations for {len(verb_translations)} verbs")
     
-    # Save to cache
+    # Save to cache - include both conjugations and translations
+    cache_data = {
+        'tenses': tenses,
+        'translations': verb_translations
+    }
+    
     print(f"Saving conjugation data to cache: {cache_file}")
     try:
         with open(cache_file, 'w', encoding='utf-8') as f:
-            json.dump(tenses, f, ensure_ascii=False, indent=2)
+            json.dump(cache_data, f, ensure_ascii=False, indent=2)
         print("Cache saved successfully")
     except Exception as e:
         print(f"Warning: Could not save cache: {e}")
     
-    return tenses
+    return tenses, verb_translations
 
 def load_phrases_dataframe(pickle_path):
     """Load the phrases dataframe from pickle file."""
@@ -353,7 +391,7 @@ def load_phrases_dataframe(pickle_path):
     print(f"Loaded {len(df)} phrases")
     return df
 
-def generate_verbs_data(sentences_data):
+def generate_verbs_data(sentences_data, verb_translations=None):
     """Generate verb list with frequency and translation data derived from actual usage."""
     print("Generating verb data based on actual usage...")
     
@@ -364,7 +402,7 @@ def generate_verbs_data(sentences_data):
     print(f"Found {len(verb_usage)} unique verbs in sentences data")
     print(f"Total verb instances: {sum(verb_usage.values())}")
     
-    # Define top verbs for manual frequency classification
+    # Define top verbs for frequency classification
     top_20_verbs = {
         "être", "avoir", "aller", "faire", "venir", "pouvoir", "vouloir", 
         "savoir", "devoir", "dire", "voir", "prendre", "mettre", "croire",
@@ -376,8 +414,20 @@ def generate_verbs_data(sentences_data):
         "porter", "sortir", "vivre", "finir", "commencer", "entrer",
         "regarder", "attendre", "tomber", "rendre", "sembler", "paraître",
         "connaître", "suivre", "jouer", "ouvrir", "écrire", "lire",
-        "servir", "sentir", "courir", "mourir", "naître", "cacher",
-        "acheter", "appeler", "apprendre", "choisir", "construire"
+        "servir", "sentir", "courir", "mourir", "naître", "cacher"
+    }
+    
+    top_100_verbs = top_50_verbs | {
+        "acheter", "appeler", "apprendre", "choisir", "construire",
+        "monter", "descendre", "retourner", "devenir", "revenir",
+        "rappeler", "emmener", "ramener", "amener", "mener",
+        "lever", "relever", "enlever", "élever", "soulever",
+        "garder", "marcher", "chercher", "travailler", "changer",
+        "tourner", "retourner", "arrêter", "s'arrêter", "continuer",
+        "compter", "raconter", "expliquer", "répondre", "demander",
+        "montrer", "aider", "laisser", "quitter", "perdre",
+        "gagner", "oublier", "se rappeler", "se souvenir", "reconnaître",
+        "recevoir", "offrir", "proposer", "accepter", "refuser"
     }
     
     # Get all verbs from verbecc
@@ -390,44 +440,145 @@ def generate_verbs_data(sentences_data):
     
     print(f"Processing {len(all_verbs)} total verbs")
     
-    # Calculate frequency thresholds from data
-    usage_counts = list(verb_usage.values())
-    usage_counts.sort(reverse=True)
+    # Sort all verbs by usage frequency for ranking-based classification
+    verb_usage_sorted = verb_usage.most_common()
     
-    # Set thresholds based on data distribution
-    if len(usage_counts) >= 3:
-        # Top 10% are common (but at least used 2+ times)
-        common_threshold = max(2, usage_counts[len(usage_counts)//10] if len(usage_counts) > 10 else usage_counts[2])
-        # Next tier is intermediate (used at least once)
-        intermediate_threshold = 1
-    else:
-        common_threshold = 2
-        intermediate_threshold = 1
+    # Create ranked lists based on actual usage data
+    most_used_verbs = [verb for verb, count in verb_usage_sorted]
     
-    print(f"Frequency thresholds from data: common >= {common_threshold}, intermediate >= {intermediate_threshold}")
+    # Get the top verbs by usage (with minimum thresholds)
+    usage_counts = [count for verb, count in verb_usage_sorted]
+    
+    # Define ranking thresholds - but ensure manual top verbs are prioritized
+    top_100_by_usage = set(most_used_verbs[:100]) if len(most_used_verbs) >= 100 else set(most_used_verbs)
+    top_500_by_usage = set(most_used_verbs[:500]) if len(most_used_verbs) >= 500 else set(most_used_verbs)
+    top_1000_by_usage = set(most_used_verbs[:1000]) if len(most_used_verbs) >= 1000 else set(most_used_verbs)
+    
+    print(f"Usage-based rankings: top-100 has {len(top_100_by_usage)} verbs, top-500 has {len(top_500_by_usage)} verbs, top-1000 has {len(top_1000_by_usage)} verbs")
     
     verbs_data = []
-    frequency_stats = {"common": 0, "intermediate": 0, "rare": 0}
+    frequency_stats = {"top-20": 0, "top-50": 0, "top-100": 0, "top-500": 0, "top-1000": 0, "rare": 0}
     
     for verb in all_verbs:
         usage_count = verb_usage.get(verb, 0)
         
-        # Determine frequency
+        # Determine frequency category based on manual lists and usage ranking
         if verb in top_20_verbs:
-            frequency = "common"
+            frequency = "top-20"
         elif verb in top_50_verbs:
-            frequency = "intermediate" 
-        elif usage_count >= common_threshold:
-            frequency = "common"
-        elif usage_count >= intermediate_threshold:
-            frequency = "intermediate"
+            frequency = "top-50"
+        elif verb in top_100_verbs:
+            frequency = "top-100"
+        elif verb in top_500_by_usage:
+            frequency = "top-500"
+        elif verb in top_1000_by_usage:
+            frequency = "top-1000"
         else:
             frequency = "rare"
         
         frequency_stats[frequency] += 1
         
-        # Basic translation (placeholder - you can enhance this later)
-        translation = verb  # Could be enhanced with a translation service
+        # Get translation from verbecc data FIRST, fallback to sentence extraction
+        translation = verb  # Default fallback
+        
+        if verb_translations and verb in verb_translations:
+            translation = verb_translations[verb]
+            print(f"Using verbecc translation for {verb}: {translation}")
+        else:
+            print(f"No verbecc translation for {verb}, trying sentence data...")
+            # Fallback to sentence data extraction (your existing logic)
+            for sentence in sentences_data:
+                if sentence.get('verb') == verb and sentence.get('translation') and sentence.get('is_valid', False):
+                    eng_translation = sentence['translation'].strip()
+                    if eng_translation and eng_translation.lower() != verb.lower():
+                        # Extract just the verb part if it's a full sentence
+                        # Look for common English verb patterns
+                        words = eng_translation.lower().split()
+                        for word in words:
+                            if word.startswith('to '):
+                                translation = word
+                                break
+                            elif word in ['am', 'is', 'are', 'was', 'were', 'be', 'being', 'been']:
+                                translation = 'to be'
+                                break
+                            elif word in ['have', 'has', 'had', 'having']:
+                                translation = 'to have'
+                                break
+                            elif word in ['do', 'does', 'did', 'done', 'doing']:
+                                translation = 'to do'
+                                break
+                            elif word in ['go', 'goes', 'went', 'gone', 'going']:
+                                translation = 'to go'
+                                break
+                            elif word in ['make', 'makes', 'made', 'making']:
+                                translation = 'to make'
+                                break
+                            elif word in ['get', 'gets', 'got', 'gotten', 'getting']:
+                                translation = 'to get'
+                                break
+                            elif word in ['take', 'takes', 'took', 'taken', 'taking']:
+                                translation = 'to take'
+                                break
+                            elif word in ['come', 'comes', 'came', 'coming']:
+                                translation = 'to come'
+                                break
+                            elif word in ['see', 'sees', 'saw', 'seen', 'seeing']:
+                                translation = 'to see'
+                                break
+                            elif word in ['know', 'knows', 'knew', 'known', 'knowing']:
+                                translation = 'to know'
+                                break
+                            elif word in ['want', 'wants', 'wanted', 'wanting']:
+                                translation = 'to want'
+                                break
+                            elif word in ['give', 'gives', 'gave', 'given', 'giving']:
+                                translation = 'to give'
+                                break
+                            elif word in ['say', 'says', 'said', 'saying']:
+                                translation = 'to say'
+                                break
+                            elif word in ['think', 'thinks', 'thought', 'thinking']:
+                                translation = 'to think'
+                                break
+                            elif word in ['find', 'finds', 'found', 'finding']:
+                                translation = 'to find'
+                                break
+                            elif word in ['tell', 'tells', 'told', 'telling']:
+                                translation = 'to tell'
+                                break
+                            elif word in ['ask', 'asks', 'asked', 'asking']:
+                                translation = 'to ask'
+                                break
+                            elif word in ['work', 'works', 'worked', 'working']:
+                                translation = 'to work'
+                                break
+                            elif word in ['feel', 'feels', 'felt', 'feeling']:
+                                translation = 'to feel'
+                                break
+                            elif word in ['try', 'tries', 'tried', 'trying']:
+                                translation = 'to try'
+                                break
+                            elif word in ['leave', 'leaves', 'left', 'leaving']:
+                                translation = 'to leave'
+                                break
+                            elif word in ['call', 'calls', 'called', 'calling']:
+                                translation = 'to call'
+                                break
+                        
+                        # If we found a good translation, use it
+                        if translation != verb:
+                            break
+                        
+                        # Otherwise, try to extract a simple infinitive form
+                        if eng_translation.lower().startswith('to '):
+                            translation = eng_translation.lower()
+                            break
+                        else:
+                            # Take the first word as a basic translation
+                            first_word = words[0] if words else eng_translation
+                            if first_word.lower() != verb.lower():
+                                translation = 'to ' + first_word
+                                break
         
         verbs_data.append({
             "infinitive": verb,
@@ -437,13 +588,17 @@ def generate_verbs_data(sentences_data):
         })
     
     print(f"Frequency distribution:")
-    print(f"  Common: {frequency_stats['common']} verbs")
-    print(f"  Intermediate: {frequency_stats['intermediate']} verbs") 
+    print(f"  Top-20: {frequency_stats['top-20']} verbs")
+    print(f"  Top-50: {frequency_stats['top-50']} verbs")
+    print(f"  Top-100: {frequency_stats['top-100']} verbs")
+    print(f"  Top-500: {frequency_stats['top-500']} verbs")
+    print(f"  Top-1000: {frequency_stats['top-1000']} verbs")
     print(f"  Rare: {frequency_stats['rare']} verbs")
     
     # Sort by frequency and usage
+    frequency_order = {"top-20": 0, "top-50": 1, "top-100": 2, "top-500": 3, "top-1000": 4, "rare": 5}
     verbs_data.sort(key=lambda x: (
-        {"common": 0, "intermediate": 1, "rare": 2}[x["frequency"]], 
+        frequency_order[x["frequency"]], 
         -x["usage_count"], 
         x["infinitive"]
     ))
@@ -571,100 +726,6 @@ def validate_verb_form_against_conjugation(verb_claimed, tense, pronoun, verb_fo
     # Verb is correct but tense/pronoun might be wrong
     return False, verb_claimed, f"'{verb_form}' exists for '{verb_claimed}' but not for tense='{tense}', pronoun='{pronoun}'"
 
-def normalize_pronoun(pronoun):
-    """Normalize pronoun to standard form, handling contractions, inversions, etc."""
-    if not pronoun:
-        return ""
-    
-    # Clean and lowercase
-    normalized = str(pronoun).strip().lower()
-    
-    # Handle contractions
-    contraction_map = {
-        "j'": "je",
-        "j'": "je",  # Different apostrophe
-        "t'": "tu", 
-        "t'": "tu",  # Different apostrophe
-        "m'": "me",
-        "m'": "me",  # Different apostrophe
-        "l'": "le",
-        "l'": "le",  # Different apostrophe
-        "n'": "ne",
-        "n'": "ne",  # Different apostrophe
-        "s'": "se",
-        "s'": "se",  # Different apostrophe
-        "d'": "de",
-        "d'": "de",  # Different apostrophe
-        "c'": "ce",
-        "c'": "ce",  # Different apostrophe
-        "qu'": "que",
-        "qu'": "que",  # Different apostrophe
-    }
-    
-    # Apply contraction mapping
-    for contraction, full_form in contraction_map.items():
-        if normalized == contraction:
-            normalized = full_form
-            break
-    
-    # Handle inverted forms (questions)
-    inversion_map = {
-        "-je": "je",
-        "-tu": "tu", 
-        "-il": "il",
-        "-elle": "elle",
-        "-nous": "nous",
-        "-vous": "vous",
-        "-ils": "ils",
-        "-elles": "elles",
-        "-t-il": "il",
-        "-t-elle": "elle",
-        "-t-on": "on",
-        "as-tu": "tu",
-        "a-t-il": "il",
-        "a-t-elle": "elle",
-        "est-il": "il",
-        "est-elle": "elle",
-        "sont-ils": "ils",
-        "sont-elles": "elles",
-    }
-    
-    # Apply inversion mapping
-    for inversion, base_form in inversion_map.items():
-        if normalized == inversion:
-            normalized = base_form
-            break
-    
-    # Handle compound pronouns with objects
-    compound_map = {
-        "le-moi": "je",
-        "la-moi": "je", 
-        "les-moi": "je",
-        "me-le": "je",
-        "me-la": "je",
-        "me-les": "je",
-        "te-le": "tu",
-        "te-la": "tu",
-        "te-les": "tu",
-        "nous-le": "nous",
-        "nous-la": "nous", 
-        "nous-les": "nous",
-        "vous-le": "vous",
-        "vous-la": "vous",
-        "vous-les": "vous",
-        "laisse-moi": "je",
-        "donne-moi": "je",
-        "dis-moi": "je",
-    }
-    
-    # Apply compound mapping
-    for compound, base_form in compound_map.items():
-        if normalized == compound:
-            normalized = base_form
-            break
-    
-    return normalized
-
 def pronoun_matches(conjugation_pronoun, sentence_pronoun):
     """Check if pronouns match, handling contractions, inversions, etc."""
     # Normalize both pronouns
@@ -758,7 +819,8 @@ def process_phrases_for_sentences(df, conjugations_data=None, max_per_source=5, 
             # VALIDATION: Check if verb form matches claimed verb+tense+pronoun
             if reverse_lookup and verb_form:
                 # Debug specific problematic sentences
-                debug_this = (verb_form == 'pu' and verb == 'pouvoir') or (verb_form == 'apparues' and verb == 'apparaître')
+                # debug_this = (verb_form == 'pu' and verb == 'pouvoir') or (verb_form == 'apparues' and verb == 'apparaître')
+                debug_this = False
                 debug_this = debug_this or (french_text in filter_sentences)
                 if debug_this:
                     print(f"\n=== DEBUGGING SENTENCE {idx} ===")
@@ -775,6 +837,7 @@ def process_phrases_for_sentences(df, conjugations_data=None, max_per_source=5, 
                 if normalized_pronoun == "INVALID":
                     is_valid = False
                     issue = f"Weird/invalid pronoun: '{pronoun}'"
+                    continue
                 
                 if debug_this:
                     print(f"Validation result: is_valid={is_valid}, corrected_verb={corrected_verb}, issue={issue}")
@@ -1240,9 +1303,10 @@ def main(safe_mode=True, sentences =[]):
     
     # Generate conjugation data FIRST (needed for validation)
     conjugations_data = {}
+    verb_translations = {}
     if VERBECC_AVAILABLE:
         print("Generating conjugation data for validation...")
-        conjugations_data = generate_conjugation_data()
+        conjugations_data, verb_translations = generate_conjugation_data()
     else:
         print("Warning: Skipping verb form validation (verbecc not available)")
     
@@ -1254,8 +1318,8 @@ def main(safe_mode=True, sentences =[]):
     analyze_sentence_distribution(sentences_data)
     
     # Generate verb data based on actual usage in sentences
-    verbs_data = generate_verbs_data(sentences_data)
-    
+    verbs_data = generate_verbs_data(sentences_data, verb_translations)
+    print ("Done generating verbs data")
     # Create comprehensive dataframe for exploration
     comprehensive_df = create_comprehensive_dataframe(df, sentences_data, verbs_data, conjugations_data)
     

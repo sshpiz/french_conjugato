@@ -43,16 +43,17 @@ def build(force_jpeg=False):
         # Collect all relevant JS files in a logical order
         js_files = []
         preferred_order = [
-            'verbs.full.generated.js',
-            'sentences.js',
+            'js/verbs.full.generated.js',
+            'sentences.generated.js',
             # 'main.js',
             # 'alphabetScroller.js',
             # 'verbListModes.js',
-            'script.js',
+            'js/script.js',
         ]
         # Add preferred files if they exist
         for fname in preferred_order:
-            fpath = os.path.join(JS_DIR, fname)
+            fpath=fname
+            # fpath = os.path.join(JS_DIR, fname)
             if os.path.exists(fpath):
                 js_files.append(fpath)
         # # Add any other .js files not already included (skip backups, test, bak, copy, etc)
@@ -64,6 +65,7 @@ def build(force_jpeg=False):
         for fpath in js_files:
             with open(fpath, 'r', encoding='utf-8') as f:
                 js_contents.append(f"\n// --- {os.path.basename(fpath)} ---\n" + f.read())
+                print('Added JS file:', os.path.basename(fpath), 'with length:', len(js_contents[-1]))
         
 
 
@@ -200,38 +202,63 @@ WATCHED_FILES = [os.path.join(BASE_DIR, f) for f in WATCHED_FILES]
 def files_mtime(files):
     return {f: os.path.getmtime(f) for f in files if os.path.exists(f)}
 
-def watch_and_build(force_jpeg=False, debounce_sec=5):
+def watch_and_build(force_jpeg=False, debounce_sec=20):
     print("👀 Watching for changes...")
     last_mtimes = files_mtime(WATCHED_FILES)
 
     while True:
-        time.sleep(1)
+        time.sleep(2)  # Check less frequently to reduce CPU usage
         current_mtimes = files_mtime(WATCHED_FILES)
 
         if current_mtimes != last_mtimes:
-            print("🔧 Change detected, waiting for stability...")
+            print(f"🔧 Change detected, waiting {debounce_sec}s for stability...")
             stable = False
             wait_start = time.time()
+            stability_checks = 0
+            required_checks = max(3, debounce_sec // 2)  # At least 3 checks, or 1 every 2 seconds
 
             while not stable:
-                time.sleep(0.5)
+                time.sleep(2)  # Check every 2 seconds instead of 0.5
                 new_mtimes = files_mtime(WATCHED_FILES)
+                elapsed = time.time() - wait_start
+                
                 if new_mtimes == current_mtimes:
-                    if time.time() - wait_start >= debounce_sec:
+                    stability_checks += 1
+                    if elapsed >= debounce_sec and stability_checks >= required_checks:
                         stable = True
+                        print(f"✅ Files stable for {elapsed:.1f}s ({stability_checks} checks)")
+                    else:
+                        print(f"⏳ Stable for {elapsed:.1f}s ({stability_checks}/{required_checks} checks)")
                 else:
+                    # Files changed again, reset everything
                     current_mtimes = new_mtimes
                     wait_start = time.time()
+                    stability_checks = 0
+                    print(f"🔄 Files changed again, restarting {debounce_sec}s timer...")
 
             print("🔁 File system is stable. Running build...")
+            build_start = time.time()
             build(force_jpeg=force_jpeg)
+            build_time = time.time() - build_start
+            print(f"✅ Build completed in {build_time:.2f}s")
             last_mtimes = current_mtimes
 
 if __name__ == "__main__":
     # force_jpeg = '--jpeg' in sys.argv
     force_jpeg = True
+    
+    # Allow override of debounce time via command line
+    debounce_time = 20  # default
+    for arg in sys.argv:
+        if arg.startswith('--debounce='):
+            try:
+                debounce_time = int(arg.split('=')[1])
+                print(f"🕒 Using custom debounce time: {debounce_time}s")
+            except ValueError:
+                print(f"⚠️  Invalid debounce time '{arg}', using default: {debounce_time}s")
+    
     if '--watch' in sys.argv:
-        watch_and_build(force_jpeg=force_jpeg)
+        watch_and_build(force_jpeg=force_jpeg, debounce_sec=debounce_time)
     else:
         build(force_jpeg=force_jpeg)
 

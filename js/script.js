@@ -11,6 +11,25 @@ const speechLang = window.frenchSpeechLang;
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
 
+// List of irregular verbs
+const IRREGULAR_VERBS = new Set([
+    'être', 'avoir', 'aller', 'faire', 'dire', 'pouvoir', 'vouloir', 'savoir', 
+    'voir', 'devoir', 'venir', 'prendre', 'mettre', 'croire', 'connaître', 
+    'vivre', 'sortir', 'partir', 'tenir', 'écrire', 'lire', 'boire', 'naître', 
+    'ouvrir', 'suivre', 'rire', 'dormir', 'courir', 'mourir', 'asseoir', 
+    'conduire', 'battre', 'valoir', 'pleuvoir', 'falloir', 'joindre', 'fuir', 
+    'paraître', 'apparaître', 'craindre', 'résoudre', 'suffire', 'accueillir', 
+    'cueillir', 'atteindre', 'construire', 'détruire', 'offrir', 'produire', 
+    'taire', 'traduire', 'se taire', 's\'asseoir', 's\'endormir', 's\'en aller'
+]);
+
+// Top 20 most common French verbs
+const TOP_20_VERBS = new Set([
+    'être', 'avoir', 'faire', 'dire', 'aller', 'voir', 'savoir', 'prendre', 
+    'venir', 'vouloir', 'pouvoir', 'falloir', 'devoir', 'croire', 'trouver', 
+    'donner', 'parler', 'aimer', 'passer', 'mettre'
+]);
+
 // --- Seeded Random Number Generator ---
 let seedValue = null;
 
@@ -118,12 +137,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // This makes the app resilient to duplicate entries in the data files.
     const uniqueVerbs = Array.from(new Map(verbs.map(v => [v.infinitive, v])).values());
 
-    // Define the desired order of popularity for sorting the verb list.
-    const frequencyOrder = {
-        "common": 1,
-        "intermediate": 2,
-        "rare": 3
-    };
+    // Dynamically determine frequency categories and their order from the data
+    const allFrequencies = [...new Set(uniqueVerbs.map(v => v.frequency || 'common'))];
+    
+    // Create frequency order based on frequency of occurrence in the data
+    const frequencyCount = {};
+    uniqueVerbs.forEach(verb => {
+        const freq = verb.frequency || 'common';
+        frequencyCount[freq] = (frequencyCount[freq] || 0) + 1;
+    });
+    
+    // Sort frequencies by their count (most common first) to create a natural ordering
+    const sortedFrequencies = allFrequencies.sort((a, b) => 
+        (frequencyCount[b] || 0) - (frequencyCount[a] || 0)
+    );
+    
+    // Create frequency order mapping
+    const frequencyOrder = {};
+    sortedFrequencies.forEach((freq, index) => {
+        frequencyOrder[freq] = index;
+    });
     
     // Sort the unique `verbs` array in place. This is done once on load.
     // Note: we are sorting `uniqueVerbs`, not the original `verbs` array.
@@ -154,10 +187,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const verbPronounEl = document.getElementById('verb-pronoun');
     const verbTenseEl = document.getElementById('verb-tense');
     const verbFrequencyEl = document.getElementById('verb-frequency');
+    const verbIrregularEl = document.getElementById('verb-irregular');
     const answerContainer = document.getElementById('answer-container');
     const conjugatedVerbEl = document.getElementById('conjugated-verb');
     const verbPhraseEl = document.getElementById('verb-phrase');
     const questionPhraseEl = document.getElementById('question-phrase');
+    // English toggle elements
+    const englishBtn = document.getElementById('english-btn');
+    const englishInfinitiveLineEl = document.getElementById('english-infinitive-line');
+    const englishVerbInfinitiveEl = document.getElementById('english-verb-infinitive');
+    const englishVerbTranslationEl = document.getElementById('english-verb-translation');
+    const englishVerbPhraseEl = document.getElementById('english-verb-phrase');
+    // --- ENGLISH BUTTON TOGGLE LOGIC ---
+    if (englishBtn) {
+        // Prevent flashcard click from firing when pressing English button
+        ['mousedown'].forEach(evt => {
+            englishBtn.addEventListener(evt, function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                showEnglish();
+                englishBtn.classList.add('active');
+            });
+        });
+        
+        // Add touchstart with passive option to avoid warning
+        englishBtn.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+            showEnglish();
+            englishBtn.classList.add('active');
+        }, { passive: true });
+        
+        ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => {
+            englishBtn.addEventListener(evt, function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                hideEnglish();
+                englishBtn.classList.remove('active');
+            });
+        });
+    }
+
+    function showEnglish() {
+        // Hide French
+        if (verbInfinitiveEl) verbInfinitiveEl.parentElement.style.display = 'none';
+        if (verbTranslationEl) verbTranslationEl.style.display = 'none';
+        if (verbPhraseEl) verbPhraseEl.style.display = 'none';
+        // Show English
+        if (englishInfinitiveLineEl) englishInfinitiveLineEl.style.display = 'flex';
+        if (englishVerbTranslationEl) englishVerbTranslationEl.style.display = 'block';
+        if (englishVerbPhraseEl) englishVerbPhraseEl.style.display = 'block';
+    }
+    function hideEnglish() {
+        // Show French
+        if (verbInfinitiveEl) verbInfinitiveEl.parentElement.style.display = 'flex';
+        if (verbTranslationEl) verbTranslationEl.style.display = 'block';
+        if (verbPhraseEl) verbPhraseEl.style.display = 'block';
+        // Hide English
+        if (englishInfinitiveLineEl) englishInfinitiveLineEl.style.display = 'none';
+        if (englishVerbTranslationEl) englishVerbTranslationEl.style.display = 'none';
+        if (englishVerbPhraseEl) englishVerbPhraseEl.style.display = 'none';
+    }
     
     const infinitiveAudioBtn = document.getElementById('infinitive-audio-btn');
     const goToVerbBtn = document.getElementById('go-to-verb-btn');
@@ -397,17 +486,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return acc;
     }, {});
 
-    // Dynamically create frequency weights from the data, defaulting to 1.
-    const frequencyWeights = {
-        "common": 7,
-        "intermediate": 2,
-        "rare": 1
-    };
-    const uniqueFrequencies = [...new Set(uniqueVerbs.map(v => v.frequency || 'common'))];
-    uniqueFrequencies.forEach(freq => {
-        if (!(freq in frequencyWeights)) {
-            frequencyWeights[freq] = 0; // Default other frequencies to 0
-        }
+    // Dynamically create frequency weights from the data
+    // Start with a weight of 1 for all frequencies found in the data
+    const frequencyWeights = {};
+    allFrequencies.forEach(freq => {
+        frequencyWeights[freq] = 1; // Default all frequencies to equal weight
     });
 
     const cardGenerationOptions = {
@@ -593,10 +676,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        // Randomly select one pronoun with a conjugation for this verb/tense
+                        // Add ALL available pronouns for this verb/tense to create better variety
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
-                        if (availablePronouns.length > 0) {
-                            let pronounKey = availablePronouns[Math.floor(Math.random() * availablePronouns.length)];
+                        for (const pronounKey of availablePronouns) {
                             let pronoun = pronounKey;
                             if (pronounKey.includes('/')) {
                                 const options = pronounKey.split('/');
@@ -634,10 +716,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        // Randomly select one pronoun with a conjugation for this verb/tense
+                        // Add ALL available pronouns for this verb/tense to create better variety
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
-                        if (availablePronouns.length > 0) {
-                            let pronounKey = availablePronouns[Math.floor(Math.random() * availablePronouns.length)];
+                        for (const pronounKey of availablePronouns) {
                             let pronoun = pronounKey;
                             if (pronounKey.includes('/')) {
                                 const options = pronounKey.split('/');
@@ -705,6 +786,9 @@ document.addEventListener('DOMContentLoaded', () => {
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
         verbTranslationEl.textContent = translation ? '(' + translation + ')' : '';
+        // Set English infinitive/translation
+        if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^\(|\)$/g, ''); // Remove parentheses for English display
+        if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = ''; // Don't show translation of translation
         // Add emoji to pronoun (language-specific)
         let pronounDisplay = card.pronoun;
         if (pronounDisplay.includes('/')) {
@@ -733,7 +817,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const frequencyText = verbFrequency.replace('-', ' ');
         verbFrequencyEl.textContent = frequencyText;
         verbFrequencyEl.className = 'meta-info frequency-tag';
-        verbFrequencyEl.classList.add(verbFrequency);
+        verbFrequencyEl.classList.add(verbFrequency.replace(/\s+/g, '-')); // Convert spaces to hyphens for CSS class
+
+        // Handle irregular verb indicator
+        const isIrregular = IRREGULAR_VERBS.has(card.verb.infinitive);
+        if (isIrregular) {
+            verbIrregularEl.style.display = 'block';
+        } else {
+            verbIrregularEl.style.display = 'none';
+        }
 
         // Show answer as pronoun + conjugated verb, but handle language-specific edge case
         let answerText = window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated);
@@ -817,6 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Add answer phrase to answer container
                     verbPhraseEl.appendChild(answerPhrase);
+                    // Set English phrase
+                    if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = chosen.translation ? chosen.translation.replace(/\[PRONOUN\]/g, '').replace(/\s+/g, ' ').trim() : '';
                     
                     // Add English translation if available (directly visible)
                     if (chosen.translation) {
@@ -1015,10 +1109,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Verb List Modes (no modules, file:// compatible) ---
     // (Mode toggle functionality removed; always show frequency mode)
     function groupVerbsByFrequency(verbs) {
-        const groups = { common: [], intermediate: [], rare: [] };
+        const groups = {};
+        // Initialize groups for all frequencies found in the data
+        allFrequencies.forEach(freq => {
+            groups[freq] = [];
+        });
+        
         verbs.forEach(v => {
             const freq = v.frequency || 'common';
-            if (groups[freq]) groups[freq].push(v);
+            if (groups[freq]) {
+                groups[freq].push(v);
+            } else {
+                // Handle any frequency not in our list (shouldn't happen)
+                if (!groups[freq]) groups[freq] = [];
+                groups[freq].push(v);
+            }
         });
         return groups;
     }
@@ -1028,17 +1133,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const normalizedFilter = removeAccents(filter.toLowerCase());
         const filteredVerbs = uniqueVerbs.filter(v => removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter));
         const groups = groupVerbsByFrequency(filteredVerbs);
-        const freqLabels = { common: 'Common', intermediate: 'Intermediate', rare: 'Rare' };
-        return groups;
-    }
-
-    function populateExplorerList(filter = '') {
-        verbListContainer.innerHTML = '';
-        const normalizedFilter = removeAccents(filter.toLowerCase());
-        const filteredVerbs = uniqueVerbs.filter(v => removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter));
-        const groups = groupVerbsByFrequency(filteredVerbs);
-        const freqLabels = { common: 'Common', intermediate: 'Intermediate', rare: 'Rare' };
-        ['common','intermediate','rare'].forEach(freq => {
+        
+        // Create labels by capitalizing frequency names
+        const freqLabels = {};
+        allFrequencies.forEach(freq => {
+            freqLabels[freq] = freq.charAt(0).toUpperCase() + freq.slice(1);
+        });
+        
+        // Use the sorted frequency order to display sections
+        sortedFrequencies.forEach(freq => {
             if (groups[freq] && groups[freq].length) {
                 const section = document.createElement('div');
                 section.innerHTML = `<div class="frequency-section-header">${freqLabels[freq]}</div>`;
@@ -1449,20 +1552,28 @@ document.addEventListener('DOMContentLoaded', () => {
         loadOptions();
         populateOptions();
         
-        // Check for URL parameters for initial card
-        const params = parseHashParams();
-        if (params.pronoun && params.verb && params.tense) {
-            const customCard = generateCardFromParams(params.pronoun, params.verb, params.tense);
-            if (customCard) {
-                history.push(customCard);
-                historyIndex = history.length - 1;
-                displayCard(customCard);
-                backBtn.disabled = historyIndex === 0;
+        // Check for URL parameters for initial card - but only if no seed is present
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasSeed = urlParams.get('seed');
+        
+        if (!hasSeed) {
+            const params = parseHashParams();
+            if (params.pronoun && params.verb && params.tense) {
+                const customCard = generateCardFromParams(params.pronoun, params.verb, params.tense);
+                if (customCard) {
+                    history.push(customCard);
+                    historyIndex = history.length - 1;
+                    displayCard(customCard);
+                    backBtn.disabled = historyIndex === 0;
+                } else {
+                    nextCard(); // Fall back to random card if params are invalid
+                }
             } else {
-                nextCard(); // Fall back to random card if params are invalid
+                nextCard(); // Normal random card
             }
         } else {
-            nextCard(); // Normal random card
+            // Seed is present, ignore hash params and use seeded random
+            nextCard();
         }
         
         backBtn.disabled = true;
