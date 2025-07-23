@@ -1795,4 +1795,64 @@ let autoskipLock = false;
             speak(e.target.dataset.speak);
         }
     });
+
+    // --- Contact Modal ---
+    const contactBtn = document.getElementById('contact-btn');
+    const contactModal = document.getElementById('contact-modal');
+    let selectedType = null;
+
+    // Open modal
+    contactBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        contactModal.style.display = 'flex';
+        selectedType = null;
+        document.querySelectorAll('.report-btn').forEach(btn => btn.style.borderColor = '#e9ecef');
+        document.getElementById('contact-msg').value = '';
+    });
+
+    // Close modal
+    function closeModal() {
+        contactModal.style.display = 'none';
+    }
+    document.getElementById('contact-close')?.addEventListener('click', closeModal);
+    document.getElementById('contact-cancel')?.addEventListener('click', closeModal);
+    contactModal?.addEventListener('click', (e) => e.target === contactModal && closeModal());
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && contactModal.style.display === 'flex' && closeModal());
+
+    // Select report type
+    document.querySelectorAll('.report-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.report-btn').forEach(b => b.style.borderColor = '#e9ecef');
+            btn.style.borderColor = '#3498db';
+            selectedType = btn.dataset.type;
+        });
+    });
+
+    // Send report
+    document.getElementById('contact-send')?.addEventListener('click', () => {
+        if (!selectedType) return alert('Please select a report type first.');
+        
+        const types = {wrong: 'This is wrong', sentence: 'Weird sentence', translation: 'Bad translation', custom: 'Custom message'};
+        const verb = currentCard?.verb?.infinitive || 'N/A';
+        const tense = currentCard?.tense || 'N/A';
+        const pronoun = currentCard?.pronoun || 'N/A';
+        const sentence = currentCard?.chosenPhrase?.sentence || 'N/A';
+        const msg = document.getElementById('contact-msg').value.trim();
+        
+        let text = `Franconjugue Report: ${types[selectedType]}\n\nContext:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
+        if (msg) text += `\n\nDetails:\n${msg}`;
+        text += '\n\nSent from Franconjugue app';
+        
+        // UTF-8 to base64 encoding (handles emojis and special characters)
+        const encodedPayload = btoa(unescape(encodeURIComponent(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+        const url = `https://t.me/FranconjugueBot?start=${encodedPayload}`;
+        
+        // Try to copy to clipboard silently (no fallback)
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).catch(() => {});
+        }
+        
+        window.open(url, '_blank');
+        closeModal();
+    });
 });
