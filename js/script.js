@@ -415,6 +415,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             dictationResultEl.style.display = 'block';
                             dictationResultEl.style.opacity = '1';
                             showAnswer();
+
+
+                            // Log bravo event
+                            logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+                            maybeWhisperMolodez();
                             
                             // Check if auto-advance is enabled
                             const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
@@ -451,6 +456,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             dictationResultEl.style.display = 'block';
                             dictationResultEl.style.opacity = '1';
                             showAnswer();
+
+                            // Log bravo event
+                            logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+                            maybeWhisperMolodez();
+
                             setTimeout(() => {
                                 if (recognition) {
                                     try { recognition.stop(); } catch (e) {}
@@ -777,7 +787,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return newCard;
     };
+    function maybeWhisperMolodez(){
+        console.log("maybeWhisperMolodez called");
+        const sfx = document.getElementById("molodez_sound");
+        if(Math.random() < 0.1) {
+            sfx.play();
+        }
+        
+        // if (Math.random() < 0.5) {
+        //     const sfx = document.getElementById("molodez_sound");
+        //     sfx.currentTime = 0;
+            
+        //     sfx.onended = () => speak(whatToSpeakAfter);
+        // } else {
+        //     speak(whatToSpeakAfter);
+        // }
+    }
 
+    function maybeWhisperHuhBefore(whatToSpeakAfter) {
+        console.log("maybeWhisperHuh called");
+        if (Math.random() < 0.03) {
+            const sfx = document.getElementById("huh_sound");
+            sfx.currentTime = 0;
+            sfx.play();
+            sfx.onended = () => speak(whatToSpeakAfter);
+        } else {
+            speak(whatToSpeakAfter);
+        }
+    }
     // --- Autotalk prompt template ---
     function getPromptTemplate(card) {
       // Example: "Comment dire [VERB] au [TENSE] pour [PRONOUN] ?"
@@ -1024,6 +1061,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Card advance logic ---
     const nextCard = () => {
         autoskipLock = false;
+        if (currentCard) {
+            logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'next');
+        }
+
         if (historyIndex < history.length - 1 && history.length > 0) {
             historyIndex++;
             displayCard(history[historyIndex]);
@@ -1357,7 +1398,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         if (currentCard && currentCard.pronoun && currentCard.conjugated) {
             let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
-            speak(audioText);
+            // speak(audioText);
+            maybeWhisperHuhBefore(audioText);
         } else if (currentCard && currentCard.conjugated) {
             speak(currentCard.conjugated);
         }
@@ -1384,7 +1426,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function playConjugatedAudio() {
         if (currentCard && currentCard.pronoun && currentCard.conjugated) {
             let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
-            speak(audioText);
+            // speak(audioText);
+            maybeWhisperHuhBefore(audioText);
+            
         } else if (currentCard && currentCard.conjugated) {
             speak(currentCard.conjugated);
         }
@@ -1413,7 +1457,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Only handle clicks on tappable-audio elements, not the container
         if (e.target.classList.contains('tappable-audio') && e.target.textContent) {
-            speak(e.target.textContent);
+            maybeWhisperHuhBefore(e.target.textContent);
+            // speak(e.target.textContent);
         }
     });
 
@@ -1838,21 +1883,63 @@ let autoskipLock = false;
         const pronoun = currentCard?.pronoun || 'N/A';
         const sentence = currentCard?.chosenPhrase?.sentence || 'N/A';
         const msg = document.getElementById('contact-msg').value.trim();
-        
+        const subject = `Franconjugue Report: ${types[selectedType]}`;
         let text = `Franconjugue Report: ${types[selectedType]}\n\nContext:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
+        let body = `Context:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
         if (msg) text += `\n\nDetails:\n${msg}`;
         text += '\n\nSent from Franconjugue app';
         
         // UTF-8 to base64 encoding (handles emojis and special characters)
-        const encodedPayload = btoa(unescape(encodeURIComponent(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-        const url = `https://t.me/FranconjugueBot?start=${encodedPayload}`;
+        // const encodedPayload = btoa(unescape(encodeURIComponent(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+        // const url = `https://t.me/FranconjugueBot?start=${encodedPayload}`;
         
-        // Try to copy to clipboard silently (no fallback)
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(text).catch(() => {});
+        // // Try to copy to clipboard silently (no fallback)
+        // if (navigator.clipboard) {
+        //     navigator.clipboard.writeText(text).catch(() => {});
+        // }
+        
+        // window.open(url, '_blank');
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                         (navigator.maxTouchPoints && navigator.maxTouchPoints > 1 && /MacIntel/.test(navigator.platform));
+        
+        if (isMobile) {
+            // Mobile: Use mailto for better native app integration
+            const mailtoUrl = `mailto:franconjugue@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoUrl, '_self');
+        } else {
+            // Desktop: Use Gmail web interface to avoid "find email app" dialogs
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=franconjugue@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(gmailUrl, '_blank');
         }
-        
-        window.open(url, '_blank');
         closeModal();
     });
+    function logSessionEntry(verb, tense, pronoun, eventType = 'next') {
+    try {
+        const entry = {
+            timestamp: Date.now(),
+            key: `${verb}__${tense}__${pronoun}`,
+            eventType: eventType // 'next' or 'bravo'
+        };
+        
+        // Get existing log or create new array
+        let verbLog = JSON.parse(localStorage.getItem('verbLog') || '[]');
+        
+        // Add new entry
+        verbLog.push(entry);
+        
+        // Keep only the most recent 1000 items
+        if (verbLog.length > 1000) {
+            verbLog = verbLog.slice(-1000);
+        }
+        
+        // Save back to localStorage
+        localStorage.setItem('verbLog', JSON.stringify(verbLog));
+        
+        // Log to console
+        console.log(`📊 Session logged: ${eventType} - ${entry.key} at ${new Date(entry.timestamp).toLocaleTimeString()}`);
+        
+    } catch (error) {
+        console.warn('Failed to log session entry:', error);
+    }
+}
 });
