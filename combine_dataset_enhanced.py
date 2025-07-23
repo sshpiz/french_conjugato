@@ -803,7 +803,7 @@ def process_phrases_for_sentences(df, conjugations_data=None, max_per_source=5, 
             
             # Check if sentence is too long (more than 15 words)
             word_count = len(french_text.split())
-            if word_count > 20:
+            if word_count > 15:
                 skipped_reasons['too_long_sentence'] += 1
                 continue
             
@@ -1279,7 +1279,7 @@ def create_comprehensive_dataframe(original_df, sentences_data, verbs_data, conj
 
 # ...existing code...
 
-def main(safe_mode=True, sentences =[]):
+def main(safe_mode=True, sentences =[], need_the_data=False):
     """Main execution function."""
     print("="*50)
     print("Starting enhanced dataset combination process...")
@@ -1320,7 +1320,7 @@ def main(safe_mode=True, sentences =[]):
     # Process phrases for sentences WITH validation (limit to 5 per source per combination)
     if sentences:
         df = df[df['fr'].isin(set(sentences))].reset_index(drop=True)
-    sentences_data = process_phrases_for_sentences(df, conjugations_data, max_per_source=5,filter_sentences=sentences)
+    sentences_data = process_phrases_for_sentences(df, conjugations_data, max_per_source=20,filter_sentences=sentences)
     # Analyze sentence distribution
     analyze_sentence_distribution(sentences_data)
     
@@ -1328,7 +1328,10 @@ def main(safe_mode=True, sentences =[]):
     verbs_data = generate_verbs_data(sentences_data, verb_translations)
     print ("Done generating verbs data")
     # Create comprehensive dataframe for exploration
-    comprehensive_df = create_comprehensive_dataframe(df, sentences_data, verbs_data, conjugations_data)
+    comprehensive_df = None 
+    if need_the_data:
+        print("Creating comprehensive dataframe for exploration...")
+        comprehensive_df = create_comprehensive_dataframe(df, sentences_data, verbs_data, conjugations_data)
     
     # Write JavaScript files
     sentences_data_clean = [s for s in sentences_data if s['is_valid']]
