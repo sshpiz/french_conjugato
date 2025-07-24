@@ -483,7 +483,7 @@ def generate_verbs_data(sentences_data, verb_translations=None):
         
         if verb_translations and verb in verb_translations:
             translation = verb_translations[verb]
-            print(f"Using verbecc translation for {verb}: {translation}")
+            # print(f"Using verbecc translation for {verb}: {translation}")
         else:
             print(f"No verbecc translation for {verb}, trying sentence data...")
             # Fallback to sentence data extraction (your existing logic)
@@ -1293,6 +1293,7 @@ def main(safe_mode=True, sentences =[], need_the_data=False):
     pickle_files = sorted(Path(".").glob(pickle_path_tpl))
     # pickle_path = pickle_path.pkl'
     print("Loading phrases from pickle files:", pickle_files)
+    print(pickle_files[0],'...', pickle_files[-1])
     dfs = []    
     for pickle_path in pickle_files:
         if not Path(pickle_path).exists():

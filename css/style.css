@@ -478,7 +478,7 @@ body {
     -webkit-tap-highlight-color: transparent;
     position: relative;
     /* Add background image with a semi-transparent white overlay for readability */
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('../bg.png');
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('../bg.png');
     background-size: cover;
     background-position: center;
 }
@@ -627,7 +627,7 @@ body {
     position: absolute;
     top: 35%;
     left: 0;
-    width: 100%;
+    max-width: 100%;
     z-index: 3;
 }
 
@@ -1154,4 +1154,18 @@ body {
         line-height: 1.2;
         font-size: clamp(0.9em, 2.5vw, 1.1em);
     }
+}
+
+.preset-btn {
+  font-size: 1.5em;
+  margin: 0.2em;
+  padding: 0.3em 0.6em;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.preset-btn.active {
+  border-color: gold;
+  box-shadow: 0 0 6px gold;
 }

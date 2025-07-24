@@ -30,6 +30,14 @@ const TOP_20_VERBS = new Set([
     'donner', 'parler', 'aimer', 'passer', 'mettre'
 ]);
 
+const APP_VERSION = "v2";
+
+if (localStorage.getItem("app_version") !== APP_VERSION) {
+  localStorage.clear();
+  localStorage.setItem("app_version", APP_VERSION);
+}
+
+
 // --- Seeded Random Number Generator ---
 let seedValue = null;
 
@@ -529,6 +537,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveOptions = () => {
         try {
             localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
+            // activePreset = "👤";
+            // highlightActivePreset();
+            updateCustomPresetFromUI();
+            
         } catch (e) {
             console.warn("Could not save options to localStorage:", e);
         }
@@ -1363,6 +1375,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 sliderValue.textContent = newValue;
                 cardGenerationOptions[weightType][e.target.dataset.key] = newValue;
                 saveOptions();
+
+                
             });
 
             sliderGroup.appendChild(label);
@@ -1376,6 +1390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         frequencyWeightsContainer.innerHTML = '';
         Object.entries(cardGenerationOptions.frequencyWeights).forEach(([freq, weight]) => createSlider(freq, weight, frequencyWeightsContainer, 'frequencyWeights'));
+        
     };
 
     // --- Event Listeners ---
@@ -1542,6 +1557,9 @@ document.addEventListener('DOMContentLoaded', () => {
         correctDictationToggle.checked = enabled;
         correctDictationToggle.addEventListener('change', function() {
             localStorage.setItem('correct-dictation-next-question', correctDictationToggle.checked ? 'true' : 'false');
+            activePreset = "👤";
+            highlightActivePreset();
+
         });
     }
 
@@ -1914,32 +1932,275 @@ let autoskipLock = false;
         closeModal();
     });
     function logSessionEntry(verb, tense, pronoun, eventType = 'next') {
-    try {
-        const entry = {
-            timestamp: Date.now(),
-            key: `${verb}__${tense}__${pronoun}`,
-            eventType: eventType // 'next' or 'bravo'
-        };
-        
-        // Get existing log or create new array
-        let verbLog = JSON.parse(localStorage.getItem('verbLog') || '[]');
-        
-        // Add new entry
-        verbLog.push(entry);
-        
-        // Keep only the most recent 1000 items
-        if (verbLog.length > 1000) {
-            verbLog = verbLog.slice(-1000);
+        try {
+            const entry = {
+                timestamp: Date.now(),
+                key: `${verb}__${tense}__${pronoun}`,
+                eventType: eventType // 'next' or 'bravo'
+            };
+            
+            // Get existing log or create new array
+            let verbLog = JSON.parse(localStorage.getItem('verbLog') || '[]');
+            
+            // Add new entry
+            verbLog.push(entry);
+            
+            // Keep only the most recent 1000 items
+            if (verbLog.length > 1000) {
+                verbLog = verbLog.slice(-1000);
+            }
+            
+            // Save back to localStorage
+            localStorage.setItem('verbLog', JSON.stringify(verbLog));
+            
+            // Log to console
+            console.log(`📊 Session logged: ${eventType} - ${entry.key} at ${new Date(entry.timestamp).toLocaleTimeString()}`);
+            
+        } catch (error) {
+            console.warn('Failed to log session entry:', error);
         }
-        
-        // Save back to localStorage
-        localStorage.setItem('verbLog', JSON.stringify(verbLog));
-        
-        // Log to console
-        console.log(`📊 Session logged: ${eventType} - ${entry.key} at ${new Date(entry.timestamp).toLocaleTimeString()}`);
-        
-    } catch (error) {
-        console.warn('Failed to log session entry:', error);
+}
+
+// ---------- PRESET SYSTEM ----------
+// 🐣 🐓 🦆 🦜 🦚 🦉
+const defaultPresets = [
+  {
+    emoji: "🐣",
+    name: "Drill",
+    config: {
+      cardGenerationOptions: {
+        tenseWeights: { present: 1, passeCompose: 0, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0 , plusQueParfait:0},
+        frequencyWeights: { "top-20": 4, "top-50": 1, "top-100": 0, "top-500": 0, "top-1000": 0, rare: 0 },
+      },
+    },
+  },
+  {
+    emoji: "🐓",
+    name: "Drill+",
+    config: {
+      cardGenerationOptions: {
+        tenseWeights: { present: 1, passeCompose: 1, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0 , plusQueParfait:0},
+        frequencyWeights: { "top-20": 1, "top-50": 1, "top-100": 0, "top-500": 0, "top-1000": 0, rare: 0 },
+        },
+        },
+    }
+    ,
+    {
+    emoji: "🦜",
+    name: "Know a lot",
+    config: {
+      cardGenerationOptions: {
+        tenseWeights: { present: 1, passeCompose: 1, imparfait: 0, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 0 , plusQueParfait:1},
+        frequencyWeights: { "top-20": 1, "top-50": 1, "top-100": 1, "top-500": 1, "top-1000": 0, rare: 0 },
+        },
+        },
+    
+    },
+    {
+    emoji: "🦉",
+    name: "Knowitall",
+    config: {
+      cardGenerationOptions: {
+        tenseWeights: { present: 1, passeCompose: 1, imparfait: 1, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1 , plusQueParfait:1,},
+        frequencyWeights: { "top-20": 1, "top-50": 1, "top-100": 1, "top-500": 3, "top-1000": 4, rare: 4 },
+        },
+        },
+    }
+    ,
+  {
+    emoji: "👤",
+    name: "Custom",
+    config: {} // gets filled from localStorage on load
+  }
+];
+
+let activePreset = "👤";
+let presets = JSON.parse(localStorage.getItem("presets") || "null") || defaultPresets;
+
+// Apply a preset (except 👤), update UI but do not overwrite custom config
+function applyPreset(preset) {
+  const { cardGenerationOptions: cfg } = preset.config;
+  if (cfg) {
+    cardGenerationOptions.tenseWeights = { ...cardGenerationOptions.tenseWeights, ...cfg.tenseWeights };
+    cardGenerationOptions.frequencyWeights = { ...cardGenerationOptions.frequencyWeights, ...cfg.frequencyWeights };
+    // saveOptions();
+    applyConfigToUI(cardGenerationOptions);
+  }
+  activePreset = preset.emoji;
+  localStorage.setItem("lastPreset", activePreset);
+  highlightActivePreset();
+}
+
+
+
+// Save 👤 preset when sliders or toggles change
+function updateCustomPresetFromUI() {
+    if (activePreset !== "👤") return;
+    const custom = presets.find(p => p.emoji === "👤");
+    if (custom) {
+        custom.config.cardGenerationOptions = {
+        tenseWeights: { ...cardGenerationOptions.tenseWeights },
+        frequencyWeights: { ...cardGenerationOptions.frequencyWeights },
+        };
+        localStorage.setItem("presets", JSON.stringify(presets));
+        activePreset = "👤";
+        localStorage.setItem("lastPreset", activePreset);
+        highlightActivePreset();
     }
 }
+
+// function applyPreset(preset) {
+//   const { weights, dictateToAnswer, balancedRandomizer, frequencyWeights } = preset.config;
+  
+//   if (weights) {
+//     cardGenerationOptions.tenseWeights = weights;
+    
+
+//     // Object.entries(weights).forEach(([tense, val]) => {
+//     //   const el = document.querySelector(`input[data-tense-weight="${tense}"]`);
+//     //   if (el) el.value = val;
+//     // });
+//   }
+//   if(frequencyWeights){
+//     cardGenerationOptions.frequencyWeights = weights;
+//   }
+  
+
+//   if (dictateToAnswer !== undefined) {
+//     correctDictationToggle.checked = dictateToAnswer;
+//     localStorage.setItem('correct-dictation-next-question', correctDictationToggle.checked ? 'true' : 'false');
+//     // const el = document.getElementById("dictate_to_answer");
+//     // if (el) el.checked = dictateToAnswer;
+//   }
+
+//   if (balancedRandomizer !== undefined) {
+//     cardGenerationOptions.hierarchical = balancedRandomizer;
+//     hierarchicalToggle.checked = balancedRandomizer;
+//     // const el = document.getElementById("balanced_verb_randomizer");
+//     // if (el) el.checked = balancedRandomizer;
+//   }
+
+//   activePreset = preset.emoji;
+//   highlightActivePreset();
+  
+// }
+
+// function updateCustomPresetFromUI() {
+//   const weights = {};
+//   document.querySelectorAll("input[data-tense-weight]").forEach(input => {
+//     weights[input.dataset.tenseWeight] = parseFloat(input.value || "1");
+//   });
+
+//   const dictateToAnswer = document.getElementById("dictate_to_answer")?.checked || false;
+//   const balancedRandomizer = document.getElementById("balanced_verb_randomizer")?.checked || false;
+
+//   const custom = presets.find(p => p.emoji === "👤");
+//   if (custom) {
+//     custom.config = { weights, dictateToAnswer, balancedRandomizer };
+//     localStorage.setItem("presets", JSON.stringify(presets));
+//     activePreset = "👤";
+//     localStorage.setItem("lastPreset", activePreset);
+//     highlightActivePreset();
+//   }
+// }
+
+function renderPresets() {
+  const container = document.getElementById("presets-container");
+  if (!container) return;
+  container.innerHTML = "";
+  presets.forEach(preset => {
+    const btn = document.createElement("button");
+    btn.className = "preset-btn";
+    btn.innerText = preset.emoji;
+    if (preset.emoji === activePreset) btn.classList.add("active");
+    btn.onclick = () => {
+      applyPreset(preset);
+      localStorage.setItem("lastPreset", preset.emoji);
+    };
+    container.appendChild(btn);
+  });
+}
+
+function highlightActivePreset() {
+  document.querySelectorAll(".preset-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.innerText === activePreset);
+  });
+}
+
+// On load, fill 👤 from localStorage cardGenerationOptions
+const storedOptions = JSON.parse(localStorage.getItem("cardGenerationOptions"));
+if (storedOptions) {
+  const custom = presets.find(p => p.emoji === "👤");
+  if (custom) {
+    custom.config.cardGenerationOptions = {
+      tenseWeights: storedOptions.tenseWeights || {},
+      frequencyWeights: storedOptions.frequencyWeights || {},
+    };
+  }
+}
+
+function applyConfigToUI(config) {
+  if (config.tenseWeights) {
+    Object.entries(config.tenseWeights).forEach(([key, value]) => {
+      const el = document.querySelector(`#slider-${key}`);
+      if (el) {el.value = value;
+        const sibling = Array.from(el.parentNode.children).find(
+  child => child !== el && child.classList.contains("slider-value")
+);
+
+        el.labelText = value;
+        sibling.innerText = value;
+      }
+    });
+  }
+
+  if (config.frequencyWeights) {
+    Object.entries(config.frequencyWeights).forEach(([key, value]) => {
+      const el = document.querySelector(`#slider-${key}`);
+      if (el) {el.value = value;
+        el.labelText = value;
+        const sibling = Array.from(el.parentNode.children).find(
+  child => child !== el && child.classList.contains("slider-value")
+);
+
+        el.labelText = value;
+        sibling.innerText = value;
+
+      }
+    });
+  }
+
+
+  // Also apply checkboxes like showPhrases, hierarchical, etc.
+  ["hierarchical", "showPhrases", "verbsWithSentencesOnly"].forEach(key => {
+    if (key in config) {
+      const el = document.querySelector(`input[name="${key}"]`);
+      if (el) el.checked = config[key];
+    }
+  });
+}
+
+
+// Load last-used preset or 👤
+const lastUsed = localStorage.getItem("lastPreset");
+if (lastUsed && presets.find(p => p.emoji === lastUsed)) {
+  applyPreset(presets.find(p => p.emoji === lastUsed));
+}
+
+// // Watch setting changes
+// document.querySelectorAll("input[data-tense-weight], #dictate_to_answer, #balanced_verb_randomizer").forEach(el =>
+//   el.addEventListener("change", updateCustomPresetFromUI)
+// );
+
+// // Apply last preset on load
+// const last = localStorage.getItem("lastPreset");
+// if (last && presets.some(p => p.emoji === last)) {
+//   applyPreset(presets.find(p => p.emoji === last));
+// } else {
+//   applyPreset(presets.find(p => p.emoji === "👤"));
+// }
+renderPresets();
+
+
 });
+

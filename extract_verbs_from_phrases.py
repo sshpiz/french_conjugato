@@ -351,6 +351,7 @@ def process_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 from pathlib import Path
 
 if __name__ == "__main__":
+    print('OPUS BOOKS ')
     import explore_opus_books as eob
     df = eob.combined_df
     CHUNK_SIZE = 10000
@@ -364,5 +365,35 @@ if __name__ == "__main__":
             continue
         df_res = process_dataframe(chunk)
         df_res.to_pickle(outpath)
-    # df_res = process_dataframe(df.iloc[120000:])
-    # df_res.to_pickle("verb_analysis_results_120000_and_onward.pkl")  
+
+    print('AI GENERATED missingSENTENCES')
+    df = pd.read_pickle("ai_generated_example_missing_sentences.pkl")
+    outpath = f"verb_analysis_results_chunks_size{CHUNK_SIZE}_chunknum_{chunk_num+1:03d}.ai_generated.pkl"
+    if Path(outpath).exists():
+        print(f"Skipping missing ai sentencns {chunk_num + 1}, already processed.")
+    else:
+        df_res = process_dataframe(df)
+        df_res.to_pickle(outpath)
+    chunk_num+=1
+
+    print('ai generated very common')
+    df = pd.read_json('ai_gen_common_phrases.jsonl', lines=True)
+    df['source'] = 'ai_very_common'
+    outpath = f"verb_analysis_results_chunks_size{CHUNK_SIZE}_chunknum_{chunk_num+1:03d}.ai_generated.pkl"
+    if Path(outpath).exists():
+        print(f"Skipping missing ai sentencns {chunk_num + 1}, already processed.")
+    else:
+        df_res = process_dataframe(df)
+        df_res.to_pickle(outpath)
+    chunk_num+=1
+
+    print('ai generated common')
+    df2 = pd.read_json('ai_gen_common_phrases2.jsonl', lines=True)
+    df2['source'] = 'ai_common'
+    outpath = f"verb_analysis_results_chunks_size{CHUNK_SIZE}_chunknum_{chunk_num+1:03d}.ai_generated.pkl"
+    if Path(outpath).exists():
+        print(f"Skipping missing ai sentencns {chunk_num + 1}, already processed.")
+    else:
+        df_res = process_dataframe(df2)
+        df_res.to_pickle(outpath)
+    chunk_num+=1
