@@ -669,11 +669,14 @@ body {
 .navigation button {
     background-color: var(--card-bg);
     color: var(--text-color);
+    color: var(--text-color);
     padding: 0.75rem 1rem;
     border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+    margin: 0 0.25rem;
     transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
     margin: 0 0.25rem;
     flex-basis: 0; /* Allow buttons to shrink */
@@ -968,6 +971,64 @@ body {
   }
 }
 
+/* Autosay Toggle Button */
+#autosay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.18em;
+  font-weight: 600;
+  padding: 0.13em 0.5em;
+  border-radius: 1.2em;
+  border: 1.5px solid #b0b8c1;
+  background: #eaf6fb;
+  color: #3498db;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+  min-width: unset;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+#autosay-toggle-btn.autosay-on {
+  background: #d1f5e0;
+  color: #218c4a;
+  border-color: #218c4a;
+}
+#autosay-toggle-btn.autosay-off {
+  background: #f7eaea;
+  color: #b03a2e;
+  border-color: #b03a2e;
+}
+#autosay-toggle-btn:active {
+  filter: brightness(0.97);
+}
+#autosay-toggle-btn .autosay-emoji {
+  font-size: 1.0em;
+  margin-right: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+  #autosay-toggle-btn {
+    background: #23272b;
+    color: #6ec6ff;
+    border: 1.5px solid #444a55;
+  }
+  #autosay-toggle-btn.autosay-on {
+    background: #1e3a2a;
+    color: #6ef6a0;
+    border-color: #6ef6a0;
+  }
+  #autosay-toggle-btn.autosay-off {
+    background: #2a2323;
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+}
+
 /* Utility Class */
 .hidden {
     display: none !important;
@@ -1023,6 +1084,13 @@ body {
   box-shadow: 0 2px 8px #0001;
   font-size: 1.18em;
   padding: 0.18em 0.7em;
+  justify-content: flex-start;
+  background: #eaf6fb;
+  color: #3498db;
+  border-radius: 0.8em;
+  box-shadow: 0 2px 8px #0001;
+  font-size: 1.18em;
+  padding: 0.18em 0.7em;
   border: none;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
@@ -1030,7 +1098,14 @@ body {
   outline: none;
   /* min-width: 70px; */
   text-align: left;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+  outline: none;
+  /* min-width: 70px; */
+  text-align: left;
 }
+#go-to-verb-btn:active, #go-to-verb-btn-2:active {
+  background: #d0e6f7;
 #go-to-verb-btn:active, #go-to-verb-btn-2:active {
   background: #d0e6f7;
 }

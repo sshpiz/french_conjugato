@@ -67,6 +67,46 @@ def build(force_jpeg=False):
                 js_contents.append(f"\n// --- {os.path.basename(fpath)} ---\n" + f.read())
                 print('Added JS file:', os.path.basename(fpath), 'with length:', len(js_contents[-1]))
         
+<<<<<<< HEAD
+
+
+
+        def process_image(path, max_width=900, quality=75):
+            if not PIL_AVAILABLE:
+                with open(path, 'rb') as f:
+                    return f.read(), 'png'
+            img = Image.open(path)
+            # Always use JPEG if flag is set, else auto-detect
+            if force_jpeg:
+                fmt = 'JPEG'
+            else:
+                fmt = 'JPEG' if img.mode in ('RGB', 'L') else 'PNG'
+            if img.width > max_width:
+                h = int(img.height * max_width / img.width)
+                img = img.resize((max_width, h), Image.LANCZOS)
+            from io import BytesIO
+            buf = BytesIO()
+            if fmt == 'JPEG':
+                img = img.convert('RGB')
+                img.save(buf, format=fmt, quality=quality, optimize=True)
+            else:
+                img.save(buf, format=fmt, optimize=True)
+            return buf.getvalue(), 'jpeg' if fmt == 'JPEG' else 'png'
+
+        print("   - Processing and encoding background image (light)...")
+        image_data, image_fmt = process_image(IMAGE_PATH)
+        base64_image = base64.b64encode(image_data).decode('utf-8')
+        image_data_uri = f'data:image/{image_fmt};base64,{base64_image}'
+
+        print("   - Processing and encoding background image (dark)...")
+        dark_image_data, dark_image_fmt = process_image(DARK_IMAGE_PATH)
+        base64_dark_image = base64.b64encode(dark_image_data).decode('utf-8')
+        dark_image_data_uri = f'data:image/{dark_image_fmt};base64,{base64_dark_image}'
+
+        if not PIL_AVAILABLE:
+            print("\n⚠️  Pillow (PIL) not installed. Images will not be resized or compressed.\n   To enable image optimization, run: pip install pillow\n")
+=======
+>>>>>>> 5c5b4068cd866f4f775b7e3e290f8de6af1907e5
 
 
 
