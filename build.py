@@ -34,9 +34,11 @@ def build(force_jpeg=False):
         with open(HTML_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
             html_template = f.read()
         with open(CSS_PATH, 'r', encoding='utf-8') as f:
+            print('adding css path:', CSS_PATH)
             css_content = f.read()
         # Read dictate-btn.css and append
         if os.path.exists(DICTATE_CSS_PATH):
+            print('adding dictate-btn.css content...')
             with open(DICTATE_CSS_PATH, 'r', encoding='utf-8') as f:
                 css_content += '\n' + f.read()
 

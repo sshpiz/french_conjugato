@@ -1104,8 +1104,7 @@ body {
   /* min-width: 70px; */
   text-align: left;
 }
-#go-to-verb-btn:active, #go-to-verb-btn-2:active {
-  background: #d0e6f7;
+
 #go-to-verb-btn:active, #go-to-verb-btn-2:active {
   background: #d0e6f7;
 }
