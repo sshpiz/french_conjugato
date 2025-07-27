@@ -1636,57 +1636,57 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // --- AUTOSAY READY MODAL LOGIC ---
-    const autosayToggleBtn = document.getElementById('autosay-toggle-btn');
-    // --- AUTOSAY TOGGLE BUTTON LOGIC ---
-    if (autosayToggleBtn) {
-        autosayToggleBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const emojiSpan = autosayToggleBtn.querySelector('span');
-            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
-            if (autosayOn) {
-                localStorage.setItem('autosay-enabled', 'false');
-                if (emojiSpan) emojiSpan.textContent = '🔇';
-                autosayToggleBtn.setAttribute('aria-pressed', 'false');
-                autosayToggleBtn.classList.remove('autosay-on');
-                autosayToggleBtn.classList.add('autosay-off');
-            } else {
-                localStorage.setItem('autosay-enabled', 'true');
-                if (emojiSpan) emojiSpan.textContent = '🔊';
-                autosayToggleBtn.setAttribute('aria-pressed', 'true');
-                autosayToggleBtn.classList.remove('autosay-off');
-                autosayToggleBtn.classList.add('autosay-on');
-            }
-        });
-        // Set initial state on load
-        const emojiSpan = autosayToggleBtn.querySelector('span');
-        const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
-        if (emojiSpan) emojiSpan.textContent = autosayOn ? '🔊' : '🔇';
-        autosayToggleBtn.setAttribute('aria-pressed', autosayOn ? 'true' : 'false');
-        autosayToggleBtn.classList.toggle('autosay-on', autosayOn);
-        autosayToggleBtn.classList.toggle('autosay-off', !autosayOn);
-    }
-    const autosayReadyModal = document.getElementById('autosay-ready-modal');
-    const autosayReadyContinueBtn = document.getElementById('autosay-ready-continue-btn');
-    let firstCardReady = false;
+    // // --- AUTOSAY READY MODAL LOGIC ---
+    // const autosayToggleBtn = document.getElementById('autosay-toggle-btn');
+    // // --- AUTOSAY TOGGLE BUTTON LOGIC ---
+    // if (autosayToggleBtn) {
+    //     autosayToggleBtn.addEventListener('click', function(e) {
+    //         e.stopPropagation();
+    //         const emojiSpan = autosayToggleBtn.querySelector('span');
+    //         const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+    //         if (autosayOn) {
+    //             localStorage.setItem('autosay-enabled', 'false');
+    //             if (emojiSpan) emojiSpan.textContent = '🔇';
+    //             autosayToggleBtn.setAttribute('aria-pressed', 'false');
+    //             autosayToggleBtn.classList.remove('autosay-on');
+    //             autosayToggleBtn.classList.add('autosay-off');
+    //         } else {
+    //             localStorage.setItem('autosay-enabled', 'true');
+    //             if (emojiSpan) emojiSpan.textContent = '🔊';
+    //             autosayToggleBtn.setAttribute('aria-pressed', 'true');
+    //             autosayToggleBtn.classList.remove('autosay-off');
+    //             autosayToggleBtn.classList.add('autosay-on');
+    //         }
+    //     });
+    //     // Set initial state on load
+    //     const emojiSpan = autosayToggleBtn.querySelector('span');
+    //     const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+    //     if (emojiSpan) emojiSpan.textContent = autosayOn ? '🔊' : '🔇';
+    //     autosayToggleBtn.setAttribute('aria-pressed', autosayOn ? 'true' : 'false');
+    //     autosayToggleBtn.classList.toggle('autosay-on', autosayOn);
+    //     autosayToggleBtn.classList.toggle('autosay-off', !autosayOn);
+    // }
+    // const autosayReadyModal = document.getElementById('autosay-ready-modal');
+    // const autosayReadyContinueBtn = document.getElementById('autosay-ready-continue-btn');
+    // let firstCardReady = false;
 
-    function showAutosayReadyModalIfNeeded(startAppCallback) {
-      const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
-      if (autosayOn && autosayReadyModal) {
-        autosayReadyModal.style.display = 'flex';
-        // Remove any previous listeners
-        autosayReadyModal.onclick = function() {
-          autosayReadyModal.style.display = 'none';
-          firstCardReady = true;
-          startAppCallback();
-        };
-        // Optionally, focus the button for accessibility
-        if (autosayReadyContinueBtn) autosayReadyContinueBtn.focus();
-      } else {
-        firstCardReady = true;
-        startAppCallback();
-      }
-    }
+    // function showAutosayReadyModalIfNeeded(startAppCallback) {
+    //   const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+    //   if (autosayOn && autosayReadyModal) {
+    //     autosayReadyModal.style.display = 'flex';
+    //     // Remove any previous listeners
+    //     autosayReadyModal.onclick = function() {
+    //       autosayReadyModal.style.display = 'none';
+    //       firstCardReady = true;
+    //       startAppCallback();
+    //     };
+    //     // Optionally, focus the button for accessibility
+    //     if (autosayReadyContinueBtn) autosayReadyContinueBtn.focus();
+    //   } else {
+    //     firstCardReady = true;
+    //     startAppCallback();
+    //   }
+    // }
 
     // --- Initial Load ---
     const initializeApp = () => {
