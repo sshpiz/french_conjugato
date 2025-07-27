@@ -1,12 +1,12 @@
 {
-  "name": "franconjugue",
-  "short_name": "franconjugue", 
+  "name": "Les Verbes",
+  "short_name": "Les Verbes", 
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#3498db",
-  "theme_color": "#3498db",
+  "background_color": "#fedb79",
+  "theme_color": "#fedb79",
   "description": "Master French verb conjugations",
   "icons": [
     {

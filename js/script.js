@@ -1953,15 +1953,15 @@ let autoskipLock = false;
         const pronoun = currentCard?.pronoun || 'N/A';
         const sentence = currentCard?.chosenPhrase?.sentence || 'N/A';
         const msg = document.getElementById('contact-msg').value.trim();
-        const subject = `Franconjugue Report: ${types[selectedType]}`;
-        let text = `Franconjugue Report: ${types[selectedType]}\n\nContext:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
+        const subject = `LesVerbes Report: ${types[selectedType]}`;
+        let text = `LesVerbes Report: ${types[selectedType]}\n\nContext:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
         let body = `Context:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
         if (msg) text += `\n\nDetails:\n${msg}`;
-        text += '\n\nSent from Franconjugue app';
+        text += '\n\nSent from LesVerbes app';
         
         // UTF-8 to base64 encoding (handles emojis and special characters)
         // const encodedPayload = btoa(unescape(encodeURIComponent(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-        // const url = `https://t.me/FranconjugueBot?start=${encodedPayload}`;
+        // const url = `https://t.me/LesVerbesBot?start=${encodedPayload}`;
         
         // // Try to copy to clipboard silently (no fallback)
         // if (navigator.clipboard) {
