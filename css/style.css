@@ -52,6 +52,10 @@
     background-color: #6ec6ff !important;
   }
 }
+
+.verb-phrase {
+    font-weight: bolder;  
+}
 @media (prefers-color-scheme: dark) {
   /* Conjugated verb: dark, bold, easy to read */
   #conjugated-verb, .conjugated-line h2 {
@@ -61,6 +65,7 @@
   }
   /* Phrase: dark, italic, readable */
   .verb-phrase {
+
     color: #263040 !important;
     font-style: italic;
     text-shadow: 0 1px 2px #fff3;
@@ -71,7 +76,7 @@
     white-space: normal;
     word-break: break-word;
     line-height: 1.2;
-    font-size: clamp(0.9em, 2.5vw, 1.1em);
+    font-size: clamp(0.9em, 2.5vw, 1.2em);
   }
   /* Infinitive: light, glowing */
   .infinitive-line h1, #verb-infinitive {
@@ -79,11 +84,13 @@
     text-shadow: 0 2px 8px #000a, 0 1px 2px #0006;
     font-weight: 800;
   }
-  /* Translation: darker, subtle */
+  /* Translation: darker, subtle
   #verb-translation {
     color: #b0b8c1 !important;
-    font-weight: 400;
-  }
+    font-weight: bolder;
+    font-size: 2.3rem;
+  } */
+
   /* Book icon button: dark bg, light icon */
   #go-to-verb-btn {
     background: #1a2633 !important;
@@ -278,7 +285,7 @@
     --card-bg: #ffffff;
     --text-color: #2c3e50;
     --accent-color: #3498db;
-    --meta-color: #7f8c8d;
+    --meta-color: #2f3c3d;
     --border-color: #e0e6ed;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     /* Tense color variables (soft, harmonious with bg) */
@@ -527,8 +534,8 @@ body {
 
 /* Smaller, not bold, translation font for flashcard */
 #verb-translation {
-  font-size: 1.2rem;
-  font-weight: 300;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: var(--meta-color);
   margin-top: 0.2rem;
   margin-bottom: 0.5rem;
@@ -1184,9 +1191,10 @@ body {
 
 #english-verb-phrase {
     font-style: italic;
+    font-weight: bolder;
     color: #7f8c8d;
     margin-top: 0.75rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     user-select: text;
     cursor: text;
 }
@@ -1226,6 +1234,7 @@ body {
         white-space: normal;
         word-break: break-word;
         line-height: 1.2;
+        font-weight:bolder;
         font-size: clamp(0.9em, 2.5vw, 1.1em);
     }
 }

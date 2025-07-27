@@ -998,16 +998,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             .trim();
                         translationDiv.innerHTML = `<strong>Traduction:</strong> ${cleanTranslation}`;
                         translationDiv.style.marginTop = '5em';
-                        translationDiv.style.fontSize = '0.9em';
+                        translationDiv.style.fontSize = '0.99em';
+                        translationDiv.style.fontWeight = "bold";
                         translationDiv.style.marginBottom = '0.3em';
-                        translationDiv.style.pointerEvents = "none";
+                        // translationDiv.style.pointerEvents = "none";
                         // Better visibility in dark mode
                         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                            translationDiv.style.color = '#f4f7f9';
-                            translationDiv.style.opacity = '0.9';
+                            translationDiv.style.color =  'var(--text-color)';//'#f4f7f9';
+                            translationDiv.style.opacity = '1.0';
                         } else {
-                            translationDiv.style.opacity = '0.9';
-                            translationDiv.style.color = '#aaaaaa';
+                            translationDiv.style.opacity = '1.0';
+                            translationDiv.style.color = 'var(--text-color)';// '#474a04';
                         }
                         verbPhraseEl.appendChild(translationDiv);
                     }
@@ -1018,13 +1019,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         sourceDiv.innerHTML = `<strong>Source:</strong> ${chosen.source}`;
                         sourceDiv.style.marginTop = '0.3em';
                         sourceDiv.style.fontSize = '0.9em';
+                        sourceDiv.style.color = 'var(--text-color)'; // Use CSS variable for text color
                         // Better visibility in dark mode
-                        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                            sourceDiv.style.color = '#f4f7f9';
-                            sourceDiv.style.opacity = '0.9';
-                        } else {
-                            sourceDiv.style.opacity = '0.8';
-                        }
+                        // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                            
+                        //     sourceDiv.style.opacity = '0.9';
+                        // } else {
+                        //     sourceDiv.style.opacity = '0.8';
+                        // }
                         verbPhraseEl.appendChild(sourceDiv);
                     }
                     
@@ -1469,11 +1471,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     verbPhraseEl.addEventListener('click', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
+        // e.stopPropagation();
+        // e.preventDefault();
         
         // Only handle clicks on tappable-audio elements, not the container
         if (e.target.classList.contains('tappable-audio') && e.target.textContent) {
+            e.stopPropagation();
+            e.preventDefault();
             maybeWhisperHuhBefore(e.target.textContent);
             // speak(e.target.textContent);
         }
