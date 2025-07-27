@@ -1000,12 +1000,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         translationDiv.style.marginTop = '5em';
                         translationDiv.style.fontSize = '0.9em';
                         translationDiv.style.marginBottom = '0.3em';
+                        translationDiv.style.pointerEvents = "none";
                         // Better visibility in dark mode
                         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                             translationDiv.style.color = '#f4f7f9';
                             translationDiv.style.opacity = '0.9';
                         } else {
-                            translationDiv.style.opacity = '0.8';
+                            translationDiv.style.opacity = '0.9';
+                            translationDiv.style.color = '#aaaaaa';
                         }
                         verbPhraseEl.appendChild(translationDiv);
                     }
