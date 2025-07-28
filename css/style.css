@@ -7,51 +7,6 @@
   pointer-events: auto !important;
 }
 
-/* --- Toggle Switches: Improved visibility for dark mode and better row layout --- */
-@media (prefers-color-scheme: dark) {
-  .toggle-switch .toggle-label {
-    background-color: #444 !important;
-    border: 1px solid #222 !important;
-  }
-  .toggle-switch .toggle-label:before {
-    background-color: #222 !important;
-    box-shadow: 0 1px 4px #0008;
-  }
-  .toggle-input:checked + .toggle-label {
-    background-color: #6ec6ff !important;
-    border: 1px solid #6ec6ff !important;
-  }
-  .toggle-input:checked + .toggle-label:before {
-    background-color: #222 !important;
-    box-shadow: 0 1px 8px #6ec6ff44;
-  }
-}
-
-/* Place dark mode options-container override at the end for max specificity */
-@media (prefers-color-scheme: dark) {
-  #options-container {
-    background: #181c1f !important;
-    color: #f4f7f9 !important;
-    border-color: #23272b !important;
-  }
-  #options-container * {
-    color: #f4f7f9 !important;
-    background: transparent !important;
-    border-color: #23272b !important;
-  }
-  .option-group > label, .option-group h3, .slider-group label {
-    color: #b0b8c1 !important;
-  }
-  .slider-group .slider-value {
-    color: #6ec6ff !important;
-  }
-  .toggle-switch .toggle-label {
-    background-color: #263040 !important;
-  }
-  .toggle-input:checked + .toggle-label {
-    background-color: #6ec6ff !important;
-  }
-}
 
 .verb-phrase {
     font-weight: bolder;  
@@ -133,12 +88,7 @@
   .slider-group .slider-value {
     color: #6ec6ff !important;
   }
-  .toggle-switch .toggle-label {
-    background-color: #263040 !important;
-  }
-  .toggle-input:checked + .toggle-label {
-    background-color: #6ec6ff !important;
-  }
+  
 }
 /* --- DARK MODE --- */
 @media (prefers-color-scheme: dark) {
@@ -919,6 +869,37 @@ body {
 .toggle-switch .toggle-label:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
 .toggle-input:checked + .toggle-label { background-color: var(--accent-color); }
 .toggle-input:checked + .toggle-label:before { transform: translateX(22px); }
+
+@media (prefers-color-scheme: dark) {
+  .toggle-switch .toggle-label {
+    background-color: #1a242a;
+    border-radius: 999px;
+    transition: background-color 0.3s ease;
+  }
+
+  .toggle-switch .toggle-label::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fefefe;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+  }
+
+  .toggle-switch .toggle-input:checked + .toggle-label {
+    background-color: #c89e2b; /* mustard gold */
+  }
+
+  .toggle-switch .toggle-input:checked + .toggle-label::before {
+    transform: translateX(22px);
+  }
+}
+
+
 
 /* Autosay Toggle Button */
 #autosay-toggle-btn {

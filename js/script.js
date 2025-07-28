@@ -100,7 +100,9 @@ function enhanceGapSentence(text) {
 // Simple function to prepare text for speech (replace placeholders with "blanc")
 function prepareTextForSpeech(text) {
     if (!text) return '';
-    return text.replace(/\[VERB\]/g, 'blanc').replace(/\[AUX\]/g, 'blanc').replace(/\[PRONOUN\]/g, 'blanc');
+    let ret =  text.replace(/\[VERB\]/g, 'blanc').replace(/\[AUX\]/g, 'blanc').replace(/\[PRONOUN\]/g, 'blanc');
+    ret = ret.replace(/-/g, ' ');
+    return ret;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -390,6 +392,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearTimeout(dictationTimeout);
                     showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
                 };
+                // let bravoHappened = false; // Track if Bravo was shown
+                let correctDictationWasShown = false; // Track if correct dictation was shown
                 recognition.onresult = (event) => {
                     let html = '';
                     let bestTranscript = '';
@@ -404,6 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (opacity < 0.4) opacity = 0.4;
                             const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
                             html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${alt.transcript}${conf}</div>`;
+                            
                             if (j === 0 && (!bestTranscript || (alt.confidence || 0) > bestConfidence)) {
                                 bestTranscript = alt.transcript.trim();
                                 bestConfidence = alt.confidence || 0;
@@ -412,21 +417,65 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     // --- CHECK FOR CORRECT DICTATION (ALWAYS SHOW BRAVO) ---
                     if (!isAnswerVisible && currentCard && !autoskipLock) {
-                        let expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
-                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
+                        let expected;
+                        let isPhrase = currentCard.isPhraseMode || !currentCard.verb;
+                        
+                        if (isPhrase) {
+                            expected = (currentCard.phrase || '').trim();
+                        } else {
+                            expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
+                        }
+                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").replace(/[.,!?;:()\[\]{}]/g, '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/\s+/g, ' ').trim();
                         const normExpected = normalize(expected);
                         const normTranscript = normalize(bestTranscript);
-                        if (normTranscript.includes(normExpected)) {
-                            autoskipLock = true;
+                        let isCorrect = false;
+                        if (isPhrase) {
+                            // Fuzzy word match: at least 70% of expected words present in transcript
+                            const expectedWords = normExpected.split(' ');
+                            const transcriptWords = normTranscript.split(' ');
+                            let matchCount = 0;
+                            expectedWords.forEach(word => {
+                                if (transcriptWords.includes(word)) matchCount++;
+                            });
+                            if (expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9) {
+                                isCorrect = true;
+                            }
+                            console.log(`Phrase match: expected "${normExpected}", got "${normTranscript}" - ${isCorrect ? 'correct' : 'incorrect'}`);
+                        } else {
+                            // Strict match for verbs
+                            if (normTranscript.includes(normExpected)) {
+                                isCorrect = true;
+                            }
+                        }
+                        if (isCorrect || correctDictationWasShown) {
+                            // console.log(`🎉 Bravo! Correct dictation: "${bestTranscript}" matches expected: "${expected}". stopping recognition`);
+                            // autoskipLock = true;
+                            // setTimeout(() => {
+                            //         if (recognition) {
+                            //             try { recognition.stop(); } catch (e) {}
+                            //         }
+                            //     }, 500);
                             // Always show Bravo for correct answers
                             dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                             dictationResultEl.style.display = 'block';
                             dictationResultEl.style.opacity = '1';
+                            correctDictationWasShown= true;
+                            
+                        }
+                        if (isCorrect) {
                             showAnswer();
 
-
-                            // Log bravo event
-                            logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+                            // Log bravo event (robust for phrase mode)
+                            if (isPhrase) {
+                                logSessionEntry('phrase', '', '', 'bravo');
+                            } else if (currentCard.verb) {
+                            if (currentCard.verb) {
+                                logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+                            } else {
+                                // Phrase mode: log safe values
+                                logSessionEntry('phrase', '', '', 'bravo');
+                            }
+                            }
                             maybeWhisperMolodez();
                             
                             // Check if auto-advance is enabled
@@ -454,19 +503,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     // Only update overlay if not showing Bravo
                     showDictationOverlay(html, 'normal', 0, true, false);
-                        let expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
+                        let expected;
+                        if (currentCard.isPhraseMode || !currentCard.verb) {
+                            expected = (currentCard.phrase || '').trim();
+                        } else {
+                            expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
+                        }
                         const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
                         const normExpected = normalize(expected);
                         const normTranscript = normalize(bestTranscript);
+                        if(correctDictationWasShown){
+                            if(!dictationResultEl.innerHTML.includes('🎉 Bravo !')) {
+                            dictationResultEl.innerHTML = dictationResultEl.innerHTML + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                            }
+                        }
                         if (normTranscript.includes(normExpected)) {
                             autoskipLock = true;
+                            correctDictationWasShown = true;
+
                             dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                             dictationResultEl.style.display = 'block';
                             dictationResultEl.style.opacity = '1';
                             showAnswer();
 
                             // Log bravo event
-                            logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+                            if (currentCard.verb) {
+                                logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+                            } else {
+                                logSessionEntry('phrase', '', '', 'bravo');
+                            }
                             maybeWhisperMolodez();
 
                             setTimeout(() => {
@@ -663,6 +728,34 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const generateNewCard = (options = {}) => {
+        // --- PRACTICE MODE LOGIC ---
+        const practiceMode = localStorage.getItem('practiceMode') || 'verbs';
+        if (practiceMode === 'phrases') {
+            let phrasesList;
+            // Dummy phrase mode: pick a random phrase from dummyPhrases
+            if(practicePhrases){
+                phrasesList = practicePhrases;
+            }
+            else{
+                phrasesList = [
+                    { fr: "Bonjour, comment ça va?", en: "Hello, how are you?" },
+                    { fr: "Je voudrais un café.", en: "I would like a coffee." },
+                    { fr: "Où est la bibliothèque?", en: "Where is the library?" },
+                    { fr: "Merci beaucoup!", en: "Thank you very much!" },
+                    { fr: "Je ne comprends pas.", en: "I don't understand." }
+                ];
+            }
+            const chosen = phrasesList[Math.floor(Math.random() * phrasesList.length)];
+            // Return a card-like object for phrase mode
+            return {
+                phrase: chosen.fr,
+                translation: chosen.en,
+                // Add any other fields needed for displayCard
+                isPhraseMode: true
+            };
+        }
+
+        // ...existing verb card logic...
         const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false } = options;
 
         // Helper function to check if a verb has sentences with gap sentences for actual practice
@@ -694,8 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let newCard = null;
 
         if (hierarchical) {
-            // --- Hierarchical Selection ---
-            // 1. Select a frequency group based on its weight.
+            // ...existing code...
             const weightedFrequencies = Object.entries(frequencyWeights)
                 .map(([freq, score]) => ({ card: freq, score: score }))
                 .filter(item => item.score > 0);
@@ -705,17 +797,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedFrequency = performWeightedSelection(weightedFrequencies);
             if (!selectedFrequency) return null;
 
-            // 2. Filter verbs for that frequency group.
             let verbsInFrequency = uniqueVerbs.filter(v => (v.frequency || 'common') === selectedFrequency);
-            
-            // 2b. If verbsWithSentencesOnly is enabled, filter further
             if (verbsWithSentencesOnly) {
                 verbsInFrequency = verbsInFrequency.filter(v => verbHasSentences(v.infinitive));
             }
-            
             if (verbsInFrequency.length === 0) return null;
 
-            // 3. Build a deck from this verb group, weighted ONLY by tense.
             const weightedDeck = [];
             for (const tenseName in tenses) {
                 const tenseWeight = tenseWeights[tenseName] || 0;
@@ -725,7 +812,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        // Add ALL available pronouns for this verb/tense to create better variety
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
                         for (const pronounKey of availablePronouns) {
                             let pronoun = pronounKey;
@@ -744,19 +830,16 @@ document.addEventListener('DOMContentLoaded', () => {
             newCard = performWeightedSelection(weightedDeck);
 
         } else {
-            // --- Flat Selection (Non-Hierarchical) ---
-            // Build a single deck weighted by both tense and frequency.
+            // ...existing code...
             const weightedDeck = [];
             for (const tenseName in tenses) {
                 const tenseWeight = tenseWeights[tenseName] || 0;
                 if (tenseWeight === 0) continue;
 
                 for (const verbInfo of uniqueVerbs) {
-                    // Skip verbs without sentences if filter is enabled
                     if (verbsWithSentencesOnly && !verbHasSentences(verbInfo.infinitive)) {
                         continue;
                     }
-                    
                     const freq = verbInfo.frequency || 'common';
                     const freqWeight = frequencyWeights[freq] || 0;
                     const score = tenseWeight * freqWeight;
@@ -765,7 +848,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        // Add ALL available pronouns for this verb/tense to create better variety
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
                         for (const pronounKey of availablePronouns) {
                             let pronoun = pronounKey;
@@ -799,22 +881,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return newCard;
     };
-    function maybeWhisperMolodez(){
+    function maybeWhisperMolodez(probability = null) {
         console.log("maybeWhisperMolodez called");
         const sfx = document.getElementById("molodez_sound");
-        if(Math.random() < 0.1) {
-            sfx.play();
+
+        let finalProbability;
+
+        if (probability !== null) {
+            finalProbability = probability;
+        } else {
+            // Use time-based dynamic probability
+            const now = new Date();
+            const day = now.getDay();       // 0 (Sun) - 6 (Sat)
+            const hour = now.getHours();    // 0 - 23
+
+            // Divide the week into 21 slots (7 days × 3 slots/day)
+            const slotIndex = day * 3 + Math.floor(hour / 8); // 0 - 20
+
+            // Example: assign probabilities to each slot (can be tweaked)
+            const slotProbabilities = [
+            0.002, 0.003, 0.001,  // Sunday
+            0.005, 0.007, 0.004,  // Monday
+            0.008, 0.009, 0.005,  // Tuesday
+            0.01,  0.012, 0.006,  // Wednesday
+            0.015, 0.018, 0.009,  // Thursday
+            0.02,  0.025, 0.01,   // Friday
+            0.03,  0.02,  0.015   // Saturday
+            ];
+
+            finalProbability = slotProbabilities[slotIndex];
         }
-        
-        // if (Math.random() < 0.5) {
-        //     const sfx = document.getElementById("molodez_sound");
-        //     sfx.currentTime = 0;
-            
-        //     sfx.onended = () => speak(whatToSpeakAfter);
-        // } else {
-        //     speak(whatToSpeakAfter);
-        // }
-    }
+
+        if (Math.random() < finalProbability) {
+            sfx?.play();
+        }
+        }
+
 
     function maybeWhisperHuhBefore(whatToSpeakAfter) {
         console.log("maybeWhisperHuh called");
@@ -848,13 +950,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayCard = (card) => {
         currentCard = card;
-        
-        // Update URL hash with current card parameters
         updateHashParams(card);
+        // --- PHRASE MODE ---
+        const isPhraseMode = card.isPhraseMode || (!card.verb && card.phrase);
+        const answerContainerConjugatedLine = document.querySelector("#answer-contsainer .conjugated-line");
         
-        const verbFrequency = card.verb.frequency || 'common'; 
+        if (isPhraseMode) {
+            // Hide all verb-specific UI elements robustly
+            if (verbInfinitiveEl) { verbInfinitiveEl.textContent = ''; verbInfinitiveEl.parentElement.style.display = 'none'; }
+            if (verbTranslationEl) { verbTranslationEl.textContent = ''; verbTranslationEl.style.display = 'none'; }
+            if (verbPronounEl) { verbPronounEl.textContent = ''; verbPronounEl.style.display = 'none'; }
+            if (verbTenseEl) { verbTenseEl.textContent = ''; verbTenseEl.style.display = 'none'; }
+            if (verbFrequencyEl) { verbFrequencyEl.textContent = ''; verbFrequencyEl.style.display = 'none'; }
+            if (verbIrregularEl) { verbIrregularEl.style.display = 'none'; }
+            if (conjugatedVerbEl) { conjugatedVerbEl.textContent = ''; conjugatedVerbEl.style.display = 'none'; }
+            // Clear phrase containers
+            if (verbPhraseEl) { verbPhraseEl.innerHTML = ''; verbPhraseEl.style.display = ''; }
+            if (questionPhraseEl) { questionPhraseEl.innerHTML = ''; questionPhraseEl.style.display = 'block'; }
+            if (answerContainerConjugatedLine) {
+                answerContainerConjugatedLine.style.display = "none";
+            }
+            // Show English translation in question container (visible immediately)
+            if (card.translation && questionPhraseEl) {
+                const translationDiv = document.createElement('div');
+                translationDiv.innerHTML = `Comment dit-on <br> <strong> "${card.translation}"</strong>? `;
+                translationDiv.style.marginTop = '0.0em';
+                translationDiv.style.fontSize = '0.9em';
+                // translationDiv.style.fontWeight = "bold";
+                translationDiv.style.marginBottom = '0.3em';
+                // translationDiv.classList.add('tappable-audio');
+                translationDiv.style.color = 'var(--text-color)';
+                // questionPhraseEl.prepend(translationDiv);
+                questionPhraseEl.appendChild(translationDiv);
+                questionPhraseEl.style.top = '8%';
+                questionPhraseEl.style.display = 'block'; // Ensure visible
+                console.log("Phrase mode: showing translation in questionPhraseEl");
+                // answerContainer.
+                // document.getElementById("conjugated-line").style.display = 'none';
+            }
 
-        // Set infinitive and translation separately for proper styling
+            // Put French sentence in answer container (hidden until answer is revealed)
+            if (card.phrase && verbPhraseEl) {
+                const phraseSpan = document.createElement('p');
+                phraseSpan.textContent = card.phrase;
+                phraseSpan.classList.add('tappable-audio');
+                phraseSpan.style.cursor = 'pointer';
+                phraseSpan.style.display = ''; // Visible when answer is revealed
+                phraseSpan.id = 'phrase-french-sentence';
+                verbPhraseEl.appendChild(phraseSpan);
+            }
+
+            // Set English phrase for English toggle
+            if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = card.translation || '';
+            if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = '';
+            if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
+
+            // Hide answer container until answer is revealed
+            if (answerContainer) answerContainer.classList.remove('is-visible');
+            isAnswerVisible = false;
+            return;
+        } else {
+            // --- VERB MODE ---
+            // Restore all verb-specific UI elements robustly
+            if (answerContainerConjugatedLine) {
+                answerContainerConjugatedLine.style.display = "";
+            }
+            if (verbInfinitiveEl) { verbInfinitiveEl.parentElement.style.display = 'flex'; }
+            if (verbTranslationEl) { verbTranslationEl.style.display = 'block'; }
+            if (verbPronounEl) { verbPronounEl.style.display = ''; }
+            if (verbTenseEl) { verbTenseEl.style.display = ''; }
+            if (verbFrequencyEl) { verbFrequencyEl.style.display = ''; }
+            if (verbIrregularEl) { verbIrregularEl.style.display = ''; }
+            if (conjugatedVerbEl) { conjugatedVerbEl.style.display = ''; }
+        }
+        // --- VERB CARD LOGIC ---
+        const verbFrequency = card.verb.frequency || 'common'; 
         let translation = card.verb.translation || '';
         if (translation && !/^to\s/i.test(translation)) {
             translation = 'to ' + translation;
@@ -862,10 +1032,8 @@ document.addEventListener('DOMContentLoaded', () => {
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
         verbTranslationEl.textContent = translation ? '(' + translation + ')' : '';
-        // Set English infinitive/translation
-        if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^\(|\)$/g, ''); // Remove parentheses for English display
-        if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = ''; // Don't show translation of translation
-        // Add emoji to pronoun (language-specific)
+        if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^[\(|\)]/g, '');
+        if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
         let pronounDisplay = card.pronoun;
         if (pronounDisplay.includes('/')) {
             pronounDisplay = pronounDisplay.split('/').map(p => (pronounEmojiMap[p.trim()] || '') + ' ' + p.trim()).join(' / ');
@@ -874,9 +1042,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         verbPronounEl.textContent = pronounDisplay.trim();
         verbTenseEl.textContent = card.tense;
-        // Remove any previous tense color classes
         verbTenseEl.className = 'meta-info';
-        // Add tense color class if known
         const tenseClassMap = {
             'present': 'tense-present',
             'passeCompose': 'tense-passeCompose',
@@ -889,178 +1055,169 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tenseClassMap[card.tense]) {
             verbTenseEl.classList.add(tenseClassMap[card.tense]);
         }
-
         const frequencyText = verbFrequency.replace('-', ' ');
         verbFrequencyEl.textContent = frequencyText;
         verbFrequencyEl.className = 'meta-info frequency-tag';
-        verbFrequencyEl.classList.add(verbFrequency.replace(/\s+/g, '-')); // Convert spaces to hyphens for CSS class
-
-        // Handle irregular verb indicator
+        verbFrequencyEl.classList.add(verbFrequency.replace(/\s+/g, '-'));
         const isIrregular = IRREGULAR_VERBS.has(card.verb.infinitive);
         if (isIrregular) {
             verbIrregularEl.style.display = 'block';
         } else {
             verbIrregularEl.style.display = 'none';
         }
-
-        // Show answer as pronoun + conjugated verb, but handle language-specific edge case
         let answerText = window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated);
         conjugatedVerbEl.textContent = answerText;
         conjugatedVerbEl.classList.add('tappable-audio');
-
-        // --- New Phrase Logic ---
-        verbPhraseEl.innerHTML = ''; // Clear answer phrase
-        questionPhraseEl.innerHTML = ''; // Clear question phrase
+        verbPhraseEl.innerHTML = '';
+        questionPhraseEl.innerHTML = '';
         verbPhraseEl.classList.remove('tappable-audio');
         questionPhraseEl.classList.remove('tappable-audio');
-        
-        // Initially hide question phrase, will show if we have a gap sentence
         questionPhraseEl.style.display = 'none';
-        
-        // Store chosen phrase data for answer reveal
         currentCard.chosenPhrase = null;
-        
         if (cardGenerationOptions.showPhrases) {
             const phraseKey = tenseKeyToPhraseKey[card.tense];
             const verbPhrases = phrasebook[card.verb.infinitive] && phrasebook[card.verb.infinitive][phraseKey];
             let filtered = [];
             let hasExactMatch = false;
-            
             if (verbPhrases && verbPhrases.length) {
-                // 1. Try exact pronoun match only
                 filtered = verbPhrases.filter(p => p.pronoun === card.pronoun);
                 hasExactMatch = filtered.length > 0;
-                
-                // 2. If no exact match, try matching pronoun variants (like ils/elles matching either ils or elles)
                 if (!hasExactMatch && card.pronoun.includes('/')) {
                     const pronounVariants = card.pronoun.split('/');
                     filtered = verbPhrases.filter(p => pronounVariants.includes(p.pronoun));
                     hasExactMatch = filtered.length > 0;
                 }
+            }
                 
-                // 3. Try reverse matching (sentence has combined form, card has single)
-                if (!hasExactMatch) {
-                    filtered = verbPhrases.filter(p => {
-                        if (p.pronoun.includes('/')) {
-                            const sentenceVariants = p.pronoun.split('/');
-                            return sentenceVariants.includes(card.pronoun);
-                        }
-                        return false;
-                    });
-                    hasExactMatch = filtered.length > 0;
+            // 3. Try reverse matching (sentence has combined form, card has single)
+            if (!hasExactMatch && verbPhrases) {
+                filtered = verbPhrases.filter(p => {
+                    if (p.pronoun.includes('/')) {
+                        const sentenceVariants = p.pronoun.split('/');
+                        return sentenceVariants.includes(card.pronoun);
+                    }
+                    return false;
+                });
+                hasExactMatch = filtered.length > 0;
+            }
+            
+            // 4. If still no match, use any phrase for this verb+tense (but no gap sentence)
+            if (filtered.length === 0) {
+                filtered = verbPhrases || [];
+                hasExactMatch = false; // No gap sentence for non-matching pronouns
+            }
+            
+            // 4. Pick random if any
+            if (filtered.length > 0) {
+                const chosen = filtered[Math.floor(Math.random() * filtered.length)];
+                currentCard.chosenPhrase = chosen; // Store for answer reveal
+                
+                // If we have an exact match AND a gap sentence, show it in question container
+                if (ENABLE_GAP_SENTENCES && hasExactMatch && chosen.gap_sentence) {
+                    const questionPhrase = document.createElement('span');
+                    questionPhrase.innerHTML = enhanceGapSentence(chosen.gap_sentence);
+                    questionPhrase.classList.add('tappable-audio');
+                    questionPhrase.style.cursor = 'pointer';
+                    
+                    questionPhraseEl.appendChild(questionPhrase);
+                    questionPhraseEl.classList.add('tappable-audio');
+                    questionPhraseEl.style.display = 'block'; // Show the question phrase
+                    
+                    console.log('Showing gap sentence in question container:', chosen.gap_sentence);
+                    console.log('Question phrase element display:', questionPhraseEl.style.display);
+                    console.log('Question phrase element children:', questionPhraseEl.children.length);
                 }
                 
-                // 4. If still no match, use any phrase for this verb+tense (but no gap sentence)
-                if (filtered.length === 0) {
-                    filtered = verbPhrases;
-                    hasExactMatch = false; // No gap sentence for non-matching pronouns
+                // Always prepare the full sentence for the answer container
+                const answerPhrase = document.createElement('span');
+                answerPhrase.textContent = chosen.sentence;
+                answerPhrase.classList.add('tappable-audio');
+                answerPhrase.style.cursor = 'pointer';
+                
+                // Add answer phrase to answer container
+                verbPhraseEl.appendChild(answerPhrase);
+                // Set English phrase
+                if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = chosen.translation ? chosen.translation.replace(/\[PRONOUN\]/g, '').replace(/\s+/g, ' ').trim() : '';
+                
+                // Add English translation if available (directly visible)
+                if (chosen.translation) {
+                    const translationDiv = document.createElement('div');
+                    // Clean translation by removing [PRONOUN] and other markers
+                    const cleanTranslation = chosen.translation
+                        .replace(/\[PRONOUN\]/g, '')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+                    translationDiv.innerHTML = `<strong>Traduction:</strong> ${cleanTranslation}`;
+                    translationDiv.style.marginTop = '5em';
+                    translationDiv.style.fontSize = '0.99em';
+                    translationDiv.style.fontWeight = "bold";
+                    translationDiv.style.marginBottom = '0.3em';
+                    // translationDiv.style.pointerEvents = "none";
+                    // Better visibility in dark mode
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        translationDiv.style.color =  'var(--text-color)';//'#f4f7f9';
+                        translationDiv.style.opacity = '1.0';
+                    } else {
+                        translationDiv.style.opacity = '1.0';
+                        translationDiv.style.color = 'var(--text-color)';// '#474a04';
+                    }
+                    verbPhraseEl.appendChild(translationDiv);
                 }
                 
-                // 4. Pick random if any
-                if (filtered.length > 0) {
-                    const chosen = filtered[Math.floor(Math.random() * filtered.length)];
-                    currentCard.chosenPhrase = chosen; // Store for answer reveal
-                    
-                    // If we have an exact match AND a gap sentence, show it in question container
-                    if (ENABLE_GAP_SENTENCES && hasExactMatch && chosen.gap_sentence) {
-                        const questionPhrase = document.createElement('span');
-                        questionPhrase.innerHTML = enhanceGapSentence(chosen.gap_sentence);
-                        questionPhrase.classList.add('tappable-audio');
-                        questionPhrase.style.cursor = 'pointer';
+                // Add source if available (directly visible)
+                if (chosen.source) {
+                    const sourceDiv = document.createElement('div');
+                    sourceDiv.innerHTML = `<strong>Source:</strong> ${chosen.source}`;
+                    sourceDiv.style.marginTop = '0.3em';
+                    sourceDiv.style.fontSize = '0.9em';
+                    sourceDiv.style.color = 'var(--text-color)'; // Use CSS variable for text color
+                    // Better visibility in dark mode
+                    // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                         
-                        questionPhraseEl.appendChild(questionPhrase);
-                        questionPhraseEl.classList.add('tappable-audio');
-                        questionPhraseEl.style.display = 'block'; // Show the question phrase
-                        
-                        console.log('Showing gap sentence in question container:', chosen.gap_sentence);
-                        console.log('Question phrase element display:', questionPhraseEl.style.display);
-                        console.log('Question phrase element children:', questionPhraseEl.children.length);
-                    }
-                    
-                    // Always prepare the full sentence for the answer container
-                    const answerPhrase = document.createElement('span');
-                    answerPhrase.textContent = chosen.sentence;
-                    answerPhrase.classList.add('tappable-audio');
-                    answerPhrase.style.cursor = 'pointer';
-                    
-                    // Add answer phrase to answer container
-                    verbPhraseEl.appendChild(answerPhrase);
-                    // Set English phrase
-                    if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = chosen.translation ? chosen.translation.replace(/\[PRONOUN\]/g, '').replace(/\s+/g, ' ').trim() : '';
-                    
-                    // Add English translation if available (directly visible)
-                    if (chosen.translation) {
-                        const translationDiv = document.createElement('div');
-                        // Clean translation by removing [PRONOUN] and other markers
-                        const cleanTranslation = chosen.translation
-                            .replace(/\[PRONOUN\]/g, '')
-                            .replace(/\s+/g, ' ')
-                            .trim();
-                        translationDiv.innerHTML = `<strong>Traduction:</strong> ${cleanTranslation}`;
-                        translationDiv.style.marginTop = '5em';
-                        translationDiv.style.fontSize = '0.99em';
-                        translationDiv.style.fontWeight = "bold";
-                        translationDiv.style.marginBottom = '0.3em';
-                        // translationDiv.style.pointerEvents = "none";
-                        // Better visibility in dark mode
-                        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                            translationDiv.style.color =  'var(--text-color)';//'#f4f7f9';
-                            translationDiv.style.opacity = '1.0';
-                        } else {
-                            translationDiv.style.opacity = '1.0';
-                            translationDiv.style.color = 'var(--text-color)';// '#474a04';
-                        }
-                        verbPhraseEl.appendChild(translationDiv);
-                    }
-                    
-                    // Add source if available (directly visible)
-                    if (chosen.source) {
-                        const sourceDiv = document.createElement('div');
-                        sourceDiv.innerHTML = `<strong>Source:</strong> ${chosen.source}`;
-                        sourceDiv.style.marginTop = '0.3em';
-                        sourceDiv.style.fontSize = '0.9em';
-                        sourceDiv.style.color = 'var(--text-color)'; // Use CSS variable for text color
-                        // Better visibility in dark mode
-                        // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                            
-                        //     sourceDiv.style.opacity = '0.9';
-                        // } else {
-                        //     sourceDiv.style.opacity = '0.8';
-                        // }
-                        verbPhraseEl.appendChild(sourceDiv);
-                    }
-                    
-                    // Don't make the entire phrase container clickable - only the sentence itself is tappable
-                    // verbPhraseEl.classList.add('tappable-audio'); // Removed to fix large tap area
-                    console.log('Added phrase elements to answer:', {
-                        questionHasContent: questionPhraseEl.children.length > 0,
-                        answerHasContent: verbPhraseEl.children.length > 0,
-                        hasGapSentence: !!chosen.gap_sentence,
-                        hasExactMatch: hasExactMatch,
-                        pronoun: card.pronoun,
-                        chosenPronoun: chosen.pronoun,
-                        showingGapSentence: hasExactMatch && !!chosen.gap_sentence,
-                        fullSentence: chosen.sentence
-                    });
+                    //     sourceDiv.style.opacity = '0.9';
+                    // } else {
+                    //     sourceDiv.style.opacity = '0.8';
+                    // }
+                    verbPhraseEl.appendChild(sourceDiv);
+                }
+                
+                // Don't make the entire phrase container clickable - only the sentence itself is tappable
+                // verbPhraseEl.classList.add('tappable-audio'); // Removed to fix large tap area
+                console.log('Added phrase elements to answer:', {
+                    questionHasContent: questionPhraseEl.children.length > 0,
+                    answerHasContent: verbPhraseEl.children.length > 0,
+                    hasGapSentence: !!chosen.gap_sentence,
+                    hasExactMatch: hasExactMatch,
+                    pronoun: card.pronoun,
+                    chosenPronoun: chosen.pronoun,
+                    showingGapSentence: hasExactMatch && !!chosen.gap_sentence,
+                    fullSentence: chosen.sentence
+                });
                 }
             }
-        }
+        
 
         // --- AUTOTALK: Speak prompt if enabled ---
         const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
         if (autosayOn) {
-          const prompt = getFrenchPrompt(card);
-          speak(prompt);
+            const prompt = getFrenchPrompt(card);
+            speak(prompt);
         }
-    };
+    }
+    
 
     const showAnswer = () => {
         if (!isAnswerVisible) {
             answerContainer.classList.add('is-visible');
             // Hide question phrase when showing answer (now they are siblings)
-            questionPhraseEl.style.display = 'none';
+            // questionPhraseEl.style.display = 'none';
             isAnswerVisible = true;
             if (window.incrementDailyCount) window.incrementDailyCount();
+            // In phrase mode, show the French sentence now
+            if (currentCard && !currentCard.verb) {
+                const phraseSpan = document.getElementById('phrase-french-sentence');
+                if (phraseSpan) phraseSpan.style.display = '';
+            }
             // Do NOT speak the answer automatically
         }
     };
@@ -1077,10 +1234,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Card advance logic ---
     const nextCard = () => {
         autoskipLock = false;
-        if (currentCard) {
+        if (currentCard && currentCard.verb) {
             logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'next');
         }
-
+        // For phrase mode, skip logging or handle differently if needed
         if (historyIndex < history.length - 1 && history.length > 0) {
             historyIndex++;
             displayCard(history[historyIndex]);
@@ -1755,7 +1912,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Add a per-card autoskip lock
-let autoskipLock = false;
+    let autoskipLock = false;
 
     // Use generic UIStrings for overlays and UI
     function showDictationOverlay(text, type = 'prompt', duration = 1800, isHtml = false, allowTimeout = true) {
@@ -1872,11 +2029,16 @@ let autoskipLock = false;
     };
 
     const updateHashParams = (card) => {
+    if (card.verb) {
         const params = new URLSearchParams();
         params.set('pronoun', card.pronoun);
         params.set('verb', card.verb.infinitive);
         params.set('tense', card.tense);
         window.location.hash = params.toString();
+    } else {
+        // Phrase mode: clear hash or set phrase info if needed
+        window.location.hash = '';
+    }
     };
 
     // --- Initial Card Loading ---

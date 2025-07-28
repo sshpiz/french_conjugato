@@ -46,7 +46,8 @@ def build(force_jpeg=False):
         js_files = []
         preferred_order = [
             'js/verbs.full.generated.js',
-            'sentences.generated.js',
+            'js/sentences.generated.js',
+            'js/practicePhrases.js',
             # 'main.js',
             # 'alphabetScroller.js',
             # 'verbListModes.js',
@@ -153,7 +154,7 @@ def build(force_jpeg=False):
         replacement_js_block = f'<script>{combined_js}</script>'
         # Use a lambda for the replacement. This is the crucial fix. It tells the `re` module
         # to use the returned string literally, without processing backslash escapes (like \u).
-        final_html = re.sub(r'<script src="js/verbs.full.generated.js"></script>\s*<script src="sentences.generated.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
+        final_html = re.sub(r'<script src="js/verbs.full.generated.js"></script>\s*<script src="sentences.generated.js"></script>\s*<script src="js/practicePhrases.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
 
         # 5. Inject version string for cache busting
         print("   - Injecting version string...")
@@ -212,6 +213,7 @@ WATCHED_FILES = [
     'js/verbs.full.generated.js',
     'sentences.generated.js',
     'js/script.js',
+    'js/practicePhrases.js',
     # 'bg.png',
     # 'bg.dark.png',
     'manifest.json',
