@@ -46,7 +46,7 @@ def build(force_jpeg=False):
         js_files = []
         preferred_order = [
             'js/verbs.full.generated.js',
-            'js/sentences.generated.js',
+            'sentences.generated.js',
             'js/practicePhrases.js',
             # 'main.js',
             # 'alphabetScroller.js',
@@ -63,6 +63,7 @@ def build(force_jpeg=False):
         # for fname in os.listdir(JS_DIR):
         #     if fname.endswith('.js') and fname not in preferred_order and not any(x in fname for x in ['bak', 'copy', 'test', 'disabled']):
         #         js_files.append(os.path.join(JS_DIR, fname))
+        print('JS FILES',js_files)
         # Read and concatenate
         js_contents = []
         for fpath in js_files:
