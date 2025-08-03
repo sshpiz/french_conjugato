@@ -491,94 +491,8 @@ def generate_verbs_data(sentences_data, verb_translations=None):
                 if sentence.get('verb') == verb and sentence.get('translation') and sentence.get('is_valid', False):
                     eng_translation = sentence['translation'].strip()
                     if eng_translation and eng_translation.lower() != verb.lower():
-                        # Extract just the verb part if it's a full sentence
-                        # Look for common English verb patterns
-                        words = eng_translation.lower().split()
-                        for word in words:
-                            if word.startswith('to '):
-                                translation = word
-                                break
-                            elif word in ['am', 'is', 'are', 'was', 'were', 'be', 'being', 'been']:
-                                translation = 'to be'
-                                break
-                            elif word in ['have', 'has', 'had', 'having']:
-                                translation = 'to have'
-                                break
-                            elif word in ['do', 'does', 'did', 'done', 'doing']:
-                                translation = 'to do'
-                                break
-                            elif word in ['go', 'goes', 'went', 'gone', 'going']:
-                                translation = 'to go'
-                                break
-                            elif word in ['make', 'makes', 'made', 'making']:
-                                translation = 'to make'
-                                break
-                            elif word in ['get', 'gets', 'got', 'gotten', 'getting']:
-                                translation = 'to get'
-                                break
-                            elif word in ['take', 'takes', 'took', 'taken', 'taking']:
-                                translation = 'to take'
-                                break
-                            elif word in ['come', 'comes', 'came', 'coming']:
-                                translation = 'to come'
-                                break
-                            elif word in ['see', 'sees', 'saw', 'seen', 'seeing']:
-                                translation = 'to see'
-                                break
-                            elif word in ['know', 'knows', 'knew', 'known', 'knowing']:
-                                translation = 'to know'
-                                break
-                            elif word in ['want', 'wants', 'wanted', 'wanting']:
-                                translation = 'to want'
-                                break
-                            elif word in ['give', 'gives', 'gave', 'given', 'giving']:
-                                translation = 'to give'
-                                break
-                            elif word in ['say', 'says', 'said', 'saying']:
-                                translation = 'to say'
-                                break
-                            elif word in ['think', 'thinks', 'thought', 'thinking']:
-                                translation = 'to think'
-                                break
-                            elif word in ['find', 'finds', 'found', 'finding']:
-                                translation = 'to find'
-                                break
-                            elif word in ['tell', 'tells', 'told', 'telling']:
-                                translation = 'to tell'
-                                break
-                            elif word in ['ask', 'asks', 'asked', 'asking']:
-                                translation = 'to ask'
-                                break
-                            elif word in ['work', 'works', 'worked', 'working']:
-                                translation = 'to work'
-                                break
-                            elif word in ['feel', 'feels', 'felt', 'feeling']:
-                                translation = 'to feel'
-                                break
-                            elif word in ['try', 'tries', 'tried', 'trying']:
-                                translation = 'to try'
-                                break
-                            elif word in ['leave', 'leaves', 'left', 'leaving']:
-                                translation = 'to leave'
-                                break
-                            elif word in ['call', 'calls', 'called', 'calling']:
-                                translation = 'to call'
-                                break
-                        
-                        # If we found a good translation, use it
-                        if translation != verb:
-                            break
-                        
-                        # Otherwise, try to extract a simple infinitive form
-                        if eng_translation.lower().startswith('to '):
-                            translation = eng_translation.lower()
-                            break
-                        else:
-                            # Take the first word as a basic translation
-                            first_word = words[0] if words else eng_translation
-                            if first_word.lower() != verb.lower():
-                                translation = 'to ' + first_word
-                                break
+                        print("WTF")
+                        exit(1)
         
         verbs_data.append({
             "infinitive": verb,
@@ -922,6 +836,58 @@ def process_phrases_for_sentences(df, conjugations_data=None, max_per_source=5, 
                 print(f"SUCCESSFULLY ADDED SENTENCE: {french_text}")
                 print(f"=== END DEBUG ===\n")
             
+            # --- Add is_question and is_imperative flags ---
+            def detect_is_question(french_text, row):
+                # Check for question mark in the relevant phrase
+                if '?' in french_text:
+                    return True
+                # Check for inversion (verb-pronoun order) in main verb chunk
+                # Use full_structure if available
+                tokens = row.get('full_structure', [])
+                if tokens:
+                    # Find main verb index
+                    verb_idx = None
+                    for i, token in enumerate(tokens):
+                        if token.get('text', '').strip() == row.get('main_verb', '').strip():
+                            verb_idx = i
+                            break
+                    if verb_idx is not None and verb_idx+1 < len(tokens):
+                        next_token = tokens[verb_idx+1]
+                        # If next token is a pronoun and has a hyphen prefix (e.g., "-vous"), likely inversion
+                        if next_token.get('upos') == 'PRON' and next_token.get('text', '').startswith('-'):
+                            return True
+                # Check for interrogative words at start
+                interrogatives = ["est-ce", "pourquoi", "comment", "quand", "où", "combien", "quel", "quelle", "quels", "quelles"]
+                lowered = french_text.lower().strip()
+                if any(lowered.startswith(q) for q in interrogatives):
+                    return True
+                return False
+
+            def detect_is_imperative(french_text, row):
+                # Imperative: verb at start, pronoun after verb (e.g., "faites-le", "parlez-vous")
+                tokens = row.get('full_structure', [])
+                if tokens:
+                    # If first token is a verb and not preceded by a pronoun
+                    if tokens[0].get('upos') == 'VERB':
+                        # If next token is a pronoun (object or subject)
+                        if len(tokens) > 1 and tokens[1].get('upos') == 'PRON':
+                            return True
+                        # Or if the verb is the only token (single-word imperative)
+                        if len(tokens) == 1:
+                            return True
+                # Fallback: check for verb at start and no explicit subject pronoun
+                words = french_text.strip().split()
+                if words:
+                    # If first word is the verb form and not a subject pronoun
+                    if words[0] == row.get('main_verb', '').strip():
+                        # Not preceded by je/tu/nous/vous/il/elle/on/ils/elles
+                        if len(words) == 1 or words[1].lower() not in ["je","tu","nous","vous","il","elle","on","ils","elles"]:
+                            return True
+                return False
+
+            sentence_data['is_question'] = detect_is_question(french_text, row)
+            sentence_data['is_imperative'] = detect_is_imperative(french_text, row)
+
             sentences.append(sentence_data)
             processed_count += 1
             
@@ -937,6 +903,44 @@ def process_phrases_for_sentences(df, conjugations_data=None, max_per_source=5, 
     for reason, count in skipped_reasons.items():
         print(f"    {reason}: {count}")
     
+    # --- Print examples for is_question and is_imperative flags ---
+    def print_flag_examples(sentences, flag_name):
+        print(f"\nExamples where {flag_name} is True:")
+        count = 0
+        for s in sentences:
+            if s.get(flag_name):
+                print(f"  - {s['sentence']}  [verb={s['verb']}, tense={s['tense']}, pronoun={s['pronoun']}]")
+                count += 1
+                if count >= 5:
+                    break
+        if count == 0:
+            print(f"  (No examples found)")
+        print(f"\nExamples where {flag_name} is False:")
+        count = 0
+        for s in sentences:
+            if not s.get(flag_name):
+                print(f"  - {s['sentence']}  [verb={s['verb']}, tense={s['tense']}, pronoun={s['pronoun']}]")
+                count += 1
+                if count >= 5:
+                    break
+        if count == 0:
+            print(f"  (No examples found)")
+
+    print_flag_examples(sentences, 'is_question')
+    print_flag_examples(sentences, 'is_imperative')
+    # --- Print sample sentences for is_question and is_imperative flags ---
+    def print_flag_examples(flag_name, sentences):
+        positives = [s for s in sentences if s.get(flag_name)]
+        negatives = [s for s in sentences if not s.get(flag_name)]
+        print(f"\nExamples where {flag_name}=True (first 5):")
+        for s in positives[:5]:
+            print(f"  ✔ {s['sentence']}")
+        print(f"Examples where {flag_name}=False (first 5):")
+        for s in negatives[:5]:
+            print(f"  ✗ {s['sentence']}")
+
+    print_flag_examples('is_question', sentences)
+    print_flag_examples('is_imperative', sentences)
     return sentences
 
 def analyze_sentence_distribution(sentences_data):

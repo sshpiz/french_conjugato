@@ -219,6 +219,8 @@ WATCHED_FILES = [
     # 'bg.dark.png',
     'manifest.json',
     'favicon_big.png',
+    'sw.js',
+    'CNAME',
 
 ]
 WATCHED_FILES = [os.path.join(BASE_DIR, f) for f in WATCHED_FILES]
