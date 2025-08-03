@@ -398,6 +398,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     let html = '';
                     let bestTranscript = '';
                     let bestConfidence = 0;
+
+                    console.log('--- Speech Recognition Results ---');
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        const alternatives = event.results[i];
+                        console.log(`Result ${i}: isFinal = ${alternatives.isFinal}`);
+                        for (let j = 0; j < alternatives.length; ++j) {
+                            const alt = alternatives[j];
+                            console.log(`  [${j}] "${alt.transcript.trim()}" (${(alt.confidence * 100).toFixed(1)}% confidence)`);
+                        }
+                    }
                     for (let i = event.resultIndex; i < event.results.length; ++i) {
                         const alternatives = event.results[i];
                         for (let j = 0; j < alternatives.length; ++j) {
@@ -1381,11 +1391,22 @@ document.addEventListener('DOMContentLoaded', () => {
             freqLabels[freq] = freq.charAt(0).toUpperCase() + freq.slice(1);
         });
         
+        // Calculate basic group sizes from the full verb list
+        const groupSizes = {};
+        allFrequencies.forEach(freq => {
+            groupSizes[freq] = uniqueVerbs.filter(v => v.frequency === freq).length;
+        });
+
+        // Sort frequencies by basic group size (smallest first)
+        const sortedBySize = [...allFrequencies].sort((a, b) => groupSizes[a] - groupSizes[b]);
+
         // Use the sorted frequency order to display sections
-        sortedFrequencies.forEach(freq => {
+        sortedBySize.forEach(freq => {
             if (groups[freq] && groups[freq].length) {
                 const section = document.createElement('div');
                 section.innerHTML = `<div class="frequency-section-header">${freqLabels[freq]}</div>`;
+                // Sort verbs alphabetically within each group
+                groups[freq].sort((a, b) => a.infinitive.localeCompare(b.infinitive));
                 groups[freq].forEach(verb => {
                     const item = document.createElement('div');
                     item.className = 'verb-list-item';
