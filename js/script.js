@@ -605,6 +605,9 @@ document.addEventListener('DOMContentLoaded', () => {
         verbsWithSentencesOnly: false, // When true, only show verbs that have sentences
         tenseWeights,
         frequencyWeights,
+        // New filters
+        regularityFilter: 'all', // 'all' | 'regular' | 'irregular'
+        endingFilter: 'all',     // 'all' | 'er' | 'ir' | 're' | 'other'
     };
 
     // --- Local Storage for Options ---
@@ -641,6 +644,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Update weights by merging into the existing objects
                 if (savedOptions.tenseWeights) { Object.assign(tenseWeights, savedOptions.tenseWeights); }
                 if (savedOptions.frequencyWeights) { Object.assign(frequencyWeights, savedOptions.frequencyWeights); }
+
+                // Load new filters if present
+                if (typeof savedOptions.regularityFilter === 'string') {
+                    cardGenerationOptions.regularityFilter = savedOptions.regularityFilter;
+                }
+                if (typeof savedOptions.endingFilter === 'string') {
+                    cardGenerationOptions.endingFilter = savedOptions.endingFilter;
+                }
             }
         } catch (e) {
             console.warn("Could not load options from localStorage:", e);
@@ -766,7 +777,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ...existing verb card logic...
-        const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false } = options;
+        const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = 'all', endingFilter = 'all' } = options;
+
+        // Helpers for filters
+        const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
+        const getEnding = (inf) => {
+            if (inf.endsWith('er')) return 'er';
+            if (inf.endsWith('ir')) return 'ir';
+            if (inf.endsWith('re')) return 're';
+            return 'other';
+        };
+        const passesFilters = (verbInfo) => {
+            // Regularity
+            if (regularityFilter === 'regular' && isIrregular(verbInfo.infinitive)) return false;
+            if (regularityFilter === 'irregular' && !isIrregular(verbInfo.infinitive)) return false;
+            // Ending
+            const end = getEnding(verbInfo.infinitive);
+            if (endingFilter !== 'all' && end !== endingFilter) return false;
+            return true;
+        };
 
         // Helper function to check if a verb has sentences with gap sentences for actual practice
         const verbHasSentences = (verbInfinitive) => {
@@ -808,6 +837,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!selectedFrequency) return null;
 
             let verbsInFrequency = uniqueVerbs.filter(v => (v.frequency || 'common') === selectedFrequency);
+            // Apply new filters
+            verbsInFrequency = verbsInFrequency.filter(passesFilters);
             if (verbsWithSentencesOnly) {
                 verbsInFrequency = verbsInFrequency.filter(v => verbHasSentences(v.infinitive));
             }
@@ -847,6 +878,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (tenseWeight === 0) continue;
 
                 for (const verbInfo of uniqueVerbs) {
+                    // Apply new filters
+                    if (!passesFilters(verbInfo)) continue;
                     if (verbsWithSentencesOnly && !verbHasSentences(verbInfo.infinitive)) {
                         continue;
                     }
@@ -1572,6 +1605,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
         frequencyWeightsContainer.innerHTML = '';
         Object.entries(cardGenerationOptions.frequencyWeights).forEach(([freq, weight]) => createSlider(freq, weight, frequencyWeightsContainer, 'frequencyWeights'));
+
+        // --- New Filters UI (Regularity and Verb Ending) ---
+        // Add a small section inside frequencyWeightsContainer for visual grouping
+        const filtersSection = document.createElement('div');
+        filtersSection.className = 'filters-section';
+        filtersSection.style.marginTop = '1em';
+
+        const heading = document.createElement('div');
+        heading.textContent = 'Verb filters';
+        heading.style.fontWeight = '600';
+        heading.style.margin = '0.5em 0';
+        filtersSection.appendChild(heading);
+
+        const createSelectGroup = (labelText, id, options, currentValue, onChange) => {
+            const group = document.createElement('div');
+            group.className = 'slider-group';
+
+            const label = document.createElement('label');
+            label.htmlFor = id;
+            label.textContent = labelText;
+
+            const select = document.createElement('select');
+            select.id = id;
+            options.forEach(({ value, text }) => {
+                const opt = document.createElement('option');
+                opt.value = value;
+                opt.textContent = text;
+                select.appendChild(opt);
+            });
+            select.value = currentValue;
+            select.addEventListener('change', (e) => {
+                onChange(e.target.value);
+                saveOptions();
+                // Restore original behavior: always advance to show effect immediately
+                // hideAnswer();
+                // setTimeout(() => nextCard(), 300);
+            });
+
+            group.appendChild(label);
+            group.appendChild(select);
+            return group;
+        };
+
+        // Regular/Irregular filter
+        const regularityGroup = createSelectGroup(
+            'Regular vs Irregular',
+            'regularity-filter',
+            [
+                { value: 'all', text: 'All' },
+                { value: 'regular', text: 'Regular only' },
+                { value: 'irregular', text: 'Irregular only' },
+            ],
+            cardGenerationOptions.regularityFilter,
+            (val) => { cardGenerationOptions.regularityFilter = val; }
+        );
+        filtersSection.appendChild(regularityGroup);
+
+        // Verb ending filter
+        const endingGroup = createSelectGroup(
+            'Verb ending',
+            'ending-filter',
+            [
+                { value: 'all', text: 'All' },
+                { value: 'er', text: '-er' },
+                { value: 'ir', text: '-ir' },
+                { value: 're', text: '-re' },
+                { value: 'other', text: 'other' },
+            ],
+            cardGenerationOptions.endingFilter,
+            (val) => { cardGenerationOptions.endingFilter = val; }
+        );
+        filtersSection.appendChild(endingGroup);
+
+        frequencyWeightsContainer.appendChild(filtersSection);
         
     };
 
@@ -1724,13 +1831,14 @@ document.addEventListener('DOMContentLoaded', () => {
         cardGenerationOptions.verbsWithSentencesOnly = e.target.checked;
         saveOptions();
         // Generate a new card immediately to reflect the filter change
-        if (e.target.checked) {
+        /*if (e.target.checked) {
             // When enabling the filter, get a new card that should have gap sentences
             hideAnswer();
             setTimeout(() => {
                 nextCard();
             }, 300);
         }
+            */
     });
 
     // --- Correct Dictation Next Question Toggle Logic ---

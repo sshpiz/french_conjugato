@@ -64,58 +64,44 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       caches.open(CACHE_NAME).then(async cache => {
         const cached = await cache.match(event.request);
-        const now = Date.now();
-
+        // Serve cached version immediately if available
         if (cached) {
-          const cachedAt = Number(cached.headers.get('sw-cached-at') || 0);
-          const age = now - cachedAt;
-          const isFresh = age < MAX_AGE_MS;
-
-          console.log(`[SW] Found cached version of ${url.pathname} — age: ${Math.round(age / 1000)}s`);
-
-          if (isFresh) {
-            console.log('[SW] Serving fresh-enough cached version');
-            return cached;
-          }
-
-          console.log('[SW] Cached version is stale — attempting to fetch new');
-          try {
-            const response = await fetch(event.request, { cache: 'no-store' });
-            const cloned = response.clone();
-            const headers = new Headers(cloned.headers);
-            headers.append('sw-cached-at', now.toString());
-            const updated = new Response(await cloned.blob(), {
-              status: 200,
-              statusText: 'OK',
-              headers
-            });
-            await cache.put(event.request, updated.clone());
-
-            if (url.pathname === '/') {
-              await cache.put(new Request('/index.html'), updated.clone());
-            } else if (url.pathname.endsWith('/index.html')) {
-              await cache.put(new Request('/'), updated.clone());
+          // Start background update
+          fetch(event.request, { cache: 'no-store' }).then(async response => {
+            try {
+              const now = Date.now();
+              const cloned = response.clone();
+              const headers = new Headers(cloned.headers);
+              headers.append('sw-cached-at', now.toString());
+              const updated = new Response(await cloned.blob(), {
+                status: 200,
+                statusText: 'OK',
+                headers
+              });
+              await cache.put(event.request, updated.clone());
+              if (url.pathname === '/') {
+                await cache.put(new Request('/index.html'), updated.clone());
+              } else if (url.pathname.endsWith('/index.html')) {
+                await cache.put(new Request('/'), updated.clone());
+              }
+              console.log('[SW] Background cache updated');
+            } catch (err) {
+              console.warn('[SW] Background update failed:', err);
             }
-
-            console.log('[SW] Updated cache with new version');
-            return updated;
-          } catch (err) {
-            console.warn('[SW] Fetch failed, using stale cached version');
-            return cached;
-          }
-
+          }).catch(err => {
+            console.warn('[SW] Background fetch failed:', err);
+          });
+          return cached;
         } else {
-          console.log('[SW] No cached version found — trying to fetch');
+          // No cache, fetch from network and cache
           try {
             const response = await fetch(event.request);
             await cache.put(event.request, response.clone());
-
             if (url.pathname === '/') {
               await cache.put(new Request('/index.html'), response.clone());
             } else if (url.pathname.endsWith('/index.html')) {
               await cache.put(new Request('/'), response.clone());
             }
-
             console.log('[SW] Cached for the first time:', url.pathname);
             return response;
           } catch (err) {
@@ -130,7 +116,18 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       caches.match(event.request).then(resp => {
         if (resp) {
-          console.log(`[SW] Serving cached: ${event.request.url}`);
+          // Background update for static assets
+          fetch(event.request, { cache: 'no-store' }).then(async response => {
+            try {
+              const cache = await caches.open(CACHE_NAME);
+              await cache.put(event.request, response.clone());
+              console.log(`[SW] Background cache updated for: ${event.request.url}`);
+            } catch (err) {
+              console.warn(`[SW] Background update failed for: ${event.request.url}`, err);
+            }
+          }).catch(err => {
+            console.warn(`[SW] Background fetch failed for: ${event.request.url}`, err);
+          });
           return resp;
         } else {
           console.log(`[SW] Fetching from network: ${event.request.url}`);
