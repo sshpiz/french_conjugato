@@ -1608,26 +1608,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- New Filters UI (Regularity and Verb Ending) ---
         // Add a small section inside frequencyWeightsContainer for visual grouping
-        const filtersSection = document.createElement('div');
-        filtersSection.className = 'filters-section';
-        filtersSection.style.marginTop = '1em';
+    const filtersSection = document.createElement('div');
+    filtersSection.className = 'filters-section';
+    filtersSection.style.marginTop = '1em';
+    // Card-like styling
+    filtersSection.style.padding = '0.75em 0.9em';
+    filtersSection.style.border = '1px solid #e9ecef';
+    filtersSection.style.borderRadius = '12px';
+    filtersSection.style.background = 'var(--card-bg, #f8f9fa)';
 
         const heading = document.createElement('div');
-        heading.textContent = 'Verb filters';
-        heading.style.fontWeight = '600';
-        heading.style.margin = '0.5em 0';
+    heading.textContent = 'Verb filters';
+    heading.style.fontWeight = '700';
+    heading.style.fontSize = '1.05rem';
+    heading.style.color = 'var(--accent-color, #3498db)';
+    heading.style.margin = '0.2em 0 0.6em 0';
         filtersSection.appendChild(heading);
 
         const createSelectGroup = (labelText, id, options, currentValue, onChange) => {
             const group = document.createElement('div');
             group.className = 'slider-group';
+            // Layout and spacing
+            group.style.display = 'flex';
+            group.style.alignItems = 'center';
+            group.style.justifyContent = 'space-between';
+            group.style.gap = '0.75rem';
+            group.style.margin = '0.4rem 0';
 
             const label = document.createElement('label');
             label.htmlFor = id;
             label.textContent = labelText;
+            label.style.fontWeight = '600';
+            label.style.color = 'var(--text-color, #2c3e50)';
 
             const select = document.createElement('select');
             select.id = id;
+            // Pill-like select styling
+            select.style.border = '2px solid';
+            select.style.borderRadius = '999px';
+            select.style.padding = '0.35rem 0.8rem';
+            select.style.cursor = 'pointer';
+            select.style.fontWeight = '600';
+            select.style.outline = 'none';
+            select.style.minWidth = '150px';
+            select.style.opacity = '1';
+            select.disabled = false;
+            // Theme-aware colors for readability
+            const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+            const applyTheme = () => {
+                const dark = mq && mq.matches;
+                if (dark) {
+                    select.style.background = '#27384a';
+                    select.style.borderColor = '#35506b';
+                    select.style.color = '#eaf6fb';
+                    select.style.boxShadow = '0 1px 6px rgba(0,0,0,0.30)';
+                } else {
+                    select.style.background = '#ffffff';
+                    select.style.borderColor = '#e9ecef';
+                    select.style.color = '#2c3e50';
+                    select.style.boxShadow = '0 1px 6px rgba(0,0,0,0.04)';
+                }
+            };
+            applyTheme();
+            if (mq && mq.addEventListener) {
+                mq.addEventListener('change', applyTheme);
+            } else if (mq && mq.addListener) {
+                // Safari fallback
+                mq.addListener(applyTheme);
+            }
+            // Focus/hover visual feedback via JS (theme-aware)
+            select.addEventListener('focus', () => {
+                const dark = mq && mq.matches;
+                select.style.borderColor = dark ? '#4a6a88' : '#3498db';
+                select.style.boxShadow = dark ? '0 0 0 3px rgba(74,106,136,0.35)' : '0 0 0 3px rgba(52,152,219,0.18)';
+            });
+            select.addEventListener('blur', () => applyTheme());
+            select.addEventListener('mouseover', () => {
+                const dark = mq && mq.matches;
+                select.style.borderColor = dark ? '#3f5a74' : '#d5dbe1';
+            });
+            select.addEventListener('mouseout', () => applyTheme());
             options.forEach(({ value, text }) => {
                 const opt = document.createElement('option');
                 opt.value = value;
@@ -1650,7 +1710,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Regular/Irregular filter
         const regularityGroup = createSelectGroup(
-            'Regular vs Irregular',
+            'Regular Vs Irregular',
             'regularity-filter',
             [
                 { value: 'all', text: 'All' },
@@ -1664,7 +1724,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Verb ending filter
         const endingGroup = createSelectGroup(
-            'Verb ending',
+            'Verb Ending',
             'ending-filter',
             [
                 { value: 'all', text: 'All' },
@@ -1831,14 +1891,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cardGenerationOptions.verbsWithSentencesOnly = e.target.checked;
         saveOptions();
         // Generate a new card immediately to reflect the filter change
-        /*if (e.target.checked) {
+        if (e.target.checked) {
             // When enabling the filter, get a new card that should have gap sentences
             hideAnswer();
             setTimeout(() => {
                 nextCard();
             }, 300);
         }
-            */
     });
 
     // --- Correct Dictation Next Question Toggle Logic ---
