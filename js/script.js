@@ -146,6 +146,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a unique list of verbs, keeping the first entry found for each infinitive.
     // This makes the app resilient to duplicate entries in the data files.
     const uniqueVerbs = Array.from(new Map(verbs.map(v => [v.infinitive, v])).values());
+    // Compute a classification category for each verb (e.g., "ir/venir-tenir", "er", "re/faire", "oir")
+    uniqueVerbs.forEach(v => {
+        try {
+            v.category = classifyFrenchVerb(v.infinitive);
+        } catch (e) {
+            v.category = 'unknown';
+        }
+    });
+    // All discovered categories for UI filters
+    const allVerbCategories = [...new Set(uniqueVerbs.map(v => v.category))].sort();
 
     // Dynamically determine frequency categories and their order from the data
     const allFrequencies = [...new Set(uniqueVerbs.map(v => v.frequency || 'common'))];
@@ -197,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const verbPronounEl = document.getElementById('verb-pronoun');
     const verbTenseEl = document.getElementById('verb-tense');
     const verbFrequencyEl = document.getElementById('verb-frequency');
+    const verbCategoryEl = document.getElementById('verb-category');
     const verbIrregularEl = document.getElementById('verb-irregular');
     const answerContainer = document.getElementById('answer-container');
     const conjugatedVerbEl = document.getElementById('conjugated-verb');
@@ -277,6 +288,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoBtn = document.getElementById('info-btn');
     const infoPanel = document.getElementById('info-panel');
 
+    // --- Stability: Safe Mode & Global Error Logging ---
+    // Enable Safe Mode by setting localStorage.setItem('safe-mode', 'true').
+    // It reduces potentially fragile features (speech, dictation) for older devices.
+    const SAFE_MODE = localStorage.getItem('safe-mode') === 'true';
+
+    function logGlobalError(source, message, extra) {
+        try {
+            const key = 'error-log';
+            const existing = JSON.parse(localStorage.getItem(key) || '[]');
+            const entry = {
+                ts: new Date().toISOString(),
+                source,
+                message: String(message || ''),
+                extra: extra ? {
+                    filename: extra.filename,
+                    lineno: extra.lineno,
+                    colno: extra.colno,
+                    stack: extra.stack
+                } : undefined,
+                ua: navigator.userAgent
+            };
+            existing.push(entry);
+            while (existing.length > 50) existing.shift();
+            localStorage.setItem(key, JSON.stringify(existing));
+        } catch (e) {
+            // Swallow logging errors to avoid cascading failures
+            console.warn('Error while logging error:', e);
+        }
+    }
+
+    // Capture synchronous errors
+    window.addEventListener('error', (e) => {
+        logGlobalError('error', e && e.message, {
+            filename: e && e.filename,
+            lineno: e && e.lineno,
+            colno: e && e.colno,
+            stack: e && e.error && (e.error.stack || e.error.toString())
+        });
+    });
+    // Capture unhandled promise rejections
+    window.addEventListener('unhandledrejection', (e) => {
+        const reason = e && e.reason;
+        logGlobalError('unhandledrejection', reason && (reason.message || reason.toString()), {
+            stack: reason && reason.stack
+        });
+    });
+
     // --- Dictation (Speech Recognition) ---
     const dictateBtn = document.getElementById('dictate-btn');
     let recognition = null;
@@ -289,6 +347,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // function hideDictationOverlay() {...}
 
     function setupDictation() {
+        // In Safe Mode, proactively disable dictation (more crash-prone on some devices)
+        if (SAFE_MODE) {
+            if (dictateBtn) dictateBtn.disabled = true;
+            return;
+        }
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
             if (dictateBtn) dictateBtn.disabled = true;
             return;
@@ -608,6 +671,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // New filters
         regularityFilter: 'all', // 'all' | 'regular' | 'irregular'
         endingFilter: 'all',     // 'all' | 'er' | 'ir' | 're' | 'other'
+        categoryFilter: 'all',   // 'all' | one of classifyFrenchVerb categories
+        // TODO(Filter): Consider allowing multiple categories (multi-select) and store as array.
     };
 
     // --- Local Storage for Options ---
@@ -652,15 +717,269 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof savedOptions.endingFilter === 'string') {
                     cardGenerationOptions.endingFilter = savedOptions.endingFilter;
                 }
+                if (typeof savedOptions.categoryFilter === 'string') {
+                    cardGenerationOptions.categoryFilter = savedOptions.categoryFilter;
+                }
             }
         } catch (e) {
             console.warn("Could not load options from localStorage:", e);
         }
     };
+
+
+    // French verb classifier → returns a string like "ir/venir-tenir" or "er".
+// Policy: all -oir verbs collapse to "oir" (no subcategories).
+
+    function classifyFrenchVerb(input) {
+        if (!input) return "unknown";
+
+        // --- normalize: lowercase, trim, strip reflexive "se/s' ", remove diacritics ---
+        let verb = input.trim().toLowerCase();
+        verb = verb.replace(/^(se\s+|s')/, ""); // se tenir, s'enfuir, etc.
+        const stripDiacritics = s =>
+            s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const v = stripDiacritics(verb);
+
+        // quick guard on endings (we only handle canonical infinitives)
+        const ends = suf => v.endsWith(suf);
+        const reEnds = re => re.test(v);
+
+        // --- exact truly-standalone irregulars (one-offs) ---
+        const exact = {
+            // auxiliaries
+            "etre": "other/etre",
+            "avoir": "other/avoir",
+
+            // oddballs that don't fit neat suffix rules
+            "aller": "er/aller",          // only major irregular -er
+            "faire": "re/faire",
+            "dire": "re/dire",
+            "lire": "re/lire",
+            "ecrire": "re/ecrire",
+            "plaire": "re/plaire",
+            "taire": "re/taire",
+            "traire": "re/traire",
+
+            // rare/defective but worth catching
+            "clore": "re/clore",
+            "enclore": "re/clore",
+            "declore": "re/clore",  // historical/rare
+        };
+        if (exact[v]) return exact[v];
+
+        // --- –OIR family: collapse to "oir" by policy ---
+        // IMPORTANT: only match pure -oir, not -oire (e.g., "boire" is NOT oir).
+        if (reEnds(/oir$/)) return "oir";
+
+        // --- –IR families (irregular third-group –ir) ---
+
+        // venir / tenir and their derivatives
+        if (reEnds(/(?:venir|tenir)$/)) return "ir/venir-tenir";
+        if (reEnds(/(?:devenir|revenir|survenir|convenir|intervenir|prevenir|souvenir)$/)) return "ir/venir-tenir";
+        if (reEnds(/(?:obtenir|retenir|appartenir|contenir|entretenir|maintenir|soutenir)$/)) return "ir/venir-tenir";
+
+        // quérir family (acquérir, conquérir, requérir…)
+        if (reEnds(/querir$/)) return "ir/querir";
+
+        // ouvrir/offrir/couvrir/souffrir/cueillir families (llir / vrir / frir behave like -er in the present)
+        if (reEnds(/(?:llir|vrir|frir)$/)) return "ir/llir-vrir-frir";
+
+        // short-stem drop in singular: dormir/partir/sortir/servir/sentir/mentir (+ prefixed forms)
+        if (reEnds(/(?:dormir|partir|sortir|servir|sentir|mentir)$/)) return "ir/short-stem";
+        if (reEnds(/(?:redormir|endormir|repartir|departir|ressortir|desservir|pressentir|resentir|démentir|rementir)$/)) return "ir/short-stem";
+
+        // courir (+ derivatives)
+        if (reEnds(/courir$/) || reEnds(/(?:accourir|parcourir|secourir|recourir)$/)) return "ir/courir";
+
+        // fuir (+ derivatives)
+        if (reEnds(/fuir$/) || reEnds(/(?:refuir|enfuir)$/)) return "ir/fuir";
+
+        // mourir
+        if (reEnds(/mourir$/)) return "ir/mourir";
+
+        // bouillir
+        if (reEnds(/bouillir$/)) return "ir/bouillir";
+
+        // vetir (vêtir) + revêtir, dévêtir
+        if (reEnds(/vetir$/) || reEnds(/(?:revetir|devetir)$/)) return "ir/vetir";
+
+        // haïr (hair after strip) — double-stem (haï- / haïss-)
+        if (reEnds(/hair$/)) return "ir/hair";
+
+        // assaillir / saillir / tressaillir
+        if (reEnds(/(?:assaillir|saillir|tressaillir)$/)) return "ir/saillir";
+
+        // faillir
+        if (reEnds(/faillir$/)) return "ir/faillir";
+
+        // maudire (quirky –ir)
+        if (reEnds(/maudire$/)) return "ir/maudire";
+
+        // ouïr (ouir) archaic
+        if (reEnds(/ouir$/)) return "ir/ouir";
+
+        // default regular –ir (2nd group) if nothing above matched
+        if (ends("ir")) return "ir";
+
+        // --- –RE families (vowel+re and consonant+re sets) ---
+
+        // prendre family (reprendre, apprendre, comprendre, surprendre…)
+        if (reEnds(/prendre$/) || reEnds(/(?:reprendre|apprendre|comprendre|surprendre|meprendre|meprendre)$/)) return "re/prendre";
+
+        // mettre family (permettre, soumettre, remettre, transmettre…)
+        if (reEnds(/mettre$/) || reEnds(/(?:permettre|soumettre|remettre|transmettre|promettre|admettre|omettre|commettre|submettre)$/)) return "re/mettre";
+
+        // battre family (abattre, combattre, débattre…)
+        if (reEnds(/battre$/) || reEnds(/(?:abattre|combattre|debattre|rebattre)$/)) return "re/battre";
+
+        // rompre family (corrompre, interrompre…)
+        if (reEnds(/rompre$/) || reEnds(/(?:corrompre|interrompre)$/)) return "re/rompre";
+
+        // vaincre / convaincre
+        if (reEnds(/(?:vaincre|convaincre)$/)) return "re/vaincre";
+
+        // -indre / -aindre / -eindre / -oindre (craindre, peindre, joindre…)
+        if (reEnds(/(?:indre|aindre|eindre|oindre)$/)) return "re/indre";
+
+        // -soudre (resoudre, dissoudre, absoudre…)
+        if (reEnds(/soudre$/)) return "re/soudre";
+
+        // -uire (conduire, produire, traduire, cuire…)
+        if (reEnds(/uire$/)) return "re/uire";
+
+        // -aître / -aitre (connaître, naître, paraître…); also -oître/-oitre (croître)
+        if (reEnds(/(?:aitre|aitre)$/) || reEnds(/(?:oitre|oitre)$/)) return "re/aitre";
+
+        // boire, croire (NOTE: they end with -re; do not confuse with -oir)
+        if (reEnds(/boire$/)) return "re/boire";
+        if (reEnds(/croire$/)) return "re/croire";
+
+        // rire / sourire
+        if (reEnds(/(?:rire|sourire)$/)) return "re/rire";
+
+        // suivre (+ poursuivre)
+        if (reEnds(/suivre$/) || reEnds(/poursuivre$/)) return "re/suivre";
+
+        // vivre (+ revivre, survivre)
+        if (reEnds(/vivre$/) || reEnds(/(?:revivre|survivre)$/)) return "re/vivre";
+
+        // dire derivatives (redire, contredire, prédire…)
+        if (reEnds(/(?:redire|contredire|predire)$/)) return "re/dire";
+
+        // ecrire derivatives (decrire, inscrire, prescrire…)
+        if (reEnds(/(?:decrire|inscrire|prescrire|recrire|transcrire|souscrire)$/)) return "re/ecrire";
+
+        // plaire derivatives (deplaire)
+        if (reEnds(/deplaire$/)) return "re/plaire";
+
+        // faire derivatives (satisfaire, contrefaire, défaire…)
+        if (reEnds(/(?:satisfaire|contrefaire|defaire|refaire)$/)) return "re/faire";
+
+        // default –re
+        if (ends("re")) return "re";
+
+        // --- default –er (regular) ---
+        if (ends("er")) return "er";
+
+        return "unknown";
+    }
+
+    // --- quick sanity checks ---
+    // console.log(classifyFrenchVerb("parler"));      // "er"
+    // console.log(classifyFrenchVerb("aller"));       // "er/aller"
+    // console.log(classifyFrenchVerb("venir"));       // "ir/venir-tenir"
+    // console.log(classifyFrenchVerb("devenir"));     // "ir/venir-tenir"
+    // console.log(classifyFrenchVerb("ouvrir"));      // "ir/llir-vrir-frir"
+    // console.log(classifyFrenchVerb("dormir"));      // "ir/short-stem"
+    // console.log(classifyFrenchVerb("maudire"));     // "ir/maudire"
+    // console.log(classifyFrenchVerb("pouvoir"));     // "oir"
+    // console.log(classifyFrenchVerb("boire"));       // "re/boire"
+    // console.log(classifyFrenchVerb("prendre"));     // "re/prendre"
+    // console.log(classifyFrenchVerb("croître"));     // "re/aitre"
+    // console.log(classifyFrenchVerb("s'enfuir"));    // "ir/fuir"
+
+    // --- Helper: Compute how many verbs are currently "in play" ---
+    // Criteria: verb belongs to a frequency group with non-zero weight AND passes regularity/ending filters
+    // and, if enabled, has practice sentences (gap_sentence) in at least one enabled tense.
+    const computeActiveVerbPoolCount = () => {
+        try {
+            const {
+                frequencyWeights = {},
+                regularityFilter = 'all',
+                endingFilter = 'all',
+                categoryFilter = 'all',
+                verbsWithSentencesOnly = false,
+                tenseWeights = {}
+            } = cardGenerationOptions || {};
+
+            const activeFrequencies = new Set(
+                Object.entries(frequencyWeights)
+                    .filter(([, w]) => (w || 0) > 0)
+                    .map(([f]) => f)
+            );
+            if (activeFrequencies.size === 0) return 0;
+
+            const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
+            const getEnding = (inf) => {
+                if (inf.endsWith('er')) return 'er';
+                if (inf.endsWith('ir')) return 'ir';
+                if (inf.endsWith('re')) return 're';
+                return 'other';
+            };
+            const passesFilters = (verbInfo) => {
+                if (regularityFilter === 'regular' && isIrregular(verbInfo.infinitive)) return false;
+                if (regularityFilter === 'irregular' && !isIrregular(verbInfo.infinitive)) return false;
+                const end = getEnding(verbInfo.infinitive);
+                if (endingFilter !== 'all' && end !== endingFilter) return false;
+                if (categoryFilter !== 'all') {
+                    const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
+                    if (cat !== categoryFilter) return false;
+                }
+                return true;
+            };
+            const hasPracticeSentences = (inf) => {
+                // If the sentences-only filter is OFF, don't exclude any verbs based on sentences
+                if (!verbsWithSentencesOnly) return true;
+                const verbPhrases = phrasebook[inf];
+                if (!verbPhrases) return false;
+                for (const tenseName in tenseWeights) {
+                    if ((tenseWeights[tenseName] || 0) <= 0) continue;
+                    const phraseKey = tenseKeyToPhraseKey[tenseName];
+                    const tenseArr = verbPhrases && verbPhrases[phraseKey];
+                    if (!Array.isArray(tenseArr)) continue;
+                    if (tenseArr.some(p => p && p.gap_sentence)) return true;
+                }
+                return false;
+            };
+
+            let count = 0;
+            for (const v of uniqueVerbs) {
+                const freq = v.frequency || 'common';
+                if (!activeFrequencies.has(freq)) continue;
+                if (!passesFilters(v)) continue;
+                if (!hasPracticeSentences(v.infinitive)) continue;
+                count++;
+            }
+            return count;
+        } catch (err) {
+            console.warn('computeActiveVerbPoolCount error:', err);
+            return 0;
+        }
+    };
+
+    // Update the count label in the Options -> Verb filters section if present
+    const updateVerbFiltersCountLabel = () => {
+        const el = document.getElementById('verb-filters-count');
+        if (!el) return;
+        const n = computeActiveVerbPoolCount();
+        el.textContent = `In play: ${n} verbs`;
+    };
     // --- Audio Synthesis ---
     // Use generic speechLang for speech synthesis, and allow user-selected voice
     const synth = window.speechSynthesis;
     const speak = (text) => {
+        // In Safe Mode, avoid invoking speech synthesis on potentially fragile devices
+        if (SAFE_MODE) return;
         // Replace placeholders with "blanc" for speech
         const textToSpeak = prepareTextForSpeech(text);
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
@@ -777,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ...existing verb card logic...
-        const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = 'all', endingFilter = 'all' } = options;
+    const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = 'all', endingFilter = 'all', categoryFilter = 'all' } = options;
 
         // Helpers for filters
         const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
@@ -794,6 +1113,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ending
             const end = getEnding(verbInfo.infinitive);
             if (endingFilter !== 'all' && end !== endingFilter) return false;
+            // Category
+            if (categoryFilter !== 'all') {
+                const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
+                if (cat !== categoryFilter) return false;
+            }
             return true;
         };
 
@@ -1005,6 +1329,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (verbPronounEl) { verbPronounEl.textContent = ''; verbPronounEl.style.display = 'none'; }
             if (verbTenseEl) { verbTenseEl.textContent = ''; verbTenseEl.style.display = 'none'; }
             if (verbFrequencyEl) { verbFrequencyEl.textContent = ''; verbFrequencyEl.style.display = 'none'; }
+            if (verbCategoryEl) { verbCategoryEl.textContent = ''; verbCategoryEl.style.display = 'none'; }
             if (verbIrregularEl) { verbIrregularEl.style.display = 'none'; }
             if (conjugatedVerbEl) { conjugatedVerbEl.textContent = ''; conjugatedVerbEl.style.display = 'none'; }
             // Clear phrase containers
@@ -1063,6 +1388,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (verbPronounEl) { verbPronounEl.style.display = ''; }
             if (verbTenseEl) { verbTenseEl.style.display = ''; }
             if (verbFrequencyEl) { verbFrequencyEl.style.display = ''; }
+            if (verbCategoryEl) { verbCategoryEl.style.display = ''; }
             if (verbIrregularEl) { verbIrregularEl.style.display = ''; }
             if (conjugatedVerbEl) { conjugatedVerbEl.style.display = ''; }
         }
@@ -1102,6 +1428,14 @@ document.addEventListener('DOMContentLoaded', () => {
         verbFrequencyEl.textContent = frequencyText;
         verbFrequencyEl.className = 'meta-info frequency-tag';
         verbFrequencyEl.classList.add(verbFrequency.replace(/\s+/g, '-'));
+        // Set verb category (classification)
+        if (verbCategoryEl) {
+            const category = (card.verb && card.verb.category) ? card.verb.category : classifyFrenchVerb(card.verb.infinitive);
+            verbCategoryEl.textContent = category;
+            verbCategoryEl.className = 'meta-info category-tag';
+            // TODO(UI): Color-code category-tag by high-level family (er/ir/re/oir) for quick scanning.
+            // Example: parse prefix before '/' and add CSS class like 'cat-er', 'cat-ir', etc.
+        }
         const isIrregular = IRREGULAR_VERBS.has(card.verb.infinitive);
         if (isIrregular) {
             verbIrregularEl.style.display = 'block';
@@ -1417,6 +1751,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const normalizedFilter = removeAccents(filter.toLowerCase());
         const filteredVerbs = uniqueVerbs.filter(v => removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter));
         const groups = groupVerbsByFrequency(filteredVerbs);
+
+        // TODO(Explorer): Add a category chip next to each verb (use verb.category) and consider an Explorer-level
+        // category filter (single-select aligned with Options) to narrow the list. Keep search and Active-only in sync.
         
         // Create labels by capitalizing frequency names
         const freqLabels = {};
@@ -1467,6 +1804,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="infinitive tappable-audio" data-speak="${verb.infinitive}">${verb.infinitive}</span>
             <p class="translation">${verb.translation}</p>
         `;
+        // TODO(Detail): Show verb.category in the header (chip next to infinitive) and make it clickable to filter Explorer
+        // by this category (navigates back to list with category pre-selected).
         verbDetailContainer.appendChild(header);
 
         Object.keys(tenses).forEach(tenseName => {
@@ -1590,8 +1929,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 sliderValue.textContent = newValue;
                 cardGenerationOptions[weightType][e.target.dataset.key] = newValue;
                 saveOptions();
-
-                
+                // Update in-play count live when any weights move (frequency or tense)
+                updateVerbFiltersCountLabel();
             });
 
             sliderGroup.appendChild(label);
@@ -1701,6 +2040,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Restore original behavior: always advance to show effect immediately
                 // hideAnswer();
                 // setTimeout(() => nextCard(), 300);
+                updateVerbFiltersCountLabel();
             });
 
             group.appendChild(label);
@@ -1736,10 +2076,38 @@ document.addEventListener('DOMContentLoaded', () => {
             cardGenerationOptions.endingFilter,
             (val) => { cardGenerationOptions.endingFilter = val; }
         );
-        filtersSection.appendChild(endingGroup);
+    filtersSection.appendChild(endingGroup);
+
+    // Verb category filter (from classifyFrenchVerb)
+    /*const categoryOptions = [{ value: 'all', text: 'All categories' }].concat(
+        (allVerbCategories || []).map(c => ({ value: c, text: c }))
+    );
+    const categoryGroup = createSelectGroup(
+        'Verb Category',
+        'category-filter',
+        categoryOptions,
+        cardGenerationOptions.categoryFilter || 'all',
+        (val) => { cardGenerationOptions.categoryFilter = val; }
+    );
+    filtersSection.appendChild(categoryGroup);
+    */
+
+    // Informative count under filters
+    const countEl = document.createElement('div');
+    countEl.id = 'verb-filters-count';
+    countEl.style.marginTop = '0.6rem';
+    countEl.style.fontSize = '0.95rem';
+    countEl.style.fontWeight = '600';
+    countEl.style.color = 'var(--text-muted, #6c757d)';
+    countEl.textContent = 'In play: …';
+    // TODO(UX): If Explorer gets a category filter, consider mirroring that state here or vice versa,
+    // so the "In play" count and list feel consistent.
+    filtersSection.appendChild(countEl);
 
         frequencyWeightsContainer.appendChild(filtersSection);
         
+        // Initial count render
+        updateVerbFiltersCountLabel();
     };
 
     // --- Event Listeners ---
@@ -1898,6 +2266,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 nextCard();
             }, 300);
         }
+        // Update the options filters count label if visible
+        updateVerbFiltersCountLabel();
     });
 
     // --- Correct Dictation Next Question Toggle Logic ---
@@ -2586,6 +2956,9 @@ function applyConfigToUI(config) {
       if (el) el.checked = config[key];
     }
   });
+
+    // Update the Verb filters count label if present
+    updateVerbFiltersCountLabel();
 }
 
 
