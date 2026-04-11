@@ -1070,6 +1070,7 @@
     // Singular: allé→allée, parti→partie, venu→venue, mort→morte, né→née
     // Plural:   allés→allées, partis→parties, venus→venues, morts→mortes
     function feminizeParticiple(parts, pronoun) {
+        if (parts.length < 3) return parts;
         const pp = parts[parts.length - 1];
         if (pronoun === 'elle') {
             if (!pp.endsWith('e')) parts[parts.length - 1] = pp + 'e';
