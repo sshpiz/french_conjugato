@@ -381,6 +381,10 @@ body {
     background: #eaf6fb;
 }
 
+#info-btn { display: none !important; }
+
+.all-phrases-section { display: none !important; }
+
 #info-panel {
     position: fixed !important;
     top: 50% !important;
@@ -480,7 +484,7 @@ body {
 /* Phantom spacer mirrors the book icon width so verb h1 is truly centered */
 .infinitive-line::before {
     content: '';
-    width: 32px;
+    width: 44px;
     flex-shrink: 0;
 }
 
@@ -492,7 +496,7 @@ body {
 
 /* Smaller, not bold, translation font for flashcard */
 #verb-translation {
-  font-size: 1.4rem;
+  font-size: calc(1.4rem * var(--font-scale, 1));
   font-weight: 800;
   color: var(--meta-color);
   margin-top: 0.2rem;
@@ -524,7 +528,7 @@ body {
 }
 
 .card-content-before h1 {
-    font-size: 3rem;
+    font-size: calc(3rem * var(--font-scale, 1));
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
@@ -613,7 +617,7 @@ body {
 }
 
 #conjugated-verb {
-    font-size: 2.5rem;
+    font-size: calc(2.5rem * var(--font-scale, 1));
     color: var(--accent-color);
     font-weight: 600;
 }
@@ -840,6 +844,66 @@ body {
     font-weight: 600;
     color: var(--accent-color);
     cursor: pointer;
+}
+
+.back-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none !important;
+    border: none !important;
+    padding: 0.25rem !important;
+    color: var(--accent-color) !important;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+}
+.back-nav-btn:active { opacity: 0.6; }
+
+.options-header-spacer {
+    width: 30px;
+    flex-shrink: 0;
+}
+
+/* About section */
+.about-row-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+}
+.about-row-btn svg { color: var(--meta-color); flex-shrink: 0; }
+
+.about-panel {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-color);
+}
+.about-tagline {
+    margin: 0 0 0.75rem;
+    color: var(--meta-color);
+    font-size: 0.9rem;
+}
+.about-features {
+    margin: 0 0 0.75rem;
+    padding-left: 1.2rem;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+.about-footer {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--meta-color);
+    font-style: italic;
 }
 
 #options-container {
@@ -1115,6 +1179,15 @@ body {
 #go-to-verb-btn:active, #go-to-verb-btn-2:active {
   background: #d0e6f7;
 }
+#go-to-verb-btn svg {
+  width: 36px;
+  height: 33px;
+  display: block;
+}
+#go-to-verb-btn {
+  margin-left: 22px !important;
+  padding: 0.25em 0.6em !important;
+}
 
 /* Pronoun and tense below infinitive */
 .meta-container {
@@ -1265,6 +1338,7 @@ body {
   padding: 0.6rem 1.2rem 0.8rem !important;
   gap: 0 !important;
   justify-content: flex-start !important;
+  overflow: hidden !important;
 }
 
 /* Progress row: slim, stays at top */
@@ -1299,14 +1373,17 @@ body {
   margin: 0.4rem 0 0;
 }
 
-/* Answer container: un-absolute within the flex layout */
+/* Answer container: grows to fill phrase-container so nugget can scroll */
 #answer-container {
   position: static !important;
   top: auto !important;
   min-height: 0 !important;
-  flex: 0 0 auto !important;
+  flex: 1 1 auto !important;
   width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
+  overflow: hidden !important;
 }
 
 /* Answer/phrase area: fills remaining space, answer pinned near top-center */
@@ -1314,14 +1391,16 @@ body {
   position: static !important;
   top: auto !important;
   order: 4 !important;
-  flex: 1 1 0 !important;
+  flex: 1 1 auto !important;
   min-height: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
-  align-items: center !important;
+  align-items: stretch !important;
   width: 100% !important;
   padding-top: 0.4rem !important;
+  overflow: hidden !important;
+  min-height: 0 !important;
 }
 
 /* Thin rule above the whole answer+sentence block */
@@ -1338,7 +1417,7 @@ body {
 
 /* Answer text sizing */
 #conjugated-verb {
-  font-size: 2.2rem !important;
+  font-size: calc(2.2rem * var(--font-scale, 1)) !important;
   line-height: 1.2;
   margin-bottom: 1.1rem !important;
 }
@@ -1789,4 +1868,330 @@ body {
 .freq-step-btn:hover {
   opacity: 0.75;
   border-color: var(--accent-color);
+}
+
+
+/* ── Verb usage nugget ───────────────────────────────────── */
+#usage-nugget {
+  margin-top: 0.9rem;
+  padding: 0.65rem 0.4rem;
+  max-width: 100%;
+}
+#usage-pattern {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 0.3rem;
+}
+#usage-example-fr {
+  margin: 0.2rem 0 0.15rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+#usage-example-en {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--meta-color);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── Font size slider ────────────────────────────────────── */
+.font-size-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.font-size-label {
+  font-size: 0.7rem;
+  color: var(--meta-color);
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+}
+.font-size-label.large { font-size: 1.1rem; }
+#font-size-slider {
+  width: 90px;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+/* ── Preset badge ─── removed from card view ─────────────── */
+#preset-badge {
+  display: none !important;
+  align-items: center;
+  gap: 0.25em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--meta-color);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 2em;
+  padding: 0.18em 0.55em;
+  opacity: 0.75;
+}
+.preset-badge-icon { font-size: 0.85em; line-height: 1; }
+.preset-badge-name { letter-spacing: 0.01em; }
+
+/* ── Usage nugget ────────────────────────────────────────── */
+#usage-nugget {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+.usage-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3em 0.5em;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+  line-height: 1.4;
+}
+.usage-item:last-child { border-bottom: none; }
+.usage-pattern {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.usage-fr {
+  font-size: 0.88rem;
+  color: var(--text-color);
+  font-style: italic;
+}
+.usage-en {
+  font-size: 0.78rem;
+  color: var(--meta-color);
+}
+.usage-en::before { content: "· "; }
+
+.verb-usages-detail-section {
+  margin-top: 2.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.verb-usages-heading {
+  margin: 0 0 0.85rem;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.verb-usages-detail-section .usage-item {
+  padding: 0.65rem 0;
+}
+
+/* ── Theme overrides via data-theme on <html> ───────────── */
+/* Force dark (overrides light system preference)            */
+html[data-theme="dark"] {
+  --primary-bg: #181c1f;
+  --card-bg: #23272b;
+  --text-color: #f4f7f9;
+  --accent-color: #6ec6ff;
+  --meta-color: #b0b8c1;
+  --border-color: #2c3136;
+  --shadow: 0 4px 15px rgba(0,0,0,0.32);
+  --tense-present: #2e7d5b;
+  --tense-passe-compose: #b77b3a;
+  --tense-imparfait: #5c5a7e;
+  --tense-futur-simple: #357ca5;
+  --tense-plus-que-parfait: #a24d6a;
+  --tense-subjonctif-present: #6b3e8a;
+  --tense-conditionnel-present: #7ea24d;
+  color-scheme: dark;
+}
+html[data-theme="dark"] body {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+}
+/* Element-level dark rules (mirrors @media prefers-color-scheme: dark) */
+html[data-theme="dark"] .tense-present            { color: #ccf5e3 !important; }
+html[data-theme="dark"] .tense-passeCompose       { color: #442a0d !important; }
+html[data-theme="dark"] .tense-imparfait          { color: #d6d5ec !important; }
+html[data-theme="dark"] .tense-futurSimple        { color: #cbe6f6 !important; }
+html[data-theme="dark"] .tense-plusQueParfait     { color: #3e1422 !important; }
+html[data-theme="dark"] .tense-subjonctifPresent  { color: #e4cff2 !important; }
+html[data-theme="dark"] .tense-conditionnelPresent { color: #2c3e14 !important; }
+html[data-theme="dark"] #verb-detail-container,
+html[data-theme="dark"] #options-container,
+html[data-theme="dark"] .mnemonic-card,
+html[data-theme="dark"] #verb-list-container {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: var(--shadow);
+}
+html[data-theme="dark"] .tab-button { border-color: var(--accent-color); color: var(--accent-color); }
+html[data-theme="dark"] .tab-button.active { background: var(--accent-color); color: #181c1f; }
+html[data-theme="dark"] .mnemonic-card { background: linear-gradient(120deg, #23272b 60%, #181c1f 100%) !important; }
+html[data-theme="dark"] .meta-info,
+html[data-theme="dark"] .frequency-tag { background: #23272b !important; color: var(--meta-color) !important; }
+html[data-theme="dark"] .highlight { background-color: #b77b3a44 !important; }
+html[data-theme="dark"] #info-panel { background: #23272b !important; color: var(--text-color) !important; border-color: var(--border-color) !important; }
+html[data-theme="dark"] #flashcard { background: linear-gradient(170deg, #141c26 0%, #0e1520 100%); }
+html[data-theme="dark"] .toggle-switch .toggle-label { background-color: #1a242a; border-radius: 999px; }
+html[data-theme="dark"] .toggle-switch .toggle-label::before { background-color: #fefefe; box-shadow: 0 1px 3px rgba(0,0,0,0.6); }
+html[data-theme="dark"] #autosay-toggle-btn { background: #23272b; color: #6ec6ff; border: 1.5px solid #444a55; }
+html[data-theme="dark"] #autosay-toggle-btn.autosay-on { background: #1e3a2a; color: #6ef6a0; border-color: #6ef6a0; }
+html[data-theme="dark"] #autosay-toggle-btn.autosay-off { background: #2a2323; color: #ff8a8a; border-color: #ff8a8a; }
+html[data-theme="dark"] #english-verb-infinitive { color: #f7fafc !important; text-shadow: 0 2px 8px #000a, 0 1px 2px #0006; font-weight: 800; }
+html[data-theme="dark"] #english-verb-translation { color: #b0b8c1 !important; font-weight: 400; }
+html[data-theme="dark"] #go-to-verb-btn-container { background: var(--primary-bg); border-top-color: var(--border-color); }
+html[data-theme="dark"] #go-to-verb-btn { background: var(--card-bg) !important; color: var(--meta-color) !important; border: 1px solid var(--border-color) !important; }
+html[data-theme="dark"] #conjugated-verb,
+html[data-theme="dark"] .conjugated-line h2 { color: #f0f5fa !important; text-shadow: none !important; }
+html[data-theme="dark"] .verb-phrase,
+html[data-theme="dark"] #verb-phrase { color: #8898b0 !important; }
+html[data-theme="dark"] .tense-weight-pill { opacity: 0.55; border-color: rgba(255,255,255,0.18); color: #c8d8e8; }
+html[data-theme="dark"] .tense-weight-pill.active { opacity: 1; border-color: transparent; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-present           { color: #ccf5e3; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-passeCompose      { color: #442a0d; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-imparfait         { color: #d6d5ec; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+html[data-theme="dark"] .styled-select { background-color: var(--card-bg); border-color: var(--border-color); }
+html[data-theme="dark"] .action-icon-btn { box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+html[data-theme="dark"] .option-group > label,
+html[data-theme="dark"] .option-group h3,
+html[data-theme="dark"] .slider-group label { color: #b0b8c1 !important; }
+html[data-theme="dark"] .slider-group .slider-value { color: #6ec6ff !important; }
+
+/* Force light (overrides dark system preference)            */
+html[data-theme="light"] {
+  --primary-bg: #f4f7f9 !important;
+  --card-bg: #ffffff !important;
+  --text-color: #2c3e50 !important;
+  --accent-color: #3498db !important;
+  --meta-color: #2f3c3d !important;
+  --border-color: #e0e6ed !important;
+  --shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+  --tense-present: #b3d8c5 !important;
+  --tense-passe-compose: #f7d6b2 !important;
+  --tense-imparfait: #c9c7e8 !important;
+  --tense-futur-simple: #b2d6f7 !important;
+  --tense-plus-que-parfait: #f7b2c7 !important;
+  --tense-subjonctif-present: #d4c5e8 !important;
+  --tense-conditionnel-present: #d6e8c7 !important;
+  color-scheme: light;
+}
+html[data-theme="light"] body {
+  background-color: var(--primary-bg) !important;
+  color: var(--text-color) !important;
+}
+/* Override dark-mode media-query hardcoded values when forcing light */
+html[data-theme="light"] #flashcard {
+  background: linear-gradient(170deg, #f0f4f8 0%, #e8ecf0 100%) !important;
+}
+html[data-theme="light"] .mnemonic-card {
+  background: linear-gradient(120deg, #f4f7f9 60%, #e8edf2 100%) !important;
+}
+html[data-theme="light"] .meta-info,
+html[data-theme="light"] .frequency-tag {
+  background: #e8edf2 !important;
+  color: var(--meta-color) !important;
+}
+html[data-theme="light"] .highlight {
+  background-color: rgba(52,152,219,0.15) !important;
+}
+html[data-theme="light"] #info-panel,
+html[data-theme="light"] #verb-detail-container,
+html[data-theme="light"] #options-container,
+html[data-theme="light"] #verb-list-container {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: var(--shadow) !important;
+}
+html[data-theme="light"] .tab-button.active {
+  color: #fff !important;
+}
+html[data-theme="light"] .infinitive-line h1,
+html[data-theme="light"] #verb-infinitive {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] #conjugated-verb,
+html[data-theme="light"] .conjugated-line h2 {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .verb-phrase,
+html[data-theme="light"] #verb-phrase {
+  color: var(--meta-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] #go-to-verb-btn {
+  background: #eaf0f5 !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+}
+html[data-theme="light"] .navigation {
+  background: #ffffff !important;
+  border-top: 1px solid #e0e6ed !important;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.05) !important;
+}
+html[data-theme="light"] .navigation button {
+  background-color: #f4f7f9 !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .navigation button:hover {
+  background-color: #e0e6ed !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .tense-present            { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-passeCompose       { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-imparfait          { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-futurSimple        { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-plusQueParfait     { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-subjonctifPresent  { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-conditionnelPresent { color: #2c3e50 !important; }
+html[data-theme="light"] .toggle-switch .toggle-label {
+  background-color: #cdd4da !important;
+}
+html[data-theme="light"] .toggle-switch .toggle-input:checked + .toggle-label {
+  background-color: #f39c12 !important;
+}
+html[data-theme="light"] #autosay-toggle-btn {
+  background: #eaf6fb !important;
+  color: #3498db !important;
+  border: 1.5px solid #b0b8c1 !important;
+}
+html[data-theme="light"] #autosay-toggle-btn.autosay-on {
+  background: #d1f5e0 !important;
+  color: #218c4a !important;
+  border-color: #218c4a !important;
+}
+html[data-theme="light"] #autosay-toggle-btn.autosay-off {
+  background: #f7eaea !important;
+  color: #b03a2e !important;
+  border-color: #b03a2e !important;
+}
+html[data-theme="light"] .option-group > label,
+html[data-theme="light"] .option-group h3,
+html[data-theme="light"] .slider-group label {
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .styled-select {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] #english-verb-infinitive {
+  color: var(--accent-color) !important;
+}
+html[data-theme="light"] #go-to-verb-btn-container button {
+  background: #f4f7f9 !important;
+  color: var(--text-color) !important;
 }

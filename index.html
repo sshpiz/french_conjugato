@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Apply saved theme before CSS loads to prevent flash -->
+    <script>
+      (function(){
+        var m = localStorage.getItem('themeMode') || 'system';
+        if (m === 'dark')  document.documentElement.setAttribute('data-theme','dark');
+        if (m === 'light') document.documentElement.setAttribute('data-theme','light');
+      })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
     <title>LesVerbes</title>
@@ -18,8 +26,8 @@
     <link rel="apple-touch-icon" href="favicon_big.png">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon_big.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css?v=20260411a">
-    <link rel="stylesheet" href="css/dictate-btn.css?v=20260411a">
+    <link rel="stylesheet" href="css/style.css?v=20260411b">
+    <link rel="stylesheet" href="css/dictate-btn.css?v=20260411b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -562,7 +570,14 @@
                         <h1 id="verb-infinitive" tabindex="0" role="button" aria-label="Hear infinitive" title="Tap to hear" class="tappable-audio"></h1>
                         <!-- Book icon: go to verb detail, inline with verb -->
                         <button id="go-to-verb-btn" class="verb-detail-book-btn" title="Go to verb detail">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                          <svg viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- open book -->
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            <!-- magnifying glass overlaid bottom-right -->
+                            <circle cx="19.5" cy="17.5" r="3" stroke-width="1.7"/>
+                            <line x1="21.6" y1="19.6" x2="24" y2="22" stroke-width="1.9"/>
+                          </svg>
                         </button>
                     </div>
                     
@@ -592,6 +607,9 @@
                     <p id="verb-tense" class="meta-info"></p>
                 </div>
 
+                <!-- Preset badge -->
+                <div id="preset-badge"></div>
+
                 <!-- english-btn kept in DOM for JS, hidden -->
                 <button id="english-btn" title="Show English translation (hold)" style="display:none;"></button>
 
@@ -615,9 +633,12 @@
                             <!-- Remove tip for conjugated verb -->
                             <h2 id="conjugated-verb" tabindex="0" role="button" aria-label="Hear conjugation" title="Tap to hear" class="tappable-audio"></h2>
                         </div>
-                        <!-- Answer phrase (shows after answer reveal) -->
-                        <p id="verb-phrase" class="verb-phrase"></p>
-                        
+                        <!-- Usage nugget: replaces old example sentence. Falls back to phrasebook sentence if no usage data. -->
+                        <div id="usage-nugget" style="display:none"></div>
+
+                        <!-- verb-phrase kept in DOM for JS references, never shown -->
+                        <p id="verb-phrase" style="display:none"></p>
+
                         <!-- Hidden English phrase -->
                         <p id="english-verb-phrase" class="verb-phrase" style="display: none;"></p>
                     </div>
@@ -687,40 +708,12 @@
 
         <!-- View 4: Options -->
         <div id="options-view" class="hidden">
-            <button id="back-to-flashcard-from-options-btn" class="back-link-btn">← Back</button>
-            <button id="info-btn" aria-label="Info" title="About this app" style="float:right; margin:0 0.5rem 0.5rem 0; opacity:0.55; background:none; border:none; cursor:pointer; color:var(--meta-color); font-size:1.3rem; padding:0.3rem;">ⓘ</button>
-            <div id="info-panel" class="hidden" style="max-height:60vh; overflow-y:auto; padding-right:0.5em;">
-                <h2 style="margin-top:0">About</h2>
-                <p>LesVerbes helps you master French verb conjugations with fast, focused practice.</p>
-                <ul>
-                    <li><b>Dictate (🎤):</b> Try saying the answer out loud—get instant feedback on your pronunciation.</li>
-                    <li><b>Verb Details (📖):</b> Jump to a full conjugation table for any verb.</li>
-                    <li><b>Autotalk (🔊):</b> Automatically hear the question spoken for each card.</li>
-                </ul>
-                <details style="margin-bottom:0.7em;">
-                  <summary style="font-size:1.08em;font-weight:600;cursor:pointer;">Options &amp; Settings</summary>
-                  <ul style="margin-top:0.5em;">
-                      <li><b>Balance verb randomizer:</b><br>
-                          <span style="font-size:0.97em;">
-                          <b>When ON:</b> The app first chooses a frequency category (common, less common, rare) based on your weights, then picks a verb from that category. (If all weights are equal, you’ll see each category equally often.)<br>
-                          <b>When OFF:</b> The app picks from all verbs at once, using the weights per category. (If all weights are equal, you’ll see more rare verbs, since there are more of them.)
-                          </span>
-                      </li>
-                      <li><b>Tense Weights:</b> Choose which tenses appear in your practice.</li>
-                      <li><b>Frequency Weights:</b> Adjust how often common, less common, or rare verbs show up.</li>
-                      <li><b>TTS Voice:</b> Pick your preferred French voice for audio.</li>
-                  </ul>
-                </details>
-                <h3 style="margin-bottom:0.3em;">Tips for Practice Modes</h3>
-                <ul style="margin-top:0.5em;">
-                    <li>To start, set only “present” tense and “common” verbs for quick, everyday practice.</li>
-                    <li>Want to expand your vocabulary? Increase the frequency for less common or rare verbs.</li>
-                    <li>Ready for a challenge? Enable more tenses to cover a wider range of conjugations.</li>
-                </ul>
-                <p style="margin-bottom:0.5em">Your progress and settings are saved automatically. Happy learning!</p>
-            </div>
             <div class="options-header">
+                <button id="back-to-flashcard-from-options-btn" class="back-nav-btn" aria-label="Back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
                 <h2>Settings</h2>
+                <div class="options-header-spacer"></div>
             </div>
 
             <div id="options-container">
@@ -738,6 +731,26 @@
                     </div>
                   </div>
                 
+                  <!-- Theme toggle -->
+                  <div class="toggle-row">
+                    <label>Theme</label>
+                    <div class="reflexive-mode-pills" id="theme-pills">
+                      <button class="reflexive-pill" data-theme="light">Light</button>
+                      <button class="reflexive-pill" data-theme="system">System</button>
+                      <button class="reflexive-pill" data-theme="dark">Dark</button>
+                    </div>
+                  </div>
+
+                  <!-- Font size -->
+                  <div class="toggle-row">
+                    <label for="font-size-slider">Text size</label>
+                    <div class="font-size-control">
+                      <span class="font-size-label">A</span>
+                      <input type="range" id="font-size-slider" min="1" max="2" step="0.05" value="1">
+                      <span class="font-size-label large">A</span>
+                    </div>
+                  </div>
+
                   <!-- correct DICTATION -->
                   <div class="toggle-row">
                     <label for="correct-dictation-toggle">Next card on correct dictation</label>
@@ -777,6 +790,27 @@
                 <div class="option-group" id="tts-voice-group">
                   <h3>Audio Voice</h3>
                   <select id="voice-select" class="styled-select"></select>
+                </div>
+
+                <!-- About -->
+                <div class="option-group" id="about-group">
+                    <button id="info-btn" class="about-row-btn" aria-label="About LesVerbes">
+                        <span class="about-row-label">About LesVerbes</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                    <div id="info-panel" class="hidden about-panel">
+                        <p class="about-tagline">A focused French verb trainer built for daily practice.</p>
+                        <ul class="about-features">
+                            <li>2,700+ verb usages with real example sentences</li>
+                            <li>All major tenses — présent, passé composé, imparfait, futur, conditionnel, subjonctif</li>
+                            <li>Smart frequency weighting &amp; learning presets</li>
+                            <li>Voice dictation with instant feedback 🎤</li>
+                            <li>Text-to-speech pronunciation 🔊</li>
+                            <li>Full conjugation tables for every verb 📖</li>
+                            <li>Offline support (PWA)</li>
+                        </ul>
+                        <p class="about-footer">Progress and settings save automatically.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1121,11 +1155,12 @@
     window.frenchLocalStorageKey = 'frenchVerbsOptions';
     window.frenchSpeechLang = 'fr-FR';
     </script>
-    <script src="js/verbs.full.generated.js?v=20260411a"></script>
+    <script src="js/verbs.full.generated.js?v=20260411b"></script>
     <script src="sentences.generated.js"></script>
     <script src="reflexive_sentences.js" onerror="window.reflexiveSentences=[]"></script>
-    <script src="js/practicePhrases.js?v=20260411a"></script>
-    <script src="js/script.js?v=20260411a"></script>
+    <script src="verb_usages.js?v=20260411b" onerror="window.verbUsages=[]"></script>
+    <script src="js/practicePhrases.js?v=20260411b"></script>
+    <script src="js/script.js?v=20260411b"></script>
     <script>
 function populateVoiceSelect() {
     const voiceSelect = document.getElementById('voice-select');

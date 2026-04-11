@@ -48,6 +48,7 @@ def build(force_jpeg=False):
             'js/verbs.full.generated.js',
             'sentences.generated.js',
             'reflexive_sentences.js',   # optional — only included if it exists
+            'verb_usages.js',
             'js/practicePhrases.js',
             # 'main.js',
             # 'alphabetScroller.js',
@@ -161,6 +162,7 @@ def build(force_jpeg=False):
             r'<script src="js/verbs\.full\.generated\.js[^"]*"></script>\s*'
             r'<script src="sentences\.generated\.js[^"]*"></script>\s*'
             r'(?:<script src="reflexive_sentences\.js[^"]*"[^>]*></script>\s*)?'
+            r'(?:<script src="verb_usages\.js[^"]*"[^>]*></script>\s*)?'
             r'<script src="js/practicePhrases\.js[^"]*"></script>\s*'
             r'<script src="js/script\.js[^"]*"></script>',
             lambda m: replacement_js_block,
@@ -224,6 +226,7 @@ WATCHED_FILES = [
     'css/dictate-btn.css',
     'js/verbs.full.generated.js',
     'sentences.generated.js',
+    'verb_usages.js',
     'js/script.js',
     'js/practicePhrases.js',
     # 'bg.png',

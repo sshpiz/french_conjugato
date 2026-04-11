@@ -105,6 +105,128 @@ function prepareTextForSpeech(text) {
     return ret;
 }
 
+// ── Theme management ─────────────────────────────────────────────────────────
+(function initTheme() {
+    const html = document.documentElement;
+    const saved = localStorage.getItem('themeMode') || 'system';
+
+    function applyTheme(mode) {
+        localStorage.setItem('themeMode', mode);
+        if (mode === 'dark')        html.setAttribute('data-theme', 'dark');
+        else if (mode === 'light')  html.setAttribute('data-theme', 'light');
+        else                        html.removeAttribute('data-theme');
+
+        // Sync pill active state
+        document.querySelectorAll('#theme-pills .reflexive-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === mode);
+        });
+    }
+
+    // Wire up pills (may run before or after DOMContentLoaded)
+    function bindThemePills() {
+        document.querySelectorAll('#theme-pills .reflexive-pill').forEach(btn => {
+            btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
+        });
+        applyTheme(saved); // set active pill
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindThemePills);
+    } else {
+        bindThemePills();
+    }
+
+    // Expose for external use
+    window.applyTheme = applyTheme;
+})();
+
+// ── Font size ─────────────────────────────────────────────────────────────────
+(function initFontSize() {
+    const CARD_SELECTOR = '#flashcard';
+    const KEY = 'fontScale';
+    const saved = parseFloat(localStorage.getItem(KEY)) || 1;
+
+    function applyFontScale(scale) {
+        const card = document.querySelector(CARD_SELECTOR);
+        if (card) card.style.setProperty('--font-scale', scale);
+        const slider = document.getElementById('font-size-slider');
+        if (slider) slider.value = scale;
+        localStorage.setItem(KEY, scale);
+    }
+
+    function bindSlider() {
+        const slider = document.getElementById('font-size-slider');
+        if (!slider) return;
+        slider.value = saved;
+        slider.addEventListener('input', () => applyFontScale(parseFloat(slider.value)));
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => { applyFontScale(saved); bindSlider(); });
+    } else {
+        applyFontScale(saved); bindSlider();
+    }
+})();
+
+// ── Verb usages index ─────────────────────────────────────────────────────────
+const verbUsagesIndex = {};
+(function buildUsagesIndex() {
+    const usages = window.verbUsages || [];
+    for (const u of usages) {
+        if (!verbUsagesIndex[u.verb]) verbUsagesIndex[u.verb] = [];
+        verbUsagesIndex[u.verb].push(u);
+    }
+})();
+
+function renderVerbUsages(container, infinitive, options = {}) {
+    if (!container) return 0;
+
+    const {
+        sectionClass = '',
+        heading = '',
+    } = options;
+
+    container.innerHTML = '';
+    if (sectionClass) container.className = sectionClass;
+
+    const usages = verbUsagesIndex[infinitive];
+    if (!usages || !usages.length) return 0;
+
+    if (heading) {
+        const headingEl = document.createElement('h3');
+        headingEl.className = 'verb-usages-heading';
+        headingEl.textContent = heading;
+        container.appendChild(headingEl);
+    }
+
+    usages.forEach(u => {
+        const item = document.createElement('div');
+        item.className = 'usage-item';
+
+        const pattern = document.createElement('span');
+        pattern.className = 'usage-pattern';
+        pattern.textContent = u.pattern || '';
+        item.appendChild(pattern);
+
+        const exampleFr = document.createElement('span');
+        exampleFr.className = 'usage-fr tappable-audio';
+        exampleFr.dataset.speak = u.example_fr || '';
+        exampleFr.textContent = u.example_fr || '';
+        item.appendChild(exampleFr);
+
+        if (u.example_en) {
+            const exampleEn = document.createElement('span');
+            exampleEn.className = 'usage-en';
+            exampleEn.textContent = u.example_en;
+            item.appendChild(exampleEn);
+        }
+
+        container.appendChild(item);
+    });
+
+    return usages.length;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
@@ -1583,128 +1705,13 @@ document.addEventListener('DOMContentLoaded', () => {
         questionPhraseEl.classList.remove('tappable-audio');
         questionPhraseEl.style.display = 'none';
         currentCard.chosenPhrase = null;
-        if (cardGenerationOptions.showPhrases) {
-            const phraseKey = tenseKeyToPhraseKey[card.tense];
-            const verbPhrases = phrasebook[card.verb.infinitive] && phrasebook[card.verb.infinitive][phraseKey];
-            let filtered = [];
-            let hasExactMatch = false;
-            if (verbPhrases && verbPhrases.length) {
-                filtered = verbPhrases.filter(p => p.pronoun === card.pronoun);
-                hasExactMatch = filtered.length > 0;
-                if (!hasExactMatch && card.pronoun.includes('/')) {
-                    const pronounVariants = card.pronoun.split('/');
-                    filtered = verbPhrases.filter(p => pronounVariants.includes(p.pronoun));
-                    hasExactMatch = filtered.length > 0;
-                }
-            }
-                
-            // 3. Try reverse matching (sentence has combined form, card has single)
-            if (!hasExactMatch && verbPhrases) {
-                filtered = verbPhrases.filter(p => {
-                    if (p.pronoun.includes('/')) {
-                        const sentenceVariants = p.pronoun.split('/');
-                        return sentenceVariants.includes(card.pronoun);
-                    }
-                    return false;
-                });
-                hasExactMatch = filtered.length > 0;
-            }
-            
-            // 4. If still no match, use any phrase for this verb+tense (but no gap sentence)
-            if (filtered.length === 0) {
-                filtered = verbPhrases || [];
-                hasExactMatch = false; // No gap sentence for non-matching pronouns
-            }
-            
-            // 4. Pick random if any
-            if (filtered.length > 0) {
-                const chosen = filtered[Math.floor(Math.random() * filtered.length)];
-                currentCard.chosenPhrase = chosen; // Store for answer reveal
-                
-                // If we have an exact match AND a gap sentence, show it in question container
-                if (ENABLE_GAP_SENTENCES && hasExactMatch && chosen.gap_sentence) {
-                    const questionPhrase = document.createElement('span');
-                    questionPhrase.innerHTML = enhanceGapSentence(chosen.gap_sentence);
-                    questionPhrase.classList.add('tappable-audio');
-                    questionPhrase.style.cursor = 'pointer';
-                    
-                    questionPhraseEl.appendChild(questionPhrase);
-                    questionPhraseEl.classList.add('tappable-audio');
-                    questionPhraseEl.style.display = 'block'; // Show the question phrase
-                    
-                    console.log('Showing gap sentence in question container:', chosen.gap_sentence);
-                    console.log('Question phrase element display:', questionPhraseEl.style.display);
-                    console.log('Question phrase element children:', questionPhraseEl.children.length);
-                }
-                
-                // Always prepare the full sentence for the answer container
-                const answerPhrase = document.createElement('span');
-                answerPhrase.textContent = chosen.sentence;
-                answerPhrase.classList.add('tappable-audio');
-                answerPhrase.style.cursor = 'pointer';
-                
-                // Add answer phrase to answer container
-                verbPhraseEl.appendChild(answerPhrase);
-                // Set English phrase
-                if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = chosen.translation ? chosen.translation.replace(/\[PRONOUN\]/g, '').replace(/\s+/g, ' ').trim() : '';
-                
-                // Add English translation if available (directly visible)
-                if (chosen.translation) {
-                    const translationDiv = document.createElement('div');
-                    // Clean translation by removing [PRONOUN] and other markers
-                    const cleanTranslation = chosen.translation
-                        .replace(/\[PRONOUN\]/g, '')
-                        .replace(/\s+/g, ' ')
-                        .trim();
-                    translationDiv.innerHTML = `<strong>Traduction:</strong> ${cleanTranslation}`;
-                    translationDiv.style.marginTop = '5em';
-                    translationDiv.style.fontSize = '0.99em';
-                    translationDiv.style.fontWeight = "bold";
-                    translationDiv.style.marginBottom = '0.3em';
-                    // translationDiv.style.pointerEvents = "none";
-                    // Better visibility in dark mode
-                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                        translationDiv.style.color =  'var(--text-color)';//'#f4f7f9';
-                        translationDiv.style.opacity = '1.0';
-                    } else {
-                        translationDiv.style.opacity = '1.0';
-                        translationDiv.style.color = 'var(--text-color)';// '#474a04';
-                    }
-                    verbPhraseEl.appendChild(translationDiv);
-                }
-                
-                // Add source if available (directly visible)
-                if (chosen.source) {
-                    const sourceDiv = document.createElement('div');
-                    sourceDiv.innerHTML = `<strong>Source:</strong> ${chosen.source}`;
-                    sourceDiv.style.marginTop = '0.3em';
-                    sourceDiv.style.fontSize = '0.9em';
-                    sourceDiv.style.color = 'var(--text-color)'; // Use CSS variable for text color
-                    // Better visibility in dark mode
-                    // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                        
-                    //     sourceDiv.style.opacity = '0.9';
-                    // } else {
-                    //     sourceDiv.style.opacity = '0.8';
-                    // }
-                    verbPhraseEl.appendChild(sourceDiv);
-                }
-                
-                // Don't make the entire phrase container clickable - only the sentence itself is tappable
-                // verbPhraseEl.classList.add('tappable-audio'); // Removed to fix large tap area
-                console.log('Added phrase elements to answer:', {
-                    questionHasContent: questionPhraseEl.children.length > 0,
-                    answerHasContent: verbPhraseEl.children.length > 0,
-                    hasGapSentence: !!chosen.gap_sentence,
-                    hasExactMatch: hasExactMatch,
-                    pronoun: card.pronoun,
-                    chosenPronoun: chosen.pronoun,
-                    showingGapSentence: hasExactMatch && !!chosen.gap_sentence,
-                    fullSentence: chosen.sentence
-                });
-                }
-            }
-        
+
+        // ── Usage nugget — all usages for this verb, revealed with answer ────────
+        const nuggetEl = document.getElementById('usage-nugget');
+        if (nuggetEl) {
+            nuggetEl.style.display = 'none';
+            currentCard._hasUsages = renderVerbUsages(nuggetEl, card.verb.infinitive) > 0;
+        }
 
         // --- AUTOTALK: Speak prompt if enabled ---
         const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
@@ -1718,14 +1725,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const showAnswer = () => {
         if (!isAnswerVisible) {
             answerContainer.classList.add('is-visible');
-            // Hide question phrase when showing answer (now they are siblings)
-            // questionPhraseEl.style.display = 'none';
             isAnswerVisible = true;
             if (window.incrementDailyCount) window.incrementDailyCount();
             // In phrase mode, show the French sentence now
             if (currentCard && !currentCard.verb) {
                 const phraseSpan = document.getElementById('phrase-french-sentence');
                 if (phraseSpan) phraseSpan.style.display = '';
+            }
+            // Show usage nugget when answer reveals
+            const nuggetEl = document.getElementById('usage-nugget');
+            if (nuggetEl && currentCard && currentCard._hasUsages) {
+                nuggetEl.style.display = 'block';
             }
             // Do NOT speak the answer automatically
         }
@@ -1997,51 +2007,13 @@ document.addEventListener('DOMContentLoaded', () => {
             verbDetailContainer.appendChild(tenseBlock);
         });
 
-        // --- All Example Phrases Section ---
-        const phrasebookForVerb = phrasebook[verb.infinitive];
-        if (phrasebookForVerb) {
-            const phrasesSection = document.createElement('section');
-            phrasesSection.className = 'all-phrases-section';
-            phrasesSection.style.marginTop = '2.5em';
-            phrasesSection.innerHTML = `<h3 style="margin-bottom:0.5em;font-size:1.2em;color:#3498db;">Exemples de phrases</h3>`;
-            Object.entries(phrasebookForVerb).forEach(([tense, phraseArr]) => {
-                if (!Array.isArray(phraseArr) || phraseArr.length === 0) return;
-                // Sort phraseArr by pronoun order
-                const sortedArr = [...phraseArr].sort((a, b) => {
-                    const idxA = pronounOrder.indexOf(a.pronoun);
-                    const idxB = pronounOrder.indexOf(b.pronoun);
-                    // If not found in order, put at end
-                    const finalIdxA = idxA === -1 ? 999 : idxA;
-                    const finalIdxB = idxB === -1 ? 999 : idxB;
-                    return finalIdxA - finalIdxB;
-                });
-                const tenseBlock = document.createElement('div');
-                tenseBlock.className = 'all-phrases-tense-block';
-                tenseBlock.innerHTML = `<div style="font-weight:600;margin-top:1em;">${tense}</div>`;
-                sortedArr.forEach(p => {
-                    const pEl = document.createElement('div');
-                    pEl.className = 'all-phrases-item tappable-audio';
-                    pEl.style.margin = '0.2em 0 0.2em 1.2em';
-                    pEl.style.fontSize = '1em';
-                    pEl.dataset.speak = p.sentence;
-                    
-                    // Build the HTML with optional translation
-                    let html = `<span style='color:#888;'>${p.pronoun}:</span> <span>${p.sentence}</span> <span style='font-size:0.95em;opacity:0.7;cursor:pointer;margin-left:0.4em;'>🔊</span>`;
-                    if (p.translation && p.translation.trim()) {
-                        html += `<br><span style='color:#666;font-size:0.9em;font-style:italic;margin-left:1.2em;'>${p.translation}</span>`;
-                    }
-                    
-                    pEl.innerHTML = html;
-                    pEl.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        if (pEl.dataset.speak) speak(pEl.dataset.speak);
-                    });
-                    tenseBlock.appendChild(pEl);
-                });
-                // (No global tappable-audio handler here; only phrase items get their own handler)
-                phrasesSection.appendChild(tenseBlock);
-            });
-            verbDetailContainer.appendChild(phrasesSection);
+        const usageSection = document.createElement('section');
+        const usageCount = renderVerbUsages(usageSection, verb.infinitive, {
+            sectionClass: 'verb-usages-detail-section',
+            heading: 'Usages & examples',
+        });
+        if (usageCount > 0) {
+            verbDetailContainer.appendChild(usageSection);
         }
 
         // After populating, scroll to the focused tense if provided
@@ -3017,7 +2989,7 @@ const defaultPresets = [
     config: {
       cardGenerationOptions: {
         tenseWeights: { present: 1, passeCompose: 1, imparfait: 1, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1, plusQueParfait: 1 },
-        frequencyWeights: { top20: 1, top50: 1, top100: 2, top500: 0, top1000: 2, rare: 0 },
+        frequencyWeights: { top20: 1, top50: 1, top100: 2, top500: 2, top1000: 2, rare: 0 },
       },
     },
   },
@@ -3154,6 +3126,19 @@ function highlightActivePreset() {
   document.querySelectorAll(".preset-btn").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.presetName === activePreset);
   });
+  const badge = document.getElementById('preset-badge');
+  if (badge) {
+    const isCustom = activePreset === 'Custom';
+    if (!isCustom && activePreset) {
+      const preset = presets.find(p => p.name === activePreset);
+      const emoji = preset?.emoji || '📚';
+      badge.innerHTML = `<span class="preset-badge-icon">${emoji}</span><span class="preset-badge-name">${activePreset}</span>`;
+      badge.style.display = 'inline-flex';
+    } else {
+      badge.innerHTML = '';
+      badge.style.display = 'none';
+    }
+  }
 }
 
 // On load, fill 👤 from localStorage cardGenerationOptions
@@ -3240,4 +3225,3 @@ renderPresets();
 
 
 });
-
