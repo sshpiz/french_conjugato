@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Dictation (Speech Recognition) ---
-    const dictateBtn = document.getElementById('dictate-btn');
+    const dictateBtn = document.getElementById('dictate-btn-bottom');
     const dictateBtnSvgHTML = dictateBtn ? dictateBtn.innerHTML : '';
     const setDictating = (on) => {
         if (!dictateBtn) return;
@@ -684,10 +684,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {});
 
     // Dynamically create frequency weights from the data
-    // Start with a weight of 1 for all frequencies found in the data
+    // Default to "Master the Basics I" weights (top20=3, top50=1, rest=0)
+    // so the first-ever open starts with a sensible beginner configuration.
+    const starterWeights = { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 };
     const frequencyWeights = {};
     allFrequencies.forEach(freq => {
-        frequencyWeights[freq] = 1; // Default all frequencies to equal weight
+        frequencyWeights[freq] = starterWeights[freq] ?? 0;
     });
 
     const cardGenerationOptions = {

@@ -1,0 +1,84 @@
+/* ── Big dictate mic button (inside phrase-container) ── */
+.dictate-big-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0.5rem auto 0.25rem;
+  background: transparent;
+  border: 2px solid rgba(100,160,200,0.35);
+  border-radius: 50%;
+  color: rgba(100,160,200,0.75);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.dictate-big-btn svg {
+  width: 28px;
+  height: 28px;
+}
+.dictate-big-btn:hover {
+  border-color: rgba(100,160,200,0.65);
+  color: rgba(100,160,200,1);
+}
+
+/* ── Book icon: in-flow, right of centered verb ── */
+#go-to-verb-btn.verb-detail-book-btn,
+.verb-detail-book-btn {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: unset !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: rgba(150,175,200,0.5) !important;
+  cursor: pointer;
+  transition: color 0.15s;
+  font-size: 0 !important;
+}
+#go-to-verb-btn.verb-detail-book-btn svg,
+.verb-detail-book-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+}
+#go-to-verb-btn.verb-detail-book-btn:hover,
+.verb-detail-book-btn:hover {
+  color: rgba(150,175,200,0.9) !important;
+  background: transparent !important;
+}
+
+/* Dictate button — base style handled by .action-icon-btn in style.css */
+/* Only override active/recording state here */
+
+#dictate-btn-bottom:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Recording active state */
+@keyframes dictate-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(231,76,60,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(231,76,60,0); }
+  100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); }
+}
+.dictate-big-btn.recording,
+#dictate-btn-bottom[data-recording="true"] {
+  border-color: #e74c3c !important;
+  color: #e74c3c !important;
+  animation: dictate-pulse 1.2s ease-out infinite;
+}
+
+#english-btn {
+  /* kept hidden, no visual styles needed */
+  display: none !important;
+}
