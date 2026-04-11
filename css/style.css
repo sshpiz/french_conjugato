@@ -1309,7 +1309,7 @@ body {
   align-items: center !important;
 }
 
-/* Answer/phrase area: fills remaining space, answer floats near upper-center */
+/* Answer/phrase area: fills remaining space, answer pinned near top-center */
 #phrase-container {
   position: static !important;
   top: auto !important;
@@ -1318,7 +1318,7 @@ body {
   min-height: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   align-items: center !important;
   width: 100% !important;
   padding-top: 0.4rem !important;

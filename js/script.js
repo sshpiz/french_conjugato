@@ -3211,11 +3211,15 @@ function applyConfigToUI(config) {
 }
 
 
-// Load last-used preset on startup
+// Load last-used preset on startup; default to "Master the Basics I" on first open
 const lastUsed = localStorage.getItem("lastPreset");
 if (lastUsed) {
   const found = presets.find(p => p.name === lastUsed || p.emoji === lastUsed);
   if (found) applyPreset(found);
+} else {
+  // First time ever — start with the most beginner-friendly preset
+  const starter = presets.find(p => p.name === "Master the Basics I");
+  if (starter) applyPreset(starter);
 }
 
 // // Watch setting changes
