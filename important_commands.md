@@ -1,6 +1,36 @@
 rm -f js/verbs.full.generated.bk.js sentences.generated.bk.js && python compress_large_js_objects.py js/verbs.full.generated.js   sentences.generated.js  && mv  js/verbs.full.generated.loader.js js/verbs.full.generated.js  && mv sentences.generated.loader.js sentences.generated.js
 ---
 
+## Deploy to lesverb.es (GitHub Pages)
+
+`dist/` is NOT committed to master — it's build output only.
+`gh-pages` branch lives in the `dist-gh/` worktree.
+
+```bash
+# 1. Build
+python3 build.py
+
+# 2. Copy into gh-pages worktree
+cp dist/index.html dist-gh/index.html
+cp dist/franconjugue.html dist-gh/franconjugue.html
+cp dist/sw.js dist-gh/sw.js
+cp dist/manifest.json dist-gh/manifest.json
+
+# 3. Commit & push
+cd dist-gh
+git add -A
+git commit -m "deploy"
+git push origin gh-pages
+cd ..
+```
+
+To archive current live version before deploying:
+```bash
+cp dist-gh/index.html dist-gh/v1.x.html
+```
+
+---
+
 ## Fix frequency tiers (make Top N exclusive/non-overlapping)
 
 The verb data uses inclusive tags ("top50" = "in the top 50"), so tiers overlap.
