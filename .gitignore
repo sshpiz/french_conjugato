@@ -54,3 +54,6 @@ filter-controls.html
 layout-mockup.html
 mountain-mockup.html
 tense-color-editor.html
+
+# Build output
+dist/
