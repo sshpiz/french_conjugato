@@ -7,6 +7,7 @@ const getPrompt = window.getFrenchPrompt;
 const UIStrings = window.frenchUIStrings;
 const localStorageKey = window.frenchLocalStorageKey;
 const speechLang = window.frenchSpeechLang;
+const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
@@ -230,29 +231,29 @@ function renderVerbUsages(container, infinitive, options = {}) {
 document.addEventListener('DOMContentLoaded', () => {
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
-    // --- Phrasebook Creation ---
-    // This processes the raw sentences into a fast-lookup structure.
-    // It maps verb -> tense -> sentence.
     const phrasebook = {};
-    const allSentences = [
-        ...(typeof sentences !== 'undefined' ? sentences : []),
-        ...(typeof window.reflexiveSentences !== 'undefined' ? window.reflexiveSentences : []),
-    ];
-    for (const item of allSentences) {
-        if (!phrasebook[item.verb]) {
-            phrasebook[item.verb] = {};
+    if (ENABLE_LEGACY_SENTENCE_DATA) {
+        // Legacy phrasebook support for old sentence/gap-sentence practice data.
+        const allSentences = [
+            ...(typeof sentences !== 'undefined' ? sentences : []),
+            ...(typeof window.reflexiveSentences !== 'undefined' ? window.reflexiveSentences : []),
+        ];
+        for (const item of allSentences) {
+            if (!phrasebook[item.verb]) {
+                phrasebook[item.verb] = {};
+            }
+            if (!phrasebook[item.verb][item.tense]) {
+                phrasebook[item.verb][item.tense] = [];
+            }
+            phrasebook[item.verb][item.tense].push({
+                pronoun: item.pronoun,
+                sentence: item.sentence,
+                translation: item.translation || '',
+                gap_sentence: item.gap_sentence || '',
+                verb_form: item.verb_form || '',
+                source: item.source || ''
+            });
         }
-        if (!phrasebook[item.verb][item.tense]) {
-            phrasebook[item.verb][item.tense] = [];
-        }
-        phrasebook[item.verb][item.tense].push({
-            pronoun: item.pronoun,
-            sentence: item.sentence,
-            translation: item.translation || '',
-            gap_sentence: item.gap_sentence || '',
-            verb_form: item.verb_form || '',
-            source: item.source || ''
-        });
     }
 
     // Maps tense keys from `verbs.full.js` to the keys in `sentences.jsonl`
@@ -857,7 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cardGenerationOptions.showPhrases = savedOptions.showPhrases;
                 }
                 if (typeof savedOptions.verbsWithSentencesOnly === 'boolean') {
-                    cardGenerationOptions.verbsWithSentencesOnly = savedOptions.verbsWithSentencesOnly;
+                    cardGenerationOptions.verbsWithSentencesOnly = ENABLE_LEGACY_SENTENCE_DATA && savedOptions.verbsWithSentencesOnly;
                 }
                 if (typeof savedOptions.balancedPronouns === 'boolean') {
                     cardGenerationOptions.balancedPronouns = savedOptions.balancedPronouns;
@@ -1128,6 +1129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return true;
             };
             const hasPracticeSentences = (inf) => {
+                if (!ENABLE_LEGACY_SENTENCE_DATA) return true;
                 // If the sentences-only filter is OFF, don't exclude any verbs based on sentences
                 if (!verbsWithSentencesOnly) return true;
                 const verbPhrases = phrasebook[inf];
@@ -1290,6 +1292,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ...existing verb card logic...
     const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { er: true, ir: true, re: true, other: true }, categoryFilter = 'all' } = options;
+    const sentenceFilterEnabled = ENABLE_LEGACY_SENTENCE_DATA && verbsWithSentencesOnly;
 
         // Helpers for filters
         const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
@@ -1319,11 +1322,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Helper function to check if a verb has sentences with gap sentences for actual practice
         const verbHasSentences = (verbInfinitive) => {
+            if (!ENABLE_LEGACY_SENTENCE_DATA) return true;
             const verbPhrases = phrasebook[verbInfinitive];
             if (!verbPhrases) return false;
             
             // If verbsWithSentencesOnly is enabled, we want verbs that have gap sentences for interactive practice
-            if (verbsWithSentencesOnly) {
+            if (sentenceFilterEnabled) {
                 // Check if this verb has gap sentences for any tense/pronoun combination we might actually use
                 for (const tenseName in tenseWeights) {
                     if (tenseWeights[tenseName] <= 0) continue; // Skip disabled tenses
@@ -1364,7 +1368,7 @@ document.addEventListener('DOMContentLoaded', () => {
             verbsInFrequency = verbsInFrequency.filter(v => cleanTranslation(v.infinitive, v.translation || ''));
             // Apply new filters
             verbsInFrequency = verbsInFrequency.filter(passesFilters);
-            if (verbsWithSentencesOnly) {
+            if (sentenceFilterEnabled) {
                 verbsInFrequency = verbsInFrequency.filter(v => verbHasSentences(v.infinitive));
             }
             if (verbsInFrequency.length === 0) return null;
@@ -1416,7 +1420,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (const verbInfo of uniqueVerbs) {
                     // Apply new filters
                     if (!passesFilters(verbInfo)) continue;
-                    if (verbsWithSentencesOnly && !verbHasSentences(verbInfo.infinitive)) {
+                    if (sentenceFilterEnabled && !verbHasSentences(verbInfo.infinitive)) {
                         continue;
                     }
                     // In reflexive-only mode, bypass frequency weights — use all reflexive verbs equally
@@ -2480,10 +2484,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     if (verbsWithSentencesToggle) verbsWithSentencesToggle.addEventListener('change', (e) => {
-        cardGenerationOptions.verbsWithSentencesOnly = e.target.checked;
+        cardGenerationOptions.verbsWithSentencesOnly = ENABLE_LEGACY_SENTENCE_DATA && e.target.checked;
+        e.target.checked = cardGenerationOptions.verbsWithSentencesOnly;
         saveOptions();
         // Generate a new card immediately to reflect the filter change
-        if (e.target.checked) {
+        if (cardGenerationOptions.verbsWithSentencesOnly) {
             // When enabling the filter, get a new card that should have gap sentences
             hideAnswer();
             setTimeout(() => {
