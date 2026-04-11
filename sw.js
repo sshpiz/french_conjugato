@@ -1,6 +1,6 @@
 // sw.js - network-first for HTML, cache-first for assets, auto-reload on update
 
-const CACHE_NAME = 'offline-cache-v10';
+const CACHE_NAME = 'offline-cache-v12';
 
 // ── Install: skip waiting so new SW activates immediately ──────────────────
 self.addEventListener('install', event => {
