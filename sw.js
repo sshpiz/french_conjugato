@@ -1,138 +1,79 @@
-// sw.js - smart cache with freshness check (24h) + flexible path support + manifest caching
+// sw.js - network-first for HTML, cache-first for assets, auto-reload on update
 
-const CACHE_NAME = 'offline-cache-v1';
-const MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_NAME = 'offline-cache-v10';
 
+// ── Install: skip waiting so new SW activates immediately ──────────────────
 self.addEventListener('install', event => {
-  console.log('[SW] Install event');
+  console.log('[SW] Install', CACHE_NAME);
+  self.skipWaiting(); // take over without waiting for old SW to die
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      try {
-        const htmlResponse = await fetch('/index.html');
-        const cloned = htmlResponse.clone();
-        const headers = new Headers(cloned.headers);
-        headers.append('sw-cached-at', Date.now().toString());
-        const freshResponse = new Response(await cloned.blob(), {
-          status: 200,
-          statusText: 'OK',
-          headers
-        });
-
-        // Cache both '/' and '/index.html'
-        await cache.put(new Request('/'), freshResponse.clone());
-        await cache.put(new Request('/index.html'), freshResponse.clone());
-        console.log('[SW] Cached fresh /index.html and /');
-
-        // Cache additional static assets
-        const additionalFiles = [
-          '/manifest.json',
-          '/favicon_big.png',
-          '/favicon.ico',
-          '/apple-touch-icon.png'
-          // add more here as needed
-        ];
-
-        for (const file of additionalFiles) {
-          try {
-            const response = await fetch(file);
-            await cache.put(new Request(file), response.clone());
-            console.log(`[SW] Cached ${file}`);
-          } catch (err) {
-            console.warn(`[SW] Failed to cache ${file}:`, err);
-          }
-        }
-
-      } catch (err) {
-        console.warn('[SW] Failed to fetch /index.html during install:', err);
+      // Pre-cache the shell and static assets
+      const assets = ['/manifest.json', '/favicon_big.png'];
+      for (const url of assets) {
+        try { await cache.add(url); } catch (_) {}
       }
     })
   );
 });
 
-
+// ── Activate: purge old caches, claim all clients ──────────────────────────
 self.addEventListener('activate', event => {
-  console.log('[SW] Activate event');
-  event.waitUntil(self.clients.claim());
+  console.log('[SW] Activate', CACHE_NAME);
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(k => k !== CACHE_NAME).map(k => {
+          console.log('[SW] Deleting old cache:', k);
+          return caches.delete(k);
+        })
+      ))
+      .then(() => self.clients.claim()) // take control of all open tabs
+      .then(() => {
+        // Tell every open tab to reload so they get the fresh version
+        return self.clients.matchAll({ type: 'window' }).then(clients => {
+          clients.forEach(client => client.postMessage({ type: 'SW_UPDATED' }));
+        });
+      })
+  );
 });
 
+// ── Fetch: network-first for HTML navigation, cache-first for assets ───────
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  const isIndexRequest = event.request.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('/index.html');
+  const isNav = event.request.mode === 'navigate'
+    || url.pathname === '/'
+    || url.pathname.endsWith('.html');
 
-  if (isIndexRequest) {
-    console.log(`[SW] Intercepting request: ${url.pathname}`);
+  if (isNav) {
+    // Network-first: always try to get fresh HTML, fall back to cache offline
     event.respondWith(
-      caches.open(CACHE_NAME).then(async cache => {
-        const cached = await cache.match(event.request);
-        // Serve cached version immediately if available
-        if (cached) {
-          // Start background update
-          fetch(event.request, { cache: 'no-store' }).then(async response => {
-            try {
-              const now = Date.now();
-              const cloned = response.clone();
-              const headers = new Headers(cloned.headers);
-              headers.append('sw-cached-at', now.toString());
-              const updated = new Response(await cloned.blob(), {
-                status: 200,
-                statusText: 'OK',
-                headers
-              });
-              await cache.put(event.request, updated.clone());
-              if (url.pathname === '/') {
-                await cache.put(new Request('/index.html'), updated.clone());
-              } else if (url.pathname.endsWith('/index.html')) {
-                await cache.put(new Request('/'), updated.clone());
-              }
-              console.log('[SW] Background cache updated');
-            } catch (err) {
-              console.warn('[SW] Background update failed:', err);
-            }
-          }).catch(err => {
-            console.warn('[SW] Background fetch failed:', err);
-          });
-          return cached;
-        } else {
-          // No cache, fetch from network and cache
-          try {
-            const response = await fetch(event.request);
-            await cache.put(event.request, response.clone());
-            if (url.pathname === '/') {
-              await cache.put(new Request('/index.html'), response.clone());
-            } else if (url.pathname.endsWith('/index.html')) {
-              await cache.put(new Request('/'), response.clone());
-            }
-            console.log('[SW] Cached for the first time:', url.pathname);
-            return response;
-          } catch (err) {
-            console.error('[SW] Offline and no cached version available');
-            return new Response('Offline and no cached version available', { status: 503 });
-          }
-        }
-      })
+      fetch(event.request, { cache: 'no-store' })
+        .then(async response => {
+          const cache = await caches.open(CACHE_NAME);
+          await cache.put(event.request, response.clone());
+          if (url.pathname === '/') await cache.put(new Request('/index.html'), response.clone());
+          if (url.pathname.endsWith('/index.html')) await cache.put(new Request('/'), response.clone());
+          return response;
+        })
+        .catch(async () => {
+          // Offline fallback
+          const cached = await caches.match(event.request)
+            || await caches.match('/index.html')
+            || await caches.match('/');
+          return cached || new Response('Offline — no cached version available', { status: 503 });
+        })
     );
   } else {
-    // Handle all other requests
+    // Cache-first for static assets (images, manifest, etc.)
     event.respondWith(
-      caches.match(event.request).then(resp => {
-        if (resp) {
-          // Background update for static assets
-          fetch(event.request, { cache: 'no-store' }).then(async response => {
-            try {
-              const cache = await caches.open(CACHE_NAME);
-              await cache.put(event.request, response.clone());
-              console.log(`[SW] Background cache updated for: ${event.request.url}`);
-            } catch (err) {
-              console.warn(`[SW] Background update failed for: ${event.request.url}`, err);
-            }
-          }).catch(err => {
-            console.warn(`[SW] Background fetch failed for: ${event.request.url}`, err);
-          });
-          return resp;
-        } else {
-          console.log(`[SW] Fetching from network: ${event.request.url}`);
-          return fetch(event.request);
-        }
+      caches.match(event.request).then(cached => {
+        if (cached) return cached;
+        return fetch(event.request).then(async response => {
+          const cache = await caches.open(CACHE_NAME);
+          await cache.put(event.request, response.clone());
+          return response;
+        });
       })
     );
   }
