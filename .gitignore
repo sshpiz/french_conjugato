@@ -1,0 +1,56 @@
+# venv
+verbvec
+venv/
+
+# Build output (deployed via gh-pages branch)
+dist/
+dist-gh/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+*.pickle
+
+# Backups & generated copies
+*.bak
+js/verbs.full.generated.js.backup.*
+sentences.generated.js.backup.*
+
+# Large corpus/analysis files
+*.csv
+*.jsonl
+OpenSubtitles*
+en-fr*/
+fr_*.txt
+verb_analysis_results_*
+verb_corpus*
+comprehensive_dataset*
+ai_generated_example_missing_sentences*
+test100_processed_dataframe*
+
+# Misc
+.DS_Store
+.vscode/
+.ipynb_checkpoints/
+*.ipynb
+*.pdf
+bin/
+lib/
+etc/
+share/
+languages/
+verbecc/
+translation_cache.json
+conjugation_cache.json
+verb_hints_cache.json
+
+# Temp HTML experiments
+aafranconjugue.html
+art-preview.html
+button-style-preview.html
+filter-controls.html
+layout-mockup.html
+mountain-mockup.html
+tense-color-editor.html

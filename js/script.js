@@ -112,23 +112,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // This processes the raw sentences into a fast-lookup structure.
     // It maps verb -> tense -> sentence.
     const phrasebook = {};
-    if (typeof sentences !== 'undefined') {
-        for (const item of sentences) {
-            if (!phrasebook[item.verb]) {
-                phrasebook[item.verb] = {};
-            }
-            if (!phrasebook[item.verb][item.tense]) {
-                phrasebook[item.verb][item.tense] = [];
-            }
-            phrasebook[item.verb][item.tense].push({
-                pronoun: item.pronoun,
-                sentence: item.sentence,
-                translation: item.translation || '',
-                gap_sentence: item.gap_sentence || '',
-                verb_form: item.verb_form || '',
-                source: item.source || ''
-            });
+    const allSentences = [
+        ...(typeof sentences !== 'undefined' ? sentences : []),
+        ...(typeof window.reflexiveSentences !== 'undefined' ? window.reflexiveSentences : []),
+    ];
+    for (const item of allSentences) {
+        if (!phrasebook[item.verb]) {
+            phrasebook[item.verb] = {};
         }
+        if (!phrasebook[item.verb][item.tense]) {
+            phrasebook[item.verb][item.tense] = [];
+        }
+        phrasebook[item.verb][item.tense].push({
+            pronoun: item.pronoun,
+            sentence: item.sentence,
+            translation: item.translation || '',
+            gap_sentence: item.gap_sentence || '',
+            verb_form: item.verb_form || '',
+            source: item.source || ''
+        });
     }
 
     // Maps tense keys from `verbs.full.js` to the keys in `sentences.jsonl`
@@ -146,6 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a unique list of verbs, keeping the first entry found for each infinitive.
     // This makes the app resilient to duplicate entries in the data files.
     const uniqueVerbs = Array.from(new Map(verbs.map(v => [v.infinitive, v])).values());
+    // Normalize frequency keys: old data uses "top-500" style; new code expects "top500"
+    const freqNormMap = { 'top-20':'top20','top-50':'top50','top-100':'top100','top-500':'top500','top-1000':'top1000' };
+    uniqueVerbs.forEach(v => { if (freqNormMap[v.frequency]) v.frequency = freqNormMap[v.frequency]; });
     // Compute a classification category for each verb (e.g., "ir/venir-tenir", "er", "re/faire", "oir")
     uniqueVerbs.forEach(v => {
         try {
@@ -204,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const flashcard = document.getElementById('flashcard');
     const verbInfinitiveEl = document.getElementById('verb-infinitive');
     const verbTranslationEl = document.getElementById('verb-translation');
+    const verbHintEl = document.getElementById('verb-hint');
     const verbPronounEl = document.getElementById('verb-pronoun');
     const verbTenseEl = document.getElementById('verb-tense');
     const verbFrequencyEl = document.getElementById('verb-frequency');
@@ -285,6 +291,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
 
+    // Returns a clean English translation, or '' if translation is just "to <frenchInfinitive>"
+    const cleanTranslation = (infinitive, rawTranslation) => {
+        if (!rawTranslation) return '';
+        let t = rawTranslation.trim();
+        if (!/^to\s/i.test(t)) t = 'to ' + t;
+        if (t.toLowerCase() === 'to ' + (infinitive || '').toLowerCase().trim()) return '';
+        return rawTranslation.trim();
+    };
+
     const infoBtn = document.getElementById('info-btn');
     const infoPanel = document.getElementById('info-panel');
 
@@ -337,6 +352,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Dictation (Speech Recognition) ---
     const dictateBtn = document.getElementById('dictate-btn');
+    const dictateBtnSvgHTML = dictateBtn ? dictateBtn.innerHTML : '';
+    const setDictating = (on) => {
+        if (!dictateBtn) return;
+        if (on) {
+            dictateBtn.classList.add('recording');
+            dictateBtn.setAttribute('data-recording', 'true');
+        } else {
+            dictateBtn.classList.remove('recording');
+            dictateBtn.removeAttribute('data-recording');
+            dictateBtn.innerHTML = dictateBtnSvgHTML; // restore SVG if overwritten
+        }
+    };
     let recognition = null;
     let isDictating = false;
     let dictationResultEl = null;
@@ -421,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 clearTimeout(dictationTimeout);
                 isDictating = true;
-                dictateBtn.textContent = '🛑';
+                setDictating(true);
                 // Reset overlay for new session
                 dictationResultEl.textContent = '';
                 dictationResultEl.style.display = 'block';
@@ -434,14 +461,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition.continuous = true; // Allow continuous dictation, not just single utterance
                 recognition.onstart = () => {
                     isDictating = true;
-                    dictateBtn.textContent = '🛑';
+                    setDictating(true);
                     dictationResultEl.textContent = '';
                     dictationResultEl.style.display = 'block';
                     showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
                 };
                 recognition.onend = () => {
                     isDictating = false;
-                    dictateBtn.textContent = '🎤';
+                    setDictating(false);
                     clearTimeout(dictationTimeout);
                     if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
                         showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
@@ -451,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 recognition.onerror = (event) => {
                     isDictating = false;
-                    dictateBtn.textContent = '🎤';
+                    setDictating(false);
                     clearTimeout(dictationTimeout);
                     showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
                 };
@@ -635,6 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let history = [];
     let historyIndex = -1;
     let isAnswerVisible = false;
+    let recentCardKeys = []; // track last N card keys to avoid immediate repeats
 
     // --- Options UI Elements ---
     const hierarchicalToggle = document.getElementById('hierarchical-toggle');
@@ -666,11 +694,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hierarchical: true, // When true, pick frequency group first, then verb.
         showPhrases: true,
         verbsWithSentencesOnly: false, // When true, only show verbs that have sentences
+        balancedPronouns: false, // When true, all 9 pronouns get equal weight
+        reflexiveMode: 'include', // 'include' = both, 'only' = reflexive only, 'exclude' = no reflexive
         tenseWeights,
         frequencyWeights,
-        // New filters
-        regularityFilter: 'all', // 'all' | 'regular' | 'irregular'
-        endingFilter: 'all',     // 'all' | 'er' | 'ir' | 're' | 'other'
+        // New filters (objects: true = included)
+        regularityFilter: { regular: true, irregular: true },
+        endingFilter: { er: true, ir: true, re: true, other: true },
         categoryFilter: 'all',   // 'all' | one of classifyFrenchVerb categories
         // TODO(Filter): Consider allowing multiple categories (multi-select) and store as array.
     };
@@ -705,17 +735,50 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof savedOptions.verbsWithSentencesOnly === 'boolean') {
                     cardGenerationOptions.verbsWithSentencesOnly = savedOptions.verbsWithSentencesOnly;
                 }
+                if (typeof savedOptions.balancedPronouns === 'boolean') {
+                    cardGenerationOptions.balancedPronouns = savedOptions.balancedPronouns;
+                }
+                if (savedOptions.reflexiveMode) {
+                    cardGenerationOptions.reflexiveMode = savedOptions.reflexiveMode;
+                } else if (typeof savedOptions.includeReflexive === 'boolean') {
+                    // migrate old boolean
+                    cardGenerationOptions.reflexiveMode = savedOptions.includeReflexive ? 'include' : 'exclude';
+                }
 
                 // Update weights by merging into the existing objects
                 if (savedOptions.tenseWeights) { Object.assign(tenseWeights, savedOptions.tenseWeights); }
-                if (savedOptions.frequencyWeights) { Object.assign(frequencyWeights, savedOptions.frequencyWeights); }
-
-                // Load new filters if present
-                if (typeof savedOptions.regularityFilter === 'string') {
-                    cardGenerationOptions.regularityFilter = savedOptions.regularityFilter;
+                if (savedOptions.frequencyWeights) {
+                    // Normalize any old hyphenated keys before merging
+                    const savedFW = savedOptions.frequencyWeights;
+                    const fwNorm = { 'top-20':'top20','top-50':'top50','top-100':'top100','top-500':'top500','top-1000':'top1000' };
+                    Object.keys(fwNorm).forEach(old => {
+                        if (old in savedFW) { savedFW[fwNorm[old]] = savedFW[old]; delete savedFW[old]; }
+                    });
+                    Object.assign(frequencyWeights, savedFW);
                 }
-                if (typeof savedOptions.endingFilter === 'string') {
-                    cardGenerationOptions.endingFilter = savedOptions.endingFilter;
+
+                // Load new filters if present (with backward-compat for old string format)
+                if (savedOptions.regularityFilter) {
+                    if (typeof savedOptions.regularityFilter === 'string') {
+                        const r = { regular: true, irregular: true };
+                        if (savedOptions.regularityFilter === 'regular') r.irregular = false;
+                        if (savedOptions.regularityFilter === 'irregular') r.regular = false;
+                        cardGenerationOptions.regularityFilter = r;
+                    } else if (typeof savedOptions.regularityFilter === 'object') {
+                        Object.assign(cardGenerationOptions.regularityFilter, savedOptions.regularityFilter);
+                    }
+                }
+                if (savedOptions.endingFilter) {
+                    if (typeof savedOptions.endingFilter === 'string') {
+                        const e = { er: true, ir: true, re: true, other: true };
+                        if (savedOptions.endingFilter !== 'all') {
+                            e.er = false; e.ir = false; e.re = false; e.other = false;
+                            e[savedOptions.endingFilter] = true;
+                        }
+                        cardGenerationOptions.endingFilter = e;
+                    } else if (typeof savedOptions.endingFilter === 'object') {
+                        Object.assign(cardGenerationOptions.endingFilter, savedOptions.endingFilter);
+                    }
                 }
                 if (typeof savedOptions.categoryFilter === 'string') {
                     cardGenerationOptions.categoryFilter = savedOptions.categoryFilter;
@@ -905,8 +968,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const {
                 frequencyWeights = {},
-                regularityFilter = 'all',
-                endingFilter = 'all',
+                regularityFilter = { regular: true, irregular: true },
+                endingFilter = { er: true, ir: true, re: true, other: true },
                 categoryFilter = 'all',
                 verbsWithSentencesOnly = false,
                 tenseWeights = {}
@@ -927,10 +990,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return 'other';
             };
             const passesFilters = (verbInfo) => {
-                if (regularityFilter === 'regular' && isIrregular(verbInfo.infinitive)) return false;
-                if (regularityFilter === 'irregular' && !isIrregular(verbInfo.infinitive)) return false;
+                if (cardGenerationOptions.reflexiveMode === 'only' && !verbInfo.reflexive) return false;
+                if (cardGenerationOptions.reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
+                const irreg = isIrregular(verbInfo.infinitive);
+                if (irreg && !regularityFilter.irregular) return false;
+                if (!irreg && !regularityFilter.regular) return false;
                 const end = getEnding(verbInfo.infinitive);
-                if (endingFilter !== 'all' && end !== endingFilter) return false;
+                if (!endingFilter[end]) return false;
                 if (categoryFilter !== 'all') {
                     const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
                     if (cat !== categoryFilter) return false;
@@ -954,8 +1020,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let count = 0;
             for (const v of uniqueVerbs) {
-                const freq = v.frequency || 'common';
-                if (!activeFrequencies.has(freq)) continue;
+                // In reflexive-only mode, bypass frequency filter — count all reflexive verbs
+                if (cardGenerationOptions.reflexiveMode !== 'only') {
+                    const freq = v.frequency || 'common';
+                    if (!activeFrequencies.has(freq)) continue;
+                }
                 if (!passesFilters(v)) continue;
                 if (!hasPracticeSentences(v.infinitive)) continue;
                 count++;
@@ -1043,28 +1112,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Flashcard Logic ---
     const removeAccents = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    const performWeightedSelection = (weightedItems) => {
-        if (!weightedItems || weightedItems.length === 0) {
-            return null;
-        }
+    const cardKey = (card) => `${card.verb?.infinitive}|${card.tense}|${card.pronoun}`;
 
-        const totalWeight = weightedItems.reduce((sum, item) => sum + (item.score || 0), 0);
+    const performWeightedSelection = (weightedItems) => {
+        if (!weightedItems || weightedItems.length === 0) return null;
+
+        // Filter out recently seen cards (keep at most 1/3 of deck size as buffer)
+        const bufferSize = Math.max(1, Math.floor(weightedItems.length / 3));
+        const recentSet = new Set(recentCardKeys.slice(-bufferSize));
+        const filtered = weightedItems.filter(item => !recentSet.has(cardKey(item.card)));
+        const pool = filtered.length > 0 ? filtered : weightedItems; // fallback to full deck if all recent
+
+        const totalWeight = pool.reduce((sum, item) => sum + (item.score || 0), 0);
         if (totalWeight <= 0) {
-            // Fallback to uniform random if all weights are zero
-            return weightedItems[Math.floor(Math.random() * weightedItems.length)].card;
+            return pool[Math.floor(Math.random() * pool.length)].card;
         }
 
         let random = Math.random() * totalWeight;
-
-        for (const item of weightedItems) {
+        for (const item of pool) {
             random -= (item.score || 0);
-            if (random <= 0) {
-                return item.card;
-            }
+            if (random <= 0) return item.card;
         }
-
-        // Fallback in case of floating point issues
-        return weightedItems[weightedItems.length - 1].card;
+        return pool[pool.length - 1].card;
     };
 
     const generateNewCard = (options = {}) => {
@@ -1096,7 +1165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ...existing verb card logic...
-    const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = 'all', endingFilter = 'all', categoryFilter = 'all' } = options;
+    const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { er: true, ir: true, re: true, other: true }, categoryFilter = 'all' } = options;
 
         // Helpers for filters
         const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
@@ -1107,12 +1176,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return 'other';
         };
         const passesFilters = (verbInfo) => {
+            if (cardGenerationOptions.reflexiveMode === 'only' && !verbInfo.reflexive) return false;
+            if (cardGenerationOptions.reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
             // Regularity
-            if (regularityFilter === 'regular' && isIrregular(verbInfo.infinitive)) return false;
-            if (regularityFilter === 'irregular' && !isIrregular(verbInfo.infinitive)) return false;
+            const irreg = isIrregular(verbInfo.infinitive);
+            if (irreg && !regularityFilter.irregular) return false;
+            if (!irreg && !regularityFilter.regular) return false;
             // Ending
             const end = getEnding(verbInfo.infinitive);
-            if (endingFilter !== 'all' && end !== endingFilter) return false;
+            if (!endingFilter[end]) return false;
             // Category
             if (categoryFilter !== 'all') {
                 const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
@@ -1151,16 +1223,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hierarchical) {
             // ...existing code...
-            const weightedFrequencies = Object.entries(frequencyWeights)
-                .map(([freq, score]) => ({ card: freq, score: score }))
-                .filter(item => item.score > 0);
-
-            if (weightedFrequencies.length === 0) return null;
-
-            const selectedFrequency = performWeightedSelection(weightedFrequencies);
-            if (!selectedFrequency) return null;
-
-            let verbsInFrequency = uniqueVerbs.filter(v => (v.frequency || 'common') === selectedFrequency);
+            // In reflexive-only mode, bypass frequency selection — use all reflexive verbs
+            let verbsInFrequency;
+            if (cardGenerationOptions.reflexiveMode === 'only') {
+                verbsInFrequency = uniqueVerbs.filter(passesFilters);
+            } else {
+                const weightedFrequencies = Object.entries(frequencyWeights)
+                    .map(([freq, score]) => ({ card: freq, score: score }))
+                    .filter(item => item.score > 0);
+                if (weightedFrequencies.length === 0) return null;
+                const selectedFrequency = performWeightedSelection(weightedFrequencies);
+                if (!selectedFrequency) return null;
+                verbsInFrequency = uniqueVerbs.filter(v => (v.frequency || 'common') === selectedFrequency);
+            }
+            // Exclude verbs with no real English translation
+            verbsInFrequency = verbsInFrequency.filter(v => cleanTranslation(v.infinitive, v.translation || ''));
             // Apply new filters
             verbsInFrequency = verbsInFrequency.filter(passesFilters);
             if (verbsWithSentencesOnly) {
@@ -1179,15 +1256,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (conjugations) {
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
                         for (const pronounKey of availablePronouns) {
-                            let pronoun = pronounKey;
-                            if (pronounKey.includes('/')) {
+                            if (cardGenerationOptions.balancedPronouns && pronounKey.includes('/')) {
+                                // Balanced: one entry per individual pronoun with equal weight
                                 const options = pronounKey.split('/');
-                                pronoun = options[Math.floor(Math.random() * options.length)];
+                                for (const pronoun of options) {
+                                    weightedDeck.push({
+                                        card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
+                                        score: tenseWeight
+                                    });
+                                }
+                            } else {
+                                let pronoun = pronounKey;
+                                if (pronounKey.includes('/')) {
+                                    const options = pronounKey.split('/');
+                                    pronoun = options[Math.floor(Math.random() * options.length)];
+                                }
+                                weightedDeck.push({
+                                    card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
+                                    score: tenseWeight
+                                });
                             }
-                            weightedDeck.push({
-                                card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
-                                score: tenseWeight
-                            });
                         }
                     }
                 }
@@ -1207,8 +1295,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (verbsWithSentencesOnly && !verbHasSentences(verbInfo.infinitive)) {
                         continue;
                     }
-                    const freq = verbInfo.frequency || 'common';
-                    const freqWeight = frequencyWeights[freq] || 0;
+                    // In reflexive-only mode, bypass frequency weights — use all reflexive verbs equally
+                    const freqWeight = cardGenerationOptions.reflexiveMode === 'only'
+                        ? 1
+                        : (frequencyWeights[verbInfo.frequency || 'common'] || 0);
                     const score = tenseWeight * freqWeight;
                     if (score === 0) continue;
 
@@ -1217,15 +1307,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (conjugations) {
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
                         for (const pronounKey of availablePronouns) {
-                            let pronoun = pronounKey;
-                            if (pronounKey.includes('/')) {
+                            if (cardGenerationOptions.balancedPronouns && pronounKey.includes('/')) {
                                 const options = pronounKey.split('/');
-                                pronoun = options[Math.floor(Math.random() * options.length)];
+                                for (const pronoun of options) {
+                                    weightedDeck.push({
+                                        card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
+                                        score: score
+                                    });
+                                }
+                            } else {
+                                let pronoun = pronounKey;
+                                if (pronounKey.includes('/')) {
+                                    const options = pronounKey.split('/');
+                                    pronoun = options[Math.floor(Math.random() * options.length)];
+                                }
+                                weightedDeck.push({
+                                    card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
+                                    score: score
+                                });
                             }
-                            weightedDeck.push({
-                                card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
-                                score: score
-                            });
                         }
                     }
                 }
@@ -1315,8 +1415,25 @@ document.addEventListener('DOMContentLoaded', () => {
       return `Comment dire « ${verb} » au ${tense} pour « ${pronoun} » ?`;
     }
 
+    const updateHashParams = (card) => {
+        if (card.verb) {
+            const params = new URLSearchParams();
+            params.set('pronoun', card.pronoun);
+            params.set('verb', card.verb.infinitive);
+            params.set('tense', card.tense);
+            window.location.hash = params.toString();
+        } else {
+            window.location.hash = '';
+        }
+    };
+
     const displayCard = (card) => {
         currentCard = card;
+        // Track recent cards to avoid immediate repeats
+        if (card.verb) {
+            recentCardKeys.push(cardKey(card));
+            if (recentCardKeys.length > 200) recentCardKeys.shift();
+        }
         updateHashParams(card);
         // --- PHRASE MODE ---
         const isPhraseMode = card.isPhraseMode || (!card.verb && card.phrase);
@@ -1326,6 +1443,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Hide all verb-specific UI elements robustly
             if (verbInfinitiveEl) { verbInfinitiveEl.textContent = ''; verbInfinitiveEl.parentElement.style.display = 'none'; }
             if (verbTranslationEl) { verbTranslationEl.textContent = ''; verbTranslationEl.style.display = 'none'; }
+            if (verbHintEl) { verbHintEl.textContent = ''; verbHintEl.style.display = 'none'; }
             if (verbPronounEl) { verbPronounEl.textContent = ''; verbPronounEl.style.display = 'none'; }
             if (verbTenseEl) { verbTenseEl.textContent = ''; verbTenseEl.style.display = 'none'; }
             if (verbFrequencyEl) { verbFrequencyEl.textContent = ''; verbFrequencyEl.style.display = 'none'; }
@@ -1385,6 +1503,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (verbInfinitiveEl) { verbInfinitiveEl.parentElement.style.display = 'flex'; }
             if (verbTranslationEl) { verbTranslationEl.style.display = 'block'; }
+            if (verbHintEl) { verbHintEl.style.display = ''; }
             if (verbPronounEl) { verbPronounEl.style.display = ''; }
             if (verbTenseEl) { verbTenseEl.style.display = ''; }
             if (verbFrequencyEl) { verbFrequencyEl.style.display = ''; }
@@ -1394,13 +1513,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // --- VERB CARD LOGIC ---
         const verbFrequency = card.verb.frequency || 'common'; 
-        let translation = card.verb.translation || '';
+        const rawTranslation = cleanTranslation(card.verb.infinitive, card.verb.translation || '');
+        let translation = rawTranslation;
         if (translation && !/^to\s/i.test(translation)) {
             translation = 'to ' + translation;
         }
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
-        verbTranslationEl.textContent = translation ? '(' + translation + ')' : '';
+        verbTranslationEl.textContent = translation || '';
+        if (verbHintEl) verbHintEl.textContent = card.verb.hint || '';
         if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^[\(|\)]/g, '');
         if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
         let pronounDisplay = card.pronoun;
@@ -1410,7 +1531,16 @@ document.addEventListener('DOMContentLoaded', () => {
             pronounDisplay = (pronounEmojiMap[pronounDisplay] || '') + ' ' + pronounDisplay;
         }
         verbPronounEl.textContent = pronounDisplay.trim();
-        verbTenseEl.textContent = card.tense;
+        const tenseLabelMap = {
+            'present': 'présent',
+            'passeCompose': 'passé composé',
+            'imparfait': 'imparfait',
+            'futurSimple': 'futur simple',
+            'plusQueParfait': 'plus-que-parfait',
+            'subjonctifPresent': 'subjonctif présent',
+            'conditionnelPresent': 'conditionnel présent'
+        };
+        verbTenseEl.textContent = tenseLabelMap[card.tense] || card.tense;
         verbTenseEl.className = 'meta-info';
         const tenseClassMap = {
             'present': 'tense-present',
@@ -1609,6 +1739,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Card advance logic ---
+    let autoskipLock = false;
     const nextCard = () => {
         autoskipLock = false;
         if (currentCard && currentCard.verb) {
@@ -1626,6 +1757,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 historyIndex = history.length - 1;
                 displayCard(newCard);
                 backBtn.disabled = historyIndex === 0;
+            } else {
+                // No card could be generated — show a hint on the card face
+                if (verbInfinitiveEl) verbInfinitiveEl.textContent = 'No verbs match current filters';
+                if (verbTranslationEl) { verbTranslationEl.textContent = 'Adjust settings to continue'; verbTranslationEl.style.display = 'block'; }
+                console.warn('generateNewCard returned null — check frequency weights and filters');
             }
         }
         // Do NOT start dictation automatically
@@ -1748,8 +1884,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateExplorerList(filter = '') {
         verbListContainer.innerHTML = '';
-        const normalizedFilter = removeAccents(filter.toLowerCase());
-        const filteredVerbs = uniqueVerbs.filter(v => removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter));
+        const normalizedFilter = removeAccents(filter.toLowerCase().trim());
+        const filteredVerbs = uniqueVerbs.filter(v => {
+            if (!normalizedFilter) return true;
+            // Match French infinitive
+            if (removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter)) return true;
+            // Match English translation
+            const trans = cleanTranslation(v.infinitive, v.translation || '');
+            if (trans && removeAccents(trans.toLowerCase()).includes(normalizedFilter)) return true;
+            // Match any conjugated form across all tenses.
+            // For compound forms (e.g. "j'ai abandonné"), only match the participle part —
+            // otherwise aux verbs (avoir/être) would match every single verb.
+            const auxPrefix = /^(j'ai|tu as|il a|elle a|on a|nous avons|vous avez|ils ont|elles ont|j'avais|tu avais|il avait|elle avait|on avait|nous avions|vous aviez|ils avaient|elles avaient|je suis|tu es|il est|elle est|on est|nous sommes|vous êtes|ils sont|elles sont|j'étais|tu étais|il était|elle était|on était|nous étions|vous étiez|ils étaient|elles étaient)\s+/i;
+            for (const tenseName in tenses) {
+                const conjugations = tenses[tenseName] && tenses[tenseName][v.infinitive];
+                if (!conjugations) continue;
+                for (const form of Object.values(conjugations)) {
+                    const searchable = removeAccents(form.replace(auxPrefix, '').toLowerCase());
+                    if (searchable.includes(normalizedFilter)) return true;
+                }
+            }
+            return false;
+        });
         const groups = groupVerbsByFrequency(filteredVerbs);
 
         // TODO(Explorer): Add a category chip next to each verb (use verb.category) and consider an Explorer-level
@@ -1781,10 +1937,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const item = document.createElement('div');
                     item.className = 'verb-list-item';
                     item.dataset.infinitive = verb.infinitive;
+                    const listTranslation = cleanTranslation(verb.infinitive, verb.translation);
                     item.innerHTML = `
                         <div class="verb-list-item-text">
                             <span class="infinitive">${verb.infinitive}</span>
-                            <span class="translation">${verb.translation}</span>
+                            <span class="translation">${listTranslation}</span>
                         </div>
                         <button class="audio-btn" data-speak="${verb.infinitive}">🔊</button>
                     `;
@@ -1800,9 +1957,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const header = document.createElement('div');
         header.className = 'verb-detail-header';
+        const detailTranslation = cleanTranslation(verb.infinitive, verb.translation);
        header.innerHTML = `
             <span class="infinitive tappable-audio" data-speak="${verb.infinitive}">${verb.infinitive}</span>
-            <p class="translation">${verb.translation}</p>
+            ${detailTranslation ? `<p class="translation">${detailTranslation}</p>` : ''}
         `;
         // TODO(Detail): Show verb.category in the header (chip next to infinitive) and make it clickable to filter Explorer
         // by this category (navigates back to list with category pre-selected).
@@ -1891,26 +2049,95 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Options UI Logic ---
     const populateOptions = () => {
         // Set initial state of the hierarchical toggle
-        hierarchicalToggle.checked = cardGenerationOptions.hierarchical;
-        showPhrasesToggle.checked = cardGenerationOptions.showPhrases;
-        verbsWithSentencesToggle.checked = cardGenerationOptions.verbsWithSentencesOnly;
+        if (hierarchicalToggle) hierarchicalToggle.checked = cardGenerationOptions.hierarchical;
+        if (showPhrasesToggle) showPhrasesToggle.checked = cardGenerationOptions.showPhrases;
+        if (verbsWithSentencesToggle) verbsWithSentencesToggle.checked = cardGenerationOptions.verbsWithSentencesOnly;
+        const balancedPronounsToggle = document.getElementById('balanced-pronouns-toggle');
+        if (balancedPronounsToggle) balancedPronounsToggle.checked = cardGenerationOptions.balancedPronouns;
+        // reflexive pills are dynamically created in frequencyWeightsContainer, no sync needed here
 
         // Helper function to create a slider control for a given weight object
+        const tenseDisplayNames = {
+            'present': 'présent', 'passeCompose': 'passé composé',
+            'imparfait': 'imparfait', 'futurSimple': 'futur simple',
+            'plusQueParfait': 'plus-que-parfait',
+            'subjonctifPresent': 'subjonctif présent',
+            'conditionnelPresent': 'conditionnel présent'
+        };
+        const tenseClasses = {
+            'present': 'tense-present', 'passeCompose': 'tense-passeCompose',
+            'imparfait': 'tense-imparfait', 'futurSimple': 'tense-futurSimple',
+            'plusQueParfait': 'tense-plusQueParfait',
+            'subjonctifPresent': 'tense-subjonctifPresent',
+            'conditionnelPresent': 'tense-conditionnelPresent'
+        };
+        const freqDisplayNames = {
+            'top1000': 'Top 1000', 'top500': 'Top 500', 'top100': 'Top 100',
+            'top50': 'Top 50', 'top20': 'Top 20'
+        };
+
         const createSlider = (key, value, container, weightType) => {
+            if (weightType === 'tenseWeights') {
+                // Render as a colored toggle pill
+                const btn = document.createElement('button');
+                btn.className = 'tense-weight-pill';
+                btn.textContent = tenseDisplayNames[key] || key;
+                btn.dataset.key = key;
+                const tc = tenseClasses[key] || '';
+                if (value > 0) btn.classList.add('active', tc);
+                btn.addEventListener('click', () => {
+                    const cur = cardGenerationOptions.tenseWeights[key] || 0;
+                    const newVal = cur > 0 ? 0 : 1;
+                    cardGenerationOptions.tenseWeights[key] = newVal;
+                    if (newVal > 0) { btn.classList.add('active', tc); }
+                    else { btn.classList.remove('active', tc); }
+                    saveOptions();
+                    updateVerbFiltersCountLabel();
+                });
+                container.appendChild(btn);
+                return;
+            }
+
+            if (weightType === 'frequencyWeights') {
+                // Render as a 0-5 segmented step row
+                const row = document.createElement('div');
+                row.className = 'freq-weight-row';
+                const label = document.createElement('span');
+                label.className = 'freq-label';
+                let labelText = freqDisplayNames[key] || key.replace(/([A-Z])/g, ' $1');
+                const count = frequencyCounts[key] || 0;
+                if (count) labelText += ` (${count})`;
+                label.textContent = labelText;
+                const stepsRow = document.createElement('div');
+                stepsRow.className = 'freq-steps';
+                const clamped = Math.max(0, Math.min(5, value));
+                for (let i = 0; i <= 5; i++) {
+                    const step = document.createElement('button');
+                    step.className = 'freq-step-btn' + (i === clamped ? ' active' : '');
+                    step.textContent = i;
+                    step.addEventListener('click', () => {
+                        cardGenerationOptions.frequencyWeights[key] = i;
+                        stepsRow.querySelectorAll('.freq-step-btn').forEach((b, idx) => {
+                            b.classList.toggle('active', idx === i);
+                        });
+                        saveOptions();
+                        updateVerbFiltersCountLabel();
+                    });
+                    stepsRow.appendChild(step);
+                }
+                row.appendChild(label);
+                row.appendChild(stepsRow);
+                container.appendChild(row);
+                return;
+            }
+
+            // Fallback: original range slider
             const sliderGroup = document.createElement('div');
             sliderGroup.className = 'slider-group';
-
             const label = document.createElement('label');
             label.htmlFor = `slider-${key}`;
             let labelText = key.replace(/([A-Z])/g, ' $1').replace('-', ' ');
-
-            // Add verb count for frequency weights
-            if (weightType === 'frequencyWeights') {
-                const count = frequencyCounts[key] || 0;
-                labelText += ` (${count} verbs)`;
-            }
             label.textContent = labelText;
-
             const slider = document.createElement('input');
             slider.type = 'range';
             slider.id = `slider-${key}`;
@@ -1918,21 +2145,16 @@ document.addEventListener('DOMContentLoaded', () => {
             slider.max = 10;
             slider.value = value;
             slider.dataset.key = key;
-
             const sliderValue = document.createElement('span');
             sliderValue.className = 'slider-value';
             sliderValue.textContent = value;
-
-            // Update the configuration object and the displayed value when the slider moves
             slider.addEventListener('input', (e) => {
                 const newValue = parseInt(e.target.value, 10);
                 sliderValue.textContent = newValue;
                 cardGenerationOptions[weightType][e.target.dataset.key] = newValue;
                 saveOptions();
-                // Update in-play count live when any weights move (frequency or tense)
                 updateVerbFiltersCountLabel();
             });
-
             sliderGroup.appendChild(label);
             sliderGroup.appendChild(slider);
             sliderGroup.appendChild(sliderValue);
@@ -1943,7 +2165,53 @@ document.addEventListener('DOMContentLoaded', () => {
         Object.entries(cardGenerationOptions.tenseWeights).forEach(([tense, weight]) => createSlider(tense, weight, tenseWeightsContainer, 'tenseWeights'));
 
         frequencyWeightsContainer.innerHTML = '';
-        Object.entries(cardGenerationOptions.frequencyWeights).forEach(([freq, weight]) => createSlider(freq, weight, frequencyWeightsContainer, 'frequencyWeights'));
+        // Render in ascending rarity order: top20 first, rare last
+        const freqOrder = ['top20', 'top50', 'top100', 'top500', 'top1000', 'rare'];
+        const freqEntries = Object.entries(cardGenerationOptions.frequencyWeights);
+        freqEntries.sort(([a], [b]) => {
+            const ai = freqOrder.indexOf(a), bi = freqOrder.indexOf(b);
+            return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+        });
+        freqEntries.forEach(([freq, weight]) => createSlider(freq, weight, frequencyWeightsContainer, 'frequencyWeights'));
+
+        // Balance verb randomizer toggle (after freq weights)
+        const balanceRow = document.createElement('div');
+        balanceRow.className = 'toggle-row';
+        balanceRow.style.marginTop = '0.6rem';
+        balanceRow.innerHTML = `
+            <label for="hierarchical-toggle" style="font-weight:600;font-size:0.9rem;color:var(--text-color);">Balance verb randomizer</label>
+            <div class="toggle-switch">
+                <input type="checkbox" id="hierarchical-toggle" class="toggle-input" ${cardGenerationOptions.hierarchical ? 'checked' : ''}>
+                <label for="hierarchical-toggle" class="toggle-label"></label>
+            </div>`;
+        balanceRow.querySelector('#hierarchical-toggle').addEventListener('change', (e) => {
+            cardGenerationOptions.hierarchical = e.target.checked;
+            saveOptions();
+        });
+        frequencyWeightsContainer.appendChild(balanceRow);
+
+        // Reflexive mode pills — lives next to balance toggle (same conceptual group)
+        const reflexiveRow = document.createElement('div');
+        reflexiveRow.className = 'toggle-row';
+        reflexiveRow.style.marginTop = '0.4rem';
+        const activeMode = cardGenerationOptions.reflexiveMode || 'include';
+        reflexiveRow.innerHTML = `
+            <label style="font-weight:600;font-size:0.9rem;color:var(--text-color);">Reflexive verbs</label>
+            <div class="reflexive-mode-pills" id="reflexive-mode-pills">
+                <button class="reflexive-pill${activeMode==='exclude'?' active':''}" data-mode="exclude">Without</button>
+                <button class="reflexive-pill${activeMode==='include'?' active':''}" data-mode="include">Both</button>
+                <button class="reflexive-pill${activeMode==='only'?' active':''}" data-mode="only">Only</button>
+            </div>`;
+        reflexiveRow.querySelectorAll('.reflexive-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                cardGenerationOptions.reflexiveMode = btn.dataset.mode;
+                reflexiveRow.querySelectorAll('.reflexive-pill').forEach(b => b.classList.toggle('active', b === btn));
+                saveOptions();
+                updateCustomPresetFromUI();
+                updateVerbFiltersCountLabel();
+            });
+        });
+        frequencyWeightsContainer.appendChild(reflexiveRow);
 
         // --- New Filters UI (Regularity and Verb Ending) ---
         // Add a small section inside frequencyWeightsContainer for visual grouping
@@ -1964,119 +2232,95 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.style.margin = '0.2em 0 0.6em 0';
         filtersSection.appendChild(heading);
 
-        const createSelectGroup = (labelText, id, options, currentValue, onChange) => {
+        const createCheckboxGroup = (labelText, options, currentValues) => {
             const group = document.createElement('div');
-            group.className = 'slider-group';
-            // Layout and spacing
-            group.style.display = 'flex';
-            group.style.alignItems = 'center';
-            group.style.justifyContent = 'space-between';
-            group.style.gap = '0.75rem';
-            group.style.margin = '0.4rem 0';
+            group.style.margin = '0.5rem 0 0.7rem';
 
-            const label = document.createElement('label');
-            label.htmlFor = id;
+            const label = document.createElement('div');
             label.textContent = labelText;
             label.style.fontWeight = '600';
+            label.style.fontSize = '0.9rem';
             label.style.color = 'var(--text-color, #2c3e50)';
-
-            const select = document.createElement('select');
-            select.id = id;
-            // Pill-like select styling
-            select.style.border = '2px solid';
-            select.style.borderRadius = '999px';
-            select.style.padding = '0.35rem 0.8rem';
-            select.style.cursor = 'pointer';
-            select.style.fontWeight = '600';
-            select.style.outline = 'none';
-            select.style.minWidth = '150px';
-            select.style.opacity = '1';
-            select.disabled = false;
-            // Theme-aware colors for readability
-            const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
-            const applyTheme = () => {
-                const dark = mq && mq.matches;
-                if (dark) {
-                    select.style.background = '#27384a';
-                    select.style.borderColor = '#35506b';
-                    select.style.color = '#eaf6fb';
-                    select.style.boxShadow = '0 1px 6px rgba(0,0,0,0.30)';
-                } else {
-                    select.style.background = '#ffffff';
-                    select.style.borderColor = '#e9ecef';
-                    select.style.color = '#2c3e50';
-                    select.style.boxShadow = '0 1px 6px rgba(0,0,0,0.04)';
-                }
-            };
-            applyTheme();
-            if (mq && mq.addEventListener) {
-                mq.addEventListener('change', applyTheme);
-            } else if (mq && mq.addListener) {
-                // Safari fallback
-                mq.addListener(applyTheme);
-            }
-            // Focus/hover visual feedback via JS (theme-aware)
-            select.addEventListener('focus', () => {
-                const dark = mq && mq.matches;
-                select.style.borderColor = dark ? '#4a6a88' : '#3498db';
-                select.style.boxShadow = dark ? '0 0 0 3px rgba(74,106,136,0.35)' : '0 0 0 3px rgba(52,152,219,0.18)';
-            });
-            select.addEventListener('blur', () => applyTheme());
-            select.addEventListener('mouseover', () => {
-                const dark = mq && mq.matches;
-                select.style.borderColor = dark ? '#3f5a74' : '#d5dbe1';
-            });
-            select.addEventListener('mouseout', () => applyTheme());
-            options.forEach(({ value, text }) => {
-                const opt = document.createElement('option');
-                opt.value = value;
-                opt.textContent = text;
-                select.appendChild(opt);
-            });
-            select.value = currentValue;
-            select.addEventListener('change', (e) => {
-                onChange(e.target.value);
-                saveOptions();
-                // Restore original behavior: always advance to show effect immediately
-                // hideAnswer();
-                // setTimeout(() => nextCard(), 300);
-                updateVerbFiltersCountLabel();
-            });
-
+            label.style.marginBottom = '0.45rem';
             group.appendChild(label);
-            group.appendChild(select);
+
+            const row = document.createElement('div');
+            row.style.display = 'flex';
+            row.style.flexWrap = 'wrap';
+            row.style.gap = '0.4rem';
+
+            options.forEach(({ value, text }) => {
+                const pill = document.createElement('label');
+                pill.style.display = 'inline-flex';
+                pill.style.alignItems = 'center';
+                pill.style.padding = '0.28em 0.8em';
+                pill.style.borderRadius = '999px';
+                pill.style.border = '1.5px solid var(--border-color, #e9ecef)';
+                pill.style.cursor = 'pointer';
+                pill.style.fontSize = '0.88rem';
+                pill.style.fontWeight = '600';
+                pill.style.userSelect = 'none';
+                pill.style.transition = 'background 0.15s, border-color 0.15s, opacity 0.15s';
+
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.checked = currentValues[value] !== false;
+                cb.style.display = 'none';
+
+                const applyPillStyle = () => {
+                    if (cb.checked) {
+                        pill.style.background = 'var(--accent-color, #3498db)';
+                        pill.style.borderColor = 'var(--accent-color, #3498db)';
+                        pill.style.color = '#fff';
+                        pill.style.opacity = '1';
+                    } else {
+                        pill.style.background = 'transparent';
+                        pill.style.borderColor = 'var(--border-color, #e9ecef)';
+                        pill.style.color = 'var(--text-color, #2c3e50)';
+                        pill.style.opacity = '0.45';
+                    }
+                };
+                applyPillStyle();
+
+                cb.addEventListener('change', () => {
+                    currentValues[value] = cb.checked;
+                    applyPillStyle();
+                    saveOptions();
+                    updateVerbFiltersCountLabel();
+                });
+
+                pill.appendChild(cb);
+                pill.appendChild(document.createTextNode(text));
+                row.appendChild(pill);
+            });
+
+            group.appendChild(row);
             return group;
         };
 
         // Regular/Irregular filter
-        const regularityGroup = createSelectGroup(
+        const regularityGroup = createCheckboxGroup(
             'Regular Vs Irregular',
-            'regularity-filter',
             [
-                { value: 'all', text: 'All' },
-                { value: 'regular', text: 'Regular only' },
-                { value: 'irregular', text: 'Irregular only' },
+                { value: 'regular', text: 'Regular' },
+                { value: 'irregular', text: 'Irregular' },
             ],
-            cardGenerationOptions.regularityFilter,
-            (val) => { cardGenerationOptions.regularityFilter = val; }
+            cardGenerationOptions.regularityFilter
         );
         filtersSection.appendChild(regularityGroup);
 
         // Verb ending filter
-        const endingGroup = createSelectGroup(
+        const endingGroup = createCheckboxGroup(
             'Verb Ending',
-            'ending-filter',
             [
-                { value: 'all', text: 'All' },
                 { value: 'er', text: '-er' },
                 { value: 'ir', text: '-ir' },
                 { value: 're', text: '-re' },
                 { value: 'other', text: 'other' },
             ],
-            cardGenerationOptions.endingFilter,
-            (val) => { cardGenerationOptions.endingFilter = val; }
+            cardGenerationOptions.endingFilter
         );
-    filtersSection.appendChild(endingGroup);
+        filtersSection.appendChild(endingGroup);
 
     // Verb category filter (from classifyFrenchVerb)
     /*const categoryOptions = [{ value: 'all', text: 'All categories' }].concat(
@@ -2109,6 +2353,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial count render
         updateVerbFiltersCountLabel();
     };
+
+    // Expose so applyPreset (global scope) can re-render the settings UI
+    window._populateOptions = populateOptions;
 
     // --- Event Listeners ---
     flashcard.addEventListener('click', () => {
@@ -2246,16 +2493,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setupInfoPanel();
 
-    // Options controls
-    hierarchicalToggle.addEventListener('change', (e) => {
-        cardGenerationOptions.hierarchical = e.target.checked;
-        saveOptions();
-    });
-    showPhrasesToggle.addEventListener('change', (e) => {
+    // Options controls (hierarchicalToggle listener now lives in populateOptions dynamic row)
+    if (showPhrasesToggle) showPhrasesToggle.addEventListener('change', (e) => {
         cardGenerationOptions.showPhrases = e.target.checked;
         saveOptions();
     });
-    verbsWithSentencesToggle.addEventListener('change', (e) => {
+    const balancedPronounsToggle = document.getElementById('balanced-pronouns-toggle');
+    if (balancedPronounsToggle) balancedPronounsToggle.addEventListener('change', (e) => {
+        cardGenerationOptions.balancedPronouns = e.target.checked;
+        saveOptions();
+    });
+
+
+    if (verbsWithSentencesToggle) verbsWithSentencesToggle.addEventListener('change', (e) => {
         cardGenerationOptions.verbsWithSentencesOnly = e.target.checked;
         saveOptions();
         // Generate a new card immediately to reflect the filter change
@@ -2278,7 +2528,7 @@ document.addEventListener('DOMContentLoaded', () => {
         correctDictationToggle.checked = enabled;
         correctDictationToggle.addEventListener('change', function() {
             localStorage.setItem('correct-dictation-next-question', correctDictationToggle.checked ? 'true' : 'false');
-            activePreset = "👤";
+            activePreset = "Custom";
             highlightActivePreset();
 
         });
@@ -2469,9 +2719,6 @@ document.addEventListener('DOMContentLoaded', () => {
       originalDisplayCard(card);
     };
 
-    // Add a per-card autoskip lock
-    let autoskipLock = false;
-
     // Use generic UIStrings for overlays and UI
     function showDictationOverlay(text, type = 'prompt', duration = 1800, isHtml = false, allowTimeout = true) {
         if (isHtml) {
@@ -2584,19 +2831,6 @@ document.addEventListener('DOMContentLoaded', () => {
             pronounKey: actualPronounKey, // Store the actual key used for lookup
             conjugated: conjugations[actualPronounKey]
         };
-    };
-
-    const updateHashParams = (card) => {
-    if (card.verb) {
-        const params = new URLSearchParams();
-        params.set('pronoun', card.pronoun);
-        params.set('verb', card.verb.infinitive);
-        params.set('tense', card.tense);
-        window.location.hash = params.toString();
-    } else {
-        // Phrase mode: clear hash or set phrase info if needed
-        window.location.hash = '';
-    }
     };
 
     // --- Initial Card Loading ---
@@ -2740,88 +2974,102 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 // ---------- PRESET SYSTEM ----------
-// 🐣 🐓 🦆 🦜 🦚 🦉
 const defaultPresets = [
   {
-    emoji: "🐣",
-    name: "Drill",
+    emoji: "🌱",
+    name: "Master the Basics I",
+    desc: "Top 50 verbs · présent only",
     config: {
       cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 0, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0 , plusQueParfait:0},
-        frequencyWeights: { "top-20": 4, "top-50": 1, "top-100": 0, "top-500": 0, "top-1000": 0, rare: 0 },
+        tenseWeights: { present: 1, passeCompose: 0, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0, plusQueParfait: 0 },
+        frequencyWeights: { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 },
       },
     },
   },
   {
-    emoji: "🐓",
-    name: "Drill+",
+    emoji: "🌿",
+    name: "Master the Basics II",
+    desc: "Top 50 verbs · présent + passé composé",
     config: {
       cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 1, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0 , plusQueParfait:0},
-        frequencyWeights: { "top-20": 1, "top-50": 1, "top-100": 0, "top-500": 0, "top-1000": 0, rare: 0 },
-        },
-        },
-    }
-    ,
-    {
-    emoji: "🦜",
-    name: "Know a lot",
-    config: {
-      cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 1, imparfait: 0, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 0 , plusQueParfait:1},
-        frequencyWeights: { "top-20": 1, "top-50": 1, "top-100": 1, "top-500": 1, "top-1000": 0, rare: 0 },
-        },
-        },
-    
+        tenseWeights: { present: 1, passeCompose: 1, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0, plusQueParfait: 0 },
+        frequencyWeights: { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 },
+      },
     },
-    {
-    emoji: "🦉",
-    name: "Knowitall",
+  },
+  {
+    emoji: "🌳",
+    name: "Master the Basics III",
+    desc: "Top 50 verbs · futur + conditionnel + subjonctif",
     config: {
       cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 1, imparfait: 1, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1 , plusQueParfait:1,},
-        frequencyWeights: { "top-20": 1, "top-50": 1, "top-100": 1, "top-500": 3, "top-1000": 4, rare: 4 },
-        },
-        },
-    }
-    ,
+        tenseWeights: { present: 0, passeCompose: 0, imparfait: 0, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1, plusQueParfait: 0 },
+        frequencyWeights: { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 },
+      },
+    },
+  },
   {
-    emoji: "👤",
+    emoji: "🌍",
+    name: "Broaden Horizons",
+    desc: "Top 1000 verbs · all tenses",
+    config: {
+      cardGenerationOptions: {
+        tenseWeights: { present: 1, passeCompose: 1, imparfait: 1, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1, plusQueParfait: 1 },
+        frequencyWeights: { top20: 1, top50: 1, top100: 2, top500: 0, top1000: 2, rare: 0 },
+      },
+    },
+  },
+  {
+    emoji: "🧠",
+    name: "All Verbs All Tenses",
+    desc: "All verbs · all tenses · equal weight",
+    config: {
+      cardGenerationOptions: {
+        tenseWeights: { present: 1, passeCompose: 1, imparfait: 1, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1, plusQueParfait: 1 },
+        frequencyWeights: { top20: 1, top50: 1, top100: 1, top500: 1, top1000: 1, rare: 1 },
+      },
+    },
+  },
+  {
+    emoji: "⚙️",
     name: "Custom",
+    desc: "Your current settings",
     config: {} // gets filled from localStorage on load
   }
 ];
 
-let activePreset = "👤";
-let presets = JSON.parse(localStorage.getItem("presets") || "null") || defaultPresets;
+let activePreset = "Custom";
+let presets = defaultPresets; // always use hardcoded defaults; only Custom config persists
 
 // Apply a preset (except 👤), update UI but do not overwrite custom config
 function applyPreset(preset) {
   const { cardGenerationOptions: cfg } = preset.config;
   if (cfg) {
-    cardGenerationOptions.tenseWeights = { ...cardGenerationOptions.tenseWeights, ...cfg.tenseWeights };
-    cardGenerationOptions.frequencyWeights = { ...cardGenerationOptions.frequencyWeights, ...cfg.frequencyWeights };
-    // saveOptions();
-    applyConfigToUI(cardGenerationOptions);
+    if (cfg.tenseWeights) cardGenerationOptions.tenseWeights = { ...cardGenerationOptions.tenseWeights, ...cfg.tenseWeights };
+    if (cfg.frequencyWeights) cardGenerationOptions.frequencyWeights = { ...cardGenerationOptions.frequencyWeights, ...cfg.frequencyWeights };
+    // Re-render the whole settings UI so pills + step buttons reflect the new values
+    if (window._populateOptions) window._populateOptions();
   }
-  activePreset = preset.emoji;
+  activePreset = preset.name;
   localStorage.setItem("lastPreset", activePreset);
   highlightActivePreset();
 }
 
 
 
-// Save 👤 preset when sliders or toggles change
+// Switch to Custom and save config whenever user changes any setting
 function updateCustomPresetFromUI() {
-    if (activePreset !== "👤") return;
-    const custom = presets.find(p => p.emoji === "👤");
+    activePreset = "Custom";
+    localStorage.setItem("lastPreset", "Custom");
+    highlightActivePreset();
+    const custom = presets.find(p => p.name === "Custom");
     if (custom) {
         custom.config.cardGenerationOptions = {
         tenseWeights: { ...cardGenerationOptions.tenseWeights },
         frequencyWeights: { ...cardGenerationOptions.frequencyWeights },
         };
         localStorage.setItem("presets", JSON.stringify(presets));
-        activePreset = "👤";
+        activePreset = "Custom";
         localStorage.setItem("lastPreset", activePreset);
         highlightActivePreset();
     }
@@ -2889,11 +3137,12 @@ function renderPresets() {
   presets.forEach(preset => {
     const btn = document.createElement("button");
     btn.className = "preset-btn";
-    btn.innerText = preset.emoji;
-    if (preset.emoji === activePreset) btn.classList.add("active");
+    btn.dataset.presetName = preset.name;
+    if (preset.name === activePreset) btn.classList.add("active");
+    btn.innerHTML = `<span class="preset-icon">${preset.emoji}</span><span class="preset-text"><span class="preset-name">${preset.name}</span><span class="preset-desc">${preset.desc || ''}</span></span>`;
     btn.onclick = () => {
       applyPreset(preset);
-      localStorage.setItem("lastPreset", preset.emoji);
+      localStorage.setItem("lastPreset", preset.name);
     };
     container.appendChild(btn);
   });
@@ -2901,14 +3150,14 @@ function renderPresets() {
 
 function highlightActivePreset() {
   document.querySelectorAll(".preset-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.innerText === activePreset);
+    btn.classList.toggle("active", btn.dataset.presetName === activePreset);
   });
 }
 
 // On load, fill 👤 from localStorage cardGenerationOptions
 const storedOptions = JSON.parse(localStorage.getItem("cardGenerationOptions"));
 if (storedOptions) {
-  const custom = presets.find(p => p.emoji === "👤");
+  const custom = presets.find(p => p.name === "Custom");
   if (custom) {
     custom.config.cardGenerationOptions = {
       tenseWeights: storedOptions.tenseWeights || {},
@@ -2962,10 +3211,11 @@ function applyConfigToUI(config) {
 }
 
 
-// Load last-used preset or 👤
+// Load last-used preset on startup
 const lastUsed = localStorage.getItem("lastPreset");
-if (lastUsed && presets.find(p => p.emoji === lastUsed)) {
-  applyPreset(presets.find(p => p.emoji === lastUsed));
+if (lastUsed) {
+  const found = presets.find(p => p.name === lastUsed || p.emoji === lastUsed);
+  if (found) applyPreset(found);
 }
 
 // // Watch setting changes

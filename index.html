@@ -18,8 +18,8 @@
     <link rel="apple-touch-icon" href="favicon_big.png">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon_big.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/dictate-btn.css">
+    <link rel="stylesheet" href="css/style.css?v=20260411a">
+    <link rel="stylesheet" href="css/dictate-btn.css?v=20260411a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,8 +27,15 @@
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js')
-                .then(() => console.log('Service worker registered'))
-                .catch(() => console.log('Service worker registration failed'));
+                .then(() => console.log('[SW] Registered'))
+                .catch(() => console.log('[SW] Registration failed'));
+            // Auto-reload when a new SW version takes over
+            navigator.serviceWorker.addEventListener('message', e => {
+                if (e.data && e.data.type === 'SW_UPDATED') {
+                    console.log('[SW] New version active — reloading');
+                    window.location.reload();
+                }
+            });
         }
     </script>
     <!-- Prevent flash of unstyled content by hiding the answer container immediately -->
@@ -49,13 +56,16 @@
         min-height: 1.5em; /* Ensure it takes up space even when empty */
       }
       
-      /* Phrase container manages both question and answer phases */
+      /* Phrase container: in flow, fills lower half of card */
       #phrase-container {
-        position: absolute;
-        top: 35%;
-        left: 0;
+        position: static;
         width: 100%;
-        min-height: 120px;
+        flex: 1 1 0;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         z-index: 3;
       }
       
@@ -291,275 +301,228 @@
         align-items: center;
       }
 
-      /* Preset Buttons */
+      /* Preset Buttons — row style */
       .presets-row {
         display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0.35rem;
         margin-top: 0.5rem;
       }
-
       .preset-btn {
-        /* background: var(--card-bg);  #f8f9fa; */
-        border: 2px solid #e9ecef;
-        border-radius: 0.75rem;
-        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        background: transparent;
+        border: 1.5px solid var(--border-color, #e9ecef);
+        border-radius: 10px;
+        padding: 0.6rem 0.85rem;
         cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 3.2rem;
+        transition: background 0.15s, border-color 0.15s;
+        text-align: left;
+      }
+      .preset-btn:hover {
+        border-color: var(--accent-color, #3498db);
+        background: rgba(52,152,219,0.06);
+      }
+      .preset-btn.active {
+        border-color: var(--accent-color, #3498db);
+        background: rgba(52,152,219,0.12);
+      }
+      .preset-icon {
+        font-size: 1.5rem;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .preset-text {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-        min-width: 80px;
+        gap: 0.1rem;
       }
-
-      .preset-btn:hover {
-        border-color:  #3498db;
-        background: #f0f8ff;
-        transform: translateY(-1px);
+      .preset-name {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-color, #2c3e50);
+        line-height: 1.2;
       }
-
-      .preset-btn.active {
-        border-color: #c88b12;
-        border-width: 4px;;
-        background: var(--accent-color);/*(135deg, #3498db 0%, #2980b9 100%);*/
-        /* color: white; */
-        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-        transform: translateY(-2px);
+      .preset-desc {
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--text-muted, #6c757d);
+        line-height: 1.2;
       }
-
-      .preset-btn .preset-emoji {
-        font-size: 3.5rem;
-        line-height: 1;
-      }
-
-      .preset-btn .preset-name {
-        font-size: 0.8rem;
-        font-weight: 500;
-        line-height: 1;
-      }
-
       .preset-btn.active .preset-name {
-        color: white;
+        color: var(--accent-color, #3498db);
       }
     </style>
     <!-- Tutorial Overlay -->
 <style>
-/* #tutorial-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.7);
-  z-index: 9999;
-  display: none;
-
-} */
-
-#tutorial-highlight {
-  position: absolute;
-  border-radius: 1rem;
-  box-shadow: 0 0 0 9999px rgba(0,0,0,0.75);
-  transition: all 0.3s ease;
-  display:none;
-}
-
 #tutorial-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
+  inset: 0;
   z-index: 10000;
+  display: none;
+  cursor: pointer;
 }
-
-#tutorial-card-mask {
-  position: absolute;
+#tutorial-highlight {
+  position: fixed;
   border-radius: 12px;
-  background: transparent;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.78);
+  border: 2px solid rgba(255,255,255,0.35);
+  transition: all 0.28s ease;
+  z-index: 10001;
+  pointer-events: none;
+  display: none;
 }
-
-
-#tutorial-emoji {
-  position: absolute;
-  font-size: 3rem;
-  animation: bounce 1s infinite;
-  display:none;
+#tutorial-tooltip {
+  position: fixed;
+  z-index: 10002;
+  background: #1a2633;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem 0.7rem;
+  max-width: min(320px, 88vw);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  display: none;
+  pointer-events: none;
 }
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+#tutorial-tooltip .tt-text {
+  color: #f0f4f8;
+  font-size: 1rem;
+  line-height: 1.45;
+  margin: 0 0 0.55rem;
+}
+#tutorial-tooltip .tt-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+}
+#tutorial-tooltip .tt-hint {
+  font-style: italic;
+}
+#tutorial-skip {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10003;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  display: none;
 }
 </style>
 
-<div id="tutorial-overlay" style=" position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:10000;"></div>
-<div id="tutorial-highlight" style="position:fixed; border:2px solid #fff; border-radius:12px; z-index:10001; "></div>
-<div id="tutorial-emoji" style="position:fixed; z-index:10002; font-size:2.5rem; transition:transform 0.5s ease-in-out;">👉</div>
-
+<div id="tutorial-overlay"></div>
+<div id="tutorial-highlight"></div>
+<div id="tutorial-tooltip">
+  <p class="tt-text"></p>
+  <div class="tt-footer">
+    <span class="tt-hint">tap anywhere to continue</span>
+    <span class="tt-counter"></span>
+  </div>
+</div>
+<button id="tutorial-skip">Skip</button>
 
 <script>
 (function(){
   const steps = [
-    { selector: "#verb-infinitive", emojiOffset: [-60, -40] , text:"Verb Infinitive (avoir/ donner/...)", emojiChar:"👉"  },
-    { selector: "#verb-tense", emojiOffset: [15, 30], text:" Tense (past /present/...)" , emojiChar:"👆"} ,
-    { selector: "#verb-pronoun", emojiOffset: [20, 30], text:"Pronoun (je/il/elle/...)" , emojiChar:"👆"},
-    { selector: "#answer-container", emojiOffset: [-60, -40], text:"Answer Will appear here" , emojiChar:"👉"},
-
-    // { selector: ".tapable", emojiOffset: [0, -60] },
-    { selector: "#options-toggle-btn", emojiOffset: [0, -90] , text:"Explore Settings" , emojiChar:"👇"}
+    {
+      selector: "#verb-infinitive",
+      text: "A French verb appears here. Your challenge: conjugate it before tapping to reveal."
+    },
+    {
+      selector: ".meta-container",
+      text: "This tells you the pronoun and tense to use — e.g. nous · imparfait."
+    },
+    {
+      selector: "#phrase-container",
+      text: "Tap anywhere on the card to reveal the answer and check yourself."
+    },
+    {
+      selector: "#dictate-btn",
+      text: "Use the mic to say your answer out loud — great for pronunciation practice."
+    },
+    {
+      selector: "#options-toggle-btn",
+      text: "Customize which verbs, tenses, and difficulty levels you want to practice."
+    }
   ];
 
-  
   let stepIndex = 0;
-  let currentElement = null;
-  let interval = null;
 
-  function pulseEmoji() {
-    let scale = 1;
-    clearInterval(interval);
-    interval = setInterval(() => {
-      scale = scale === 1 ? 1.3 : 1;
-      emoji.style.transform = `scale(${scale})`;
-    }, 600);
-  }
+  const overlay   = () => document.getElementById('tutorial-overlay');
+  const highlight = () => document.getElementById('tutorial-highlight');
+  const tooltip   = () => document.getElementById('tutorial-tooltip');
+  const skipBtn   = () => document.getElementById('tutorial-skip');
 
-  function showStep(step) {
-    const overlay = document.getElementById("tutorial-overlay");
-    const highlight = document.getElementById("tutorial-highlight");
-    const emoji = document.getElementById("tutorial-emoji");
-    
+  function showStep(i) {
+    const step = steps[i];
     const el = document.querySelector(step.selector);
-    if (!el) return;
+    if (!el) { advance(); return; }
 
-    const rect = el.getBoundingClientRect();
-    highlight.style.left = `${rect.left-15}px`;
-    highlight.style.top = `${rect.top-15}px`;
-    highlight.style.width = `${rect.width+30}px`;
-    highlight.style.height = `${rect.height+30}px`;
+    const PAD = 12;
+    const r = el.getBoundingClientRect();
+    const hl = highlight();
+    hl.style.left   = `${r.left - PAD}px`;
+    hl.style.top    = `${r.top - PAD}px`;
+    hl.style.width  = `${r.width + PAD * 2}px`;
+    hl.style.height = `${r.height + PAD * 2}px`;
 
-    const offsetX = step.emojiOffset?.[0] || 0;
-    const offsetY = step.emojiOffset?.[1] || 0;
+    const tt = tooltip();
+    tt.querySelector('.tt-text').textContent = step.text;
+    tt.querySelector('.tt-counter').textContent = `${i + 1} / ${steps.length}`;
 
-    emoji.style.left = `${rect.left + offsetX}px`;
-    emoji.style.top = `${rect.top + rect.height + offsetY}px`;
-
-    // Choose emoji based on direction
-    // let emojiChar = "👉";
-    // if (offsetX > 0) emojiChar = "👈";
-    // else if (offsetY > 0) emojiChar = "👆";
-    // else if (offsetY < 0) emojiChar = "👇";
-    let emojiChar = step.emojiChar || "👉";
-    let innerHtml= '';
-    if(emojiChar==="👉") {
-      innerHtml = '<span > ' + step.text + '</span>'  + emojiChar;
-    } else if(emojiChar==="👈") {
-      innerHtml = emojiChar +  '<span > ' + step.text + '</span>' ;
-    } else if(emojiChar==="👆") {
-      innerHtml = '<span > ' + step.text + '</span>'  + emojiChar
-    } else if(emojiChar==="👇") {
-      innerHtml ='<span > ' + step.text + '</span>'  + emojiChar
+    // Position tooltip: below element if in top half, above if in bottom half
+    const MARGIN = 12;
+    const ttH = 110; // approx height
+    const below = r.bottom + PAD + MARGIN + ttH < window.innerHeight;
+    if (below) {
+      tt.style.top    = `${r.bottom + PAD + MARGIN}px`;
+      tt.style.bottom = 'auto';
+    } else {
+      tt.style.bottom = `${window.innerHeight - r.top + PAD + MARGIN}px`;
+      tt.style.top    = 'auto';
     }
-    // emoji.textContent = step.emojiChar;
-    emoji.innerHTML = emojiChar;
-
-    overlay.innerHTML = '<p>' + step.text + '</p>';
+    tt.style.left = `${Math.max(12, Math.min(r.left, window.innerWidth - 332))}px`;
   }
 
-  // function showStep(step) {
-  //   const el = document.querySelector(step.selector);
-  //   if (!el) return;
-
-  //   if (currentElement) {
-  //     currentElement.style.zIndex = "";
-  //     currentElement.style.position = "";
-  //   }
-
-  //   const rect = el.getBoundingClientRect();
-  //   highlight.style.left = `${rect.left}px`;
-  //   highlight.style.top = `${rect.top}px`;
-  //   highlight.style.width = `${rect.width}px`;
-  //   highlight.style.height = `${rect.height}px`;
-
-  //   emoji.style.left = `${rect.left + (step.emojiOffset[0] || 0)}px`;
-  //   emoji.style.top = `${rect.top + rect.height + (step.emojiOffset[1] || 0)}px`;
-
-  //   el.style.zIndex = 10001;
-  //   el.style.position = 'relative';
-  //   currentElement = el;
-  //   pulseEmoji();
-  // }
-
-  function nextStep() {
-    console.log("Next step clicked");
-        const overlay = document.getElementById("tutorial-overlay");
-    const highlight = document.getElementById("tutorial-highlight");
-    const emoji = document.getElementById("tutorial-emoji");
-
+  function advance() {
     stepIndex++;
     if (stepIndex >= steps.length) {
-      overlay.style.display = "none";
-      highlight.style.display = "none";
-      emoji.style.display = "none";
-      if (currentElement) {
-        currentElement.style.zIndex = "";
-        currentElement.style.position = "";
-      }
-      localStorage.setItem("tutorial_seen", "yes");
-      clearInterval(interval);
-      stepIndex = 0; // Reset for next time
+      close();
     } else {
-      showStep(steps[stepIndex]);
+      showStep(stepIndex);
     }
+  }
+
+  function close() {
+    overlay().style.display   = 'none';
+    highlight().style.display = 'none';
+    tooltip().style.display   = 'none';
+    skipBtn().style.display   = 'none';
+    localStorage.setItem('tutorial_seen', 'yes');
+    stepIndex = 0;
   }
 
   window.startTutorial = function() {
-    const overlay = document.getElementById("tutorial-overlay");
-    const highlight = document.getElementById("tutorial-highlight");
-    const emoji = document.getElementById("tutorial-emoji");
-
     stepIndex = 0;
-    overlay.style.display = "block";
-    highlight.style.display = "block";
-    emoji.style.display = "block";
-    document.querySelectorAll(".tips-label").forEach(e => e.style.display = "none");
-    showStep(steps[stepIndex]);
+    overlay().style.display   = 'block';
+    highlight().style.display = 'block';
+    tooltip().style.display   = 'block';
+    skipBtn().style.display   = 'block';
+    showStep(0);
   };
 
   document.addEventListener('DOMContentLoaded', function() {
-
-    const overlay = document.getElementById("tutorial-overlay");
-    const highlight = document.getElementById("tutorial-highlight");
-    const emoji = document.getElementById("tutorial-emoji");
-
-    overlay.addEventListener("click", (e) => {
-      e.stopPropagation();
-      
-      e.preventDefault();
-      nextStep();
-      
-      // debugger;/
-    });
-
-    highlight.addEventListener("click", (e) => {
-      e.stopPropagation();
-      
-      e.preventDefault();
-      nextStep();
-    });
-    emoji.addEventListener("click", (e) => {
-      e.stopPropagation();
-      
-      e.preventDefault();
-      nextStep();
-    });
+    overlay().addEventListener('click', advance);
+    skipBtn().addEventListener('click', close);
   });
-
-
 })();
 </script>
 
@@ -597,6 +560,10 @@
                         <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
                         <!-- Remove tip for verb-infinitive -->
                         <h1 id="verb-infinitive" tabindex="0" role="button" aria-label="Hear infinitive" title="Tap to hear" class="tappable-audio"></h1>
+                        <!-- Book icon: go to verb detail, inline with verb -->
+                        <button id="go-to-verb-btn" class="verb-detail-book-btn" title="Go to verb detail">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </button>
                     </div>
                     
                     <!-- Hidden English infinitive line -->
@@ -606,16 +573,17 @@
                     </div>
                     
                     <p id="verb-translation"></p>
-                    
+                    <p id="verb-hint"></p>
+
                     <!-- Hidden English translation -->
                     <p id="english-verb-translation" style="display: none;"></p>
-                <!-- Dictate button moved to go-to-verb-btn-container below -->
                 </div>
-                <!-- Remove tip for frequency -->
-                <div id="verb-meta-buttons">
-          <p id="verb-frequency" class="meta-info frequency-tag"></p>
+                <!-- Frequency badge: top-right, positioned by CSS -->
+                <p id="verb-frequency" class="meta-info frequency-tag"></p>
+                <!-- Category/type badge hidden -->
+                <div id="verb-meta-buttons" style="display:none;">
                     <p id="verb-category" class="meta-info category-tag" style="display: none;"></p>
-                    <p id="verb-irregular" class="meta-info irregular-tag" style="display: none;">irregular</p>
+                    <p id="verb-irregular" class="meta-info irregular-tag" style="display: none;"></p>
                 </div>
                 <div class="meta-container">
                     <!-- Remove tip for pronoun -->
@@ -624,19 +592,20 @@
                     <p id="verb-tense" class="meta-info"></p>
                 </div>
 
-                <div id="go-to-verb-btn-container" style="position: absolute; right: 1.2em; bottom: 1.2em; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; z-index: 10;">
-                  <span class="tip-inline" style="display: none;"><span class="tip-label" hidden>💡 Show English translation</span><button id="english-btn" title="Show English translation (hold)">🇬🇧</button></span>
-                  <span class="tip-inline"><span class="tip-label" hidden>💡 Dictate (speech to text)</span><button id="dictate-btn" title="Dictate (speech to text)">🎤</button></span>
-                  <div style="display: flex; flex-direction: row; align-items: center; gap: 0.5em;">
-                    <span class="tip-inline"><span class="tip-label" hidden>💡 See verb details</span><button id="go-to-verb-btn" title="Go to verb detail">📖</button></span>
-                  </div>
-                  <span class="tip-inline"><span class="tip-label" hidden>💡 Autotalk toggle</span><button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off" title="Toggle autosay">
-                    <span class="autosay-emoji" aria-hidden="true">🔇</span>
-                  </button></span>
-                </div>
+                <!-- english-btn kept in DOM for JS, hidden -->
+                <button id="english-btn" title="Show English translation (hold)" style="display:none;"></button>
 
                 <!-- Phrase container wraps both question and answer phases -->
                 <div id="phrase-container">
+                    <!-- Dictate mic — shown before answer, above tap-to-reveal -->
+                    <button id="dictate-btn" class="dictate-big-btn" title="Dictate (speech to text)">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="2" width="6" height="12" rx="3"/>
+                        <path d="M5 10a7 7 0 0 0 14 0"/>
+                        <line x1="12" y1="19" x2="12" y2="22"/>
+                        <line x1="8" y1="22" x2="16" y2="22"/>
+                      </svg>
+                    </button>
                     <!-- Question phrase (gap sentence, shows before answer reveal) -->
                     <p id="question-phrase" class="verb-phrase"></p>
                     
@@ -656,11 +625,29 @@
                 </div>
             </div>
 
+            <!-- Action buttons row: autosay -->
+            <div id="go-to-verb-btn-container">
+              <button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off action-icon-btn" title="Toggle autosay">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span class="autosay-emoji" aria-hidden="true" style="display:none">🔇</span>
+              </button>
+            </div>
+
             <div class="navigation">
-                <button id="back-btn">Previous</button>
-                <button id="explorer-toggle-btn">📖 Verb List</button>
-                <button id="next-btn">Next</button>
-                <button id="options-toggle-btn">⚙️</button>
+                <button id="back-btn" title="Previous">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button id="explorer-toggle-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>Search</span>
+                </button>
+                <button id="next-btn" title="Next">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <button id="options-toggle-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                  <span>Settings</span>
+                </button>
             </div>
         </div>
 
@@ -693,13 +680,8 @@
 
         <!-- View 4: Options -->
         <div id="options-view" class="hidden">
-            <button id="back-to-flashcard-from-options-btn" class="back-link-btn">← Back to Flashcards</button>
-            <button id="info-btn" aria-label="Info" title="About this app" style="float:right; margin:0 0.5rem 0.5rem 0;">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="14" cy="14" r="13" fill="#fff" stroke="#3498db" stroke-width="2"/>
-                  <text x="14" y="20" text-anchor="middle" font-size="16" font-family="Arial, sans-serif" fill="#3498db" font-weight="bold">i</text>
-                </svg>
-            </button>
+            <button id="back-to-flashcard-from-options-btn" class="back-link-btn">← Back</button>
+            <button id="info-btn" aria-label="Info" title="About this app" style="float:right; margin:0 0.5rem 0.5rem 0; opacity:0.55; background:none; border:none; cursor:pointer; color:var(--meta-color); font-size:1.3rem; padding:0.3rem;">ⓘ</button>
             <div id="info-panel" class="hidden" style="max-height:60vh; overflow-y:auto; padding-right:0.5em;">
                 <h2 style="margin-top:0">About</h2>
                 <p>LesVerbes helps you master French verb conjugations with fast, focused practice.</p>
@@ -731,23 +713,15 @@
                 <p style="margin-bottom:0.5em">Your progress and settings are saved automatically. Happy learning!</p>
             </div>
             <div class="options-header">
-                <h2>Options</h2>
+                <h2>Settings</h2>
             </div>
-            
-            
 
             <div id="options-container">
 
-                <div class="option-group" style="display: flex; flex-direction: column; align-items: left; gap: 2.5em; justify-content: flex-start;">
-                  <!-- BALANCE -->
-                  <div style="display: flex; flex-direction: row;align-items:center;justify-content:space-between; gap: 0.5em;">
-                    <label for="hierarchical-toggle">Balance verb randomizer</label>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="hierarchical-toggle" class="toggle-input">
-                        <label for="hierarchical-toggle" class="toggle-label"></label>
-                    </div>
-                  </div>
-
+                <div class="option-group">
+                  <h3>General</h3>
+                  <div class="toggle-rows">
+                  <!-- Balance toggle moved to Frequency Weights section -->
                   <!-- DEAD CODE -->
                   <div style="display: none; flex-direction: row;align-items:center;justify-content:space-between;  ; gap: 0.5em;">
                     <label for="show-phrases-toggle">Show Example Phrases</label>
@@ -758,33 +732,31 @@
                   </div>
                 
                   <!-- correct DICTATION -->
-                  <div style="display: flex; flex-direction: row;align-items:center;justify-content:space-between;  gap: 0.5em;">
-                    <label for="correct-dictation-toggle">Next Card on<br> Correct Dictation</label>
+                  <div class="toggle-row">
+                    <label for="correct-dictation-toggle">Next card on correct dictation</label>
                     <div class="toggle-switch">
                         <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
                         <label for="correct-dictation-toggle" class="toggle-label"></label>
                     </div>
                   </div>
+                  <!-- Pronoun balance -->
+                  <div class="toggle-row">
+                    <label for="balanced-pronouns-toggle">Balance pronouns equally</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="balanced-pronouns-toggle" class="toggle-input">
+                        <label for="balanced-pronouns-toggle" class="toggle-label"></label>
+                    </div>
+                  </div>
+                  </div><!-- end toggle-rows -->
                 </div>
 
-                
                 <!-- Presets Section -->
                 <div class="option-group">
                     <h3>Presets</h3>
-                    <p>From Drilling Basics(🐣) to practicing everything (🦉).<br> You can  also choose and save your own preset 👤 </p>
+                    <p class="option-desc">Quick setups from basics to full practice.</p>
                     <div id="presets-container" class="presets-row">
                         <!-- Preset buttons will be populated by JavaScript -->
                     </div>
-                </div>
-                
-                <div class="option-group" style="display: flex; flex-direction: row; align-items: center; gap: 2.5em; justify-content: flex-start;">
-                  <div style="display: none; flex-direction: row; align-items: center; gap: 0.5em;">
-                    <label for="verbs-with-sentences-toggle">Verbs with interactive gaps only</label>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="verbs-with-sentences-toggle" class="toggle-input">
-                        <label for="verbs-with-sentences-toggle" class="toggle-label"></label>
-                    </div>
-                  </div>
                 </div>
                 <div class="option-group">
                     <h3>Tense Weights</h3>
@@ -796,8 +768,8 @@
                 </div>
                 <!-- TTS Voice Selection Dropdown -->
                 <div class="option-group" id="tts-voice-group">
-                  <label for="voice-select" style="margin-right:0.5em;">TTS Voice:</label>
-                  <select id="voice-select" style="margin-right:1em;"></select>
+                  <h3>Audio Voice</h3>
+                  <select id="voice-select" class="styled-select"></select>
                 </div>
             </div>
         </div>
@@ -855,14 +827,12 @@
         <div id="ftue-help-overlay" style="display:none; position:fixed; z-index:99999; top:0; left:0; width:100vw; height:100vh; background:rgba(30,32,36,0.92); color:#fff; align-items:center; justify-content:center; flex-direction:column;">
           <div style="max-width: 480px; margin: 2em auto; background:rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 8px 32px rgba(44,62,80,0.18); padding: 2em 2.5em 1.5em 2.5em; position:relative;">
             <button id="ftue-help-close" style="position:absolute;top:1em;right:1em;font-size:1.5em;background:none;border:none;color:#fff;cursor:pointer;">✕</button>
-            <h2 style="margin-top:0">Bienvenue sur LesVerbes!</h2>
-            <p style="font-size:1.1em;line-height:1.5;margin-bottom:1.2em;">Practice French verbs conjugations with interactive flashcards, audio, and speech recognition. Designed by a procrastinating language learner</p>
+            <h2 style="margin-top:0">Bienvenue !</h2>
+            <p style="font-size:1.1em;line-height:1.5;margin-bottom:1.2em;">Practice conjugation and pronunciation in French.</p>
             <ul style="font-size:1.05em;line-height:1.6;margin-bottom:1.2em;">
-              <li><b>Tap the card</b> to reveal the answer, then tap again for the next card.</li>
-              <li><b>Dictate</b>: Tap the mic to try saying the answer out loud.</li>
-              <li><b>Audio</b>: Tap the verb or conjugation to hear it spoken.</li>
-              <li><b>Options</b>: Adjust tenses, frequencies, and more.</li>
-              <li><b>Verb List</b>: Browse verbs and their conjugations.</li>
+              <li><b>Tap the card</b> to reveal the answer, tap again to advance.</li>
+              <li><b>Mic</b>: Say the answer out loud and get instant feedback.</li>
+              <li><b>Audio</b>: Tap any verb or conjugation to hear it spoken.</li>
             </ul>
 
             
@@ -1049,18 +1019,40 @@
         "ils/elles": ["ils", "elles"]
     };
 
+    // Être auxiliary forms — used to detect compound tenses needing participle agreement.
+    // Note: \b word boundaries fail with accented chars (é is non-ASCII), so we use
+    // space/apostrophe delimiters instead.
+    const ETRE_AUX_SINGULAR = /(^|[' ])(est|était|sera|serait|soit|fût)( |$)/;
+    const ETRE_AUX_PLURAL   = /(^|[' ])(sont|étaient|seront|seraient|soient|fussent)( |$)/;
+
+    // Feminize past participle at end of conjugated string.
+    // Singular: allé→allée, parti→partie, venu→venue, mort→morte, né→née
+    // Plural:   allés→allées, partis→parties, venus→venues, morts→mortes
+    function feminizeParticiple(parts, pronoun) {
+        const pp = parts[parts.length - 1];
+        if (pronoun === 'elle') {
+            if (!pp.endsWith('e')) parts[parts.length - 1] = pp + 'e';
+        } else if (pronoun === 'elles') {
+            // Remove trailing 's', add 'e', re-add 's' → és→ées, us→ues, is→ies, ts→tes
+            if (pp.endsWith('s') && !pp.endsWith('es')) {
+                parts[parts.length - 1] = pp.slice(0, -1) + 'es';
+            }
+        }
+        return parts;
+    }
+
     window.handleLanguageSpecificLastChange = function(pronoun, conjugated) {
         if (!conjugated) return pronoun;
-        
+
         // Handle contracted forms like "j'abandonne"
         if (pronoun === 'je' && conjugated.trim().toLowerCase().startsWith("j'")) {
             return conjugated;
         }
-        
+
         // Check if conjugated form already starts with the pronoun
         const conjugatedLower = conjugated.trim().toLowerCase();
         const pronounLower = pronoun.toLowerCase();
-        
+
         // For combined pronouns like "il/elle", check if it starts with any variant
         if (pronoun.includes('/')) {
             const pronounVariants = pronoun.split('/');
@@ -1074,25 +1066,32 @@
             if (conjugatedLower.startsWith(pronounLower + ' ')) {
                 return conjugated;
             }
-            
+
             // Check if it starts with an equivalent pronoun (for ils/elles case)
-            if ((pronoun === 'ils' || pronoun === 'elles') && 
+            if ((pronoun === 'ils' || pronoun === 'elles') &&
                 (conjugatedLower.startsWith('ils ') || conjugatedLower.startsWith('elles '))) {
-                // Replace the conjugated pronoun with the card pronoun
-                const conjugatedParts = conjugated.trim().split(' ');
-                conjugatedParts[0] = pronoun;
-                return conjugatedParts.join(' ');
+                const parts = conjugated.trim().split(' ');
+                parts[0] = pronoun;
+                // Feminize past participle for être auxiliary verbs
+                if (pronoun === 'elles' && ETRE_AUX_PLURAL.test(conjugated)) {
+                    feminizeParticiple(parts, 'elles');
+                }
+                return parts.join(' ');
             }
-            
+
             // Similar handling for il/elle/on
-            if ((pronoun === 'il' || pronoun === 'elle' || pronoun === 'on') && 
-                (conjugatedLower.startsWith('il ') || conjugatedLower.startsWith('elle '))) {
-                const conjugatedParts = conjugated.trim().split(' ');
-                conjugatedParts[0] = pronoun;
-                return conjugatedParts.join(' ');
+            if ((pronoun === 'il' || pronoun === 'elle' || pronoun === 'on') &&
+                (conjugatedLower.startsWith('il ') || conjugatedLower.startsWith('elle ') || conjugatedLower.startsWith('on '))) {
+                const parts = conjugated.trim().split(' ');
+                parts[0] = pronoun;
+                // Feminize past participle for être auxiliary verbs
+                if (pronoun === 'elle' && ETRE_AUX_SINGULAR.test(conjugated)) {
+                    feminizeParticiple(parts, 'elle');
+                }
+                return parts.join(' ');
             }
         }
-        
+
         // If not, combine pronoun + conjugated
         return pronoun + ' ' + conjugated;
     };
@@ -1115,10 +1114,11 @@
     window.frenchLocalStorageKey = 'frenchVerbsOptions';
     window.frenchSpeechLang = 'fr-FR';
     </script>
-    <script src="js/verbs.full.generated.js"></script>
+    <script src="js/verbs.full.generated.js?v=20260411a"></script>
     <script src="sentences.generated.js"></script>
-    <script src="js/practicePhrases.js"></script>
-    <script src="js/script.js"></script>
+    <script src="reflexive_sentences.js" onerror="window.reflexiveSentences=[]"></script>
+    <script src="js/practicePhrases.js?v=20260411a"></script>
+    <script src="js/script.js?v=20260411a"></script>
     <script>
 function populateVoiceSelect() {
     const voiceSelect = document.getElementById('voice-select');
@@ -1220,14 +1220,18 @@ function setupPracticeModeToggle() {
         toggleLabel.className = 'toggle-label';
         toggleSwitch.appendChild(input);
         toggleSwitch.appendChild(toggleLabel);
+        group.style.opacity = '0.4';
+        group.style.pointerEvents = 'none';
+        group.title = 'Coming soon';
         group.appendChild(label);
         group.appendChild(toggleSwitch);
         // Insert at top of options
         toggleOptions.appendChild(group);
         // optionsContainer.insertBefore(group, optionsContainer.firstChild);
     }
-    // Sync toggle with localStorage
+    // Sync toggle with localStorage (disabled for now)
     const toggle = document.getElementById('practice-mode-toggle');
+    toggle.disabled = true;
     let practiceMode = localStorage.getItem('practiceMode') || 'verbs';
     toggle.checked = (practiceMode === 'phrases');
     toggle.addEventListener('change', (e) => {

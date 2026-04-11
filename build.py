@@ -47,6 +47,7 @@ def build(force_jpeg=False):
         preferred_order = [
             'js/verbs.full.generated.js',
             'sentences.generated.js',
+            'reflexive_sentences.js',   # optional — only included if it exists
             'js/practicePhrases.js',
             # 'main.js',
             # 'alphabetScroller.js',
@@ -155,7 +156,17 @@ def build(force_jpeg=False):
         replacement_js_block = f'<script>{combined_js}</script>'
         # Use a lambda for the replacement. This is the crucial fix. It tells the `re` module
         # to use the returned string literally, without processing backslash escapes (like \u).
-        final_html = re.sub(r'<script src="js/verbs.full.generated.js"></script>\s*<script src="sentences.generated.js"></script>\s*<script src="js/practicePhrases.js"></script>\s*<script src="js/script.js"></script>', lambda m: replacement_js_block, final_html)
+        # Flexible regex: matches script tags with optional version strings and optional reflexive_sentences.js
+        final_html = re.sub(
+            r'<script src="js/verbs\.full\.generated\.js[^"]*"></script>\s*'
+            r'<script src="sentences\.generated\.js[^"]*"></script>\s*'
+            r'(?:<script src="reflexive_sentences\.js[^"]*"[^>]*></script>\s*)?'
+            r'<script src="js/practicePhrases\.js[^"]*"></script>\s*'
+            r'<script src="js/script\.js[^"]*"></script>',
+            lambda m: replacement_js_block,
+            final_html,
+            flags=re.DOTALL
+        )
 
         # 5. Inject version string for cache busting
         print("   - Injecting version string...")

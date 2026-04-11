@@ -64,7 +64,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Watch a file and send it to Telegram when updated.")
     parser.add_argument("--bot_token", help="Telegram bot token", default=os.getenv("TELEGRAM_BOT_TOKEN"))
     parser.add_argument("--chat_id", help="Your chat ID (or @channelusername)", type=int, default=6712839668)
-    parser.add_argument("--file_path", help="Path to the file to watch", default='dist/index.html')
+    parser.add_argument("--file_path", help="Path to the file to watch", default='dist/franconjugue.html')
     parser.add_argument("--interval", type=int, default=10, help="Polling interval in seconds")
     parser.add_argument("--retries", type=int, default=3, help="Number of retry attempts for failed uploads")
 

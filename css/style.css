@@ -105,9 +105,16 @@
     --tense-imparfait: #5c5a7e !important;
     --tense-futur-simple: #357ca5 !important;
     --tense-plus-que-parfait: #a24d6a !important;
-    --tense-subjonctif-present: #d4c5e8 !important;
+    --tense-subjonctif-present: #6b3e8a !important;
     --tense-conditionnel-present: #7ea24d !important;
   }
+  .tense-present            { color: #ccf5e3 !important; }
+  .tense-passeCompose       { color: #442a0d !important; }
+  .tense-imparfait          { color: #d6d5ec !important; }
+  .tense-futurSimple        { color: #cbe6f6 !important; }
+  .tense-plusQueParfait     { color: #3e1422 !important; }
+  .tense-subjonctifPresent  { color: #e4cff2 !important; }
+  .tense-conditionnelPresent { color: #2c3e14 !important; }
   body {
     background-color: var(--primary-bg);
     color: var(--text-color);
@@ -434,18 +441,13 @@ body {
     transition: transform 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     position: relative;
-    /* Add background image with a semi-transparent white overlay for readability */
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('../bg.png');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(170deg, #f0f5fa 0%, #e8eff6 100%);
 }
 
-/* Dark mode flashcard background image */
+/* Dark mode flashcard background */
 @media (prefers-color-scheme: dark) {
   #flashcard {
-    background: linear-gradient(rgba(24, 28, 31, 0.12), rgba(24, 28, 31, 0.12)), url('../bg.dark.png');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(170deg, #141c26 0%, #0e1520 100%);
   }
 }
 
@@ -460,7 +462,7 @@ body {
     justify-content: flex-end;
     margin-top: 0;
     position: absolute;
-    top: 3%;
+    top: 2%;
     left: 0;
     width: 100%;
     z-index: 2;
@@ -471,15 +473,21 @@ body {
 .infinitive-line {
     min-height: 48px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    
-    gap: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+/* Phantom spacer mirrors the book icon width so verb h1 is truly centered */
+.infinitive-line::before {
+    content: '';
+    width: 32px;
+    flex-shrink: 0;
 }
 
 .infinitive-line h1 {
-    
-    margin: 0; /* Override default h1 margin for better flex alignment */
+    flex: 1;
+    margin: 0;
+    text-align: center;
 }
 
 /* Smaller, not bold, translation font for flashcard */
@@ -488,8 +496,19 @@ body {
   font-weight: 800;
   color: var(--meta-color);
   margin-top: 0.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   text-align: center;
+}
+
+#verb-hint {
+  font-size: 0.85rem;
+  color: var(--meta-color);
+  opacity: 0.65;
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  font-style: italic;
+  min-height: 1.2em;
 }
 
 .conjugated-line {
@@ -582,7 +601,7 @@ body {
     flex: 1 1 auto;
     margin-top: 0;
     position: absolute;
-    top: 35%;
+    top: 28%;
     left: 0;
     max-width: 100%;
     z-index: 3;
@@ -1033,18 +1052,18 @@ body {
 
 /* Move frequency tag to bottom left and verb detail icon below it */
 #verb-meta-buttons {
-  position: absolute;
-  left: 1.2rem;
-  bottom: 1.2rem;
-  margin: 0;
-  z-index: 10;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  display: none !important; /* always hidden — badges removed from card */
 }
 
+/* Frequency badge: top-right corner of the card */
 #verb-frequency {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.75rem;
+  z-index: 10;
   margin: 0;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
 }
 
 #verb-irregular {
@@ -1100,7 +1119,7 @@ body {
 /* Pronoun and tense below infinitive */
 .meta-container {
   position: absolute;
-  top: 20%;
+  top: 17%;
   left: 0;
   width: 100%;
   margin-top: 0;
@@ -1232,4 +1251,542 @@ body {
 .preset-btn.active {
   border-color: gold;
   box-shadow: 0 0 6px gold;
+}
+
+/* ── Flashcard layout overhaul: flex flow, no absolute overlays ───────── */
+
+/* Hide floating utility buttons — move to settings later */
+#tips-btn, #contact-btn {
+  display: none !important;
+}
+
+/* Card: tighter padding, no gap (children manage their own spacing) */
+#flashcard {
+  padding: 0.6rem 1.2rem 0.8rem !important;
+  gap: 0 !important;
+  justify-content: flex-start !important;
+}
+
+/* Progress row: slim, stays at top */
+#daily-progress-container {
+  flex-shrink: 0;
+  order: 0;
+  margin-bottom: 0.4rem;
+}
+
+/* Verb/translation: compact — doesn't flex-grow, just wraps content */
+.card-content-before {
+  position: static !important;
+  top: auto !important;
+  flex: 0 0 auto;
+  min-height: 0;
+  order: 1;
+  justify-content: center !important;
+}
+
+/* Frequency tags row */
+#verb-meta-buttons {
+  display: none !important; /* hidden — remove duplicate, keep consistent */
+}
+
+/* Pronoun + tense pills — snug below verb header */
+.meta-container {
+  position: static !important;
+  top: auto !important;
+  min-height: auto !important;
+  order: 3;
+  flex-shrink: 0;
+  margin: 0.4rem 0 0;
+}
+
+/* Answer container: un-absolute within the flex layout */
+#answer-container {
+  position: static !important;
+  top: auto !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  align-items: center !important;
+}
+
+/* Answer/phrase area: fills remaining space, answer floats near upper-center */
+#phrase-container {
+  position: static !important;
+  top: auto !important;
+  order: 4 !important;
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding-top: 0.4rem !important;
+}
+
+/* Thin rule above the whole answer+sentence block */
+#phrase-container::before {
+  content: '';
+  display: block;
+  width: 36%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 0 auto 1rem;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+/* Answer text sizing */
+#conjugated-verb {
+  font-size: 2.2rem !important;
+  line-height: 1.2;
+  margin-bottom: 1.1rem !important;
+}
+
+/* Separator line between answer and example sentence */
+#verb-phrase:not(:empty) {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  opacity: 0.82;
+}
+
+/* Verb phrase (sentence) wraps gracefully */
+#verb-phrase {
+  font-size: 1rem !important;
+  line-height: 1.45;
+  max-width: 88%;
+  text-align: center;
+}
+
+/* ── Action icon button row ─────────────────────────── */
+#go-to-verb-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 0.55rem 0 0.45rem;
+  flex-shrink: 0;
+  background: var(--primary-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.action-icon-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--meta-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  -webkit-tap-highlight-color: transparent;
+}
+.action-icon-btn:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transform: scale(1.06);
+}
+.action-icon-btn:active {
+  transform: scale(0.95);
+}
+.action-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Autosay button — hidden (off by default, rarely used) */
+#autosay-toggle-btn {
+  display: none !important;
+}
+
+/* Autosay state — override old red/green coloring */
+#autosay-toggle-btn.action-icon-btn {
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-off {
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border-color: var(--border-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-off svg {
+  opacity: 0.35;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-on {
+  background: var(--card-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-on svg {
+  opacity: 1;
+}
+/* go-to-verb-btn: override old light-mode positioning/styling */
+#go-to-verb-btn.action-icon-btn {
+  position: static !important;
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+  padding: 0 !important;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .action-icon-btn {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .action-icon-btn:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+}
+
+/* ── Navigation bar ──────────────────────────────────── */
+.navigation {
+  padding: 0.5rem 0.75rem 0.6rem;
+}
+.navigation button {
+  border-radius: 12px;
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.navigation button svg {
+  width: 20px;
+  height: 20px;
+}
+/* prev/next: icon-only, don't grow as wide */
+#back-btn, #next-btn {
+  flex-grow: 0.6 !important;
+}
+/* Dark mode nav override (remove old hardcoded bg) */
+@media (prefers-color-scheme: dark) {
+  #go-to-verb-btn-container {
+    background: var(--primary-bg);
+    border-top-color: var(--border-color);
+  }
+  /* remove old specific dark rule that fought our new design */
+  #go-to-verb-btn {
+    background: var(--card-bg) !important;
+    color: var(--meta-color) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
+  }
+}
+
+/* ── Conjugated verb: must be bright in dark mode ───────── */
+@media (prefers-color-scheme: dark) {
+  #conjugated-verb, .conjugated-line h2 {
+    color: #f0f5fa !important;
+    text-shadow: none !important;
+  }
+  .verb-phrase, #verb-phrase {
+    color: #8898b0 !important;
+  }
+}
+/* ── Translation block inside verb-phrase: compact margin ── */
+#verb-phrase > div {
+  margin-top: 0.6em !important;
+  font-size: 0.82em !important;
+}
+
+/* ── Phrase container: clip overflow ────────────────────── */
+#phrase-container {
+  overflow: hidden !important;
+}
+
+
+/* ── Tap-to-reveal hint in empty phrase area ────────────── */
+#phrase-container {
+  position: relative !important;
+}
+
+/* ── Settings: tense weight pills ────────────────────────── */
+#tense-weights-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.2rem 0 0.4rem;
+}
+.tense-weight-pill {
+  padding: 0.3em 0.85em;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  opacity: 0.55;
+  -webkit-tap-highlight-color: transparent;
+}
+.tense-weight-pill.active {
+  opacity: 1;
+  border-color: transparent;
+}
+.tense-weight-pill.active.tense-present           { background: var(--tense-present); color: #2c3e50; }
+.tense-weight-pill.active.tense-passeCompose      { background: var(--tense-passe-compose); color: #2c3e50; }
+.tense-weight-pill.active.tense-imparfait         { background: var(--tense-imparfait); color: #2c3e50; }
+.tense-weight-pill.active.tense-futurSimple       { background: var(--tense-futur-simple); color: #2c3e50; }
+.tense-weight-pill.active.tense-plusQueParfait    { background: var(--tense-plus-que-parfait); color: #2c3e50; }
+.tense-weight-pill.active.tense-subjonctifPresent { background: var(--tense-subjonctif-present); color: #2c3e50; }
+.tense-weight-pill.active.tense-conditionnelPresent { background: var(--tense-conditionnel-present); color: #2c3e50; }
+@media (prefers-color-scheme: dark) {
+  .tense-weight-pill { opacity: 0.55; border-color: rgba(255,255,255,0.18); color: #c8d8e8; }
+  .tense-weight-pill.active { opacity: 1; border-color: transparent; }
+  .tense-weight-pill.active.tense-present           { color: #ccf5e3; }
+  .tense-weight-pill.active.tense-passeCompose      { color: #442a0d; }
+  .tense-weight-pill.active.tense-imparfait         { color: #d6d5ec; }
+  .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
+  .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
+  .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
+  .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+}
+
+/* ── Reflexive mode pill selector ────────────────────────── */
+.reflexive-mode-pills {
+  display: flex;
+  gap: 0;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-color);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.reflexive-pill {
+  padding: 0.3em 0.8em;
+  border: none;
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.reflexive-pill + .reflexive-pill {
+  border-left: 1.5px solid var(--border-color);
+}
+.reflexive-pill.active {
+  background: var(--accent-color);
+  color: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  .reflexive-pill.active { color: #fff; }
+}
+
+/* ── Settings: frequency step buttons (0-5) ─────────────── */
+.freq-weight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+.freq-label {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  flex-shrink: 0;
+  min-width: 100px;
+}
+.freq-steps {
+  display: flex;
+  gap: 4px;
+}
+.freq-step-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.freq-step-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+.freq-step-btn:hover:not(.active) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* ── Settings: section header tweaks ────────────────────── */
+.option-group h3 {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  color: var(--meta-color) !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0.75rem !important;
+}
+/* Settings page back-link + title bar */
+.options-header {
+  padding: 0.5rem 0.75rem 1rem !important;
+}
+.options-header h2 {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+.options-header button {
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: var(--accent-color) !important;
+}
+/* container card slightly more airy */
+#options-container {
+  padding: 1.2rem 1.2rem 2rem !important;
+}
+.option-group {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Tips/Contact links – moved to settings page bottom */
+#tips-btn, #contact-btn {
+  display: none !important;
+}
+
+/* ── Settings: verb translation – strip parens look, use clean subtitle ── */
+#verb-translation {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: var(--meta-color) !important;
+  opacity: 0.72;
+  letter-spacing: 0.01em;
+}
+
+/* ── Settings: General toggle rows ─────────────────────── */
+.toggle-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.toggle-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.toggle-row:last-child {
+  border-bottom: none;
+}
+.toggle-row label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* ── Settings: presets description text ─────────────────── */
+.option-desc {
+  font-size: 0.82rem;
+  color: var(--meta-color);
+  margin: -0.4rem 0 0.75rem;
+  opacity: 0.8;
+}
+
+/* ── Settings: styled native select ─────────────────────── */
+.styled-select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+.styled-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+@media (prefers-color-scheme: dark) {
+  .styled-select {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+}
+
+
+/* ── Frequency step buttons ─────────────────────────────── */
+.freq-weight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+}
+.freq-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.freq-steps {
+  display: flex;
+  gap: 0.25rem;
+}
+.freq-step-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: background 0.12s, border-color 0.12s, opacity 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.freq-step-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+  opacity: 1;
+}
+.freq-step-btn:hover {
+  opacity: 0.75;
+  border-color: var(--accent-color);
 }
