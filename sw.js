@@ -22,15 +22,18 @@ self.addEventListener('activate', event => {
   console.log('[SW] Activate', CACHE_NAME);
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(k => k !== CACHE_NAME).map(k => {
+      .then(keys => {
+        const oldKeys = keys.filter(k => k !== CACHE_NAME);
+        const isUpgrade = oldKeys.length > 0; // only true when replacing an existing SW
+        return Promise.all(oldKeys.map(k => {
           console.log('[SW] Deleting old cache:', k);
           return caches.delete(k);
-        })
-      ))
-      .then(() => self.clients.claim()) // take control of all open tabs
-      .then(() => {
-        // Tell every open tab to reload so they get the fresh version
+        })).then(() => isUpgrade);
+      })
+      .then(isUpgrade => self.clients.claim().then(() => isUpgrade))
+      .then(isUpgrade => {
+        // Only reload open tabs when upgrading — not on a fresh first install
+        if (!isUpgrade) return;
         return self.clients.matchAll({ type: 'window' }).then(clients => {
           clients.forEach(client => client.postMessage({ type: 'SW_UPDATED' }));
         });
