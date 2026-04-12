@@ -14393,7 +14393,11 @@ function setupPracticeModeToggle() {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       localStorage.removeItem(APP_LOG_KEY);
-      caches.open('offline-cache-v13').then(function(c) { c.delete('/__sw-log'); }).catch(function(){});
+      caches.keys().then(function(keys) {
+        return Promise.all(keys.map(function(k) {
+          return caches.open(k).then(function(c) { return c.delete('/__sw-log'); });
+        }));
+      }).catch(function(){});
       panel.textContent = '(cleared - reload to start fresh)';
     });
     document.body.appendChild(btn);
