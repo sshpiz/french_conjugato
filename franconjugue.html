@@ -4598,7 +4598,4578 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Non-blocking font load: renders with system font first, switches when Inter loads -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <style>
+/* --- AUTOSAY READY MODAL: Ensure always on top and clickable --- */
+#autosay-ready-modal {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+#autosay-ready-modal * {
+  pointer-events: auto !important;
+}
+
+
+.verb-phrase {
+    font-weight: bolder;  
+}
+@media (prefers-color-scheme: dark) {
+  /* Conjugated verb: dark, bold, easy to read */
+  #conjugated-verb, .conjugated-line h2 {
+    color: #1a2633 !important;
+    font-weight: 700;
+    text-shadow: 0 1px 2px #fff4, 0 0px 1px #fff2;
+  }
+  /* Phrase: dark, italic, readable */
+  .verb-phrase {
+
+    color: #263040 !important;
+    font-style: italic;
+    text-shadow: 0 1px 2px #fff3;
+    max-width: 380px;
+    width: 90%;
+    display: block;
+    overflow: visible;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+    font-size: clamp(0.9em, 2.5vw, 1.2em);
+  }
+  /* Infinitive: light, glowing */
+  .infinitive-line h1, #verb-infinitive {
+    color: #f7fafc !important;
+    text-shadow: 0 2px 8px #000a, 0 1px 2px #0006;
+    font-weight: 800;
+  }
+  /* Translation: darker, subtle
+  #verb-translation {
+    color: #b0b8c1 !important;
+    font-weight: bolder;
+    font-size: 2.3rem;
+  } */
+
+  /* Book icon button: dark bg, light icon */
+  #go-to-verb-btn {
+    background: #1a2633 !important;
+    color: #f7fafc !important;
+    border: none;
+    box-shadow: 0 2px 8px #0004;
+  }
+  #go-to-verb-btn:active {
+    background: #263040 !important;
+  }
+  /* Navigation buttons: dark bg, accent text */
+  .navigation {
+    background: #181c1f !important;
+    border-top: 1px solid #23272b !important;
+    box-shadow: 0 -2px 12px #0002;
+  }
+  .navigation button {
+    background-color: #23272b !important;
+    /* color: #6ec6ff !important; */
+    border: none;
+    box-shadow: 0 1px 4px #0002;
+  }
+  .navigation button#next-btn {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+  }
+  .navigation button:hover {
+    background-color: #263040 !important;
+    color: #fff !important;
+  }
+  /* Options/settings panel: dark bg, light text */
+  #options-container {
+    background: #23272b !important;
+    color: #f4f7f9 !important;
+    box-shadow: 0 4px 15px #0004;
+  }
+  .option-group > label, .option-group h3, .slider-group label {
+    color: #b0b8c1 !important;
+  }
+  .slider-group .slider-value {
+    color: #6ec6ff !important;
+  }
+  
+}
+/* --- DARK MODE --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-bg: #181c1f !important;
+    --card-bg: #23272b !important;
+    --text-color: #f4f7f9 !important;
+    --accent-color: #6ec6ff !important;
+    --meta-color: #b0b8c1 !important;
+    --border-color: #2c3136 !important;
+    --shadow: 0 4px 15px rgba(0,0,0,0.32) !important;
+    --tense-present: #2e7d5b !important;
+    --tense-passe-compose: #b77b3a !important;
+    --tense-imparfait: #5c5a7e !important;
+    --tense-futur-simple: #357ca5 !important;
+    --tense-plus-que-parfait: #a24d6a !important;
+    --tense-subjonctif-present: #6b3e8a !important;
+    --tense-conditionnel-present: #7ea24d !important;
+  }
+  .tense-present            { color: #ccf5e3 !important; }
+  .tense-passeCompose       { color: #442a0d !important; }
+  .tense-imparfait          { color: #d6d5ec !important; }
+  .tense-futurSimple        { color: #cbe6f6 !important; }
+  .tense-plusQueParfait     { color: #3e1422 !important; }
+  .tense-subjonctifPresent  { color: #e4cff2 !important; }
+  .tense-conditionnelPresent { color: #2c3e14 !important; }
+  body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+  }
+  #verb-detail-container, #options-container, .mnemonic-card, #verb-list-container {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    box-shadow: var(--shadow);
+  }
+  .tab-button {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+  .tab-button.active {
+    background: var(--accent-color);
+    color: #181c1f;
+  }
+  .mnemonic-card {
+    background: linear-gradient(120deg, #23272b 60%, #181c1f 100%) !important;
+  }
+  .meta-info, .frequency-tag {
+    background: #23272b !important;
+    color: var(--meta-color) !important;
+  }
+  /* .verb-phrase color in dark mode is set above for max specificity */
+  .highlight {
+    background-color: #b77b3a44 !important;
+  }
+  #info-panel {
+    background: #23272b !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+  }
+}
+/* Verb list mode toggle styles */
+.mode-toggle-btn {
+  background: #eaf6fb;
+  border: none;
+  color: #3498db;
+  font-size: 1.1em;
+  font-weight: 700;
+  border-radius: 0.7em;
+  margin-right: 0.3em;
+  padding: 0.2em 0.7em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mode-toggle-btn.active {
+  background: #3498db;
+  color: #fff;
+}
+/* Alphabet scroller styles */
+.alphabet-scroller {
+  position: absolute;
+  right: 0.2em;
+  top: 0.5em;
+  bottom: 0.5em;
+  width: 1.7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  background: rgba(255,255,255,0.7);
+  border-radius: 1em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0.2em 0.1em;
+}
+.alphabet-letter {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.95em;
+  padding: 0.1em 0;
+  cursor: pointer;
+  border-radius: 0.5em;
+  transition: background 0.2s, color 0.2s;
+}
+.alphabet-letter:hover, .alphabet-letter.active {
+  background: #3498db22;
+  color: #3498db;
+}
+/* Frequency section headers */
+.frequency-section-header {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #3498db;
+  background: #eaf6fb;
+  padding: 0.3em 0.7em;
+  border-radius: 0.7em;
+  margin: 0.7em 0 0.2em 0;
+  text-align: left;
+}
+/* Tense color variables (soft, harmonious with bg) */
+:root {
+  --tense-present: #b3d8c5;           /* soft green */
+  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
+  --tense-imparfait: #c9c7e8;         /* soft lavender */
+  --tense-futur-simple: #b2d6f7;      /* soft blue */
+  --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
+  --tense-subjonctif-present: #d4c5e8;/* soft purple */
+  --tense-conditionnel-present: #d6e8c7;/* soft lime */
+}
+#verb-tense {
+  border-radius: 0.7em;
+  padding: 0.1em 0.7em;
+  background: var(--tense-present); /* default, will be overridden by class */
+  color: #2c3e50;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+/* Tense-specific background colors */
+.tense-present        { background: var(--tense-present) !important; }
+.tense-passeCompose   { background: var(--tense-passe-compose) !important; }
+.tense-imparfait      { background: var(--tense-imparfait) !important; }
+.tense-futurSimple    { background: var(--tense-futur-simple) !important; }
+.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
+.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
+.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
+/* style.css */
+/* Basic Reset & Font */
+:root {
+    --primary-bg: #f4f7f9;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --accent-color: #3498db;
+    --meta-color: #2f3c3d;
+    --border-color: #e0e6ed;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* Tense color variables (soft, harmonious with bg) */
+    --tense-present: #b3d8c5;           /* soft green */
+  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
+    --tense-imparfait: #c9c7e8;         /* soft lavender */
+    --tense-futur-simple: #b2d6f7;      /* soft blue */
+    --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
+    --tense-subjonctif-present: #d4c5e8;/* soft purple */
+    --tense-conditionnel-present: #d6e8c7;/* soft lime */
+}
+#verb-tense {
+  border-radius: 0.7em;
+  padding: 0.1em 0.7em;
+  background: var(--tense-present); /* default, will be overridden by class */
+  color: #2c3e50;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+/* Tense-specific background colors */
+.tense-present        { background: var(--tense-present) !important; }
+.tense-passeCompose   { background: var(--tense-passe-compose) !important; }
+.tense-imparfait      { background: var(--tense-imparfait) !important; }
+.tense-futurSimple    { background: var(--tense-futur-simple) !important; }
+.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
+.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
+.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    padding: 0;
+    margin: 0;
+    /* Remove flex centering for full height */
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    max-width: 480px;
+    min-height: 100vh;
+    height: 100vh;
+    padding: 0;
+    margin: 0 auto;
+    position: relative; /* For positioning info button */
+}
+
+@media (max-width: 600px) {
+  html, body, #app-container, #flashcard-view {
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* iOS Safari full screen support */
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+  }
+  
+  /* Allow scrolling for options view */
+  #options-view {
+    overflow-y: auto;
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: 1rem 0.5rem;
+  }
+  
+  body {
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: contain;
+  }
+  #answer-container, #answer-container.is-visible {
+    margin-top: 0;
+  }
+}
+
+/* Info Button and Panel */
+.info-container {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 100;
+    display: flex;
+    gap: 0.5rem;
+}
+
+#info-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+    transition: box-shadow 0.2s, background 0.2s;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+#info-btn:hover, #info-btn:focus {
+    box-shadow: 0 4px 16px rgba(52,152,219,0.18);
+    background: #eaf6fb;
+}
+
+#info-btn { display: none !important; }
+
+.all-phrases-section { display: none !important; }
+
+#info-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw;
+    max-width: 340px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    z-index: 9999;
+    display: block;
+}
+#info-panel.hidden {
+    display: none !important;
+}
+
+#info-panel::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(44,62,80,0.18);
+    z-index: -1;
+    pointer-events: all;
+}
+
+#info-panel p {
+    margin-bottom: 0.5rem;
+}
+
+#info-panel ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+/* --- Flashcard View --- */
+/* --- Flashcard View --- */
+#flashcard {
+    border-radius: 16px;
+    padding: 2rem 1rem 1.5rem 1rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    background: linear-gradient(170deg, #f0f5fa 0%, #e8eff6 100%);
+}
+
+/* Dark mode flashcard background */
+@media (prefers-color-scheme: dark) {
+  #flashcard {
+    background: linear-gradient(170deg, #141c26 0%, #0e1520 100%);
+  }
+}
+
+#flashcard:active {
+    transform: scale(0.98);
+}
+
+.card-content-before {
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 0;
+    position: absolute;
+    top: 2%;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.infinitive-line {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+/* Phantom spacer mirrors the book icon width so verb h1 is truly centered */
+.infinitive-line::before {
+    content: '';
+    width: 44px;
+    flex-shrink: 0;
+}
+
+.infinitive-line h1 {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+}
+
+/* Smaller, not bold, translation font for flashcard */
+#verb-translation {
+  font-size: calc(1.4rem * var(--font-scale, 1));
+  font-weight: 800;
+  color: var(--meta-color);
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+#verb-hint {
+  font-size: 0.85rem;
+  color: var(--meta-color);
+  opacity: 0.65;
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  font-style: italic;
+  min-height: 1.2em;
+}
+
+.conjugated-line {
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.conjugated-line h2 {
+    margin: 0; /* Override default h2 margin for better flex alignment */
+}
+
+.card-content-before h1 {
+    font-size: calc(3rem * var(--font-scale, 1));
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-content-before p {
+    font-size: 1.25rem;
+    color: var(--meta-color);
+    margin-bottom: 1.5rem;
+}
+
+.meta-info {
+    display: inline-block;
+    background-color: var(--primary-bg);
+    color: var(--meta-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 0; /* Let the container handle spacing */
+}
+
+/* Container for meta tags to keep them on one line */
+.meta-container {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 32px;
+    z-index: 3;
+}
+
+/* --- Frequency Tag Styling --- */
+.frequency-tag {
+    font-weight: 600;
+}
+
+.frequency-tag.super-common {
+    background-color: #27ae60; /* Green */
+    color: white;
+}
+
+.frequency-tag.common {
+    background-color: var(--accent-color); /* Blue */
+    color: white;
+}
+
+.frequency-tag.rare {
+    background-color: #f1c40f; /* Yellow */
+    color: var(--text-color);
+}
+
+.frequency-tag.super-rare {
+    background-color: #c0392b; /* Red */
+    color: white;
+}
+
+/* Answer Styling */
+#answer-container {
+    /* Always keep layout and position consistent, only toggle visibility/opacity */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    margin-top: 0;
+    position: absolute;
+    top: 28%;
+    left: 0;
+    max-width: 100%;
+    z-index: 3;
+}
+
+#answer-container.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+#conjugated-verb {
+    font-size: calc(2.5rem * var(--font-scale, 1));
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* Audio Buttons */
+.audio-btn {
+    display: none !important;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0.5rem;
+}
+
+/* Navigation Buttons */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    padding: 0.75rem 0.5rem 0.75rem 0.5rem;
+    flex-shrink: 0;
+    background: var(--primary-bg);
+    box-shadow: 0 -2px 12px rgba(44,62,80,0.04);
+    border-top: 1px solid var(--border-color);
+}
+
+.navigation button {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+    margin: 0 0.25rem;
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+    margin: 0 0.25rem;
+    flex-basis: 0; /* Allow buttons to shrink */
+}
+
+#explorer-toggle-btn, #next-btn {
+    flex-grow: 2; /* Let these buttons take more space */
+}
+
+
+.navigation button:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* --- Verb Explorer --- */
+.explorer-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+#search-bar {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+#verb-list-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 0; /* Remove padding to let items control it */
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.verb-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.verb-list-item:last-child { border-bottom: none; }
+.verb-list-item:hover { background-color: #eaf1f5; }
+
+.verb-list-item-text .infinitive {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+.verb-list-item-text .translation {
+    font-size: 0.9rem;
+    color: var(--meta-color);
+    display: block; /* Ensure it appears on a new line */
+}
+
+/* --- Verb Detail View --- */
+#verb-detail-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.verb-detail-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.tense-block {
+    margin-bottom: 1.75rem;
+}
+.tense-block:last-child {
+    margin-bottom: 0.5rem;
+}
+
+.tense-header {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--accent-color);
+}
+
+.conjugation-grid {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: column;
+    gap: 0.5rem 1rem; /* row-gap column-gap */
+}
+
+.conjugation-item {
+    display: flex;
+    align-items: baseline;
+    padding: 0.2rem 0;
+}
+
+.conjugation-item .pronoun {
+    color: var(--meta-color);
+    font-size: 0.9rem;
+    width: 75px; /* Align the conjugations by giving pronouns a fixed width */
+    flex-shrink: 0;
+}
+
+.verb-detail-header .infinitive {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.verb-detail-header .translation {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--meta-color);
+    margin-top: 0.25rem;
+}
+
+.tappable-audio {
+    cursor: pointer;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+    /* Remove all visual feedback */
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: none !important;
+    /* Ensure tap area is only the text */
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+.tappable-audio:focus,
+.tappable-audio:active,
+.tappable-audio:hover,
+.tappable-audio:visited {
+    background: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+/* --- Options View --- */
+#options-view {
+    padding: 1rem 0;
+    overflow-y: auto;
+    height: 100%;
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+}
+
+.options-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+.options-header h2 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.options-header button {
+    flex-grow: 0;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.back-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none !important;
+    border: none !important;
+    padding: 0.25rem !important;
+    color: var(--accent-color) !important;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+}
+.back-nav-btn:active { opacity: 0.6; }
+
+.options-header-spacer {
+    width: 30px;
+    flex-shrink: 0;
+}
+
+/* About section */
+.about-row-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+}
+.about-row-btn svg { color: var(--meta-color); flex-shrink: 0; }
+
+.about-panel {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-color);
+}
+.about-tagline {
+    margin: 0 0 0.75rem;
+    color: var(--meta-color);
+    font-size: 0.9rem;
+}
+.about-features {
+    margin: 0 0 0.75rem;
+    padding-left: 1.2rem;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+.about-footer {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--meta-color);
+    font-style: italic;
+}
+
+#options-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.option-group {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.option-group:last-child { margin-bottom: 0.5rem; }
+
+.option-group > label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.option-group h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.slider-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.slider-group label { flex-basis: 45%; text-transform: capitalize; }
+.slider-group input[type="range"] { flex-grow: 1; margin: 0 1rem; }
+.slider-group .slider-value { min-width: 2rem; text-align: right; font-weight: 600; color: var(--meta-color); }
+
+/* Toggle Switch */
+.toggle-switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+.toggle-switch .toggle-input { opacity: 0; width: 0; height: 0; }
+.toggle-switch .toggle-label { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 28px; }
+.toggle-switch .toggle-label:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+.toggle-input:checked + .toggle-label { background-color: var(--accent-color); }
+.toggle-input:checked + .toggle-label:before { transform: translateX(22px); }
+
+@media (prefers-color-scheme: dark) {
+  .toggle-switch .toggle-label {
+    background-color: #1a242a;
+    border-radius: 999px;
+    transition: background-color 0.3s ease;
+  }
+
+  .toggle-switch .toggle-label::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fefefe;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+  }
+
+  .toggle-switch .toggle-input:checked + .toggle-label {
+    background-color: #c89e2b; /* mustard gold */
+  }
+
+  .toggle-switch .toggle-input:checked + .toggle-label::before {
+    transform: translateX(22px);
+  }
+}
+
+
+
+/* Autosay Toggle Button */
+#autosay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.18em;
+  font-weight: 600;
+  padding: 0.13em 0.5em;
+  border-radius: 1.2em;
+  border: 1.5px solid #b0b8c1;
+  background: #eaf6fb;
+  color: #3498db;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+  min-width: unset;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+#autosay-toggle-btn.autosay-on {
+  background: #d1f5e0;
+  color: #218c4a;
+  border-color: #218c4a;
+}
+#autosay-toggle-btn.autosay-off {
+  background: #f7eaea;
+  color: #b03a2e;
+  border-color: #b03a2e;
+}
+#autosay-toggle-btn:active {
+  filter: brightness(0.97);
+}
+#autosay-toggle-btn .autosay-emoji {
+  font-size: 1.0em;
+  margin-right: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+  #autosay-toggle-btn {
+    background: #23272b;
+    color: #6ec6ff;
+    border: 1.5px solid #444a55;
+  }
+  #autosay-toggle-btn.autosay-on {
+    background: #1e3a2a;
+    color: #6ef6a0;
+    border-color: #6ef6a0;
+  }
+  #autosay-toggle-btn.autosay-off {
+    background: #2a2323;
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+}
+
+/* Autosay Toggle Button */
+#autosay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.18em;
+  font-weight: 600;
+  padding: 0.13em 0.5em;
+  border-radius: 1.2em;
+  border: 1.5px solid #b0b8c1;
+  background: #eaf6fb;
+  color: #3498db;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+  min-width: unset;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+#autosay-toggle-btn.autosay-on {
+  background: #d1f5e0;
+  color: #218c4a;
+  border-color: #218c4a;
+}
+#autosay-toggle-btn.autosay-off {
+  background: #f7eaea;
+  color: #b03a2e;
+  border-color: #b03a2e;
+}
+#autosay-toggle-btn:active {
+  filter: brightness(0.97);
+}
+#autosay-toggle-btn .autosay-emoji {
+  font-size: 1.0em;
+  margin-right: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+  #autosay-toggle-btn {
+    background: #23272b;
+    color: #6ec6ff;
+    border: 1.5px solid #444a55;
+  }
+  #autosay-toggle-btn.autosay-on {
+    background: #1e3a2a;
+    color: #6ef6a0;
+    border-color: #6ef6a0;
+  }
+  #autosay-toggle-btn.autosay-off {
+    background: #2a2323;
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+}
+
+/* Utility Class */
+.hidden {
+    display: none !important;
+}
+
+#flashcard-view {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    min-height: 0;
+    height: auto;
+}
+
+/* Move frequency tag to bottom left and verb detail icon below it */
+#verb-meta-buttons {
+  display: none !important; /* always hidden — badges removed from card */
+}
+
+/* Frequency badge: top-right corner of the card */
+#verb-frequency {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.75rem;
+  z-index: 10;
+  margin: 0;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+}
+
+#verb-irregular {
+  margin: 0;
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+#go-to-verb-btn, #go-to-verb-btn-2 {
+  position: static !important;
+  right: auto;
+  bottom: auto;
+  margin: 0;
+  z-index: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #eaf6fb;
+  color: #3498db;
+  border-radius: 0.8em;
+  box-shadow: 0 2px 8px #0001;
+  font-size: 1.18em;
+  padding: 0.18em 0.7em;
+  justify-content: flex-start;
+  background: #eaf6fb;
+  color: #3498db;
+  border-radius: 0.8em;
+  box-shadow: 0 2px 8px #0001;
+  font-size: 1.18em;
+  padding: 0.18em 0.7em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+  outline: none;
+  /* min-width: 70px; */
+  text-align: left;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+  outline: none;
+  /* min-width: 70px; */
+  text-align: left;
+}
+
+#go-to-verb-btn:active, #go-to-verb-btn-2:active {
+  background: #d0e6f7;
+}
+#go-to-verb-btn svg {
+  width: 36px;
+  height: 33px;
+  display: block;
+}
+#go-to-verb-btn {
+  margin-left: 22px !important;
+  padding: 0.25em 0.6em !important;
+}
+
+/* Pronoun and tense below infinitive */
+.meta-container {
+  position: absolute;
+  top: 17%;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 32px;
+  z-index: 3;
+}
+#verb-pronoun, #verb-tense {
+  position: static;
+}
+
+/* --- GAP SENTENCE PLACEHOLDER STYLING --- */
+.gap-placeholder {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 2px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+  cursor: help;
+}
+
+.gap-verb {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px dashed #1976d2;
+}
+
+.gap-aux {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+  border: 1px dashed #8e24aa;
+}
+
+.gap-pronoun {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px dashed #388e3c;
+}
+
+.gap-placeholder:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* English translation elements - match styling of French elements */
+#english-verb-infinitive {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+#english-verb-translation {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--meta-color);
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+#english-verb-phrase {
+    font-style: italic;
+    font-weight: bolder;
+    color: #7f8c8d;
+    margin-top: 0.75rem;
+    font-size: 1.2rem;
+    user-select: text;
+    cursor: text;
+}
+
+#english-infinitive-line {
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#english-infinitive-line h1 {
+    margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    #english-verb-infinitive {
+        color: #f7fafc !important;
+        text-shadow: 0 2px 8px #000a, 0 1px 2px #0006;
+        font-weight: 800;
+    }
+    
+    #english-verb-translation {
+        color: #b0b8c1 !important;
+        font-weight: 400;
+    }
+    
+    #english-verb-phrase {
+        color: #263040 !important;
+        font-style: italic;
+        text-shadow: 0 1px 2px #fff3;
+        max-width: 380px;
+        width: 90%;
+        display: block;
+        overflow: visible;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
+        font-weight:bolder;
+        font-size: clamp(0.9em, 2.5vw, 1.1em);
+    }
+}
+
+.preset-btn {
+  font-size: 1.5em;
+  margin: 0.2em;
+  padding: 0.3em 0.6em;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.preset-btn.active {
+  border-color: gold;
+  box-shadow: 0 0 6px gold;
+}
+
+/* ── Flashcard layout overhaul: flex flow, no absolute overlays ───────── */
+
+/* Hide floating utility buttons — move to settings later */
+#tips-btn, #contact-btn {
+  display: none !important;
+}
+
+/* Card: tighter padding, no gap (children manage their own spacing) */
+#flashcard {
+  padding: 0.6rem 1.2rem 0.8rem !important;
+  gap: 0 !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
+}
+
+/* Progress row: slim, stays at top */
+#daily-progress-container {
+  flex-shrink: 0;
+  order: 0;
+  margin-bottom: 0.4rem;
+}
+
+/* Verb/translation: compact — doesn't flex-grow, just wraps content */
+.card-content-before {
+  position: static !important;
+  top: auto !important;
+  flex: 0 0 auto;
+  min-height: 0;
+  order: 1;
+  justify-content: center !important;
+}
+
+/* Frequency tags row */
+#verb-meta-buttons {
+  display: none !important; /* hidden — remove duplicate, keep consistent */
+}
+
+/* Pronoun + tense pills — snug below verb header */
+.meta-container {
+  position: static !important;
+  top: auto !important;
+  min-height: auto !important;
+  order: 3;
+  flex-shrink: 0;
+  margin: 0.4rem 0 0;
+}
+
+/* Answer container: grows to fill phrase-container so nugget can scroll */
+#answer-container {
+  position: static !important;
+  top: auto !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+/* Answer/phrase area: fills remaining space, answer pinned near top-center */
+#phrase-container {
+  position: static !important;
+  top: auto !important;
+  order: 4 !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  padding-top: 0.4rem !important;
+  overflow: hidden !important;
+  min-height: 0 !important;
+}
+
+/* Thin rule above the whole answer+sentence block */
+#phrase-container::before {
+  content: '';
+  display: block;
+  width: 36%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 0 auto 1rem;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+/* Answer text sizing */
+#conjugated-verb {
+  font-size: calc(2.2rem * var(--font-scale, 1)) !important;
+  line-height: 1.2;
+  margin-bottom: 1.1rem !important;
+}
+
+/* Separator line between answer and example sentence */
+#verb-phrase:not(:empty) {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  opacity: 0.82;
+}
+
+/* Verb phrase (sentence) wraps gracefully */
+#verb-phrase {
+  font-size: 1rem !important;
+  line-height: 1.45;
+  max-width: 88%;
+  text-align: center;
+}
+
+/* ── Action icon button row ─────────────────────────── */
+#go-to-verb-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 0.55rem 0 0.45rem;
+  flex-shrink: 0;
+  background: var(--primary-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.action-icon-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--meta-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  -webkit-tap-highlight-color: transparent;
+}
+.action-icon-btn:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transform: scale(1.06);
+}
+.action-icon-btn:active {
+  transform: scale(0.95);
+}
+.action-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Autosay button — hidden (off by default, rarely used) */
+#autosay-toggle-btn {
+  display: none !important;
+}
+
+/* Autosay state — override old red/green coloring */
+#autosay-toggle-btn.action-icon-btn {
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-off {
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border-color: var(--border-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-off svg {
+  opacity: 0.35;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-on {
+  background: var(--card-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-on svg {
+  opacity: 1;
+}
+/* go-to-verb-btn: override old light-mode positioning/styling */
+#go-to-verb-btn.action-icon-btn {
+  position: static !important;
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+  padding: 0 !important;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .action-icon-btn {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .action-icon-btn:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+}
+
+/* ── Navigation bar ──────────────────────────────────── */
+.navigation {
+  padding: 0.5rem 0.75rem 0.6rem;
+}
+.navigation button {
+  border-radius: 12px;
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.navigation button svg {
+  width: 20px;
+  height: 20px;
+}
+/* prev/next: icon-only, don't grow as wide */
+#back-btn, #next-btn {
+  flex-grow: 0.6 !important;
+}
+/* Dark mode nav override (remove old hardcoded bg) */
+@media (prefers-color-scheme: dark) {
+  #go-to-verb-btn-container {
+    background: var(--primary-bg);
+    border-top-color: var(--border-color);
+  }
+  /* remove old specific dark rule that fought our new design */
+  #go-to-verb-btn {
+    background: var(--card-bg) !important;
+    color: var(--meta-color) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
+  }
+}
+
+/* ── Conjugated verb: must be bright in dark mode ───────── */
+@media (prefers-color-scheme: dark) {
+  #conjugated-verb, .conjugated-line h2 {
+    color: #f0f5fa !important;
+    text-shadow: none !important;
+  }
+  .verb-phrase, #verb-phrase {
+    color: #8898b0 !important;
+  }
+}
+/* ── Translation block inside verb-phrase: compact margin ── */
+#verb-phrase > div {
+  margin-top: 0.6em !important;
+  font-size: 0.82em !important;
+}
+
+/* ── Phrase container: clip overflow ────────────────────── */
+#phrase-container {
+  overflow: hidden !important;
+}
+
+
+/* ── Tap-to-reveal hint in empty phrase area ────────────── */
+#phrase-container {
+  position: relative !important;
+}
+
+/* ── Settings: tense weight pills ────────────────────────── */
+#tense-weights-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.2rem 0 0.4rem;
+}
+.tense-weight-pill {
+  padding: 0.3em 0.85em;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  opacity: 0.55;
+  -webkit-tap-highlight-color: transparent;
+}
+.tense-weight-pill.active {
+  opacity: 1;
+  border-color: transparent;
+}
+.tense-weight-pill.active.tense-present           { background: var(--tense-present); color: #2c3e50; }
+.tense-weight-pill.active.tense-passeCompose      { background: var(--tense-passe-compose); color: #2c3e50; }
+.tense-weight-pill.active.tense-imparfait         { background: var(--tense-imparfait); color: #2c3e50; }
+.tense-weight-pill.active.tense-futurSimple       { background: var(--tense-futur-simple); color: #2c3e50; }
+.tense-weight-pill.active.tense-plusQueParfait    { background: var(--tense-plus-que-parfait); color: #2c3e50; }
+.tense-weight-pill.active.tense-subjonctifPresent { background: var(--tense-subjonctif-present); color: #2c3e50; }
+.tense-weight-pill.active.tense-conditionnelPresent { background: var(--tense-conditionnel-present); color: #2c3e50; }
+@media (prefers-color-scheme: dark) {
+  .tense-weight-pill { opacity: 0.55; border-color: rgba(255,255,255,0.18); color: #c8d8e8; }
+  .tense-weight-pill.active { opacity: 1; border-color: transparent; }
+  .tense-weight-pill.active.tense-present           { color: #ccf5e3; }
+  .tense-weight-pill.active.tense-passeCompose      { color: #442a0d; }
+  .tense-weight-pill.active.tense-imparfait         { color: #d6d5ec; }
+  .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
+  .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
+  .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
+  .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+}
+
+/* ── Reflexive mode pill selector ────────────────────────── */
+.reflexive-mode-pills {
+  display: flex;
+  gap: 0;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-color);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.reflexive-pill {
+  padding: 0.3em 0.8em;
+  border: none;
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.reflexive-pill + .reflexive-pill {
+  border-left: 1.5px solid var(--border-color);
+}
+.reflexive-pill.active {
+  background: var(--accent-color);
+  color: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  .reflexive-pill.active { color: #fff; }
+}
+
+/* ── Settings: frequency step buttons (0-5) ─────────────── */
+.freq-weight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+.freq-label {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  flex-shrink: 0;
+  min-width: 100px;
+}
+.freq-steps {
+  display: flex;
+  gap: 4px;
+}
+.freq-step-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.freq-step-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+.freq-step-btn:hover:not(.active) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* ── Settings: section header tweaks ────────────────────── */
+.option-group h3 {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  color: var(--meta-color) !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0.75rem !important;
+}
+/* Settings page back-link + title bar */
+.options-header {
+  padding: 0.5rem 0.75rem 1rem !important;
+}
+.options-header h2 {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+.options-header button {
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: var(--accent-color) !important;
+}
+/* container card slightly more airy */
+#options-container {
+  padding: 1.2rem 1.2rem 2rem !important;
+}
+.option-group {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Tips/Contact links – moved to settings page bottom */
+#tips-btn, #contact-btn {
+  display: none !important;
+}
+
+/* ── Settings: verb translation – strip parens look, use clean subtitle ── */
+#verb-translation {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: var(--meta-color) !important;
+  opacity: 0.72;
+  letter-spacing: 0.01em;
+}
+
+/* ── Settings: General toggle rows ─────────────────────── */
+.toggle-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.toggle-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.toggle-row:last-child {
+  border-bottom: none;
+}
+.toggle-row label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* ── Settings: presets description text ─────────────────── */
+.option-desc {
+  font-size: 0.82rem;
+  color: var(--meta-color);
+  margin: -0.4rem 0 0.75rem;
+  opacity: 0.8;
+}
+
+/* ── Settings: styled native select ─────────────────────── */
+.styled-select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+.styled-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+@media (prefers-color-scheme: dark) {
+  .styled-select {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+}
+
+
+/* ── Frequency step buttons ─────────────────────────────── */
+.freq-weight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+}
+.freq-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.freq-steps {
+  display: flex;
+  gap: 0.25rem;
+}
+.freq-step-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: background 0.12s, border-color 0.12s, opacity 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.freq-step-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+  opacity: 1;
+}
+.freq-step-btn:hover {
+  opacity: 0.75;
+  border-color: var(--accent-color);
+}
+
+
+/* ── Verb usage nugget ───────────────────────────────────── */
+#usage-nugget {
+  margin-top: 0.9rem;
+  padding: 0.65rem 0.4rem;
+  max-width: 100%;
+}
+#usage-pattern {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 0.3rem;
+}
+#usage-example-fr {
+  margin: 0.2rem 0 0.15rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+#usage-example-en {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--meta-color);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── Font size slider ────────────────────────────────────── */
+.font-size-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.font-size-label {
+  font-size: 0.7rem;
+  color: var(--meta-color);
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+}
+.font-size-label.large { font-size: 1.1rem; }
+#font-size-slider {
+  width: 90px;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+/* ── Preset badge ─── removed from card view ─────────────── */
+#preset-badge {
+  display: none !important;
+  align-items: center;
+  gap: 0.25em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--meta-color);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 2em;
+  padding: 0.18em 0.55em;
+  opacity: 0.75;
+}
+.preset-badge-icon { font-size: 0.85em; line-height: 1; }
+.preset-badge-name { letter-spacing: 0.01em; }
+
+/* ── Usage nugget ────────────────────────────────────────── */
+#usage-nugget {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+.usage-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3em 0.5em;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+  line-height: 1.4;
+}
+.usage-item:last-child { border-bottom: none; }
+.usage-pattern {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.usage-fr {
+  font-size: 0.88rem;
+  color: var(--text-color);
+  font-style: italic;
+}
+.usage-en {
+  font-size: 0.78rem;
+  color: var(--meta-color);
+}
+.usage-en::before { content: "· "; }
+
+.verb-usages-detail-section {
+  margin-top: 2.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.verb-usages-heading {
+  margin: 0 0 0.85rem;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.verb-usages-detail-section .usage-item {
+  padding: 0.65rem 0;
+}
+
+/* ── Theme overrides via data-theme on <html> ───────────── */
+/* Force dark (overrides light system preference)            */
+html[data-theme="dark"] {
+  --primary-bg: #181c1f;
+  --card-bg: #23272b;
+  --text-color: #f4f7f9;
+  --accent-color: #6ec6ff;
+  --meta-color: #b0b8c1;
+  --border-color: #2c3136;
+  --shadow: 0 4px 15px rgba(0,0,0,0.32);
+  --tense-present: #2e7d5b;
+  --tense-passe-compose: #b77b3a;
+  --tense-imparfait: #5c5a7e;
+  --tense-futur-simple: #357ca5;
+  --tense-plus-que-parfait: #a24d6a;
+  --tense-subjonctif-present: #6b3e8a;
+  --tense-conditionnel-present: #7ea24d;
+  color-scheme: dark;
+}
+html[data-theme="dark"] body {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+}
+/* Element-level dark rules (mirrors @media prefers-color-scheme: dark) */
+html[data-theme="dark"] .tense-present            { color: #ccf5e3 !important; }
+html[data-theme="dark"] .tense-passeCompose       { color: #442a0d !important; }
+html[data-theme="dark"] .tense-imparfait          { color: #d6d5ec !important; }
+html[data-theme="dark"] .tense-futurSimple        { color: #cbe6f6 !important; }
+html[data-theme="dark"] .tense-plusQueParfait     { color: #3e1422 !important; }
+html[data-theme="dark"] .tense-subjonctifPresent  { color: #e4cff2 !important; }
+html[data-theme="dark"] .tense-conditionnelPresent { color: #2c3e14 !important; }
+html[data-theme="dark"] #verb-detail-container,
+html[data-theme="dark"] #options-container,
+html[data-theme="dark"] .mnemonic-card,
+html[data-theme="dark"] #verb-list-container {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: var(--shadow);
+}
+html[data-theme="dark"] .tab-button { border-color: var(--accent-color); color: var(--accent-color); }
+html[data-theme="dark"] .tab-button.active { background: var(--accent-color); color: #181c1f; }
+html[data-theme="dark"] .mnemonic-card { background: linear-gradient(120deg, #23272b 60%, #181c1f 100%) !important; }
+html[data-theme="dark"] .meta-info,
+html[data-theme="dark"] .frequency-tag { background: #23272b !important; color: var(--meta-color) !important; }
+html[data-theme="dark"] .highlight { background-color: #b77b3a44 !important; }
+html[data-theme="dark"] #info-panel { background: #23272b !important; color: var(--text-color) !important; border-color: var(--border-color) !important; }
+html[data-theme="dark"] #flashcard { background: linear-gradient(170deg, #141c26 0%, #0e1520 100%); }
+html[data-theme="dark"] .toggle-switch .toggle-label { background-color: #1a242a; border-radius: 999px; }
+html[data-theme="dark"] .toggle-switch .toggle-label::before { background-color: #fefefe; box-shadow: 0 1px 3px rgba(0,0,0,0.6); }
+html[data-theme="dark"] #autosay-toggle-btn { background: #23272b; color: #6ec6ff; border: 1.5px solid #444a55; }
+html[data-theme="dark"] #autosay-toggle-btn.autosay-on { background: #1e3a2a; color: #6ef6a0; border-color: #6ef6a0; }
+html[data-theme="dark"] #autosay-toggle-btn.autosay-off { background: #2a2323; color: #ff8a8a; border-color: #ff8a8a; }
+html[data-theme="dark"] #english-verb-infinitive { color: #f7fafc !important; text-shadow: 0 2px 8px #000a, 0 1px 2px #0006; font-weight: 800; }
+html[data-theme="dark"] #english-verb-translation { color: #b0b8c1 !important; font-weight: 400; }
+html[data-theme="dark"] #go-to-verb-btn-container { background: var(--primary-bg); border-top-color: var(--border-color); }
+html[data-theme="dark"] #go-to-verb-btn { background: var(--card-bg) !important; color: var(--meta-color) !important; border: 1px solid var(--border-color) !important; }
+html[data-theme="dark"] #conjugated-verb,
+html[data-theme="dark"] .conjugated-line h2 { color: #f0f5fa !important; text-shadow: none !important; }
+html[data-theme="dark"] .verb-phrase,
+html[data-theme="dark"] #verb-phrase { color: #8898b0 !important; }
+html[data-theme="dark"] .tense-weight-pill { opacity: 0.55; border-color: rgba(255,255,255,0.18); color: #c8d8e8; }
+html[data-theme="dark"] .tense-weight-pill.active { opacity: 1; border-color: transparent; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-present           { color: #ccf5e3; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-passeCompose      { color: #442a0d; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-imparfait         { color: #d6d5ec; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+html[data-theme="dark"] .styled-select { background-color: var(--card-bg); border-color: var(--border-color); }
+html[data-theme="dark"] .action-icon-btn { box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+html[data-theme="dark"] .option-group > label,
+html[data-theme="dark"] .option-group h3,
+html[data-theme="dark"] .slider-group label { color: #b0b8c1 !important; }
+html[data-theme="dark"] .slider-group .slider-value { color: #6ec6ff !important; }
+
+/* Force light (overrides dark system preference)            */
+html[data-theme="light"] {
+  --primary-bg: #f4f7f9 !important;
+  --card-bg: #ffffff !important;
+  --text-color: #2c3e50 !important;
+  --accent-color: #3498db !important;
+  --meta-color: #2f3c3d !important;
+  --border-color: #e0e6ed !important;
+  --shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+  --tense-present: #b3d8c5 !important;
+  --tense-passe-compose: #f7d6b2 !important;
+  --tense-imparfait: #c9c7e8 !important;
+  --tense-futur-simple: #b2d6f7 !important;
+  --tense-plus-que-parfait: #f7b2c7 !important;
+  --tense-subjonctif-present: #d4c5e8 !important;
+  --tense-conditionnel-present: #d6e8c7 !important;
+  color-scheme: light;
+}
+html[data-theme="light"] body {
+  background-color: var(--primary-bg) !important;
+  color: var(--text-color) !important;
+}
+/* Override dark-mode media-query hardcoded values when forcing light */
+html[data-theme="light"] #flashcard {
+  background: linear-gradient(170deg, #f0f4f8 0%, #e8ecf0 100%) !important;
+}
+html[data-theme="light"] .mnemonic-card {
+  background: linear-gradient(120deg, #f4f7f9 60%, #e8edf2 100%) !important;
+}
+html[data-theme="light"] .meta-info,
+html[data-theme="light"] .frequency-tag {
+  background: #e8edf2 !important;
+  color: var(--meta-color) !important;
+}
+html[data-theme="light"] .highlight {
+  background-color: rgba(52,152,219,0.15) !important;
+}
+html[data-theme="light"] #info-panel,
+html[data-theme="light"] #verb-detail-container,
+html[data-theme="light"] #options-container,
+html[data-theme="light"] #verb-list-container {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: var(--shadow) !important;
+}
+html[data-theme="light"] .tab-button.active {
+  color: #fff !important;
+}
+html[data-theme="light"] .infinitive-line h1,
+html[data-theme="light"] #verb-infinitive {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] #conjugated-verb,
+html[data-theme="light"] .conjugated-line h2 {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .verb-phrase,
+html[data-theme="light"] #verb-phrase {
+  color: var(--meta-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] #go-to-verb-btn {
+  background: #eaf0f5 !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+}
+html[data-theme="light"] .navigation {
+  background: #ffffff !important;
+  border-top: 1px solid #e0e6ed !important;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.05) !important;
+}
+html[data-theme="light"] .navigation button {
+  background-color: #f4f7f9 !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .navigation button:hover {
+  background-color: #e0e6ed !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .tense-present            { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-passeCompose       { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-imparfait          { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-futurSimple        { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-plusQueParfait     { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-subjonctifPresent  { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-conditionnelPresent { color: #2c3e50 !important; }
+html[data-theme="light"] .toggle-switch .toggle-label {
+  background-color: #cdd4da !important;
+}
+html[data-theme="light"] .toggle-switch .toggle-input:checked + .toggle-label {
+  background-color: #f39c12 !important;
+}
+html[data-theme="light"] #autosay-toggle-btn {
+  background: #eaf6fb !important;
+  color: #3498db !important;
+  border: 1.5px solid #b0b8c1 !important;
+}
+html[data-theme="light"] #autosay-toggle-btn.autosay-on {
+  background: #d1f5e0 !important;
+  color: #218c4a !important;
+  border-color: #218c4a !important;
+}
+html[data-theme="light"] #autosay-toggle-btn.autosay-off {
+  background: #f7eaea !important;
+  color: #b03a2e !important;
+  border-color: #b03a2e !important;
+}
+html[data-theme="light"] .option-group > label,
+html[data-theme="light"] .option-group h3,
+html[data-theme="light"] .slider-group label {
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .styled-select {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] #english-verb-infinitive {
+  color: var(--accent-color) !important;
+}
+html[data-theme="light"] #go-to-verb-btn-container button {
+  background: #f4f7f9 !important;
+  color: var(--text-color) !important;
+}
+
+/* ── Big dictate mic button (inside phrase-container) ── */
+.dictate-big-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0.5rem auto 0.25rem;
+  background: transparent;
+  border: 2px solid rgba(100,160,200,0.35);
+  border-radius: 50%;
+  color: rgba(100,160,200,0.75);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.dictate-big-btn svg {
+  width: 28px;
+  height: 28px;
+}
+.dictate-big-btn:hover {
+  border-color: rgba(100,160,200,0.65);
+  color: rgba(100,160,200,1);
+}
+
+/* ── Book icon: in-flow, right of centered verb ── */
+#go-to-verb-btn.verb-detail-book-btn,
+.verb-detail-book-btn {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: unset !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: rgba(150,175,200,0.5) !important;
+  cursor: pointer;
+  transition: color 0.15s;
+  font-size: 0 !important;
+}
+#go-to-verb-btn.verb-detail-book-btn svg,
+.verb-detail-book-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+}
+#go-to-verb-btn.verb-detail-book-btn:hover,
+.verb-detail-book-btn:hover {
+  color: rgba(150,175,200,0.9) !important;
+  background: transparent !important;
+}
+
+/* Dictate button — base style handled by .action-icon-btn in style.css */
+/* Only override active/recording state here */
+
+#dictate-btn-bottom:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Recording active state */
+@keyframes dictate-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(231,76,60,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(231,76,60,0); }
+  100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); }
+}
+.dictate-big-btn.recording,
+#dictate-btn-bottom[data-recording="true"] {
+  border-color: #e74c3c !important;
+  color: #e74c3c !important;
+  animation: dictate-pulse 1.2s ease-out infinite;
+}
+
+#english-btn {
+  /* kept hidden, no visual styles needed */
+  display: none !important;
+}
+
+</style>
+    <noscript><style>
+/* --- AUTOSAY READY MODAL: Ensure always on top and clickable --- */
+#autosay-ready-modal {
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+#autosay-ready-modal * {
+  pointer-events: auto !important;
+}
+
+
+.verb-phrase {
+    font-weight: bolder;  
+}
+@media (prefers-color-scheme: dark) {
+  /* Conjugated verb: dark, bold, easy to read */
+  #conjugated-verb, .conjugated-line h2 {
+    color: #1a2633 !important;
+    font-weight: 700;
+    text-shadow: 0 1px 2px #fff4, 0 0px 1px #fff2;
+  }
+  /* Phrase: dark, italic, readable */
+  .verb-phrase {
+
+    color: #263040 !important;
+    font-style: italic;
+    text-shadow: 0 1px 2px #fff3;
+    max-width: 380px;
+    width: 90%;
+    display: block;
+    overflow: visible;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+    font-size: clamp(0.9em, 2.5vw, 1.2em);
+  }
+  /* Infinitive: light, glowing */
+  .infinitive-line h1, #verb-infinitive {
+    color: #f7fafc !important;
+    text-shadow: 0 2px 8px #000a, 0 1px 2px #0006;
+    font-weight: 800;
+  }
+  /* Translation: darker, subtle
+  #verb-translation {
+    color: #b0b8c1 !important;
+    font-weight: bolder;
+    font-size: 2.3rem;
+  } */
+
+  /* Book icon button: dark bg, light icon */
+  #go-to-verb-btn {
+    background: #1a2633 !important;
+    color: #f7fafc !important;
+    border: none;
+    box-shadow: 0 2px 8px #0004;
+  }
+  #go-to-verb-btn:active {
+    background: #263040 !important;
+  }
+  /* Navigation buttons: dark bg, accent text */
+  .navigation {
+    background: #181c1f !important;
+    border-top: 1px solid #23272b !important;
+    box-shadow: 0 -2px 12px #0002;
+  }
+  .navigation button {
+    background-color: #23272b !important;
+    /* color: #6ec6ff !important; */
+    border: none;
+    box-shadow: 0 1px 4px #0002;
+  }
+  .navigation button#next-btn {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+  }
+  .navigation button:hover {
+    background-color: #263040 !important;
+    color: #fff !important;
+  }
+  /* Options/settings panel: dark bg, light text */
+  #options-container {
+    background: #23272b !important;
+    color: #f4f7f9 !important;
+    box-shadow: 0 4px 15px #0004;
+  }
+  .option-group > label, .option-group h3, .slider-group label {
+    color: #b0b8c1 !important;
+  }
+  .slider-group .slider-value {
+    color: #6ec6ff !important;
+  }
+  
+}
+/* --- DARK MODE --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-bg: #181c1f !important;
+    --card-bg: #23272b !important;
+    --text-color: #f4f7f9 !important;
+    --accent-color: #6ec6ff !important;
+    --meta-color: #b0b8c1 !important;
+    --border-color: #2c3136 !important;
+    --shadow: 0 4px 15px rgba(0,0,0,0.32) !important;
+    --tense-present: #2e7d5b !important;
+    --tense-passe-compose: #b77b3a !important;
+    --tense-imparfait: #5c5a7e !important;
+    --tense-futur-simple: #357ca5 !important;
+    --tense-plus-que-parfait: #a24d6a !important;
+    --tense-subjonctif-present: #6b3e8a !important;
+    --tense-conditionnel-present: #7ea24d !important;
+  }
+  .tense-present            { color: #ccf5e3 !important; }
+  .tense-passeCompose       { color: #442a0d !important; }
+  .tense-imparfait          { color: #d6d5ec !important; }
+  .tense-futurSimple        { color: #cbe6f6 !important; }
+  .tense-plusQueParfait     { color: #3e1422 !important; }
+  .tense-subjonctifPresent  { color: #e4cff2 !important; }
+  .tense-conditionnelPresent { color: #2c3e14 !important; }
+  body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+  }
+  #verb-detail-container, #options-container, .mnemonic-card, #verb-list-container {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    box-shadow: var(--shadow);
+  }
+  .tab-button {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+  .tab-button.active {
+    background: var(--accent-color);
+    color: #181c1f;
+  }
+  .mnemonic-card {
+    background: linear-gradient(120deg, #23272b 60%, #181c1f 100%) !important;
+  }
+  .meta-info, .frequency-tag {
+    background: #23272b !important;
+    color: var(--meta-color) !important;
+  }
+  /* .verb-phrase color in dark mode is set above for max specificity */
+  .highlight {
+    background-color: #b77b3a44 !important;
+  }
+  #info-panel {
+    background: #23272b !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+  }
+}
+/* Verb list mode toggle styles */
+.mode-toggle-btn {
+  background: #eaf6fb;
+  border: none;
+  color: #3498db;
+  font-size: 1.1em;
+  font-weight: 700;
+  border-radius: 0.7em;
+  margin-right: 0.3em;
+  padding: 0.2em 0.7em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mode-toggle-btn.active {
+  background: #3498db;
+  color: #fff;
+}
+/* Alphabet scroller styles */
+.alphabet-scroller {
+  position: absolute;
+  right: 0.2em;
+  top: 0.5em;
+  bottom: 0.5em;
+  width: 1.7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  background: rgba(255,255,255,0.7);
+  border-radius: 1em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0.2em 0.1em;
+}
+.alphabet-letter {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.95em;
+  padding: 0.1em 0;
+  cursor: pointer;
+  border-radius: 0.5em;
+  transition: background 0.2s, color 0.2s;
+}
+.alphabet-letter:hover, .alphabet-letter.active {
+  background: #3498db22;
+  color: #3498db;
+}
+/* Frequency section headers */
+.frequency-section-header {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #3498db;
+  background: #eaf6fb;
+  padding: 0.3em 0.7em;
+  border-radius: 0.7em;
+  margin: 0.7em 0 0.2em 0;
+  text-align: left;
+}
+/* Tense color variables (soft, harmonious with bg) */
+:root {
+  --tense-present: #b3d8c5;           /* soft green */
+  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
+  --tense-imparfait: #c9c7e8;         /* soft lavender */
+  --tense-futur-simple: #b2d6f7;      /* soft blue */
+  --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
+  --tense-subjonctif-present: #d4c5e8;/* soft purple */
+  --tense-conditionnel-present: #d6e8c7;/* soft lime */
+}
+#verb-tense {
+  border-radius: 0.7em;
+  padding: 0.1em 0.7em;
+  background: var(--tense-present); /* default, will be overridden by class */
+  color: #2c3e50;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+/* Tense-specific background colors */
+.tense-present        { background: var(--tense-present) !important; }
+.tense-passeCompose   { background: var(--tense-passe-compose) !important; }
+.tense-imparfait      { background: var(--tense-imparfait) !important; }
+.tense-futurSimple    { background: var(--tense-futur-simple) !important; }
+.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
+.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
+.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
+/* style.css */
+/* Basic Reset & Font */
+:root {
+    --primary-bg: #f4f7f9;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --accent-color: #3498db;
+    --meta-color: #2f3c3d;
+    --border-color: #e0e6ed;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* Tense color variables (soft, harmonious with bg) */
+    --tense-present: #b3d8c5;           /* soft green */
+  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
+    --tense-imparfait: #c9c7e8;         /* soft lavender */
+    --tense-futur-simple: #b2d6f7;      /* soft blue */
+    --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
+    --tense-subjonctif-present: #d4c5e8;/* soft purple */
+    --tense-conditionnel-present: #d6e8c7;/* soft lime */
+}
+#verb-tense {
+  border-radius: 0.7em;
+  padding: 0.1em 0.7em;
+  background: var(--tense-present); /* default, will be overridden by class */
+  color: #2c3e50;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+/* Tense-specific background colors */
+.tense-present        { background: var(--tense-present) !important; }
+.tense-passeCompose   { background: var(--tense-passe-compose) !important; }
+.tense-imparfait      { background: var(--tense-imparfait) !important; }
+.tense-futurSimple    { background: var(--tense-futur-simple) !important; }
+.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
+.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
+.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    padding: 0;
+    margin: 0;
+    /* Remove flex centering for full height */
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    max-width: 480px;
+    min-height: 100vh;
+    height: 100vh;
+    padding: 0;
+    margin: 0 auto;
+    position: relative; /* For positioning info button */
+}
+
+@media (max-width: 600px) {
+  html, body, #app-container, #flashcard-view {
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* iOS Safari full screen support */
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+  }
+  
+  /* Allow scrolling for options view */
+  #options-view {
+    overflow-y: auto;
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: 1rem 0.5rem;
+  }
+  
+  body {
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: contain;
+  }
+  #answer-container, #answer-container.is-visible {
+    margin-top: 0;
+  }
+}
+
+/* Info Button and Panel */
+.info-container {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 100;
+    display: flex;
+    gap: 0.5rem;
+}
+
+#info-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.10);
+    transition: box-shadow 0.2s, background 0.2s;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+#info-btn:hover, #info-btn:focus {
+    box-shadow: 0 4px 16px rgba(52,152,219,0.18);
+    background: #eaf6fb;
+}
+
+#info-btn { display: none !important; }
+
+.all-phrases-section { display: none !important; }
+
+#info-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw;
+    max-width: 340px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    z-index: 9999;
+    display: block;
+}
+#info-panel.hidden {
+    display: none !important;
+}
+
+#info-panel::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(44,62,80,0.18);
+    z-index: -1;
+    pointer-events: all;
+}
+
+#info-panel p {
+    margin-bottom: 0.5rem;
+}
+
+#info-panel ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+/* --- Flashcard View --- */
+/* --- Flashcard View --- */
+#flashcard {
+    border-radius: 16px;
+    padding: 2rem 1rem 1.5rem 1rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    background: linear-gradient(170deg, #f0f5fa 0%, #e8eff6 100%);
+}
+
+/* Dark mode flashcard background */
+@media (prefers-color-scheme: dark) {
+  #flashcard {
+    background: linear-gradient(170deg, #141c26 0%, #0e1520 100%);
+  }
+}
+
+#flashcard:active {
+    transform: scale(0.98);
+}
+
+.card-content-before {
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 0;
+    position: absolute;
+    top: 2%;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.infinitive-line {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+/* Phantom spacer mirrors the book icon width so verb h1 is truly centered */
+.infinitive-line::before {
+    content: '';
+    width: 44px;
+    flex-shrink: 0;
+}
+
+.infinitive-line h1 {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+}
+
+/* Smaller, not bold, translation font for flashcard */
+#verb-translation {
+  font-size: calc(1.4rem * var(--font-scale, 1));
+  font-weight: 800;
+  color: var(--meta-color);
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+#verb-hint {
+  font-size: 0.85rem;
+  color: var(--meta-color);
+  opacity: 0.65;
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  font-style: italic;
+  min-height: 1.2em;
+}
+
+.conjugated-line {
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.conjugated-line h2 {
+    margin: 0; /* Override default h2 margin for better flex alignment */
+}
+
+.card-content-before h1 {
+    font-size: calc(3rem * var(--font-scale, 1));
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-content-before p {
+    font-size: 1.25rem;
+    color: var(--meta-color);
+    margin-bottom: 1.5rem;
+}
+
+.meta-info {
+    display: inline-block;
+    background-color: var(--primary-bg);
+    color: var(--meta-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 0; /* Let the container handle spacing */
+}
+
+/* Container for meta tags to keep them on one line */
+.meta-container {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 32px;
+    z-index: 3;
+}
+
+/* --- Frequency Tag Styling --- */
+.frequency-tag {
+    font-weight: 600;
+}
+
+.frequency-tag.super-common {
+    background-color: #27ae60; /* Green */
+    color: white;
+}
+
+.frequency-tag.common {
+    background-color: var(--accent-color); /* Blue */
+    color: white;
+}
+
+.frequency-tag.rare {
+    background-color: #f1c40f; /* Yellow */
+    color: var(--text-color);
+}
+
+.frequency-tag.super-rare {
+    background-color: #c0392b; /* Red */
+    color: white;
+}
+
+/* Answer Styling */
+#answer-container {
+    /* Always keep layout and position consistent, only toggle visibility/opacity */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    margin-top: 0;
+    position: absolute;
+    top: 28%;
+    left: 0;
+    max-width: 100%;
+    z-index: 3;
+}
+
+#answer-container.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+#conjugated-verb {
+    font-size: calc(2.5rem * var(--font-scale, 1));
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* Audio Buttons */
+.audio-btn {
+    display: none !important;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0.5rem;
+}
+
+/* Navigation Buttons */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    padding: 0.75rem 0.5rem 0.75rem 0.5rem;
+    flex-shrink: 0;
+    background: var(--primary-bg);
+    box-shadow: 0 -2px 12px rgba(44,62,80,0.04);
+    border-top: 1px solid var(--border-color);
+}
+
+.navigation button {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+    margin: 0 0.25rem;
+    transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+    margin: 0 0.25rem;
+    flex-basis: 0; /* Allow buttons to shrink */
+}
+
+#explorer-toggle-btn, #next-btn {
+    flex-grow: 2; /* Let these buttons take more space */
+}
+
+
+.navigation button:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* --- Verb Explorer --- */
+.explorer-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+#search-bar {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+#verb-list-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 0; /* Remove padding to let items control it */
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.verb-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.verb-list-item:last-child { border-bottom: none; }
+.verb-list-item:hover { background-color: #eaf1f5; }
+
+.verb-list-item-text .infinitive {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+.verb-list-item-text .translation {
+    font-size: 0.9rem;
+    color: var(--meta-color);
+    display: block; /* Ensure it appears on a new line */
+}
+
+/* --- Verb Detail View --- */
+#verb-detail-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.verb-detail-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.tense-block {
+    margin-bottom: 1.75rem;
+}
+.tense-block:last-child {
+    margin-bottom: 0.5rem;
+}
+
+.tense-header {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--accent-color);
+}
+
+.conjugation-grid {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: column;
+    gap: 0.5rem 1rem; /* row-gap column-gap */
+}
+
+.conjugation-item {
+    display: flex;
+    align-items: baseline;
+    padding: 0.2rem 0;
+}
+
+.conjugation-item .pronoun {
+    color: var(--meta-color);
+    font-size: 0.9rem;
+    width: 75px; /* Align the conjugations by giving pronouns a fixed width */
+    flex-shrink: 0;
+}
+
+.verb-detail-header .infinitive {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.verb-detail-header .translation {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--meta-color);
+    margin-top: 0.25rem;
+}
+
+.tappable-audio {
+    cursor: pointer;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+    /* Remove all visual feedback */
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: none !important;
+    /* Ensure tap area is only the text */
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+.tappable-audio:focus,
+.tappable-audio:active,
+.tappable-audio:hover,
+.tappable-audio:visited {
+    background: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+/* --- Options View --- */
+#options-view {
+    padding: 1rem 0;
+    overflow-y: auto;
+    height: 100%;
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+}
+
+.options-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+.options-header h2 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.options-header button {
+    flex-grow: 0;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.back-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none !important;
+    border: none !important;
+    padding: 0.25rem !important;
+    color: var(--accent-color) !important;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+}
+.back-nav-btn:active { opacity: 0.6; }
+
+.options-header-spacer {
+    width: 30px;
+    flex-shrink: 0;
+}
+
+/* About section */
+.about-row-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+}
+.about-row-btn svg { color: var(--meta-color); flex-shrink: 0; }
+
+.about-panel {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-color);
+}
+.about-tagline {
+    margin: 0 0 0.75rem;
+    color: var(--meta-color);
+    font-size: 0.9rem;
+}
+.about-features {
+    margin: 0 0 0.75rem;
+    padding-left: 1.2rem;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+.about-footer {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--meta-color);
+    font-style: italic;
+}
+
+#options-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.option-group {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.option-group:last-child { margin-bottom: 0.5rem; }
+
+.option-group > label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.option-group h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.slider-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.slider-group label { flex-basis: 45%; text-transform: capitalize; }
+.slider-group input[type="range"] { flex-grow: 1; margin: 0 1rem; }
+.slider-group .slider-value { min-width: 2rem; text-align: right; font-weight: 600; color: var(--meta-color); }
+
+/* Toggle Switch */
+.toggle-switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+.toggle-switch .toggle-input { opacity: 0; width: 0; height: 0; }
+.toggle-switch .toggle-label { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 28px; }
+.toggle-switch .toggle-label:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+.toggle-input:checked + .toggle-label { background-color: var(--accent-color); }
+.toggle-input:checked + .toggle-label:before { transform: translateX(22px); }
+
+@media (prefers-color-scheme: dark) {
+  .toggle-switch .toggle-label {
+    background-color: #1a242a;
+    border-radius: 999px;
+    transition: background-color 0.3s ease;
+  }
+
+  .toggle-switch .toggle-label::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fefefe;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+  }
+
+  .toggle-switch .toggle-input:checked + .toggle-label {
+    background-color: #c89e2b; /* mustard gold */
+  }
+
+  .toggle-switch .toggle-input:checked + .toggle-label::before {
+    transform: translateX(22px);
+  }
+}
+
+
+
+/* Autosay Toggle Button */
+#autosay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.18em;
+  font-weight: 600;
+  padding: 0.13em 0.5em;
+  border-radius: 1.2em;
+  border: 1.5px solid #b0b8c1;
+  background: #eaf6fb;
+  color: #3498db;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+  min-width: unset;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+#autosay-toggle-btn.autosay-on {
+  background: #d1f5e0;
+  color: #218c4a;
+  border-color: #218c4a;
+}
+#autosay-toggle-btn.autosay-off {
+  background: #f7eaea;
+  color: #b03a2e;
+  border-color: #b03a2e;
+}
+#autosay-toggle-btn:active {
+  filter: brightness(0.97);
+}
+#autosay-toggle-btn .autosay-emoji {
+  font-size: 1.0em;
+  margin-right: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+  #autosay-toggle-btn {
+    background: #23272b;
+    color: #6ec6ff;
+    border: 1.5px solid #444a55;
+  }
+  #autosay-toggle-btn.autosay-on {
+    background: #1e3a2a;
+    color: #6ef6a0;
+    border-color: #6ef6a0;
+  }
+  #autosay-toggle-btn.autosay-off {
+    background: #2a2323;
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+}
+
+/* Autosay Toggle Button */
+#autosay-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.18em;
+  font-weight: 600;
+  padding: 0.13em 0.5em;
+  border-radius: 1.2em;
+  border: 1.5px solid #b0b8c1;
+  background: #eaf6fb;
+  color: #3498db;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+  min-width: unset;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+#autosay-toggle-btn.autosay-on {
+  background: #d1f5e0;
+  color: #218c4a;
+  border-color: #218c4a;
+}
+#autosay-toggle-btn.autosay-off {
+  background: #f7eaea;
+  color: #b03a2e;
+  border-color: #b03a2e;
+}
+#autosay-toggle-btn:active {
+  filter: brightness(0.97);
+}
+#autosay-toggle-btn .autosay-emoji {
+  font-size: 1.0em;
+  margin-right: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+  #autosay-toggle-btn {
+    background: #23272b;
+    color: #6ec6ff;
+    border: 1.5px solid #444a55;
+  }
+  #autosay-toggle-btn.autosay-on {
+    background: #1e3a2a;
+    color: #6ef6a0;
+    border-color: #6ef6a0;
+  }
+  #autosay-toggle-btn.autosay-off {
+    background: #2a2323;
+    color: #ff8a8a;
+    border-color: #ff8a8a;
+  }
+}
+
+/* Utility Class */
+.hidden {
+    display: none !important;
+}
+
+#flashcard-view {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    min-height: 0;
+    height: auto;
+}
+
+/* Move frequency tag to bottom left and verb detail icon below it */
+#verb-meta-buttons {
+  display: none !important; /* always hidden — badges removed from card */
+}
+
+/* Frequency badge: top-right corner of the card */
+#verb-frequency {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.75rem;
+  z-index: 10;
+  margin: 0;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+}
+
+#verb-irregular {
+  margin: 0;
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+#go-to-verb-btn, #go-to-verb-btn-2 {
+  position: static !important;
+  right: auto;
+  bottom: auto;
+  margin: 0;
+  z-index: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #eaf6fb;
+  color: #3498db;
+  border-radius: 0.8em;
+  box-shadow: 0 2px 8px #0001;
+  font-size: 1.18em;
+  padding: 0.18em 0.7em;
+  justify-content: flex-start;
+  background: #eaf6fb;
+  color: #3498db;
+  border-radius: 0.8em;
+  box-shadow: 0 2px 8px #0001;
+  font-size: 1.18em;
+  padding: 0.18em 0.7em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+  outline: none;
+  /* min-width: 70px; */
+  text-align: left;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 600;
+  outline: none;
+  /* min-width: 70px; */
+  text-align: left;
+}
+
+#go-to-verb-btn:active, #go-to-verb-btn-2:active {
+  background: #d0e6f7;
+}
+#go-to-verb-btn svg {
+  width: 36px;
+  height: 33px;
+  display: block;
+}
+#go-to-verb-btn {
+  margin-left: 22px !important;
+  padding: 0.25em 0.6em !important;
+}
+
+/* Pronoun and tense below infinitive */
+.meta-container {
+  position: absolute;
+  top: 17%;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 32px;
+  z-index: 3;
+}
+#verb-pronoun, #verb-tense {
+  position: static;
+}
+
+/* --- GAP SENTENCE PLACEHOLDER STYLING --- */
+.gap-placeholder {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 2px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+  cursor: help;
+}
+
+.gap-verb {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px dashed #1976d2;
+}
+
+.gap-aux {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+  border: 1px dashed #8e24aa;
+}
+
+.gap-pronoun {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px dashed #388e3c;
+}
+
+.gap-placeholder:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* English translation elements - match styling of French elements */
+#english-verb-infinitive {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+#english-verb-translation {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--meta-color);
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+#english-verb-phrase {
+    font-style: italic;
+    font-weight: bolder;
+    color: #7f8c8d;
+    margin-top: 0.75rem;
+    font-size: 1.2rem;
+    user-select: text;
+    cursor: text;
+}
+
+#english-infinitive-line {
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#english-infinitive-line h1 {
+    margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    #english-verb-infinitive {
+        color: #f7fafc !important;
+        text-shadow: 0 2px 8px #000a, 0 1px 2px #0006;
+        font-weight: 800;
+    }
+    
+    #english-verb-translation {
+        color: #b0b8c1 !important;
+        font-weight: 400;
+    }
+    
+    #english-verb-phrase {
+        color: #263040 !important;
+        font-style: italic;
+        text-shadow: 0 1px 2px #fff3;
+        max-width: 380px;
+        width: 90%;
+        display: block;
+        overflow: visible;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
+        font-weight:bolder;
+        font-size: clamp(0.9em, 2.5vw, 1.1em);
+    }
+}
+
+.preset-btn {
+  font-size: 1.5em;
+  margin: 0.2em;
+  padding: 0.3em 0.6em;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.preset-btn.active {
+  border-color: gold;
+  box-shadow: 0 0 6px gold;
+}
+
+/* ── Flashcard layout overhaul: flex flow, no absolute overlays ───────── */
+
+/* Hide floating utility buttons — move to settings later */
+#tips-btn, #contact-btn {
+  display: none !important;
+}
+
+/* Card: tighter padding, no gap (children manage their own spacing) */
+#flashcard {
+  padding: 0.6rem 1.2rem 0.8rem !important;
+  gap: 0 !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
+}
+
+/* Progress row: slim, stays at top */
+#daily-progress-container {
+  flex-shrink: 0;
+  order: 0;
+  margin-bottom: 0.4rem;
+}
+
+/* Verb/translation: compact — doesn't flex-grow, just wraps content */
+.card-content-before {
+  position: static !important;
+  top: auto !important;
+  flex: 0 0 auto;
+  min-height: 0;
+  order: 1;
+  justify-content: center !important;
+}
+
+/* Frequency tags row */
+#verb-meta-buttons {
+  display: none !important; /* hidden — remove duplicate, keep consistent */
+}
+
+/* Pronoun + tense pills — snug below verb header */
+.meta-container {
+  position: static !important;
+  top: auto !important;
+  min-height: auto !important;
+  order: 3;
+  flex-shrink: 0;
+  margin: 0.4rem 0 0;
+}
+
+/* Answer container: grows to fill phrase-container so nugget can scroll */
+#answer-container {
+  position: static !important;
+  top: auto !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+/* Answer/phrase area: fills remaining space, answer pinned near top-center */
+#phrase-container {
+  position: static !important;
+  top: auto !important;
+  order: 4 !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  padding-top: 0.4rem !important;
+  overflow: hidden !important;
+  min-height: 0 !important;
+}
+
+/* Thin rule above the whole answer+sentence block */
+#phrase-container::before {
+  content: '';
+  display: block;
+  width: 36%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 0 auto 1rem;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+/* Answer text sizing */
+#conjugated-verb {
+  font-size: calc(2.2rem * var(--font-scale, 1)) !important;
+  line-height: 1.2;
+  margin-bottom: 1.1rem !important;
+}
+
+/* Separator line between answer and example sentence */
+#verb-phrase:not(:empty) {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  opacity: 0.82;
+}
+
+/* Verb phrase (sentence) wraps gracefully */
+#verb-phrase {
+  font-size: 1rem !important;
+  line-height: 1.45;
+  max-width: 88%;
+  text-align: center;
+}
+
+/* ── Action icon button row ─────────────────────────── */
+#go-to-verb-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 0.55rem 0 0.45rem;
+  flex-shrink: 0;
+  background: var(--primary-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.action-icon-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--meta-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  -webkit-tap-highlight-color: transparent;
+}
+.action-icon-btn:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transform: scale(1.06);
+}
+.action-icon-btn:active {
+  transform: scale(0.95);
+}
+.action-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Autosay button — hidden (off by default, rarely used) */
+#autosay-toggle-btn {
+  display: none !important;
+}
+
+/* Autosay state — override old red/green coloring */
+#autosay-toggle-btn.action-icon-btn {
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-off {
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border-color: var(--border-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-off svg {
+  opacity: 0.35;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-on {
+  background: var(--card-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+}
+#autosay-toggle-btn.action-icon-btn.autosay-on svg {
+  opacity: 1;
+}
+/* go-to-verb-btn: override old light-mode positioning/styling */
+#go-to-verb-btn.action-icon-btn {
+  position: static !important;
+  background: var(--card-bg) !important;
+  color: var(--meta-color) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+  padding: 0 !important;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .action-icon-btn {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .action-icon-btn:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+}
+
+/* ── Navigation bar ──────────────────────────────────── */
+.navigation {
+  padding: 0.5rem 0.75rem 0.6rem;
+}
+.navigation button {
+  border-radius: 12px;
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.navigation button svg {
+  width: 20px;
+  height: 20px;
+}
+/* prev/next: icon-only, don't grow as wide */
+#back-btn, #next-btn {
+  flex-grow: 0.6 !important;
+}
+/* Dark mode nav override (remove old hardcoded bg) */
+@media (prefers-color-scheme: dark) {
+  #go-to-verb-btn-container {
+    background: var(--primary-bg);
+    border-top-color: var(--border-color);
+  }
+  /* remove old specific dark rule that fought our new design */
+  #go-to-verb-btn {
+    background: var(--card-bg) !important;
+    color: var(--meta-color) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
+  }
+}
+
+/* ── Conjugated verb: must be bright in dark mode ───────── */
+@media (prefers-color-scheme: dark) {
+  #conjugated-verb, .conjugated-line h2 {
+    color: #f0f5fa !important;
+    text-shadow: none !important;
+  }
+  .verb-phrase, #verb-phrase {
+    color: #8898b0 !important;
+  }
+}
+/* ── Translation block inside verb-phrase: compact margin ── */
+#verb-phrase > div {
+  margin-top: 0.6em !important;
+  font-size: 0.82em !important;
+}
+
+/* ── Phrase container: clip overflow ────────────────────── */
+#phrase-container {
+  overflow: hidden !important;
+}
+
+
+/* ── Tap-to-reveal hint in empty phrase area ────────────── */
+#phrase-container {
+  position: relative !important;
+}
+
+/* ── Settings: tense weight pills ────────────────────────── */
+#tense-weights-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.2rem 0 0.4rem;
+}
+.tense-weight-pill {
+  padding: 0.3em 0.85em;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  opacity: 0.55;
+  -webkit-tap-highlight-color: transparent;
+}
+.tense-weight-pill.active {
+  opacity: 1;
+  border-color: transparent;
+}
+.tense-weight-pill.active.tense-present           { background: var(--tense-present); color: #2c3e50; }
+.tense-weight-pill.active.tense-passeCompose      { background: var(--tense-passe-compose); color: #2c3e50; }
+.tense-weight-pill.active.tense-imparfait         { background: var(--tense-imparfait); color: #2c3e50; }
+.tense-weight-pill.active.tense-futurSimple       { background: var(--tense-futur-simple); color: #2c3e50; }
+.tense-weight-pill.active.tense-plusQueParfait    { background: var(--tense-plus-que-parfait); color: #2c3e50; }
+.tense-weight-pill.active.tense-subjonctifPresent { background: var(--tense-subjonctif-present); color: #2c3e50; }
+.tense-weight-pill.active.tense-conditionnelPresent { background: var(--tense-conditionnel-present); color: #2c3e50; }
+@media (prefers-color-scheme: dark) {
+  .tense-weight-pill { opacity: 0.55; border-color: rgba(255,255,255,0.18); color: #c8d8e8; }
+  .tense-weight-pill.active { opacity: 1; border-color: transparent; }
+  .tense-weight-pill.active.tense-present           { color: #ccf5e3; }
+  .tense-weight-pill.active.tense-passeCompose      { color: #442a0d; }
+  .tense-weight-pill.active.tense-imparfait         { color: #d6d5ec; }
+  .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
+  .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
+  .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
+  .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+}
+
+/* ── Reflexive mode pill selector ────────────────────────── */
+.reflexive-mode-pills {
+  display: flex;
+  gap: 0;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-color);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.reflexive-pill {
+  padding: 0.3em 0.8em;
+  border: none;
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.reflexive-pill + .reflexive-pill {
+  border-left: 1.5px solid var(--border-color);
+}
+.reflexive-pill.active {
+  background: var(--accent-color);
+  color: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  .reflexive-pill.active { color: #fff; }
+}
+
+/* ── Settings: frequency step buttons (0-5) ─────────────── */
+.freq-weight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+.freq-label {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  flex-shrink: 0;
+  min-width: 100px;
+}
+.freq-steps {
+  display: flex;
+  gap: 4px;
+}
+.freq-step-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.freq-step-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+.freq-step-btn:hover:not(.active) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* ── Settings: section header tweaks ────────────────────── */
+.option-group h3 {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  color: var(--meta-color) !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0.75rem !important;
+}
+/* Settings page back-link + title bar */
+.options-header {
+  padding: 0.5rem 0.75rem 1rem !important;
+}
+.options-header h2 {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+.options-header button {
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  color: var(--accent-color) !important;
+}
+/* container card slightly more airy */
+#options-container {
+  padding: 1.2rem 1.2rem 2rem !important;
+}
+.option-group {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Tips/Contact links – moved to settings page bottom */
+#tips-btn, #contact-btn {
+  display: none !important;
+}
+
+/* ── Settings: verb translation – strip parens look, use clean subtitle ── */
+#verb-translation {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: var(--meta-color) !important;
+  opacity: 0.72;
+  letter-spacing: 0.01em;
+}
+
+/* ── Settings: General toggle rows ─────────────────────── */
+.toggle-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.toggle-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.toggle-row:last-child {
+  border-bottom: none;
+}
+.toggle-row label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* ── Settings: presets description text ─────────────────── */
+.option-desc {
+  font-size: 0.82rem;
+  color: var(--meta-color);
+  margin: -0.4rem 0 0.75rem;
+  opacity: 0.8;
+}
+
+/* ── Settings: styled native select ─────────────────────── */
+.styled-select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+.styled-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+@media (prefers-color-scheme: dark) {
+  .styled-select {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+}
+
+
+/* ── Frequency step buttons ─────────────────────────────── */
+.freq-weight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+}
+.freq-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.freq-steps {
+  display: flex;
+  gap: 0.25rem;
+}
+.freq-step-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: background 0.12s, border-color 0.12s, opacity 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.freq-step-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+  opacity: 1;
+}
+.freq-step-btn:hover {
+  opacity: 0.75;
+  border-color: var(--accent-color);
+}
+
+
+/* ── Verb usage nugget ───────────────────────────────────── */
+#usage-nugget {
+  margin-top: 0.9rem;
+  padding: 0.65rem 0.4rem;
+  max-width: 100%;
+}
+#usage-pattern {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 0.3rem;
+}
+#usage-example-fr {
+  margin: 0.2rem 0 0.15rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+#usage-example-en {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--meta-color);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── Font size slider ────────────────────────────────────── */
+.font-size-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.font-size-label {
+  font-size: 0.7rem;
+  color: var(--meta-color);
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+}
+.font-size-label.large { font-size: 1.1rem; }
+#font-size-slider {
+  width: 90px;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+/* ── Preset badge ─── removed from card view ─────────────── */
+#preset-badge {
+  display: none !important;
+  align-items: center;
+  gap: 0.25em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--meta-color);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 2em;
+  padding: 0.18em 0.55em;
+  opacity: 0.75;
+}
+.preset-badge-icon { font-size: 0.85em; line-height: 1; }
+.preset-badge-name { letter-spacing: 0.01em; }
+
+/* ── Usage nugget ────────────────────────────────────────── */
+#usage-nugget {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+.usage-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3em 0.5em;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+  line-height: 1.4;
+}
+.usage-item:last-child { border-bottom: none; }
+.usage-pattern {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.usage-fr {
+  font-size: 0.88rem;
+  color: var(--text-color);
+  font-style: italic;
+}
+.usage-en {
+  font-size: 0.78rem;
+  color: var(--meta-color);
+}
+.usage-en::before { content: "· "; }
+
+.verb-usages-detail-section {
+  margin-top: 2.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.verb-usages-heading {
+  margin: 0 0 0.85rem;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.verb-usages-detail-section .usage-item {
+  padding: 0.65rem 0;
+}
+
+/* ── Theme overrides via data-theme on <html> ───────────── */
+/* Force dark (overrides light system preference)            */
+html[data-theme="dark"] {
+  --primary-bg: #181c1f;
+  --card-bg: #23272b;
+  --text-color: #f4f7f9;
+  --accent-color: #6ec6ff;
+  --meta-color: #b0b8c1;
+  --border-color: #2c3136;
+  --shadow: 0 4px 15px rgba(0,0,0,0.32);
+  --tense-present: #2e7d5b;
+  --tense-passe-compose: #b77b3a;
+  --tense-imparfait: #5c5a7e;
+  --tense-futur-simple: #357ca5;
+  --tense-plus-que-parfait: #a24d6a;
+  --tense-subjonctif-present: #6b3e8a;
+  --tense-conditionnel-present: #7ea24d;
+  color-scheme: dark;
+}
+html[data-theme="dark"] body {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+}
+/* Element-level dark rules (mirrors @media prefers-color-scheme: dark) */
+html[data-theme="dark"] .tense-present            { color: #ccf5e3 !important; }
+html[data-theme="dark"] .tense-passeCompose       { color: #442a0d !important; }
+html[data-theme="dark"] .tense-imparfait          { color: #d6d5ec !important; }
+html[data-theme="dark"] .tense-futurSimple        { color: #cbe6f6 !important; }
+html[data-theme="dark"] .tense-plusQueParfait     { color: #3e1422 !important; }
+html[data-theme="dark"] .tense-subjonctifPresent  { color: #e4cff2 !important; }
+html[data-theme="dark"] .tense-conditionnelPresent { color: #2c3e14 !important; }
+html[data-theme="dark"] #verb-detail-container,
+html[data-theme="dark"] #options-container,
+html[data-theme="dark"] .mnemonic-card,
+html[data-theme="dark"] #verb-list-container {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: var(--shadow);
+}
+html[data-theme="dark"] .tab-button { border-color: var(--accent-color); color: var(--accent-color); }
+html[data-theme="dark"] .tab-button.active { background: var(--accent-color); color: #181c1f; }
+html[data-theme="dark"] .mnemonic-card { background: linear-gradient(120deg, #23272b 60%, #181c1f 100%) !important; }
+html[data-theme="dark"] .meta-info,
+html[data-theme="dark"] .frequency-tag { background: #23272b !important; color: var(--meta-color) !important; }
+html[data-theme="dark"] .highlight { background-color: #b77b3a44 !important; }
+html[data-theme="dark"] #info-panel { background: #23272b !important; color: var(--text-color) !important; border-color: var(--border-color) !important; }
+html[data-theme="dark"] #flashcard { background: linear-gradient(170deg, #141c26 0%, #0e1520 100%); }
+html[data-theme="dark"] .toggle-switch .toggle-label { background-color: #1a242a; border-radius: 999px; }
+html[data-theme="dark"] .toggle-switch .toggle-label::before { background-color: #fefefe; box-shadow: 0 1px 3px rgba(0,0,0,0.6); }
+html[data-theme="dark"] #autosay-toggle-btn { background: #23272b; color: #6ec6ff; border: 1.5px solid #444a55; }
+html[data-theme="dark"] #autosay-toggle-btn.autosay-on { background: #1e3a2a; color: #6ef6a0; border-color: #6ef6a0; }
+html[data-theme="dark"] #autosay-toggle-btn.autosay-off { background: #2a2323; color: #ff8a8a; border-color: #ff8a8a; }
+html[data-theme="dark"] #english-verb-infinitive { color: #f7fafc !important; text-shadow: 0 2px 8px #000a, 0 1px 2px #0006; font-weight: 800; }
+html[data-theme="dark"] #english-verb-translation { color: #b0b8c1 !important; font-weight: 400; }
+html[data-theme="dark"] #go-to-verb-btn-container { background: var(--primary-bg); border-top-color: var(--border-color); }
+html[data-theme="dark"] #go-to-verb-btn { background: var(--card-bg) !important; color: var(--meta-color) !important; border: 1px solid var(--border-color) !important; }
+html[data-theme="dark"] #conjugated-verb,
+html[data-theme="dark"] .conjugated-line h2 { color: #f0f5fa !important; text-shadow: none !important; }
+html[data-theme="dark"] .verb-phrase,
+html[data-theme="dark"] #verb-phrase { color: #8898b0 !important; }
+html[data-theme="dark"] .tense-weight-pill { opacity: 0.55; border-color: rgba(255,255,255,0.18); color: #c8d8e8; }
+html[data-theme="dark"] .tense-weight-pill.active { opacity: 1; border-color: transparent; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-present           { color: #ccf5e3; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-passeCompose      { color: #442a0d; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-imparfait         { color: #d6d5ec; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+html[data-theme="dark"] .styled-select { background-color: var(--card-bg); border-color: var(--border-color); }
+html[data-theme="dark"] .action-icon-btn { box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+html[data-theme="dark"] .option-group > label,
+html[data-theme="dark"] .option-group h3,
+html[data-theme="dark"] .slider-group label { color: #b0b8c1 !important; }
+html[data-theme="dark"] .slider-group .slider-value { color: #6ec6ff !important; }
+
+/* Force light (overrides dark system preference)            */
+html[data-theme="light"] {
+  --primary-bg: #f4f7f9 !important;
+  --card-bg: #ffffff !important;
+  --text-color: #2c3e50 !important;
+  --accent-color: #3498db !important;
+  --meta-color: #2f3c3d !important;
+  --border-color: #e0e6ed !important;
+  --shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+  --tense-present: #b3d8c5 !important;
+  --tense-passe-compose: #f7d6b2 !important;
+  --tense-imparfait: #c9c7e8 !important;
+  --tense-futur-simple: #b2d6f7 !important;
+  --tense-plus-que-parfait: #f7b2c7 !important;
+  --tense-subjonctif-present: #d4c5e8 !important;
+  --tense-conditionnel-present: #d6e8c7 !important;
+  color-scheme: light;
+}
+html[data-theme="light"] body {
+  background-color: var(--primary-bg) !important;
+  color: var(--text-color) !important;
+}
+/* Override dark-mode media-query hardcoded values when forcing light */
+html[data-theme="light"] #flashcard {
+  background: linear-gradient(170deg, #f0f4f8 0%, #e8ecf0 100%) !important;
+}
+html[data-theme="light"] .mnemonic-card {
+  background: linear-gradient(120deg, #f4f7f9 60%, #e8edf2 100%) !important;
+}
+html[data-theme="light"] .meta-info,
+html[data-theme="light"] .frequency-tag {
+  background: #e8edf2 !important;
+  color: var(--meta-color) !important;
+}
+html[data-theme="light"] .highlight {
+  background-color: rgba(52,152,219,0.15) !important;
+}
+html[data-theme="light"] #info-panel,
+html[data-theme="light"] #verb-detail-container,
+html[data-theme="light"] #options-container,
+html[data-theme="light"] #verb-list-container {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: var(--shadow) !important;
+}
+html[data-theme="light"] .tab-button.active {
+  color: #fff !important;
+}
+html[data-theme="light"] .infinitive-line h1,
+html[data-theme="light"] #verb-infinitive {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] #conjugated-verb,
+html[data-theme="light"] .conjugated-line h2 {
+  color: var(--text-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .verb-phrase,
+html[data-theme="light"] #verb-phrase {
+  color: var(--meta-color) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] #go-to-verb-btn {
+  background: #eaf0f5 !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+}
+html[data-theme="light"] .navigation {
+  background: #ffffff !important;
+  border-top: 1px solid #e0e6ed !important;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.05) !important;
+}
+html[data-theme="light"] .navigation button {
+  background-color: #f4f7f9 !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .navigation button:hover {
+  background-color: #e0e6ed !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .tense-present            { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-passeCompose       { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-imparfait          { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-futurSimple        { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-plusQueParfait     { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-subjonctifPresent  { color: #2c3e50 !important; }
+html[data-theme="light"] .tense-conditionnelPresent { color: #2c3e50 !important; }
+html[data-theme="light"] .toggle-switch .toggle-label {
+  background-color: #cdd4da !important;
+}
+html[data-theme="light"] .toggle-switch .toggle-input:checked + .toggle-label {
+  background-color: #f39c12 !important;
+}
+html[data-theme="light"] #autosay-toggle-btn {
+  background: #eaf6fb !important;
+  color: #3498db !important;
+  border: 1.5px solid #b0b8c1 !important;
+}
+html[data-theme="light"] #autosay-toggle-btn.autosay-on {
+  background: #d1f5e0 !important;
+  color: #218c4a !important;
+  border-color: #218c4a !important;
+}
+html[data-theme="light"] #autosay-toggle-btn.autosay-off {
+  background: #f7eaea !important;
+  color: #b03a2e !important;
+  border-color: #b03a2e !important;
+}
+html[data-theme="light"] .option-group > label,
+html[data-theme="light"] .option-group h3,
+html[data-theme="light"] .slider-group label {
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] .styled-select {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+html[data-theme="light"] #english-verb-infinitive {
+  color: var(--accent-color) !important;
+}
+html[data-theme="light"] #go-to-verb-btn-container button {
+  background: #f4f7f9 !important;
+  color: var(--text-color) !important;
+}
+
+/* ── Big dictate mic button (inside phrase-container) ── */
+.dictate-big-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0.5rem auto 0.25rem;
+  background: transparent;
+  border: 2px solid rgba(100,160,200,0.35);
+  border-radius: 50%;
+  color: rgba(100,160,200,0.75);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.dictate-big-btn svg {
+  width: 28px;
+  height: 28px;
+}
+.dictate-big-btn:hover {
+  border-color: rgba(100,160,200,0.65);
+  color: rgba(100,160,200,1);
+}
+
+/* ── Book icon: in-flow, right of centered verb ── */
+#go-to-verb-btn.verb-detail-book-btn,
+.verb-detail-book-btn {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: unset !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: rgba(150,175,200,0.5) !important;
+  cursor: pointer;
+  transition: color 0.15s;
+  font-size: 0 !important;
+}
+#go-to-verb-btn.verb-detail-book-btn svg,
+.verb-detail-book-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+}
+#go-to-verb-btn.verb-detail-book-btn:hover,
+.verb-detail-book-btn:hover {
+  color: rgba(150,175,200,0.9) !important;
+  background: transparent !important;
+}
+
+/* Dictate button — base style handled by .action-icon-btn in style.css */
+/* Only override active/recording state here */
+
+#dictate-btn-bottom:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Recording active state */
+@keyframes dictate-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(231,76,60,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(231,76,60,0); }
+  100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); }
+}
+.dictate-big-btn.recording,
+#dictate-btn-bottom[data-recording="true"] {
+  border-color: #e74c3c !important;
+  color: #e74c3c !important;
+  animation: dictate-pulse 1.2s ease-out infinite;
+}
+
+#english-btn {
+  /* kept hidden, no visual styles needed */
+  display: none !important;
+}
+
+</style></noscript>
     <!-- Register service worker for PWA compliance -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -5358,6 +9929,14 @@ html[data-theme="light"] #go-to-verb-btn-container button {
                 <div class="option-group" id="tts-voice-group">
                   <h3>Audio Voice</h3>
                   <select id="voice-select" class="styled-select"></select>
+                </div>
+
+                <!-- Debug -->
+                <div class="option-group" id="debug-group">
+                    <button id="open-debug-btn" class="about-row-btn" aria-label="Debug log" onclick="showDebugPanel()">
+                        <span class="about-row-label" style="color:var(--meta-color);font-size:0.9rem;">Debug log</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
                 </div>
 
                 <!-- About -->
@@ -9757,5 +14336,76 @@ function setupPracticeModeToggle() {
 </script>
 <audio id="molodez_sound" src="data:audio/mpeg;base64,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VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//tAxP0ACpS/H4wwzMFUlOOxhiVRVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/+0DE+IAKXL0hh6TQKVUW47GUjeBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7EMT0g8lQsxuMJG6IAAA/wAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"></audio>
 <audio id="huh_sound" src="data:audio/mpeg;base64,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yNETkgbRMqIKyTl2mBOde0m7XW1G2kCsAADgE3AOEKNc3CgF8YBhJkkRKF4UlZIyJK49BqkLRC9QzrpuT9mUlGNemYhwwZD+r5Y8D+KMC4qCkRC6GZJLwPAbAgAs//sgxPyARuxfDywlhGjbjGGk9iUYBYjPODZKGxrhQUQQN4Qo2VWa2CIyaSaGYlqQhkKHwd6lkVVGYAAEVA1QrT8MKOjV2KjkAoXpycvUoLiMrE8HUJOHjpIcsnoThQVi8Hvj8fJBiraGUoUBoqdGqAWwH2VUQWUl6RJqfJPUE8JMHf/7IMT7gMbIZw0nvMPA1o3iEYSZlEQUPJMCUbJQOQhQfCglnNCsVo4/CJYSjaZFBJDFZxo/aoWkUZAAAbDyINB4CdYPoDjEJQLGJvEtWtkMpGJmIHnSVCiRJxJRCeRasFVkKcCZVwJnHnQF1Cc/iW381KTRTUxBTUUzLjEwMFVVVVX/+yDE/ABGeGMPJ7BnwNML4iWHpHVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//sgxP4ARtBpESekzODQi2Hk9iVQVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7EMT/AEaIYxOHsMqo2QviJPYkKFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//sgxPMARshhDSexJwjYjGHk9JmZVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7EMTzAMa8Ww0mMScAJABiFAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"></audio>
+
+<!-- Debug panel (only shown via settings button or ?debug URL) -->
+<div id="debug-panel" style="display:none;position:fixed;inset:0;z-index:99999;background:#111;color:#0f0;font-family:monospace;font-size:11px;overflow-y:auto;padding:12px;white-space:pre-wrap;word-break:break-all;"></div>
+
+<script>
+(function(){
+  var APP_LOG_KEY = 'app-debug-log';
+  var MAX = 120;
+
+  function ts() {
+    return new Date().toISOString().replace('T',' ').slice(0,23);
+  }
+
+  function appLog(msg) {
+    try {
+      var prev = JSON.parse(localStorage.getItem(APP_LOG_KEY) || '[]');
+      prev.push(ts() + '  [APP] ' + msg);
+      localStorage.setItem(APP_LOG_KEY, JSON.stringify(prev.slice(-MAX)));
+    } catch(e) {}
+    console.log('[APP]', msg);
+  }
+
+  appLog('script-executed');
+  window.addEventListener('DOMContentLoaded', function() { appLog('DOMContentLoaded'); });
+  window.addEventListener('load', function() { appLog('load'); });
+  document.addEventListener('visibilitychange', function() { appLog('visibility=' + document.visibilityState); });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(function(reg) { appLog('sw-ready scope=' + reg.scope); });
+    navigator.serviceWorker.addEventListener('controllerchange', function() { appLog('sw-controllerchange'); });
+  }
+
+  function showDebugPanel() {
+    var panel = document.getElementById('debug-panel');
+    if (!panel) return;
+    panel.style.display = 'block';
+
+    function loadLogs() {
+      var appLogs = JSON.parse(localStorage.getItem(APP_LOG_KEY) || '[]');
+      fetch('/__sw-log?t=' + Date.now())
+        .then(function(r) { return r.json(); })
+        .catch(function() { return []; })
+        .then(function(swLogs) {
+          var all = swLogs.map(function(l) { return '[SW] ' + l; }).concat(appLogs).sort();
+          panel.textContent = '=== LesVerbes Debug Log ===\n\n' + all.join('\n') + '\n\n--- tap to refresh ---';
+        });
+    }
+
+    loadLogs();
+    panel.addEventListener('click', loadLogs);
+
+    var btn = document.createElement('button');
+    btn.textContent = 'CLEAR';
+    btn.style.cssText = 'position:fixed;top:8px;right:8px;z-index:100000;background:#f00;color:#fff;border:none;padding:6px 12px;font-size:13px;border-radius:4px;cursor:pointer;';
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      localStorage.removeItem(APP_LOG_KEY);
+      caches.open('offline-cache-v13').then(function(c) { c.delete('/__sw-log'); }).catch(function(){});
+      panel.textContent = '(cleared - reload to start fresh)';
+    });
+    document.body.appendChild(btn);
+  }
+
+  window.appLog = appLog;
+  window.showDebugPanel = showDebugPanel;
+
+  if (location.search.indexOf('debug') !== -1) {
+    window.addEventListener('load', showDebugPanel);
+  }
+})();
+</script>
 </body>
 </html>
