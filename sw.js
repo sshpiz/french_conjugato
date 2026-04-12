@@ -1,159 +1,136 @@
-// sw.js - network-first for HTML (with timeout), cache-first for assets
+// sw.js - cache-first (stale-while-revalidate) for all resources
+// App opens instantly from cache; background fetch keeps content fresh.
 
-const CACHE_NAME = 'offline-cache-v13';
-const NAV_TIMEOUT_MS = 3000;
-const LOG_KEY = 'sw-debug-log';
-const MAX_LOG = 80;
+const CACHE_NAME = 'offline-cache-v14';
+const LOG_KEY = '__sw-log';
+const MAX_LOG = 100;
 
-// ── Tiny persistent logger (writes to cache as JSON) ──────────────────────
+// ── Tiny persistent logger ─────────────────────────────────────────────────
 const swLog = (() => {
   let buf = [];
-  let flushTimer = null;
+  let timer = null;
 
-  function ts() {
-    return new Date().toISOString().replace('T', ' ').slice(0, 23);
-  }
+  const ts = () => new Date().toISOString().replace('T', ' ').slice(0, 23);
 
   function add(msg) {
-    const entry = `${ts()}  ${msg}`;
-    buf.push(entry);
+    buf.push(`${ts()}  ${msg}`);
     console.log('[SW]', msg);
-    scheduleFlush();
-  }
-
-  function scheduleFlush() {
-    if (flushTimer) return;
-    flushTimer = setTimeout(flush, 300);
+    if (!timer) timer = setTimeout(flush, 200);
   }
 
   async function flush() {
-    flushTimer = null;
+    timer = null;
+    if (!buf.length) return;
     try {
       const cache = await caches.open(CACHE_NAME);
-      // Read existing log
-      const existing = await cache.match('/__sw-log');
-      let prev = [];
-      if (existing) {
-        try { prev = await existing.json(); } catch (_) {}
-      }
-      const combined = prev.concat(buf).slice(-MAX_LOG);
+      const prev = await cache.match(LOG_KEY)
+        .then(r => r ? r.json() : []).catch(() => []);
+      const next = prev.concat(buf).slice(-MAX_LOG);
       buf = [];
-      await cache.put('/__sw-log', new Response(JSON.stringify(combined), {
+      await cache.put(LOG_KEY, new Response(JSON.stringify(next), {
         headers: { 'Content-Type': 'application/json' }
       }));
-    } catch (e) {
-      console.error('[SW] log flush failed', e);
-    }
+    } catch (_) {}
   }
 
-  return { add, flush };
+  return { add };
 })();
 
-// ── Install ─────────────────────────────────────────────────────────────────
+// ── Install ────────────────────────────────────────────────────────────────
 self.addEventListener('install', event => {
-  swLog.add(`install CACHE=${CACHE_NAME}`);
+  swLog.add(`install ${CACHE_NAME}`);
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      const assets = ['/manifest.json', '/favicon_big.png'];
-      for (const url of assets) {
+      for (const url of ['/manifest.json', '/favicon_big.png']) {
         try { await cache.add(url); swLog.add(`pre-cached ${url}`); }
-        catch (e) { swLog.add(`pre-cache FAILED ${url}: ${e.message}`); }
+        catch (e) { swLog.add(`pre-cache failed ${url}: ${e.message}`); }
       }
     })
   );
 });
 
-// ── Activate ─────────────────────────────────────────────────────────────────
+// ── Activate ───────────────────────────────────────────────────────────────
 self.addEventListener('activate', event => {
   swLog.add('activate');
   event.waitUntil(
-    caches.keys()
-      .then(keys => {
-        const oldKeys = keys.filter(k => k !== CACHE_NAME);
-        const isUpgrade = oldKeys.length > 0;
-        swLog.add(`old caches: [${oldKeys.join(', ')}] isUpgrade=${isUpgrade}`);
-        return Promise.all(oldKeys.map(k => caches.delete(k))).then(() => isUpgrade);
-      })
-      .then(isUpgrade => self.clients.claim().then(() => isUpgrade))
-      .then(isUpgrade => {
-        swLog.add('claimed clients');
-        if (!isUpgrade) return;
-        return new Promise(resolve => setTimeout(resolve, 1500)).then(() =>
-          self.clients.matchAll({ type: 'window' }).then(clients => {
-            swLog.add(`sending SW_UPDATED to ${clients.length} client(s)`);
-            clients.forEach(c => c.postMessage({ type: 'SW_UPDATED' }));
-          })
-        );
-      })
+    caches.keys().then(async keys => {
+      const old = keys.filter(k => k !== CACHE_NAME);
+      const isUpgrade = old.length > 0;
+      swLog.add(`old caches: [${old.join(', ')}] isUpgrade=${isUpgrade}`);
+      await Promise.all(old.map(k => caches.delete(k)));
+      await self.clients.claim();
+      swLog.add('claimed clients');
+      if (isUpgrade) {
+        // Delay so we don't interrupt the page that just opened
+        await new Promise(r => setTimeout(r, 2000));
+        const clients = await self.clients.matchAll({ type: 'window' });
+        swLog.add(`SW_UPDATED → ${clients.length} client(s)`);
+        clients.forEach(c => c.postMessage({ type: 'SW_UPDATED' }));
+      }
+    })
   );
 });
 
-// ── Fetch ─────────────────────────────────────────────────────────────────────
+// ── Fetch ──────────────────────────────────────────────────────────────────
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Serve the debug log
+  // Serve debug log
   if (url.pathname === '/__sw-log') {
     event.respondWith(
-      caches.open(CACHE_NAME).then(async cache => {
-        const r = await cache.match('/__sw-log');
-        return r || new Response('[]', { headers: { 'Content-Type': 'application/json' } });
-      })
+      caches.open(CACHE_NAME).then(c => c.match(LOG_KEY))
+        .then(r => r || new Response('[]', { headers: { 'Content-Type': 'application/json' } }))
     );
     return;
   }
 
-  // Only handle same-origin requests
+  // Only intercept same-origin
   if (url.origin !== self.location.origin) return;
 
-  const isNav = event.request.mode === 'navigate'
+  event.respondWith(serveWithSWR(event.request, url));
+});
+
+// Stale-While-Revalidate for everything
+async function serveWithSWR(request, url) {
+  const isNav = request.mode === 'navigate'
     || url.pathname === '/'
     || url.pathname.endsWith('.html');
 
-  if (isNav) {
-    const t0 = Date.now();
-    swLog.add(`nav-fetch START ${url.pathname}`);
+  const cache = await caches.open(CACHE_NAME);
+  const cached = await cache.match(request)
+    || (isNav ? (await cache.match('/index.html') || await cache.match('/')) : null);
 
-    event.respondWith(
-      Promise.race([
-        fetch(event.request, { cache: 'no-store' })
-          .then(r => { swLog.add(`nav-fetch NETWORK ok ${url.pathname} ${Date.now()-t0}ms status=${r.status}`); return r; }),
-        new Promise((_, reject) =>
-          setTimeout(() => {
-            swLog.add(`nav-fetch TIMEOUT ${url.pathname} after ${NAV_TIMEOUT_MS}ms`);
-            reject(new Error('SW nav timeout'));
-          }, NAV_TIMEOUT_MS)
-        )
-      ])
-        .then(async response => {
-          const cache = await caches.open(CACHE_NAME);
-          cache.put(event.request, response.clone()).catch(() => {});
-          if (url.pathname === '/') cache.put(new Request('/index.html'), response.clone()).catch(() => {});
-          if (url.pathname.endsWith('/index.html')) cache.put(new Request('/'), response.clone()).catch(() => {});
-          return response;
-        })
-        .catch(async err => {
-          swLog.add(`nav-fetch FALLBACK ${url.pathname} reason="${err.message}" elapsed=${Date.now()-t0}ms`);
-          const cached = await caches.match(event.request)
-            || await caches.match('/index.html')
-            || await caches.match('/');
-          swLog.add(`nav-fetch cache-hit=${!!cached}`);
-          return cached || new Response('Offline', { status: 503 });
-        })
-    );
-  } else {
-    event.respondWith(
-      caches.match(event.request).then(cached => {
-        if (cached) return cached;
-        return fetch(event.request).then(async response => {
-          if (response.ok) {
-            const cache = await caches.open(CACHE_NAME);
-            cache.put(event.request, response.clone()).catch(() => {});
-          }
-          return response;
-        });
-      })
-    );
+  // Kick off background refresh regardless
+  const refresh = fetch(request, isNav ? { cache: 'no-store' } : {})
+    .then(async response => {
+      if (!response.ok) return;
+      await cache.put(request, response.clone());
+      if (isNav) {
+        if (url.pathname === '/') await cache.put(new Request('/index.html'), response.clone());
+        if (url.pathname.endsWith('/index.html')) await cache.put(new Request('/'), response.clone());
+        swLog.add(`bg-refresh ok ${url.pathname} status=${response.status}`);
+      }
+    })
+    .catch(e => {
+      if (isNav) swLog.add(`bg-refresh failed ${url.pathname}: ${e.message}`);
+    });
+
+  if (cached) {
+    // Cache hit — return immediately, refresh happens in background
+    if (isNav) swLog.add(`nav CACHE-HIT ${url.pathname} (refreshing in bg)`);
+    return cached;
   }
-});
+
+  // No cache — must wait for network (only happens on very first open)
+  if (isNav) swLog.add(`nav NO-CACHE ${url.pathname} — waiting for network`);
+  try {
+    await refresh; // wait for the fetch we already kicked off
+    const fresh = await cache.match(request)
+      || await cache.match('/index.html')
+      || await cache.match('/');
+    if (fresh) return fresh;
+  } catch (_) {}
+
+  return new Response('Offline — open once with internet to cache the app', { status: 503 });
+}
