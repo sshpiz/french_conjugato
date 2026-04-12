@@ -1,0 +1,69 @@
+{
+  "_comment": "Manual overrides applied on top of generated verb data. Edit here — run apply_overrides.py to patch verbs.full.js. These survive data regeneration.",
+
+  "être": {
+    "frequency": "top20",
+    "translation": "to be",
+    "_reason": "Lemmatizer failed to aggregate est/sont/était/sera etc. — real frequency is #1 in French"
+  },
+
+  "devoir": {
+    "translation": "must; to have to, owe",
+    "_reason": "Mistranslated as 'to duty' (noun confusion). Modal verb."
+  },
+
+  "pouvoir": {
+    "translation": "can, to be able to",
+    "_reason": "Mistranslated as 'to power' (noun confusion). Modal verb."
+  },
+
+  "croire": {
+    "translation": "to believe, think",
+    "_reason": "Mistranslated as 'to think' — duplicates penser. Primary meaning is believe."
+  },
+
+  "partir": {
+    "translation": "to leave, depart",
+    "_reason": "Mistranslated as 'to go' — duplicates aller. Partir = leave/depart."
+  },
+
+  "attendre": {
+    "translation": "to wait for",
+    "_reason": "Mistranslated as 'to expect'. Primary meaning is wait (for)."
+  },
+
+  "rendre": {
+    "translation": "to give back; rendre + adj = make",
+    "_reason": "Mistranslated as 'to render'. Core uses: return sth, and causative construction."
+  },
+
+  "tuer": {
+    "frequency": "top100",
+    "_reason": "Inflated by subtitle corpus (crime/action). Not top-20 in real conversational French."
+  },
+
+  "mourir": {
+    "frequency": "top100",
+    "_reason": "Inflated by subtitle corpus. Not top-50 in general French."
+  },
+
+  "appeler": {
+    "translation": "to call; s'appeler = to be named",
+    "_reason": "Add reflexive note — s'appeler is the most common use learners encounter first."
+  },
+
+  "falloir": {
+    "translation": "must (impersonal: il faut)",
+    "_reason": "Add structural note — always impersonal, learners are often confused by this."
+  },
+
+  "savoir": {
+    "translation": "to know (facts, how to)",
+    "_reason": "Distinguish from connaître. Savoir = know facts/skills."
+  },
+
+  "connaître": {
+    "translation": "to know (people, places)",
+    "_reason": "Distinguish from savoir. Connaître = be familiar with."
+  }
+}
