@@ -2838,6 +2838,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call the patched initializeApp
     window.initializeApp();
+
+    // Hide loading screen once app is ready
+    const loader = document.getElementById('app-loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
+    }
+    if (window.appLog) window.appLog('app-ready');
     // Load card from URL hash on initial load
     loadCardFromHash();
 

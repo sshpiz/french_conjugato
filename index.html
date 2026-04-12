@@ -540,6 +540,28 @@
 </head>
 <body>
 
+    <!-- Loading screen: shown immediately before any JS runs, hidden once app is ready -->
+    <div id="app-loader" style="
+        position: fixed; inset: 0; z-index: 99998;
+        background: var(--primary-bg, #f4f7f9);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 1.2rem;
+        transition: opacity 0.35s ease;
+    ">
+        <div style="font-size: 2.4rem; letter-spacing: -0.02em; font-weight: 700; color: var(--text-color, #1a2634); font-family: Inter, system-ui, sans-serif;">Les Verbes</div>
+        <div id="app-loader-spinner" style="
+            width: 28px; height: 28px;
+            border: 3px solid var(--border-color, #dde3ea);
+            border-top-color: var(--accent-color, #3a7bd5);
+            border-radius: 50%;
+            animation: loader-spin 0.75s linear infinite;
+        "></div>
+        <style>
+            @keyframes loader-spin { to { transform: rotate(360deg); } }
+        </style>
+    </div>
+
     <div id="app-container">
         <div class="info-container">
             <!-- Only the info button goes here now -->
