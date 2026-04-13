@@ -1,6 +1,6 @@
 {
-  "name": "Os Verbos",
-  "short_name": "Os Verbos",
+  "name": "Τα Ρήματα",
+  "short_name": "Τα Ρήματα",
   "id": "./",
   "start_url": "./",
   "scope": "./",
@@ -8,7 +8,7 @@
   "orientation": "portrait-primary",
   "background_color": "#050b0d",
   "theme_color": "#050b0d",
-  "description": "Master Portuguese verb conjugations",
+  "description": "Master Modern Greek verb conjugations",
   "icons": [
     {
       "src": "favicon_big.png",

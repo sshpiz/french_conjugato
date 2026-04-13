@@ -1,13 +1,14 @@
 {
-  "name": "Les Verbes",
-  "short_name": "Les Verbes", 
-  "start_url": "./",
-  "scope": "./",
+  "name": "Verb Garden",
+  "short_name": "Verb Garden",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#050b0d",
-  "theme_color": "#050b0d",
-  "description": "Master French verb conjugations",
+  "background_color": "#102127",
+  "theme_color": "#102127",
+  "description": "A landing page for the French, Greek, and Portuguese verb practice apps.",
   "icons": [
     {
       "src": "favicon_big.png",

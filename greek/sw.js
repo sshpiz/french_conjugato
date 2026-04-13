@@ -1,6 +1,6 @@
-// sw.js - scoped stale-while-revalidate for the Portuguese app.
+// sw.js - scoped stale-while-revalidate for the Greek app.
 
-const CACHE_PREFIX = 'pt-app-cache-';
+const CACHE_PREFIX = 'gr-app-cache-';
 const CACHE_NAME = CACHE_PREFIX + 'v15';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
@@ -146,7 +146,7 @@ async function serveWithSWR(request, url) {
       }
     })
     .catch(e => {
-      if (isNav) swLog.add(`bg-refresh failed ${url.pathname}: ${e.message}`);
+      swLog.add(`bg-refresh failed ${url.pathname}: ${e.message}`);
     });
 
   if (cached) {
