@@ -1,9 +1,11 @@
 // sw.js - cache-first (stale-while-revalidate) for all resources
 // App opens instantly from cache; background fetch keeps content fresh.
 
-const CACHE_NAME = 'offline-cache-v14';
+const CACHE_PREFIX = 'fr-offline-cache-';
+const CACHE_NAME = CACHE_PREFIX + 'v15';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
+const GREEK_PATH_PREFIX = '/greek';
 
 // ── Tiny persistent logger ─────────────────────────────────────────────────
 const swLog = (() => {
@@ -55,7 +57,9 @@ self.addEventListener('activate', event => {
   swLog.add('activate');
   event.waitUntil(
     caches.keys().then(async keys => {
-      const old = keys.filter(k => k !== CACHE_NAME);
+      // Only prune older French shell caches. Never delete unrelated app caches
+      // (Greek app caches, packaged TTS caches, etc.) on the same origin.
+      const old = keys.filter(k => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME);
       const isUpgrade = old.length > 0;
       swLog.add(`old caches: [${old.join(', ')}] isUpgrade=${isUpgrade}`);
       await Promise.all(old.map(k => caches.delete(k)));
@@ -87,6 +91,11 @@ self.addEventListener('fetch', event => {
 
   // Only intercept same-origin
   if (url.origin !== self.location.origin) return;
+
+  // Keep the French root SW out of the Greek sub-app namespace.
+  if (url.pathname === GREEK_PATH_PREFIX || url.pathname.startsWith(GREEK_PATH_PREFIX + "/")) {
+    return;
+  }
 
   event.respondWith(serveWithSWR(event.request, url));
 });

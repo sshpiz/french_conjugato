@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Greek TTS test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: sans-serif; padding: 24px; max-width: 720px; margin: 0 auto; }
+    button { font-size: 16px; padding: 10px 14px; margin: 8px 8px 8px 0; }
+    .row { margin: 12px 0; }
+    .text { margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Greek TTS test</h1>
+  <p>Serve this folder, then click play.</p>
+  <div id="list"></div>
+
+  <script>
+    const audio = new Audio("packed.wav");
+    let stopTimer = null;
+
+    async function playRange(startSec, endSec) {
+      if (stopTimer) {
+        clearTimeout(stopTimer);
+        stopTimer = null;
+      }
+      audio.pause();
+      audio.currentTime = startSec;
+      await audio.play();
+      stopTimer = setTimeout(() => {
+        audio.pause();
+      }, Math.max(0, (endSec - startSec) * 1000));
+    }
+
+    fetch("audio-index.json")
+      .then(r => r.json())
+      .then(data => {
+        const list = document.getElementById("list");
+        Object.entries(data.items).forEach(([key, item]) => {
+          const row = document.createElement("div");
+          row.className = "row";
+
+          const btn = document.createElement("button");
+          btn.textContent = "▶ Play";
+          btn.onclick = () => playRange(item.start_sec, item.end_sec);
+
+          const span = document.createElement("span");
+          span.className = "text";
+          span.textContent = item.text;
+
+          row.appendChild(btn);
+          row.appendChild(span);
+          list.appendChild(row);
+        });
+      })
+      .catch(err => {
+        document.body.insertAdjacentHTML("beforeend", "<pre>" + String(err) + "</pre>");
+      });
+  </script>
+</body>
+</html>
