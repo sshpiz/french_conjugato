@@ -1,6 +1,6 @@
 <!-- /Users/simeon/Desktop/proj1/index.html -->
 <!DOCTYPE html>
-<html lang="el" translate="no" class="notranslate">
+<html lang="el">
 <head>
     <!-- Apply saved theme before CSS loads to prevent flash -->
     <script>
@@ -12,8 +12,6 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
-    <meta http-equiv="Content-Language" content="el">
-    <meta name="google" content="notranslate">
     <title>Τα Ρήματα</title>
     <!-- PWA/Full-screen/Native-like mobile support -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -662,20 +660,6 @@ body {
     opacity: 0.7;
     transition: opacity 0.2s;
     padding: 0.5rem;
-}
-
-body.greek-tts-unavailable .audio-btn,
-body.greek-tts-unavailable .tappable-audio {
-    cursor: not-allowed;
-}
-
-body.greek-tts-unavailable .audio-btn {
-    opacity: 0.45;
-}
-
-body.greek-tts-unavailable #autosay-toggle-btn {
-    opacity: 0.35;
-    pointer-events: none;
 }
 
 /* Navigation Buttons */
@@ -1494,21 +1478,6 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   border-top: 1px solid var(--border-color);
 }
 
-#tts-warning-banner {
-  margin: 0.2rem 0.5rem 0.45rem;
-  padding: 0.7rem 0.85rem;
-  border-radius: 12px;
-  background: #fde5e5;
-  color: #9f2f2f;
-  font-size: 0.82rem;
-  line-height: 1.35;
-  text-align: center;
-}
-
-#tts-warning-banner.hidden {
-  display: none;
-}
-
 .action-icon-btn {
   width: 46px;
   height: 46px;
@@ -1872,10 +1841,6 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   cursor: pointer;
   margin-top: 0.4rem;
 }
-.styled-select:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
 .styled-select:focus {
   outline: none;
   border-color: var(--accent-color);
@@ -1886,51 +1851,6 @@ body.greek-tts-unavailable #autosay-toggle-btn {
     border-color: var(--border-color);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   }
-}
-
-.tts-status-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  margin: -0.25rem 0 0.6rem;
-}
-
-.tts-status-badge {
-  display: inline-flex;
-  align-self: flex-start;
-  padding: 0.28rem 0.65rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  border: 1px solid transparent;
-}
-
-.tts-status-text {
-  color: var(--meta-color);
-  font-size: 0.84rem;
-  line-height: 1.35;
-}
-
-.tts-status-available {
-  background: #dff3e7;
-  color: #1f6a45;
-}
-
-.tts-status-fallback {
-  background: #fff1d8;
-  color: #8a5a00;
-}
-
-.tts-status-checking {
-  background: #e8eff6;
-  color: #35506c;
-}
-
-.tts-status-unavailable,
-.tts-status-unsupported {
-  background: #fde5e5;
-  color: #9f2f2f;
 }
 
 
@@ -2902,7 +2822,7 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 </script>
 
 </head>
-<body translate="no" class="notranslate">
+<body>
 
     <!-- Loading screen: shown immediately before any JS runs, hidden once app is ready -->
     <div id="app-loader" style="
@@ -2926,7 +2846,7 @@ html[data-theme="light"] #go-to-verb-btn-container button {
         </style>
     </div>
 
-    <div id="app-container" translate="no" class="notranslate">
+    <div id="app-container">
         <div class="info-container">
             <!-- Only the info button goes here now -->
         </div>
@@ -3049,7 +2969,6 @@ html[data-theme="light"] #go-to-verb-btn-container button {
                 <span class="autosay-emoji" aria-hidden="true" style="display:none">🔇</span>
               </button>
             </div>
-            <div id="tts-warning-banner" class="hidden" role="status" aria-live="polite"></div>
 
             <div class="navigation">
                 <button id="back-btn" title="Previous">
@@ -3179,11 +3098,6 @@ html[data-theme="light"] #go-to-verb-btn-container button {
                 <!-- TTS Voice Selection Dropdown -->
                 <div class="option-group" id="tts-voice-group">
                   <h3>Audio Voice</h3>
-                  <p class="option-desc">Greek audio only works when the browser exposes a real Greek voice.</p>
-                  <div class="tts-status-row" aria-live="polite">
-                    <span id="tts-status-badge" class="tts-status-badge tts-status-checking">Checking audio...</span>
-                    <span id="tts-status-text" class="tts-status-text">Looking for a Greek system voice on this device.</span>
-                  </div>
                   <select id="voice-select" class="styled-select"></select>
                 </div>
 
@@ -3975,13 +3889,6 @@ const verbs = [
     "frequency": "top100",
     "usage_count": 0,
     "hint": "hard aspect split: έπαθα / πάθω"
-  },
-  {
-    "infinitive": "παραγγέλνω",
-    "translation": "to order",
-    "frequency": "top100",
-    "usage_count": 0,
-    "hint": "hard aorist/future: παρήγγειλα / παραγγείλω"
   },
   {
     "infinitive": "παρακολουθώ",
@@ -4860,14 +4767,6 @@ const tenses = {
       "εμείς": "εμείς παθαίνουμε",
       "εσείς": "εσείς παθαίνετε",
       "αυτοί/αυτές": "αυτοί παθαίνουν"
-    },
-    "παραγγέλνω": {
-      "εγώ": "εγώ παραγγέλνω",
-      "εσύ": "εσύ παραγγέλνεις",
-      "αυτός/αυτή": "αυτός παραγγέλνει",
-      "εμείς": "εμείς παραγγέλνουμε",
-      "εσείς": "εσείς παραγγέλνετε",
-      "αυτοί/αυτές": "αυτοί παραγγέλνουν"
     },
     "παρακολουθώ": {
       "εγώ": "εγώ παρακολουθώ",
@@ -5818,14 +5717,6 @@ const tenses = {
       "εσείς": "εσείς παθαίνατε",
       "αυτοί/αυτές": "αυτοί πάθαιναν"
     },
-    "παραγγέλνω": {
-      "εγώ": "εγώ παράγγελνα",
-      "εσύ": "εσύ παράγγελνες",
-      "αυτός/αυτή": "αυτός παράγγελνε",
-      "εμείς": "εμείς παραγγέλναμε",
-      "εσείς": "εσείς παραγγέλνατε",
-      "αυτοί/αυτές": "αυτοί παράγγελναν"
-    },
     "παρακολουθώ": {
       "εγώ": "εγώ παρακολουθούσα",
       "εσύ": "εσύ παρακολουθούσες",
@@ -6747,14 +6638,6 @@ const tenses = {
       "εμείς": "εμείς πάθαμε",
       "εσείς": "εσείς πάθατε",
       "αυτοί/αυτές": "αυτοί έπαθαν"
-    },
-    "παραγγέλνω": {
-      "εγώ": "εγώ παρήγγειλα",
-      "εσύ": "εσύ παρήγγειλες",
-      "αυτός/αυτή": "αυτός παρήγγειλε",
-      "εμείς": "εμείς παραγγείλαμε",
-      "εσείς": "εσείς παραγγείλατε",
-      "αυτοί/αυτές": "αυτοί παρήγγειλαν"
     },
     "παρακολουθώ": {
       "εγώ": "εγώ παρακολούθησα",
@@ -7705,14 +7588,6 @@ const tenses = {
       "εσείς": "εσείς θα παθαίνετε",
       "αυτοί/αυτές": "αυτοί θα παθαίνουν"
     },
-    "παραγγέλνω": {
-      "εγώ": "εγώ θα παραγγέλνω",
-      "εσύ": "εσύ θα παραγγέλνεις",
-      "αυτός/αυτή": "αυτός θα παραγγέλνει",
-      "εμείς": "εμείς θα παραγγέλνουμε",
-      "εσείς": "εσείς θα παραγγέλνετε",
-      "αυτοί/αυτές": "αυτοί θα παραγγέλνουν"
-    },
     "παρακολουθώ": {
       "εγώ": "εγώ θα παρακολουθώ",
       "εσύ": "εσύ θα παρακολουθείς",
@@ -8634,14 +8509,6 @@ const tenses = {
       "εμείς": "εμείς θα πάθουμε",
       "εσείς": "εσείς θα πάθετε",
       "αυτοί/αυτές": "αυτοί θα πάθουν"
-    },
-    "παραγγέλνω": {
-      "εγώ": "εγώ θα παραγγείλω",
-      "εσύ": "εσύ θα παραγγείλεις",
-      "αυτός/αυτή": "αυτός θα παραγγείλει",
-      "εμείς": "εμείς θα παραγγείλουμε",
-      "εσείς": "εσείς θα παραγγείλετε",
-      "αυτοί/αυτές": "αυτοί θα παραγγείλουν"
     },
     "παρακολουθώ": {
       "εγώ": "εγώ θα παρακολουθήσω",
@@ -9592,14 +9459,6 @@ const tenses = {
       "εσείς": "εσείς να παθαίνετε",
       "αυτοί/αυτές": "αυτοί να παθαίνουν"
     },
-    "παραγγέλνω": {
-      "εγώ": "εγώ να παραγγέλνω",
-      "εσύ": "εσύ να παραγγέλνεις",
-      "αυτός/αυτή": "αυτός να παραγγέλνει",
-      "εμείς": "εμείς να παραγγέλνουμε",
-      "εσείς": "εσείς να παραγγέλνετε",
-      "αυτοί/αυτές": "αυτοί να παραγγέλνουν"
-    },
     "παρακολουθώ": {
       "εγώ": "εγώ να παρακολουθώ",
       "εσύ": "εσύ να παρακολουθείς",
@@ -10521,14 +10380,6 @@ const tenses = {
       "εμείς": "εμείς να πάθουμε",
       "εσείς": "εσείς να πάθετε",
       "αυτοί/αυτές": "αυτοί να πάθουν"
-    },
-    "παραγγέλνω": {
-      "εγώ": "εγώ να παραγγείλω",
-      "εσύ": "εσύ να παραγγείλεις",
-      "αυτός/αυτή": "αυτός να παραγγείλει",
-      "εμείς": "εμείς να παραγγείλουμε",
-      "εσείς": "εσείς να παραγγείλετε",
-      "αυτοί/αυτές": "αυτοί να παραγγείλουν"
     },
     "παρακολουθώ": {
       "εγώ": "εγώ να παρακολουθήσω",
@@ -16010,94 +15861,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Audio Synthesis ---
     // Use generic speechLang for speech synthesis, and allow user-selected voice
     const synth = window.speechSynthesis;
-    const getPreferredGreekVoice = () => {
-        const voices = typeof window.getGreekVoices === 'function' ? window.getGreekVoices() : [];
-        if (!voices.length) return null;
-
-        const voiceName = localStorage.getItem('ttsVoiceName');
-        if (voiceName) {
-            const saved = voices.find(voice => voice.name === voiceName);
-            if (saved) return saved;
-        }
-
-        return voices.find(voice => voice.default) || voices[0];
-    };
-
-    const greekTtsAvailable = () => {
-        if (typeof window.getGreekTtsStatus !== 'function') {
-            return !!synth;
-        }
-        return !!window.getGreekTtsStatus().available;
-    };
-
-    const logTtsEvent = (message) => {
-        if (typeof window.appLog === 'function') {
-            window.appLog(message);
-        }
-    };
-
-    const previewText = (text) => {
-        return String(text || '')
-            .replace(/\s+/g, ' ')
-            .trim()
-            .slice(0, 80);
-    };
-
     const speak = (text) => {
         // In Safe Mode, avoid invoking speech synthesis on potentially fragile devices
-        if (SAFE_MODE) {
-            logTtsEvent(`tts-blocked reason=safe-mode text="${previewText(text)}"`);
-            if (typeof window.showGreekTtsFeedback === 'function') {
-                window.showGreekTtsFeedback('Audio is disabled in Safe Mode on this device.', { persistent: false });
-            }
-            return;
-        }
-        if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
-            logTtsEvent(`tts-blocked reason=no-speech-api text="${previewText(text)}"`);
-            if (typeof window.showGreekTtsFeedback === 'function') {
-                window.showGreekTtsFeedback('This browser does not support speech synthesis.', { persistent: true });
-            }
-            return;
-        }
-        if (!greekTtsAvailable()) {
-            const status = typeof window.getGreekTtsStatus === 'function'
-                ? window.getGreekTtsStatus()
-                : { state: 'unavailable', message: 'Greek text-to-speech is unavailable on this device/browser.' };
-            logTtsEvent(`tts-blocked reason=${status.state} text="${previewText(text)}"`);
-            if (typeof window.renderGreekTtsStatus === 'function') {
-                window.renderGreekTtsStatus();
-            }
-            if (typeof window.showGreekTtsFeedback === 'function') {
-                window.showGreekTtsFeedback(status.message || 'Greek text-to-speech is unavailable on this device/browser.', { persistent: true });
-            }
-            return;
-        }
-
+        if (SAFE_MODE) return;
         // Replace placeholders with "blanc" for speech
         const textToSpeak = prepareTextForSpeech(text);
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = speechLang;
-        const preferredVoice = getPreferredGreekVoice();
-        if (preferredVoice) utterance.voice = preferredVoice;
-        utterance.onerror = (event) => {
-            logTtsEvent(`tts-error error=${event && event.error ? event.error : 'unknown'} voice="${utterance.voice ? utterance.voice.name : 'automatic'}" text="${previewText(textToSpeak)}"`);
-            if (typeof window.showGreekTtsFeedback === 'function') {
-                window.showGreekTtsFeedback('Greek audio failed in this browser. Try another browser or install a Greek system voice.', { persistent: false });
-            }
-        };
-        utterance.onstart = () => {
-            logTtsEvent(`tts-start voice="${utterance.voice ? utterance.voice.name : 'automatic'}" text="${previewText(textToSpeak)}"`);
-        };
         
         // Cancel current speech only if different text
         if (synth.speaking) {
             synth.cancel();
             // Small delay to ensure cancellation completes
             setTimeout(() => {
+                // Use user-selected voice if set
+                const voiceName = localStorage.getItem('ttsVoiceName');
+                if (voiceName) {
+                    const voices = synth.getVoices();
+                    const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith(speechLang));
+                    if (matches.length > 0) utterance.voice = matches[0];
+                }
                 utterance.rate = 0.9;
                 synth.speak(utterance);
             }, 100);
         } else {
+            // Use user-selected voice if set
+            const voiceName = localStorage.getItem('ttsVoiceName');
+            if (voiceName) {
+                const voices = synth.getVoices();
+                const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith(speechLang));
+                if (matches.length > 0) utterance.voice = matches[0];
+            }
             utterance.rate = 0.9;
             synth.speak(utterance);
         }
@@ -18027,195 +17821,36 @@ renderPresets();
 });
 
 </script>
-<script>
-function getGreekVoices() {
-    if (!window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {
-        return [];
-    }
-    return window.speechSynthesis
-        .getVoices()
-        .filter(voice => voice.lang && /^el(?:-|$)/i.test(voice.lang));
-}
-
-function getGreekTtsStatus() {
-    if (!window.speechSynthesis || typeof SpeechSynthesisUtterance === 'undefined') {
-        return {
-            state: 'unsupported',
-            available: false,
-            badge: 'No browser TTS',
-            message: 'This browser does not support speech synthesis.'
-        };
-    }
-
-    const voices = window.speechSynthesis.getVoices();
-    if (!voices.length) {
-        return {
-            state: 'checking',
-            available: false,
-            badge: 'Checking audio...',
-            message: 'Still checking the device voice list. Greek audio stays off until a Greek voice appears.'
-        };
-    }
-
-    const greekVoices = getGreekVoices();
-    if (!greekVoices.length) {
-        return {
-            state: 'unavailable',
-            available: false,
-            badge: 'Greek TTS unavailable',
-            message: 'No Greek voice was detected on this device/browser. Audio stays off to avoid spelling Greek letter by letter.'
-        };
-    }
-
-    const saved = localStorage.getItem('ttsVoiceName');
-    if (saved && !greekVoices.some(voice => voice.name === saved)) {
-        return {
-            state: 'fallback',
-            available: true,
-            badge: 'Using fallback Greek voice',
-            message: 'Your previous voice choice is missing here. The app will use the first available Greek voice instead.'
-        };
-    }
-
-    return {
-        state: 'available',
-        available: true,
-        badge: 'Greek audio ready',
-        message: `${greekVoices.length} Greek voice${greekVoices.length === 1 ? '' : 's'} detected on this device.`
-    };
-}
-
-let lastGreekTtsLogKey = '';
-let greekTtsBannerTimer = null;
-
-function logGreekTtsStatusIfChanged(status) {
-    const key = `${status.state}|${status.badge}|${status.message}`;
-    if (key === lastGreekTtsLogKey) return;
-    lastGreekTtsLogKey = key;
-    if (typeof window.appLog === 'function') {
-        window.appLog(`tts-status state=${status.state} available=${status.available ? 'yes' : 'no'} badge="${status.badge}" message="${status.message}"`);
-    }
-}
-
-function showGreekTtsFeedback(message, options) {
-    const banner = document.getElementById('tts-warning-banner');
-    if (!banner) return;
-
-    const settings = options || {};
-    const persistent = !!settings.persistent;
-    banner.classList.remove('hidden');
-    banner.textContent = message;
-
-    if (greekTtsBannerTimer) {
-        clearTimeout(greekTtsBannerTimer);
-        greekTtsBannerTimer = null;
-    }
-
-    if (!persistent) {
-        greekTtsBannerTimer = setTimeout(() => {
-            if (typeof renderGreekTtsStatus === 'function') {
-                renderGreekTtsStatus();
-            } else {
-                banner.classList.add('hidden');
-            }
-        }, 4200);
-    }
-}
-
-function renderGreekTtsStatus() {
-    const status = getGreekTtsStatus();
-    const badge = document.getElementById('tts-status-badge');
-    const text = document.getElementById('tts-status-text');
-    const select = document.getElementById('voice-select');
-    const banner = document.getElementById('tts-warning-banner');
-
-    if (badge) {
-        badge.textContent = status.badge;
-        badge.className = `tts-status-badge tts-status-${status.state}`;
-    }
-    if (text) text.textContent = status.message;
-
-    if (select) {
-        select.disabled = !status.available;
-        select.title = status.message;
-    }
-
-    if (banner) {
-        const showBanner = status.state === 'unsupported' || status.state === 'unavailable';
-        banner.classList.toggle('hidden', !showBanner);
-        banner.textContent = showBanner
-            ? 'Greek text-to-speech is not available on this device/browser, so audio buttons are disabled.'
-            : '';
-    }
-
-    document.body.classList.toggle('greek-tts-unavailable', !status.available);
-    document.body.classList.toggle('greek-tts-ready', status.available);
-    logGreekTtsStatusIfChanged(status);
-    return status;
-}
-
-window.getGreekVoices = getGreekVoices;
-window.getGreekTtsStatus = getGreekTtsStatus;
-window.renderGreekTtsStatus = renderGreekTtsStatus;
-window.showGreekTtsFeedback = showGreekTtsFeedback;
-
+    <script>
 function populateVoiceSelect() {
     const voiceSelect = document.getElementById('voice-select');
     if (!voiceSelect) return;
-    const greekVoices = getGreekVoices();
-    voiceSelect.innerHTML = '';
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.textContent = greekVoices.length
-        ? '(Automatic Greek voice)'
-        : '(No Greek voice detected)';
-    voiceSelect.appendChild(defaultOption);
+    const voices = window.speechSynthesis.getVoices();
+    // Prefer Greek voices when available.
+    const greekVoices = voices.filter(v => v.lang && v.lang.startsWith('el-GR'));
+    // Add a blank/default option
+    voiceSelect.innerHTML = '<option value="">(Default browser voice)</option>';
     greekVoices.forEach(voice => {
         const opt = document.createElement('option');
         opt.value = voice.name;
         opt.textContent = `${voice.name} (${voice.lang})`;
         voiceSelect.appendChild(opt);
     });
-
+    // Restore saved selection
     const saved = localStorage.getItem('ttsVoiceName');
-    if (saved && greekVoices.some(voice => voice.name === saved)) {
-        voiceSelect.value = saved;
-    } else if (saved) {
-        localStorage.removeItem('ttsVoiceName');
-    }
-
-    renderGreekTtsStatus();
+    if (saved) voiceSelect.value = saved;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     populateVoiceSelect();
-    renderGreekTtsStatus();
-    if (window.speechSynthesis) {
-        window.speechSynthesis.onvoiceschanged = function() {
-            populateVoiceSelect();
-            renderGreekTtsStatus();
-        };
-    }
+    // Repopulate voices if voiceschanged fires (async load)
+    window.speechSynthesis.onvoiceschanged = populateVoiceSelect;
     const select = document.getElementById('voice-select');
     if (select) {
         select.addEventListener('change', function() {
             localStorage.setItem('ttsVoiceName', select.value);
-            if (typeof window.appLog === 'function') {
-                window.appLog(`tts-voice-select value="${select.value || 'automatic'}"`);
-            }
-            renderGreekTtsStatus();
         });
     }
-
-    setTimeout(() => {
-        populateVoiceSelect();
-        renderGreekTtsStatus();
-    }, 1200);
-
-    setTimeout(() => {
-        populateVoiceSelect();
-        renderGreekTtsStatus();
-    }, 3500);
 });
 </script>
 <script>
