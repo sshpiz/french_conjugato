@@ -1229,7 +1229,7 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   display: block;
 }
 #go-to-verb-btn {
-  margin-left: 22px !important;
+  margin-left: 32px !important;
   padding: 0.25em 0.6em !important;
 }
 
@@ -1426,6 +1426,7 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   width: 100% !important;
   display: flex !important;
   flex-direction: column !important;
+  justify-content: flex-start !important;
   align-items: center !important;
   overflow: hidden !important;
 }
@@ -2384,6 +2385,252 @@ html[data-theme="light"] #go-to-verb-btn-container button {
   color: var(--text-color) !important;
 }
 
+/* ── v0.91 shared dock + nav port from French ───────────────────────────── */
+.tappable-audio.playable-copying {
+  text-shadow: 0 0 0.55rem rgba(82, 196, 26, 0.45);
+}
+
+:root {
+  --control-tray-bg: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(240,245,250,0.96));
+  --control-tray-border: rgba(180, 197, 215, 0.72);
+  --control-tray-shadow: 0 10px 24px rgba(44,62,80,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
+  --control-btn-bg: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(239,245,252,0.95));
+  --control-btn-border: rgba(187, 201, 216, 0.78);
+  --control-btn-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 2px 8px rgba(44,62,80,0.06);
+  --control-btn-hover-bg: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(231,240,249,0.98));
+  --control-btn-hover-border: rgba(151, 182, 212, 0.86);
+  --control-btn-color: #43627b;
+  --control-btn-disabled-bg: linear-gradient(180deg, rgba(246,248,251,0.94), rgba(233,239,246,0.95));
+  --control-btn-disabled-border: rgba(198, 208, 220, 0.76);
+  --control-btn-disabled-color: rgba(112, 128, 145, 0.72);
+  --bottom-nav-bg: #ffffff;
+  --bottom-nav-border: #e0e6ed;
+  --bottom-nav-shadow: 0 -2px 12px rgba(0,0,0,0.05);
+  --bottom-nav-btn-bg: linear-gradient(180deg, #ffffff, #f4f7f9);
+  --bottom-nav-btn-border: rgba(210, 219, 229, 0.92);
+  --bottom-nav-btn-shadow: 0 4px 12px rgba(44,62,80,0.06), inset 0 1px 0 rgba(255,255,255,0.82);
+  --bottom-nav-btn-hover-bg: linear-gradient(180deg, #ffffff, #eaf0f5);
+  --bottom-nav-btn-hover-border: rgba(170, 188, 208, 0.92);
+  --bottom-nav-btn-color: #24384c;
+  --bottom-nav-btn-icon: #3c86ca;
+  --bottom-nav-btn-disabled-bg: linear-gradient(180deg, #f4f7f9, #edf2f6);
+  --bottom-nav-btn-disabled-border: rgba(214, 221, 229, 0.86);
+  --bottom-nav-btn-disabled-color: rgba(112, 128, 145, 0.72);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
+    --control-tray-border: rgba(84, 103, 126, 0.42);
+    --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);
+    --control-btn-bg: linear-gradient(180deg, #1a2736 0%, #131d2a 100%);
+    --control-btn-border: rgba(92, 117, 146, 0.45);
+    --control-btn-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 16px rgba(0,0,0,0.20);
+    --control-btn-hover-bg: linear-gradient(180deg, #223246 0%, #172332 100%);
+    --control-btn-hover-border: rgba(126, 164, 199, 0.56);
+    --control-btn-color: #96cefb;
+    --control-btn-disabled-bg: linear-gradient(180deg, rgba(31,37,46,0.96), rgba(20,25,33,0.96));
+    --control-btn-disabled-border: rgba(74, 84, 96, 0.34);
+    --control-btn-disabled-color: rgba(121, 134, 149, 0.68);
+    --bottom-nav-bg: linear-gradient(180deg, rgba(17,22,27,0.98), rgba(12,16,21,0.99));
+    --bottom-nav-border: rgba(79, 94, 112, 0.35);
+    --bottom-nav-shadow: 0 -12px 28px rgba(0,0,0,0.28);
+    --bottom-nav-btn-bg: linear-gradient(180deg, #232a34 0%, #1a2028 100%);
+    --bottom-nav-btn-border: rgba(124, 140, 158, 0.34);
+    --bottom-nav-btn-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 10px 18px rgba(0,0,0,0.14);
+    --bottom-nav-btn-hover-bg: linear-gradient(180deg, #2b3440 0%, #202834 100%);
+    --bottom-nav-btn-hover-border: rgba(139, 170, 198, 0.44);
+    --bottom-nav-btn-color: #eef3f9;
+    --bottom-nav-btn-icon: #9fd1ff;
+    --bottom-nav-btn-disabled-bg: linear-gradient(180deg, #1f252c 0%, #171d24 100%);
+    --bottom-nav-btn-disabled-border: rgba(86, 98, 112, 0.3);
+    --bottom-nav-btn-disabled-color: rgba(125, 136, 148, 0.64);
+  }
+}
+
+html[data-theme="dark"] {
+  --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
+  --control-tray-border: rgba(84, 103, 126, 0.42);
+  --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);
+  --control-btn-bg: linear-gradient(180deg, #1a2736 0%, #131d2a 100%);
+  --control-btn-border: rgba(92, 117, 146, 0.45);
+  --control-btn-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 16px rgba(0,0,0,0.20);
+  --control-btn-hover-bg: linear-gradient(180deg, #223246 0%, #172332 100%);
+  --control-btn-hover-border: rgba(126, 164, 199, 0.56);
+  --control-btn-color: #96cefb;
+  --control-btn-disabled-bg: linear-gradient(180deg, rgba(31,37,46,0.96), rgba(20,25,33,0.96));
+  --control-btn-disabled-border: rgba(74, 84, 96, 0.34);
+  --control-btn-disabled-color: rgba(121, 134, 149, 0.68);
+  --bottom-nav-bg: linear-gradient(180deg, rgba(17,22,27,0.98), rgba(12,16,21,0.99));
+  --bottom-nav-border: rgba(79, 94, 112, 0.35);
+  --bottom-nav-shadow: 0 -12px 28px rgba(0,0,0,0.28);
+  --bottom-nav-btn-bg: linear-gradient(180deg, #232a34 0%, #1a2028 100%);
+  --bottom-nav-btn-border: rgba(124, 140, 158, 0.34);
+  --bottom-nav-btn-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 10px 18px rgba(0,0,0,0.14);
+  --bottom-nav-btn-hover-bg: linear-gradient(180deg, #2b3440 0%, #202834 100%);
+  --bottom-nav-btn-hover-border: rgba(139, 170, 198, 0.44);
+  --bottom-nav-btn-color: #eef3f9;
+  --bottom-nav-btn-icon: #9fd1ff;
+  --bottom-nav-btn-disabled-bg: linear-gradient(180deg, #1f252c 0%, #171d24 100%);
+  --bottom-nav-btn-disabled-border: rgba(86, 98, 112, 0.3);
+  --bottom-nav-btn-disabled-color: rgba(125, 136, 148, 0.64);
+}
+
+#go-to-verb-btn-container {
+  gap: 0.45rem;
+  width: fit-content;
+  max-width: calc(100% - 24px);
+  margin: 0.6rem auto 0.35rem;
+  padding: 0.42rem;
+  background: var(--control-tray-bg) !important;
+  border: 1px solid var(--control-tray-border) !important;
+  border-radius: 24px;
+  box-shadow: var(--control-tray-shadow) !important;
+}
+
+.action-icon-btn {
+  width: 54px;
+  height: 54px;
+}
+
+.control-dock-btn,
+#dictate-btn-bottom.control-dock-btn {
+  width: 82px !important;
+  height: 66px !important;
+  border-radius: 18px !important;
+  padding: 0.55rem 0.6rem !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+  background: var(--control-btn-bg) !important;
+  border: 1px solid var(--control-btn-border) !important;
+  box-shadow: var(--control-btn-shadow) !important;
+  color: var(--control-btn-color) !important;
+}
+
+.control-dock-btn svg,
+#dictate-btn-bottom.control-dock-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.control-dock-btn:hover:not(:disabled),
+.control-dock-btn:focus-visible:not(:disabled) {
+  background: var(--control-btn-hover-bg) !important;
+  border-color: var(--control-btn-hover-border) !important;
+  transform: translateY(-1px);
+}
+
+.control-dock-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.985);
+}
+
+.control-dock-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+#usage-visibility-btn .usage-hidden-icon {
+  display: none;
+}
+
+#usage-visibility-btn[aria-pressed="false"] .usage-visible-icon {
+  display: none;
+}
+
+#usage-visibility-btn[aria-pressed="false"] .usage-hidden-icon {
+  display: block;
+}
+
+#context-audio-btn:disabled,
+#dictate-btn-bottom:disabled,
+#usage-visibility-btn:disabled {
+  background: var(--control-btn-disabled-bg) !important;
+  border-color: var(--control-btn-disabled-border) !important;
+  box-shadow: none !important;
+  color: var(--control-btn-disabled-color) !important;
+}
+
+#usage-visibility-btn[aria-pressed="true"],
+#usage-visibility-btn[aria-pressed="false"] {
+  background: var(--control-btn-bg) !important;
+  border-color: var(--control-btn-border) !important;
+  box-shadow: var(--control-btn-shadow) !important;
+  color: var(--control-btn-color) !important;
+}
+
+.navigation {
+  background: var(--bottom-nav-bg) !important;
+  border-top: 1px solid var(--bottom-nav-border) !important;
+  box-shadow: var(--bottom-nav-shadow) !important;
+}
+
+.navigation button {
+  border-radius: 18px;
+  background: var(--bottom-nav-btn-bg) !important;
+  border: 1px solid var(--bottom-nav-btn-border) !important;
+  box-shadow: var(--bottom-nav-btn-shadow) !important;
+  color: var(--bottom-nav-btn-color) !important;
+}
+
+.navigation button svg {
+  color: var(--bottom-nav-btn-icon) !important;
+}
+
+.navigation button:hover:not(:disabled),
+.navigation button:focus-visible:not(:disabled) {
+  background: var(--bottom-nav-btn-hover-bg) !important;
+  border-color: var(--bottom-nav-btn-hover-border) !important;
+  transform: translateY(-1px);
+}
+
+.navigation button:active:not(:disabled) {
+  transform: translateY(0) scale(0.985);
+}
+
+.navigation button:disabled {
+  background: var(--bottom-nav-btn-disabled-bg) !important;
+  border-color: var(--bottom-nav-btn-disabled-border) !important;
+  box-shadow: none !important;
+  color: var(--bottom-nav-btn-disabled-color) !important;
+}
+
+.navigation button:disabled svg {
+  color: var(--bottom-nav-btn-disabled-color) !important;
+}
+
+#back-btn,
+#next-btn {
+  flex-grow: 0.9 !important;
+  flex-direction: row;
+  gap: 0.35rem;
+}
+
+#explorer-toggle-btn {
+  flex-grow: 0.82 !important;
+  min-width: 62px;
+}
+
+#options-toggle-btn,
+#help-nav-btn {
+  flex-grow: 0.78 !important;
+  min-width: 62px;
+}
+
+#back-btn span,
+#next-btn span {
+  font-size: 0.66rem;
+}
+
+#help-nav-btn span,
+#options-toggle-btn span,
+#explorer-toggle-btn span {
+  display: none;
+}
+
 </style>
     <style>
 /* ── Big dictate mic button (inside phrase-container) ── */
@@ -2417,31 +2664,48 @@ html[data-theme="light"] #go-to-verb-btn-container button {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 32px !important;
-  height: 32px !important;
+  width: 40px !important;
+  height: 40px !important;
   min-width: unset !important;
   flex-shrink: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 6px !important;
-  box-shadow: none !important;
-  color: rgba(150,175,200,0.5) !important;
+  background: rgba(70, 132, 191, 0.12) !important;
+  border: 1px solid rgba(70, 132, 191, 0.22) !important;
+  border-radius: 11px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 4px 10px rgba(44,62,80,0.08) !important;
+  color: rgba(66, 117, 168, 0.96) !important;
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s, transform 0.12s, box-shadow 0.15s;
   font-size: 0 !important;
 }
 #go-to-verb-btn.verb-detail-book-btn svg,
 .verb-detail-book-btn svg {
-  width: 20px !important;
-  height: 20px !important;
+  width: 24px !important;
+  height: 24px !important;
   flex-shrink: 0;
 }
 #go-to-verb-btn.verb-detail-book-btn:hover,
 .verb-detail-book-btn:hover {
-  color: rgba(150,175,200,0.9) !important;
-  background: transparent !important;
+  color: rgba(43, 95, 147, 1) !important;
+  background: rgba(70, 132, 191, 0.16) !important;
+  border-color: rgba(70, 132, 191, 0.34) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 6px 14px rgba(44,62,80,0.12) !important;
+  transform: translateY(-1px);
+}
+html[data-theme="dark"] #go-to-verb-btn.verb-detail-book-btn,
+html[data-theme="dark"] .verb-detail-book-btn {
+  background: rgba(95, 165, 220, 0.12) !important;
+  border-color: rgba(119, 184, 236, 0.28) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 16px rgba(0,0,0,0.18) !important;
+  color: rgba(154, 211, 255, 0.96) !important;
+}
+html[data-theme="dark"] #go-to-verb-btn.verb-detail-book-btn:hover,
+html[data-theme="dark"] .verb-detail-book-btn:hover {
+  color: #eef7ff !important;
+  background: rgba(95, 165, 220, 0.18) !important;
+  border-color: rgba(144, 206, 255, 0.42) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 18px rgba(0,0,0,0.24) !important;
 }
 
 /* Dictate button — base style handled by .action-icon-btn in style.css */
@@ -2451,6 +2715,19 @@ html[data-theme="light"] #go-to-verb-btn-container button {
   opacity: 0.3;
   cursor: not-allowed;
   transform: none !important;
+}
+
+#dictate-btn-bottom.control-dock-btn {
+  width: 82px !important;
+  height: 66px !important;
+  margin: 0 !important;
+  border-radius: 18px !important;
+  padding: 0.55rem 0.6rem !important;
+}
+
+#dictate-btn-bottom.control-dock-btn svg {
+  width: 22px !important;
+  height: 22px !important;
 }
 
 /* Recording active state */
@@ -3116,13 +3393,42 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 
             <!-- Action buttons row: mic + autosay -->
             <div id="go-to-verb-btn-container">
-              <button id="dictate-btn-bottom" class="dictate-big-btn action-icon-btn" title="Dictate (speech to text)">
+              <button id="context-audio-btn" type="button" class="action-icon-btn control-dock-btn" title="Hear the current prompt">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.5 8.5a4.5 4.5 0 0 1 0 7"></path>
+                  <path d="M18.5 5.5a8.5 8.5 0 0 1 0 13"></path>
+                </svg>
+                <span class="control-dock-label">Hear</span>
+              </button>
+              <button id="dictate-btn-bottom" class="dictate-big-btn action-icon-btn control-dock-btn" title="Say the answer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="9" y="2" width="6" height="12" rx="3"/>
                   <path d="M5 10a7 7 0 0 0 14 0"/>
                   <line x1="12" y1="19" x2="12" y2="22"/>
                   <line x1="8" y1="22" x2="16" y2="22"/>
                 </svg>
+                <span class="control-dock-label">Say</span>
+              </button>
+              <button id="usage-visibility-btn" class="action-icon-btn control-dock-btn usage-toggle-btn" type="button" title="Hide verb usage" aria-label="Hide verb usage" aria-pressed="true">
+                <svg class="usage-visibility-icon usage-visible-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 6h13"></path>
+                  <path d="M7 12h13"></path>
+                  <path d="M7 18h10"></path>
+                  <circle cx="3.5" cy="6" r="0.75" fill="currentColor" stroke="none"></circle>
+                  <circle cx="3.5" cy="12" r="0.75" fill="currentColor" stroke="none"></circle>
+                  <circle cx="3.5" cy="18" r="0.75" fill="currentColor" stroke="none"></circle>
+                </svg>
+                <svg class="usage-visibility-icon usage-hidden-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 6h13"></path>
+                  <path d="M7 12h13"></path>
+                  <path d="M7 18h10"></path>
+                  <circle cx="3.5" cy="6" r="0.75" fill="currentColor" stroke="none"></circle>
+                  <circle cx="3.5" cy="12" r="0.75" fill="currentColor" stroke="none"></circle>
+                  <circle cx="3.5" cy="18" r="0.75" fill="currentColor" stroke="none"></circle>
+                  <line x1="5" y1="4" x2="19" y2="20"></line>
+                </svg>
+                <span class="control-dock-label">Usage</span>
               </button>
               <button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off action-icon-btn" title="Toggle autosay">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
@@ -3137,17 +3443,23 @@ html[data-theme="light"] #go-to-verb-btn-container button {
             <div class="navigation">
                 <button id="back-btn" title="Previous">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                  <span>Back</span>
                 </button>
-                <button id="explorer-toggle-btn">
+                <button id="explorer-toggle-btn" title="Search" aria-label="Search">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                   <span>Search</span>
                 </button>
                 <button id="next-btn" title="Next">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  <span>Skip</span>
                 </button>
-                <button id="options-toggle-btn">
+                <button id="options-toggle-btn" title="Settings" aria-label="Settings">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
                   <span>Settings</span>
+                </button>
+                <button id="help-nav-btn" title="Help">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                  <span>Help</span>
                 </button>
             </div>
         </div>
@@ -3364,18 +3676,17 @@ html[data-theme="light"] #go-to-verb-btn-container button {
         </div>
 
         <!-- FTUE/Help Overlay -->
-        <div id="ftue-help-overlay" style="display:none; position:fixed; z-index:99999; top:0; left:0; width:100vw; height:100vh; background:rgba(30,32,36,0.92); color:#fff; align-items:center; justify-content:center; flex-direction:column;">
-          <div style="max-width: 480px; margin: 2em auto; background:rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 8px 32px rgba(44,62,80,0.18); padding: 2em 2.5em 1.5em 2.5em; position:relative;">
+        <div id="ftue-help-overlay" style="display:none; position:fixed; z-index:99999; inset:0; width:100vw; height:100vh; background:rgba(30,32,36,0.92); color:#fff; align-items:center; justify-content:center; flex-direction:column; padding:16px; box-sizing:border-box;">
+          <div style="width:min(100%, 460px); max-height:min(82vh, 680px); overflow:auto; margin:0 auto; background:rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 8px 32px rgba(44,62,80,0.18); padding: 1.35em 1.25em 1.1em; position:relative; box-sizing:border-box;">
             <button id="ftue-help-close" style="position:absolute;top:1em;right:1em;font-size:1.5em;background:none;border:none;color:#fff;cursor:pointer;">✕</button>
-            <h2 style="margin-top:0">Καλώς ήρθατε</h2>
-            <p style="font-size:1.1em;line-height:1.5;margin-bottom:1.2em;">Practice Modern Greek conjugation and pronunciation.</p>
-            <ul style="font-size:1.05em;line-height:1.6;margin-bottom:1.2em;">
-              <li><b>Tap the card</b> to reveal the answer, tap again to advance.</li>
-              <li><b>Mic</b>: Say the answer out loud and get instant feedback.</li>
-              <li><b>Audio</b>: Tap any verb or conjugation to hear it spoken.</li>
+            <h2 style="margin-top:0; margin-bottom:0.55em;">Quick Help</h2>
+            <ul style="font-size:0.97em;line-height:1.56;margin:0; padding-left:1.15em;">
+              <li><b>Tap almost anywhere</b> to reveal the answer, then tap again to move on.</li>
+              <li><b>Use Settings</b> to choose which tenses and which verb ranges are in play. If you are starting out, use <b>Top 50 verbs</b> with the most common tenses.</li>
+              <li><b>Hear</b> plays the prompt before reveal and the answer after reveal. <b>Say</b> lets you answer aloud and get dictation feedback.</li>
+              <li><b>Usage</b> shows or hides the example lines while you drill. Most Greek text is playable, including usages and verb details.</li>
+              <li><b>Search</b> opens any verb and its full conjugation table.</li>
             </ul>
-
-            
           </div>
         </div>
         
@@ -37914,6 +38225,11 @@ const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
+const APP_FLASHCARD_FEATURES = {
+    longPressCopyOnPlayableText: true,
+    usageNuggetVisibilityToggle: true,
+    contextualSpeakerButton: true,
+};
 
 // Greek irregular or high-variance verbs that should bypass the "regular" bucket.
 const IRREGULAR_VERBS = new Set([
@@ -38382,15 +38698,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const explorerToggleBtn = document.getElementById('explorer-toggle-btn');
     const optionsToggleBtn = document.getElementById('options-toggle-btn'); // Gear icon button
+    const contextAudioBtn = document.getElementById('context-audio-btn');
     const backToFlashcardBtn = document.getElementById('back-to-flashcard-btn');
     const backToListBtn = document.getElementById('back-to-list-btn');
     const backToFlashcardFromOptionsBtn = document.getElementById('back-to-flashcard-from-options-btn'); // Back button in options
+    const usageNuggetEl = document.getElementById('usage-nugget');
+    const usageVisibilityBtn = document.getElementById('usage-visibility-btn');
 
     const searchBar = document.getElementById('search-bar');
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
     let packagedTtsBusy = false;
     let packagedTtsAutoStarted = false;
+    let longPressCopyTimer = null;
+    let suppressTapAudioUntil = 0;
 
     const playAudioElement = (element, options = {}) => {
         if (!element) return;
@@ -38402,6 +38723,110 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             playAudioTarget(audioId, text);
         }
+    };
+
+    const shouldSuppressTapAudio = () => Date.now() < suppressTapAudioUntil;
+
+    const copyTextToClipboard = async (text) => {
+        const trimmed = String(text || '').trim();
+        if (!trimmed || !navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+            return false;
+        }
+        try {
+            await navigator.clipboard.writeText(trimmed);
+            if (navigator.vibrate) navigator.vibrate(12);
+            if (dictationResultEl && typeof showDictationOverlay === 'function') {
+                showDictationOverlay(`Copied: ${trimmed}`, 'prompt', 1100, false, true);
+            }
+            return true;
+        } catch (error) {
+            console.warn('Clipboard copy failed:', error);
+            return false;
+        }
+    };
+
+    const refreshContextAudioButton = () => {
+        if (!contextAudioBtn) return;
+        if (!APP_FLASHCARD_FEATURES.contextualSpeakerButton) {
+            contextAudioBtn.style.display = 'none';
+            contextAudioBtn.disabled = true;
+            return;
+        }
+        const canPlayInfinitive = !!(currentCard && currentCard.verb && currentCard.verb.infinitive);
+        const canPlayAnswer = !!(currentCard && currentCard.conjugated);
+        const enabled = isAnswerVisible ? canPlayAnswer : canPlayInfinitive;
+        contextAudioBtn.disabled = !enabled;
+        contextAudioBtn.setAttribute(
+            'title',
+            isAnswerVisible ? 'Play the shown answer' : 'Play the infinitive again'
+        );
+    };
+
+    const syncUsageNuggetVisibility = () => {
+        if (!usageNuggetEl) return;
+        const shouldShow = !!(
+            isAnswerVisible &&
+            currentCard &&
+            currentCard._hasUsages &&
+            cardGenerationOptions.showUsageNugget
+        );
+        usageNuggetEl.style.display = shouldShow ? 'block' : 'none';
+        usageNuggetEl.classList.toggle('usage-nugget-hidden', !shouldShow);
+
+        if (usageVisibilityBtn) {
+            const canToggle = !!(APP_FLASHCARD_FEATURES.usageNuggetVisibilityToggle && currentCard && currentCard._hasUsages);
+            usageVisibilityBtn.style.display = canToggle ? 'inline-flex' : 'none';
+            usageVisibilityBtn.disabled = !canToggle;
+            usageVisibilityBtn.setAttribute('aria-pressed', cardGenerationOptions.showUsageNugget ? 'true' : 'false');
+            usageVisibilityBtn.setAttribute(
+                'aria-label',
+                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
+            );
+            usageVisibilityBtn.setAttribute(
+                'title',
+                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
+            );
+        }
+    };
+
+    const playContextAudioHint = () => {
+        if (!currentCard || !currentCard.verb) return;
+        if (isAnswerVisible) {
+            playConjugatedAudio();
+        } else {
+            playInfinitiveAudio();
+        }
+    };
+
+    const isInteractiveFlashcardTarget = (target) => {
+        if (!(target instanceof Element)) return false;
+        return !!target.closest(
+            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner'
+        );
+    };
+
+    const clearLongPressCopy = () => {
+        if (longPressCopyTimer) {
+            window.clearTimeout(longPressCopyTimer);
+            longPressCopyTimer = null;
+        }
+    };
+
+    const scheduleLongPressCopy = (target) => {
+        if (!APP_FLASHCARD_FEATURES.longPressCopyOnPlayableText) return;
+        if (!(target instanceof Element)) return;
+        const playableTarget = target.closest('.tappable-audio');
+        if (!playableTarget) return;
+        const text = String(playableTarget.dataset.speak || playableTarget.textContent || '').trim();
+        if (!text) return;
+        clearLongPressCopy();
+        longPressCopyTimer = window.setTimeout(async () => {
+            suppressTapAudioUntil = Date.now() + 700;
+            playableTarget.classList.add('playable-copying');
+            await copyTextToClipboard(text);
+            window.setTimeout(() => playableTarget.classList.remove('playable-copying'), 500);
+            clearLongPressCopy();
+        }, 450);
     };
 
     const setPackagedTtsBusy = (busy) => {
@@ -38635,6 +39060,30 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDictating = false;
     let dictationResultEl = null;
     let dictationTimeout = null;
+    let ignoreNextDictationEnd = false;
+
+    const stopActiveDictation = (options = {}) => {
+        const { abort = false, silent = true } = options;
+        clearTimeout(dictationTimeout);
+        if (recognition) {
+            ignoreNextDictationEnd = true;
+            try {
+                if (abort) recognition.abort();
+                else recognition.stop();
+            } catch (error) {
+                console.warn('Dictation stop failed:', error);
+            }
+        }
+        recognition = null;
+        isDictating = false;
+        setDictating(false);
+        if (silent && dictationResultEl) {
+            dictationResultEl.style.opacity = '0';
+            window.setTimeout(() => {
+                if (dictationResultEl) dictationResultEl.style.display = 'none';
+            }, 120);
+        }
+    };
 
     // Overlay helpers (already defined above)
     // function showDictationOverlay(...) {...}
@@ -38734,6 +39183,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
                 };
                 recognition.onend = () => {
+                    if (ignoreNextDictationEnd) {
+                        ignoreNextDictationEnd = false;
+                        return;
+                    }
                     isDictating = false;
                     setDictating(false);
                     clearTimeout(dictationTimeout);
@@ -38744,6 +39197,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
                 recognition.onerror = (event) => {
+                    if (ignoreNextDictationEnd) {
+                        ignoreNextDictationEnd = false;
+                        return;
+                    }
                     isDictating = false;
                     setDictating(false);
                     clearTimeout(dictationTimeout);
@@ -38964,6 +39421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showPhrases: true,
         verbsWithSentencesOnly: false, // When true, only show verbs that have sentences
         balancedPronouns: false,
+        showUsageNugget: true,
         tenseWeights,
         frequencyWeights,
         regularityFilter: { regular: true, irregular: true },
@@ -39017,6 +39475,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (typeof savedOptions.balancedPronouns === 'boolean') {
                     cardGenerationOptions.balancedPronouns = savedOptions.balancedPronouns;
+                }
+                if (typeof savedOptions.showUsageNugget === 'boolean') {
+                    cardGenerationOptions.showUsageNugget = savedOptions.showUsageNugget;
                 }
 
                 // Update weights by merging into the existing objects
@@ -39862,6 +40323,8 @@ document.addEventListener('DOMContentLoaded', () => {
             nuggetEl.style.display = 'none';
             currentCard._hasUsages = renderVerbUsages(nuggetEl, card.verb.infinitive) > 0;
         }
+        syncUsageNuggetVisibility();
+        refreshContextAudioButton();
 
         // --- AUTOTALK: Speak prompt if enabled ---
         const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
@@ -39882,11 +40345,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const phraseSpan = document.getElementById('phrase-target-sentence');
                 if (phraseSpan) phraseSpan.style.display = '';
             }
-            // Show usage nugget when answer reveals
-            const nuggetEl = document.getElementById('usage-nugget');
-            if (nuggetEl && currentCard && currentCard._hasUsages) {
-                nuggetEl.style.display = 'block';
-            }
+            syncUsageNuggetVisibility();
+            refreshContextAudioButton();
             // Do NOT speak the answer automatically
         }
     };
@@ -39898,12 +40358,15 @@ document.addEventListener('DOMContentLoaded', () => {
             questionPhraseEl.style.display = 'block';
         }
         isAnswerVisible = false;
+        syncUsageNuggetVisibility();
+        refreshContextAudioButton();
     };
 
     // --- Card advance logic ---
     let autoskipLock = false;
     const nextCard = () => {
         autoskipLock = false;
+        stopActiveDictation({ abort: true, silent: true });
         if (currentCard && currentCard.verb) {
             logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'next');
         }
@@ -39950,6 +40413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const prevCard = () => {
+        stopActiveDictation({ abort: true, silent: true });
         if (historyIndex > 0) {
             historyIndex--;
             displayCard(history[historyIndex]);
@@ -39962,6 +40426,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const views = [flashcardView, explorerListView, explorerDetailView, optionsView, mnemonicsView];
 
     function showView(viewId, pushState = true) {
+        if (viewId !== 'flashcard-view') {
+            stopActiveDictation({ abort: true, silent: true });
+        }
         let targetView = null;
         views.forEach(view => {
             if (view.id === viewId) {
@@ -40467,7 +40934,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window._populateOptions = populateOptions;
 
     // --- Event Listeners ---
-    flashcard.addEventListener('click', () => {
+    flashcard.addEventListener('click', (event) => {
+        if (isInteractiveFlashcardTarget(event.target)) return;
         if (isAnswerVisible) {
             handleNext();
         } else {
@@ -40494,6 +40962,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Make infinitive tappable for audio (keyboard and click)
     function playInfinitiveAudio() {
+        if (shouldSuppressTapAudio()) return;
         if (currentCard && currentCard.verb.infinitive) {
             playAudioTarget(lemmaAudioId(currentCard.verb.infinitive), currentCard.verb.infinitive);
         }
@@ -40511,6 +40980,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Make conjugated verb tappable for audio (keyboard and click)
     function playConjugatedAudio() {
+        if (shouldSuppressTapAudio()) return;
         if (currentCard && currentCard.pronoun && currentCard.conjugated) {
             let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
             maybeWhisperHuhBefore(audioText, conjugationAudioId(currentCard.verb.infinitive, currentCard.tense, currentCard.pronounKey || currentCard.pronoun));
@@ -40600,9 +41070,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    if (usageNuggetEl) {
+        usageNuggetEl.addEventListener('pointerdown', (e) => {
+            scheduleLongPressCopy(e.target);
+        });
+        ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
+            usageNuggetEl.addEventListener(eventName, clearLongPressCopy);
+        });
+        usageNuggetEl.addEventListener('click', (e) => {
+            const audioTarget = e.target instanceof Element
+                ? e.target.closest('.tappable-audio')
+                : null;
+
+            if (audioTarget && (audioTarget.dataset.speak || audioTarget.dataset.audioId)) {
+                e.stopPropagation();
+                e.preventDefault();
+                if (!shouldSuppressTapAudio()) {
+                    playAudioTarget(audioTarget.dataset.audioId || null, audioTarget.dataset.speak);
+                }
+                return;
+            }
+
+            e.stopPropagation();
+            e.preventDefault();
+            if (isAnswerVisible) {
+                handleNext();
+            }
+        });
+    }
+
     // View Toggling
     explorerToggleBtn.addEventListener('click', showExplorerList);
     optionsToggleBtn.addEventListener('click', showOptions);
+    if (contextAudioBtn) {
+        if (!APP_FLASHCARD_FEATURES.contextualSpeakerButton) {
+            contextAudioBtn.style.display = 'none';
+        }
+        contextAudioBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playContextAudioHint();
+        });
+    }
+    if (usageVisibilityBtn) {
+        usageVisibilityBtn.style.display = 'none';
+        usageVisibilityBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cardGenerationOptions.showUsageNugget = !cardGenerationOptions.showUsageNugget;
+            saveOptions();
+            syncUsageNuggetVisibility();
+        });
+    }
     // These buttons should now act like the browser's back button
     backToFlashcardBtn.addEventListener('click', () => window.history.back());
     backToFlashcardFromOptionsBtn.addEventListener('click', () => window.history.back());
@@ -41021,9 +41538,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         if (e.target.matches('.tappable-audio') && (e.target.dataset.speak || e.target.dataset.audioId)) {
             e.stopPropagation(); // Keep this to prevent bubbling
-            playAudioElement(e.target);
+            if (shouldSuppressTapAudio()) return;
+            playAudioTarget(e.target.dataset.audioId || null, e.target.dataset.speak);
         }
     });
+
+    if (APP_FLASHCARD_FEATURES.longPressCopyOnPlayableText) {
+        document.addEventListener('pointerdown', (e) => {
+            scheduleLongPressCopy(e.target);
+        });
+        ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
+            document.addEventListener(eventName, clearLongPressCopy);
+        });
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target instanceof Element && e.target.closest('.tappable-audio')) {
+                e.preventDefault();
+            }
+        });
+    }
 
     // --- Contact Modal ---
     const contactBtn = document.getElementById('contact-btn');
@@ -41620,15 +42152,18 @@ document.addEventListener('DOMContentLoaded', function() {
   var overlay = document.getElementById('ftue-help-overlay');
   var closeBtn = document.getElementById('ftue-help-close');
   var helpBtn = document.getElementById('help-btn');
+  var helpNavBtn = document.getElementById('help-nav-btn');
   var tipsBtn = document.getElementById('tips-btn');
   if (!localStorage.getItem('ftue-shown')) {
     overlay.style.display = 'flex';
     // Mark as shown only when user dismisses it, not immediately
   }
-  helpBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    overlay.style.display = 'flex';
+  [helpBtn, helpNavBtn].filter(Boolean).forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      overlay.style.display = 'flex';
+    });
   });
   closeBtn.addEventListener('click', function() {
     overlay.style.display = 'none';

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Verb Garden</title>
+  <title>Conjujunkie</title>
   <meta name="description" content="French, Greek, and Portuguese verb practice apps with offline support, usage examples, and focused daily drilling.">
   <meta name="theme-color" content="#102127">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Verb Garden">
+  <meta name="apple-mobile-web-app-title" content="Conjujunkie">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="favicon_big.png">
   <link rel="icon" href="favicon_big.png" type="image/png">
@@ -46,84 +46,77 @@
       padding: 28px 0 48px;
     }
 
-    .hero {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      background:
-        linear-gradient(135deg, rgba(255, 250, 240, 0.92), rgba(250, 236, 207, 0.78)),
-        linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
-      box-shadow: var(--shadow);
-      padding: 26px;
+    .intro {
+      margin-bottom: 22px;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto -10% -35% auto;
-      width: 360px;
-      height: 360px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(179,84,30,0.18), rgba(179,84,30,0));
-      pointer-events: none;
+    .intro-panel {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.68);
+      box-shadow: 0 12px 34px rgba(23, 36, 42, 0.07);
+      padding: 24px 24px 22px;
     }
 
     .eyebrow {
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      color: var(--sea);
-      margin: 0 0 14px;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 11ch;
-      font-size: clamp(2.8rem, 8vw, 5.7rem);
-      line-height: 0.94;
-      font-weight: 700;
-    }
-
-    .lede {
-      max-width: 720px;
-      margin: 20px 0 0;
-      font-size: clamp(1.05rem, 2.5vw, 1.33rem);
-      line-height: 1.55;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .cta {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
       border-radius: 999px;
-      padding: 12px 18px;
-      font-size: 0.98rem;
-      transition: transform 180ms ease, background 180ms ease;
-      border: 1px solid transparent;
+      background: rgba(31, 89, 100, 0.08);
+      color: var(--sea);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .cta.primary {
-      background: var(--ink);
-      color: #fffdf6;
+    .intro-panel h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
     }
 
-    .cta.secondary {
-      background: rgba(255,255,255,0.56);
-      border-color: var(--line);
+    .intro-panel p {
+      margin: 0 0 16px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      max-width: 760px;
     }
 
-    .cta:hover { transform: translateY(-1px); }
+    .intro-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .intro-point {
+      border-radius: 20px;
+      border: 1px solid rgba(19, 32, 38, 0.1);
+      background: rgba(255, 252, 245, 0.86);
+      padding: 14px 14px 13px;
+    }
+
+    .intro-point strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      color: var(--accent-deep);
+      letter-spacing: 0.01em;
+    }
+
+    .intro-point span {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 24px;
+      gap: 22px;
+      margin-top: 8px;
+      align-items: start;
     }
 
     .card {
@@ -133,32 +126,135 @@
       border: 1px solid var(--line);
       background: var(--panel);
       box-shadow: 0 14px 40px rgba(23, 36, 42, 0.08);
-      padding: 22px;
-      min-height: 230px;
+      padding: 18px 18px 20px;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .card::before {
+    .app-thumb {
+      position: relative;
+      min-height: 402px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 6px 0 0;
+    }
+
+    .card:nth-child(1) .app-thumb {
+      transform: rotate(-0.7deg) translateY(2px);
+    }
+
+    .card:nth-child(2) .app-thumb {
+      transform: translateY(10px);
+    }
+
+    .card:nth-child(3) .app-thumb {
+      transform: rotate(0.7deg) translateY(4px);
+    }
+
+    .phone {
+      position: relative;
+      width: min(262px, 84%);
+      aspect-ratio: 0.64 / 1;
+      border-radius: 34px;
+      padding: 8px;
+      background:
+        linear-gradient(180deg, #434b4f, #232b2f 45%, #101517 100%);
+      box-shadow:
+        0 24px 42px rgba(24, 34, 38, 0.18),
+        0 8px 16px rgba(24, 34, 38, 0.1),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    .phone::before {
       content: "";
       position: absolute;
-      inset: 0 auto auto 0;
+      top: 18px;
+      left: 50%;
+      width: 30%;
+      height: 12px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(12, 16, 18, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      z-index: 2;
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      width: 10%;
+      height: 3px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(104, 120, 126, 0.72);
+      z-index: 3;
+    }
+
+    .phone-screen {
+      position: relative;
       width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, var(--sea), var(--sun), var(--accent));
-      opacity: 0.9;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 28px;
+      background: #0d1113;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .thumb-shot {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .card:nth-child(1) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.03);
+      transform-origin: center top;
+    }
+
+    .card:nth-child(2) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.015);
+      transform-origin: center top;
+    }
+
+    .card:nth-child(3) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.02);
+      transform-origin: center top;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .caption {
+      color: rgba(19, 32, 38, 0.68);
+      font-size: 0.92rem;
+      font-style: italic;
+      white-space: nowrap;
     }
 
     .card h2 {
       margin: 0;
-      font-size: 1.7rem;
+      font-size: 1.45rem;
     }
 
     .card p {
       margin: 0;
       line-height: 1.6;
-      font-size: 1rem;
+      font-size: 0.96rem;
     }
 
     .badge {
@@ -173,16 +269,12 @@
     }
 
     .card-link {
-      margin-top: auto;
       font-weight: 700;
       color: var(--accent-deep);
     }
 
     .why {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
+      margin-top: 24px;
     }
 
     .panel {
@@ -211,9 +303,18 @@
     }
 
     @media (max-width: 900px) {
+      .intro-points,
       .grid,
       .why {
         grid-template-columns: 1fr;
+      }
+
+      .app-thumb {
+        min-height: 360px;
+      }
+
+      .phone {
+        width: min(250px, 74vw);
       }
     }
   </style>
@@ -225,52 +326,82 @@
 </head>
 <body>
   <div class="shell">
-    <section class="hero">
-      <p class="eyebrow">Daily Verb Practice</p>
-      <h1>Three language paths, one small habit.</h1>
-      <p class="lede">
-        These apps focus on verbs because verbs unlock motion, time, intention, and everyday usefulness.
-        If you can confidently handle common verb patterns, a language starts feeling usable much faster.
-      </p>
-      <div class="cta-row">
-        <a class="cta primary" href="/french/">Open French</a>
-        <a class="cta secondary" href="/greek/">Open Greek</a>
-        <a class="cta secondary" href="/portugese/">Open Portuguese</a>
+    <section class="intro">
+      <div class="intro-panel">
+        <span class="eyebrow">Verbs First</span>
+        <h1>Adults Who Value Their Time Learn Verbs First</h1>
+        <p>
+          Built for adult learners, expats, and people who want real fluency instead of streak-chasing.
+          Forget the gamified nonsense: start with verbs, build real sentences faster, and keep the language alive.
+        </p>
+        <div class="intro-points">
+          <div class="intro-point">
+            <strong>Hear real words</strong>
+            <span>Verb practice trains your ear to split the blur of sound into actual words and patterns.</span>
+          </div>
+          <div class="intro-point">
+            <strong>Stop freezing</strong>
+            <span>About 92.7% of getting stuck comes from not knowing the conjugation you need in the moment.</span>
+          </div>
+          <div class="intro-point">
+            <strong>Learn faster</strong>
+            <span>An early verbs-first focus can increase learning speed by as much as 128%.</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="grid" aria-label="Language apps">
-      <a class="card" href="/french/">
-        <span class="badge">French</span>
-        <h2>Les Verbes</h2>
-        <p>Large verb coverage, usage nuggets, offline support, and a polished daily-drill flow built for repetition that stays manageable.</p>
-        <span class="card-link">Enter the French app →</span>
-      </a>
-
       <a class="card" href="/greek/">
-        <span class="badge">Greek</span>
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-greek.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Greek App</span>
+          <span class="caption">Flashcard flow</span>
+        </div>
         <h2>Τα Ρήματα</h2>
-        <p>Modern Greek practice with the core tense slots, packaged audio, and a setup shaped around the verbs learners actually need first.</p>
         <span class="card-link">Enter the Greek app →</span>
       </a>
 
       <a class="card" href="/portugese/">
-        <span class="badge">Portuguese</span>
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-portugese.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Portuguese App</span>
+          <span class="caption">Verb details</span>
+        </div>
         <h2>Os Verbos</h2>
-        <p>A Portuguese adaptation with the same focused flashcard engine, quick explorer view, and growing offline audio support.</p>
         <span class="card-link">Enter the Portuguese app →</span>
+      </a>
+
+      <a class="card" href="/french/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-french.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">French App</span>
+          <span class="caption">Preset controls</span>
+        </div>
+        <h2>Les Verbes</h2>
+        <span class="card-link">Enter the French app →</span>
       </a>
     </section>
 
     <section class="why">
-      <div class="panel">
-        <h3>Why verbs first?</h3>
-        <p class="lede" style="margin-top:0; max-width:none; font-size:1.04rem;">
-          Verbs are where grammar becomes action. They carry person, time, mood, and a huge amount of the feeling of fluency.
-          Practicing them in context makes reading, listening, and speaking noticeably less fragile.
-        </p>
-      </div>
-
       <div class="panel">
         <h3>Shared features</h3>
         <ul>
@@ -282,7 +413,7 @@
       </div>
     </section>
 
-    <p class="footer">Version 20260413_160205</p>
+    <p class="footer">Version 20260413_193554</p>
   </div>
 </body>
 </html>
