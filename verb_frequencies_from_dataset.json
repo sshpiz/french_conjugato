@@ -1,0 +1,287 @@
+[
+  {
+    "verb": "devenir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "découvrir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "faire",
+    "count": 5,
+    "frequency": "common"
+  },
+  {
+    "verb": "pouvoir",
+    "count": 4,
+    "frequency": "intermediate"
+  },
+  {
+    "verb": "répandu",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "arriver",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "appeller",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "citer",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "avoir",
+    "count": 5,
+    "frequency": "common"
+  },
+  {
+    "verb": "penser",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "rester",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "induire",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "dire",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "descendîe",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "décider",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "comprendre",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "tomber",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "signaler",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "devoir",
+    "count": 4,
+    "frequency": "intermediate"
+  },
+  {
+    "verb": "décevoir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "abonder",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "embarquer",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "apporter",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "rendre",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "reconnaître",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "réfléchir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "inverser",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "mettre",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "regarder",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "marcher",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "voir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "opiner",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "vouloir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "appeler",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "savoir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "croire",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "vieillir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "ramasser",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "engager",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "exister",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "abandonner",
+    "count": 2,
+    "frequency": "intermediate"
+  },
+  {
+    "verb": "donner",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "renvoyer",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "tolérer",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "signifier",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "occuper",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "aimer",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "résoudre",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "ressasser",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "marier",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "sentir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "chercher",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "inscrire",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "produire",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "ordonner",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "choisir",
+    "count": 1,
+    "frequency": "rare"
+  },
+  {
+    "verb": "apeurer",
+    "count": 1,
+    "frequency": "rare"
+  }
+]

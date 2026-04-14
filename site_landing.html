@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Conjujunkie</title>
+  <meta name="description" content="French, Greek, and Portuguese verb practice apps with offline support, usage examples, and focused daily drilling.">
+  <meta name="theme-color" content="#102127">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Conjujunkie">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="favicon_big.png">
+  <link rel="icon" href="favicon_big.png" type="image/png">
+  <style>
+    :root {
+      --bg: #f5efe2;
+      --ink: #132026;
+      --panel: rgba(255, 252, 245, 0.84);
+      --line: rgba(19, 32, 38, 0.14);
+      --accent: #b3541e;
+      --accent-deep: #7a2f10;
+      --sea: #1f5964;
+      --sun: #f0c776;
+      --shadow: 0 24px 70px rgba(23, 36, 42, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(240, 199, 118, 0.85), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(31, 89, 100, 0.18), transparent 24%),
+        linear-gradient(180deg, #fff7e7 0%, #f0ecdf 42%, #ebe4d5 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    .intro {
+      margin-bottom: 22px;
+    }
+
+    .intro-panel {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.68);
+      box-shadow: 0 12px 34px rgba(23, 36, 42, 0.07);
+      padding: 24px 24px 22px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(31, 89, 100, 0.08);
+      color: var(--sea);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .intro-panel h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .intro-panel p {
+      margin: 0 0 16px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      max-width: 760px;
+    }
+
+    .intro-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .intro-point {
+      border-radius: 20px;
+      border: 1px solid rgba(19, 32, 38, 0.1);
+      background: rgba(255, 252, 245, 0.86);
+      padding: 14px 14px 13px;
+    }
+
+    .intro-point strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      color: var(--accent-deep);
+      letter-spacing: 0.01em;
+    }
+
+    .intro-point span {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 8px;
+      align-items: start;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 14px 40px rgba(23, 36, 42, 0.08);
+      padding: 18px 18px 20px;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .app-thumb {
+      position: relative;
+      min-height: 402px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 6px 0 0;
+    }
+
+    .card:nth-child(1) .app-thumb {
+      transform: rotate(-0.7deg) translateY(2px);
+    }
+
+    .card:nth-child(2) .app-thumb {
+      transform: translateY(10px);
+    }
+
+    .card:nth-child(3) .app-thumb {
+      transform: rotate(0.7deg) translateY(4px);
+    }
+
+    .phone {
+      position: relative;
+      width: min(262px, 84%);
+      aspect-ratio: 0.64 / 1;
+      border-radius: 34px;
+      padding: 8px;
+      background:
+        linear-gradient(180deg, #434b4f, #232b2f 45%, #101517 100%);
+      box-shadow:
+        0 24px 42px rgba(24, 34, 38, 0.18),
+        0 8px 16px rgba(24, 34, 38, 0.1),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      width: 30%;
+      height: 12px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(12, 16, 18, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      z-index: 2;
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      width: 10%;
+      height: 3px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(104, 120, 126, 0.72);
+      z-index: 3;
+    }
+
+    .phone-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 28px;
+      background: #0d1113;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .thumb-shot {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .card:nth-child(1) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.03);
+      transform-origin: center top;
+    }
+
+    .card:nth-child(2) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.015);
+      transform-origin: center top;
+    }
+
+    .card:nth-child(3) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.02);
+      transform-origin: center top;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .caption {
+      color: rgba(19, 32, 38, 0.68);
+      font-size: 0.92rem;
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.45rem;
+    }
+
+    .card p {
+      margin: 0;
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
+
+    .badge {
+      align-self: flex-start;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(31, 89, 100, 0.09);
+      color: var(--sea);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .card-link {
+      font-weight: 700;
+      color: var(--accent-deep);
+    }
+
+    .why {
+      margin-top: 24px;
+    }
+
+    .panel {
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.64);
+      box-shadow: 0 12px 34px rgba(23, 36, 42, 0.07);
+      padding: 22px;
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      line-height: 1.65;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: rgba(19, 32, 38, 0.74);
+      font-size: 0.93rem;
+    }
+
+    @media (max-width: 900px) {
+      .intro-points,
+      .grid,
+      .why {
+        grid-template-columns: 1fr;
+      }
+
+      .app-thumb {
+        min-height: 360px;
+      }
+
+      .phone {
+        width: min(250px, 74vw);
+      }
+    }
+  </style>
+  <script>
+    if (location.protocol !== 'file:' && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function () {});
+    }
+  </script>
+</head>
+<body>
+  <div class="shell">
+    <section class="intro">
+      <div class="intro-panel">
+        <span class="eyebrow">Verbs First</span>
+        <h1>Adults Who Value Their Time Learn Verbs First</h1>
+        <p>
+          Built for adult learners, expats, and people who want real fluency instead of streak-chasing.
+          Forget the gamified nonsense: start with verbs, build real sentences faster, and keep the language alive.
+        </p>
+        <div class="intro-points">
+          <div class="intro-point">
+            <strong>Hear real words</strong>
+            <span>Verb practice trains your ear to split the blur of sound into actual words and patterns.</span>
+          </div>
+          <div class="intro-point">
+            <strong>Stop freezing</strong>
+            <span>About 92.7% of getting stuck comes from not knowing the conjugation you need in the moment.</span>
+          </div>
+          <div class="intro-point">
+            <strong>Learn faster</strong>
+            <span>An early verbs-first focus can increase learning speed by as much as 128%.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Language apps">
+      <a class="card" href="/greek/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-greek.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Greek App</span>
+          <span class="caption">Flashcard flow</span>
+        </div>
+        <h2>Τα Ρήματα</h2>
+        <span class="card-link">Enter the Greek app →</span>
+      </a>
+
+      <a class="card" href="/portugese/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-portugese.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Portuguese App</span>
+          <span class="caption">Verb details</span>
+        </div>
+        <h2>Os Verbos</h2>
+        <span class="card-link">Enter the Portuguese app →</span>
+      </a>
+
+      <a class="card" href="/french/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-french.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">French App</span>
+          <span class="caption">Preset controls</span>
+        </div>
+        <h2>Les Verbes</h2>
+        <span class="card-link">Enter the French app →</span>
+      </a>
+    </section>
+
+    <section class="why">
+      <div class="panel">
+        <h3>Shared features</h3>
+        <ul>
+          <li>Flashcards by tense, pronoun, and frequency tier.</li>
+          <li>Usage examples that make meanings less abstract.</li>
+          <li>Explorer view for full tables and searching.</li>
+          <li>Offline-friendly installable web apps.</li>
+        </ul>
+      </div>
+    </section>
+
+    <p class="footer">Version {{APP_VERSION}}</p>
+  </div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 {
   "name": "Les Verbes",
   "short_name": "Les Verbes", 
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

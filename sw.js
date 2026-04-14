@@ -1,11 +1,28 @@
-// sw.js - cache-first (stale-while-revalidate) for all resources
-// App opens instantly from cache; background fetch keeps content fresh.
+// sw.js - scoped stale-while-revalidate for the French app.
 
-const CACHE_NAME = 'offline-cache-v14';
+const CACHE_PREFIX = 'fr-app-cache-';
+const CACHE_NAME = CACHE_PREFIX + 'v16';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
+const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
 
-// ── Tiny persistent logger ─────────────────────────────────────────────────
+function appPath(relative = '') {
+  const clean = String(relative || '').replace(/^\/+/, '');
+  const prefix = SCOPE_PATH || '';
+  return clean ? `${prefix}/${clean}` : `${prefix || '/'}`;
+}
+
+const INDEX_PATH = appPath('index.html');
+const MANIFEST_PATH = appPath('manifest.json');
+const FAVICON_PATH = appPath('favicon_big.png');
+const LOG_PATH = appPath(LOG_KEY);
+const TTS_PREFIX = appPath('tts/');
+
+function inScopePath(pathname) {
+  if (!SCOPE_PATH) return true;
+  return pathname === SCOPE_PATH || pathname.startsWith(SCOPE_PATH + '/');
+}
+
 const swLog = (() => {
   let buf = [];
   let timer = null;
@@ -23,11 +40,11 @@ const swLog = (() => {
     if (!buf.length) return;
     try {
       const cache = await caches.open(CACHE_NAME);
-      const prev = await cache.match(LOG_KEY)
+      const prev = await cache.match(LOG_PATH)
         .then(r => r ? r.json() : []).catch(() => []);
       const next = prev.concat(buf).slice(-MAX_LOG);
       buf = [];
-      await cache.put(LOG_KEY, new Response(JSON.stringify(next), {
+      await cache.put(LOG_PATH, new Response(JSON.stringify(next), {
         headers: { 'Content-Type': 'application/json' }
       }));
     } catch (_) {}
@@ -36,13 +53,12 @@ const swLog = (() => {
   return { add };
 })();
 
-// ── Install ────────────────────────────────────────────────────────────────
 self.addEventListener('install', event => {
   swLog.add(`install ${CACHE_NAME}`);
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      for (const url of ['/manifest.json', '/favicon_big.png']) {
+      for (const url of [INDEX_PATH, MANIFEST_PATH, FAVICON_PATH]) {
         try { await cache.add(url); swLog.add(`pre-cached ${url}`); }
         catch (e) { swLog.add(`pre-cache failed ${url}: ${e.message}`); }
       }
@@ -50,65 +66,82 @@ self.addEventListener('install', event => {
   );
 });
 
-// ── Activate ───────────────────────────────────────────────────────────────
 self.addEventListener('activate', event => {
   swLog.add('activate');
   event.waitUntil(
     caches.keys().then(async keys => {
-      const old = keys.filter(k => k !== CACHE_NAME);
+      const old = keys.filter(k => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME);
       const isUpgrade = old.length > 0;
       swLog.add(`old caches: [${old.join(', ')}] isUpgrade=${isUpgrade}`);
       await Promise.all(old.map(k => caches.delete(k)));
       await self.clients.claim();
       swLog.add('claimed clients');
       if (isUpgrade) {
-        // Delay so we don't interrupt the page that just opened
         await new Promise(r => setTimeout(r, 2000));
         const clients = await self.clients.matchAll({ type: 'window' });
-        swLog.add(`SW_UPDATED → ${clients.length} client(s)`);
+        swLog.add(`SW_UPDATED -> ${clients.length} client(s)`);
         clients.forEach(c => c.postMessage({ type: 'SW_UPDATED' }));
       }
     })
   );
 });
 
-// ── Fetch ──────────────────────────────────────────────────────────────────
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Serve debug log
-  if (url.pathname === '/__sw-log') {
+  if (url.pathname === LOG_PATH) {
     event.respondWith(
-      caches.open(CACHE_NAME).then(c => c.match(LOG_KEY))
+      caches.open(CACHE_NAME).then(c => c.match(LOG_PATH))
         .then(r => r || new Response('[]', { headers: { 'Content-Type': 'application/json' } }))
     );
     return;
   }
 
-  // Only intercept same-origin
   if (url.origin !== self.location.origin) return;
+  if (!inScopePath(url.pathname)) return;
 
   event.respondWith(serveWithSWR(event.request, url));
 });
 
-// Stale-While-Revalidate for everything
 async function serveWithSWR(request, url) {
   const isNav = request.mode === 'navigate'
-    || url.pathname === '/'
+    || url.pathname === SCOPE_PATH
+    || url.pathname === `${SCOPE_PATH}/`
     || url.pathname.endsWith('.html');
+  const isTtsAsset = url.pathname.startsWith(TTS_PREFIX);
 
   const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request)
-    || (isNav ? (await cache.match('/index.html') || await cache.match('/')) : null);
 
-  // Kick off background refresh regardless
+  if (isTtsAsset) {
+    const cachedAsset = await cache.match(request);
+    try {
+      const response = await fetch(request, { cache: 'no-store' });
+      if (response.ok) {
+        await cache.put(request, response.clone());
+        swLog.add(`tts-fetch ok ${url.pathname} status=${response.status}`);
+      } else {
+        swLog.add(`tts-fetch bad-status ${url.pathname} status=${response.status}`);
+      }
+      return response;
+    } catch (e) {
+      swLog.add(`tts-fetch failed ${url.pathname}: ${e.message}`);
+      if (cachedAsset) {
+        swLog.add(`tts-cache-hit ${url.pathname}`);
+        return cachedAsset;
+      }
+      return new Response('TTS asset unavailable offline', { status: 503 });
+    }
+  }
+
+  const cached = await cache.match(request)
+    || (isNav ? await cache.match(INDEX_PATH) : null);
+
   const refresh = fetch(request, isNav ? { cache: 'no-store' } : {})
     .then(async response => {
       if (!response.ok) return;
       await cache.put(request, response.clone());
       if (isNav) {
-        if (url.pathname === '/') await cache.put(new Request('/index.html'), response.clone());
-        if (url.pathname.endsWith('/index.html')) await cache.put(new Request('/'), response.clone());
+        await cache.put(INDEX_PATH, response.clone());
         swLog.add(`bg-refresh ok ${url.pathname} status=${response.status}`);
       }
     })
@@ -117,20 +150,16 @@ async function serveWithSWR(request, url) {
     });
 
   if (cached) {
-    // Cache hit — return immediately, refresh happens in background
     if (isNav) swLog.add(`nav CACHE-HIT ${url.pathname} (refreshing in bg)`);
     return cached;
   }
 
-  // No cache — must wait for network (only happens on very first open)
-  if (isNav) swLog.add(`nav NO-CACHE ${url.pathname} — waiting for network`);
+  if (isNav) swLog.add(`nav NO-CACHE ${url.pathname} - waiting for network`);
   try {
-    await refresh; // wait for the fetch we already kicked off
-    const fresh = await cache.match(request)
-      || await cache.match('/index.html')
-      || await cache.match('/');
+    await refresh;
+    const fresh = await cache.match(request) || await cache.match(INDEX_PATH);
     if (fresh) return fresh;
   } catch (_) {}
 
-  return new Response('Offline — open once with internet to cache the app', { status: 503 });
+  return new Response('Offline - open once with internet to cache the app', { status: 503 });
 }

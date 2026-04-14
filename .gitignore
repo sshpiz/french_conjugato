@@ -16,6 +16,9 @@ __pycache__/
 dist/
 dist_back/
 dist-gh/
+generated_tts/
+generated_tts_cache/
+_hold/
 
 # === Large data / corpora ===
 *.csv
@@ -23,6 +26,7 @@ dist-gh/
 *.pkl
 *.pickle
 OpenSubtitles*
+en-fr.xml
 en-fr*/
 fr_*.txt
 verb_analysis_results_*
@@ -88,6 +92,8 @@ Untitled*.jpg
 
 # === Misc ===
 .DS_Store
+.claude/
+*.log
 .vscode/
 .ipynb_checkpoints/
 *.ipynb

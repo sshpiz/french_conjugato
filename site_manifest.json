@@ -1,0 +1,20 @@
+{
+  "name": "Conjujunkie",
+  "short_name": "Conjujunkie",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#102127",
+  "theme_color": "#102127",
+  "description": "A landing page for the French, Greek, and Portuguese verb practice apps.",
+  "icons": [
+    {
+      "src": "favicon_big.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

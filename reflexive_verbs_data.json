@@ -56,12 +56,12 @@
           "ils": "ils se lèveraient"
         },
         "subjonctif présent": {
-          "je": "que je me lève",
-          "tu": "que tu te lèves",
-          "il": "qu'il se lève",
-          "nous": "que nous nous levions",
-          "vous": "que vous vous leviez",
-          "ils": "qu'ils se lèvent"
+          "je": "je me lève",
+          "tu": "tu te lèves",
+          "il": "il se lève",
+          "nous": "nous nous levions",
+          "vous": "vous vous leviez",
+          "ils": "ils se lèvent"
         }
       },
       "sentences": [
@@ -221,12 +221,12 @@
           "ils": "ils se coucheraient"
         },
         "subjonctif présent": {
-          "je": "que je me couche",
-          "tu": "que tu te couches",
-          "il": "qu'il se couche",
-          "nous": "que nous nous couchions",
-          "vous": "que vous vous couchiez",
-          "ils": "qu'ils se couchent"
+          "je": "je me couche",
+          "tu": "tu te couches",
+          "il": "il se couche",
+          "nous": "nous nous couchions",
+          "vous": "vous vous couchiez",
+          "ils": "ils se couchent"
         }
       },
       "sentences": [
@@ -386,12 +386,12 @@
           "ils": "ils se réveilleraient"
         },
         "subjonctif présent": {
-          "je": "que je me réveille",
-          "tu": "que tu te réveilles",
-          "il": "qu'il se réveille",
-          "nous": "que nous nous réveillions",
-          "vous": "que vous vous réveilliez",
-          "ils": "qu'ils se réveillent"
+          "je": "je me réveille",
+          "tu": "tu te réveilles",
+          "il": "il se réveille",
+          "nous": "nous nous réveillions",
+          "vous": "vous vous réveilliez",
+          "ils": "ils se réveillent"
         }
       },
       "sentences": [
@@ -551,12 +551,12 @@
           "ils": "ils s'habilleraient"
         },
         "subjonctif présent": {
-          "je": "que je m'habille",
-          "tu": "que tu t'habilles",
-          "il": "qu'il s'habille",
-          "nous": "que nous nous habillions",
-          "vous": "que vous vous habilliez",
-          "ils": "qu'ils s'habillent"
+          "je": "je m'habille",
+          "tu": "tu t'habilles",
+          "il": "il s'habille",
+          "nous": "nous nous habillions",
+          "vous": "vous vous habilliez",
+          "ils": "ils s'habillent"
         }
       },
       "sentences": [
@@ -716,12 +716,12 @@
           "ils/elles": "ils se laveraient"
         },
         "subjonctif présent": {
-          "je": "que je me lave",
-          "tu": "que tu te laves",
-          "il/elle/on": "qu'il se lave",
-          "nous": "que nous nous lavions",
-          "vous": "que vous vous laviez",
-          "ils/elles": "qu'ils se lavent"
+          "je": "je me lave",
+          "tu": "tu te laves",
+          "il/elle/on": "il se lave",
+          "nous": "nous nous lavions",
+          "vous": "vous vous laviez",
+          "ils/elles": "ils se lavent"
         }
       },
       "sentences": [
@@ -881,12 +881,12 @@
           "ils/elles": "ils se souviendraient"
         },
         "subjonctif présent": {
-          "je": "que je me souvienne",
-          "tu": "que tu te souviennes",
-          "il/elle/on": "qu'il se souvienne",
-          "nous": "que nous nous souvenions",
-          "vous": "que vous vous souveniez",
-          "ils/elles": "qu'ils se souviennent"
+          "je": "je me souvienne",
+          "tu": "tu te souviennes",
+          "il/elle/on": "il se souvienne",
+          "nous": "nous nous souvenions",
+          "vous": "vous vous souveniez",
+          "ils/elles": "ils se souviennent"
         }
       },
       "sentences": [
@@ -1046,12 +1046,12 @@
           "ils/elles": "ils s'appelleraient"
         },
         "subjonctif présent": {
-          "je": "que je m'appelle",
-          "tu": "que tu t'appelles",
-          "il/elle/on": "qu'il s'appelle",
-          "nous": "que nous nous appelions",
-          "vous": "que vous vous appeliez",
-          "ils/elles": "qu'ils s'appellent"
+          "je": "je m'appelle",
+          "tu": "tu t'appelles",
+          "il/elle/on": "il s'appelle",
+          "nous": "nous nous appelions",
+          "vous": "vous vous appeliez",
+          "ils/elles": "ils s'appellent"
         }
       },
       "sentences": [
@@ -1211,12 +1211,12 @@
           "ils/elles": "ils s'assiéraient"
         },
         "subjonctif présent": {
-          "je": "que je m'asseye",
-          "tu": "que tu t'asseyes",
-          "il/elle/on": "qu'il s'asseye",
-          "nous": "que nous nous asseyions",
-          "vous": "que vous vous asseyiez",
-          "ils/elles": "qu'ils s'asseyent"
+          "je": "je m'asseye",
+          "tu": "tu t'asseyes",
+          "il/elle/on": "il s'asseye",
+          "nous": "nous nous asseyions",
+          "vous": "vous vous asseyiez",
+          "ils/elles": "ils s'asseyent"
         }
       },
       "sentences": [
@@ -1376,12 +1376,12 @@
           "ils/elles": "ils se rappelleraient"
         },
         "subjonctif présent": {
-          "je": "que je me rappelle",
-          "tu": "que tu te rappelles",
-          "il/elle/on": "qu'il se rappelle",
-          "nous": "que nous nous rappelions",
-          "vous": "que vous vous rappeliez",
-          "ils/elles": "qu'ils se rappellent"
+          "je": "je me rappelle",
+          "tu": "tu te rappelles",
+          "il/elle/on": "il se rappelle",
+          "nous": "nous nous rappelions",
+          "vous": "vous vous rappeliez",
+          "ils/elles": "ils se rappellent"
         }
       },
       "sentences": [
@@ -1541,12 +1541,12 @@
           "ils/elles": "ils se moqueraient"
         },
         "subjonctif présent": {
-          "je": "que je me moque",
-          "tu": "que tu te moques",
-          "il/elle/on": "qu'il se moque",
-          "nous": "que nous nous moquions",
-          "vous": "que vous vous moquiez",
-          "ils/elles": "qu'ils se moquent"
+          "je": "je me moque",
+          "tu": "tu te moques",
+          "il/elle/on": "il se moque",
+          "nous": "nous nous moquions",
+          "vous": "vous vous moquiez",
+          "ils/elles": "ils se moquent"
         }
       },
       "sentences": [
@@ -1706,12 +1706,12 @@
           "ils/elles": "ils se plaindraient"
         },
         "subjonctif présent": {
-          "je": "que je me plaigne",
-          "tu": "que tu te plaignes",
-          "il/elle/on": "qu'il se plaigne",
-          "nous": "que nous nous plaignions",
-          "vous": "que vous vous plaigniez",
-          "ils/elles": "qu'ils se plaignent"
+          "je": "je me plaigne",
+          "tu": "tu te plaignes",
+          "il/elle/on": "il se plaigne",
+          "nous": "nous nous plaignions",
+          "vous": "vous vous plaigniez",
+          "ils/elles": "ils se plaignent"
         }
       },
       "sentences": [
@@ -1871,12 +1871,12 @@
           "ils/elles": "ils se tairaient"
         },
         "subjonctif présent": {
-          "je": "que je me taise",
-          "tu": "que tu te taises",
-          "il/elle/on": "qu'il se taise",
-          "nous": "que nous nous taisions",
-          "vous": "que vous vous taisiez",
-          "ils/elles": "qu'ils se taisent"
+          "je": "je me taise",
+          "tu": "tu te taises",
+          "il/elle/on": "il se taise",
+          "nous": "nous nous taisions",
+          "vous": "vous vous taisiez",
+          "ils/elles": "ils se taisent"
         }
       },
       "sentences": [
@@ -2036,12 +2036,12 @@
           "ils/elles": "ils se battraient"
         },
         "subjonctif présent": {
-          "je": "que je me batte",
-          "tu": "que tu te battes",
-          "il/elle/on": "qu'il se batte",
-          "nous": "que nous nous battions",
-          "vous": "que vous vous battiez",
-          "ils/elles": "qu'ils se battent"
+          "je": "je me batte",
+          "tu": "tu te battes",
+          "il/elle/on": "il se batte",
+          "nous": "nous nous battions",
+          "vous": "vous vous battiez",
+          "ils/elles": "ils se battent"
         }
       },
       "sentences": [
@@ -2201,12 +2201,12 @@
           "ils/elles": "ils se marieraient"
         },
         "subjonctif présent": {
-          "je": "que je me marie",
-          "tu": "que tu te maries",
-          "il/elle/on": "qu'il se marie",
-          "nous": "que nous nous mariions",
-          "vous": "que vous vous mariiez",
-          "ils/elles": "qu'ils se marient"
+          "je": "je me marie",
+          "tu": "tu te maries",
+          "il/elle/on": "il se marie",
+          "nous": "nous nous mariions",
+          "vous": "vous vous mariiez",
+          "ils/elles": "ils se marient"
         }
       },
       "sentences": [
@@ -2366,12 +2366,12 @@
           "ils/elles": "ils se reposeraient"
         },
         "subjonctif présent": {
-          "je": "que je me repose",
-          "tu": "que tu te reposes",
-          "il/elle/on": "qu'il se repose",
-          "nous": "que nous nous reposions",
-          "vous": "que vous vous reposiez",
-          "ils/elles": "qu'ils se reposent"
+          "je": "je me repose",
+          "tu": "tu te reposes",
+          "il/elle/on": "il se repose",
+          "nous": "nous nous reposions",
+          "vous": "vous vous reposiez",
+          "ils/elles": "ils se reposent"
         }
       },
       "sentences": [
@@ -2531,12 +2531,12 @@
           "ils/elles": "ils s'amuseraient"
         },
         "subjonctif présent": {
-          "je": "que je m'amuse",
-          "tu": "que tu t'amuses",
-          "il/elle/on": "qu'il s'amuse",
-          "nous": "que nous nous amusions",
-          "vous": "que vous vous amusiez",
-          "ils/elles": "qu'ils s'amusent"
+          "je": "je m'amuse",
+          "tu": "tu t'amuses",
+          "il/elle/on": "il s'amuse",
+          "nous": "nous nous amusions",
+          "vous": "vous vous amusiez",
+          "ils/elles": "ils s'amusent"
         }
       },
       "sentences": [
@@ -2696,12 +2696,12 @@
           "ils/elles": "ils se verraient"
         },
         "subjonctif présent": {
-          "je": "que je me voie",
-          "tu": "que tu te voies",
-          "il/elle/on": "qu'il se voie",
-          "nous": "que nous nous voyions",
-          "vous": "que vous vous voyiez",
-          "ils/elles": "qu'ils se voient"
+          "je": "je me voie",
+          "tu": "tu te voies",
+          "il/elle/on": "il se voie",
+          "nous": "nous nous voyions",
+          "vous": "vous vous voyiez",
+          "ils/elles": "ils se voient"
         }
       },
       "sentences": [
@@ -2861,12 +2861,12 @@
           "ils/elles": "ils s'aimeraient"
         },
         "subjonctif présent": {
-          "je": "que je m'aime",
-          "tu": "que tu t'aimes",
-          "il/elle/on": "qu'il s'aime",
-          "nous": "que nous nous aimions",
-          "vous": "que vous vous aimiez",
-          "ils/elles": "qu'ils s'aiment"
+          "je": "je m'aime",
+          "tu": "tu t'aimes",
+          "il/elle/on": "il s'aime",
+          "nous": "nous nous aimions",
+          "vous": "vous vous aimiez",
+          "ils/elles": "ils s'aiment"
         }
       },
       "sentences": [
@@ -3026,12 +3026,12 @@
           "ils/elles": "ils se parleraient"
         },
         "subjonctif présent": {
-          "je": "que je me parle",
-          "tu": "que tu te parles",
-          "il/elle/on": "qu'il se parle",
-          "nous": "que nous nous parlions",
-          "vous": "que vous vous parliez",
-          "ils/elles": "qu'ils se parlent"
+          "je": "je me parle",
+          "tu": "tu te parles",
+          "il/elle/on": "il se parle",
+          "nous": "nous nous parlions",
+          "vous": "vous vous parliez",
+          "ils/elles": "ils se parlent"
         }
       },
       "sentences": [
@@ -3191,12 +3191,12 @@
           "ils/elles": "ils se connaîtraient"
         },
         "subjonctif présent": {
-          "je": "que je me connaisse",
-          "tu": "que tu te connaisses",
-          "il/elle/on": "qu'il se connaisse",
-          "nous": "que nous nous connaissions",
-          "vous": "que vous vous connaissiez",
-          "ils/elles": "qu'ils se connaissent"
+          "je": "je me connaisse",
+          "tu": "tu te connaisses",
+          "il/elle/on": "il se connaisse",
+          "nous": "nous nous connaissions",
+          "vous": "vous vous connaissiez",
+          "ils/elles": "ils se connaissent"
         }
       },
       "sentences": [
@@ -3356,12 +3356,12 @@
           "ils/elles": "ils se fâcheraient"
         },
         "subjonctif présent": {
-          "je": "que je me fâche",
-          "tu": "que tu te fâches",
-          "il/elle/on": "qu'il se fâche",
-          "nous": "que nous nous fâchions",
-          "vous": "que vous vous fâchiez",
-          "ils/elles": "qu'ils se fâchent"
+          "je": "je me fâche",
+          "tu": "tu te fâches",
+          "il/elle/on": "il se fâche",
+          "nous": "nous nous fâchions",
+          "vous": "vous vous fâchiez",
+          "ils/elles": "ils se fâchent"
         }
       },
       "sentences": [
@@ -3521,12 +3521,12 @@
           "ils/elles": "ils s'ennuieraient"
         },
         "subjonctif présent": {
-          "je": "que je m'ennuie",
-          "tu": "que tu t'ennuies",
-          "il/elle/on": "qu'il s'ennuie",
-          "nous": "que nous nous ennuyions",
-          "vous": "que vous vous ennuyiez",
-          "ils/elles": "qu'ils s'ennuient"
+          "je": "je m'ennuie",
+          "tu": "tu t'ennuies",
+          "il/elle/on": "il s'ennuie",
+          "nous": "nous nous ennuyions",
+          "vous": "vous vous ennuyiez",
+          "ils/elles": "ils s'ennuient"
         }
       },
       "sentences": [
@@ -3686,12 +3686,12 @@
           "ils/elles": "ils se promèneraient"
         },
         "subjonctif présent": {
-          "je": "que je me promène",
-          "tu": "que tu te promènes",
-          "il/elle/on": "qu'il se promène",
-          "nous": "que nous nous promenions",
-          "vous": "que vous vous promeniez",
-          "ils/elles": "qu'ils se promènent"
+          "je": "je me promène",
+          "tu": "tu te promènes",
+          "il/elle/on": "il se promène",
+          "nous": "nous nous promenions",
+          "vous": "vous vous promeniez",
+          "ils/elles": "ils se promènent"
         }
       },
       "sentences": [
@@ -3851,12 +3851,12 @@
           "ils/elles": "ils se dépêcheraient"
         },
         "subjonctif présent": {
-          "je": "que je me dépêche",
-          "tu": "que tu te dépêches",
-          "il/elle/on": "qu'il se dépêche",
-          "nous": "que nous nous dépêchions",
-          "vous": "que vous vous dépêchiez",
-          "ils/elles": "qu'ils se dépêchent"
+          "je": "je me dépêche",
+          "tu": "tu te dépêches",
+          "il/elle/on": "il se dépêche",
+          "nous": "nous nous dépêchions",
+          "vous": "vous vous dépêchiez",
+          "ils/elles": "ils se dépêchent"
         }
       },
       "sentences": [
@@ -4016,12 +4016,12 @@
           "ils/elles": "ils se tromperaient"
         },
         "subjonctif présent": {
-          "je": "que je me trompe",
-          "tu": "que tu te trompes",
-          "il/elle/on": "qu'il se trompe",
-          "nous": "que nous nous trompions",
-          "vous": "que vous vous trompiez",
-          "ils/elles": "qu'ils se trompent"
+          "je": "je me trompe",
+          "tu": "tu te trompes",
+          "il/elle/on": "il se trompe",
+          "nous": "nous nous trompions",
+          "vous": "vous vous trompiez",
+          "ils/elles": "ils se trompent"
         }
       },
       "sentences": [
@@ -4181,12 +4181,12 @@
           "ils/elles": "ils se sentiraient"
         },
         "subjonctif présent": {
-          "je": "que je me sente",
-          "tu": "que tu te sentes",
-          "il/elle/on": "qu'il se sente",
-          "nous": "que nous nous sentions",
-          "vous": "que vous vous sentiez",
-          "ils/elles": "qu'ils se sentent"
+          "je": "je me sente",
+          "tu": "tu te sentes",
+          "il/elle/on": "il se sente",
+          "nous": "nous nous sentions",
+          "vous": "vous vous sentiez",
+          "ils/elles": "ils se sentent"
         }
       },
       "sentences": [
@@ -4346,12 +4346,12 @@
           "ils/elles": "ils se passeraient"
         },
         "subjonctif présent": {
-          "je": "que je me passe",
-          "tu": "que tu te passes",
-          "il/elle/on": "qu'il se passe",
-          "nous": "que nous nous passions",
-          "vous": "que vous vous passiez",
-          "ils/elles": "qu'ils se passent"
+          "je": "je me passe",
+          "tu": "tu te passes",
+          "il/elle/on": "il se passe",
+          "nous": "nous nous passions",
+          "vous": "vous vous passiez",
+          "ils/elles": "ils se passent"
         }
       },
       "sentences": [
@@ -4511,12 +4511,12 @@
           "ils/elles": "ils se retrouveraient"
         },
         "subjonctif présent": {
-          "je": "que je me retrouve",
-          "tu": "que tu te retrouves",
-          "il/elle/on": "qu'il se retrouve",
-          "nous": "que nous nous retrouvions",
-          "vous": "que vous vous retrouviez",
-          "ils/elles": "qu'ils se retrouvent"
+          "je": "je me retrouve",
+          "tu": "tu te retrouves",
+          "il/elle/on": "il se retrouve",
+          "nous": "nous nous retrouvions",
+          "vous": "vous vous retrouviez",
+          "ils/elles": "ils se retrouvent"
         }
       },
       "sentences": [
@@ -4676,12 +4676,12 @@
           "ils/elles": "ils se rendraient"
         },
         "subjonctif présent": {
-          "je": "que je me rende",
-          "tu": "que tu te rendes",
-          "il/elle/on": "qu'il se rende",
-          "nous": "que nous nous rendions",
-          "vous": "que vous vous rendiez",
-          "ils/elles": "qu'ils se rendent"
+          "je": "je me rende",
+          "tu": "tu te rendes",
+          "il/elle/on": "il se rende",
+          "nous": "nous nous rendions",
+          "vous": "vous vous rendiez",
+          "ils/elles": "ils se rendent"
         }
       },
       "sentences": [
@@ -4841,12 +4841,12 @@
           "ils/elles": "ils se mettraient"
         },
         "subjonctif présent": {
-          "je": "que je me mette",
-          "tu": "que tu te mettes",
-          "il/elle/on": "qu'il se mette",
-          "nous": "que nous nous mettions",
-          "vous": "que vous vous mettiez",
-          "ils/elles": "qu'ils se mettent"
+          "je": "je me mette",
+          "tu": "tu te mettes",
+          "il/elle/on": "il se mette",
+          "nous": "nous nous mettions",
+          "vous": "vous vous mettiez",
+          "ils/elles": "ils se mettent"
         }
       },
       "sentences": [
@@ -5006,12 +5006,12 @@
           "ils/elles": "ils se trouveraient"
         },
         "subjonctif présent": {
-          "je": "que je me trouve",
-          "tu": "que tu te trouves",
-          "il/elle/on": "qu'il se trouve",
-          "nous": "que nous nous trouvions",
-          "vous": "que vous vous trouviez",
-          "ils/elles": "qu'ils se trouvent"
+          "je": "je me trouve",
+          "tu": "tu te trouves",
+          "il/elle/on": "il se trouve",
+          "nous": "nous nous trouvions",
+          "vous": "vous vous trouviez",
+          "ils/elles": "ils se trouvent"
         }
       },
       "sentences": [
@@ -5171,12 +5171,12 @@
           "ils/elles": "ils se feraient"
         },
         "subjonctif présent": {
-          "je": "que je me fasse",
-          "tu": "que tu te fasses",
-          "il/elle/on": "qu'il se fasse",
-          "nous": "que nous nous fassions",
-          "vous": "que vous vous fassiez",
-          "ils/elles": "qu'ils se fassent"
+          "je": "je me fasse",
+          "tu": "tu te fasses",
+          "il/elle/on": "il se fasse",
+          "nous": "nous nous fassions",
+          "vous": "vous vous fassiez",
+          "ils/elles": "ils se fassent"
         }
       },
       "sentences": [
@@ -5336,12 +5336,12 @@
           "ils/elles": "ils s'occuperaient"
         },
         "subjonctif présent": {
-          "je": "que je m'occupe",
-          "tu": "que tu t'occupes",
-          "il/elle/on": "qu'il s'occupe",
-          "nous": "que nous nous occupions",
-          "vous": "que vous vous occupiez",
-          "ils/elles": "qu'ils s'occupent"
+          "je": "je m'occupe",
+          "tu": "tu t'occupes",
+          "il/elle/on": "il s'occupe",
+          "nous": "nous nous occupions",
+          "vous": "vous vous occupiez",
+          "ils/elles": "ils s'occupent"
         }
       },
       "sentences": [
@@ -5501,12 +5501,12 @@
           "ils/elles": "ils se demanderaient"
         },
         "subjonctif présent": {
-          "je": "que je me demande",
-          "tu": "que tu te demandes",
-          "il/elle/on": "qu'il se demande",
-          "nous": "que nous nous demandions",
-          "vous": "que vous vous demandiez",
-          "ils/elles": "qu'ils se demandent"
+          "je": "je me demande",
+          "tu": "tu te demandes",
+          "il/elle/on": "il se demande",
+          "nous": "nous nous demandions",
+          "vous": "vous vous demandiez",
+          "ils/elles": "ils se demandent"
         }
       },
       "sentences": [
@@ -5666,12 +5666,12 @@
           "ils/elles": "ils s'intéresseraient"
         },
         "subjonctif présent": {
-          "je": "que je m'intéresse",
-          "tu": "que tu t'intéresses",
-          "il/elle/on": "qu'il s'intéresse",
-          "nous": "que nous nous intéressions",
-          "vous": "que vous vous intéressiez",
-          "ils/elles": "qu'ils s'intéressent"
+          "je": "je m'intéresse",
+          "tu": "tu t'intéresses",
+          "il/elle/on": "il s'intéresse",
+          "nous": "nous nous intéressions",
+          "vous": "vous vous intéressiez",
+          "ils/elles": "ils s'intéressent"
         }
       },
       "sentences": [

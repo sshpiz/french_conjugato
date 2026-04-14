@@ -1,8 +1,10 @@
 // script.js
 // Use language-specific helpers from window (French for now)
 const pronounEmojiMap = window.frenchPronounEmojiMap;
+const tenseKeyToLabel = window.frenchTenseKeyToLabel;
 const tenseKeyToPhraseKey = window.frenchTenseKeyToLabel;
 const pronounOrder = window.frenchPronounOrder;
+const pronounMapping = window.frenchPronounMapping || {};
 const getPrompt = window.getFrenchPrompt;
 const UIStrings = window.frenchUIStrings;
 const localStorageKey = window.frenchLocalStorageKey;
@@ -11,6 +13,11 @@ const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
+const FRENCH_FLASHCARD_FEATURES = {
+    longPressCopyOnPlayableText: true,
+    usageNuggetVisibilityToggle: true,
+    contextualSpeakerButton: true,
+};
 
 // List of irregular verbs
 const IRREGULAR_VERBS = new Set([
@@ -148,6 +155,7 @@ function prepareTextForSpeech(text) {
     const saved = parseFloat(localStorage.getItem(KEY)) || 1;
 
     function applyFontScale(scale) {
+        document.documentElement.style.setProperty('--font-scale', scale);
         const card = document.querySelector(CARD_SELECTOR);
         if (card) card.style.setProperty('--font-scale', scale);
         const slider = document.getElementById('font-size-slider');
@@ -212,6 +220,7 @@ function renderVerbUsages(container, infinitive, options = {}) {
         const exampleFr = document.createElement('span');
         exampleFr.className = 'usage-fr tappable-audio';
         exampleFr.dataset.speak = u.example_fr || '';
+        if (u.sense_id) exampleFr.dataset.audioId = `usage:${u.sense_id}`;
         exampleFr.textContent = u.example_fr || '';
         item.appendChild(exampleFr);
 
@@ -229,6 +238,7 @@ function renderVerbUsages(container, infinitive, options = {}) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const PACKAGED_TTS = window.preRenderedFrenchTts || null;
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
     const phrasebook = {};
@@ -255,17 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
-    // Maps tense keys from `verbs.full.js` to the keys in `sentences.jsonl`
-    const tenseKeyToPhraseKey = {
-        'present': 'présent',
-        'passeCompose': 'passé composé',
-        'imparfait': 'imparfait',
-        'futurSimple': 'futur simple',
-        'plusQueParfait': 'plus-que-parfait',
-        'subjonctifPresent': 'subjonctif présent',
-        'conditionnelPresent': 'conditionnel présent'
-    };
 
     // --- Data Sorting and Deduplication ---
     // Create a unique list of verbs, keeping the first entry found for each infinitive.
@@ -323,6 +322,45 @@ document.addEventListener('DOMContentLoaded', () => {
         acc[freq] = (acc[freq] || 0) + 1;
         return acc;
     }, {});
+
+    const canonicalPronounKey = (pronoun) => {
+        if (!pronoun) return pronoun;
+        if (pronounOrder.includes(pronoun)) return pronoun;
+        for (const [combined, variants] of Object.entries(pronounMapping)) {
+            if (variants.includes(pronoun)) return combined;
+        }
+        return pronoun;
+    };
+
+    const tenseAudioId = (tenseKey) => `shared:tense:${tenseKey}`;
+    const pronounAudioId = (pronoun) => `shared:pronoun:${canonicalPronounKey(pronoun)}`;
+    const lemmaAudioId = (infinitive) => `lemma:${infinitive}`;
+    const conjugationAudioId = (infinitive, tenseKey, pronoun) => `conj:${infinitive}:${tenseKey}:${canonicalPronounKey(pronoun)}`;
+
+    const playAudioTarget = (audioId, text) => {
+        void (async () => {
+            let packagedFallbackReason = null;
+            if (audioId && PACKAGED_TTS && PACKAGED_TTS.isEnabled()) {
+                try {
+                    const played = await PACKAGED_TTS.playAudioId(audioId);
+                    if (played) return;
+                    packagedFallbackReason = 'missing-pack';
+                } catch (error) {
+                    packagedFallbackReason = 'play-error';
+                    if (window.appLog) {
+                        window.appLog(`packed-tts play-error id=${audioId} message="${error.message}"`);
+                    }
+                    if (typeof window.showFrenchTtsFeedback === 'function') {
+                        window.showFrenchTtsFeedback('Packaged French audio failed. Falling back if browser French audio exists.', { persistent: false });
+                    }
+                }
+            }
+            if (audioId && packagedFallbackReason && window.appLog) {
+                window.appLog(`packed-tts fallback reason=${packagedFallbackReason} id=${audioId}`);
+            }
+            if (text) speak(text);
+        })();
+    };
 
     const flashcardView = document.getElementById('flashcard-view'); // Main flashcard view
     const explorerListView = document.getElementById('explorer-list-view');
@@ -401,18 +439,361 @@ document.addEventListener('DOMContentLoaded', () => {
     const infinitiveAudioBtn = document.getElementById('infinitive-audio-btn');
     const goToVerbBtn = document.getElementById('go-to-verb-btn');
     const conjugatedAudioBtn = document.getElementById('conjugated-audio-btn');
+    const packagedTtsEnabledToggle = document.getElementById('packaged-tts-enabled');
+    const packagedTtsDownloadTop20Btn = document.getElementById('packaged-tts-download-top20-btn');
+    const packagedTtsDownloadTop100Btn = document.getElementById('packaged-tts-download-top100-btn');
+    const packagedTtsDownloadTop500Btn = document.getElementById('packaged-tts-download-top500-btn');
+    const packagedTtsDownloadTop1000Btn = document.getElementById('packaged-tts-download-top1000-btn');
+    const packagedTtsDownloadRareBtn = document.getElementById('packaged-tts-download-rare-btn');
+    const packagedTtsDownloadFullBtn = document.getElementById('packaged-tts-download-full-btn');
+    const packagedTtsRemoveBtn = document.getElementById('packaged-tts-remove-btn');
+    const packagedTtsStatusText = document.getElementById('packaged-tts-status-text');
+    const ttsWarningBanner = document.getElementById('tts-warning-banner');
+    const ttsWarningText = document.getElementById('tts-warning-text');
+    const ttsWarningOpenSettingsBtn = document.getElementById('tts-warning-open-settings-btn');
     
     const backBtn = document.getElementById('back-btn');
     const nextBtn = document.getElementById('next-btn');
     const explorerToggleBtn = document.getElementById('explorer-toggle-btn');
     const optionsToggleBtn = document.getElementById('options-toggle-btn'); // Gear icon button
+    const answerFlowBtn = document.getElementById('answer-flow-btn');
+    const contextAudioBtn = document.getElementById('context-audio-btn');
     const backToFlashcardBtn = document.getElementById('back-to-flashcard-btn');
     const backToListBtn = document.getElementById('back-to-list-btn');
     const backToFlashcardFromOptionsBtn = document.getElementById('back-to-flashcard-from-options-btn'); // Back button in options
+    const usageNuggetEl = document.getElementById('usage-nugget');
+    const usageVisibilityBtn = document.getElementById('usage-visibility-btn');
+    const answerFlowLabelEl = answerFlowBtn ? answerFlowBtn.querySelector('.control-dock-label') : null;
 
     const searchBar = document.getElementById('search-bar');
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
+    let packagedTtsBusy = false;
+    let packagedTtsAutoStarted = false;
+    let longPressCopyTimer = null;
+    let suppressTapAudioUntil = 0;
+
+    const playAudioElement = (element, options = {}) => {
+        if (!element) return;
+        const audioId = element.dataset.audioId || null;
+        const text = String(element.dataset.speak || element.textContent || '').trim();
+        if (!audioId && !text) return;
+        if (options.withHuh) {
+            maybeWhisperHuhBefore(text, audioId);
+        } else {
+            playAudioTarget(audioId, text);
+        }
+    };
+
+    const shouldSuppressTapAudio = () => Date.now() < suppressTapAudioUntil;
+
+    const copyTextToClipboard = async (text) => {
+        const trimmed = String(text || '').trim();
+        if (!trimmed || !navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+            return false;
+        }
+        try {
+            await navigator.clipboard.writeText(trimmed);
+            if (navigator.vibrate) navigator.vibrate(12);
+            if (dictationResultEl && typeof showDictationOverlay === 'function') {
+                showDictationOverlay(`Copied: ${trimmed}`, 'prompt', 1100, false, true);
+            }
+            return true;
+        } catch (error) {
+            console.warn('Clipboard copy failed:', error);
+            return false;
+        }
+    };
+
+    const refreshContextAudioButton = () => {
+        if (!contextAudioBtn) return;
+        if (!FRENCH_FLASHCARD_FEATURES.contextualSpeakerButton) {
+            contextAudioBtn.style.display = 'none';
+            contextAudioBtn.disabled = true;
+            return;
+        }
+        const canPlayInfinitive = !!(currentCard && currentCard.verb && currentCard.verb.infinitive);
+        const canPlayAnswer = !!(currentCard && currentCard.conjugated);
+        const enabled = isAnswerVisible ? canPlayAnswer : canPlayInfinitive;
+        contextAudioBtn.disabled = !enabled;
+        contextAudioBtn.setAttribute(
+            'title',
+            isAnswerVisible ? 'Play the shown answer' : 'Play the infinitive again'
+        );
+    };
+
+    const refreshAnswerFlowButton = () => {
+        if (!answerFlowBtn) return;
+        const hasCard = !!currentCard;
+        const mode = isAnswerVisible ? 'next' : 'show';
+        answerFlowBtn.dataset.mode = mode;
+        answerFlowBtn.disabled = !hasCard;
+        if (answerFlowLabelEl) {
+            answerFlowLabelEl.textContent = isAnswerVisible ? 'Next' : 'Show';
+        }
+        const label = isAnswerVisible ? 'Go to the next flashcard' : 'Show the answer';
+        answerFlowBtn.setAttribute('title', label);
+        answerFlowBtn.setAttribute('aria-label', label);
+    };
+
+    const syncUsageNuggetVisibility = () => {
+        if (!usageNuggetEl) return;
+        const shouldShow = !!(
+            isAnswerVisible &&
+            currentCard &&
+            currentCard._hasUsages &&
+            cardGenerationOptions.showUsageNugget
+        );
+        usageNuggetEl.style.display = shouldShow ? 'block' : 'none';
+        usageNuggetEl.classList.toggle('usage-nugget-hidden', !shouldShow);
+
+        if (usageVisibilityBtn) {
+            const canToggle = !!(FRENCH_FLASHCARD_FEATURES.usageNuggetVisibilityToggle && currentCard && currentCard._hasUsages);
+            usageVisibilityBtn.style.display = canToggle ? 'inline-flex' : 'none';
+            usageVisibilityBtn.disabled = !canToggle;
+            usageVisibilityBtn.setAttribute('aria-pressed', cardGenerationOptions.showUsageNugget ? 'true' : 'false');
+            usageVisibilityBtn.setAttribute(
+                'aria-label',
+                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
+            );
+            usageVisibilityBtn.setAttribute(
+                'title',
+                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
+            );
+        }
+    };
+
+    const playContextAudioHint = () => {
+        if (!currentCard || !currentCard.verb) return;
+        if (isAnswerVisible) {
+            playConjugatedAudio();
+        } else {
+            playInfinitiveAudio();
+        }
+    };
+
+    const isInteractiveFlashcardTarget = (target) => {
+        if (!(target instanceof Element)) return false;
+        return !!target.closest(
+            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner'
+        );
+    };
+
+    const clearLongPressCopy = () => {
+        if (longPressCopyTimer) {
+            window.clearTimeout(longPressCopyTimer);
+            longPressCopyTimer = null;
+        }
+    };
+
+    const scheduleLongPressCopy = (target) => {
+        if (!FRENCH_FLASHCARD_FEATURES.longPressCopyOnPlayableText) return;
+        if (!(target instanceof Element)) return;
+        const playableTarget = target.closest('.tappable-audio');
+        if (!playableTarget) return;
+        const text = String(playableTarget.dataset.speak || playableTarget.textContent || '').trim();
+        if (!text) return;
+        clearLongPressCopy();
+        longPressCopyTimer = window.setTimeout(async () => {
+            suppressTapAudioUntil = Date.now() + 700;
+            playableTarget.classList.add('playable-copying');
+            await copyTextToClipboard(text);
+            window.setTimeout(() => playableTarget.classList.remove('playable-copying'), 500);
+            clearLongPressCopy();
+        }, 450);
+    };
+
+    const stopActiveDictation = (options = {}) => {
+        const { abort = false, silent = true } = options;
+        clearTimeout(dictationTimeout);
+        if (recognition) {
+            ignoreNextDictationEnd = true;
+            try {
+                if (abort) recognition.abort();
+                else recognition.stop();
+            } catch (error) {
+                console.warn('Dictation stop failed:', error);
+            }
+        }
+        recognition = null;
+        isDictating = false;
+        setDictating(false);
+        if (silent && dictationResultEl) {
+            dictationResultEl.style.opacity = '0';
+            window.setTimeout(() => {
+                if (dictationResultEl) dictationResultEl.style.display = 'none';
+            }, 120);
+        }
+    };
+
+    const setPackagedTtsBusy = (busy) => {
+        packagedTtsBusy = busy;
+        const disabled = busy || !PACKAGED_TTS;
+        if (packagedTtsEnabledToggle) packagedTtsEnabledToggle.disabled = !PACKAGED_TTS || busy;
+        if (packagedTtsDownloadTop20Btn) packagedTtsDownloadTop20Btn.disabled = disabled;
+        if (packagedTtsDownloadTop100Btn) packagedTtsDownloadTop100Btn.disabled = disabled;
+        if (packagedTtsDownloadTop500Btn) packagedTtsDownloadTop500Btn.disabled = disabled;
+        if (packagedTtsDownloadTop1000Btn) packagedTtsDownloadTop1000Btn.disabled = disabled;
+        if (packagedTtsDownloadRareBtn) packagedTtsDownloadRareBtn.disabled = disabled;
+        if (packagedTtsDownloadFullBtn) packagedTtsDownloadFullBtn.disabled = disabled;
+        if (packagedTtsRemoveBtn) packagedTtsRemoveBtn.disabled = disabled;
+    };
+
+    const setPackagedTtsStatus = (message) => {
+        if (packagedTtsStatusText) packagedTtsStatusText.textContent = message;
+    };
+
+    const updateMainAudioSetupBanner = async () => {
+        if (!ttsWarningBanner || !ttsWarningText) return;
+
+        const browserStatus = typeof window.getFrenchTtsStatus === 'function'
+            ? window.getFrenchTtsStatus()
+            : { available: false, state: 'unsupported' };
+
+        let packagedStatus = null;
+        if (PACKAGED_TTS) {
+            try {
+                packagedStatus = await PACKAGED_TTS.getStatus();
+            } catch (error) {
+                packagedStatus = {
+                    error: error.message,
+                    enabled: PACKAGED_TTS.isEnabled ? PACKAGED_TTS.isEnabled() : false,
+                    cachedPacks: 0,
+                };
+            }
+        }
+
+        const browserReady = !!browserStatus.available;
+        const packagedEnabled = !!(packagedStatus && packagedStatus.enabled);
+        const packagedReady = !!(packagedStatus && packagedStatus.cachedPacks > 0);
+        const packagedFull = !!(packagedStatus && packagedStatus.totalPacks > 0 && packagedStatus.cachedPacks >= packagedStatus.totalPacks);
+        const packagedLayout = packagedStatus && packagedStatus.layout;
+        const needsGuidance = !browserReady && !packagedReady;
+
+        if (packagedTtsBusy) {
+            const total = packagedStatus && packagedStatus.totalPacks ? packagedStatus.totalPacks : '?';
+            const cached = packagedStatus && typeof packagedStatus.cachedPacks === 'number' ? packagedStatus.cachedPacks : 0;
+            ttsWarningText.textContent = `Downloading French audio for offline playback... ${cached}/${total} packs cached so far.`;
+            ttsWarningBanner.classList.remove('hidden');
+            return;
+        }
+
+        if (!needsGuidance && (browserReady || packagedFull)) {
+            ttsWarningBanner.classList.add('hidden');
+            return;
+        }
+
+        let message = 'Audio is not ready on this device yet. French audio can be downloaded for offline playback.';
+        if (packagedEnabled && !packagedReady) {
+            message = packagedLayout === 'clips'
+                ? 'Packaged French audio is enabled in clip-debug mode. Audio files will be fetched as needed.'
+                : 'Packaged French audio is enabled, but nothing is downloaded yet on this device.';
+        } else if (location.protocol === 'file:') {
+            message = 'You opened the app directly from disk. Packaged French audio needs the hosted site or a local server, not file://.';
+        } else if (packagedStatus && packagedStatus.error) {
+            message = 'This build does not include packaged French audio files yet. Open Settings > Audio Voice after the audio packs are generated and deployed.';
+        } else if (browserStatus.state === 'checking') {
+            message = 'French browser audio is still being checked.';
+        }
+
+        ttsWarningText.textContent = message;
+        ttsWarningBanner.classList.remove('hidden');
+    };
+
+    const ensureAutomaticPackagedTtsDownload = async () => {
+        if (!PACKAGED_TTS || packagedTtsBusy || packagedTtsAutoStarted) return;
+        if (location.protocol === 'file:') return;
+        packagedTtsAutoStarted = true;
+
+        try {
+            PACKAGED_TTS.setEnabled(true);
+            const status = await PACKAGED_TTS.getStatus();
+            if (status.error || !status.totalPacks || status.cachedPacks >= status.totalPacks || status.layout === 'clips') {
+                await refreshPackagedTtsUi();
+                return;
+            }
+
+            await runPackagedTtsJob('Downloading French audio for offline playback...', async () => {
+                await PACKAGED_TTS.downloadAllAudio(({ completed, total }) => {
+                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                });
+            });
+        } catch (error) {
+            packagedTtsAutoStarted = false;
+            if (window.appLog) {
+                window.appLog(`packed-tts auto-download-error message="${error.message}"`);
+            }
+            await refreshPackagedTtsUi();
+        }
+    };
+
+    const refreshPackagedTtsUi = async () => {
+        if (!PACKAGED_TTS) {
+            if (packagedTtsEnabledToggle) packagedTtsEnabledToggle.checked = false;
+            setPackagedTtsStatus('Packaged French audio runtime is unavailable in this build.');
+            setPackagedTtsBusy(false);
+            await updateMainAudioSetupBanner();
+            if (typeof window.renderFrenchTtsStatus === 'function') window.renderFrenchTtsStatus();
+            return;
+        }
+
+        try {
+            const status = await PACKAGED_TTS.getStatus();
+            if (packagedTtsEnabledToggle) packagedTtsEnabledToggle.checked = !!status.enabled;
+
+            let message = 'Packaged French audio is not enabled.';
+            if (location.protocol === 'file:') {
+                message = 'Packaged audio cannot load from file://. Use a local server or the hosted site to test offline audio packs.';
+            } else if (status.error) {
+                message = 'Packaged audio files were not found. Run build_french_tts.py and then build.py.';
+            } else if (status.layout === 'clips') {
+                message = `Clip-debug layout active. ${status.cachedPacks}/${status.totalPacks} groups are fully cached. Disable packaged audio to force browser TTS instead.`;
+            } else if (status.cachedPacks > 0 && status.mode === 'full' && status.cachedPacks >= status.totalPacks) {
+                message = 'French audio ready offline for the full set.';
+            } else if (status.cachedPacks > 0 && ['top20', 'top100', 'top500', 'top1000', 'rare'].includes(status.mode)) {
+                const labelMap = {
+                    top20: 'top 20',
+                    top100: 'top 100',
+                    top500: 'top 500',
+                    top1000: 'top 1000',
+                    rare: 'rare verbs',
+                };
+                message = `French audio ready offline for ${labelMap[status.mode] || status.mode} (${status.cachedPacks}/${status.totalPacks} packs cached).`;
+            } else if (status.cachedPacks > 0) {
+                message = `French audio cached for ${status.cachedPacks}/${status.totalPacks} packs.`;
+            } else if (status.enabled) {
+                message = 'Packaged French audio is enabled. Missing packs will download on demand.';
+            }
+
+            setPackagedTtsStatus(message);
+        } catch (error) {
+            setPackagedTtsStatus(`Packaged French audio error: ${error.message}`);
+        }
+
+        setPackagedTtsBusy(false);
+        await updateMainAudioSetupBanner();
+        if (typeof window.renderFrenchTtsStatus === 'function') {
+            window.renderFrenchTtsStatus();
+        }
+    };
+
+    const runPackagedTtsJob = async (statusMessage, runner) => {
+        if (!PACKAGED_TTS || packagedTtsBusy) return;
+        setPackagedTtsBusy(true);
+        setPackagedTtsStatus(statusMessage);
+        try {
+            await runner();
+        } catch (error) {
+            if (window.appLog) {
+                window.appLog(`packed-tts ui-error message="${error.message}"`);
+            }
+            setPackagedTtsStatus(`Packaged French audio failed: ${error.message}`);
+        } finally {
+            await refreshPackagedTtsUi();
+        }
+    };
+
+    window.refreshPackagedFrenchTtsUi = refreshPackagedTtsUi;
 
     // Returns a clean English translation, or '' if translation is just "to <frenchInfinitive>"
     const cleanTranslation = (infinitive, rawTranslation) => {
@@ -491,6 +872,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDictating = false;
     let dictationResultEl = null;
     let dictationTimeout = null;
+    let ignoreNextDictationEnd = false;
 
     // Overlay helpers (already defined above)
     // function showDictationOverlay(...) {...}
@@ -590,6 +972,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
                 };
                 recognition.onend = () => {
+                    if (ignoreNextDictationEnd) {
+                        ignoreNextDictationEnd = false;
+                        return;
+                    }
                     isDictating = false;
                     setDictating(false);
                     clearTimeout(dictationTimeout);
@@ -600,6 +986,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
                 recognition.onerror = (event) => {
+                    if (ignoreNextDictationEnd) {
+                        ignoreNextDictationEnd = false;
+                        return;
+                    }
                     isDictating = false;
                     setDictating(false);
                     clearTimeout(dictationTimeout);
@@ -820,6 +1210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showPhrases: true,
         verbsWithSentencesOnly: false, // When true, only show verbs that have sentences
         balancedPronouns: false, // When true, all 9 pronouns get equal weight
+        showUsageNugget: true,
         reflexiveMode: 'include', // 'include' = both, 'only' = reflexive only, 'exclude' = no reflexive
         tenseWeights,
         frequencyWeights,
@@ -862,6 +1253,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (typeof savedOptions.balancedPronouns === 'boolean') {
                     cardGenerationOptions.balancedPronouns = savedOptions.balancedPronouns;
+                }
+                if (typeof savedOptions.showUsageNugget === 'boolean') {
+                    cardGenerationOptions.showUsageNugget = savedOptions.showUsageNugget;
                 }
                 if (savedOptions.reflexiveMode) {
                     cardGenerationOptions.reflexiveMode = savedOptions.reflexiveMode;
@@ -1513,15 +1907,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-    function maybeWhisperHuhBefore(whatToSpeakAfter) {
+    function maybeWhisperHuhBefore(whatToSpeakAfter, audioId = null) {
         console.log("maybeWhisperHuh called");
         if (Math.random() < 0.03) {
             const sfx = document.getElementById("huh_sound");
             sfx.currentTime = 0;
             sfx.play();
-            sfx.onended = () => speak(whatToSpeakAfter);
+            sfx.onended = () => playAudioTarget(audioId, whatToSpeakAfter);
         } else {
-            speak(whatToSpeakAfter);
+            playAudioTarget(audioId, whatToSpeakAfter);
         }
     }
     // --- Autotalk prompt template ---
@@ -1622,6 +2016,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Hide answer container until answer is revealed
             if (answerContainer) answerContainer.classList.remove('is-visible');
             isAnswerVisible = false;
+            syncUsageNuggetVisibility();
+            refreshContextAudioButton();
+            refreshAnswerFlowButton();
             return;
         } else {
             // --- VERB MODE ---
@@ -1648,6 +2045,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
+        verbInfinitiveEl.dataset.audioId = lemmaAudioId(card.verb.infinitive);
+        verbInfinitiveEl.dataset.speak = card.verb.infinitive;
         verbTranslationEl.textContent = translation || '';
         if (verbHintEl) verbHintEl.textContent = card.verb.hint || '';
         if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^[\(|\)]/g, '');
@@ -1659,16 +2058,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pronounDisplay = (pronounEmojiMap[pronounDisplay] || '') + ' ' + pronounDisplay;
         }
         verbPronounEl.textContent = pronounDisplay.trim();
-        const tenseLabelMap = {
-            'present': 'présent',
-            'passeCompose': 'passé composé',
-            'imparfait': 'imparfait',
-            'futurSimple': 'futur simple',
-            'plusQueParfait': 'plus-que-parfait',
-            'subjonctifPresent': 'subjonctif présent',
-            'conditionnelPresent': 'conditionnel présent'
-        };
-        verbTenseEl.textContent = tenseLabelMap[card.tense] || card.tense;
+        verbTenseEl.textContent = tenseKeyToLabel[card.tense] || card.tense;
         verbTenseEl.className = 'meta-info';
         const tenseClassMap = {
             'present': 'tense-present',
@@ -1703,6 +2093,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let answerText = window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated);
         conjugatedVerbEl.textContent = answerText;
         conjugatedVerbEl.classList.add('tappable-audio');
+        conjugatedVerbEl.dataset.audioId = conjugationAudioId(card.verb.infinitive, card.tense, card.pronounKey || card.pronoun);
+        conjugatedVerbEl.dataset.speak = card.conjugated;
         verbPhraseEl.innerHTML = '';
         questionPhraseEl.innerHTML = '';
         verbPhraseEl.classList.remove('tappable-audio');
@@ -1716,6 +2108,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nuggetEl.style.display = 'none';
             currentCard._hasUsages = renderVerbUsages(nuggetEl, card.verb.infinitive) > 0;
         }
+        syncUsageNuggetVisibility();
+        refreshContextAudioButton();
+        refreshAnswerFlowButton();
 
         // --- AUTOTALK: Speak prompt if enabled ---
         const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
@@ -1737,10 +2132,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (phraseSpan) phraseSpan.style.display = '';
             }
             // Show usage nugget when answer reveals
-            const nuggetEl = document.getElementById('usage-nugget');
-            if (nuggetEl && currentCard && currentCard._hasUsages) {
-                nuggetEl.style.display = 'block';
-            }
+            syncUsageNuggetVisibility();
+            refreshContextAudioButton();
+            refreshAnswerFlowButton();
             // Do NOT speak the answer automatically
         }
     };
@@ -1752,12 +2146,16 @@ document.addEventListener('DOMContentLoaded', () => {
             questionPhraseEl.style.display = 'block';
         }
         isAnswerVisible = false;
+        syncUsageNuggetVisibility();
+        refreshContextAudioButton();
+        refreshAnswerFlowButton();
     };
 
     // --- Card advance logic ---
     let autoskipLock = false;
     const nextCard = () => {
         autoskipLock = false;
+        stopActiveDictation({ abort: true, silent: true });
         if (currentCard && currentCard.verb) {
             logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'next');
         }
@@ -1804,6 +2202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const prevCard = () => {
+        stopActiveDictation({ abort: true, silent: true });
         if (historyIndex > 0) {
             historyIndex--;
             displayCard(history[historyIndex]);
@@ -1816,6 +2215,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const views = [flashcardView, explorerListView, explorerDetailView, optionsView, mnemonicsView];
 
     function showView(viewId, pushState = true) {
+        if (viewId !== 'flashcard-view') {
+            stopActiveDictation({ abort: true, silent: true });
+        }
         let targetView = null;
         views.forEach(view => {
             if (view.id === viewId) {
@@ -1847,6 +2249,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const showOptions = () => {
         showView('options-view');
     };
+
+    if (ttsWarningOpenSettingsBtn) {
+        ttsWarningOpenSettingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            showOptions();
+        });
+    }
 
     const showMnemonics = () => {
         showView('mnemonics-view');
@@ -1959,7 +2369,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="infinitive">${verb.infinitive}</span>
                             <span class="translation">${listTranslation}</span>
                         </div>
-                        <button class="audio-btn" data-speak="${verb.infinitive}">🔊</button>
+                        <button class="audio-btn" data-speak="${verb.infinitive}" data-audio-id="${lemmaAudioId(verb.infinitive)}">🔊</button>
                     `;
                     section.appendChild(item);
                 });
@@ -1974,10 +2384,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.createElement('div');
         header.className = 'verb-detail-header';
         const detailTranslation = cleanTranslation(verb.infinitive, verb.translation);
-       header.innerHTML = `
-            <span class="infinitive tappable-audio" data-speak="${verb.infinitive}">${verb.infinitive}</span>
-            ${detailTranslation ? `<p class="translation">${detailTranslation}</p>` : ''}
-        `;
+        const infinitiveSpan = document.createElement('span');
+        infinitiveSpan.className = 'infinitive tappable-audio';
+        infinitiveSpan.dataset.speak = verb.infinitive;
+        infinitiveSpan.dataset.audioId = lemmaAudioId(verb.infinitive);
+        infinitiveSpan.textContent = verb.infinitive;
+        header.appendChild(infinitiveSpan);
+        if (detailTranslation) {
+            const translationEl = document.createElement('p');
+            translationEl.className = 'translation';
+            translationEl.textContent = detailTranslation;
+            header.appendChild(translationEl);
+        }
         // TODO(Detail): Show verb.category in the header (chip next to infinitive) and make it clickable to filter Explorer
         // by this category (navigates back to list with category pre-selected).
         verbDetailContainer.appendChild(header);
@@ -1989,8 +2407,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const tenseHeader = document.createElement('h4');
             tenseHeader.className = 'tense-header tappable-audio';
-            tenseHeader.dataset.speak = tenseName;
-            tenseHeader.textContent = tenseName;
+            tenseHeader.dataset.speak = tenseKeyToLabel[tenseName] || tenseName;
+            tenseHeader.dataset.audioId = tenseAudioId(tenseName);
+            tenseHeader.textContent = tenseKeyToLabel[tenseName] || tenseName;
             tenseBlock.appendChild(tenseHeader);
 
             const grid = document.createElement('div');
@@ -2001,10 +2420,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const conjugation = conjugationsForVerb[pronoun] || '—'; // Fallback for missing conjugations
                 const item = document.createElement('div');
                 item.className = 'conjugation-item';
-                item.innerHTML = `
-                    <span class="pronoun tappable-audio" data-speak="${pronoun}">${pronoun}</span>
-                    <span class="conjugation tappable-audio" data-speak="${conjugation}">${conjugation}</span>
-                `;
+                const pronounSpan = document.createElement('span');
+                pronounSpan.className = 'pronoun tappable-audio';
+                pronounSpan.dataset.speak = pronoun;
+                pronounSpan.dataset.audioId = pronounAudioId(pronoun);
+                pronounSpan.textContent = pronoun;
+                item.appendChild(pronounSpan);
+
+                const conjugationSpan = document.createElement('span');
+                conjugationSpan.className = conjugation === '—' ? 'conjugation' : 'conjugation tappable-audio';
+                conjugationSpan.dataset.speak = conjugation === '—' ? '' : conjugation;
+                if (conjugation !== '—') {
+                    conjugationSpan.dataset.audioId = conjugationAudioId(verb.infinitive, tenseName, pronoun);
+                }
+                conjugationSpan.textContent = conjugation;
+                item.appendChild(conjugationSpan);
                 grid.appendChild(item);
             });
             tenseBlock.appendChild(grid);
@@ -2336,7 +2766,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window._populateOptions = populateOptions;
 
     // --- Event Listeners ---
-    flashcard.addEventListener('click', () => {
+    flashcard.addEventListener('click', (event) => {
+        if (isInteractiveFlashcardTarget(event.target)) return;
         if (isAnswerVisible) {
             handleNext();
         } else {
@@ -2345,27 +2776,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     nextBtn.addEventListener('click', handleNext);
     backBtn.addEventListener('click', handlePrev);
+    answerFlowBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!currentCard) return;
+        if (isAnswerVisible) {
+            handleNext();
+        } else {
+            showAnswer();
+        }
+    });
 
     infinitiveAudioBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        speak(currentCard.verb.infinitive);
+        playAudioTarget(lemmaAudioId(currentCard.verb.infinitive), currentCard.verb.infinitive);
     });
 
     conjugatedAudioBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (currentCard && currentCard.pronoun && currentCard.conjugated) {
             let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
-            // speak(audioText);
-            maybeWhisperHuhBefore(audioText);
+            maybeWhisperHuhBefore(audioText, conjugationAudioId(currentCard.verb.infinitive, currentCard.tense, currentCard.pronounKey || currentCard.pronoun));
         } else if (currentCard && currentCard.conjugated) {
-            speak(currentCard.conjugated);
+            playAudioTarget(null, currentCard.conjugated);
         }
     });
 
     // Make infinitive tappable for audio (keyboard and click)
     function playInfinitiveAudio() {
+        if (shouldSuppressTapAudio()) return;
         if (currentCard && currentCard.verb.infinitive) {
-            speak(currentCard.verb.infinitive);
+            playAudioTarget(lemmaAudioId(currentCard.verb.infinitive), currentCard.verb.infinitive);
         }
     }
     verbInfinitiveEl.addEventListener('click', (e) => {
@@ -2381,13 +2821,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Make conjugated verb tappable for audio (keyboard and click)
     function playConjugatedAudio() {
+        if (shouldSuppressTapAudio()) return;
         if (currentCard && currentCard.pronoun && currentCard.conjugated) {
             let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
-            // speak(audioText);
-            maybeWhisperHuhBefore(audioText);
+            maybeWhisperHuhBefore(audioText, conjugationAudioId(currentCard.verb.infinitive, currentCard.tense, currentCard.pronounKey || currentCard.pronoun));
             
         } else if (currentCard && currentCard.conjugated) {
-            speak(currentCard.conjugated);
+            playAudioTarget(null, currentCard.conjugated);
         }
     }
     conjugatedVerbEl.addEventListener('click', (e) => {
@@ -2408,32 +2848,169 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    if (packagedTtsEnabledToggle) {
+        packagedTtsEnabledToggle.addEventListener('change', async () => {
+            if (!PACKAGED_TTS) return;
+            PACKAGED_TTS.setEnabled(packagedTtsEnabledToggle.checked);
+            if (window.appLog) {
+                window.appLog(`packed-tts toggle enabled=${packagedTtsEnabledToggle.checked ? 'true' : 'false'}`);
+            }
+            await refreshPackagedTtsUi();
+        });
+    }
+
+    if (packagedTtsDownloadTop20Btn) {
+        packagedTtsDownloadTop20Btn.addEventListener('click', () => {
+            if (!PACKAGED_TTS) return;
+            PACKAGED_TTS.setEnabled(true);
+            void runPackagedTtsJob('Downloading packaged French audio for the top 20...', async () => {
+                await PACKAGED_TTS.prefetchTop20(({ completed, total }) => {
+                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                });
+            });
+        });
+    }
+
+    if (packagedTtsDownloadTop100Btn) {
+        packagedTtsDownloadTop100Btn.addEventListener('click', () => {
+            if (!PACKAGED_TTS) return;
+            PACKAGED_TTS.setEnabled(true);
+            void runPackagedTtsJob('Downloading packaged French audio for the top 100...', async () => {
+                await PACKAGED_TTS.downloadTier('top100', ({ completed, total }) => {
+                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                });
+            });
+        });
+    }
+
+    if (packagedTtsDownloadTop500Btn) {
+        packagedTtsDownloadTop500Btn.addEventListener('click', () => {
+            if (!PACKAGED_TTS) return;
+            if (!window.confirm('Download packaged French audio through the top 500 verbs?')) return;
+            PACKAGED_TTS.setEnabled(true);
+            void runPackagedTtsJob('Downloading packaged French audio for the top 500...', async () => {
+                await PACKAGED_TTS.downloadTier('top500', ({ completed, total }) => {
+                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                });
+            });
+        });
+    }
+
+    if (packagedTtsDownloadTop1000Btn) {
+        packagedTtsDownloadTop1000Btn.addEventListener('click', () => {
+            if (!PACKAGED_TTS) return;
+            if (!window.confirm('Download packaged French audio through the top 1000 verbs?')) return;
+            PACKAGED_TTS.setEnabled(true);
+            void runPackagedTtsJob('Downloading packaged French audio for the top 1000...', async () => {
+                await PACKAGED_TTS.downloadTier('top1000', ({ completed, total }) => {
+                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                });
+            });
+        });
+    }
+
+    if (packagedTtsDownloadRareBtn) {
+        packagedTtsDownloadRareBtn.addEventListener('click', () => {
+            if (!PACKAGED_TTS) return;
+            if (!window.confirm('Download packaged French audio for the rare-verb set?')) return;
+            PACKAGED_TTS.setEnabled(true);
+            void runPackagedTtsJob('Downloading packaged French audio for rare verbs...', async () => {
+                await PACKAGED_TTS.downloadTier('rare', ({ completed, total }) => {
+                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                });
+            });
+        });
+    }
+
+    if (packagedTtsDownloadFullBtn) {
+        packagedTtsDownloadFullBtn.addEventListener('click', () => {
+            if (!PACKAGED_TTS) return;
+            if (!window.confirm('This may download a sizable French audio set for offline playback. Continue?')) return;
+            PACKAGED_TTS.setEnabled(true);
+            void runPackagedTtsJob('Downloading the full packaged French audio set...', async () => {
+                await PACKAGED_TTS.downloadAllAudio(({ completed, total }) => {
+                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                });
+            });
+        });
+    }
+
+    if (packagedTtsRemoveBtn) {
+        packagedTtsRemoveBtn.addEventListener('click', () => {
+            if (!PACKAGED_TTS) return;
+            if (!window.confirm('Remove all downloaded packaged French audio from this device?')) return;
+            void runPackagedTtsJob('Removing packaged French audio...', async () => {
+                await PACKAGED_TTS.removeAllAudio();
+            });
+        });
+    }
+
     verbPhraseEl.addEventListener('click', (e) => {
-        // e.stopPropagation();
-        // e.preventDefault();
-        
-        // Only handle clicks on tappable-audio elements, not the container
         if (e.target.classList.contains('tappable-audio') && e.target.textContent) {
             e.stopPropagation();
             e.preventDefault();
-            maybeWhisperHuhBefore(e.target.textContent);
-            // speak(e.target.textContent);
+            playAudioElement(e.target, { withHuh: true });
         }
     });
 
     questionPhraseEl.addEventListener('click', (e) => {
         e.stopPropagation();
         e.preventDefault();
-        
-        // Only handle clicks on tappable-audio elements, not the container
         if (e.target.classList.contains('tappable-audio') && e.target.textContent) {
-            speak(e.target.textContent);
+            playAudioElement(e.target);
         }
     });
+
+    if (usageNuggetEl) {
+        usageNuggetEl.addEventListener('pointerdown', (e) => {
+            scheduleLongPressCopy(e.target);
+        });
+        ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
+            usageNuggetEl.addEventListener(eventName, clearLongPressCopy);
+        });
+        usageNuggetEl.addEventListener('click', (e) => {
+            const audioTarget = e.target instanceof Element
+                ? e.target.closest('.tappable-audio')
+                : null;
+
+            if (audioTarget && (audioTarget.dataset.speak || audioTarget.dataset.audioId)) {
+                e.stopPropagation();
+                e.preventDefault();
+                if (!shouldSuppressTapAudio()) {
+                    playAudioTarget(audioTarget.dataset.audioId || null, audioTarget.dataset.speak);
+                }
+                return;
+            }
+
+            e.stopPropagation();
+            e.preventDefault();
+            if (isAnswerVisible) {
+                handleNext();
+            }
+        });
+    }
 
     // View Toggling
     explorerToggleBtn.addEventListener('click', showExplorerList);
     optionsToggleBtn.addEventListener('click', showOptions);
+    if (contextAudioBtn) {
+        if (!FRENCH_FLASHCARD_FEATURES.contextualSpeakerButton) {
+            contextAudioBtn.style.display = 'none';
+        }
+        contextAudioBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playContextAudioHint();
+        });
+    }
+    if (usageVisibilityBtn) {
+        usageVisibilityBtn.style.display = 'none';
+        usageVisibilityBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cardGenerationOptions.showUsageNugget = !cardGenerationOptions.showUsageNugget;
+            saveOptions();
+            syncUsageNuggetVisibility();
+        });
+    }
     // These buttons should now act like the browser's back button
     backToFlashcardBtn.addEventListener('click', () => window.history.back());
     backToFlashcardFromOptionsBtn.addEventListener('click', () => window.history.back());
@@ -2481,8 +3058,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cardGenerationOptions.balancedPronouns = e.target.checked;
         saveOptions();
     });
-
-
     if (verbsWithSentencesToggle) verbsWithSentencesToggle.addEventListener('change', (e) => {
         cardGenerationOptions.verbsWithSentencesOnly = ENABLE_LEGACY_SENTENCE_DATA && e.target.checked;
         e.target.checked = cardGenerationOptions.verbsWithSentencesOnly;
@@ -2521,7 +3096,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetItem) {
             if (e.target.matches('.audio-btn')) {
                 e.stopPropagation();
-                speak(e.target.dataset.speak);
+                playAudioTarget(e.target.dataset.audioId || null, e.target.dataset.speak);
             } else {
                 showVerbDetail(targetItem.dataset.infinitive);
             }
@@ -2529,8 +3104,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     verbDetailContainer.addEventListener('click', (e) => {
-        if (e.target.matches('.tappable-audio') && e.target.dataset.speak) {
-            speak(e.target.dataset.speak);
+        if (e.target.matches('.tappable-audio') && (e.target.dataset.speak || e.target.dataset.audioId)) {
+            e.stopPropagation();
+            playAudioTarget(e.target.dataset.audioId || null, e.target.dataset.speak);
         }
     });
 
@@ -2642,6 +3218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializeApp = () => {
         loadOptions();
         populateOptions();
+        refreshContextAudioButton();
         
         // Check for URL parameters for initial card - but only if no seed is present
         const urlParams = new URLSearchParams(window.location.search);
@@ -2838,6 +3415,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call the patched initializeApp
     window.initializeApp();
+    void refreshPackagedTtsUi();
 
     // Hide loading screen once app is ready
     const loader = document.getElementById('app-loader');
@@ -2852,11 +3430,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- General Event Handler for Tappable Audio Elements ---
     // Handle clicks on tappable-audio elements with data-speak attribute (in detail view)
     document.addEventListener('click', (e) => {
-        if (e.target.matches('.tappable-audio') && e.target.dataset.speak) {
+        if (e.target.matches('.tappable-audio') && (e.target.dataset.speak || e.target.dataset.audioId)) {
             e.stopPropagation(); // Keep this to prevent bubbling
-            speak(e.target.dataset.speak);
+            if (shouldSuppressTapAudio()) return;
+            playAudioTarget(e.target.dataset.audioId || null, e.target.dataset.speak);
         }
     });
+
+    if (FRENCH_FLASHCARD_FEATURES.longPressCopyOnPlayableText) {
+        document.addEventListener('pointerdown', (e) => {
+            scheduleLongPressCopy(e.target);
+        });
+        ['pointerup', 'pointercancel', 'pointerleave'].forEach((eventName) => {
+            document.addEventListener(eventName, clearLongPressCopy);
+        });
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target instanceof Element && e.target.closest('.tappable-audio')) {
+                e.preventDefault();
+            }
+        });
+    }
 
     // --- Contact Modal ---
     const contactBtn = document.getElementById('contact-btn');
@@ -2900,11 +3493,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const pronoun = currentCard?.pronoun || 'N/A';
         const sentence = currentCard?.chosenPhrase?.sentence || 'N/A';
         const msg = document.getElementById('contact-msg').value.trim();
-        const subject = `LesVerbes Report: ${types[selectedType]}`;
-        let text = `LesVerbes Report: ${types[selectedType]}\n\nContext:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
+        const subject = `Les Verbes Report: ${types[selectedType]}`;
+        let text = `Les Verbes Report: ${types[selectedType]}\n\nContext:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
         let body = `Context:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
         if (msg) text += `\n\nDetails:\n${msg}`;
-        text += '\n\nSent from LesVerbes app';
+        text += '\n\nSent from Les Verbes app';
         
         // UTF-8 to base64 encoding (handles emojis and special characters)
         // const encodedPayload = btoa(unescape(encodeURIComponent(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
