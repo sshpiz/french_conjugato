@@ -1540,6 +1540,15 @@ body {
   height: 22px;
 }
 
+.answer-flow-next-icon,
+#answer-flow-btn[data-mode="next"] .answer-flow-show-icon {
+  display: none;
+}
+
+#answer-flow-btn[data-mode="next"] .answer-flow-next-icon {
+  display: block;
+}
+
 .control-dock-label {
   font-size: 0.64rem;
   font-weight: 700;
@@ -1619,6 +1628,10 @@ body {
 #context-audio-btn.action-icon-btn {
   position: static !important;
   color: var(--accent-color) !important;
+}
+
+#answer-flow-btn.action-icon-btn {
+  position: static !important;
 }
 
 #context-audio-btn.action-icon-btn:disabled {
@@ -2669,6 +2682,7 @@ html[data-theme="dark"] {
   transform: translateY(0) scale(0.985);
 }
 
+#answer-flow-btn:disabled,
 #context-audio-btn:disabled,
 #dictate-btn-bottom:disabled,
 #usage-visibility-btn:disabled,
@@ -3492,6 +3506,17 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
             <!-- Action buttons row: mic + autosay -->
             <div id="go-to-verb-btn-container">
+              <button id="answer-flow-btn" type="button" class="action-icon-btn control-dock-btn" title="Show the answer" aria-label="Show the answer" data-mode="show">
+                <svg class="answer-flow-icon answer-flow-show-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                  <circle cx="12" cy="12" r="2.6"></circle>
+                </svg>
+                <svg class="answer-flow-icon answer-flow-next-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h12"></path>
+                  <path d="M13 7l5 5-5 5"></path>
+                </svg>
+                <span class="control-dock-label">Show</span>
+              </button>
               <button id="context-audio-btn" type="button" class="action-icon-btn control-dock-btn" title="Hear the current prompt">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -5571,12 +5596,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const explorerToggleBtn = document.getElementById('explorer-toggle-btn');
     const optionsToggleBtn = document.getElementById('options-toggle-btn'); // Gear icon button
+    const answerFlowBtn = document.getElementById('answer-flow-btn');
     const contextAudioBtn = document.getElementById('context-audio-btn');
     const backToFlashcardBtn = document.getElementById('back-to-flashcard-btn');
     const backToListBtn = document.getElementById('back-to-list-btn');
     const backToFlashcardFromOptionsBtn = document.getElementById('back-to-flashcard-from-options-btn'); // Back button in options
     const usageNuggetEl = document.getElementById('usage-nugget');
     const usageVisibilityBtn = document.getElementById('usage-visibility-btn');
+    const answerFlowLabelEl = answerFlowBtn ? answerFlowBtn.querySelector('.control-dock-label') : null;
 
     const searchBar = document.getElementById('search-bar');
     const verbListContainer = document.getElementById('verb-list-container');
@@ -5633,6 +5660,20 @@ document.addEventListener('DOMContentLoaded', () => {
             'title',
             isAnswerVisible ? 'Play the shown answer' : 'Play the infinitive again'
         );
+    };
+
+    const refreshAnswerFlowButton = () => {
+        if (!answerFlowBtn) return;
+        const hasCard = !!currentCard;
+        const mode = isAnswerVisible ? 'next' : 'show';
+        answerFlowBtn.dataset.mode = mode;
+        answerFlowBtn.disabled = !hasCard;
+        if (answerFlowLabelEl) {
+            answerFlowLabelEl.textContent = isAnswerVisible ? 'Next' : 'Show';
+        }
+        const label = isAnswerVisible ? 'Go to the next flashcard' : 'Show the answer';
+        answerFlowBtn.setAttribute('title', label);
+        answerFlowBtn.setAttribute('aria-label', label);
     };
 
     const syncUsageNuggetVisibility = () => {
@@ -7115,6 +7156,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Hide answer container until answer is revealed
             if (answerContainer) answerContainer.classList.remove('is-visible');
             isAnswerVisible = false;
+            syncUsageNuggetVisibility();
+            refreshContextAudioButton();
+            refreshAnswerFlowButton();
             return;
         } else {
             // --- VERB MODE ---
@@ -7206,6 +7250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
+        refreshAnswerFlowButton();
 
         // --- AUTOTALK: Speak prompt if enabled ---
         const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
@@ -7229,6 +7274,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show usage nugget when answer reveals
             syncUsageNuggetVisibility();
             refreshContextAudioButton();
+            refreshAnswerFlowButton();
             // Do NOT speak the answer automatically
         }
     };
@@ -7242,6 +7288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isAnswerVisible = false;
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
+        refreshAnswerFlowButton();
     };
 
     // --- Card advance logic ---
@@ -7869,6 +7916,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     nextBtn.addEventListener('click', handleNext);
     backBtn.addEventListener('click', handlePrev);
+    answerFlowBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!currentCard) return;
+        if (isAnswerVisible) {
+            handleNext();
+        } else {
+            showAnswer();
+        }
+    });
 
     infinitiveAudioBtn.addEventListener('click', (e) => {
         e.stopPropagation();
