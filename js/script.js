@@ -181,6 +181,47 @@ function prepareTextForSpeech(text) {
     }
 })();
 
+// ── TTS speed ────────────────────────────────────────────────────────────────
+(function initTtsSpeed() {
+    const KEY = 'ttsRate';
+    const DEFAULT_RATE = 1;
+    const MIN_RATE = 0.7;
+    const MAX_RATE = 1.3;
+    const saved = parseFloat(getScopedStorageItem(KEY));
+    const initialRate = Number.isFinite(saved) ? Math.min(MAX_RATE, Math.max(MIN_RATE, saved)) : DEFAULT_RATE;
+
+    function formatRate(rate) {
+        return `${rate.toFixed(2)}x`;
+    }
+
+    function applyTtsRate(rate) {
+        const clamped = Math.min(MAX_RATE, Math.max(MIN_RATE, rate));
+        const slider = document.getElementById('tts-speed-slider');
+        const value = document.getElementById('tts-speed-value');
+        if (slider) slider.value = clamped;
+        if (value) value.textContent = formatRate(clamped);
+        setScopedStorageItem(KEY, String(clamped));
+    }
+
+    function bindSlider() {
+        const slider = document.getElementById('tts-speed-slider');
+        if (!slider) return;
+        slider.value = initialRate;
+        slider.addEventListener('input', () => applyTtsRate(parseFloat(slider.value)));
+    }
+
+    window.getConfiguredTtsRate = function() {
+        const raw = parseFloat(getScopedStorageItem(KEY));
+        return Number.isFinite(raw) ? Math.min(MAX_RATE, Math.max(MIN_RATE, raw)) : DEFAULT_RATE;
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => { applyTtsRate(initialRate); bindSlider(); });
+    } else {
+        applyTtsRate(initialRate); bindSlider();
+    }
+})();
+
 // ── Verb usages index ─────────────────────────────────────────────────────────
 const verbUsagesIndex = {};
 (function buildUsagesIndex() {
@@ -991,8 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const shouldGraduallyPrefetchPackagedTts = () => {
         if (!PACKAGED_TTS) return false;
-        if (PACKAGED_TTS.isEnabled && PACKAGED_TTS.isEnabled()) return true;
-        return shouldUseAutomaticPackagedTtsFallback();
+        return !!(PACKAGED_TTS.isEnabled && PACKAGED_TTS.isEnabled());
     };
 
     const ensureAutomaticPackagedTtsDownload = async () => {
@@ -1002,9 +1042,6 @@ document.addEventListener('DOMContentLoaded', () => {
         packagedTtsAutoStarted = true;
 
         try {
-            if (!PACKAGED_TTS.isEnabled || !PACKAGED_TTS.isEnabled()) {
-                PACKAGED_TTS.setEnabled(true);
-            }
             const status = await PACKAGED_TTS.getStatus();
             if (status.error || !status.enabled || !status.totalPacks || status.layout === 'clips') {
                 await refreshPackagedTtsUi();
@@ -1037,9 +1074,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const audioId = lemmaAudioId(card.verb.infinitive);
         try {
-            if (!PACKAGED_TTS.isEnabled || !PACKAGED_TTS.isEnabled()) {
-                PACKAGED_TTS.setEnabled(true);
-            }
             const alreadyAvailable = await PACKAGED_TTS.isAudioIdAvailable(audioId);
             if (alreadyAvailable) return;
             await PACKAGED_TTS.prefetchAudioId(audioId);
@@ -1972,6 +2006,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const textToSpeak = prepareTextForSpeech(text);
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = speechLang;
+        const configuredRate = typeof window.getConfiguredTtsRate === 'function' ? window.getConfiguredTtsRate() : 1;
         
         // Cancel current speech only if different text
         if (synth.speaking) {
@@ -1985,7 +2020,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
                     if (matches.length > 0) utterance.voice = matches[0];
                 }
-                utterance.rate = 0.9;
+                utterance.rate = configuredRate;
                 synth.speak(utterance);
             }, 100);
         } else {
@@ -1996,7 +2031,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
                 if (matches.length > 0) utterance.voice = matches[0];
             }
-            utterance.rate = 0.9;
+            utterance.rate = configuredRate;
             synth.speak(utterance);
         }
     };

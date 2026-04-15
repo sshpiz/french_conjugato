@@ -1458,6 +1458,12 @@ body {
   display: none !important;
 }
 
+html {
+  --tutorial-heading-color: rgba(88, 112, 136, 0.86);
+  --tutorial-body-color: rgba(47, 68, 91, 0.96);
+  --tutorial-body-after-color: rgba(69, 88, 110, 0.9);
+}
+
 .tutorial-inline-text {
   display: flex;
   flex-direction: column;
@@ -1479,7 +1485,7 @@ body {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: 0.04em;
-  color: rgba(44, 62, 80, 0.62);
+  color: var(--tutorial-heading-color);
   font-style: normal;
 }
 
@@ -1491,7 +1497,7 @@ body {
   font-size: calc(1.14rem * var(--font-scale, 1));
   line-height: 1.6;
   letter-spacing: 0.005em;
-  color: rgba(44, 62, 80, 0.9);
+  color: var(--tutorial-body-color);
   background: none;
   border: 0;
   box-shadow: none;
@@ -1505,7 +1511,7 @@ body {
 
 #tutorial-inline-hint.tutorial-after .tutorial-inline-body {
   font-weight: 500;
-  color: rgba(73, 88, 104, 0.8);
+  color: var(--tutorial-body-after-color);
   font-style: normal;
 }
 
@@ -2547,18 +2553,6 @@ html[data-theme="dark"] #verb-tense.tense-futurSimple { background: var(--tense-
 html[data-theme="dark"] #verb-tense.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; color: #3e1422 !important; }
 html[data-theme="dark"] #verb-tense.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; color: #e4cff2 !important; }
 html[data-theme="dark"] #verb-tense.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; color: #2c3e14 !important; }
-html[data-theme="dark"] .tutorial-inline-body {
-  color: rgba(233, 240, 248, 0.9);
-  background: none;
-  border-color: transparent;
-  box-shadow: none;
-}
-html[data-theme="dark"] .tutorial-inline-heading {
-  color: rgba(185, 204, 223, 0.62);
-}
-html[data-theme="dark"] #tutorial-inline-hint.tutorial-after .tutorial-inline-body {
-  color: rgba(173, 194, 214, 0.8);
-}
 html[data-theme="dark"] #dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
 html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled,
 html[data-theme="dark"] .control-dock-btn.is-tutorial-locked {
@@ -2651,7 +2645,7 @@ html[data-theme="light"] #verb-infinitive {
 }
 html[data-theme="light"] #conjugated-verb,
 html[data-theme="light"] .conjugated-line h2 {
-  color: var(--text-color) !important;
+  color: var(--accent-color) !important;
   text-shadow: none !important;
 }
 html[data-theme="light"] .verb-phrase,
@@ -2775,6 +2769,9 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) {
+    --tutorial-heading-color: rgba(193, 214, 236, 0.84);
+    --tutorial-body-color: rgba(236, 244, 252, 0.96);
+    --tutorial-body-after-color: rgba(198, 215, 233, 0.9);
     --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
     --control-tray-border: rgba(84, 103, 126, 0.42);
     --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);
@@ -2809,6 +2806,9 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 }
 
 html[data-theme="dark"] {
+  --tutorial-heading-color: rgba(193, 214, 236, 0.84);
+  --tutorial-body-color: rgba(236, 244, 252, 0.96);
+  --tutorial-body-after-color: rgba(198, 215, 233, 0.9);
   --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
   --control-tray-border: rgba(84, 103, 126, 0.42);
   --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);

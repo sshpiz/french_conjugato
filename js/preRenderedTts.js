@@ -15,6 +15,11 @@
   let audioContext = null;
   let currentSource = null;
 
+  function getPlaybackRate() {
+    const raw = parseFloat((window.getAppStoredItem && window.getAppStoredItem('ttsRate')) || localStorage.getItem('ttsRate') || '1');
+    return Number.isFinite(raw) ? Math.max(0.7, Math.min(1.3, raw)) : 1;
+  }
+
   function appLog(message) {
     if (typeof window.appLog === 'function') {
       window.appLog(`packed-tts ${message}`);
@@ -293,6 +298,7 @@
 
     const source = ctx.createBufferSource();
     source.buffer = buffer;
+    source.playbackRate.value = getPlaybackRate();
     source.connect(ctx.destination);
     source.onended = () => {
       if (currentSource === source) {
