@@ -11,6 +11,7 @@
   let manifestData = null;
   let packIndex = new Map();
   let bufferPromises = new Map();
+  let packPromises = new Map();
   let audioContext = null;
   let currentSource = null;
 
@@ -195,17 +196,40 @@
     if (!pack) {
       throw new Error(`unknown pack: ${packId}`);
     }
-    if (isClipLayout(manifest)) {
-      const itemFiles = [...new Set(Object.values(pack.items || {}).map((item) => item.file).filter(Boolean))];
-      appLog(`download-start pack=${packId}`);
-      for (const file of itemFiles) {
-        await ensureAssetCached(`tts/${file}`, `file=${file}`);
-      }
-      appLog(`download-success pack=${packId}`);
+    if (await isPackCached(packId)) {
       return true;
     }
-    const url = packUrl(pack);
-    return ensureAssetCached(url, `pack=${packId}`);
+    if (!packPromises.has(packId)) {
+      packPromises.set(packId, (async () => {
+        try {
+          if (isClipLayout(manifest)) {
+            const itemFiles = [...new Set(Object.values(pack.items || {}).map((item) => item.file).filter(Boolean))];
+            appLog(`download-start pack=${packId}`);
+            for (const file of itemFiles) {
+              await ensureAssetCached(`tts/${file}`, `file=${file}`);
+            }
+            appLog(`download-success pack=${packId}`);
+            return true;
+          }
+          const url = packUrl(pack);
+          await ensureAssetCached(url, `pack=${packId}`);
+          return true;
+        } finally {
+          packPromises.delete(packId);
+        }
+      })());
+    }
+    return packPromises.get(packId);
+  }
+
+  async function prefetchAudioId(itemId) {
+    const manifest = await loadManifest();
+    const packId = packIndex.get(itemId);
+    if (!packId || !manifest.packs[packId]) {
+      return false;
+    }
+    await ensurePackCached(packId);
+    return true;
   }
 
   async function getDecodedAsset(cacheKey, url) {
@@ -414,6 +438,7 @@
     playAudioId,
     stopPlayback,
     prefetchPack,
+    prefetchAudioId,
     prefetchTop20,
     downloadTier,
     downloadAllAudio,

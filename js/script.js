@@ -9,6 +9,11 @@ const getPrompt = window.getFrenchPrompt;
 const UIStrings = window.frenchUIStrings;
 const localStorageKey = window.frenchLocalStorageKey;
 const speechLang = window.frenchSpeechLang;
+const APP_STORAGE_PREFIX = window.appStoragePrefix || 'french';
+const getScopedStorageKey = window.getAppStorageKey || ((name) => `${APP_STORAGE_PREFIX}:${name}`);
+const getScopedStorageItem = window.getAppStoredItem || ((name) => localStorage.getItem(getScopedStorageKey(name)));
+const setScopedStorageItem = window.setAppStoredItem || ((name, value) => localStorage.setItem(getScopedStorageKey(name), value));
+const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localStorage.removeItem(getScopedStorageKey(name)));
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 // Feature flag to control gap sentence behavior
@@ -40,9 +45,8 @@ const TOP_20_VERBS = new Set([
 
 const APP_VERSION = "v2";
 
-if (localStorage.getItem("app_version") !== APP_VERSION) {
-  localStorage.clear();
-  localStorage.setItem("app_version", APP_VERSION);
+if (getScopedStorageItem("app_version") !== APP_VERSION) {
+  setScopedStorageItem("app_version", APP_VERSION);
 }
 
 
@@ -451,11 +455,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const ttsWarningBanner = document.getElementById('tts-warning-banner');
     const ttsWarningText = document.getElementById('tts-warning-text');
     const ttsWarningOpenSettingsBtn = document.getElementById('tts-warning-open-settings-btn');
+    const appUpdatePill = document.getElementById('app-update-pill');
+    const appUpdateActionBtn = document.getElementById('app-update-action-btn');
+    const appUpdateStatusText = document.getElementById('app-update-status-text');
     
     const backBtn = document.getElementById('back-btn');
     const nextBtn = document.getElementById('next-btn');
     const explorerToggleBtn = document.getElementById('explorer-toggle-btn');
     const optionsToggleBtn = document.getElementById('options-toggle-btn'); // Gear icon button
+    const helpBtn = document.getElementById('help-btn');
+    const helpNavBtn = document.getElementById('help-nav-btn');
     const answerFlowBtn = document.getElementById('answer-flow-btn');
     const contextAudioBtn = document.getElementById('context-audio-btn');
     const backToFlashcardBtn = document.getElementById('back-to-flashcard-btn');
@@ -464,6 +473,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const usageNuggetEl = document.getElementById('usage-nugget');
     const usageVisibilityBtn = document.getElementById('usage-visibility-btn');
     const answerFlowLabelEl = answerFlowBtn ? answerFlowBtn.querySelector('.control-dock-label') : null;
+    const dictateBtnLabelEl = document.querySelector('#dictate-btn-bottom .control-dock-label');
+    const tutorialInlineHintEl = document.getElementById('tutorial-inline-hint');
+    const tutorialInlineTextEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-text') : null;
+    const tutorialInlineHeadingEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-heading') : null;
+    const tutorialInlineBodyEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-body') : null;
+    const correctDictationHelperEl = document.getElementById('correct-dictation-helper');
 
     const searchBar = document.getElementById('search-bar');
     const verbListContainer = document.getElementById('verb-list-container');
@@ -472,6 +487,146 @@ document.addEventListener('DOMContentLoaded', () => {
     let packagedTtsAutoStarted = false;
     let longPressCopyTimer = null;
     let suppressTapAudioUntil = 0;
+    const TUTORIAL_STORAGE_KEY = 'frenchInlineTutorialStateV1';
+    const escapeHtml = (value) => String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    const TUTORIAL_STEPS = [
+        {
+            headingBefore: "Welcome! Let's start!",
+            headingAfter: 'Tutorial',
+            before: 'Try to conjugate the verb you see <strong>(parler)</strong>. How would you say "I speak" in French? Tap Show to reveal the answer.',
+            after: `That's the answer. Did you get it right? Tap Next for another card.`
+        },
+        {
+            heading: 'Tutorial',
+            before: (card) => `The goal is to conjugate the verb correctly for the pronoun shown. Can you conjugate "<strong>${escapeHtml(card?.verb?.infinitive || '')}</strong>" for "<strong>${escapeHtml(card?.pronoun || '')}</strong>"?`,
+            after: 'You can tap the verb or the answer to hear it spoken aloud. Use Hear any time you want to listen again.'
+        },
+        {
+            heading: 'Tutorial',
+            before: 'Almost done. Can you conjugate this?',
+            after: 'After reveal, the mic lets you practice saying the answer aloud.'
+        },
+        {
+            heading: 'Tutorial',
+            before: 'To search for a verb, use Search at the bottom. To drill into the current verb, use the book icon next to the verb.',
+            after: 'Master the common verbs in the present first. Then explore more tenses and verbs in Settings.'
+        },
+        {
+            heading: 'Tutorial',
+            before: `That's it. You're ready to practice.`,
+            after: ''
+        }
+    ];
+    const tutorialState = {
+        active: false,
+        completed: false,
+        stepIndex: 0
+    };
+    const appUpdateState = Object.assign({
+        registration: null,
+        status: 'idle',
+        updateAvailable: false,
+        checkedAt: 0,
+        lastUpdatedAt: 0,
+        debugForceVisible: false
+    }, window.__appUpdateState || {});
+
+    const APP_UPDATE_STATUS_TEXT = {
+        idle: 'App is up to date.',
+        checking: 'Checking for updates...',
+        ready: 'New version available.',
+        unsupported: 'Updates are only available when the app is installed from the web.',
+        error: 'Could not check right now. Please try again.'
+    };
+
+    const syncAppUpdateUi = () => {
+        const status = appUpdateState.status || 'idle';
+        const showPill = !!(appUpdateState.updateAvailable || appUpdateState.debugForceVisible);
+
+        if (appUpdatePill) {
+            appUpdatePill.classList.toggle('hidden', !showPill);
+            appUpdatePill.textContent = appUpdateState.updateAvailable ? 'Update available' : 'Update app';
+        }
+
+        if (appUpdateStatusText) {
+            appUpdateStatusText.textContent = APP_UPDATE_STATUS_TEXT[status] || APP_UPDATE_STATUS_TEXT.idle;
+        }
+
+        if (appUpdateActionBtn) {
+            appUpdateActionBtn.disabled = status === 'checking';
+            appUpdateActionBtn.textContent = appUpdateState.updateAvailable ? 'Reload now' : 'Check for updates';
+        }
+    };
+
+    const setAppUpdateState = (patch = {}) => {
+        Object.assign(appUpdateState, patch);
+        if (typeof window.__setAppUpdateState === 'function') {
+            window.__setAppUpdateState(patch);
+            return;
+        }
+        syncAppUpdateUi();
+    };
+
+    const syncExternalAppUpdateState = (detail = {}) => {
+        Object.assign(appUpdateState, detail);
+        syncAppUpdateUi();
+    };
+
+    const openSettingsForUpdate = () => {
+        showOptions();
+        if (appUpdateActionBtn) {
+            window.setTimeout(() => {
+                appUpdateActionBtn.focus({ preventScroll: true });
+                appUpdateActionBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 40);
+        }
+    };
+
+    const checkForAppUpdates = async () => {
+        if (location.protocol === 'file:' || !('serviceWorker' in navigator)) {
+            setAppUpdateState({ status: 'unsupported', updateAvailable: false });
+            return;
+        }
+
+        setAppUpdateState({
+            status: 'checking',
+            checkedAt: Date.now()
+        });
+
+        try {
+            const registration = appUpdateState.registration || await navigator.serviceWorker.getRegistration('./');
+            if (!registration) {
+                setAppUpdateState({ status: 'unsupported', updateAvailable: false });
+                return;
+            }
+
+            setAppUpdateState({ registration });
+            await registration.update();
+
+            if (registration.waiting) {
+                setAppUpdateState({ status: 'ready', updateAvailable: true, registration });
+                return;
+            }
+
+            window.setTimeout(() => {
+                if (!appUpdateState.updateAvailable && appUpdateState.status === 'checking') {
+                    setAppUpdateState({ status: 'idle' });
+                }
+            }, 3800);
+        } catch (error) {
+            console.warn('App update check failed:', error);
+            setAppUpdateState({ status: 'error' });
+        }
+    };
+
+    window.addEventListener('app-update-state', (event) => {
+        syncExternalAppUpdateState(event.detail || {});
+    });
 
     const playAudioElement = (element, options = {}) => {
         if (!element) return;
@@ -516,10 +671,50 @@ document.addEventListener('DOMContentLoaded', () => {
         const canPlayAnswer = !!(currentCard && currentCard.conjugated);
         const enabled = isAnswerVisible ? canPlayAnswer : canPlayInfinitive;
         contextAudioBtn.disabled = !enabled;
+        contextAudioBtn.style.display = 'inline-flex';
         contextAudioBtn.setAttribute(
             'title',
             isAnswerVisible ? 'Play the shown answer' : 'Play the infinitive again'
         );
+    };
+
+    const refreshDictationButton = () => {
+        if (!dictateBtn) return;
+        const availability = getMicAvailability();
+        const micMode = getEffectiveMicMode();
+
+        dictateBtn.style.display = 'inline-flex';
+        dictateBtn.dataset.micMode = micMode;
+        dictateBtn.dataset.availability = availability;
+
+        dictateBtn.classList.toggle('is-tutorial-locked', availability === 'tutorial-locked');
+        dictateBtn.classList.toggle('is-phase-disabled', availability === 'phase-disabled');
+        dictateBtn.classList.toggle('is-unsupported', availability === 'unsupported' || availability === 'safeModeBlocked');
+        dictateBtn.classList.toggle('is-no-content', false);
+
+        dictateBtn.disabled = availability !== 'enabled';
+
+        if (dictateBtnLabelEl) {
+            dictateBtnLabelEl.textContent = micMode === 'answerByVoice' ? 'Answer' : 'Say';
+        }
+
+        let title = 'Practice saying the answer aloud';
+        if (availability === 'tutorial-locked') {
+            title = 'The tutorial unlocks the mic a little later';
+        } else if (availability === 'phase-disabled') {
+            title = micMode === 'answerByVoice'
+                ? 'Voice-answer mode works before reveal'
+                : 'Reveal the answer to use the mic';
+        } else if (availability === 'unsupported') {
+            title = 'Speech recognition is unavailable on this device';
+        } else if (availability === 'safeModeBlocked') {
+            title = 'Mic input is disabled in safe mode';
+        } else if (micMode === 'answerByVoice') {
+            title = 'Answer by voice before reveal';
+        }
+
+        dictateBtn.setAttribute('title', title);
+        dictateBtn.setAttribute('aria-label', title);
     };
 
     const refreshAnswerFlowButton = () => {
@@ -538,29 +733,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const syncUsageNuggetVisibility = () => {
         if (!usageNuggetEl) return;
+        const availability = getUsageAvailability();
         const shouldShow = !!(
             isAnswerVisible &&
             currentCard &&
             currentCard._hasUsages &&
+            availability === 'enabled' &&
             cardGenerationOptions.showUsageNugget
         );
         usageNuggetEl.style.display = shouldShow ? 'block' : 'none';
         usageNuggetEl.classList.toggle('usage-nugget-hidden', !shouldShow);
 
         if (usageVisibilityBtn) {
-            const canToggle = !!(FRENCH_FLASHCARD_FEATURES.usageNuggetVisibilityToggle && currentCard && currentCard._hasUsages);
-            usageVisibilityBtn.style.display = canToggle ? 'inline-flex' : 'none';
-            usageVisibilityBtn.disabled = !canToggle;
+            usageVisibilityBtn.style.display = FRENCH_FLASHCARD_FEATURES.usageNuggetVisibilityToggle ? 'inline-flex' : 'none';
+            usageVisibilityBtn.dataset.availability = availability;
+            usageVisibilityBtn.classList.toggle('is-tutorial-locked', availability === 'tutorial-locked');
+            usageVisibilityBtn.classList.toggle('is-phase-disabled', availability === 'phase-disabled');
+            usageVisibilityBtn.classList.toggle('is-no-content', availability === 'no-content');
+            usageVisibilityBtn.classList.toggle('is-unsupported', false);
+            usageVisibilityBtn.disabled = availability !== 'enabled';
             usageVisibilityBtn.setAttribute('aria-pressed', cardGenerationOptions.showUsageNugget ? 'true' : 'false');
-            usageVisibilityBtn.setAttribute(
-                'aria-label',
-                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
-            );
-            usageVisibilityBtn.setAttribute(
-                'title',
-                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
-            );
+
+            let usageTitle = cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage';
+            if (availability === 'tutorial-locked') {
+                usageTitle = 'Usage examples unlock after the tutorial';
+            } else if (availability === 'no-content') {
+                usageTitle = 'No usage notes for this verb yet';
+            } else if (availability === 'phase-disabled') {
+                usageTitle = 'Usage is only available on verb cards';
+            }
+
+            usageVisibilityBtn.setAttribute('aria-label', usageTitle);
+            usageVisibilityBtn.setAttribute('title', usageTitle);
         }
+        refreshTutorialAwareUi();
+        refreshDictationButton();
     };
 
     const playContextAudioHint = () => {
@@ -575,7 +782,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isInteractiveFlashcardTarget = (target) => {
         if (!(target instanceof Element)) return false;
         return !!target.closest(
-            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner'
+            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner, #app-update-pill'
         );
     };
 
@@ -624,6 +831,72 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (dictationResultEl) dictationResultEl.style.display = 'none';
             }, 120);
         }
+    };
+
+    const normalizeDictationText = (value) => String(value || '')
+        .toLowerCase()
+        .replace(/[’']/g, "'")
+        .replace(/[.,!?;:()\[\]{}]/g, '')
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    const getExpectedDictationText = (card = currentCard) => {
+        if (!card) return '';
+        if (card.isPhraseMode || !card.verb) {
+            return (card.phrase || '').trim();
+        }
+        return window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated).trim();
+    };
+
+    const isDictationMatch = (transcript, card = currentCard) => {
+        if (!card) return false;
+        const expected = normalizeDictationText(getExpectedDictationText(card));
+        const heard = normalizeDictationText(transcript);
+        if (!expected || !heard) return false;
+
+        if (card.isPhraseMode || !card.verb) {
+            const expectedWords = expected.split(' ');
+            const heardWords = heard.split(' ');
+            let matchCount = 0;
+            expectedWords.forEach((word) => {
+                if (heardWords.includes(word)) matchCount += 1;
+            });
+            return expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9;
+        }
+
+        return heard.includes(expected);
+    };
+
+    const handleMicSuccess = () => {
+        const micMode = getEffectiveMicMode();
+        if (!currentCard) return;
+
+        if (!currentCard.isPhraseMode && currentCard.verb) {
+            logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+        } else {
+            logSessionEntry('phrase', '', '', 'bravo');
+        }
+
+        maybeWhisperMolodez();
+
+        if (micMode === 'answerByVoice' && !isAnswerVisible) {
+            showAnswer();
+            window.setTimeout(() => {
+                if (recognition) {
+                    try { recognition.stop(); } catch (error) {}
+                }
+                handleNext();
+            }, 1450);
+            return;
+        }
+
+        window.setTimeout(() => {
+            if (recognition) {
+                try { recognition.stop(); } catch (error) {}
+            }
+        }, 1350);
     };
 
     const setPackagedTtsBusy = (busy) => {
@@ -700,21 +973,50 @@ document.addEventListener('DOMContentLoaded', () => {
         ttsWarningBanner.classList.remove('hidden');
     };
 
+    const getNativeTtsAvailability = () => {
+        if (!('speechSynthesis' in window) || !window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {
+            return 'unsupported';
+        }
+        const voices = window.speechSynthesis.getVoices();
+        if (!voices.length) return 'checking';
+        const langPrefix = String(speechLang || '').split('-')[0].toLowerCase();
+        const hasMatchingVoice = voices.some((voice) => voice.lang && voice.lang.toLowerCase().startsWith(langPrefix));
+        return hasMatchingVoice ? 'available' : 'unavailable';
+    };
+
+    const shouldUseAutomaticPackagedTtsFallback = () => {
+        const availability = getNativeTtsAvailability();
+        return availability === 'unsupported' || availability === 'unavailable';
+    };
+
+    const shouldGraduallyPrefetchPackagedTts = () => {
+        if (!PACKAGED_TTS) return false;
+        if (PACKAGED_TTS.isEnabled && PACKAGED_TTS.isEnabled()) return true;
+        return shouldUseAutomaticPackagedTtsFallback();
+    };
+
     const ensureAutomaticPackagedTtsDownload = async () => {
         if (!PACKAGED_TTS || packagedTtsBusy || packagedTtsAutoStarted) return;
         if (location.protocol === 'file:') return;
+        if (!shouldGraduallyPrefetchPackagedTts()) return;
         packagedTtsAutoStarted = true;
 
         try {
-            PACKAGED_TTS.setEnabled(true);
+            if (!PACKAGED_TTS.isEnabled || !PACKAGED_TTS.isEnabled()) {
+                PACKAGED_TTS.setEnabled(true);
+            }
             const status = await PACKAGED_TTS.getStatus();
-            if (status.error || !status.totalPacks || status.cachedPacks >= status.totalPacks || status.layout === 'clips') {
+            if (status.error || !status.enabled || !status.totalPacks || status.layout === 'clips') {
+                await refreshPackagedTtsUi();
+                return;
+            }
+            if (status.cachedPacks >= status.totalPacks || status.mode !== 'none') {
                 await refreshPackagedTtsUi();
                 return;
             }
 
-            await runPackagedTtsJob('Downloading French audio for offline playback...', async () => {
-                await PACKAGED_TTS.downloadAllAudio(({ completed, total }) => {
+            await runPackagedTtsJob('Downloading French audio for the top 20...', async () => {
+                await PACKAGED_TTS.prefetchTop20(({ completed, total }) => {
                     setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
                 });
             });
@@ -724,6 +1026,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.appLog(`packed-tts auto-download-error message="${error.message}"`);
             }
             await refreshPackagedTtsUi();
+        }
+    };
+
+    const maybePrefetchCurrentCardPackagedAudio = async (card = currentCard) => {
+        if (!PACKAGED_TTS || packagedTtsBusy) return;
+        if (location.protocol === 'file:') return;
+        if (!shouldGraduallyPrefetchPackagedTts()) return;
+        if (!card || !card.verb || !card.verb.infinitive) return;
+
+        const audioId = lemmaAudioId(card.verb.infinitive);
+        try {
+            if (!PACKAGED_TTS.isEnabled || !PACKAGED_TTS.isEnabled()) {
+                PACKAGED_TTS.setEnabled(true);
+            }
+            const alreadyAvailable = await PACKAGED_TTS.isAudioIdAvailable(audioId);
+            if (alreadyAvailable) return;
+            await PACKAGED_TTS.prefetchAudioId(audioId);
+            if (window.appLog) {
+                window.appLog(`packed-tts background-prefetch id=${audioId}`);
+            }
+        } catch (error) {
+            if (window.appLog) {
+                window.appLog(`packed-tts background-prefetch-error id=${audioId} message="${error.message}"`);
+            }
         }
     };
 
@@ -808,13 +1134,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoPanel = document.getElementById('info-panel');
 
     // --- Stability: Safe Mode & Global Error Logging ---
-    // Enable Safe Mode by setting localStorage.setItem('safe-mode', 'true').
+    // Enable Safe Mode by setting setScopedStorageItem('safe-mode', 'true').
     // It reduces potentially fragile features (speech, dictation) for older devices.
-    const SAFE_MODE = localStorage.getItem('safe-mode') === 'true';
+    const SAFE_MODE = getScopedStorageItem('safe-mode') === 'true';
 
     function logGlobalError(source, message, extra) {
         try {
-            const key = 'error-log';
+            const key = getScopedStorageKey('error-log');
             const existing = JSON.parse(localStorage.getItem(key) || '[]');
             const entry = {
                 ts: new Date().toISOString(),
@@ -873,21 +1199,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let dictationResultEl = null;
     let dictationTimeout = null;
     let ignoreNextDictationEnd = false;
+    let activeDictationPromptText = '';
 
     // Overlay helpers (already defined above)
     // function showDictationOverlay(...) {...}
     // function hideDictationOverlay() {...}
 
     function setupDictation() {
-        // In Safe Mode, proactively disable dictation (more crash-prone on some devices)
-        if (SAFE_MODE) {
-            if (dictateBtn) dictateBtn.disabled = true;
-            return;
-        }
-        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-            if (dictateBtn) dictateBtn.disabled = true;
-            return;
-        }
+        if (!dictateBtn) return;
+
         dictationResultEl = document.getElementById('dictation-result');
         if (!dictationResultEl) {
             dictationResultEl = document.createElement('div');
@@ -936,11 +1256,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+        const speechState = getSpeechRecognitionState();
+        if (speechState !== 'ready') {
+            refreshDictationButton();
+            return;
+        }
+
         // Attach click handler ONCE
         if (!dictateBtn._dictationHandlerAttached) {
             dictateBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
+                if (getMicAvailability() !== 'enabled') {
+                    refreshDictationButton();
+                    return;
+                }
                 // If already dictating, stop
                 if (isDictating && recognition) {
                     recognition.stop();
@@ -957,7 +1288,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset overlay for new session
                 dictationResultEl.textContent = '';
                 dictationResultEl.style.display = 'block';
-                showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
+                activeDictationPromptText = getDictationPromptText();
+                showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
                 // Create new recognition instance
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 recognition = new SpeechRecognition();
@@ -969,7 +1301,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     setDictating(true);
                     dictationResultEl.textContent = '';
                     dictationResultEl.style.display = 'block';
-                    showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
+                    activeDictationPromptText = getDictationPromptText();
+                    showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
                 };
                 recognition.onend = () => {
                     if (ignoreNextDictationEnd) {
@@ -978,8 +1311,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     isDictating = false;
                     setDictating(false);
+                    refreshDictationButton();
                     clearTimeout(dictationTimeout);
-                    if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
+                    if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
                         showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
                     } else {
                         showDictationOverlay(dictationResultEl.innerHTML, 'normal', 4000, true, true);
@@ -992,11 +1326,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     isDictating = false;
                     setDictating(false);
+                    refreshDictationButton();
                     clearTimeout(dictationTimeout);
                     showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
                 };
-                // let bravoHappened = false; // Track if Bravo was shown
-                let correctDictationWasShown = false; // Track if correct dictation was shown
                 recognition.onresult = (event) => {
                     let html = '';
                     let bestTranscript = '';
@@ -1028,135 +1361,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     }
-                    // --- CHECK FOR CORRECT DICTATION (ALWAYS SHOW BRAVO) ---
-                    if (!isAnswerVisible && currentCard && !autoskipLock) {
-                        let expected;
-                        let isPhrase = currentCard.isPhraseMode || !currentCard.verb;
-                        
-                        if (isPhrase) {
-                            expected = (currentCard.phrase || '').trim();
-                        } else {
-                            expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
-                        }
-                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").replace(/[.,!?;:()\[\]{}]/g, '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/\s+/g, ' ').trim();
-                        const normExpected = normalize(expected);
-                        const normTranscript = normalize(bestTranscript);
-                        let isCorrect = false;
-                        if (isPhrase) {
-                            // Fuzzy word match: at least 70% of expected words present in transcript
-                            const expectedWords = normExpected.split(' ');
-                            const transcriptWords = normTranscript.split(' ');
-                            let matchCount = 0;
-                            expectedWords.forEach(word => {
-                                if (transcriptWords.includes(word)) matchCount++;
-                            });
-                            if (expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9) {
-                                isCorrect = true;
-                            }
-                            console.log(`Phrase match: expected "${normExpected}", got "${normTranscript}" - ${isCorrect ? 'correct' : 'incorrect'}`);
-                        } else {
-                            // Strict match for verbs
-                            if (normTranscript.includes(normExpected)) {
-                                isCorrect = true;
-                            }
-                        }
-                        if (isCorrect || correctDictationWasShown) {
-                            // console.log(`🎉 Bravo! Correct dictation: "${bestTranscript}" matches expected: "${expected}". stopping recognition`);
-                            // autoskipLock = true;
-                            // setTimeout(() => {
-                            //         if (recognition) {
-                            //             try { recognition.stop(); } catch (e) {}
-                            //         }
-                            //     }, 500);
-                            // Always show Bravo for correct answers
-                            dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
-                            dictationResultEl.style.display = 'block';
-                            dictationResultEl.style.opacity = '1';
-                            correctDictationWasShown= true;
-                            
-                        }
-                        if (isCorrect) {
-                            showAnswer();
-
-                            // Log bravo event (robust for phrase mode)
-                            if (isPhrase) {
-                                logSessionEntry('phrase', '', '', 'bravo');
-                            } else if (currentCard.verb) {
-                            if (currentCard.verb) {
-                                logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
-                            } else {
-                                // Phrase mode: log safe values
-                                logSessionEntry('phrase', '', '', 'bravo');
-                            }
-                            }
-                            maybeWhisperMolodez();
-                            
-                            // Check if auto-advance is enabled
-                            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
-                            const correctDictationNextQuestion = localStorage.getItem('correct-dictation-next-question') === 'true';
-                            
-                            if (autosayOn || correctDictationNextQuestion) {
-                                // Auto-advance to next question
-                                setTimeout(() => {
-                                    if (recognition) {
-                                        try { recognition.stop(); } catch (e) {}
-                                    }
-                                    handleNext();
-                                }, 1500); // 1.5s delay for Bravo
-                            } else {
-                                // Just stop recognition, don't auto-advance
-                                setTimeout(() => {
-                                    if (recognition) {
-                                        try { recognition.stop(); } catch (e) {}
-                                    }
-                                }, 1500);
-                            }
-                            return;
-                        }
+                    const isCorrect = currentCard && !autoskipLock && isDictationMatch(bestTranscript, currentCard);
+                    if (isCorrect) {
+                        dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                        dictationResultEl.style.display = 'block';
+                        dictationResultEl.style.opacity = '1';
+                        handleMicSuccess();
+                        return;
                     }
-                    // Only update overlay if not showing Bravo
+
                     showDictationOverlay(html, 'normal', 0, true, false);
-                        let expected;
-                        if (currentCard.isPhraseMode || !currentCard.verb) {
-                            expected = (currentCard.phrase || '').trim();
-                        } else {
-                            expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
-                        }
-                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
-                        const normExpected = normalize(expected);
-                        const normTranscript = normalize(bestTranscript);
-                        if(correctDictationWasShown){
-                            if(!dictationResultEl.innerHTML.includes('🎉 Bravo !')) {
-                            dictationResultEl.innerHTML = dictationResultEl.innerHTML + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
-                            }
-                        }
-                        if (normTranscript.includes(normExpected)) {
-                            autoskipLock = true;
-                            correctDictationWasShown = true;
-
-                            dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
-                            dictationResultEl.style.display = 'block';
-                            dictationResultEl.style.opacity = '1';
-                            showAnswer();
-
-                            // Log bravo event
-                            if (currentCard.verb) {
-                                logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
-                            } else {
-                                logSessionEntry('phrase', '', '', 'bravo');
-                            }
-                            maybeWhisperMolodez();
-
-                            setTimeout(() => {
-                                if (recognition) {
-                                    try { recognition.stop(); } catch (e) {}
-                                }
-                                if(localStorage.getItem('correct-dictation-next-question') === 'true'){
-                                    handleNext();
-                                }
-                            }, 1500);
-                            return;
-                        }
                 };
                 recognition.start();
                 // Safety: stop after 10s if not already ended
@@ -1166,9 +1380,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             dictateBtn._dictationHandlerAttached = true;
         }
+        refreshDictationButton();
     }
-    if (dictateBtn) setupDictation();
-
     // --- State ---
     let currentCard = null;
     let currentDetailVerb = null;
@@ -1176,6 +1389,185 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyIndex = -1;
     let isAnswerVisible = false;
     let recentCardKeys = []; // track last N card keys to avoid immediate repeats
+
+    const loadTutorialState = () => {
+        try {
+            const saved = localStorage.getItem(TUTORIAL_STORAGE_KEY);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                tutorialState.active = !!parsed.active;
+                tutorialState.completed = !!parsed.completed;
+                tutorialState.stepIndex = Math.max(0, Math.min(TUTORIAL_STEPS.length, Number(parsed.stepIndex) || 0));
+                return;
+            }
+        } catch (error) {
+            console.warn('Could not load tutorial state:', error);
+        }
+
+        const alreadyOnboarded = getScopedStorageItem('ftue-shown') === 'true' || getScopedStorageItem('tutorial_seen') === 'yes';
+        tutorialState.active = !alreadyOnboarded;
+        tutorialState.completed = alreadyOnboarded;
+        tutorialState.stepIndex = alreadyOnboarded ? TUTORIAL_STEPS.length : 0;
+    };
+
+    const saveTutorialState = () => {
+        try {
+            localStorage.setItem(TUTORIAL_STORAGE_KEY, JSON.stringify({
+                active: tutorialState.active,
+                completed: tutorialState.completed,
+                stepIndex: tutorialState.stepIndex
+            }));
+            if (tutorialState.completed) {
+                setScopedStorageItem('ftue-shown', 'true');
+                setScopedStorageItem('tutorial_seen', 'yes');
+            }
+        } catch (error) {
+            console.warn('Could not save tutorial state:', error);
+        }
+    };
+
+    const getSpeechRecognitionState = () => {
+        if (SAFE_MODE) return 'safeModeBlocked';
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) return 'unsupported';
+        return 'ready';
+    };
+
+    const getEffectiveMicMode = () => (
+        tutorialState.active
+            ? 'practiceAfterReveal'
+            : (cardGenerationOptions.useMicToAnswer ? 'answerByVoice' : 'practiceAfterReveal')
+    );
+
+    const getDictationPromptText = () => {
+        if (currentCard && getEffectiveMicMode() === 'answerByVoice' && !isAnswerVisible) {
+            return getPrompt(currentCard);
+        }
+        return UIStrings.speakNow || 'Speak now.';
+    };
+
+    const isTutorialMicLocked = () => {
+        if (!tutorialState.active) return false;
+        return tutorialState.stepIndex < 2 || (tutorialState.stepIndex === 2 && !isAnswerVisible);
+    };
+
+    const getMicAvailability = () => {
+        const speechState = getSpeechRecognitionState();
+        if (speechState !== 'ready') return speechState;
+        if (!currentCard || currentCard.isPhraseMode || !currentCard.verb) return 'phase-disabled';
+        if (isTutorialMicLocked()) return 'tutorial-locked';
+
+        const micMode = getEffectiveMicMode();
+        if (micMode === 'practiceAfterReveal' && !isAnswerVisible) return 'phase-disabled';
+        if (micMode === 'answerByVoice' && isAnswerVisible) return 'phase-disabled';
+        return 'enabled';
+    };
+
+    const getUsageAvailability = () => {
+        if (!FRENCH_FLASHCARD_FEATURES.usageNuggetVisibilityToggle) return 'hidden';
+        if (tutorialState.active) return 'tutorial-locked';
+        if (!currentCard || currentCard.isPhraseMode) return 'phase-disabled';
+        if (!currentCard._hasUsages) return 'no-content';
+        return 'enabled';
+    };
+
+    const setMicAnswerMode = (enabled, options = {}) => {
+        const { persist = true } = options;
+        cardGenerationOptions.useMicToAnswer = !!enabled;
+        if (persist) saveOptions();
+    };
+
+    const syncMicModeSettingUi = () => {
+        const correctDictationToggle = document.getElementById('correct-dictation-toggle');
+        if (!correctDictationToggle) return;
+        const tutorialLocksMicMode = tutorialState.active;
+        correctDictationToggle.checked = !!cardGenerationOptions.useMicToAnswer;
+        correctDictationToggle.disabled = tutorialLocksMicMode;
+        if (correctDictationHelperEl) {
+            correctDictationHelperEl.textContent = tutorialLocksMicMode
+                ? 'The tutorial begins with after-reveal pronunciation practice.'
+                : 'When off, the mic is used for pronunciation practice after reveal.';
+        }
+    };
+
+    const getCurrentTutorialHint = () => {
+        if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
+        const step = TUTORIAL_STEPS[tutorialState.stepIndex];
+        if (!step) return '';
+        const rawHint = isAnswerVisible ? step.after : step.before;
+        return typeof rawHint === 'function' ? rawHint(currentCard) : rawHint;
+    };
+
+    const getCurrentTutorialHeading = () => {
+        if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
+        const step = TUTORIAL_STEPS[tutorialState.stepIndex];
+        if (!step) return '';
+        return isAnswerVisible ? (step.headingAfter || step.heading || '') : (step.headingBefore || step.heading || '');
+    };
+
+    const renderTutorialHint = () => {
+        if (!tutorialInlineHintEl || !tutorialInlineTextEl || !tutorialInlineHeadingEl || !tutorialInlineBodyEl) return;
+        const hint = getCurrentTutorialHint();
+        const heading = getCurrentTutorialHeading();
+        tutorialInlineHintEl.classList.toggle('hidden', !hint);
+        tutorialInlineHintEl.classList.toggle('tutorial-before', !!hint && !isAnswerVisible);
+        tutorialInlineHintEl.classList.toggle('tutorial-after', !!hint && isAnswerVisible);
+        tutorialInlineHeadingEl.textContent = hint && heading ? heading : '';
+        tutorialInlineBodyEl.innerHTML = hint || '';
+    };
+
+    const refreshTutorialAwareUi = () => {
+        renderTutorialHint();
+        syncMicModeSettingUi();
+    };
+
+    const completeTutorialIfNeeded = () => {
+        if (!tutorialState.active) return;
+        if (tutorialState.stepIndex >= TUTORIAL_STEPS.length - 1) {
+            tutorialState.active = false;
+            tutorialState.completed = true;
+            tutorialState.stepIndex = TUTORIAL_STEPS.length;
+        } else {
+            tutorialState.stepIndex += 1;
+        }
+        saveTutorialState();
+    };
+
+    const restartTutorialFlow = (options = {}) => {
+        const { confirmRestart = false } = options;
+        if (confirmRestart && !window.confirm('Restart the tutorial from the beginning?')) {
+            return;
+        }
+        stopActiveDictation({ abort: true, silent: true });
+        tutorialState.active = true;
+        tutorialState.completed = false;
+        tutorialState.stepIndex = 0;
+        if (typeof resetTutorialPracticeBaseline === 'function') {
+            resetTutorialPracticeBaseline();
+        } else {
+            setMicAnswerMode(false, { persist: false });
+        }
+        saveTutorialState();
+        showFlashcards();
+        if (!showTutorialIntroCard()) {
+            const fallbackCard = generateNewCard(cardGenerationOptions);
+            if (fallbackCard) {
+                history = [fallbackCard];
+                historyIndex = 0;
+                displayCard(fallbackCard);
+                hideAnswer();
+                backBtn.disabled = true;
+            } else if (isAnswerVisible) {
+                hideAnswer();
+            } else {
+                refreshTutorialAwareUi();
+                refreshContextAudioButton();
+                refreshAnswerFlowButton();
+                syncUsageNuggetVisibility();
+            }
+        }
+    };
+
+    window.startTutorial = () => restartTutorialFlow({ confirmRestart: false });
 
     // --- Options UI Elements ---
     const hierarchicalToggle = document.getElementById('hierarchical-toggle');
@@ -1210,7 +1602,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showPhrases: true,
         verbsWithSentencesOnly: false, // When true, only show verbs that have sentences
         balancedPronouns: false, // When true, all 9 pronouns get equal weight
-        showUsageNugget: true,
+        useMicToAnswer: false, // When true, the mic answers before reveal instead of practicing after reveal.
+        showUsageNugget: false,
         reflexiveMode: 'include', // 'include' = both, 'only' = reflexive only, 'exclude' = no reflexive
         tenseWeights,
         frequencyWeights,
@@ -1226,6 +1619,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveOptions = () => {
         try {
             localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
+            setScopedStorageItem('correct-dictation-next-question', cardGenerationOptions.useMicToAnswer ? 'true' : 'false');
             // activePreset = "👤";
             // highlightActivePreset();
             updateCustomPresetFromUI();
@@ -1253,6 +1647,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (typeof savedOptions.balancedPronouns === 'boolean') {
                     cardGenerationOptions.balancedPronouns = savedOptions.balancedPronouns;
+                }
+                if (typeof savedOptions.useMicToAnswer === 'boolean') {
+                    cardGenerationOptions.useMicToAnswer = savedOptions.useMicToAnswer;
+                } else {
+                    cardGenerationOptions.useMicToAnswer = getScopedStorageItem('correct-dictation-next-question') === 'true';
                 }
                 if (typeof savedOptions.showUsageNugget === 'boolean') {
                     cardGenerationOptions.showUsageNugget = savedOptions.showUsageNugget;
@@ -1580,7 +1979,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Small delay to ensure cancellation completes
             setTimeout(() => {
                 // Use user-selected voice if set
-                const voiceName = localStorage.getItem('ttsVoiceName');
+                const voiceName = getScopedStorageItem('ttsVoiceName');
                 if (voiceName) {
                     const voices = synth.getVoices();
                     const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
@@ -1591,7 +1990,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         } else {
             // Use user-selected voice if set
-            const voiceName = localStorage.getItem('ttsVoiceName');
+            const voiceName = getScopedStorageItem('ttsVoiceName');
             if (voiceName) {
                 const voices = synth.getVoices();
                 const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
@@ -1658,7 +2057,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const generateNewCard = (options = {}) => {
         // --- PRACTICE MODE LOGIC ---
-        const practiceMode = localStorage.getItem('practiceMode') || 'verbs';
+        const practiceMode = getScopedStorageItem('practiceMode') || 'verbs';
         if (practiceMode === 'phrases') {
             let phrasesList;
             // Dummy phrase mode: pick a random phrase from dummyPhrases
@@ -2019,6 +2418,8 @@ document.addEventListener('DOMContentLoaded', () => {
             syncUsageNuggetVisibility();
             refreshContextAudioButton();
             refreshAnswerFlowButton();
+            refreshDictationButton();
+            renderTutorialHint();
             return;
         } else {
             // --- VERB MODE ---
@@ -2111,13 +2512,17 @@ document.addEventListener('DOMContentLoaded', () => {
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
         refreshAnswerFlowButton();
+        refreshDictationButton();
+        renderTutorialHint();
 
         // --- AUTOTALK: Speak prompt if enabled ---
-        const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+        const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
         if (autosayOn) {
             const prompt = getFrenchPrompt(card);
             speak(prompt);
         }
+        void ensureAutomaticPackagedTtsDownload();
+        void maybePrefetchCurrentCardPackagedAudio(card);
     }
     
 
@@ -2135,6 +2540,8 @@ document.addEventListener('DOMContentLoaded', () => {
             syncUsageNuggetVisibility();
             refreshContextAudioButton();
             refreshAnswerFlowButton();
+            refreshDictationButton();
+            renderTutorialHint();
             // Do NOT speak the answer automatically
         }
     };
@@ -2149,6 +2556,8 @@ document.addEventListener('DOMContentLoaded', () => {
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
         refreshAnswerFlowButton();
+        refreshDictationButton();
+        renderTutorialHint();
     };
 
     // --- Card advance logic ---
@@ -2179,10 +2588,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         // Do NOT start dictation automatically
+        refreshTutorialAwareUi();
     };
 
     const handleNext = () => {
         if (isAnswerVisible) {
+            if (tutorialState.active) {
+                completeTutorialIfNeeded();
+            }
             hideAnswer();
             setTimeout(() => {
                 nextCard();
@@ -2235,6 +2648,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.history.pushState({ view: viewId }, '', `#${viewId}`);
             }
         }
+
+        if (viewId === 'flashcard-view') {
+            renderTutorialHint();
+            refreshContextAudioButton();
+            refreshAnswerFlowButton();
+            refreshDictationButton();
+            syncUsageNuggetVisibility();
+        }
     }
 
     const showExplorerList = () => {
@@ -2255,6 +2676,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             e.preventDefault();
             showOptions();
+        });
+    }
+    if (appUpdatePill) {
+        appUpdatePill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            openSettingsForUpdate();
         });
     }
 
@@ -2856,6 +3284,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.appLog(`packed-tts toggle enabled=${packagedTtsEnabledToggle.checked ? 'true' : 'false'}`);
             }
             await refreshPackagedTtsUi();
+            if (packagedTtsEnabledToggle.checked) {
+                void ensureAutomaticPackagedTtsDownload();
+                void maybePrefetchCurrentCardPackagedAudio(currentCard);
+            }
         });
     }
 
@@ -2993,19 +3425,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // View Toggling
     explorerToggleBtn.addEventListener('click', showExplorerList);
     optionsToggleBtn.addEventListener('click', showOptions);
+    [helpBtn, helpNavBtn].filter(Boolean).forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            restartTutorialFlow({ confirmRestart: true });
+        });
+    });
+    if (appUpdateActionBtn) {
+        appUpdateActionBtn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            if (appUpdateState.updateAvailable) {
+                window.location.reload();
+                return;
+            }
+            await checkForAppUpdates();
+        });
+    }
     if (contextAudioBtn) {
         if (!FRENCH_FLASHCARD_FEATURES.contextualSpeakerButton) {
             contextAudioBtn.style.display = 'none';
         }
         contextAudioBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (contextAudioBtn.disabled) return;
             playContextAudioHint();
         });
     }
     if (usageVisibilityBtn) {
-        usageVisibilityBtn.style.display = 'none';
         usageVisibilityBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (usageVisibilityBtn.disabled) return;
             cardGenerationOptions.showUsageNugget = !cardGenerationOptions.showUsageNugget;
             saveOptions();
             syncUsageNuggetVisibility();
@@ -3047,6 +3498,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     setupInfoPanel();
+    syncAppUpdateUi();
 
     // Options controls (hierarchicalToggle listener now lives in populateOptions dynamic row)
     if (showPhrasesToggle) showPhrasesToggle.addEventListener('change', (e) => {
@@ -3077,14 +3529,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Correct Dictation Next Question Toggle Logic ---
     const correctDictationToggle = document.getElementById('correct-dictation-toggle');
     if (correctDictationToggle) {
-        // Set initial state from localStorage
-        const enabled = localStorage.getItem('correct-dictation-next-question') === 'true';
-        correctDictationToggle.checked = enabled;
         correctDictationToggle.addEventListener('change', function() {
-            localStorage.setItem('correct-dictation-next-question', correctDictationToggle.checked ? 'true' : 'false');
+            setMicAnswerMode(correctDictationToggle.checked);
+            syncMicModeSettingUi();
+            refreshDictationButton();
             activePreset = "Custom";
             highlightActivePreset();
-
         });
     }
 
@@ -3117,15 +3567,15 @@ document.addEventListener('DOMContentLoaded', () => {
         autosayToggleBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             const emojiSpan = autosayToggleBtn.querySelector('span');
-            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+            const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
             if (autosayOn) {
-                localStorage.setItem('autosay-enabled', 'false');
+                setScopedStorageItem('autosay-enabled', 'false');
                 if (emojiSpan) emojiSpan.textContent = '🔇';
                 autosayToggleBtn.setAttribute('aria-pressed', 'false');
                 autosayToggleBtn.classList.remove('autosay-on');
                 autosayToggleBtn.classList.add('autosay-off');
             } else {
-                localStorage.setItem('autosay-enabled', 'true');
+                setScopedStorageItem('autosay-enabled', 'true');
                 if (emojiSpan) emojiSpan.textContent = '🔊';
                 autosayToggleBtn.setAttribute('aria-pressed', 'true');
                 autosayToggleBtn.classList.remove('autosay-off');
@@ -3134,7 +3584,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         // Set initial state on load
         const emojiSpan = autosayToggleBtn.querySelector('span');
-        const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+        const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
         if (emojiSpan) emojiSpan.textContent = autosayOn ? '🔊' : '🔇';
         autosayToggleBtn.setAttribute('aria-pressed', autosayOn ? 'true' : 'false');
         autosayToggleBtn.classList.toggle('autosay-on', autosayOn);
@@ -3145,7 +3595,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let firstCardReady = false;
 
     function showAutosayReadyModalIfNeeded(startAppCallback) {
-      const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+      const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
       if (autosayOn && autosayReadyModal) {
         autosayReadyModal.style.display = 'flex';
         // Remove any previous listeners
@@ -3217,14 +3667,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Initial Load ---
     const initializeApp = () => {
         loadOptions();
+        loadTutorialState();
+        if (dictateBtn) setupDictation();
         populateOptions();
+        syncMicModeSettingUi();
         refreshContextAudioButton();
+        refreshDictationButton();
+        renderTutorialHint();
         
         // Check for URL parameters for initial card - but only if no seed is present
         const urlParams = new URLSearchParams(window.location.search);
         const hasSeed = urlParams.get('seed');
         
-        if (!hasSeed) {
+        if (tutorialState.active && tutorialState.stepIndex === 0 && showTutorialIntroCard()) {
+            // Keep the tutorial intro deterministic on the first card.
+        } else if (!hasSeed) {
             const params = parseHashParams();
             if (params.pronoun && params.verb && params.tense) {
                 const customCard = generateCardFromParams(params.pronoun, params.verb, params.tense);
@@ -3389,6 +3846,21 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
+    function getTutorialIntroCard() {
+        return generateCardFromParams('je', 'parler', 'present');
+    }
+
+    function showTutorialIntroCard() {
+        const introCard = getTutorialIntroCard();
+        if (!introCard) return false;
+        history = [introCard];
+        historyIndex = 0;
+        displayCard(introCard);
+        hideAnswer();
+        backBtn.disabled = true;
+        return true;
+    }
+
     // --- Initial Card Loading ---
     const loadCardFromHash = () => {
         const params = parseHashParams();
@@ -3403,6 +3875,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         }
+        if (tutorialState.active && tutorialState.stepIndex === 0 && showTutorialIntroCard()) {
+            return;
+        }
         // If no valid card found, fall back to regular card generation
         const newCard = generateNewCard(cardGenerationOptions);
         if (newCard) {
@@ -3412,20 +3887,6 @@ document.addEventListener('DOMContentLoaded', () => {
             backBtn.disabled = historyIndex === 0;
         }
     };
-
-    // Call the patched initializeApp
-    window.initializeApp();
-    void refreshPackagedTtsUi();
-
-    // Hide loading screen once app is ready
-    const loader = document.getElementById('app-loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
-    }
-    if (window.appLog) window.appLog('app-ready');
-    // Load card from URL hash on initial load
-    loadCardFromHash();
 
     // --- General Event Handler for Tappable Audio Elements ---
     // Handle clicks on tappable-audio elements with data-speak attribute (in detail view)
@@ -3532,7 +3993,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             
             // Get existing log or create new array
-            let verbLog = JSON.parse(localStorage.getItem('verbLog') || '[]');
+            let verbLog = JSON.parse(getScopedStorageItem('verbLog') || '[]');
             
             // Add new entry
             verbLog.push(entry);
@@ -3543,7 +4004,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             // Save back to localStorage
-            localStorage.setItem('verbLog', JSON.stringify(verbLog));
+            setScopedStorageItem('verbLog', JSON.stringify(verbLog));
             
             // Log to console
             console.log(`📊 Session logged: ${eventType} - ${entry.key} at ${new Date(entry.timestamp).toLocaleTimeString()}`);
@@ -3631,8 +4092,37 @@ function applyPreset(preset) {
     if (window._populateOptions) window._populateOptions();
   }
   activePreset = preset.name;
-  localStorage.setItem("lastPreset", activePreset);
+  setScopedStorageItem("lastPreset", activePreset);
   highlightActivePreset();
+}
+
+function resetTutorialPracticeBaseline() {
+  const starter = presets.find(p => p.name === "Master the Basics I");
+  if (starter) {
+    applyPreset(starter);
+  }
+
+  cardGenerationOptions.hierarchical = true;
+  cardGenerationOptions.showPhrases = true;
+  cardGenerationOptions.verbsWithSentencesOnly = false;
+  cardGenerationOptions.balancedPronouns = false;
+  cardGenerationOptions.useMicToAnswer = false;
+  cardGenerationOptions.showUsageNugget = false;
+  cardGenerationOptions.reflexiveMode = 'include';
+  cardGenerationOptions.regularityFilter = { regular: true, irregular: true };
+  cardGenerationOptions.endingFilter = { er: true, ir: true, re: true, other: true };
+  cardGenerationOptions.categoryFilter = 'all';
+
+  try {
+    localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
+    setScopedStorageItem('correct-dictation-next-question', 'false');
+  } catch (e) {
+    console.warn("Could not save tutorial baseline options to localStorage:", e);
+  }
+
+  if (window._populateOptions) window._populateOptions();
+  if (typeof syncMicModeSettingUi === 'function') syncMicModeSettingUi();
+  if (typeof refreshTutorialAwareUi === 'function') refreshTutorialAwareUi();
 }
 
 
@@ -3640,7 +4130,7 @@ function applyPreset(preset) {
 // Switch to Custom and save config whenever user changes any setting
 function updateCustomPresetFromUI() {
     activePreset = "Custom";
-    localStorage.setItem("lastPreset", "Custom");
+    setScopedStorageItem("lastPreset", "Custom");
     highlightActivePreset();
     const custom = presets.find(p => p.name === "Custom");
     if (custom) {
@@ -3648,9 +4138,9 @@ function updateCustomPresetFromUI() {
         tenseWeights: { ...cardGenerationOptions.tenseWeights },
         frequencyWeights: { ...cardGenerationOptions.frequencyWeights },
         };
-        localStorage.setItem("presets", JSON.stringify(presets));
+        setScopedStorageItem("presets", JSON.stringify(presets));
         activePreset = "Custom";
-        localStorage.setItem("lastPreset", activePreset);
+        setScopedStorageItem("lastPreset", activePreset);
         highlightActivePreset();
     }
 }
@@ -3722,7 +4212,7 @@ function renderPresets() {
     btn.innerHTML = `<span class="preset-icon">${preset.emoji}</span><span class="preset-text"><span class="preset-name">${preset.name}</span><span class="preset-desc">${preset.desc || ''}</span></span>`;
     btn.onclick = () => {
       applyPreset(preset);
-      localStorage.setItem("lastPreset", preset.name);
+      setScopedStorageItem("lastPreset", preset.name);
     };
     container.appendChild(btn);
   });
@@ -3748,7 +4238,7 @@ function highlightActivePreset() {
 }
 
 // On load, fill 👤 from localStorage cardGenerationOptions
-const storedOptions = JSON.parse(localStorage.getItem("cardGenerationOptions"));
+const storedOptions = JSON.parse(localStorage.getItem(localStorageKey) || 'null');
 if (storedOptions) {
   const custom = presets.find(p => p.name === "Custom");
   if (custom) {
@@ -3805,14 +4295,18 @@ function applyConfigToUI(config) {
 
 
 // Load last-used preset on startup; default to "Master the Basics I" on first open
-const lastUsed = localStorage.getItem("lastPreset");
-if (lastUsed) {
-  const found = presets.find(p => p.name === lastUsed || p.emoji === lastUsed);
-  if (found) applyPreset(found);
+if (tutorialState.active) {
+  resetTutorialPracticeBaseline();
 } else {
-  // First time ever — start with the most beginner-friendly preset
-  const starter = presets.find(p => p.name === "Master the Basics I");
-  if (starter) applyPreset(starter);
+  const lastUsed = getScopedStorageItem("lastPreset");
+  if (lastUsed) {
+    const found = presets.find(p => p.name === lastUsed || p.emoji === lastUsed);
+    if (found) applyPreset(found);
+  } else {
+    // First time ever — start with the most beginner-friendly preset
+    const starter = presets.find(p => p.name === "Master the Basics I");
+    if (starter) applyPreset(starter);
+  }
 }
 
 // // Watch setting changes
@@ -3828,6 +4322,19 @@ if (lastUsed) {
 //   applyPreset(presets.find(p => p.emoji === "👤"));
 // }
 renderPresets();
+
+// Call the patched initializeApp only after tutorial/preset state is fully defined.
+window.initializeApp();
+
+// Hide loading screen once app is ready
+const loader = document.getElementById('app-loader');
+if (loader) {
+    loader.style.opacity = '0';
+    setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
+}
+if (window.appLog) window.appLog('app-ready');
+// Load card from URL hash on initial load
+loadCardFromHash();
 
 
 });

@@ -36,15 +36,47 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <!-- Register service worker for PWA compliance -->
     <script>
+        window.__appUpdateState = {
+            registration: null,
+            status: 'idle',
+            updateAvailable: false,
+            checkedAt: 0,
+            lastUpdatedAt: 0,
+            debugForceVisible: false
+        };
+
+        window.__setAppUpdateState = function(patch) {
+            window.__appUpdateState = Object.assign({}, window.__appUpdateState, patch || {});
+            window.dispatchEvent(new CustomEvent('app-update-state', {
+                detail: Object.assign({}, window.__appUpdateState)
+            }));
+            return window.__appUpdateState;
+        };
+
         if (location.protocol !== 'file:' && 'serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js', { scope: './' })
-                .then(() => console.log('[SW] Registered'))
+                .then((registration) => {
+                    console.log('[SW] Registered');
+                    window.__setAppUpdateState({
+                        registration,
+                        status: registration.waiting ? 'ready' : 'idle',
+                        updateAvailable: !!registration.waiting
+                    });
+
+                    registration.addEventListener('updatefound', () => {
+                        window.__setAppUpdateState({ status: 'checking' });
+                    });
+                })
                 .catch(() => console.log('[SW] Registration failed'));
-            // Auto-reload when a new SW version takes over
+
             navigator.serviceWorker.addEventListener('message', e => {
                 if (e.data && e.data.type === 'SW_UPDATED') {
-                    console.log('[SW] New version active — reloading');
-                    window.location.reload();
+                    console.log('[SW] New version active — reload available');
+                    window.__setAppUpdateState({
+                        status: 'ready',
+                        updateAvailable: true,
+                        lastUpdatedAt: Date.now()
+                    });
                 }
             });
         }
@@ -54,7 +86,7 @@
       #answer-container { visibility: hidden; }
       #verb-pronoun,
       #verb-tense {
-        font-size: 1.2rem; /* Make pronoun and tense larger */
+        font-size: 1.32rem; /* Make pronoun and tense larger */
         font-weight: 600; /* Make pronoun and tense bolder */
       }
       .verb-phrase {
@@ -517,7 +549,7 @@
     highlight().style.display = 'none';
     tooltip().style.display   = 'none';
     skipBtn().style.display   = 'none';
-    localStorage.setItem('tutorial_seen', 'yes');
+    window.setAppStoredItem('tutorial_seen', 'yes');
     stepIndex = 0;
   }
 
@@ -569,10 +601,8 @@
         <!-- View 1: Flashcard Flow -->
         <div id="flashcard-view">
             <div id="flashcard" class="card" style="position:relative;">
-                <!-- Remove tip for help button -->
-                <button id="help-btn" title="Show help" style="display:none;position:absolute;top:0.7em;right:2.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#3498db);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">❓</button>
                 <!-- Remove tip for tips button -->
-                <button id="tips-btn" title="Show tips" style="position:absolute;top:0.7em;right:0.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#f1c40f);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">💡</button>
+                <button id="tips-btn" title="Show tips" style="position:absolute;top:0.7em;right:3.2em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#f1c40f);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">💡</button>
                 <!-- Contact button -->
                 <button id="contact-btn" title="Report issues" style="position:absolute;top:3.2em;right:0.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#3498db);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">📨</button>
                 <!-- Tutorial Button -->
@@ -587,6 +617,9 @@
                   </span>
                   <span id="daily-progress-label"></span>
                 </div>
+                <button id="app-update-pill" class="hidden" type="button" aria-live="polite" title="Open settings to update the app">
+                  Update available
+                </button>
                 <div class="card-content-before">
                     <div class="infinitive-line">
                         <!-- Remove tip for infinitive audio button -->
@@ -650,6 +683,12 @@
                     </button>
                     <!-- Question phrase (gap sentence, shows before answer reveal) -->
                     <p id="question-phrase" class="verb-phrase"></p>
+                    <div id="tutorial-inline-hint" class="hidden" aria-live="polite">
+                      <div class="tutorial-inline-text">
+                        <span class="tutorial-inline-heading"></span>
+                        <span class="tutorial-inline-body"></span>
+                      </div>
+                    </div>
                     
                     <div id="answer-container">
                         <div class="conjugated-line">
@@ -672,34 +711,6 @@
 
             <!-- Action buttons row: mic + autosay -->
             <div id="go-to-verb-btn-container">
-              <button id="answer-flow-btn" type="button" class="action-icon-btn control-dock-btn" title="Show the answer" aria-label="Show the answer" data-mode="show">
-                <svg class="answer-flow-icon answer-flow-show-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
-                  <circle cx="12" cy="12" r="2.6"></circle>
-                </svg>
-                <svg class="answer-flow-icon answer-flow-next-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h12"></path>
-                  <path d="M13 7l5 5-5 5"></path>
-                </svg>
-                <span class="control-dock-label">Show</span>
-              </button>
-              <button id="context-audio-btn" type="button" class="action-icon-btn control-dock-btn" title="Hear the current prompt">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                  <path d="M15.5 8.5a4.5 4.5 0 0 1 0 7"></path>
-                  <path d="M18.5 5.5a8.5 8.5 0 0 1 0 13"></path>
-                </svg>
-                <span class="control-dock-label">Hear</span>
-              </button>
-              <button id="dictate-btn-bottom" class="dictate-big-btn action-icon-btn control-dock-btn" title="Say the answer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="9" y="2" width="6" height="12" rx="3"/>
-                  <path d="M5 10a7 7 0 0 0 14 0"/>
-                  <line x1="12" y1="19" x2="12" y2="22"/>
-                  <line x1="8" y1="22" x2="16" y2="22"/>
-                </svg>
-                <span class="control-dock-label">Say</span>
-              </button>
               <button id="usage-visibility-btn" class="action-icon-btn control-dock-btn usage-toggle-btn" type="button" title="Hide verb usage" aria-label="Hide verb usage" aria-pressed="true">
                 <svg class="usage-visibility-icon usage-visible-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M7 6h13"></path>
@@ -719,6 +730,34 @@
                   <line x1="5" y1="4" x2="19" y2="20"></line>
                 </svg>
                 <span class="control-dock-label">Usage</span>
+              </button>
+              <button id="dictate-btn-bottom" class="dictate-big-btn action-icon-btn control-dock-btn" title="Say the answer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="2" width="6" height="12" rx="3"/>
+                  <path d="M5 10a7 7 0 0 0 14 0"/>
+                  <line x1="12" y1="19" x2="12" y2="22"/>
+                  <line x1="8" y1="22" x2="16" y2="22"/>
+                </svg>
+                <span class="control-dock-label">Say</span>
+              </button>
+              <button id="context-audio-btn" type="button" class="action-icon-btn control-dock-btn" title="Hear the current prompt">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.5 8.5a4.5 4.5 0 0 1 0 7"></path>
+                  <path d="M18.5 5.5a8.5 8.5 0 0 1 0 13"></path>
+                </svg>
+                <span class="control-dock-label">Hear</span>
+              </button>
+              <button id="answer-flow-btn" type="button" class="action-icon-btn control-dock-btn" title="Show the answer" aria-label="Show the answer" data-mode="show">
+                <svg class="answer-flow-icon answer-flow-show-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                  <circle cx="12" cy="12" r="2.6"></circle>
+                </svg>
+                <svg class="answer-flow-icon answer-flow-next-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h12"></path>
+                  <path d="M13 7l5 5-5 5"></path>
+                </svg>
+                <span class="control-dock-label">Show</span>
               </button>
               <button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off action-icon-btn" title="Toggle autosay">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
@@ -796,6 +835,13 @@
                 <div class="option-group">
                   <h3>General</h3>
                   <div class="toggle-rows">
+                  <div class="toggle-row settings-action-row">
+                    <div class="settings-row-copy">
+                      <label for="app-update-action-btn">Update app</label>
+                      <p id="app-update-status-text" class="setting-helper-text">App is up to date.</p>
+                    </div>
+                    <button id="app-update-action-btn" type="button" class="settings-inline-action-btn">Check for updates</button>
+                  </div>
                   <!-- Balance toggle moved to Frequency Weights section -->
                   <!-- DEAD CODE -->
                   <div style="display: none; flex-direction: row;align-items:center;justify-content:space-between;  ; gap: 0.5em;">
@@ -827,8 +873,11 @@
                   </div>
 
                   <!-- correct DICTATION -->
-                  <div class="toggle-row">
-                    <label for="correct-dictation-toggle">Next card on correct dictation</label>
+                  <div class="toggle-row settings-mic-mode-row">
+                    <div class="settings-row-copy">
+                      <label for="correct-dictation-toggle">Use mic to answer before reveal</label>
+                      <p id="correct-dictation-helper" class="setting-helper-text">When off, the mic is used for pronunciation practice after reveal.</p>
+                    </div>
                     <div class="toggle-switch">
                         <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
                         <label for="correct-dictation-toggle" class="toggle-label"></label>
@@ -1044,20 +1093,6 @@
         const mnemonicsView = document.getElementById('mnemonics-view');
         const optionsView = document.getElementById('options-view');
         const backToOptionsBtn = document.getElementById('back-to-options-btn');
-        // Add a button to options to open mnemonics
-        const optionsContainer = document.getElementById('options-container');
-        const toggleOptions = optionsContainer.getElementsByClassName('option-group')[0];
-        if (optionsContainer && !document.getElementById('open-mnemonics-btn')) {
-          const mnemonicsBtn = document.createElement('button');
-          mnemonicsBtn.id = 'open-mnemonics-btn';
-          mnemonicsBtn.className = 'back-link-btn';
-          mnemonicsBtn.style.marginTop = '1em';
-          mnemonicsBtn.textContent = '📚 Mnemonics & Tips';
-          mnemonicsBtn.onclick = function() {
-            if (window.showView) window.showView('mnemonics-view');
-          };
-          optionsContainer.appendChild(mnemonicsBtn);
-        }
         // (No-op: back button handler is set in main JS for history support)
         // Singsong audio logic
         function speak(text) {
@@ -1088,7 +1123,7 @@
       const DAILY_GOAL = 100; // Change this to 10, 50, etc. to test
       function getTodayKey() {
         const d = new Date();
-        return `verbDailyCount_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`;
+        return window.getAppStorageKey(`verbDailyCount_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`);
       }
       function getDailyCount() {
         return parseInt(localStorage.getItem(getTodayKey()) || '0', 10);
@@ -1256,11 +1291,25 @@
         noSpeech: 'Aucune parole détectée.',
         error: 'Erreur',
         unknown: 'inconnue',
-        examplePhrases: 'Exemples de phrases'
+        examplePhrases: 'Exemples de phrases',
+        speakNow: 'Parlez maintenant.'
     };
 
     window.frenchLocalStorageKey = 'frenchVerbsOptions';
     window.frenchSpeechLang = 'fr-FR';
+    window.appStoragePrefix = 'french';
+    window.getAppStorageKey = function(name) {
+        return `${window.appStoragePrefix}:${name}`;
+    };
+    window.getAppStoredItem = function(name) {
+        return localStorage.getItem(window.getAppStorageKey(name));
+    };
+    window.setAppStoredItem = function(name, value) {
+        localStorage.setItem(window.getAppStorageKey(name), value);
+    };
+    window.removeAppStoredItem = function(name) {
+        localStorage.removeItem(window.getAppStorageKey(name));
+    };
     </script>
     <script src="js/verbs.full.generated.js?v=20260411b"></script>
     <script src="verb_usages.js?v=20260411b" onerror="window.verbUsages=[]"></script>
@@ -1409,11 +1458,11 @@ function populateVoiceSelect() {
         voiceSelect.appendChild(opt);
     });
 
-    const saved = localStorage.getItem('ttsVoiceName');
+    const saved = window.getAppStoredItem('ttsVoiceName');
     if (saved && frenchVoices.some(voice => voice.name === saved)) {
         voiceSelect.value = saved;
     } else if (saved) {
-        localStorage.removeItem('ttsVoiceName');
+        window.removeAppStoredItem('ttsVoiceName');
     }
 
     renderFrenchTtsStatus();
@@ -1431,7 +1480,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const select = document.getElementById('voice-select');
     if (select) {
         select.addEventListener('change', function() {
-            localStorage.setItem('ttsVoiceName', select.value);
+            window.setAppStoredItem('ttsVoiceName', select.value);
             if (typeof window.appLog === 'function') {
                 window.appLog(`tts-voice-select value="${select.value || 'automatic'}"`);
             }
@@ -1458,31 +1507,18 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   
 
-
   var overlay = document.getElementById('ftue-help-overlay');
   var closeBtn = document.getElementById('ftue-help-close');
-  var helpBtn = document.getElementById('help-btn');
-  var helpNavBtn = document.getElementById('help-nav-btn');
   var tipsBtn = document.getElementById('tips-btn');
-  if (!localStorage.getItem('ftue-shown')) {
-    overlay.style.display = 'flex';
-    // Mark as shown only when user dismisses it, not immediately
-  }
-  [helpBtn, helpNavBtn].filter(Boolean).forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      overlay.style.display = 'flex';
-    });
-  });
-  closeBtn.addEventListener('click', function() {
-    overlay.style.display = 'none';
-    localStorage.setItem('ftue-shown', 'true');
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
+  if (overlay) overlay.style.display = 'none';
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
       overlay.style.display = 'none';
-      localStorage.setItem('ftue-shown', 'true');
+    });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay) {
+      overlay.style.display = 'none';
     }
   });
 
@@ -1538,16 +1574,16 @@ function setupPracticeModeToggle() {
     // Sync toggle with localStorage (disabled for now)
     const toggle = document.getElementById('practice-mode-toggle');
     toggle.disabled = true;
-    let practiceMode = localStorage.getItem('practiceMode') || 'verbs';
+    let practiceMode = window.getAppStoredItem('practiceMode') || 'verbs';
     toggle.checked = (practiceMode === 'phrases');
     toggle.addEventListener('change', (e) => {
         practiceMode = e.target.checked ? 'phrases' : 'verbs';
-        localStorage.setItem('practiceMode', practiceMode);
+        window.setAppStoredItem('practiceMode', practiceMode);
     });
 }
   setupPracticeModeToggle();
   // --- Tips Button Logic ---
-  tipsBtn.addEventListener('click', function(e) {
+  if (tipsBtn) tipsBtn.addEventListener('click', function(e) {
     e.stopPropagation();
     e.preventDefault();
     // Remove any existing tip labels
@@ -1621,7 +1657,7 @@ function setupPracticeModeToggle() {
 
 <script>
 (function(){
-  var APP_LOG_KEY = 'app-debug-log';
+  var APP_LOG_KEY = window.getAppStorageKey('app-debug-log');
   var MAX = 120;
 
   function ts() {
