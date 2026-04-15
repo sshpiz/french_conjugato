@@ -251,7 +251,7 @@
 }
 #verb-tense {
   border-radius: 0.7em;
-  padding: 0.1em 0.7em;
+  padding: 0.22em 0.88em;
   background: var(--tense-present); /* default, will be overridden by class */
   color: #2c3e50;
   font-weight: 600;
@@ -287,7 +287,7 @@
 }
 #verb-tense {
   border-radius: 0.7em;
-  padding: 0.1em 0.7em;
+  padding: 0.22em 0.88em;
   background: var(--tense-present); /* default, will be overridden by class */
   color: #2c3e50;
   font-weight: 600;
@@ -574,9 +574,9 @@ body {
     display: inline-block;
     background-color: var(--primary-bg);
     color: var(--meta-color);
-    padding: 0.25rem 0.75rem;
+    padding: 0.34rem 0.95rem;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin: 0; /* Let the container handle spacing */
 }
 
@@ -1175,6 +1175,33 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   padding: 0.2rem 0.6rem;
 }
 
+#app-update-pill {
+  position: absolute;
+  top: 0.68rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  margin: 0;
+  padding: 0.28rem 0.82rem;
+  border-radius: 999px;
+  border: 1px solid rgba(103, 163, 215, 0.34);
+  background: linear-gradient(180deg, rgba(235, 246, 255, 0.95), rgba(221, 236, 250, 0.94));
+  color: #2f77b2;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 18px rgba(43, 92, 130, 0.12);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+#app-update-pill:hover,
+#app-update-pill:focus-visible {
+  transform: translateX(-50%) translateY(-1px);
+  box-shadow: 0 10px 22px rgba(43, 92, 130, 0.16);
+  background: linear-gradient(180deg, rgba(241, 249, 255, 0.98), rgba(226, 240, 252, 0.98));
+}
+
 #verb-irregular {
   margin: 0;
   background-color: #e74c3c;
@@ -1246,8 +1273,8 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  min-height: 32px;
+  gap: 0.65rem;
+  min-height: 38px;
   z-index: 3;
 }
 #verb-pronoun, #verb-tense {
@@ -1447,6 +1474,75 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   padding-top: 0.4rem !important;
   overflow: hidden !important;
   min-height: 0 !important;
+}
+
+#tutorial-inline-hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(3.15rem, 26%, 6.4rem);
+  transform: translateX(-50%);
+  width: min(82%, 430px);
+  min-height: clamp(7.8rem, 19vh, 9.6rem);
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+#tutorial-inline-hint.hidden {
+  display: none !important;
+}
+
+.tutorial-inline-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: clamp(7.8rem, 19vh, 9.6rem);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.tutorial-inline-heading {
+  display: block;
+  width: 100%;
+  min-height: calc(1rem * var(--font-scale, 1));
+  margin: 0 0 0.5rem;
+  font-size: calc(0.9rem * var(--font-scale, 1));
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  color: rgba(44, 62, 80, 0.62);
+  font-style: normal;
+}
+
+.tutorial-inline-body {
+  display: block;
+  width: 100%;
+  min-height: clamp(5.8rem, 14vh, 7.1rem);
+  margin: 0;
+  font-size: calc(1.14rem * var(--font-scale, 1));
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  color: rgba(44, 62, 80, 0.9);
+  background: none;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  text-wrap: balance;
+}
+
+#tutorial-inline-hint.tutorial-before .tutorial-inline-body {
+  font-weight: 620;
+}
+
+#tutorial-inline-hint.tutorial-after .tutorial-inline-body {
+  font-weight: 500;
+  color: rgba(73, 88, 104, 0.8);
+  font-style: normal;
 }
 
 /* Thin rule above the whole answer+sentence block */
@@ -1868,6 +1964,58 @@ body.greek-tts-unavailable #autosay-toggle-btn {
   color: var(--text-color);
 }
 
+.settings-action-row {
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.settings-row-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.settings-row-copy label {
+  margin: 0;
+}
+
+.setting-helper-text {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.35;
+  color: var(--meta-color);
+  opacity: 0.84;
+}
+
+.settings-inline-action-btn {
+  border: 1px solid rgba(140, 177, 210, 0.48);
+  border-radius: 999px;
+  padding: 0.62rem 0.95rem;
+  background: linear-gradient(180deg, rgba(240, 248, 255, 0.95), rgba(227, 239, 250, 0.98));
+  color: #2f77b2;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(52, 98, 141, 0.08);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+.settings-inline-action-btn:hover,
+.settings-inline-action-btn:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(109, 161, 210, 0.62);
+  background: linear-gradient(180deg, rgba(245, 250, 255, 0.98), rgba(230, 241, 251, 0.98));
+  box-shadow: 0 8px 18px rgba(52, 98, 141, 0.12);
+}
+
+.settings-inline-action-btn:active {
+  transform: translateY(0);
+}
+
 /* ── Settings: presets description text ─────────────────── */
 .option-desc {
   font-size: 0.82rem;
@@ -2259,12 +2407,54 @@ html[data-theme="dark"] #verb-tense.tense-futurSimple { background: var(--tense-
 html[data-theme="dark"] #verb-tense.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; color: #3e1422 !important; }
 html[data-theme="dark"] #verb-tense.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; color: #e4cff2 !important; }
 html[data-theme="dark"] #verb-tense.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; color: #2c3e14 !important; }
+html[data-theme="dark"] .tutorial-inline-body {
+  color: rgba(233, 240, 248, 0.9);
+  background: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+html[data-theme="dark"] .tutorial-inline-heading {
+  color: rgba(185, 204, 223, 0.62);
+}
+html[data-theme="dark"] #tutorial-inline-hint.tutorial-after .tutorial-inline-body {
+  color: rgba(173, 194, 214, 0.8);
+}
+html[data-theme="dark"] #dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
+html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled,
+html[data-theme="dark"] .control-dock-btn.is-tutorial-locked {
+  background: linear-gradient(180deg, rgba(28,37,49,0.98), rgba(20,27,37,0.98)) !important;
+  border-color: rgba(87, 102, 120, 0.44) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 6px 12px rgba(0,0,0,0.16) !important;
+  color: rgba(132, 147, 164, 0.8) !important;
+}
+html[data-theme="dark"] #app-update-pill {
+  border-color: rgba(101, 153, 199, 0.38);
+  background: linear-gradient(180deg, rgba(27, 48, 68, 0.96), rgba(19, 34, 49, 0.98));
+  color: #a4d6ff;
+  box-shadow: 0 12px 24px rgba(4, 14, 26, 0.34);
+}
+html[data-theme="dark"] #app-update-pill:hover,
+html[data-theme="dark"] #app-update-pill:focus-visible {
+  background: linear-gradient(180deg, rgba(33, 58, 82, 0.98), rgba(23, 40, 58, 0.98));
+}
 html[data-theme="dark"] .styled-select { background-color: var(--card-bg); border-color: var(--border-color); }
 html[data-theme="dark"] .action-icon-btn { box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
 html[data-theme="dark"] .option-group > label,
 html[data-theme="dark"] .option-group h3,
 html[data-theme="dark"] .slider-group label { color: #b0b8c1 !important; }
 html[data-theme="dark"] .slider-group .slider-value { color: #6ec6ff !important; }
+html[data-theme="dark"] .setting-helper-text { color: #8ca0b7; }
+html[data-theme="dark"] .settings-inline-action-btn {
+  border-color: rgba(101, 140, 176, 0.4);
+  background: linear-gradient(180deg, rgba(30, 45, 62, 0.98), rgba(22, 33, 46, 0.98));
+  color: #9fd1ff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+html[data-theme="dark"] .settings-inline-action-btn:hover,
+html[data-theme="dark"] .settings-inline-action-btn:focus-visible {
+  border-color: rgba(122, 170, 210, 0.58);
+  background: linear-gradient(180deg, rgba(36, 55, 76, 0.98), rgba(26, 40, 56, 0.98));
+}
 
 /* Force light (overrides dark system preference)            */
 html[data-theme="light"] {
@@ -2334,6 +2524,11 @@ html[data-theme="light"] #go-to-verb-btn {
   color: var(--text-color) !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
 }
+html[data-theme="light"] #app-update-pill {
+  border-color: rgba(122, 173, 214, 0.38) !important;
+  background: linear-gradient(180deg, rgba(240, 248, 255, 0.98), rgba(226, 239, 251, 0.98)) !important;
+  color: #2f77b2 !important;
+}
 html[data-theme="light"] .navigation {
   background: #ffffff !important;
   border-top: 1px solid #e0e6ed !important;
@@ -2391,6 +2586,11 @@ html[data-theme="light"] .styled-select {
   background-color: var(--card-bg) !important;
   border-color: var(--border-color) !important;
   color: var(--text-color) !important;
+}
+html[data-theme="light"] .settings-inline-action-btn {
+  border-color: rgba(140, 177, 210, 0.48) !important;
+  background: linear-gradient(180deg, rgba(240, 248, 255, 0.95), rgba(227, 239, 250, 0.98)) !important;
+  color: #2f77b2 !important;
 }
 html[data-theme="light"] #english-verb-infinitive {
   color: var(--accent-color) !important;
@@ -2585,6 +2785,80 @@ html[data-theme="dark"] {
   border-color: var(--control-btn-border) !important;
   box-shadow: var(--control-btn-shadow) !important;
   color: var(--control-btn-color) !important;
+}
+
+.control-dock-btn.is-phase-disabled,
+.control-dock-btn.is-unsupported,
+.control-dock-btn.is-no-content {
+  opacity: 1 !important;
+  background: var(--control-btn-disabled-bg) !important;
+  border-color: var(--control-btn-disabled-border) !important;
+  box-shadow: none !important;
+  color: var(--control-btn-disabled-color) !important;
+}
+
+.control-dock-btn.is-tutorial-locked {
+  opacity: 1 !important;
+  background: linear-gradient(180deg, rgba(242,246,251,0.95), rgba(230,236,244,0.96)) !important;
+  border-color: rgba(186, 196, 209, 0.78) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 2px 8px rgba(44,62,80,0.04) !important;
+  color: rgba(103, 117, 132, 0.84) !important;
+  filter: saturate(0.72);
+}
+
+.control-dock-btn.is-tutorial-locked::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 7px;
+  height: 6px;
+  border: 1.4px solid currentColor;
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  opacity: 0.7;
+}
+
+.control-dock-btn.is-tutorial-locked::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 11px;
+  height: 9px;
+  border: 1.4px solid currentColor;
+  border-radius: 3px;
+  opacity: 0.7;
+}
+
+.control-dock-btn.is-phase-disabled::before,
+.control-dock-btn.is-phase-disabled::after,
+.control-dock-btn.is-unsupported::before,
+.control-dock-btn.is-unsupported::after,
+.control-dock-btn.is-no-content::before,
+.control-dock-btn.is-no-content::after {
+  display: none;
+}
+
+#dictate-btn-bottom.control-dock-btn.is-phase-disabled:disabled,
+#dictate-btn-bottom.control-dock-btn.is-unsupported:disabled,
+#usage-visibility-btn.control-dock-btn.is-phase-disabled:disabled,
+#usage-visibility-btn.control-dock-btn.is-unsupported:disabled,
+#usage-visibility-btn.control-dock-btn.is-no-content:disabled {
+  opacity: 1 !important;
+  background: var(--control-btn-disabled-bg) !important;
+  border-color: var(--control-btn-disabled-border) !important;
+  box-shadow: none !important;
+  color: var(--control-btn-disabled-color) !important;
+}
+
+#dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
+#usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled {
+  opacity: 1 !important;
+  background: linear-gradient(180deg, rgba(242,246,251,0.95), rgba(230,236,244,0.96)) !important;
+  border-color: rgba(186, 196, 209, 0.78) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 2px 8px rgba(44,62,80,0.04) !important;
+  color: rgba(103, 117, 132, 0.84) !important;
 }
 
 .navigation {
@@ -2782,15 +3056,47 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <!-- Register service worker for PWA compliance -->
     <script>
+        window.__appUpdateState = {
+            registration: null,
+            status: 'idle',
+            updateAvailable: false,
+            checkedAt: 0,
+            lastUpdatedAt: 0,
+            debugForceVisible: false
+        };
+
+        window.__setAppUpdateState = function(patch) {
+            window.__appUpdateState = Object.assign({}, window.__appUpdateState, patch || {});
+            window.dispatchEvent(new CustomEvent('app-update-state', {
+                detail: Object.assign({}, window.__appUpdateState)
+            }));
+            return window.__appUpdateState;
+        };
+
         if (location.protocol !== 'file:' && 'serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js', { scope: './' })
-                .then(() => console.log('[SW] Registered'))
+                .then((registration) => {
+                    console.log('[SW] Registered');
+                    window.__setAppUpdateState({
+                        registration,
+                        status: registration.waiting ? 'ready' : 'idle',
+                        updateAvailable: !!registration.waiting
+                    });
+
+                    registration.addEventListener('updatefound', () => {
+                        window.__setAppUpdateState({ status: 'checking' });
+                    });
+                })
                 .catch(() => console.log('[SW] Registration failed'));
-            // Auto-reload when a new SW version takes over
+
             navigator.serviceWorker.addEventListener('message', e => {
                 if (e.data && e.data.type === 'SW_UPDATED') {
-                    console.log('[SW] New version active — reloading');
-                    window.location.reload();
+                    console.log('[SW] New version active — reload available');
+                    window.__setAppUpdateState({
+                        status: 'ready',
+                        updateAvailable: true,
+                        lastUpdatedAt: Date.now()
+                    });
                 }
             });
         }
@@ -2800,7 +3106,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
       #answer-container { visibility: hidden; }
       #verb-pronoun,
       #verb-tense {
-        font-size: 1.2rem; /* Make pronoun and tense larger */
+        font-size: 1.32rem; /* Make pronoun and tense larger */
         font-weight: 600; /* Make pronoun and tense bolder */
       }
       .verb-phrase {
@@ -3112,176 +3418,6 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         color: var(--accent-color, #3498db);
       }
     </style>
-    <!-- Tutorial Overlay -->
-<style>
-#tutorial-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  display: none;
-  cursor: pointer;
-}
-#tutorial-highlight {
-  position: fixed;
-  border-radius: 12px;
-  box-shadow: 0 0 0 9999px rgba(0,0,0,0.78);
-  border: 2px solid rgba(255,255,255,0.35);
-  transition: all 0.28s ease;
-  z-index: 10001;
-  pointer-events: none;
-  display: none;
-}
-#tutorial-tooltip {
-  position: fixed;
-  z-index: 10002;
-  background: #1a2633;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 0.85rem 1.1rem 0.7rem;
-  max-width: min(320px, 88vw);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  display: none;
-  pointer-events: none;
-}
-#tutorial-tooltip .tt-text {
-  color: #f0f4f8;
-  font-size: 1rem;
-  line-height: 1.45;
-  margin: 0 0 0.55rem;
-}
-#tutorial-tooltip .tt-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.4);
-}
-#tutorial-tooltip .tt-hint {
-  font-style: italic;
-}
-#tutorial-skip {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10003;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 8px;
-  color: rgba(255,255,255,0.6);
-  font-size: 0.8rem;
-  padding: 0.3rem 0.75rem;
-  cursor: pointer;
-  display: none;
-}
-</style>
-
-<div id="tutorial-overlay"></div>
-<div id="tutorial-highlight"></div>
-<div id="tutorial-tooltip">
-  <p class="tt-text"></p>
-  <div class="tt-footer">
-    <span class="tt-hint">tap anywhere to continue</span>
-    <span class="tt-counter"></span>
-  </div>
-</div>
-<button id="tutorial-skip">Skip</button>
-
-<script>
-(function(){
-  const steps = [
-    {
-      selector: "#verb-infinitive",
-      text: "The Greek dictionary form appears here. Conjugate it before tapping to reveal."
-    },
-    {
-      selector: ".meta-container",
-      text: "This tells you the pronoun and tense to use — for example εγώ · Ενεστώτας."
-    },
-    {
-      selector: "#phrase-container",
-      text: "Tap anywhere on the card to reveal the answer and check yourself."
-    },
-    {
-      selector: "#dictate-btn",
-      text: "Use the mic to say your answer out loud — great for pronunciation practice."
-    },
-    {
-      selector: "#options-toggle-btn",
-      text: "Customize which verbs, tenses, and difficulty levels you want to practice."
-    }
-  ];
-
-  let stepIndex = 0;
-
-  const overlay   = () => document.getElementById('tutorial-overlay');
-  const highlight = () => document.getElementById('tutorial-highlight');
-  const tooltip   = () => document.getElementById('tutorial-tooltip');
-  const skipBtn   = () => document.getElementById('tutorial-skip');
-
-  function showStep(i) {
-    const step = steps[i];
-    const el = document.querySelector(step.selector);
-    if (!el) { advance(); return; }
-
-    const PAD = 12;
-    const r = el.getBoundingClientRect();
-    const hl = highlight();
-    hl.style.left   = `${r.left - PAD}px`;
-    hl.style.top    = `${r.top - PAD}px`;
-    hl.style.width  = `${r.width + PAD * 2}px`;
-    hl.style.height = `${r.height + PAD * 2}px`;
-
-    const tt = tooltip();
-    tt.querySelector('.tt-text').textContent = step.text;
-    tt.querySelector('.tt-counter').textContent = `${i + 1} / ${steps.length}`;
-
-    // Position tooltip: below element if in top half, above if in bottom half
-    const MARGIN = 12;
-    const ttH = 110; // approx height
-    const below = r.bottom + PAD + MARGIN + ttH < window.innerHeight;
-    if (below) {
-      tt.style.top    = `${r.bottom + PAD + MARGIN}px`;
-      tt.style.bottom = 'auto';
-    } else {
-      tt.style.bottom = `${window.innerHeight - r.top + PAD + MARGIN}px`;
-      tt.style.top    = 'auto';
-    }
-    tt.style.left = `${Math.max(12, Math.min(r.left, window.innerWidth - 332))}px`;
-  }
-
-  function advance() {
-    stepIndex++;
-    if (stepIndex >= steps.length) {
-      close();
-    } else {
-      showStep(stepIndex);
-    }
-  }
-
-  function close() {
-    overlay().style.display   = 'none';
-    highlight().style.display = 'none';
-    tooltip().style.display   = 'none';
-    skipBtn().style.display   = 'none';
-    localStorage.setItem('tutorial_seen', 'yes');
-    stepIndex = 0;
-  }
-
-  window.startTutorial = function() {
-    stepIndex = 0;
-    overlay().style.display   = 'block';
-    highlight().style.display = 'block';
-    tooltip().style.display   = 'block';
-    skipBtn().style.display   = 'block';
-    showStep(0);
-  };
-
-  document.addEventListener('DOMContentLoaded', function() {
-    overlay().addEventListener('click', advance);
-    skipBtn().addEventListener('click', close);
-  });
-})();
-</script>
 
 </head>
 <body translate="no" class="notranslate">
@@ -3315,15 +3451,10 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         <!-- View 1: Flashcard Flow -->
         <div id="flashcard-view">
             <div id="flashcard" class="card" style="position:relative;">
-                <!-- Remove tip for help button -->
-                <button id="help-btn" title="Show help" style="display:none;position:absolute;top:0.7em;right:2.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#3498db);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">❓</button>
                 <!-- Remove tip for tips button -->
                 <button id="tips-btn" title="Show tips" style="position:absolute;top:0.7em;right:0.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#f1c40f);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">💡</button>
                 <!-- Contact button -->
                 <button id="contact-btn" title="Report issues" style="position:absolute;top:3.2em;right:0.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#3498db);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">📨</button>
-                <!-- Tutorial Button -->
-                <button id="tutorial-btn" class="tip-label000" hidden title="Show tutorial" style="display:none; position:absolute;top:0.7em;right:2.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#3498db);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">❓</button>
-
                 <div id="daily-progress-container">
                   <span id="daily-progress-circle">
                     <svg width="32" height="32" viewBox="0 0 32 32">
@@ -3333,6 +3464,9 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                   </span>
                   <span id="daily-progress-label"></span>
                 </div>
+                <button id="app-update-pill" class="hidden" type="button" aria-live="polite" title="Open settings to update the app">
+                  Update available
+                </button>
                 <div class="card-content-before">
                     <div class="infinitive-line">
                         <!-- Remove tip for infinitive audio button -->
@@ -3396,6 +3530,12 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                     </button>
                     <!-- Question phrase (gap sentence, shows before answer reveal) -->
                     <p id="question-phrase" class="verb-phrase"></p>
+                    <div id="tutorial-inline-hint" class="hidden" aria-live="polite">
+                      <div class="tutorial-inline-text">
+                        <span class="tutorial-inline-heading"></span>
+                        <span class="tutorial-inline-body"></span>
+                      </div>
+                    </div>
                     
                     <div id="answer-container">
                         <div class="conjugated-line">
@@ -3418,34 +3558,6 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
             <!-- Action buttons row: mic + autosay -->
             <div id="go-to-verb-btn-container">
-              <button id="answer-flow-btn" type="button" class="action-icon-btn control-dock-btn" title="Show the answer" aria-label="Show the answer" data-mode="show">
-                <svg class="answer-flow-icon answer-flow-show-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
-                  <circle cx="12" cy="12" r="2.6"></circle>
-                </svg>
-                <svg class="answer-flow-icon answer-flow-next-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h12"></path>
-                  <path d="M13 7l5 5-5 5"></path>
-                </svg>
-                <span class="control-dock-label">Show</span>
-              </button>
-              <button id="context-audio-btn" type="button" class="action-icon-btn control-dock-btn" title="Hear the current prompt">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                  <path d="M15.5 8.5a4.5 4.5 0 0 1 0 7"></path>
-                  <path d="M18.5 5.5a8.5 8.5 0 0 1 0 13"></path>
-                </svg>
-                <span class="control-dock-label">Hear</span>
-              </button>
-              <button id="dictate-btn-bottom" class="dictate-big-btn action-icon-btn control-dock-btn" title="Say the answer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="9" y="2" width="6" height="12" rx="3"/>
-                  <path d="M5 10a7 7 0 0 0 14 0"/>
-                  <line x1="12" y1="19" x2="12" y2="22"/>
-                  <line x1="8" y1="22" x2="16" y2="22"/>
-                </svg>
-                <span class="control-dock-label">Say</span>
-              </button>
               <button id="usage-visibility-btn" class="action-icon-btn control-dock-btn usage-toggle-btn" type="button" title="Hide verb usage" aria-label="Hide verb usage" aria-pressed="true">
                 <svg class="usage-visibility-icon usage-visible-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M7 6h13"></path>
@@ -3465,6 +3577,34 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                   <line x1="5" y1="4" x2="19" y2="20"></line>
                 </svg>
                 <span class="control-dock-label">Usage</span>
+              </button>
+              <button id="dictate-btn-bottom" class="dictate-big-btn action-icon-btn control-dock-btn" title="Say the answer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="2" width="6" height="12" rx="3"/>
+                  <path d="M5 10a7 7 0 0 0 14 0"/>
+                  <line x1="12" y1="19" x2="12" y2="22"/>
+                  <line x1="8" y1="22" x2="16" y2="22"/>
+                </svg>
+                <span class="control-dock-label">Say</span>
+              </button>
+              <button id="context-audio-btn" type="button" class="action-icon-btn control-dock-btn" title="Hear the current prompt">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.5 8.5a4.5 4.5 0 0 1 0 7"></path>
+                  <path d="M18.5 5.5a8.5 8.5 0 0 1 0 13"></path>
+                </svg>
+                <span class="control-dock-label">Hear</span>
+              </button>
+              <button id="answer-flow-btn" type="button" class="action-icon-btn control-dock-btn" title="Show the answer" aria-label="Show the answer" data-mode="show">
+                <svg class="answer-flow-icon answer-flow-show-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                  <circle cx="12" cy="12" r="2.6"></circle>
+                </svg>
+                <svg class="answer-flow-icon answer-flow-next-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h12"></path>
+                  <path d="M13 7l5 5-5 5"></path>
+                </svg>
+                <span class="control-dock-label">Show</span>
               </button>
               <button id="autosay-toggle-btn" type="button" aria-pressed="false" class="autosay-off action-icon-btn" title="Toggle autosay">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
@@ -3542,6 +3682,13 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                 <div class="option-group">
                   <h3>General</h3>
                   <div class="toggle-rows">
+                  <div class="toggle-row settings-action-row">
+                    <div class="settings-row-copy">
+                      <label for="app-update-action-btn">Update app</label>
+                      <p id="app-update-status-text" class="setting-helper-text">App is up to date.</p>
+                    </div>
+                    <button id="app-update-action-btn" type="button" class="settings-inline-action-btn">Check for updates</button>
+                  </div>
                   <!-- Balance toggle moved to Frequency Weights section -->
                   <!-- DEAD CODE -->
                   <div style="display: none; flex-direction: row;align-items:center;justify-content:space-between;  ; gap: 0.5em;">
@@ -3573,8 +3720,11 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                   </div>
 
                   <!-- correct DICTATION -->
-                  <div class="toggle-row">
-                    <label for="correct-dictation-toggle">Next card on correct dictation</label>
+                  <div class="toggle-row settings-mic-mode-row">
+                    <div class="settings-row-copy">
+                      <label for="correct-dictation-toggle">Use mic to answer before reveal</label>
+                      <p id="correct-dictation-helper" class="setting-helper-text">When off, the mic is used for pronunciation practice after reveal.</p>
+                    </div>
                     <div class="toggle-switch">
                         <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
                         <label for="correct-dictation-toggle" class="toggle-label"></label>
@@ -3711,21 +3861,6 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
           </div>
         </div>
 
-        <!-- FTUE/Help Overlay -->
-        <div id="ftue-help-overlay" style="display:none; position:fixed; z-index:99999; inset:0; width:100vw; height:100vh; background:rgba(30,32,36,0.92); color:#fff; align-items:center; justify-content:center; flex-direction:column; padding:16px; box-sizing:border-box;">
-          <div style="width:min(100%, 460px); max-height:min(82vh, 680px); overflow:auto; margin:0 auto; background:rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 8px 32px rgba(44,62,80,0.18); padding: 1.35em 1.25em 1.1em; position:relative; box-sizing:border-box;">
-            <button id="ftue-help-close" style="position:absolute;top:1em;right:1em;font-size:1.5em;background:none;border:none;color:#fff;cursor:pointer;">✕</button>
-            <h2 style="margin-top:0; margin-bottom:0.55em;">Quick Help</h2>
-            <ul style="font-size:0.97em;line-height:1.56;margin:0; padding-left:1.15em;">
-              <li><b>Tap almost anywhere</b> to reveal the answer, then tap again to move on.</li>
-              <li><b>Use Settings</b> to choose which tenses and which verb ranges are in play. If you are starting out, use <b>Top 50 verbs</b> with the most common tenses.</li>
-              <li><b>Hear</b> plays the prompt before reveal and the answer after reveal. <b>Say</b> lets you answer aloud and get dictation feedback.</li>
-              <li><b>Usage</b> shows or hides the example lines while you drill. Most Greek text is playable, including usages and verb details.</li>
-              <li><b>Search</b> opens any verb and its full conjugation table.</li>
-            </ul>
-          </div>
-        </div>
-        
     </div>
 
     <!-- Contact Modal -->
@@ -3784,20 +3919,6 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         const mnemonicsView = document.getElementById('mnemonics-view');
         const optionsView = document.getElementById('options-view');
         const backToOptionsBtn = document.getElementById('back-to-options-btn');
-        // Add a button to options to open mnemonics
-        const optionsContainer = document.getElementById('options-container');
-        const toggleOptions = optionsContainer.getElementsByClassName('option-group')[0];
-        if (optionsContainer && !document.getElementById('open-mnemonics-btn')) {
-          const mnemonicsBtn = document.createElement('button');
-          mnemonicsBtn.id = 'open-mnemonics-btn';
-          mnemonicsBtn.className = 'back-link-btn';
-          mnemonicsBtn.style.marginTop = '1em';
-          mnemonicsBtn.textContent = '📚 Mnemonics & Tips';
-          mnemonicsBtn.onclick = function() {
-            if (window.showView) window.showView('mnemonics-view');
-          };
-          optionsContainer.appendChild(mnemonicsBtn);
-        }
         // (No-op: back button handler is set in main JS for history support)
         // Singsong audio logic
         function speak(text) {
@@ -3828,7 +3949,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
       const DAILY_GOAL = 100; // Change this to 10, 50, etc. to test
       function getTodayKey() {
         const d = new Date();
-        return `verbDailyCount_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`;
+        return window.getAppStorageKey(`verbDailyCount_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`);
       }
       function getDailyCount() {
         return parseInt(localStorage.getItem(getTodayKey()) || '0', 10);
@@ -3923,6 +4044,13 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
             }
         }
 
+        for (const [combinedPronoun, variants] of Object.entries(window.greekPronounMapping || {})) {
+            const normalizedCombined = combinedPronoun.toLowerCase();
+            if (variants.includes(pronoun) && normalizedConjugated.startsWith(normalizedCombined + ' ')) {
+                return `${pronoun}${conjugated.slice(combinedPronoun.length)}`;
+            }
+        }
+
         return pronoun + ' ' + conjugated;
     };
 
@@ -3938,11 +4066,25 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         noSpeech: 'Δεν εντοπίστηκε ομιλία.',
         error: 'Σφάλμα',
         unknown: 'άγνωστο',
-        examplePhrases: 'Παραδείγματα'
+        examplePhrases: 'Παραδείγματα',
+        speakNow: 'Μίλα τώρα.'
     };
 
     window.greekLocalStorageKey = 'greekVerbsOptions';
     window.greekSpeechLang = 'el-GR';
+    window.appStoragePrefix = 'greek';
+    window.getAppStorageKey = function(name) {
+        return `${window.appStoragePrefix}:${name}`;
+    };
+    window.getAppStoredItem = function(name) {
+        return localStorage.getItem(window.getAppStorageKey(name));
+    };
+    window.setAppStoredItem = function(name, value) {
+        localStorage.setItem(window.getAppStorageKey(name), value);
+    };
+    window.removeAppStoredItem = function(name) {
+        localStorage.removeItem(window.getAppStorageKey(name));
+    };
     </script>
     <script>
 // --- greek_v1.verbs.full.js ---
@@ -37855,6 +37997,7 @@ window.verbUsages = [
   let manifestData = null;
   let packIndex = new Map();
   let bufferPromises = new Map();
+  let packPromises = new Map();
   let audioContext = null;
   let currentSource = null;
 
@@ -38044,17 +38187,40 @@ window.verbUsages = [
     if (!pack) {
       throw new Error(`unknown pack: ${packId}`);
     }
-    if (isClipLayout(manifest)) {
-      const itemFiles = [...new Set(Object.values(pack.items || {}).map((item) => item.file).filter(Boolean))];
-      appLog(`download-start pack=${packId}`);
-      for (const file of itemFiles) {
-        await ensureAssetCached(versionedUrl(`tts/${file}`, manifest), `file=${file}`);
-      }
-      appLog(`download-success pack=${packId}`);
+    if (await isPackCached(packId)) {
       return true;
     }
-    const url = packUrl(pack, manifest);
-    return ensureAssetCached(url, `pack=${packId}`);
+    if (!packPromises.has(packId)) {
+      packPromises.set(packId, (async () => {
+        try {
+          if (isClipLayout(manifest)) {
+            const itemFiles = [...new Set(Object.values(pack.items || {}).map((item) => item.file).filter(Boolean))];
+            appLog(`download-start pack=${packId}`);
+            for (const file of itemFiles) {
+              await ensureAssetCached(versionedUrl(`tts/${file}`, manifest), `file=${file}`);
+            }
+            appLog(`download-success pack=${packId}`);
+            return true;
+          }
+          const url = packUrl(pack, manifest);
+          await ensureAssetCached(url, `pack=${packId}`);
+          return true;
+        } finally {
+          packPromises.delete(packId);
+        }
+      })());
+    }
+    return packPromises.get(packId);
+  }
+
+  async function prefetchAudioId(itemId) {
+    const manifest = await loadManifest();
+    const packId = packIndex.get(itemId);
+    if (!packId || !manifest.packs[packId]) {
+      return false;
+    }
+    await ensurePackCached(packId);
+    return true;
   }
 
   async function getDecodedAsset(cacheKey, url) {
@@ -38235,6 +38401,7 @@ window.verbUsages = [
     playAudioId,
     stopPlayback,
     prefetchPack,
+    prefetchAudioId,
     prefetchTop20,
     downloadAllAudio,
     removeAllAudio,
@@ -38257,6 +38424,11 @@ const UIStrings = window.greekUIStrings;
 const localStorageKey = window.greekLocalStorageKey;
 const speechLang = window.greekSpeechLang;
 const APP_NAME = window.appName || 'Τα Ρήματα';
+const APP_STORAGE_PREFIX = window.appStoragePrefix || 'greek';
+const getScopedStorageKey = window.getAppStorageKey || ((name) => `${APP_STORAGE_PREFIX}:${name}`);
+const getScopedStorageItem = window.getAppStoredItem || ((name) => localStorage.getItem(getScopedStorageKey(name)));
+const setScopedStorageItem = window.setAppStoredItem || ((name, value) => localStorage.setItem(getScopedStorageKey(name), value));
+const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localStorage.removeItem(getScopedStorageKey(name)));
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 // Feature flag to control gap sentence behavior
@@ -38316,9 +38488,8 @@ function classifyGreekVerb(verb) {
 
 const APP_VERSION = "v2";
 
-if (localStorage.getItem("app_version") !== APP_VERSION) {
-  localStorage.clear();
-  localStorage.setItem("app_version", APP_VERSION);
+if (getScopedStorageItem("app_version") !== APP_VERSION) {
+  setScopedStorageItem("app_version", APP_VERSION);
 }
 
 
@@ -38729,11 +38900,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const ttsWarningBanner = document.getElementById('tts-warning-banner');
     const ttsWarningText = document.getElementById('tts-warning-text');
     const ttsWarningOpenSettingsBtn = document.getElementById('tts-warning-open-settings-btn');
+    const appUpdatePill = document.getElementById('app-update-pill');
+    const appUpdateActionBtn = document.getElementById('app-update-action-btn');
+    const appUpdateStatusText = document.getElementById('app-update-status-text');
     
     const backBtn = document.getElementById('back-btn');
     const nextBtn = document.getElementById('next-btn');
     const explorerToggleBtn = document.getElementById('explorer-toggle-btn');
     const optionsToggleBtn = document.getElementById('options-toggle-btn'); // Gear icon button
+    const helpBtn = document.getElementById('help-btn');
+    const helpNavBtn = document.getElementById('help-nav-btn');
     const answerFlowBtn = document.getElementById('answer-flow-btn');
     const contextAudioBtn = document.getElementById('context-audio-btn');
     const backToFlashcardBtn = document.getElementById('back-to-flashcard-btn');
@@ -38742,6 +38918,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const usageNuggetEl = document.getElementById('usage-nugget');
     const usageVisibilityBtn = document.getElementById('usage-visibility-btn');
     const answerFlowLabelEl = answerFlowBtn ? answerFlowBtn.querySelector('.control-dock-label') : null;
+    const dictateBtnLabelEl = document.querySelector('#dictate-btn-bottom .control-dock-label');
+    const tutorialInlineHintEl = document.getElementById('tutorial-inline-hint');
+    const tutorialInlineTextEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-text') : null;
+    const tutorialInlineHeadingEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-heading') : null;
+    const tutorialInlineBodyEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-body') : null;
+    const correctDictationHelperEl = document.getElementById('correct-dictation-helper');
 
     const searchBar = document.getElementById('search-bar');
     const verbListContainer = document.getElementById('verb-list-container');
@@ -38750,6 +38932,146 @@ document.addEventListener('DOMContentLoaded', () => {
     let packagedTtsAutoStarted = false;
     let longPressCopyTimer = null;
     let suppressTapAudioUntil = 0;
+    const TUTORIAL_STORAGE_KEY = 'greekInlineTutorialStateV1';
+    const escapeHtml = (value) => String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    const TUTORIAL_STEPS = [
+        {
+            headingBefore: "Welcome! Let's start!",
+            headingAfter: 'Tutorial',
+            before: 'Try to conjugate the verb you see <strong>(μιλάω)</strong>. How would you say "I speak" in Greek? Tap Show to reveal the answer.',
+            after: `That's the answer. Did you get it right? Tap Next for another card.`
+        },
+        {
+            heading: 'Tutorial',
+            before: (card) => `The goal is to conjugate the verb correctly for the pronoun shown. Can you conjugate "<strong>${escapeHtml(card?.verb?.infinitive || '')}</strong>" for "<strong>${escapeHtml(card?.pronoun || '')}</strong>"?`,
+            after: 'You can tap the verb or the answer to hear it spoken aloud. Use Hear any time you want to listen again.'
+        },
+        {
+            heading: 'Tutorial',
+            before: 'Almost done. Can you conjugate this?',
+            after: 'After reveal, the mic lets you practice saying the answer aloud.'
+        },
+        {
+            heading: 'Tutorial',
+            before: 'To search for a verb, use Search at the bottom. To drill into the current verb, use the book icon next to the verb.',
+            after: 'Master the common verbs in the present first. Then explore more tenses and verbs in Settings.'
+        },
+        {
+            heading: 'Tutorial',
+            before: `That's it. You're ready to practice.`,
+            after: ''
+        }
+    ];
+    const tutorialState = {
+        active: false,
+        completed: false,
+        stepIndex: 0
+    };
+    const appUpdateState = Object.assign({
+        registration: null,
+        status: 'idle',
+        updateAvailable: false,
+        checkedAt: 0,
+        lastUpdatedAt: 0,
+        debugForceVisible: false
+    }, window.__appUpdateState || {});
+
+    const APP_UPDATE_STATUS_TEXT = {
+        idle: 'App is up to date.',
+        checking: 'Checking for updates...',
+        ready: 'New version available.',
+        unsupported: 'Updates are only available when the app is installed from the web.',
+        error: 'Could not check right now. Please try again.'
+    };
+
+    const syncAppUpdateUi = () => {
+        const status = appUpdateState.status || 'idle';
+        const showPill = !!(appUpdateState.updateAvailable || appUpdateState.debugForceVisible);
+
+        if (appUpdatePill) {
+            appUpdatePill.classList.toggle('hidden', !showPill);
+            appUpdatePill.textContent = appUpdateState.updateAvailable ? 'Update available' : 'Update app';
+        }
+
+        if (appUpdateStatusText) {
+            appUpdateStatusText.textContent = APP_UPDATE_STATUS_TEXT[status] || APP_UPDATE_STATUS_TEXT.idle;
+        }
+
+        if (appUpdateActionBtn) {
+            appUpdateActionBtn.disabled = status === 'checking';
+            appUpdateActionBtn.textContent = appUpdateState.updateAvailable ? 'Reload now' : 'Check for updates';
+        }
+    };
+
+    const setAppUpdateState = (patch = {}) => {
+        Object.assign(appUpdateState, patch);
+        if (typeof window.__setAppUpdateState === 'function') {
+            window.__setAppUpdateState(patch);
+            return;
+        }
+        syncAppUpdateUi();
+    };
+
+    const syncExternalAppUpdateState = (detail = {}) => {
+        Object.assign(appUpdateState, detail);
+        syncAppUpdateUi();
+    };
+
+    const openSettingsForUpdate = () => {
+        showOptions();
+        if (appUpdateActionBtn) {
+            window.setTimeout(() => {
+                appUpdateActionBtn.focus({ preventScroll: true });
+                appUpdateActionBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 40);
+        }
+    };
+
+    const checkForAppUpdates = async () => {
+        if (location.protocol === 'file:' || !('serviceWorker' in navigator)) {
+            setAppUpdateState({ status: 'unsupported', updateAvailable: false });
+            return;
+        }
+
+        setAppUpdateState({
+            status: 'checking',
+            checkedAt: Date.now()
+        });
+
+        try {
+            const registration = appUpdateState.registration || await navigator.serviceWorker.getRegistration('./');
+            if (!registration) {
+                setAppUpdateState({ status: 'unsupported', updateAvailable: false });
+                return;
+            }
+
+            setAppUpdateState({ registration });
+            await registration.update();
+
+            if (registration.waiting) {
+                setAppUpdateState({ status: 'ready', updateAvailable: true, registration });
+                return;
+            }
+
+            window.setTimeout(() => {
+                if (!appUpdateState.updateAvailable && appUpdateState.status === 'checking') {
+                    setAppUpdateState({ status: 'idle' });
+                }
+            }, 3800);
+        } catch (error) {
+            console.warn('App update check failed:', error);
+            setAppUpdateState({ status: 'error' });
+        }
+    };
+
+    window.addEventListener('app-update-state', (event) => {
+        syncExternalAppUpdateState(event.detail || {});
+    });
 
     const playAudioElement = (element, options = {}) => {
         if (!element) return;
@@ -38794,10 +39116,49 @@ document.addEventListener('DOMContentLoaded', () => {
         const canPlayAnswer = !!(currentCard && currentCard.conjugated);
         const enabled = isAnswerVisible ? canPlayAnswer : canPlayInfinitive;
         contextAudioBtn.disabled = !enabled;
+        contextAudioBtn.style.display = 'inline-flex';
         contextAudioBtn.setAttribute(
             'title',
             isAnswerVisible ? 'Play the shown answer' : 'Play the infinitive again'
         );
+    };
+
+    const refreshDictationButton = () => {
+        if (!dictateBtn) return;
+        const availability = getMicAvailability();
+        const micMode = getEffectiveMicMode();
+
+        dictateBtn.style.display = 'inline-flex';
+        dictateBtn.dataset.micMode = micMode;
+        dictateBtn.dataset.availability = availability;
+
+        dictateBtn.classList.toggle('is-tutorial-locked', availability === 'tutorial-locked');
+        dictateBtn.classList.toggle('is-phase-disabled', availability === 'phase-disabled');
+        dictateBtn.classList.toggle('is-unsupported', availability === 'unsupported' || availability === 'safeModeBlocked');
+        dictateBtn.classList.toggle('is-no-content', false);
+        dictateBtn.disabled = availability !== 'enabled';
+
+        if (dictateBtnLabelEl) {
+            dictateBtnLabelEl.textContent = micMode === 'answerByVoice' ? 'Answer' : 'Say';
+        }
+
+        let title = 'Practice saying the answer aloud';
+        if (availability === 'tutorial-locked') {
+            title = 'The tutorial unlocks the mic a little later';
+        } else if (availability === 'phase-disabled') {
+            title = micMode === 'answerByVoice'
+                ? 'Voice-answer mode works before reveal'
+                : 'Reveal the answer to use the mic';
+        } else if (availability === 'unsupported') {
+            title = 'Speech recognition is unavailable on this device';
+        } else if (availability === 'safeModeBlocked') {
+            title = 'Mic input is disabled in safe mode';
+        } else if (micMode === 'answerByVoice') {
+            title = 'Answer by voice before reveal';
+        }
+
+        dictateBtn.setAttribute('title', title);
+        dictateBtn.setAttribute('aria-label', title);
     };
 
     const refreshAnswerFlowButton = () => {
@@ -38816,28 +39177,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const syncUsageNuggetVisibility = () => {
         if (!usageNuggetEl) return;
+        const availability = getUsageAvailability();
         const shouldShow = !!(
             isAnswerVisible &&
             currentCard &&
             currentCard._hasUsages &&
+            availability === 'enabled' &&
             cardGenerationOptions.showUsageNugget
         );
         usageNuggetEl.style.display = shouldShow ? 'block' : 'none';
         usageNuggetEl.classList.toggle('usage-nugget-hidden', !shouldShow);
 
         if (usageVisibilityBtn) {
-            const canToggle = !!(APP_FLASHCARD_FEATURES.usageNuggetVisibilityToggle && currentCard && currentCard._hasUsages);
-            usageVisibilityBtn.style.display = canToggle ? 'inline-flex' : 'none';
-            usageVisibilityBtn.disabled = !canToggle;
+            usageVisibilityBtn.style.display = APP_FLASHCARD_FEATURES.usageNuggetVisibilityToggle ? 'inline-flex' : 'none';
+            usageVisibilityBtn.dataset.availability = availability;
+            usageVisibilityBtn.classList.toggle('is-tutorial-locked', availability === 'tutorial-locked');
+            usageVisibilityBtn.classList.toggle('is-phase-disabled', availability === 'phase-disabled');
+            usageVisibilityBtn.classList.toggle('is-no-content', availability === 'no-content');
+            usageVisibilityBtn.classList.toggle('is-unsupported', false);
+            usageVisibilityBtn.disabled = availability !== 'enabled';
             usageVisibilityBtn.setAttribute('aria-pressed', cardGenerationOptions.showUsageNugget ? 'true' : 'false');
-            usageVisibilityBtn.setAttribute(
-                'aria-label',
-                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
-            );
-            usageVisibilityBtn.setAttribute(
-                'title',
-                cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage'
-            );
+
+            let usageTitle = cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage';
+            if (availability === 'tutorial-locked') {
+                usageTitle = 'Usage examples unlock after the tutorial';
+            } else if (availability === 'no-content') {
+                usageTitle = 'No usage notes for this verb yet';
+            } else if (availability === 'phase-disabled') {
+                usageTitle = 'Usage is only available on verb cards';
+            }
+
+            usageVisibilityBtn.setAttribute('aria-label', usageTitle);
+            usageVisibilityBtn.setAttribute('title', usageTitle);
         }
     };
 
@@ -38853,7 +39224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isInteractiveFlashcardTarget = (target) => {
         if (!(target instanceof Element)) return false;
         return !!target.closest(
-            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner'
+            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner, #app-update-pill'
         );
     };
 
@@ -38947,21 +39318,50 @@ document.addEventListener('DOMContentLoaded', () => {
         ttsWarningBanner.classList.remove('hidden');
     };
 
+    const getNativeTtsAvailability = () => {
+        if (!('speechSynthesis' in window) || !window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {
+            return 'unsupported';
+        }
+        const voices = window.speechSynthesis.getVoices();
+        if (!voices.length) return 'checking';
+        const langPrefix = String(speechLang || '').split('-')[0].toLowerCase();
+        const hasMatchingVoice = voices.some((voice) => voice.lang && voice.lang.toLowerCase().startsWith(langPrefix));
+        return hasMatchingVoice ? 'available' : 'unavailable';
+    };
+
+    const shouldUseAutomaticPackagedTtsFallback = () => {
+        const availability = getNativeTtsAvailability();
+        return availability === 'unsupported' || availability === 'unavailable';
+    };
+
+    const shouldGraduallyPrefetchPackagedTts = () => {
+        if (!PACKAGED_TTS) return false;
+        if (PACKAGED_TTS.isEnabled && PACKAGED_TTS.isEnabled()) return true;
+        return shouldUseAutomaticPackagedTtsFallback();
+    };
+
     const ensureAutomaticPackagedTtsDownload = async () => {
         if (!PACKAGED_TTS || packagedTtsBusy || packagedTtsAutoStarted) return;
         if (location.protocol === 'file:') return;
+        if (!shouldGraduallyPrefetchPackagedTts()) return;
         packagedTtsAutoStarted = true;
 
         try {
-            PACKAGED_TTS.setEnabled(true);
+            if (!PACKAGED_TTS.isEnabled || !PACKAGED_TTS.isEnabled()) {
+                PACKAGED_TTS.setEnabled(true);
+            }
             const status = await PACKAGED_TTS.getStatus();
-            if (status.error || !status.totalPacks || status.cachedPacks >= status.totalPacks || status.layout === 'clips') {
+            if (status.error || !status.enabled || !status.totalPacks || status.layout === 'clips') {
+                await refreshPackagedTtsUi();
+                return;
+            }
+            if (status.cachedPacks >= status.totalPacks || status.mode !== 'none') {
                 await refreshPackagedTtsUi();
                 return;
             }
 
-            await runPackagedTtsJob('Downloading Greek audio for offline playback...', async () => {
-                await PACKAGED_TTS.downloadAllAudio(({ completed, total }) => {
+            await runPackagedTtsJob('Downloading Greek audio for the top 20...', async () => {
+                await PACKAGED_TTS.prefetchTop20(({ completed, total }) => {
                     setPackagedTtsStatus(`Downloading packaged Greek audio... ${completed}/${total} packs`);
                 });
             });
@@ -38971,6 +39371,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.appLog(`packed-tts auto-download-error message="${error.message}"`);
             }
             await refreshPackagedTtsUi();
+        }
+    };
+
+    const maybePrefetchCurrentCardPackagedAudio = async (card = currentCard) => {
+        if (!PACKAGED_TTS || packagedTtsBusy) return;
+        if (location.protocol === 'file:') return;
+        if (!shouldGraduallyPrefetchPackagedTts()) return;
+        if (!card || !card.verb || !card.verb.infinitive) return;
+
+        const audioId = lemmaAudioId(card.verb.infinitive);
+        try {
+            if (!PACKAGED_TTS.isEnabled || !PACKAGED_TTS.isEnabled()) {
+                PACKAGED_TTS.setEnabled(true);
+            }
+            const alreadyAvailable = await PACKAGED_TTS.isAudioIdAvailable(audioId);
+            if (alreadyAvailable) return;
+            await PACKAGED_TTS.prefetchAudioId(audioId);
+            if (window.appLog) {
+                window.appLog(`packed-tts background-prefetch id=${audioId}`);
+            }
+        } catch (error) {
+            if (window.appLog) {
+                window.appLog(`packed-tts background-prefetch-error id=${audioId} message="${error.message}"`);
+            }
         }
     };
 
@@ -39048,13 +39472,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoPanel = document.getElementById('info-panel');
 
     // --- Stability: Safe Mode & Global Error Logging ---
-    // Enable Safe Mode by setting localStorage.setItem('safe-mode', 'true').
+    // Enable Safe Mode by setting setScopedStorageItem('safe-mode', 'true').
     // It reduces potentially fragile features (speech, dictation) for older devices.
-    const SAFE_MODE = localStorage.getItem('safe-mode') === 'true';
+    const SAFE_MODE = getScopedStorageItem('safe-mode') === 'true';
 
     function logGlobalError(source, message, extra) {
         try {
-            const key = 'error-log';
+            const key = getScopedStorageKey('error-log');
             const existing = JSON.parse(localStorage.getItem(key) || '[]');
             const entry = {
                 ts: new Date().toISOString(),
@@ -39113,6 +39537,186 @@ document.addEventListener('DOMContentLoaded', () => {
     let dictationResultEl = null;
     let dictationTimeout = null;
     let ignoreNextDictationEnd = false;
+    let activeDictationPromptText = '';
+
+    const loadTutorialState = () => {
+        try {
+            const saved = localStorage.getItem(TUTORIAL_STORAGE_KEY);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                tutorialState.active = !!parsed.active;
+                tutorialState.completed = !!parsed.completed;
+                tutorialState.stepIndex = Math.max(0, Math.min(TUTORIAL_STEPS.length, Number(parsed.stepIndex) || 0));
+                return;
+            }
+        } catch (error) {
+            console.warn('Could not load tutorial state:', error);
+        }
+
+        const alreadyOnboarded = getScopedStorageItem('ftue-shown') === 'true' || getScopedStorageItem('tutorial_seen') === 'yes';
+        tutorialState.active = !alreadyOnboarded;
+        tutorialState.completed = alreadyOnboarded;
+        tutorialState.stepIndex = alreadyOnboarded ? TUTORIAL_STEPS.length : 0;
+    };
+
+    const saveTutorialState = () => {
+        try {
+            localStorage.setItem(TUTORIAL_STORAGE_KEY, JSON.stringify({
+                active: tutorialState.active,
+                completed: tutorialState.completed,
+                stepIndex: tutorialState.stepIndex
+            }));
+            if (tutorialState.completed) {
+                setScopedStorageItem('ftue-shown', 'true');
+                setScopedStorageItem('tutorial_seen', 'yes');
+            }
+        } catch (error) {
+            console.warn('Could not save tutorial state:', error);
+        }
+    };
+
+    const getSpeechRecognitionState = () => {
+        if (SAFE_MODE) return 'safeModeBlocked';
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) return 'unsupported';
+        return 'ready';
+    };
+
+    const getEffectiveMicMode = () => (
+        tutorialState.active
+            ? 'practiceAfterReveal'
+            : (cardGenerationOptions.useMicToAnswer ? 'answerByVoice' : 'practiceAfterReveal')
+    );
+
+    const getDictationPromptText = () => {
+        if (currentCard && getEffectiveMicMode() === 'answerByVoice' && !isAnswerVisible) {
+            return getPrompt(currentCard);
+        }
+        return UIStrings.speakNow || 'Speak now.';
+    };
+
+    const isTutorialMicLocked = () => {
+        if (!tutorialState.active) return false;
+        return tutorialState.stepIndex < 2 || (tutorialState.stepIndex === 2 && !isAnswerVisible);
+    };
+
+    const getMicAvailability = () => {
+        const speechState = getSpeechRecognitionState();
+        if (speechState !== 'ready') return speechState;
+        if (!currentCard || currentCard.isPhraseMode || !currentCard.verb) return 'phase-disabled';
+        if (isTutorialMicLocked()) return 'tutorial-locked';
+
+        const micMode = getEffectiveMicMode();
+        if (micMode === 'practiceAfterReveal' && !isAnswerVisible) return 'phase-disabled';
+        if (micMode === 'answerByVoice' && isAnswerVisible) return 'phase-disabled';
+        return 'enabled';
+    };
+
+    const getUsageAvailability = () => {
+        if (!APP_FLASHCARD_FEATURES.usageNuggetVisibilityToggle) return 'hidden';
+        if (tutorialState.active) return 'tutorial-locked';
+        if (!currentCard || currentCard.isPhraseMode) return 'phase-disabled';
+        if (!currentCard._hasUsages) return 'no-content';
+        return 'enabled';
+    };
+
+    const setMicAnswerMode = (enabled, options = {}) => {
+        const { persist = true } = options;
+        cardGenerationOptions.useMicToAnswer = !!enabled;
+        if (persist) saveOptions();
+    };
+
+    const syncMicModeSettingUi = () => {
+        const correctDictationToggle = document.getElementById('correct-dictation-toggle');
+        if (!correctDictationToggle) return;
+        const tutorialLocksMicMode = tutorialState.active;
+        correctDictationToggle.checked = !!cardGenerationOptions.useMicToAnswer;
+        correctDictationToggle.disabled = tutorialLocksMicMode;
+        if (correctDictationHelperEl) {
+            correctDictationHelperEl.textContent = tutorialLocksMicMode
+                ? 'The tutorial begins with after-reveal pronunciation practice.'
+                : 'When off, the mic is used for pronunciation practice after reveal.';
+        }
+    };
+
+    const getCurrentTutorialHint = () => {
+        if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
+        const step = TUTORIAL_STEPS[tutorialState.stepIndex];
+        if (!step) return '';
+        const rawHint = isAnswerVisible ? step.after : step.before;
+        return typeof rawHint === 'function' ? rawHint(currentCard) : rawHint;
+    };
+
+    const getCurrentTutorialHeading = () => {
+        if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
+        const step = TUTORIAL_STEPS[tutorialState.stepIndex];
+        if (!step) return '';
+        return isAnswerVisible ? (step.headingAfter || step.heading || '') : (step.headingBefore || step.heading || '');
+    };
+
+    const renderTutorialHint = () => {
+        if (!tutorialInlineHintEl || !tutorialInlineTextEl || !tutorialInlineHeadingEl || !tutorialInlineBodyEl) return;
+        const hint = getCurrentTutorialHint();
+        const heading = getCurrentTutorialHeading();
+        tutorialInlineHintEl.classList.toggle('hidden', !hint);
+        tutorialInlineHintEl.classList.toggle('tutorial-before', !!hint && !isAnswerVisible);
+        tutorialInlineHintEl.classList.toggle('tutorial-after', !!hint && isAnswerVisible);
+        tutorialInlineHeadingEl.textContent = hint && heading ? heading : '';
+        tutorialInlineBodyEl.innerHTML = hint || '';
+    };
+
+    const refreshTutorialAwareUi = () => {
+        renderTutorialHint();
+        syncMicModeSettingUi();
+    };
+
+    const completeTutorialIfNeeded = () => {
+        if (!tutorialState.active) return;
+        if (tutorialState.stepIndex >= TUTORIAL_STEPS.length - 1) {
+            tutorialState.active = false;
+            tutorialState.completed = true;
+            tutorialState.stepIndex = TUTORIAL_STEPS.length;
+        } else {
+            tutorialState.stepIndex += 1;
+        }
+        saveTutorialState();
+    };
+
+    const restartTutorialFlow = (options = {}) => {
+        const { confirmRestart = false } = options;
+        if (confirmRestart && !window.confirm('Restart the tutorial from the beginning?')) {
+            return;
+        }
+        stopActiveDictation({ abort: true, silent: true });
+        tutorialState.active = true;
+        tutorialState.completed = false;
+        tutorialState.stepIndex = 0;
+        if (typeof resetTutorialPracticeBaseline === 'function') {
+            resetTutorialPracticeBaseline();
+        } else {
+            setMicAnswerMode(false, { persist: false });
+        }
+        saveTutorialState();
+        showFlashcards();
+        if (!showTutorialIntroCard()) {
+            const fallbackCard = generateNewCard(cardGenerationOptions);
+            if (fallbackCard) {
+                history = [fallbackCard];
+                historyIndex = 0;
+                displayCard(fallbackCard);
+                hideAnswer();
+                backBtn.disabled = true;
+            } else if (isAnswerVisible) {
+                hideAnswer();
+            } else {
+                refreshTutorialAwareUi();
+                refreshContextAudioButton();
+                refreshAnswerFlowButton();
+                syncUsageNuggetVisibility();
+            }
+        }
+    };
+
+    window.startTutorial = () => restartTutorialFlow({ confirmRestart: false });
 
     const stopActiveDictation = (options = {}) => {
         const { abort = false, silent = true } = options;
@@ -39142,13 +39746,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // function hideDictationOverlay() {...}
 
     function setupDictation() {
-        // In Safe Mode, proactively disable dictation (more crash-prone on some devices)
-        if (SAFE_MODE) {
-            if (dictateBtn) dictateBtn.disabled = true;
-            return;
-        }
-        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-            if (dictateBtn) dictateBtn.disabled = true;
+        if (!dictateBtn) return;
+        const speechState = getSpeechRecognitionState();
+        if (speechState !== 'ready') {
+            refreshDictationButton();
             return;
         }
         dictationResultEl = document.getElementById('dictation-result');
@@ -39204,6 +39805,10 @@ document.addEventListener('DOMContentLoaded', () => {
             dictateBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
+                if (getMicAvailability() !== 'enabled') {
+                    refreshDictationButton();
+                    return;
+                }
                 // If already dictating, stop
                 if (isDictating && recognition) {
                     recognition.stop();
@@ -39220,7 +39825,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset overlay for new session
                 dictationResultEl.textContent = '';
                 dictationResultEl.style.display = 'block';
-                showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
+                activeDictationPromptText = getDictationPromptText();
+                showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
                 // Create new recognition instance
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 recognition = new SpeechRecognition();
@@ -39232,7 +39838,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     setDictating(true);
                     dictationResultEl.textContent = '';
                     dictationResultEl.style.display = 'block';
-                    showDictationOverlay('Parlez maintenant...', 'prompt', 0, false, false);
+                    activeDictationPromptText = getDictationPromptText();
+                    showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
                 };
                 recognition.onend = () => {
                     if (ignoreNextDictationEnd) {
@@ -39241,8 +39848,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     isDictating = false;
                     setDictating(false);
+                    refreshDictationButton();
                     clearTimeout(dictationTimeout);
-                    if (!dictationResultEl.textContent || dictationResultEl.textContent.includes('Parlez maintenant')) {
+                    if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
                         showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
                     } else {
                         showDictationOverlay(dictationResultEl.innerHTML, 'normal', 4000, true, true);
@@ -39255,6 +39863,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     isDictating = false;
                     setDictating(false);
+                    refreshDictationButton();
                     clearTimeout(dictationTimeout);
                     showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
                 };
@@ -39355,8 +39964,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             maybeWhisperMolodez();
                             
                             // Check if auto-advance is enabled
-                            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
-                            const correctDictationNextQuestion = localStorage.getItem('correct-dictation-next-question') === 'true';
+                            const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
+                            const correctDictationNextQuestion = getEffectiveMicMode() === 'answerByVoice';
                             
                             if (autosayOn || correctDictationNextQuestion) {
                                 // Auto-advance to next question
@@ -39414,7 +40023,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (recognition) {
                                     try { recognition.stop(); } catch (e) {}
                                 }
-                                if(localStorage.getItem('correct-dictation-next-question') === 'true'){
+                                if (getEffectiveMicMode() === 'answerByVoice') {
                                     handleNext();
                                 }
                             }, 1500);
@@ -39429,15 +40038,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             dictateBtn._dictationHandlerAttached = true;
         }
+        refreshDictationButton();
     }
-    if (dictateBtn) setupDictation();
 
     // --- State ---
-    let currentCard = null;
+    var currentCard = null;
     let currentDetailVerb = null;
-    let history = [];
-    let historyIndex = -1;
-    let isAnswerVisible = false;
+    var history = [];
+    var historyIndex = -1;
+    var isAnswerVisible = false;
     let recentCardKeys = []; // track last N card keys to avoid immediate repeats
 
     // --- Options UI Elements ---
@@ -39473,7 +40082,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showPhrases: true,
         verbsWithSentencesOnly: false, // When true, only show verbs that have sentences
         balancedPronouns: false,
-        showUsageNugget: true,
+        useMicToAnswer: false, // When true, the mic answers before reveal instead of practicing after reveal.
+        showUsageNugget: false,
         tenseWeights,
         frequencyWeights,
         regularityFilter: { regular: true, irregular: true },
@@ -39500,6 +40110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveOptions = () => {
         try {
             localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
+            setScopedStorageItem('correct-dictation-next-question', cardGenerationOptions.useMicToAnswer ? 'true' : 'false');
             // activePreset = "👤";
             // highlightActivePreset();
             updateCustomPresetFromUI();
@@ -39527,6 +40138,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (typeof savedOptions.balancedPronouns === 'boolean') {
                     cardGenerationOptions.balancedPronouns = savedOptions.balancedPronouns;
+                }
+                if (typeof savedOptions.useMicToAnswer === 'boolean') {
+                    cardGenerationOptions.useMicToAnswer = savedOptions.useMicToAnswer;
+                } else {
+                    cardGenerationOptions.useMicToAnswer = getScopedStorageItem('correct-dictation-next-question') === 'true';
                 }
                 if (typeof savedOptions.showUsageNugget === 'boolean') {
                     cardGenerationOptions.showUsageNugget = savedOptions.showUsageNugget;
@@ -39833,7 +40449,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const voices = typeof window.getGreekVoices === 'function' ? window.getGreekVoices() : [];
         if (!voices.length) return null;
 
-        const voiceName = localStorage.getItem('ttsVoiceName');
+        const voiceName = getScopedStorageItem('ttsVoiceName');
         if (voiceName) {
             const saved = voices.find(voice => voice.name === voiceName);
             if (saved) return saved;
@@ -39978,11 +40594,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const generateNewCard = (options = {}) => {
         // --- PRACTICE MODE LOGIC ---
-        const practiceMode = localStorage.getItem('practiceMode') || 'verbs';
+        const practiceMode = getScopedStorageItem('practiceMode') || 'verbs';
         if (practiceMode === 'phrases') {
             const phrasesList = Array.isArray(window.practicePhrases) ? window.practicePhrases : [];
             if (!phrasesList.length) {
-                localStorage.setItem('practiceMode', 'verbs');
+                setScopedStorageItem('practiceMode', 'verbs');
             } else {
                 const chosen = phrasesList[Math.floor(Math.random() * phrasesList.length)];
                 // Return a card-like object for phrase mode
@@ -40298,6 +40914,8 @@ document.addEventListener('DOMContentLoaded', () => {
             syncUsageNuggetVisibility();
             refreshContextAudioButton();
             refreshAnswerFlowButton();
+            refreshDictationButton();
+            renderTutorialHint();
             return;
         } else {
             // --- VERB MODE ---
@@ -40381,13 +40999,17 @@ document.addEventListener('DOMContentLoaded', () => {
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
         refreshAnswerFlowButton();
+        refreshDictationButton();
+        renderTutorialHint();
 
         // --- AUTOTALK: Speak prompt if enabled ---
-        const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+        const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
         if (autosayOn) {
             const prompt = getPrompt(card);
             speak(prompt);
         }
+        void ensureAutomaticPackagedTtsDownload();
+        void maybePrefetchCurrentCardPackagedAudio(card);
     }
     
 
@@ -40404,6 +41026,8 @@ document.addEventListener('DOMContentLoaded', () => {
             syncUsageNuggetVisibility();
             refreshContextAudioButton();
             refreshAnswerFlowButton();
+            refreshDictationButton();
+            renderTutorialHint();
             // Do NOT speak the answer automatically
         }
     };
@@ -40418,6 +41042,8 @@ document.addEventListener('DOMContentLoaded', () => {
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
         refreshAnswerFlowButton();
+        refreshDictationButton();
+        renderTutorialHint();
     };
 
     // --- Card advance logic ---
@@ -40448,10 +41074,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         // Do NOT start dictation automatically
+        refreshTutorialAwareUi();
     };
 
     const handleNext = () => {
         if (isAnswerVisible) {
+            if (tutorialState.active) {
+                completeTutorialIfNeeded();
+            }
             hideAnswer();
             setTimeout(() => {
                 nextCard();
@@ -40504,6 +41134,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.history.pushState({ view: viewId }, '', `#${viewId}`);
             }
         }
+
+        if (viewId === 'flashcard-view') {
+            renderTutorialHint();
+            refreshContextAudioButton();
+            refreshAnswerFlowButton();
+            refreshDictationButton();
+            syncUsageNuggetVisibility();
+        }
     }
 
     const showExplorerList = () => {
@@ -40524,6 +41162,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             e.preventDefault();
             showOptions();
+        });
+    }
+    if (appUpdatePill) {
+        appUpdatePill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            openSettingsForUpdate();
         });
     }
 
@@ -41082,6 +41727,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.appLog(`packed-tts toggle enabled=${packagedTtsEnabledToggle.checked ? 'true' : 'false'}`);
             }
             await refreshPackagedTtsUi();
+            if (packagedTtsEnabledToggle.checked) {
+                void ensureAutomaticPackagedTtsDownload();
+                void maybePrefetchCurrentCardPackagedAudio(currentCard);
+            }
         });
     }
 
@@ -41169,19 +41818,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // View Toggling
     explorerToggleBtn.addEventListener('click', showExplorerList);
     optionsToggleBtn.addEventListener('click', showOptions);
+    [helpBtn, helpNavBtn].filter(Boolean).forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            restartTutorialFlow({ confirmRestart: true });
+        });
+    });
+    if (appUpdateActionBtn) {
+        appUpdateActionBtn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            if (appUpdateState.updateAvailable) {
+                window.location.reload();
+                return;
+            }
+            await checkForAppUpdates();
+        });
+    }
     if (contextAudioBtn) {
         if (!APP_FLASHCARD_FEATURES.contextualSpeakerButton) {
             contextAudioBtn.style.display = 'none';
         }
         contextAudioBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (contextAudioBtn.disabled) return;
             playContextAudioHint();
         });
     }
     if (usageVisibilityBtn) {
-        usageVisibilityBtn.style.display = 'none';
         usageVisibilityBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (usageVisibilityBtn.disabled) return;
             cardGenerationOptions.showUsageNugget = !cardGenerationOptions.showUsageNugget;
             saveOptions();
             syncUsageNuggetVisibility();
@@ -41223,6 +41891,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     setupInfoPanel();
+    syncAppUpdateUi();
 
     // Options controls (hierarchicalToggle listener now lives in populateOptions dynamic row)
     if (showPhrasesToggle) showPhrasesToggle.addEventListener('change', (e) => {
@@ -41255,14 +41924,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Correct Dictation Next Question Toggle Logic ---
     const correctDictationToggle = document.getElementById('correct-dictation-toggle');
     if (correctDictationToggle) {
-        // Set initial state from localStorage
-        const enabled = localStorage.getItem('correct-dictation-next-question') === 'true';
-        correctDictationToggle.checked = enabled;
         correctDictationToggle.addEventListener('change', function() {
-            localStorage.setItem('correct-dictation-next-question', correctDictationToggle.checked ? 'true' : 'false');
+            setMicAnswerMode(correctDictationToggle.checked);
             activePreset = "Custom";
             highlightActivePreset();
-
+            syncMicModeSettingUi();
+            refreshDictationButton();
         });
     }
 
@@ -41296,15 +41963,15 @@ document.addEventListener('DOMContentLoaded', () => {
         autosayToggleBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             const emojiSpan = autosayToggleBtn.querySelector('span');
-            const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+            const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
             if (autosayOn) {
-                localStorage.setItem('autosay-enabled', 'false');
+                setScopedStorageItem('autosay-enabled', 'false');
                 if (emojiSpan) emojiSpan.textContent = '🔇';
                 autosayToggleBtn.setAttribute('aria-pressed', 'false');
                 autosayToggleBtn.classList.remove('autosay-on');
                 autosayToggleBtn.classList.add('autosay-off');
             } else {
-                localStorage.setItem('autosay-enabled', 'true');
+                setScopedStorageItem('autosay-enabled', 'true');
                 if (emojiSpan) emojiSpan.textContent = '🔊';
                 autosayToggleBtn.setAttribute('aria-pressed', 'true');
                 autosayToggleBtn.classList.remove('autosay-off');
@@ -41313,7 +41980,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         // Set initial state on load
         const emojiSpan = autosayToggleBtn.querySelector('span');
-        const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+        const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
         if (emojiSpan) emojiSpan.textContent = autosayOn ? '🔊' : '🔇';
         autosayToggleBtn.setAttribute('aria-pressed', autosayOn ? 'true' : 'false');
         autosayToggleBtn.classList.toggle('autosay-on', autosayOn);
@@ -41324,7 +41991,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let firstCardReady = false;
 
     function showAutosayReadyModalIfNeeded(startAppCallback) {
-      const autosayOn = localStorage.getItem('autosay-enabled') === 'true';
+      const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
       if (autosayOn && autosayReadyModal) {
         autosayReadyModal.style.display = 'flex';
         // Remove any previous listeners
@@ -41396,7 +42063,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Initial Load ---
     const initializeApp = () => {
         loadOptions();
+        loadTutorialState();
+        if (dictateBtn) setupDictation();
         populateOptions();
+        syncMicModeSettingUi();
+        refreshContextAudioButton();
+        refreshDictationButton();
+        renderTutorialHint();
         void refreshPackagedTtsUi();
         void ensureAutomaticPackagedTtsDownload();
         
@@ -41404,7 +42077,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const hasSeed = urlParams.get('seed');
         
-        if (!hasSeed) {
+        if (tutorialState.active && tutorialState.stepIndex === 0 && showTutorialIntroCard()) {
+            // Keep the tutorial intro deterministic on the first card.
+        } else if (!hasSeed) {
             const params = parseHashParams();
             if (params.pronoun && params.verb && params.tense) {
                 const customCard = generateCardFromParams(params.pronoun, params.verb, params.tense);
@@ -41563,6 +42238,21 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
+    function getTutorialIntroCard() {
+        return generateCardFromParams('εγώ', 'μιλάω', 'present');
+    }
+
+    function showTutorialIntroCard() {
+        const introCard = getTutorialIntroCard();
+        if (!introCard) return false;
+        history = [introCard];
+        historyIndex = 0;
+        displayCard(introCard);
+        hideAnswer();
+        backBtn.disabled = true;
+        return true;
+    }
+
     // --- Initial Card Loading ---
     const loadCardFromHash = () => {
         const params = parseHashParams();
@@ -41577,6 +42267,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         }
+        if (tutorialState.active && tutorialState.stepIndex === 0 && showTutorialIntroCard()) {
+            return;
+        }
         // If no valid card found, fall back to regular card generation
         const newCard = generateNewCard(cardGenerationOptions);
         if (newCard) {
@@ -41586,19 +42279,6 @@ document.addEventListener('DOMContentLoaded', () => {
             backBtn.disabled = historyIndex === 0;
         }
     };
-
-    // Call the patched initializeApp
-    window.initializeApp();
-
-    // Hide loading screen once app is ready
-    const loader = document.getElementById('app-loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
-    }
-    if (window.appLog) window.appLog('app-ready');
-    // Load card from URL hash on initial load
-    loadCardFromHash();
 
     // --- General Event Handler for Tappable Audio Elements ---
     // Handle clicks on tappable-audio elements with data-speak attribute (in detail view)
@@ -41705,7 +42385,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             
             // Get existing log or create new array
-            let verbLog = JSON.parse(localStorage.getItem('verbLog') || '[]');
+            let verbLog = JSON.parse(getScopedStorageItem('verbLog') || '[]');
             
             // Add new entry
             verbLog.push(entry);
@@ -41716,7 +42396,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             // Save back to localStorage
-            localStorage.setItem('verbLog', JSON.stringify(verbLog));
+            setScopedStorageItem('verbLog', JSON.stringify(verbLog));
             
             // Log to console
             console.log(`📊 Session logged: ${eventType} - ${entry.key} at ${new Date(entry.timestamp).toLocaleTimeString()}`);
@@ -41804,8 +42484,36 @@ function applyPreset(preset) {
     if (window._populateOptions) window._populateOptions();
   }
   activePreset = preset.name;
-  localStorage.setItem("lastPreset", activePreset);
+  setScopedStorageItem("lastPreset", activePreset);
   highlightActivePreset();
+}
+
+function resetTutorialPracticeBaseline() {
+  const starter = presets.find(p => p.name === "Τα Βασικά");
+  if (starter) {
+    applyPreset(starter);
+  }
+
+  cardGenerationOptions.hierarchical = true;
+  cardGenerationOptions.showPhrases = true;
+  cardGenerationOptions.verbsWithSentencesOnly = false;
+  cardGenerationOptions.balancedPronouns = false;
+  cardGenerationOptions.useMicToAnswer = false;
+  cardGenerationOptions.showUsageNugget = false;
+  cardGenerationOptions.regularityFilter = { regular: true, irregular: true };
+  cardGenerationOptions.endingFilter = { groupA: true, groupB: true, other: true };
+  cardGenerationOptions.categoryFilter = 'all';
+
+  try {
+    localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
+    setScopedStorageItem('correct-dictation-next-question', 'false');
+  } catch (e) {
+    console.warn("Could not save tutorial baseline options to localStorage:", e);
+  }
+
+  if (window._populateOptions) window._populateOptions();
+  if (typeof syncMicModeSettingUi === 'function') syncMicModeSettingUi();
+  if (typeof refreshTutorialAwareUi === 'function') refreshTutorialAwareUi();
 }
 
 
@@ -41813,7 +42521,7 @@ function applyPreset(preset) {
 // Switch to Custom and save config whenever user changes any setting
 function updateCustomPresetFromUI() {
     activePreset = "Custom";
-    localStorage.setItem("lastPreset", "Custom");
+    setScopedStorageItem("lastPreset", "Custom");
     highlightActivePreset();
     const custom = presets.find(p => p.name === "Custom");
     if (custom) {
@@ -41821,9 +42529,9 @@ function updateCustomPresetFromUI() {
         tenseWeights: { ...cardGenerationOptions.tenseWeights },
         frequencyWeights: { ...cardGenerationOptions.frequencyWeights },
         };
-        localStorage.setItem("presets", JSON.stringify(presets));
+        setScopedStorageItem("presets", JSON.stringify(presets));
         activePreset = "Custom";
-        localStorage.setItem("lastPreset", activePreset);
+        setScopedStorageItem("lastPreset", activePreset);
         highlightActivePreset();
     }
 }
@@ -41895,7 +42603,7 @@ function renderPresets() {
     btn.innerHTML = `<span class="preset-icon">${preset.emoji}</span><span class="preset-text"><span class="preset-name">${preset.name}</span><span class="preset-desc">${preset.desc || ''}</span></span>`;
     btn.onclick = () => {
       applyPreset(preset);
-      localStorage.setItem("lastPreset", preset.name);
+      setScopedStorageItem("lastPreset", preset.name);
     };
     container.appendChild(btn);
   });
@@ -41978,14 +42686,18 @@ function applyConfigToUI(config) {
 
 
 // Load last-used preset on startup; default to "Master the Basics I" on first open
-const lastUsed = localStorage.getItem("lastPreset");
-if (lastUsed) {
-  const found = presets.find(p => p.name === lastUsed || p.emoji === lastUsed);
-  if (found) applyPreset(found);
+if (tutorialState.active) {
+  resetTutorialPracticeBaseline();
 } else {
-  // First time ever — start with the most beginner-friendly preset
-  const starter = presets.find(p => p.name === "Τα Βασικά");
-  if (starter) applyPreset(starter);
+  const lastUsed = getScopedStorageItem("lastPreset");
+  if (lastUsed) {
+    const found = presets.find(p => p.name === lastUsed || p.emoji === lastUsed);
+    if (found) applyPreset(found);
+  } else {
+    // First time ever — start with the most beginner-friendly preset
+    const starter = presets.find(p => p.name === "Τα Βασικά");
+    if (starter) applyPreset(starter);
+  }
 }
 
 // // Watch setting changes
@@ -42001,6 +42713,19 @@ if (lastUsed) {
 //   applyPreset(presets.find(p => p.emoji === "👤"));
 // }
 renderPresets();
+
+// Call the patched initializeApp only after tutorial/preset state is fully defined.
+window.initializeApp();
+
+// Hide loading screen once app is ready
+const loader = document.getElementById('app-loader');
+if (loader) {
+    loader.style.opacity = '0';
+    setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
+}
+if (window.appLog) window.appLog('app-ready');
+// Load card from URL hash on initial load
+loadCardFromHash();
 
 
 });
@@ -42046,7 +42771,7 @@ function getGreekTtsStatus() {
         };
     }
 
-    const saved = localStorage.getItem('ttsVoiceName');
+    const saved = window.getAppStoredItem('ttsVoiceName');
     if (saved && !greekVoices.some(voice => voice.name === saved)) {
         return {
             state: 'fallback',
@@ -42166,11 +42891,11 @@ function populateVoiceSelect() {
         voiceSelect.appendChild(opt);
     });
 
-    const saved = localStorage.getItem('ttsVoiceName');
+    const saved = window.getAppStoredItem('ttsVoiceName');
     if (saved && greekVoices.some(voice => voice.name === saved)) {
         voiceSelect.value = saved;
     } else if (saved) {
-        localStorage.removeItem('ttsVoiceName');
+        window.removeAppStoredItem('ttsVoiceName');
     }
 
     renderGreekTtsStatus();
@@ -42188,7 +42913,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const select = document.getElementById('voice-select');
     if (select) {
         select.addEventListener('change', function() {
-            localStorage.setItem('ttsVoiceName', select.value);
+            window.setAppStoredItem('ttsVoiceName', select.value);
             if (typeof window.appLog === 'function') {
                 window.appLog(`tts-voice-select value="${select.value || 'automatic'}"`);
             }
@@ -42213,37 +42938,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  
-
-
-  var overlay = document.getElementById('ftue-help-overlay');
-  var closeBtn = document.getElementById('ftue-help-close');
-  var helpBtn = document.getElementById('help-btn');
-  var helpNavBtn = document.getElementById('help-nav-btn');
-  var tipsBtn = document.getElementById('tips-btn');
-  if (!localStorage.getItem('ftue-shown')) {
-    overlay.style.display = 'flex';
-    // Mark as shown only when user dismisses it, not immediately
-  }
-  [helpBtn, helpNavBtn].filter(Boolean).forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      overlay.style.display = 'flex';
-    });
-  });
-  closeBtn.addEventListener('click', function() {
-    overlay.style.display = 'none';
-    localStorage.setItem('ftue-shown', 'true');
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      overlay.style.display = 'none';
-      localStorage.setItem('ftue-shown', 'true');
-    }
-  });
-
-
 const dummyPhrases = [
     { phrase: "Bonjour, comment ça va?", translation: "Hello, how are you?" },
     { phrase: "Je voudrais un café.", translation: "I would like a coffee." },
@@ -42295,17 +42989,18 @@ function setupPracticeModeToggle() {
     // Phrase mode stays disabled until Greek phrase data exists.
     const toggle = document.getElementById('practice-mode-toggle');
     toggle.disabled = true;
-    localStorage.setItem('practiceMode', 'verbs');
+    window.setAppStoredItem('practiceMode', 'verbs');
     let practiceMode = 'verbs';
     toggle.checked = false;
     toggle.addEventListener('change', (e) => {
         practiceMode = e.target.checked ? 'phrases' : 'verbs';
-        localStorage.setItem('practiceMode', practiceMode);
+        window.setAppStoredItem('practiceMode', practiceMode);
     });
 }
   setupPracticeModeToggle();
   // --- Tips Button Logic ---
-  tipsBtn.addEventListener('click', function(e) {
+  var tipsBtn = document.getElementById('tips-btn');
+  if (tipsBtn) tipsBtn.addEventListener('click', function(e) {
     e.stopPropagation();
     e.preventDefault();
     // Remove any existing tip labels
@@ -42361,7 +43056,6 @@ function setupPracticeModeToggle() {
       });
     }, 3000);
   });
-});
 
 
 </script>
@@ -42373,7 +43067,7 @@ function setupPracticeModeToggle() {
 
 <script>
 (function(){
-  var APP_LOG_KEY = 'app-debug-log';
+  var APP_LOG_KEY = window.getAppStorageKey('app-debug-log');
   var MAX = 120;
 
   function ts() {
