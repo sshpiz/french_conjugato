@@ -799,16 +799,30 @@ body {
 .conjugation-item .pronoun {
     color: var(--meta-color);
     font-size: 0.9rem;
-    display: inline-block;
-    width: 92px; /* Stable pronoun column so long labels never collide with conjugations */
-    min-width: 92px;
-    flex: 0 0 92px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 104px; /* Stable pronoun column so stacked labels never push conjugations around */
+    min-width: 104px;
+    flex: 0 0 104px;
     margin-right: 0.45rem;
     line-height: 1.15;
-    white-space: pre-line;
+    white-space: normal;
     min-height: 2.2rem;
     overflow-wrap: anywhere;
     word-break: break-word;
+}
+
+.conjugation-item .pronoun.pronoun-stacked {
+    gap: 0.08rem;
+}
+
+.conjugation-item .pronoun-line {
+    display: block;
+}
+
+.conjugation-item .pronoun-line-secondary {
+    font-size: 0.88em;
 }
 
 .verb-detail-header .infinitive {
@@ -4183,16 +4197,30 @@ body {
 .conjugation-item .pronoun {
     color: var(--meta-color);
     font-size: 0.9rem;
-    display: inline-block;
-    width: 92px; /* Stable pronoun column so long labels never collide with conjugations */
-    min-width: 92px;
-    flex: 0 0 92px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 104px; /* Stable pronoun column so stacked labels never push conjugations around */
+    min-width: 104px;
+    flex: 0 0 104px;
     margin-right: 0.45rem;
     line-height: 1.15;
-    white-space: pre-line;
+    white-space: normal;
     min-height: 2.2rem;
     overflow-wrap: anywhere;
     word-break: break-word;
+}
+
+.conjugation-item .pronoun.pronoun-stacked {
+    gap: 0.08rem;
+}
+
+.conjugation-item .pronoun-line {
+    display: block;
+}
+
+.conjugation-item .pronoun-line-secondary {
+    font-size: 0.88em;
 }
 
 .verb-detail-header .infinitive {
@@ -7571,16 +7599,30 @@ body {
 .conjugation-item .pronoun {
     color: var(--meta-color);
     font-size: 0.9rem;
-    display: inline-block;
-    width: 92px; /* Stable pronoun column so long labels never collide with conjugations */
-    min-width: 92px;
-    flex: 0 0 92px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 104px; /* Stable pronoun column so stacked labels never push conjugations around */
+    min-width: 104px;
+    flex: 0 0 104px;
     margin-right: 0.45rem;
     line-height: 1.15;
-    white-space: pre-line;
+    white-space: normal;
     min-height: 2.2rem;
     overflow-wrap: anywhere;
     word-break: break-word;
+}
+
+.conjugation-item .pronoun.pronoun-stacked {
+    gap: 0.08rem;
+}
+
+.conjugation-item .pronoun-line {
+    display: block;
+}
+
+.conjugation-item .pronoun-line-secondary {
+    font-size: 0.88em;
 }
 
 .verb-detail-header .infinitive {
@@ -10955,16 +10997,30 @@ body {
 .conjugation-item .pronoun {
     color: var(--meta-color);
     font-size: 0.9rem;
-    display: inline-block;
-    width: 92px; /* Stable pronoun column so long labels never collide with conjugations */
-    min-width: 92px;
-    flex: 0 0 92px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 104px; /* Stable pronoun column so stacked labels never push conjugations around */
+    min-width: 104px;
+    flex: 0 0 104px;
     margin-right: 0.45rem;
     line-height: 1.15;
-    white-space: pre-line;
+    white-space: normal;
     min-height: 2.2rem;
     overflow-wrap: anywhere;
     word-break: break-word;
+}
+
+.conjugation-item .pronoun.pronoun-stacked {
+    gap: 0.08rem;
+}
+
+.conjugation-item .pronoun-line {
+    display: block;
+}
+
+.conjugation-item .pronoun-line-secondary {
+    font-size: 0.88em;
 }
 
 .verb-detail-header .infinitive {
@@ -13567,7 +13623,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260416_173927";
+      window.APP_BUILD_VERSION = "20260416_182539";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -25496,7 +25552,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260416_173927') ? 'dev' : raw;
+    return !raw || raw.includes('20260416_182539') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -25627,6 +25683,26 @@ const getPronounVariantsForCard = (pronounKey) => {
 
 const getPronounLabelForDetail = (displayPronoun) => {
     return normalizePronounDisplay(displayPronoun);
+};
+
+const buildDetailPronounContent = (pronounSpan, pronounLabel) => {
+    const label = String(pronounLabel || '');
+    const lines = label.split(/\n+/).map((part) => part.trim()).filter(Boolean);
+
+    if (lines.length <= 1) {
+        pronounSpan.textContent = label;
+        return;
+    }
+
+    pronounSpan.classList.add('pronoun-stacked');
+    pronounSpan.textContent = '';
+    lines.forEach((line, index) => {
+        const lineSpan = document.createElement('span');
+        lineSpan.className = 'pronoun-line';
+        if (index > 0) lineSpan.classList.add('pronoun-line-secondary');
+        lineSpan.textContent = line;
+        pronounSpan.appendChild(lineSpan);
+    });
 };
 
 // List of irregular Portuguese verbs
@@ -28135,7 +28211,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetBlock) {
             // Use a timeout to ensure the view is rendered before scrolling
             setTimeout(() => {
-                targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const containerRect = verbDetailContainer ? verbDetailContainer.getBoundingClientRect() : null;
+                const targetRect = targetBlock.getBoundingClientRect();
+                const isAlreadyVisible = containerRect
+                    ? targetRect.top >= containerRect.top + 12 && targetRect.bottom <= containerRect.bottom - 12
+                    : true;
+                if (!isAlreadyVisible) {
+                    targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
                 // Add a temporary highlight class for visual feedback
                 targetBlock.classList.add('highlight');
                 // Remove the highlight after the animation
@@ -28276,7 +28359,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 pronounSpan.className = 'pronoun tappable-audio';
                 pronounSpan.dataset.speak = pronounLabel.replace(/\n/g, ' ');
                 pronounSpan.dataset.audioId = pronounAudioId(audioPronounKey);
-                pronounSpan.textContent = pronounLabel;
+                buildDetailPronounContent(pronounSpan, pronounLabel);
                 const conjSpan = document.createElement('span');
                 conjSpan.className = conjugation === '—' ? 'conjugation' : 'conjugation tappable-audio';
                 conjSpan.dataset.speak = conjugation === '—' ? '' : conjugation;

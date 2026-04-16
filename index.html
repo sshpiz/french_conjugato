@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Conjujunkie</title>
-  <meta name="description" content="French, Greek, and Portuguese verb practice apps with offline support, usage examples, and focused daily drilling.">
+  <meta name="description" content="French, Greek, Portuguese, and Russian verb practice apps with offline support, usage examples, and focused daily drilling.">
   <meta name="theme-color" content="#102127">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,7 +41,7 @@
     a { color: inherit; text-decoration: none; }
 
     .shell {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1220px, calc(100% - 32px));
       margin: 0 auto;
       padding: 28px 0 48px;
     }
@@ -113,7 +113,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 22px;
       margin-top: 8px;
       align-items: start;
@@ -152,6 +152,10 @@
 
     .card:nth-child(3) .app-thumb {
       transform: rotate(0.7deg) translateY(4px);
+    }
+
+    .card:nth-child(4) .app-thumb {
+      transform: rotate(-0.45deg) translateY(8px);
     }
 
     .phone {
@@ -399,6 +403,22 @@
         <h2>Les Verbes</h2>
         <span class="card-link">Enter the French app →</span>
       </a>
+
+      <a class="card" href="/russian/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-russian.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Russian App</span>
+          <span class="caption">Aspect pairs</span>
+        </div>
+        <h2>Глаголы</h2>
+        <span class="card-link">Enter the Russian app →</span>
+      </a>
     </section>
 
     <section class="why">
@@ -413,7 +433,7 @@
       </div>
     </section>
 
-    <p class="footer">Version 20260416_173938</p>
+    <p class="footer">Version 20260416_191754</p>
   </div>
 </body>
 </html>

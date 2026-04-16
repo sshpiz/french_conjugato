@@ -3434,7 +3434,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260416_174733";
+      window.APP_BUILD_VERSION = "20260416_182541";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -38849,7 +38849,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260416_174733') ? 'dev' : raw;
+    return !raw || raw.includes('20260416_182541') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -41745,7 +41745,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetBlock) {
             // Use a timeout to ensure the view is rendered before scrolling
             setTimeout(() => {
-                targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const containerRect = verbDetailContainer ? verbDetailContainer.getBoundingClientRect() : null;
+                const targetRect = targetBlock.getBoundingClientRect();
+                const isAlreadyVisible = containerRect
+                    ? targetRect.top >= containerRect.top + 12 && targetRect.bottom <= containerRect.bottom - 12
+                    : true;
+                if (!isAlreadyVisible) {
+                    targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
                 // Add a temporary highlight class for visual feedback
                 targetBlock.classList.add('highlight');
                 // Remove the highlight after the animation
