@@ -68,6 +68,14 @@ if (getScopedStorageItem("app_version") !== APP_VERSION) {
   setScopedStorageItem("app_version", APP_VERSION);
 }
 
+(() => {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has('__refresh')) return;
+    url.searchParams.delete('__refresh');
+    const search = url.searchParams.toString();
+    window.history.replaceState(null, '', `${url.pathname}${search ? `?${search}` : ''}${url.hash}`);
+})();
+
 
 // --- Seeded Random Number Generator ---
 let seedValue = null;
@@ -621,6 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
         registration: null,
         status: 'idle',
         updateAvailable: false,
+        latestVersion: '',
         checkedAt: 0,
         lastUpdatedAt: 0,
         debugForceVisible: false
@@ -632,6 +641,21 @@ document.addEventListener('DOMContentLoaded', () => {
         ready: 'New version available.',
         unsupported: 'Updates are only available when the app is installed from the web.',
         error: 'Could not check right now. Please try again.'
+    };
+
+    const getReloadUrlForFreshApp = () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('__refresh', Date.now().toString());
+        return url.toString();
+    };
+
+    const fetchLatestAppVersion = async () => {
+        const response = await fetch(`./version.json?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(`version status ${response.status}`);
+        }
+        const payload = await response.json();
+        return normalizeAppVersion(payload && payload.version);
     };
 
     const syncAppVersionUi = () => {
@@ -653,7 +677,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (appUpdateStatusText) {
-            appUpdateStatusText.textContent = APP_UPDATE_STATUS_TEXT[status] || APP_UPDATE_STATUS_TEXT.idle;
+            let message = APP_UPDATE_STATUS_TEXT[status] || APP_UPDATE_STATUS_TEXT.idle;
+            if (status === 'ready' && appUpdateState.latestVersion && appUpdateState.latestVersion !== APP_VERSION) {
+                message = `New version available (${appUpdateState.latestVersion}).`;
+            }
+            appUpdateStatusText.textContent = message;
         }
 
         if (appUpdateActionBtn) {
@@ -712,9 +740,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const latestVersion = await fetchLatestAppVersion();
+            if (latestVersion && latestVersion !== APP_VERSION) {
+                setAppUpdateState({
+                    status: 'ready',
+                    updateAvailable: true,
+                    latestVersion,
+                    registration
+                });
+                return;
+            }
+
             window.setTimeout(() => {
                 if (!appUpdateState.updateAvailable && appUpdateState.status === 'checking') {
-                    setAppUpdateState({ status: 'idle' });
+                    setAppUpdateState({ status: 'idle', latestVersion: APP_VERSION });
                 }
             }, 3800);
         } catch (error) {
@@ -3616,7 +3655,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             e.preventDefault();
             if (appUpdateState.updateAvailable) {
-                window.location.reload();
+                window.location.assign(getReloadUrlForFreshApp());
                 return;
             }
             await checkForAppUpdates();

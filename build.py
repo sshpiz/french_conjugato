@@ -1,4 +1,5 @@
 import base64
+import json
 import os
 import re
 import shutil
@@ -28,6 +29,7 @@ FAVICON_PATH = os.path.join(ROOT_DIR, "favicon_big.png")
 
 APP_STANDALONE_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "franconjugue.html")
 APP_INDEX_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "index.html")
+APP_VERSION_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "version.json")
 APP_FILES_TO_COPY = ["manifest.json", "favicon_big.png", "sw.js"]
 ROOT_FILES_TO_COPY = ["favicon_big.png", "CNAME", "landing-greek.png", "landing-portugese.png", "landing-french.png"]
 
@@ -210,6 +212,10 @@ def build_french_app(force_jpeg=False):
     os.makedirs(APP_DIST_DIR, exist_ok=True)
     write_text(APP_INDEX_OUTPUT_PATH, web_html)
     write_text(APP_STANDALONE_OUTPUT_PATH, standalone_html)
+    write_text(APP_VERSION_OUTPUT_PATH, json.dumps({
+        "version": app_version,
+        "app": "french",
+    }, ensure_ascii=False, indent=2))
 
     for name in APP_FILES_TO_COPY:
         src_path = os.path.join(ROOT_DIR, name)
