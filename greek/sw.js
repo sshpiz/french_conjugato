@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the Greek app.
 
 const CACHE_PREFIX = 'gr-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v15';
+const CACHE_NAME = CACHE_PREFIX + 'v17';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -15,6 +15,7 @@ function appPath(relative = '') {
 const INDEX_PATH = appPath('index.html');
 const MANIFEST_PATH = appPath('manifest.json');
 const FAVICON_PATH = appPath('favicon_big.png');
+const VERSION_PATH = appPath('version.json');
 const LOG_PATH = appPath(LOG_KEY);
 const TTS_PREFIX = appPath('tts/');
 
@@ -58,7 +59,7 @@ self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      for (const url of [INDEX_PATH, MANIFEST_PATH, FAVICON_PATH]) {
+      for (const url of [INDEX_PATH, MANIFEST_PATH, FAVICON_PATH, VERSION_PATH]) {
         try { await cache.add(url); swLog.add(`pre-cached ${url}`); }
         catch (e) { swLog.add(`pre-cache failed ${url}: ${e.message}`); }
       }
@@ -109,8 +110,34 @@ async function serveWithSWR(request, url) {
     || url.pathname === `${SCOPE_PATH}/`
     || url.pathname.endsWith('.html');
   const isTtsAsset = url.pathname.startsWith(TTS_PREFIX);
+  const isVersionRequest = url.pathname === VERSION_PATH;
+  const forceRefresh = isNav && url.searchParams.has('__refresh');
 
   const cache = await caches.open(CACHE_NAME);
+
+  if (isVersionRequest) {
+    try {
+      const response = await fetch(new Request(VERSION_PATH, { cache: 'no-store' }));
+      if (response.ok) {
+        await cache.put(VERSION_PATH, response.clone());
+        swLog.add(`version-fetch ok ${url.pathname} status=${response.status}`);
+      } else {
+        swLog.add(`version-fetch bad-status ${url.pathname} status=${response.status}`);
+      }
+      return response;
+    } catch (e) {
+      swLog.add(`version-fetch failed ${url.pathname}: ${e.message}`);
+      const cachedVersion = await cache.match(VERSION_PATH);
+      if (cachedVersion) {
+        swLog.add(`version-cache-hit ${url.pathname}`);
+        return cachedVersion;
+      }
+      return new Response(JSON.stringify({ error: 'Version unavailable offline' }), {
+        status: 503,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+  }
 
   if (isTtsAsset) {
     const cachedAsset = await cache.match(request);
@@ -133,10 +160,12 @@ async function serveWithSWR(request, url) {
     }
   }
 
-  const cached = await cache.match(request)
-    || (isNav ? await cache.match(INDEX_PATH) : null);
+  const cached = forceRefresh
+    ? null
+    : (await cache.match(request)
+      || (isNav ? await cache.match(INDEX_PATH) : null));
 
-  const refresh = fetch(request, isNav ? { cache: 'no-store' } : {})
+  const refresh = fetch(request, (isNav || forceRefresh) ? { cache: 'no-store' } : {})
     .then(async response => {
       if (!response.ok) return;
       await cache.put(request, response.clone());
@@ -146,7 +175,7 @@ async function serveWithSWR(request, url) {
       }
     })
     .catch(e => {
-      swLog.add(`bg-refresh failed ${url.pathname}: ${e.message}`);
+      if (isNav) swLog.add(`bg-refresh failed ${url.pathname}: ${e.message}`);
     });
 
   if (cached) {
@@ -154,6 +183,7 @@ async function serveWithSWR(request, url) {
     return cached;
   }
 
+  if (forceRefresh) swLog.add(`nav FORCE-REFRESH ${url.pathname} - bypassing cache`);
   if (isNav) swLog.add(`nav NO-CACHE ${url.pathname} - waiting for network`);
   try {
     await refresh;
