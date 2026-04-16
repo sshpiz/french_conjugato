@@ -11,7 +11,7 @@
       })();
     </script>
     <script>
-      window.APP_BUILD_VERSION = "20260416_152447";
+      window.APP_BUILD_VERSION = "20260416_155055";
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
@@ -14818,15 +14818,43 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260416_152447') ? 'dev' : raw;
+    return !raw || raw.includes('20260416_155055') ? 'dev' : raw;
+};
+const parseAppVersionParts = (version) => {
+    const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
+    if (!match) return null;
+    const [, year, month, day, hour, minute, second] = match;
+    return {
+        year: Number(year),
+        month: Number(month),
+        day: Number(day),
+        hour: Number(hour),
+        minute: Number(minute),
+        second: Number(second)
+    };
+};
+const buildAppVersionDate = (version) => {
+    const parts = parseAppVersionParts(version);
+    if (!parts) return null;
+    return new Date(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, parts.second);
+};
+const formatAppVersionLabel = (version) => {
+    const builtAt = buildAppVersionDate(version);
+    if (!builtAt) {
+        return version === 'dev' ? 'Source' : String(version || 'Unknown');
+    }
+    return builtAt.toLocaleString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
 };
 const formatAppVersionDetail = (version) => {
-    const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(version);
-    if (!match) {
-        return version === 'dev' ? 'Workspace source build' : 'Build version';
+    const builtAt = buildAppVersionDate(version);
+    if (!builtAt) {
+        return version === 'dev' ? 'Unbuilt workspace source' : 'Build version';
     }
-    const [, year, month, day, hour, minute, second] = match;
-    const builtAt = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second));
     return `Built ${builtAt.toLocaleString(undefined, {
         year: 'numeric',
         month: 'short',
@@ -15461,7 +15489,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const syncAppVersionUi = () => {
         if (appVersionBadge) {
-            appVersionBadge.textContent = APP_VERSION;
+            appVersionBadge.textContent = formatAppVersionLabel(APP_VERSION);
         }
         if (appVersionDetail) {
             appVersionDetail.textContent = formatAppVersionDetail(APP_VERSION);
@@ -15480,7 +15508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (appUpdateStatusText) {
             let message = APP_UPDATE_STATUS_TEXT[status] || APP_UPDATE_STATUS_TEXT.idle;
             if (status === 'ready' && appUpdateState.latestVersion && appUpdateState.latestVersion !== APP_VERSION) {
-                message = `New version available (${appUpdateState.latestVersion}).`;
+                message = `New version available (${formatAppVersionLabel(appUpdateState.latestVersion)}).`;
             }
             appUpdateStatusText.textContent = message;
         }
