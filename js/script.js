@@ -777,10 +777,34 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     };
 
+    const isAppleMobileBrowser = () => /iPad|iPhone|iPod/i.test(navigator.userAgent || '');
+
+    const getMicUnavailableOverlayMessage = (availability, micMode) => {
+        if (availability === 'unsupported') {
+            if (isAppleMobileBrowser()) {
+                return 'Sorry, voice dictation is not available on iPhone Safari yet. Use Hear for now, or wait for our iOS app.';
+            }
+            return 'Sorry, voice dictation is not available on this browser yet.';
+        }
+        if (availability === 'safeModeBlocked') {
+            return 'Mic input is disabled in Safe mode.';
+        }
+        if (availability === 'tutorial-locked') {
+            return 'The tutorial unlocks the mic on step 3, after reveal.';
+        }
+        if (availability === 'phase-disabled') {
+            return micMode === 'answerByVoice'
+                ? 'Voice-answer mode listens before reveal.'
+                : 'Reveal the answer first, then tap Say.';
+        }
+        return '';
+    };
+
     const refreshDictationButton = () => {
         if (!dictateBtn) return;
         const availability = getMicAvailability();
         const micMode = getEffectiveMicMode();
+        const hardDisabled = availability === 'tutorial-locked' || availability === 'phase-disabled';
 
         dictateBtn.style.display = 'inline-flex';
         dictateBtn.dataset.micMode = micMode;
@@ -791,7 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dictateBtn.classList.toggle('is-unsupported', availability === 'unsupported' || availability === 'safeModeBlocked');
         dictateBtn.classList.toggle('is-no-content', false);
 
-        dictateBtn.disabled = availability !== 'enabled';
+        dictateBtn.disabled = hardDisabled;
 
         if (dictateBtnLabelEl) {
             dictateBtnLabelEl.textContent = micMode === 'answerByVoice' ? 'Answer' : 'Say';
@@ -1339,18 +1363,24 @@ document.addEventListener('DOMContentLoaded', () => {
             flashcard.appendChild(dictationResultEl);
         }
 
-        const speechState = getSpeechRecognitionState();
-        if (speechState !== 'ready') {
-            refreshDictationButton();
-            return;
-        }
-
         // Attach click handler ONCE
         if (!dictateBtn._dictationHandlerAttached) {
             dictateBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                if (getMicAvailability() !== 'enabled') {
+                const availability = getMicAvailability();
+                const micMode = getEffectiveMicMode();
+                if (availability !== 'enabled') {
+                    const unavailableMessage = getMicUnavailableOverlayMessage(availability, micMode);
+                    if (unavailableMessage) {
+                        showDictationOverlay(
+                            unavailableMessage,
+                            availability === 'unsupported' || availability === 'safeModeBlocked' ? 'error' : 'prompt',
+                            2600,
+                            false,
+                            true
+                        );
+                    }
                     refreshDictationButton();
                     return;
                 }

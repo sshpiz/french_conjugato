@@ -886,7 +886,7 @@
                 <details class="option-group settings-collapsible" id="tts-voice-group">
                     <summary>Audio</summary>
                     <div class="collapsible-body">
-                        <p class="option-desc">Use packaged French audio for reliable playback, or a real French system voice as fallback.</p>
+                        <p class="option-desc">Use a native French system voice when available, or packaged audio for reliable playback.</p>
                         <div class="tts-status-row" aria-live="polite">
                             <span id="tts-status-badge" class="tts-status-badge tts-status-checking">Checking audio...</span>
                             <span id="tts-status-text" class="tts-status-text">Looking for a French system voice on this device.</span>
@@ -908,17 +908,22 @@
                                 <input type="checkbox" id="packaged-tts-enabled">
                                 <span>Prefer packaged French audio over browser TTS</span>
                             </label>
-                            <p class="packaged-tts-note">Offline download is optional. The full set will be stored in Cache Storage so cached audio keeps working offline.</p>
-                            <div class="packaged-tts-actions">
-                                <button id="packaged-tts-download-top20-btn" class="secondary-btn" type="button">Download top 20 audio</button>
-                                <button id="packaged-tts-download-top100-btn" class="secondary-btn" type="button">Download top 100 audio</button>
-                                <button id="packaged-tts-download-top500-btn" class="secondary-btn" type="button">Download top 500 audio</button>
-                                <button id="packaged-tts-download-top1000-btn" class="secondary-btn" type="button">Download top 1000 audio</button>
-                                <button id="packaged-tts-download-rare-btn" class="secondary-btn" type="button">Download rare audio</button>
-                                <button id="packaged-tts-download-full-btn" class="secondary-btn" type="button">Download full audio</button>
-                                <button id="packaged-tts-remove-btn" class="secondary-btn danger-btn" type="button">Remove downloaded audio</button>
-                            </div>
-                            <div id="packaged-tts-status-text" class="packaged-tts-status" aria-live="polite">Packaged French audio is not enabled.</div>
+                            <p class="packaged-tts-note">If enabled, the app preloads top 20 audio and then keeps downloading missing verb packs as you practice. You can also pre-download larger sets below for offline use.</p>
+                            <details class="settings-collapsible packaged-tts-downloads">
+                                <summary>Packaged audio downloads</summary>
+                                <div class="collapsible-body">
+                                    <div class="packaged-tts-actions">
+                                        <button id="packaged-tts-download-top20-btn" class="secondary-btn" type="button">Download top 20 audio</button>
+                                        <button id="packaged-tts-download-top100-btn" class="secondary-btn" type="button">Download top 100 audio</button>
+                                        <button id="packaged-tts-download-top500-btn" class="secondary-btn" type="button">Download top 500 audio</button>
+                                        <button id="packaged-tts-download-top1000-btn" class="secondary-btn" type="button">Download top 1000 audio</button>
+                                        <button id="packaged-tts-download-rare-btn" class="secondary-btn" type="button">Download rare audio</button>
+                                        <button id="packaged-tts-download-full-btn" class="secondary-btn" type="button">Download full audio</button>
+                                        <button id="packaged-tts-remove-btn" class="secondary-btn danger-btn" type="button">Remove downloaded audio</button>
+                                    </div>
+                                    <div id="packaged-tts-status-text" class="packaged-tts-status" aria-live="polite">Packaged French audio is not enabled.</div>
+                                </div>
+                            </details>
                         </div>
                     </div>
                 </details>
@@ -1352,8 +1357,8 @@ function getFrenchTtsStatus() {
         return {
             state: 'unsupported',
             available: false,
-            badge: 'Browser TTS unavailable',
-            message: 'This browser does not expose speech synthesis. Packaged French audio can still work if enabled and downloaded.'
+            badge: 'Native TTS unavailable',
+            message: 'Native French text-to-speech is unavailable on this device. You should enable packaged audio and download at least top 20.'
         };
     }
 
@@ -1362,16 +1367,16 @@ function getFrenchTtsStatus() {
         return {
             state: 'unavailable',
             available: false,
-            badge: 'No French voice found',
-            message: 'No French browser voice is available yet on this device. Packaged French audio can cover playback instead.'
+            badge: 'No native French voice',
+            message: 'No native French voice was detected. You should probably enable packaged audio and download at least top 20.'
         };
     }
 
     return {
         state: 'available',
         available: true,
-        badge: 'French audio ready',
-        message: `${frenchVoices.length} French voice${frenchVoices.length === 1 ? '' : 's'} detected on this device.`
+        badge: 'Native French TTS ready',
+        message: `Using native Text To Speech engine (${frenchVoices.length} French voice${frenchVoices.length === 1 ? '' : 's'} detected). You can override this and download our audio pack.`
     };
 }
 
@@ -1424,12 +1429,12 @@ function renderFrenchTtsStatus() {
     const bannerText = document.getElementById('tts-warning-text');
 
     if (badge) {
-        badge.textContent = packagedEnabled && !status.available ? 'Packaged audio enabled' : status.badge;
+        badge.textContent = packagedEnabled && !status.available ? 'Packaged French audio enabled' : status.badge;
         badge.className = `tts-status-badge tts-status-${packagedEnabled && !status.available ? 'available' : status.state}`;
     }
     if (text) {
         text.textContent = packagedEnabled && !status.available
-            ? 'Browser French TTS is unavailable here, but packaged French audio can still play when enabled and downloaded.'
+            ? 'Native French TTS is not available here. Packaged French audio is enabled, so playback will use downloaded packs.'
             : status.message;
     }
 
