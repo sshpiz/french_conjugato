@@ -210,13 +210,20 @@
 }
 /* Tense color variables (soft, harmonious with bg) */
 :root {
-  --tense-present: #b3d8c5;           /* soft green */
-  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
-  --tense-imparfait: #c9c7e8;         /* soft lavender */
-  --tense-futur-simple: #b2d6f7;      /* soft blue */
-  --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
-  --tense-subjonctif-present: #d4c5e8;/* soft purple */
-  --tense-conditionnel-present: #d6e8c7;/* soft lime */
+  --tense-present: #9fd0b4;
+  --tense-passe-compose: #efc488;
+  --tense-imparfait: #bbb7e6;
+  --tense-futur-simple: #94c8f1;
+  --tense-plus-que-parfait: #ea9bb6;
+  --tense-subjonctif-present: #c7b1e7;
+  --tense-conditionnel-present: #bfd89d;
+  --tense-present-ink: #173d2d;
+  --tense-passe-compose-ink: #603400;
+  --tense-imparfait-ink: #3a3268;
+  --tense-futur-simple-ink: #12486f;
+  --tense-plus-que-parfait-ink: #6d1c39;
+  --tense-subjonctif-present-ink: #523076;
+  --tense-conditionnel-present-ink: #335717;
 }
 #verb-tense {
   border-radius: 0.7em;
@@ -235,6 +242,13 @@
 .tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
 .tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
 .tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
+#verb-tense.tense-present { color: var(--tense-present-ink); }
+#verb-tense.tense-passeCompose { color: var(--tense-passe-compose-ink); }
+#verb-tense.tense-imparfait { color: var(--tense-imparfait-ink); }
+#verb-tense.tense-futurSimple { color: var(--tense-futur-simple-ink); }
+#verb-tense.tense-plusQueParfait { color: var(--tense-plus-que-parfait-ink); }
+#verb-tense.tense-subjonctifPresent { color: var(--tense-subjonctif-present-ink); }
+#verb-tense.tense-conditionnelPresent { color: var(--tense-conditionnel-present-ink); }
 /* style.css */
 /* Basic Reset & Font */
 :root {
@@ -245,14 +259,20 @@
     --meta-color: #2f3c3d;
     --border-color: #e0e6ed;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    /* Tense color variables (soft, harmonious with bg) */
-    --tense-present: #b3d8c5;           /* soft green */
-  --tense-passe-compose: #f7d6b2;     /* soft orange/peach */
-    --tense-imparfait: #c9c7e8;         /* soft lavender */
-    --tense-futur-simple: #b2d6f7;      /* soft blue */
-    --tense-plus-que-parfait: #f7b2c7;  /* soft pink */
-    --tense-subjonctif-present: #d4c5e8;/* soft purple */
-    --tense-conditionnel-present: #d6e8c7;/* soft lime */
+    --tense-present: #9fd0b4;
+    --tense-passe-compose: #efc488;
+    --tense-imparfait: #bbb7e6;
+    --tense-futur-simple: #94c8f1;
+    --tense-plus-que-parfait: #ea9bb6;
+    --tense-subjonctif-present: #c7b1e7;
+    --tense-conditionnel-present: #bfd89d;
+    --tense-present-ink: #173d2d;
+    --tense-passe-compose-ink: #603400;
+    --tense-imparfait-ink: #3a3268;
+    --tense-futur-simple-ink: #12486f;
+    --tense-plus-que-parfait-ink: #6d1c39;
+    --tense-subjonctif-present-ink: #523076;
+    --tense-conditionnel-present-ink: #335717;
 }
 #verb-tense {
   border-radius: 0.7em;
@@ -271,6 +291,13 @@
 .tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; }
 .tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; }
 .tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; }
+#verb-tense.tense-present { color: var(--tense-present-ink); }
+#verb-tense.tense-passeCompose { color: var(--tense-passe-compose-ink); }
+#verb-tense.tense-imparfait { color: var(--tense-imparfait-ink); }
+#verb-tense.tense-futurSimple { color: var(--tense-futur-simple-ink); }
+#verb-tense.tense-plusQueParfait { color: var(--tense-plus-que-parfait-ink); }
+#verb-tense.tense-subjonctifPresent { color: var(--tense-subjonctif-present-ink); }
+#verb-tense.tense-conditionnelPresent { color: var(--tense-conditionnel-present-ink); }
 
 * {
     box-sizing: border-box;
@@ -1853,14 +1880,15 @@ html {
 .tense-weight-pill.active {
   opacity: 1;
   border-color: transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(44,62,80,0.06);
 }
-.tense-weight-pill.active.tense-present           { background: var(--tense-present); color: #2c3e50; }
-.tense-weight-pill.active.tense-passeCompose      { background: var(--tense-passe-compose); color: #2c3e50; }
-.tense-weight-pill.active.tense-imparfait         { background: var(--tense-imparfait); color: #2c3e50; }
-.tense-weight-pill.active.tense-futurSimple       { background: var(--tense-futur-simple); color: #2c3e50; }
-.tense-weight-pill.active.tense-plusQueParfait    { background: var(--tense-plus-que-parfait); color: #2c3e50; }
-.tense-weight-pill.active.tense-subjonctifPresent { background: var(--tense-subjonctif-present); color: #2c3e50; }
-.tense-weight-pill.active.tense-conditionnelPresent { background: var(--tense-conditionnel-present); color: #2c3e50; }
+.tense-weight-pill.active.tense-present           { background: var(--tense-present); color: var(--tense-present-ink); }
+.tense-weight-pill.active.tense-passeCompose      { background: var(--tense-passe-compose); color: var(--tense-passe-compose-ink); }
+.tense-weight-pill.active.tense-imparfait         { background: var(--tense-imparfait); color: var(--tense-imparfait-ink); }
+.tense-weight-pill.active.tense-futurSimple       { background: var(--tense-futur-simple); color: var(--tense-futur-simple-ink); }
+.tense-weight-pill.active.tense-plusQueParfait    { background: var(--tense-plus-que-parfait); color: var(--tense-plus-que-parfait-ink); }
+.tense-weight-pill.active.tense-subjonctifPresent { background: var(--tense-subjonctif-present); color: var(--tense-subjonctif-present-ink); }
+.tense-weight-pill.active.tense-conditionnelPresent { background: var(--tense-conditionnel-present); color: var(--tense-conditionnel-present-ink); }
 @media (prefers-color-scheme: dark) {
   .tense-weight-pill { opacity: 0.55; border-color: rgba(255,255,255,0.18); color: #c8d8e8; }
   .tense-weight-pill.active { opacity: 1; border-color: transparent; }
@@ -2071,12 +2099,363 @@ html {
   transform: translateY(0);
 }
 
+.settings-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7.75rem;
+  padding: 0.48rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--settings-action-border);
+  background: var(--settings-action-bg);
+  color: var(--settings-action-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  white-space: nowrap;
+}
+
 /* ── Settings: presets description text ─────────────────── */
 .option-desc {
   font-size: 0.82rem;
   color: var(--meta-color);
   margin: -0.4rem 0 0.75rem;
   opacity: 0.8;
+}
+
+.settings-subheading {
+  margin: 1rem 0 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.current-drill-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--settings-elevated-border);
+  background: var(--settings-elevated-bg);
+  box-shadow: var(--settings-elevated-shadow);
+  margin-bottom: 0.85rem;
+}
+
+.current-drill-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.current-drill-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.current-drill-desc {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--meta-color);
+}
+
+.drill-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.builtin-drill-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.saved-drill-grid {
+  grid-template-columns: 1fr;
+}
+
+.preset-btn {
+  width: 100%;
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border: 1.5px solid var(--settings-card-border);
+  border-radius: 16px;
+  background: var(--settings-card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  box-shadow: var(--settings-card-shadow);
+  text-align: left;
+}
+
+.preset-btn.preset-block {
+  min-height: 5.75rem;
+  padding: 0.72rem 0.62rem 0.78rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.45rem;
+}
+
+.preset-btn:hover,
+.preset-btn:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--settings-card-hover-border);
+  box-shadow: var(--settings-card-hover-shadow);
+}
+
+.preset-btn.active {
+  border-color: var(--settings-card-active-border);
+  background: var(--settings-card-active-bg);
+  box-shadow: var(--settings-card-active-shadow);
+}
+
+.preset-icon {
+  flex-shrink: 0;
+  font-size: 1.45rem;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.preset-btn.preset-block .preset-icon {
+  font-size: 1.15rem;
+  margin-top: 0;
+}
+
+.preset-text {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+}
+
+.preset-name {
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-color);
+}
+
+.preset-btn.preset-block .preset-text {
+  width: 100%;
+}
+
+.preset-btn.preset-block .preset-name {
+  font-size: 0.8rem;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.preset-btn.preset-block .preset-desc {
+  display: none;
+}
+
+.preset-btn.preset-block.active .preset-name {
+  color: var(--text-color);
+}
+
+.preset-desc {
+  font-size: 0.83rem;
+  line-height: 1.35;
+  color: var(--meta-color);
+}
+
+.drill-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.drill-card-action-btn {
+  border: 1px solid var(--settings-action-border);
+  background: var(--settings-action-bg);
+  color: var(--settings-action-color);
+  border-radius: 999px;
+  padding: 0.34rem 0.65rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.drill-card-action-btn:hover,
+.drill-card-action-btn:focus-visible,
+.advanced-action-btn:hover,
+.advanced-action-btn:focus-visible {
+  background: var(--settings-action-hover-bg);
+  border-color: var(--settings-card-hover-border);
+}
+
+.drill-card-action-btn.danger {
+  color: #b85252;
+  border-color: rgba(184, 82, 82, 0.35);
+}
+
+.saved-drills-group.hidden {
+  display: none !important;
+}
+
+@media (max-width: 360px) {
+  .builtin-drill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preset-btn.preset-block {
+    min-height: 5.25rem;
+  }
+}
+
+.verb-pool-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.verb-pool-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.verb-pool-pill {
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.verb-pool-pill.active {
+  background: var(--settings-chip-active-bg);
+  border-color: var(--settings-chip-active-bg);
+  color: var(--settings-chip-active-text);
+}
+
+.verb-pool-pill:hover,
+.verb-pool-pill:focus-visible {
+  transform: translateY(-1px);
+}
+
+.verb-pool-summary {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--meta-color);
+}
+
+.advanced-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.advanced-card {
+  border: 1px solid var(--settings-card-border);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  background: var(--settings-subtle-bg);
+}
+
+.advanced-card-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+  margin-bottom: 0.75rem;
+}
+
+.advanced-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.advanced-action-btn {
+  border: 1px solid var(--settings-action-border);
+  border-radius: 999px;
+  background: var(--settings-action-bg);
+  color: var(--settings-action-color);
+  padding: 0.58rem 0.95rem;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.advanced-action-helper {
+  margin-top: 0.55rem;
+  font-size: 0.82rem;
+  color: var(--meta-color);
+}
+
+.settings-collapsible {
+  overflow: hidden;
+}
+
+.settings-collapsible summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-collapsible summary::after {
+  content: "+";
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--meta-color);
+}
+
+.settings-collapsible[open] summary::after {
+  content: "−";
+}
+
+.collapsible-body {
+  margin-top: 0.95rem;
+}
+
+.compact-toggle-row {
+  padding-top: 0.4rem;
+}
+
+.settings-app-links {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 /* ── Settings: styled native select ─────────────────────── */
@@ -2463,6 +2842,35 @@ html[data-theme="dark"] .tts-status-unsupported {
   background: rgba(231, 76, 60, 0.16);
 }
 
+html[data-theme="dark"] .current-drill-card {
+  background: linear-gradient(180deg, rgba(26, 39, 52, 0.94), rgba(18, 31, 44, 0.98));
+  border-color: rgba(96, 152, 202, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] .preset-btn {
+  background: rgba(20, 29, 40, 0.94);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .preset-btn.active {
+  background: linear-gradient(180deg, rgba(27, 47, 67, 0.98), rgba(20, 37, 54, 0.98));
+  border-color: rgba(109, 180, 245, 0.72);
+  box-shadow: 0 14px 28px rgba(3, 12, 20, 0.34);
+}
+
+html[data-theme="dark"] .drill-card-action-btn,
+html[data-theme="dark"] .advanced-action-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #d7e8f8;
+}
+
+html[data-theme="dark"] .advanced-card {
+  background: rgba(13, 22, 31, 0.55);
+}
+
 @media (max-width: 700px) {
   #tts-warning-banner {
     flex-direction: column;
@@ -2599,13 +3007,38 @@ html[data-theme="light"] {
   --meta-color: #2f3c3d !important;
   --border-color: #e0e6ed !important;
   --shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
-  --tense-present: #b3d8c5 !important;
-  --tense-passe-compose: #f7d6b2 !important;
-  --tense-imparfait: #c9c7e8 !important;
-  --tense-futur-simple: #b2d6f7 !important;
-  --tense-plus-que-parfait: #f7b2c7 !important;
-  --tense-subjonctif-present: #d4c5e8 !important;
-  --tense-conditionnel-present: #d6e8c7 !important;
+  --settings-elevated-bg: linear-gradient(180deg, rgba(244,248,252,0.94), rgba(236,242,248,0.98)) !important;
+  --settings-elevated-border: rgba(135, 168, 197, 0.22) !important;
+  --settings-elevated-shadow: inset 0 1px 0 rgba(255,255,255,0.65) !important;
+  --settings-card-bg: var(--card-bg) !important;
+  --settings-card-border: var(--border-color) !important;
+  --settings-card-shadow: 0 10px 22px rgba(16,32,49,0.04) !important;
+  --settings-card-hover-border: rgba(96, 152, 202, 0.42) !important;
+  --settings-card-hover-shadow: 0 12px 24px rgba(16,32,49,0.08) !important;
+  --settings-card-active-bg: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98)) !important;
+  --settings-card-active-border: rgba(92, 166, 232, 0.78) !important;
+  --settings-card-active-shadow: 0 14px 28px rgba(35,104,156,0.16) !important;
+  --settings-action-bg: rgba(255,255,255,0.76) !important;
+  --settings-action-hover-bg: rgba(255,255,255,0.92) !important;
+  --settings-action-border: rgba(187, 201, 216, 0.78) !important;
+  --settings-action-color: var(--meta-color) !important;
+  --settings-subtle-bg: rgba(248,251,253,0.5) !important;
+  --settings-chip-active-bg: var(--accent-color) !important;
+  --settings-chip-active-text: #ffffff !important;
+  --tense-present: #9fd0b4 !important;
+  --tense-passe-compose: #efc488 !important;
+  --tense-imparfait: #bbb7e6 !important;
+  --tense-futur-simple: #94c8f1 !important;
+  --tense-plus-que-parfait: #ea9bb6 !important;
+  --tense-subjonctif-present: #c7b1e7 !important;
+  --tense-conditionnel-present: #bfd89d !important;
+  --tense-present-ink: #173d2d !important;
+  --tense-passe-compose-ink: #603400 !important;
+  --tense-imparfait-ink: #3a3268 !important;
+  --tense-futur-simple-ink: #12486f !important;
+  --tense-plus-que-parfait-ink: #6d1c39 !important;
+  --tense-subjonctif-present-ink: #523076 !important;
+  --tense-conditionnel-present-ink: #335717 !important;
   color-scheme: light;
 }
 html[data-theme="light"] body {
@@ -2676,20 +3109,20 @@ html[data-theme="light"] .navigation button:hover {
   background-color: #e0e6ed !important;
   color: var(--text-color) !important;
 }
-html[data-theme="light"] .tense-present            { color: #2c3e50 !important; }
-html[data-theme="light"] .tense-passeCompose       { color: #2c3e50 !important; }
-html[data-theme="light"] .tense-imparfait          { color: #2c3e50 !important; }
-html[data-theme="light"] .tense-futurSimple        { color: #2c3e50 !important; }
-html[data-theme="light"] .tense-plusQueParfait     { color: #2c3e50 !important; }
-html[data-theme="light"] .tense-subjonctifPresent  { color: #2c3e50 !important; }
-html[data-theme="light"] .tense-conditionnelPresent { color: #2c3e50 !important; }
-html[data-theme="light"] #verb-tense.tense-present { background: var(--tense-present) !important; color: #2c3e50 !important; }
-html[data-theme="light"] #verb-tense.tense-passeCompose { background: var(--tense-passe-compose) !important; color: #2c3e50 !important; }
-html[data-theme="light"] #verb-tense.tense-imparfait { background: var(--tense-imparfait) !important; color: #2c3e50 !important; }
-html[data-theme="light"] #verb-tense.tense-futurSimple { background: var(--tense-futur-simple) !important; color: #2c3e50 !important; }
-html[data-theme="light"] #verb-tense.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; color: #2c3e50 !important; }
-html[data-theme="light"] #verb-tense.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; color: #2c3e50 !important; }
-html[data-theme="light"] #verb-tense.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; color: #2c3e50 !important; }
+html[data-theme="light"] .tense-present            { color: var(--tense-present-ink) !important; }
+html[data-theme="light"] .tense-passeCompose       { color: var(--tense-passe-compose-ink) !important; }
+html[data-theme="light"] .tense-imparfait          { color: var(--tense-imparfait-ink) !important; }
+html[data-theme="light"] .tense-futurSimple        { color: var(--tense-futur-simple-ink) !important; }
+html[data-theme="light"] .tense-plusQueParfait     { color: var(--tense-plus-que-parfait-ink) !important; }
+html[data-theme="light"] .tense-subjonctifPresent  { color: var(--tense-subjonctif-present-ink) !important; }
+html[data-theme="light"] .tense-conditionnelPresent { color: var(--tense-conditionnel-present-ink) !important; }
+html[data-theme="light"] #verb-tense.tense-present { background: var(--tense-present) !important; color: var(--tense-present-ink) !important; }
+html[data-theme="light"] #verb-tense.tense-passeCompose { background: var(--tense-passe-compose) !important; color: var(--tense-passe-compose-ink) !important; }
+html[data-theme="light"] #verb-tense.tense-imparfait { background: var(--tense-imparfait) !important; color: var(--tense-imparfait-ink) !important; }
+html[data-theme="light"] #verb-tense.tense-futurSimple { background: var(--tense-futur-simple) !important; color: var(--tense-futur-simple-ink) !important; }
+html[data-theme="light"] #verb-tense.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; color: var(--tense-plus-que-parfait-ink) !important; }
+html[data-theme="light"] #verb-tense.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; color: var(--tense-subjonctif-present-ink) !important; }
+html[data-theme="light"] #verb-tense.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; color: var(--tense-conditionnel-present-ink) !important; }
 html[data-theme="light"] .toggle-switch .toggle-label {
   background-color: #cdd4da !important;
 }
@@ -2735,6 +3168,24 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 
 /* ── Control surfaces: shared dock + bottom nav polish ───────────── */
 :root {
+  --settings-elevated-bg: linear-gradient(180deg, rgba(244,248,252,0.94), rgba(236,242,248,0.98));
+  --settings-elevated-border: rgba(135, 168, 197, 0.22);
+  --settings-elevated-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
+  --settings-card-bg: var(--card-bg);
+  --settings-card-border: var(--border-color);
+  --settings-card-shadow: 0 10px 22px rgba(16,32,49,0.04);
+  --settings-card-hover-border: rgba(96, 152, 202, 0.42);
+  --settings-card-hover-shadow: 0 12px 24px rgba(16,32,49,0.08);
+  --settings-card-active-bg: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
+  --settings-card-active-border: rgba(92, 166, 232, 0.78);
+  --settings-card-active-shadow: 0 14px 28px rgba(35,104,156,0.16);
+  --settings-action-bg: rgba(255,255,255,0.76);
+  --settings-action-hover-bg: rgba(255,255,255,0.92);
+  --settings-action-border: rgba(187, 201, 216, 0.78);
+  --settings-action-color: var(--meta-color);
+  --settings-subtle-bg: rgba(248,251,253,0.5);
+  --settings-chip-active-bg: var(--accent-color);
+  --settings-chip-active-text: #ffffff;
   --control-tray-bg: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(240,245,250,0.96));
   --control-tray-border: rgba(180, 197, 215, 0.72);
   --control-tray-shadow: 0 10px 24px rgba(44,62,80,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
@@ -2769,6 +3220,24 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) {
+    --settings-elevated-bg: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
+    --settings-elevated-border: rgba(96, 152, 202, 0.28);
+    --settings-elevated-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    --settings-card-bg: rgba(20,29,40,0.94);
+    --settings-card-border: rgba(255,255,255,0.12);
+    --settings-card-shadow: 0 10px 24px rgba(0,0,0,0.16);
+    --settings-card-hover-border: rgba(126, 164, 199, 0.56);
+    --settings-card-hover-shadow: 0 14px 28px rgba(3,12,20,0.24);
+    --settings-card-active-bg: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
+    --settings-card-active-border: rgba(109, 180, 245, 0.72);
+    --settings-card-active-shadow: 0 14px 28px rgba(3,12,20,0.34);
+    --settings-action-bg: rgba(255,255,255,0.03);
+    --settings-action-hover-bg: rgba(255,255,255,0.08);
+    --settings-action-border: rgba(255,255,255,0.14);
+    --settings-action-color: #d7e8f8;
+    --settings-subtle-bg: rgba(13,22,31,0.55);
+    --settings-chip-active-bg: #6ec6ff;
+    --settings-chip-active-text: #102031;
     --tutorial-heading-color: rgba(193, 214, 236, 0.84);
     --tutorial-body-color: rgba(236, 244, 252, 0.96);
     --tutorial-body-after-color: rgba(198, 215, 233, 0.9);
@@ -2806,6 +3275,24 @@ html[data-theme="light"] #go-to-verb-btn-container button {
 }
 
 html[data-theme="dark"] {
+  --settings-elevated-bg: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
+  --settings-elevated-border: rgba(96, 152, 202, 0.28);
+  --settings-elevated-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  --settings-card-bg: rgba(20,29,40,0.94);
+  --settings-card-border: rgba(255,255,255,0.12);
+  --settings-card-shadow: 0 10px 24px rgba(0,0,0,0.16);
+  --settings-card-hover-border: rgba(126, 164, 199, 0.56);
+  --settings-card-hover-shadow: 0 14px 28px rgba(3,12,20,0.24);
+  --settings-card-active-bg: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
+  --settings-card-active-border: rgba(109, 180, 245, 0.72);
+  --settings-card-active-shadow: 0 14px 28px rgba(3,12,20,0.34);
+  --settings-action-bg: rgba(255,255,255,0.03);
+  --settings-action-hover-bg: rgba(255,255,255,0.08);
+  --settings-action-border: rgba(255,255,255,0.14);
+  --settings-action-color: #d7e8f8;
+  --settings-subtle-bg: rgba(13,22,31,0.55);
+  --settings-chip-active-bg: #6ec6ff;
+  --settings-chip-active-text: #102031;
   --tutorial-heading-color: rgba(193, 214, 236, 0.84);
   --tutorial-body-color: rgba(236, 244, 252, 0.96);
   --tutorial-body-after-color: rgba(198, 215, 233, 0.9);

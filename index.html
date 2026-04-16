@@ -10,6 +10,9 @@
         if (m === 'light') document.documentElement.setAttribute('data-theme','light');
       })();
     </script>
+    <script>
+      window.APP_BUILD_VERSION = "{{APP_VERSION}}";
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
     <title>Les Verbes</title>
@@ -26,7 +29,7 @@
     <link rel="apple-touch-icon" href="favicon_big.png">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon_big.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css?v=20260411b">
+    <link rel="stylesheet" href="css/style.css?v=20260416g">
     <link rel="stylesheet" href="css/dictate-btn.css?v=20260411b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -833,151 +836,157 @@
             <div id="options-container">
 
                 <div class="option-group">
-                  <h3>General</h3>
-                  <div class="toggle-rows">
-                  <div class="toggle-row settings-action-row">
-                    <div class="settings-row-copy">
-                      <label for="app-update-action-btn">Update app</label>
-                      <p id="app-update-status-text" class="setting-helper-text">App is up to date.</p>
-                    </div>
-                    <button id="app-update-action-btn" type="button" class="settings-inline-action-btn">Check for updates</button>
-                  </div>
-                  <!-- Balance toggle moved to Frequency Weights section -->
-                  <!-- DEAD CODE -->
-                  <div style="display: none; flex-direction: row;align-items:center;justify-content:space-between;  ; gap: 0.5em;">
-                    <label for="show-phrases-toggle">Show Example Phrases</label>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="show-phrases-toggle" class="toggle-input">
-                        <label for="show-phrases-toggle" class="toggle-label"></label>
-                    </div>
-                  </div>
-                
-                  <!-- Theme toggle -->
-                  <div class="toggle-row">
-                    <label>Theme</label>
-                    <div class="reflexive-mode-pills" id="theme-pills">
-                      <button class="reflexive-pill" data-theme="light">Light</button>
-                      <button class="reflexive-pill" data-theme="system">System</button>
-                      <button class="reflexive-pill" data-theme="dark">Dark</button>
-                    </div>
-                  </div>
-
-                  <!-- Font size -->
-                  <div class="toggle-row">
-                    <label for="font-size-slider">Text size</label>
-                    <div class="font-size-control">
-                      <span class="font-size-label">A</span>
-                      <input type="range" id="font-size-slider" min="1" max="2" step="0.05" value="1">
-                      <span class="font-size-label large">A</span>
-                    </div>
-                  </div>
-
-                  <div class="toggle-row">
-                    <div class="settings-row-copy">
-                      <label for="tts-speed-slider">TTS speed</label>
-                      <p class="setting-helper-text">Affects Hear, spoken prompts, and packaged audio playback.</p>
-                    </div>
-                    <div class="font-size-control tts-speed-control">
-                      <span class="font-size-label">Slow</span>
-                      <input type="range" id="tts-speed-slider" min="0.7" max="1.3" step="0.05" value="1">
-                      <span id="tts-speed-value" class="slider-value">1.00x</span>
-                    </div>
-                  </div>
-
-                  <!-- correct DICTATION -->
-                  <div class="toggle-row settings-mic-mode-row">
-                    <div class="settings-row-copy">
-                      <label for="correct-dictation-toggle">Use mic to answer before reveal</label>
-                      <p id="correct-dictation-helper" class="setting-helper-text">When off, the mic is used for pronunciation practice after reveal.</p>
-                    </div>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
-                        <label for="correct-dictation-toggle" class="toggle-label"></label>
-                    </div>
-                  </div>
-                  <!-- Pronoun balance -->
-                  <div class="toggle-row">
-                    <label for="balanced-pronouns-toggle">Balance pronouns equally</label>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="balanced-pronouns-toggle" class="toggle-input">
-                        <label for="balanced-pronouns-toggle" class="toggle-label"></label>
-                    </div>
-                  </div>
-                  </div><!-- end toggle-rows -->
-                </div>
-
-                <!-- Presets Section -->
-                <div class="option-group">
-                    <h3>Presets</h3>
-                    <p class="option-desc">Quick setups from basics to full practice.</p>
-                    <div id="presets-container" class="presets-row">
-                        <!-- Preset buttons will be populated by JavaScript -->
+                    <h3>Mic to Answer</h3>
+                    <div class="toggle-rows">
+                        <div class="toggle-row settings-mic-mode-row">
+                            <div class="settings-row-copy">
+                                <label for="correct-dictation-toggle">Answer by voice</label>
+                                <p id="correct-dictation-helper" class="setting-helper-text">When off, the mic is used for pronunciation practice after reveal.</p>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
+                                <label for="correct-dictation-toggle" class="toggle-label"></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="option-group">
-                    <h3>Tense Weights</h3>
+                    <h3>Tenses</h3>
+                    <p class="option-desc">Choose which tenses to practice.</p>
                     <div id="tense-weights-container"></div>
                 </div>
                 <div class="option-group">
-                    <h3>Frequency Weights</h3>
-                    <div id="frequency-weights-container"></div>
-                </div>
-                <!-- TTS Voice Selection Dropdown -->
-                <div class="option-group" id="tts-voice-group">
-                  <h3>Audio Voice</h3>
-                  <p class="option-desc">Use packaged French audio for reliable playback, or a real French system voice as fallback.</p>
-                  <div class="tts-status-row" aria-live="polite">
-                    <span id="tts-status-badge" class="tts-status-badge tts-status-checking">Checking audio...</span>
-                    <span id="tts-status-text" class="tts-status-text">Looking for a French system voice on this device.</span>
-                  </div>
-                  <select id="voice-select" class="styled-select"></select>
-                  <div class="packaged-tts-controls">
-                    <label class="packaged-tts-toggle" for="packaged-tts-enabled">
-                      <input type="checkbox" id="packaged-tts-enabled">
-                      <span>Prefer packaged French audio over browser TTS</span>
-                    </label>
-                    <p class="packaged-tts-note">Offline download is optional. The full set will be stored in Cache Storage so cached audio keeps working offline.</p>
-                    <div class="packaged-tts-actions">
-                      <button id="packaged-tts-download-top20-btn" class="secondary-btn" type="button">Download top 20 audio</button>
-                      <button id="packaged-tts-download-top100-btn" class="secondary-btn" type="button">Download top 100 audio</button>
-                      <button id="packaged-tts-download-top500-btn" class="secondary-btn" type="button">Download top 500 audio</button>
-                      <button id="packaged-tts-download-top1000-btn" class="secondary-btn" type="button">Download top 1000 audio</button>
-                      <button id="packaged-tts-download-rare-btn" class="secondary-btn" type="button">Download rare audio</button>
-                      <button id="packaged-tts-download-full-btn" class="secondary-btn" type="button">Download full audio</button>
-                      <button id="packaged-tts-remove-btn" class="secondary-btn danger-btn" type="button">Remove downloaded audio</button>
-                    </div>
-                    <div id="packaged-tts-status-text" class="packaged-tts-status" aria-live="polite">Packaged French audio is not enabled.</div>
-                  </div>
+                    <h3>Top N</h3>
+                    <p class="option-desc">Pick how deep into the verb list to go.</p>
+                    <div id="verb-pool-basic-container"></div>
                 </div>
 
-                <!-- Debug -->
-                <div class="option-group" id="debug-group">
-                    <button id="open-debug-btn" class="about-row-btn" aria-label="Debug log" onclick="showDebugPanel()">
-                        <span class="about-row-label" style="color:var(--meta-color);font-size:0.9rem;">Debug log</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                    </button>
-                </div>
-
-                <!-- About -->
-                <div class="option-group" id="about-group">
-                    <button id="info-btn" class="about-row-btn" aria-label="About Les Verbes">
-                        <span class="about-row-label">About Les Verbes</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                    </button>
-                    <div id="info-panel" class="hidden about-panel">
-                        <p class="about-tagline">A focused French verb trainer built for daily practice.</p>
-                        <ul class="about-features">
-                            <li>2,700+ verb usages with real example sentences</li>
-                            <li>All major tenses — présent, passé composé, imparfait, futur, conditionnel, subjonctif</li>
-                            <li>Smart frequency weighting &amp; learning presets</li>
-                            <li>Voice dictation with instant feedback 🎤</li>
-                            <li>Text-to-speech pronunciation 🔊</li>
-                            <li>Full conjugation tables for every verb 📖</li>
-                            <li>Offline support (PWA)</li>
-                        </ul>
-                        <p class="about-footer">Progress and settings save automatically.</p>
+                <div class="option-group">
+                    <h3>Drills</h3>
+                    <p class="option-desc">Choose a drill, then adjust anything you want.</p>
+                    <div id="current-drill-card" class="current-drill-card" aria-live="polite"></div>
+                    <div id="presets-container" class="drill-grid builtin-drill-grid">
+                        <!-- Drill cards will be populated by JavaScript -->
+                    </div>
+                    <div id="saved-drills-group" class="saved-drills-group hidden">
+                        <h4 class="settings-subheading">Saved drills</h4>
+                        <div id="saved-drills-container" class="drill-grid saved-drill-grid"></div>
                     </div>
                 </div>
+
+                <details class="option-group settings-collapsible" id="advanced-group">
+                    <summary>Advanced</summary>
+                    <div class="collapsible-body">
+                        <p class="option-desc">Fine-tune frequency behavior, filtering, and drill actions.</p>
+                        <div id="advanced-practice-container"></div>
+                    </div>
+                </details>
+
+                <details class="option-group settings-collapsible" id="tts-voice-group">
+                    <summary>Audio</summary>
+                    <div class="collapsible-body">
+                        <p class="option-desc">Use packaged French audio for reliable playback, or a real French system voice as fallback.</p>
+                        <div class="tts-status-row" aria-live="polite">
+                            <span id="tts-status-badge" class="tts-status-badge tts-status-checking">Checking audio...</span>
+                            <span id="tts-status-text" class="tts-status-text">Looking for a French system voice on this device.</span>
+                        </div>
+                        <select id="voice-select" class="styled-select"></select>
+                        <div class="toggle-row compact-toggle-row">
+                            <div class="settings-row-copy">
+                                <label for="tts-speed-slider">TTS speed</label>
+                                <p class="setting-helper-text">Affects Hear, spoken prompts, and packaged audio playback.</p>
+                            </div>
+                            <div class="font-size-control tts-speed-control">
+                                <span class="font-size-label">Slow</span>
+                                <input type="range" id="tts-speed-slider" min="0.7" max="1.3" step="0.05" value="1">
+                                <span id="tts-speed-value" class="slider-value">1.00x</span>
+                            </div>
+                        </div>
+                        <div class="packaged-tts-controls">
+                            <label class="packaged-tts-toggle" for="packaged-tts-enabled">
+                                <input type="checkbox" id="packaged-tts-enabled">
+                                <span>Prefer packaged French audio over browser TTS</span>
+                            </label>
+                            <p class="packaged-tts-note">Offline download is optional. The full set will be stored in Cache Storage so cached audio keeps working offline.</p>
+                            <div class="packaged-tts-actions">
+                                <button id="packaged-tts-download-top20-btn" class="secondary-btn" type="button">Download top 20 audio</button>
+                                <button id="packaged-tts-download-top100-btn" class="secondary-btn" type="button">Download top 100 audio</button>
+                                <button id="packaged-tts-download-top500-btn" class="secondary-btn" type="button">Download top 500 audio</button>
+                                <button id="packaged-tts-download-top1000-btn" class="secondary-btn" type="button">Download top 1000 audio</button>
+                                <button id="packaged-tts-download-rare-btn" class="secondary-btn" type="button">Download rare audio</button>
+                                <button id="packaged-tts-download-full-btn" class="secondary-btn" type="button">Download full audio</button>
+                                <button id="packaged-tts-remove-btn" class="secondary-btn danger-btn" type="button">Remove downloaded audio</button>
+                            </div>
+                            <div id="packaged-tts-status-text" class="packaged-tts-status" aria-live="polite">Packaged French audio is not enabled.</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="option-group settings-collapsible" id="app-group">
+                    <summary>App</summary>
+                    <div class="collapsible-body">
+                        <div class="toggle-rows">
+                            <div class="toggle-row settings-action-row">
+                                <div class="settings-row-copy">
+                                    <label for="app-update-action-btn">Update app</label>
+                                    <p id="app-update-status-text" class="setting-helper-text">App is up to date.</p>
+                                </div>
+                                <button id="app-update-action-btn" type="button" class="settings-inline-action-btn">Check for updates</button>
+                            </div>
+
+                            <div class="toggle-row settings-version-row">
+                                <div class="settings-row-copy">
+                                    <label for="app-version-badge">Version</label>
+                                    <p id="app-version-detail" class="setting-helper-text">Build information</p>
+                                </div>
+                                <span id="app-version-badge" class="settings-meta-badge" aria-live="polite">dev</span>
+                            </div>
+
+                            <div class="toggle-row">
+                                <label>Theme</label>
+                                <div class="reflexive-mode-pills" id="theme-pills">
+                                    <button class="reflexive-pill" data-theme="light">Light</button>
+                                    <button class="reflexive-pill" data-theme="system">System</button>
+                                    <button class="reflexive-pill" data-theme="dark">Dark</button>
+                                </div>
+                            </div>
+
+                            <div class="toggle-row">
+                                <label for="font-size-slider">Text size</label>
+                                <div class="font-size-control">
+                                    <span class="font-size-label">A</span>
+                                    <input type="range" id="font-size-slider" min="1" max="2" step="0.05" value="1">
+                                    <span class="font-size-label large">A</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-app-links">
+                            <button id="open-debug-btn" class="about-row-btn" aria-label="Debug log" onclick="showDebugPanel()">
+                                <span class="about-row-label" style="color:var(--meta-color);font-size:0.9rem;">Debug log</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                            <button id="info-btn" class="about-row-btn" aria-label="About Les Verbes">
+                                <span class="about-row-label">About Les Verbes</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                            <div id="info-panel" class="hidden about-panel">
+                                <p class="about-tagline">A focused French verb trainer built for daily practice.</p>
+                                <ul class="about-features">
+                                    <li>2,700+ verb usages with real example sentences</li>
+                                    <li>All major tenses — présent, passé composé, imparfait, futur, conditionnel, subjonctif</li>
+                                    <li>Smart drills and flexible verb filtering</li>
+                                    <li>Voice dictation with instant feedback 🎤</li>
+                                    <li>Text-to-speech pronunciation 🔊</li>
+                                    <li>Full conjugation tables for every verb 📖</li>
+                                    <li>Offline support (PWA)</li>
+                                </ul>
+                                <p class="about-footer">Progress and settings save automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
             </div>
         </div>
 
@@ -1326,9 +1335,8 @@
     </script>
     <script src="js/verbs.full.generated.js?v=20260411b"></script>
     <script src="verb_usages.js?v=20260411b" onerror="window.verbUsages=[]"></script>
-    <script src="js/practicePhrases.js?v=20260411b"></script>
     <script src="js/preRenderedTts.js?v=20260411b"></script>
-    <script src="js/script.js?v=20260411b"></script>
+    <script src="js/script.js?v=20260416f"></script>
     <script>
 function getFrenchVoices() {
     if (!window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {
@@ -1535,66 +1543,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-
-const dummyPhrases = [
-    { phrase: "Bonjour, comment ça va?", translation: "Hello, how are you?" },
-    { phrase: "Je voudrais un café.", translation: "I would like a coffee." },
-    { phrase: "Où est la bibliothèque?", translation: "Where is the library?" },
-    { phrase: "Merci beaucoup!", translation: "Thank you very much!" },
-    { phrase: "Je ne comprends pas.", translation: "I don't understand." }
-];
-
-function setupPracticeModeToggle() {
-    // Insert toggle into options UI if not present
-    const optionsContainer = document.getElementById('options-container');
-    const toggleOptions = optionsContainer.getElementsByClassName('option-group')[0];
-    if (!optionsContainer) return;
-    if (!document.getElementById('practice-mode-toggle')) {
-        // Create toggle group
-        const group = document.createElement('div');
-        // group.className = 'option-group';
-        group.style.display = 'flex';
-        group.style.flexDirection = 'row';
-        group.style.alignItems = 'center';
-        group.style.gap = '0.5em';
-        group.style.width = '100%';
-        group.style.justifyContent = 'space-between';
-        // Label
-        const label = document.createElement('label');
-        label.htmlFor = 'practice-mode-toggle';
-        label.textContent = 'Practice Mode: Phrases';
-        // Toggle switch
-        const toggleSwitch = document.createElement('div');
-        toggleSwitch.className = 'toggle-switch';
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.id = 'practice-mode-toggle';
-        input.className = 'toggle-input';
-        const toggleLabel = document.createElement('label');
-        toggleLabel.htmlFor = 'practice-mode-toggle';
-        toggleLabel.className = 'toggle-label';
-        toggleSwitch.appendChild(input);
-        toggleSwitch.appendChild(toggleLabel);
-        group.style.opacity = '0.4';
-        group.style.pointerEvents = 'none';
-        group.title = 'Coming soon';
-        group.appendChild(label);
-        group.appendChild(toggleSwitch);
-        // Insert at top of options
-        toggleOptions.appendChild(group);
-        // optionsContainer.insertBefore(group, optionsContainer.firstChild);
-    }
-    // Sync toggle with localStorage (disabled for now)
-    const toggle = document.getElementById('practice-mode-toggle');
-    toggle.disabled = true;
-    let practiceMode = window.getAppStoredItem('practiceMode') || 'verbs';
-    toggle.checked = (practiceMode === 'phrases');
-    toggle.addEventListener('change', (e) => {
-        practiceMode = e.target.checked ? 'phrases' : 'verbs';
-        window.setAppStoredItem('practiceMode', practiceMode);
-    });
-}
-  setupPracticeModeToggle();
   // --- Tips Button Logic ---
   if (tipsBtn) tipsBtn.addEventListener('click', function(e) {
     e.stopPropagation();

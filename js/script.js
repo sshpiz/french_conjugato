@@ -15,6 +15,25 @@ const getScopedStorageItem = window.getAppStoredItem || ((name) => localStorage.
 const setScopedStorageItem = window.setAppStoredItem || ((name, value) => localStorage.setItem(getScopedStorageKey(name), value));
 const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localStorage.removeItem(getScopedStorageKey(name)));
 const ENABLE_LEGACY_SENTENCE_DATA = false;
+const normalizeAppVersion = (value) => {
+    const raw = String(value || '').trim();
+    return !raw || raw.includes('{{APP_VERSION}}') ? 'dev' : raw;
+};
+const formatAppVersionDetail = (version) => {
+    const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(version);
+    if (!match) {
+        return version === 'dev' ? 'Workspace source build' : 'Build version';
+    }
+    const [, year, month, day, hour, minute, second] = match;
+    const builtAt = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second));
+    return `Built ${builtAt.toLocaleString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    })}`;
+};
 
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
@@ -43,7 +62,7 @@ const TOP_20_VERBS = new Set([
     'donner', 'parler', 'aimer', 'passer', 'mettre'
 ]);
 
-const APP_VERSION = "v2";
+const APP_VERSION = normalizeAppVersion(window.APP_BUILD_VERSION);
 
 if (getScopedStorageItem("app_version") !== APP_VERSION) {
   setScopedStorageItem("app_version", APP_VERSION);
@@ -121,6 +140,23 @@ function prepareTextForSpeech(text) {
 (function initTheme() {
     const html = document.documentElement;
     const saved = localStorage.getItem('themeMode') || 'system';
+    const systemDarkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+    function isDarkThemeActive() {
+        const forcedTheme = html.getAttribute('data-theme');
+        if (forcedTheme === 'dark') return true;
+        if (forcedTheme === 'light') return false;
+        return !!(systemDarkQuery && systemDarkQuery.matches);
+    }
+
+    function emitThemeChange() {
+        window.dispatchEvent(new CustomEvent('app-theme-change', {
+            detail: {
+                mode: localStorage.getItem('themeMode') || 'system',
+                isDark: isDarkThemeActive(),
+            }
+        }));
+    }
 
     function applyTheme(mode) {
         localStorage.setItem('themeMode', mode);
@@ -132,6 +168,8 @@ function prepareTextForSpeech(text) {
         document.querySelectorAll('#theme-pills .reflexive-pill').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === mode);
         });
+
+        emitThemeChange();
     }
 
     // Wire up pills (may run before or after DOMContentLoaded)
@@ -148,8 +186,17 @@ function prepareTextForSpeech(text) {
         bindThemePills();
     }
 
+    if (systemDarkQuery) {
+        systemDarkQuery.addEventListener('change', () => {
+            if (!html.hasAttribute('data-theme')) {
+                emitThemeChange();
+            }
+        });
+    }
+
     // Expose for external use
     window.applyTheme = applyTheme;
+    window.isDarkThemeActive = isDarkThemeActive;
 })();
 
 // ── Font size ─────────────────────────────────────────────────────────────────
@@ -499,6 +546,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const appUpdatePill = document.getElementById('app-update-pill');
     const appUpdateActionBtn = document.getElementById('app-update-action-btn');
     const appUpdateStatusText = document.getElementById('app-update-status-text');
+    const appVersionBadge = document.getElementById('app-version-badge');
+    const appVersionDetail = document.getElementById('app-version-detail');
     
     const backBtn = document.getElementById('back-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -583,6 +632,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ready: 'New version available.',
         unsupported: 'Updates are only available when the app is installed from the web.',
         error: 'Could not check right now. Please try again.'
+    };
+
+    const syncAppVersionUi = () => {
+        if (appVersionBadge) {
+            appVersionBadge.textContent = APP_VERSION;
+        }
+        if (appVersionDetail) {
+            appVersionDetail.textContent = formatAppVersionDetail(APP_VERSION);
+        }
     };
 
     const syncAppUpdateUi = () => {
@@ -1262,24 +1320,11 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl.style.pointerEvents = 'none';
             dictationResultEl.style.transition = 'opacity 0.5s';
             flashcard.style.position = 'relative';
-            // Color scheme aware background/text
-            const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (isDark) {
-                dictationResultEl.style.background = 'rgba(24, 32, 48, 0.92)';
-                dictationResultEl.style.color = '#eaf6fb';
-                dictationResultEl.style.border = '2px solid #2c3e50';
-            } else {
-                dictationResultEl.style.background = 'rgba(255,255,255,0.92)';
-                dictationResultEl.style.color = '#222';
-                dictationResultEl.style.border = '2px solid #3498db55';
-            }
-            flashcard.appendChild(dictationResultEl);
-        }
-        // Update overlay style on color scheme change
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!dictationResultEl) return;
-                if (e.matches) {
+            const applyDictationResultTheme = () => {
+                const isDark = typeof window.isDarkThemeActive === 'function'
+                    ? window.isDarkThemeActive()
+                    : !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                if (isDark) {
                     dictationResultEl.style.background = 'rgba(24, 32, 48, 0.92)';
                     dictationResultEl.style.color = '#eaf6fb';
                     dictationResultEl.style.border = '2px solid #2c3e50';
@@ -1288,7 +1333,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     dictationResultEl.style.color = '#222';
                     dictationResultEl.style.border = '2px solid #3498db55';
                 }
-            });
+            };
+            applyDictationResultTheme();
+            window.addEventListener('app-theme-change', applyDictationResultTheme);
+            flashcard.appendChild(dictationResultEl);
         }
 
         const speechState = getSpeechRecognitionState();
@@ -1604,11 +1652,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.startTutorial = () => restartTutorialFlow({ confirmRestart: false });
 
     // --- Options UI Elements ---
-    const hierarchicalToggle = document.getElementById('hierarchical-toggle');
-    const showPhrasesToggle = document.getElementById('show-phrases-toggle');
-    const verbsWithSentencesToggle = document.getElementById('verbs-with-sentences-toggle');
     const tenseWeightsContainer = document.getElementById('tense-weights-container');
-    const frequencyWeightsContainer = document.getElementById('frequency-weights-container');
+    const verbPoolBasicContainer = document.getElementById('verb-pool-basic-container');
+    const advancedPracticeContainer = document.getElementById('advanced-practice-container');
+    const currentDrillCard = document.getElementById('current-drill-card');
+    const savedDrillsGroup = document.getElementById('saved-drills-group');
+    const savedDrillsContainer = document.getElementById('saved-drills-container');
 
     // --- Card Generation Algorithm Options ---
     // This configuration object holds the settings for the flashcard
@@ -1622,9 +1671,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return acc;
     }, {});
 
-    // Dynamically create frequency weights from the data
-    // Default to "Master the Basics I" weights (top20=3, top50=1, rest=0)
-    // so the first-ever open starts with a sensible beginner configuration.
+    // Dynamically create frequency weights from the data.
+    // The starter drill later reshapes these into the first real user-facing setup,
+    // but we still initialize a sensible beginner-friendly baseline here.
     const starterWeights = { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 };
     const frequencyWeights = {};
     allFrequencies.forEach(freq => {
@@ -1650,13 +1699,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Local Storage for Options ---
     // Use generic localStorageKey for options
-    const saveOptions = () => {
+    const saveOptions = (options = {}) => {
         try {
             localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
             setScopedStorageItem('correct-dictation-next-question', cardGenerationOptions.useMicToAnswer ? 'true' : 'false');
-            // activePreset = "👤";
-            // highlightActivePreset();
-            updateCustomPresetFromUI();
+            if (!options.preserveActiveDrill) {
+                updateCustomPresetFromUI();
+            }
             
         } catch (e) {
             console.warn("Could not save options to localStorage:", e);
@@ -2091,35 +2140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const generateNewCard = (options = {}) => {
-        // --- PRACTICE MODE LOGIC ---
-        const practiceMode = getScopedStorageItem('practiceMode') || 'verbs';
-        if (practiceMode === 'phrases') {
-            let phrasesList;
-            // Dummy phrase mode: pick a random phrase from dummyPhrases
-            if(practicePhrases){
-                phrasesList = practicePhrases;
-            }
-            else{
-                phrasesList = [
-                    { fr: "Bonjour, comment ça va?", en: "Hello, how are you?" },
-                    { fr: "Je voudrais un café.", en: "I would like a coffee." },
-                    { fr: "Où est la bibliothèque?", en: "Where is the library?" },
-                    { fr: "Merci beaucoup!", en: "Thank you very much!" },
-                    { fr: "Je ne comprends pas.", en: "I don't understand." }
-                ];
-            }
-            const chosen = phrasesList[Math.floor(Math.random() * phrasesList.length)];
-            // Return a card-like object for phrase mode
-            return {
-                phrase: chosen.fr,
-                translation: chosen.en,
-                // Add any other fields needed for displayCard
-                isPhraseMode: true
-            };
-        }
-
-        // ...existing verb card logic...
-    const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { er: true, ir: true, re: true, other: true }, categoryFilter = 'all' } = options;
+        const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { er: true, ir: true, re: true, other: true }, categoryFilter = 'all' } = options;
     const sentenceFilterEnabled = ENABLE_LEGACY_SENTENCE_DATA && verbsWithSentencesOnly;
 
         // Helpers for filters
@@ -2919,14 +2940,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Options UI Logic ---
     const populateOptions = () => {
-        // Set initial state of the hierarchical toggle
-        if (hierarchicalToggle) hierarchicalToggle.checked = cardGenerationOptions.hierarchical;
-        if (showPhrasesToggle) showPhrasesToggle.checked = cardGenerationOptions.showPhrases;
-        if (verbsWithSentencesToggle) verbsWithSentencesToggle.checked = cardGenerationOptions.verbsWithSentencesOnly;
-        const balancedPronounsToggle = document.getElementById('balanced-pronouns-toggle');
-        if (balancedPronounsToggle) balancedPronounsToggle.checked = cardGenerationOptions.balancedPronouns;
-        // reflexive pills are dynamically created in frequencyWeightsContainer, no sync needed here
-
         // Helper function to create a slider control for a given weight object
         const tenseDisplayNames = {
             'present': 'présent', 'passeCompose': 'passé composé',
@@ -2944,7 +2957,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         const freqDisplayNames = {
             'top1000': 'Top 1000', 'top500': 'Top 500', 'top100': 'Top 100',
-            'top50': 'Top 50', 'top20': 'Top 20'
+            'top50': 'Top 50', 'top20': 'Top 20', 'rare': 'Rare'
         };
 
         const createSlider = (key, value, container, weightType) => {
@@ -3032,196 +3045,297 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(sliderGroup);
         };
 
+        const createToggleRow = (labelText, helperText, checked, onChange) => {
+            const row = document.createElement('div');
+            row.className = 'toggle-row';
+            const inputId = `toggle-${labelText.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Math.random().toString(36).slice(2, 8)}`;
+            row.innerHTML = `
+                <div class="settings-row-copy">
+                    <label for="${inputId}">${labelText}</label>
+                    ${helperText ? `<p class="setting-helper-text">${helperText}</p>` : ''}
+                </div>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="${inputId}" class="toggle-input" ${checked ? 'checked' : ''}>
+                    <label for="${inputId}" class="toggle-label"></label>
+                </div>
+            `;
+            row.querySelector('input').addEventListener('change', (event) => onChange(event.target.checked));
+            return row;
+        };
+
+        const createAdvancedCard = (title) => {
+            const card = document.createElement('div');
+            card.className = 'advanced-card';
+            const heading = document.createElement('div');
+            heading.className = 'advanced-card-title';
+            heading.textContent = title;
+            card.appendChild(heading);
+            return card;
+        };
+
         tenseWeightsContainer.innerHTML = '';
         Object.entries(cardGenerationOptions.tenseWeights).forEach(([tense, weight]) => createSlider(tense, weight, tenseWeightsContainer, 'tenseWeights'));
 
-        frequencyWeightsContainer.innerHTML = '';
-        // Render in ascending rarity order: top20 first, rare last
-        const freqOrder = ['top20', 'top50', 'top100', 'top500', 'top1000', 'rare'];
-        const freqEntries = Object.entries(cardGenerationOptions.frequencyWeights);
-        freqEntries.sort(([a], [b]) => {
-            const ai = freqOrder.indexOf(a), bi = freqOrder.indexOf(b);
-            return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-        });
-        freqEntries.forEach(([freq, weight]) => createSlider(freq, weight, frequencyWeightsContainer, 'frequencyWeights'));
+        if (verbPoolBasicContainer) {
+            verbPoolBasicContainer.innerHTML = '';
+            const verbPoolPanel = document.createElement('div');
+            verbPoolPanel.className = 'verb-pool-panel';
 
-        // Balance verb randomizer toggle (after freq weights)
-        const balanceRow = document.createElement('div');
-        balanceRow.className = 'toggle-row';
-        balanceRow.style.marginTop = '0.6rem';
-        balanceRow.innerHTML = `
-            <label for="hierarchical-toggle" style="font-weight:600;font-size:0.9rem;color:var(--text-color);">Balance verb randomizer</label>
-            <div class="toggle-switch">
-                <input type="checkbox" id="hierarchical-toggle" class="toggle-input" ${cardGenerationOptions.hierarchical ? 'checked' : ''}>
-                <label for="hierarchical-toggle" class="toggle-label"></label>
-            </div>`;
-        balanceRow.querySelector('#hierarchical-toggle').addEventListener('change', (e) => {
-            cardGenerationOptions.hierarchical = e.target.checked;
-            saveOptions();
-        });
-        frequencyWeightsContainer.appendChild(balanceRow);
-
-        // Reflexive mode pills — lives next to balance toggle (same conceptual group)
-        const reflexiveRow = document.createElement('div');
-        reflexiveRow.className = 'toggle-row';
-        reflexiveRow.style.marginTop = '0.4rem';
-        const activeMode = cardGenerationOptions.reflexiveMode || 'include';
-        reflexiveRow.innerHTML = `
-            <label style="font-weight:600;font-size:0.9rem;color:var(--text-color);">Reflexive verbs</label>
-            <div class="reflexive-mode-pills" id="reflexive-mode-pills">
-                <button class="reflexive-pill${activeMode==='exclude'?' active':''}" data-mode="exclude">Without</button>
-                <button class="reflexive-pill${activeMode==='include'?' active':''}" data-mode="include">Both</button>
-                <button class="reflexive-pill${activeMode==='only'?' active':''}" data-mode="only">Only</button>
-            </div>`;
-        reflexiveRow.querySelectorAll('.reflexive-pill').forEach(btn => {
-            btn.addEventListener('click', () => {
-                cardGenerationOptions.reflexiveMode = btn.dataset.mode;
-                reflexiveRow.querySelectorAll('.reflexive-pill').forEach(b => b.classList.toggle('active', b === btn));
-                saveOptions();
-                updateCustomPresetFromUI();
-                updateVerbFiltersCountLabel();
+            const rangeRow = document.createElement('div');
+            rangeRow.className = 'verb-pool-range';
+            const selectedRange = getSelectedVerbPoolRangeKey();
+            getStandardFrequencyKeys().forEach((freqKey) => {
+                if (!(freqKey in cardGenerationOptions.frequencyWeights)) return;
+                const pill = document.createElement('button');
+                pill.type = 'button';
+                pill.className = `verb-pool-pill${selectedRange === freqKey ? ' active' : ''}`;
+                pill.textContent = freqDisplayNames[freqKey] || freqKey;
+                pill.addEventListener('click', () => {
+                    setVerbPoolRange(freqKey);
+                    saveOptions();
+                    populateOptions();
+                    updateVerbFiltersCountLabel();
+                });
+                rangeRow.appendChild(pill);
             });
-        });
-        frequencyWeightsContainer.appendChild(reflexiveRow);
+            verbPoolPanel.appendChild(rangeRow);
 
-        // --- New Filters UI (Regularity and Verb Ending) ---
-        // Add a small section inside frequencyWeightsContainer for visual grouping
-    const filtersSection = document.createElement('div');
-    filtersSection.className = 'filters-section';
-    filtersSection.style.marginTop = '1em';
-    // Card-like styling
-    filtersSection.style.padding = '0.75em 0.9em';
-    filtersSection.style.border = '1px solid #e9ecef';
-    filtersSection.style.borderRadius = '12px';
-    filtersSection.style.background = 'var(--card-bg, #f8f9fa)';
+            const summary = document.createElement('div');
+            summary.className = 'verb-pool-summary';
+            summary.textContent = getVerbPoolSummary();
+            verbPoolPanel.appendChild(summary);
 
-        const heading = document.createElement('div');
-    heading.textContent = 'Verb filters';
-    heading.style.fontWeight = '700';
-    heading.style.fontSize = '1.05rem';
-    heading.style.color = 'var(--accent-color, #3498db)';
-    heading.style.margin = '0.2em 0 0.6em 0';
-        filtersSection.appendChild(heading);
+            verbPoolBasicContainer.appendChild(verbPoolPanel);
+        }
 
-        const createCheckboxGroup = (labelText, options, currentValues) => {
-            const group = document.createElement('div');
-            group.style.margin = '0.5rem 0 0.7rem';
+        if (advancedPracticeContainer) {
+            advancedPracticeContainer.innerHTML = '';
+            const advancedSections = document.createElement('div');
+            advancedSections.className = 'advanced-sections';
 
-            const label = document.createElement('div');
-            label.textContent = labelText;
-            label.style.fontWeight = '600';
-            label.style.fontSize = '0.9rem';
-            label.style.color = 'var(--text-color, #2c3e50)';
-            label.style.marginBottom = '0.45rem';
-            group.appendChild(label);
-
-            const row = document.createElement('div');
-            row.style.display = 'flex';
-            row.style.flexWrap = 'wrap';
-            row.style.gap = '0.4rem';
-
-            options.forEach(({ value, text }) => {
-                const pill = document.createElement('label');
-                pill.style.display = 'inline-flex';
-                pill.style.alignItems = 'center';
-                pill.style.padding = '0.28em 0.8em';
-                pill.style.borderRadius = '999px';
-                pill.style.border = '1.5px solid var(--border-color, #e9ecef)';
-                pill.style.cursor = 'pointer';
-                pill.style.fontSize = '0.88rem';
-                pill.style.fontWeight = '600';
-                pill.style.userSelect = 'none';
-                pill.style.transition = 'background 0.15s, border-color 0.15s, opacity 0.15s';
-
-                const cb = document.createElement('input');
-                cb.type = 'checkbox';
-                cb.checked = currentValues[value] !== false;
-                cb.style.display = 'none';
-
-                const applyPillStyle = () => {
-                    if (cb.checked) {
-                        pill.style.background = 'var(--accent-color, #3498db)';
-                        pill.style.borderColor = 'var(--accent-color, #3498db)';
-                        pill.style.color = '#fff';
-                        pill.style.opacity = '1';
-                    } else {
-                        pill.style.background = 'transparent';
-                        pill.style.borderColor = 'var(--border-color, #e9ecef)';
-                        pill.style.color = 'var(--text-color, #2c3e50)';
-                        pill.style.opacity = '0.45';
+            const frequencyBehaviorCard = createAdvancedCard('Frequency behavior');
+            frequencyBehaviorCard.appendChild(createToggleRow(
+                'Favor common verbs',
+                'When off, included verbs are practiced more evenly across the selected pool.',
+                !!cardGenerationOptions.hierarchical,
+                (checked) => {
+                    cardGenerationOptions.hierarchical = checked;
+                    saveOptions();
+                    populateOptions();
+                }
+            ));
+            if (hasRareFrequencyBucket()) {
+                frequencyBehaviorCard.appendChild(createToggleRow(
+                    'Include rare verbs',
+                    'Only shown when this language has a rare-verb bucket.',
+                    (cardGenerationOptions.frequencyWeights.rare || 0) > 0,
+                    (checked) => {
+                        cardGenerationOptions.frequencyWeights.rare = checked ? 1 : 0;
+                        saveOptions();
+                        populateOptions();
+                        updateVerbFiltersCountLabel();
                     }
-                };
-                applyPillStyle();
+                ));
+            }
+            advancedSections.appendChild(frequencyBehaviorCard);
 
-                cb.addEventListener('change', () => {
-                    currentValues[value] = cb.checked;
-                    applyPillStyle();
+            const freqCard = createAdvancedCard('Detailed frequency');
+            const freqHelper = document.createElement('div');
+            freqHelper.className = 'advanced-action-helper';
+            freqHelper.textContent = 'Fine-tune the exact weights when the simple Verb Pool controls are not enough.';
+            const detailedFrequencyContainer = document.createElement('div');
+            const freqOrder = ['top20', 'top50', 'top100', 'top500', 'top1000', 'rare'];
+            const freqEntries = Object.entries(cardGenerationOptions.frequencyWeights);
+            freqEntries.sort(([a], [b]) => {
+                const ai = freqOrder.indexOf(a), bi = freqOrder.indexOf(b);
+                return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+            });
+            freqEntries.forEach(([freq, weight]) => createSlider(freq, weight, detailedFrequencyContainer, 'frequencyWeights'));
+            freqCard.appendChild(detailedFrequencyContainer);
+            freqCard.appendChild(freqHelper);
+            advancedSections.appendChild(freqCard);
+
+            const practiceCard = createAdvancedCard('Practice filters');
+            practiceCard.appendChild(createToggleRow(
+                'Practice all pronouns evenly',
+                'Split grouped pronouns so they appear more evenly in the deck.',
+                !!cardGenerationOptions.balancedPronouns,
+                (checked) => {
+                    cardGenerationOptions.balancedPronouns = checked;
+                    saveOptions();
+                    updateVerbFiltersCountLabel();
+                }
+            ));
+
+            const reflexiveRow = document.createElement('div');
+            reflexiveRow.className = 'toggle-row';
+            reflexiveRow.style.marginTop = '0.4rem';
+            const activeMode = cardGenerationOptions.reflexiveMode || 'include';
+            reflexiveRow.innerHTML = `
+                <div class="settings-row-copy">
+                    <label style="margin:0;">Reflexive verbs</label>
+                    <p class="setting-helper-text">Limit the drill to reflexives, exclude them, or mix both.</p>
+                </div>
+                <div class="reflexive-mode-pills" id="reflexive-mode-pills">
+                    <button class="reflexive-pill${activeMode==='exclude'?' active':''}" data-mode="exclude">Without</button>
+                    <button class="reflexive-pill${activeMode==='include'?' active':''}" data-mode="include">Both</button>
+                    <button class="reflexive-pill${activeMode==='only'?' active':''}" data-mode="only">Only</button>
+                </div>`;
+            reflexiveRow.querySelectorAll('.reflexive-pill').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cardGenerationOptions.reflexiveMode = btn.dataset.mode;
+                    reflexiveRow.querySelectorAll('.reflexive-pill').forEach(b => b.classList.toggle('active', b === btn));
                     saveOptions();
                     updateVerbFiltersCountLabel();
                 });
-
-                pill.appendChild(cb);
-                pill.appendChild(document.createTextNode(text));
-                row.appendChild(pill);
             });
+            practiceCard.appendChild(reflexiveRow);
 
-            group.appendChild(row);
-            return group;
-        };
+            const filtersSection = document.createElement('div');
+            filtersSection.className = 'filters-section';
+            filtersSection.style.marginTop = '1rem';
+            filtersSection.style.padding = '0.75em 0.9em';
+            filtersSection.style.border = '1px solid var(--border-color)';
+            filtersSection.style.borderRadius = '12px';
+            filtersSection.style.background = 'var(--settings-subtle-bg, var(--card-bg, #f8f9fa))';
 
-        // Regular/Irregular filter
-        const regularityGroup = createCheckboxGroup(
-            'Regular Vs Irregular',
-            [
-                { value: 'regular', text: 'Regular' },
-                { value: 'irregular', text: 'Irregular' },
-            ],
-            cardGenerationOptions.regularityFilter
-        );
-        filtersSection.appendChild(regularityGroup);
+            const heading = document.createElement('div');
+            heading.textContent = 'Verb filters';
+            heading.style.fontWeight = '700';
+            heading.style.fontSize = '1.05rem';
+            heading.style.color = 'var(--accent-color, #3498db)';
+            heading.style.margin = '0.2em 0 0.6em 0';
+            filtersSection.appendChild(heading);
 
-        // Verb ending filter
-        const endingGroup = createCheckboxGroup(
-            'Verb Ending',
-            [
-                { value: 'er', text: '-er' },
-                { value: 'ir', text: '-ir' },
-                { value: 're', text: '-re' },
-                { value: 'other', text: 'other' },
-            ],
-            cardGenerationOptions.endingFilter
-        );
-        filtersSection.appendChild(endingGroup);
+            const createCheckboxGroup = (labelText, options, currentValues) => {
+                const group = document.createElement('div');
+                group.style.margin = '0.5rem 0 0.7rem';
 
-    // Verb category filter (from classifyFrenchVerb)
-    /*const categoryOptions = [{ value: 'all', text: 'All categories' }].concat(
-        (allVerbCategories || []).map(c => ({ value: c, text: c }))
-    );
-    const categoryGroup = createSelectGroup(
-        'Verb Category',
-        'category-filter',
-        categoryOptions,
-        cardGenerationOptions.categoryFilter || 'all',
-        (val) => { cardGenerationOptions.categoryFilter = val; }
-    );
-    filtersSection.appendChild(categoryGroup);
-    */
+                const label = document.createElement('div');
+                label.textContent = labelText;
+                label.style.fontWeight = '600';
+                label.style.fontSize = '0.9rem';
+                label.style.color = 'var(--text-color, #2c3e50)';
+                label.style.marginBottom = '0.45rem';
+                group.appendChild(label);
 
-    // Informative count under filters
-    const countEl = document.createElement('div');
-    countEl.id = 'verb-filters-count';
-    countEl.style.marginTop = '0.6rem';
-    countEl.style.fontSize = '0.95rem';
-    countEl.style.fontWeight = '600';
-    countEl.style.color = 'var(--text-muted, #6c757d)';
-    countEl.textContent = 'In play: …';
-    // TODO(UX): If Explorer gets a category filter, consider mirroring that state here or vice versa,
-    // so the "In play" count and list feel consistent.
-    filtersSection.appendChild(countEl);
+                const row = document.createElement('div');
+                row.style.display = 'flex';
+                row.style.flexWrap = 'wrap';
+                row.style.gap = '0.4rem';
 
-        frequencyWeightsContainer.appendChild(filtersSection);
-        
-        // Initial count render
+                options.forEach(({ value, text }) => {
+                    const pill = document.createElement('label');
+                    pill.style.display = 'inline-flex';
+                    pill.style.alignItems = 'center';
+                    pill.style.padding = '0.28em 0.8em';
+                    pill.style.borderRadius = '999px';
+                    pill.style.border = '1.5px solid var(--border-color, #e9ecef)';
+                    pill.style.cursor = 'pointer';
+                    pill.style.fontSize = '0.88rem';
+                    pill.style.fontWeight = '600';
+                    pill.style.userSelect = 'none';
+                    pill.style.transition = 'background 0.15s, border-color 0.15s, opacity 0.15s';
+
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.checked = currentValues[value] !== false;
+                    cb.style.display = 'none';
+
+                    const applyPillStyle = () => {
+                        if (cb.checked) {
+                            pill.style.background = 'var(--accent-color, #3498db)';
+                            pill.style.borderColor = 'var(--accent-color, #3498db)';
+                            pill.style.color = 'var(--settings-chip-active-text, #fff)';
+                            pill.style.opacity = '1';
+                        } else {
+                            pill.style.background = 'transparent';
+                            pill.style.borderColor = 'var(--border-color, #e9ecef)';
+                            pill.style.color = 'var(--text-color, #2c3e50)';
+                            pill.style.opacity = '0.45';
+                        }
+                    };
+                    applyPillStyle();
+
+                    cb.addEventListener('change', () => {
+                        currentValues[value] = cb.checked;
+                        applyPillStyle();
+                        saveOptions();
+                        updateVerbFiltersCountLabel();
+                    });
+
+                    pill.appendChild(cb);
+                    pill.appendChild(document.createTextNode(text));
+                    row.appendChild(pill);
+                });
+
+                group.appendChild(row);
+                return group;
+            };
+
+            const regularityGroup = createCheckboxGroup(
+                'Regular Vs Irregular',
+                [
+                    { value: 'regular', text: 'Regular' },
+                    { value: 'irregular', text: 'Irregular' },
+                ],
+                cardGenerationOptions.regularityFilter
+            );
+            filtersSection.appendChild(regularityGroup);
+
+            const endingGroup = createCheckboxGroup(
+                'Verb Ending',
+                [
+                    { value: 'er', text: '-er' },
+                    { value: 'ir', text: '-ir' },
+                    { value: 're', text: '-re' },
+                    { value: 'other', text: 'other' },
+                ],
+                cardGenerationOptions.endingFilter
+            );
+            filtersSection.appendChild(endingGroup);
+
+            const countEl = document.createElement('div');
+            countEl.id = 'verb-filters-count';
+            countEl.style.marginTop = '0.6rem';
+            countEl.style.fontSize = '0.95rem';
+            countEl.style.fontWeight = '600';
+            countEl.style.color = 'var(--meta-color, #6c757d)';
+            countEl.textContent = 'In play: …';
+            filtersSection.appendChild(countEl);
+
+            practiceCard.appendChild(filtersSection);
+            advancedSections.appendChild(practiceCard);
+
+            const drillActionsCard = createAdvancedCard('Drill actions');
+            const actionsRow = document.createElement('div');
+            actionsRow.className = 'advanced-actions';
+
+            const saveBtn = document.createElement('button');
+            saveBtn.type = 'button';
+            saveBtn.className = 'advanced-action-btn';
+            saveBtn.textContent = 'Save current drill';
+            saveBtn.addEventListener('click', () => saveCurrentDrillPrompt());
+
+            const shareBtn = document.createElement('button');
+            shareBtn.type = 'button';
+            shareBtn.className = 'advanced-action-btn';
+            shareBtn.textContent = 'Share current drill';
+            shareBtn.addEventListener('click', () => shareCurrentDrill());
+
+            actionsRow.appendChild(saveBtn);
+            actionsRow.appendChild(shareBtn);
+            drillActionsCard.appendChild(actionsRow);
+
+            const actionsHelper = document.createElement('div');
+            actionsHelper.className = 'advanced-action-helper';
+            actionsHelper.textContent = `Current drill: ${getCurrentDrillDisplayName()}`;
+            drillActionsCard.appendChild(actionsHelper);
+            advancedSections.appendChild(drillActionsCard);
+
+            advancedPracticeContainer.appendChild(advancedSections);
+        }
+
         updateVerbFiltersCountLabel();
     };
 
@@ -3535,32 +3649,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupInfoPanel();
     syncAppUpdateUi();
 
-    // Options controls (hierarchicalToggle listener now lives in populateOptions dynamic row)
-    if (showPhrasesToggle) showPhrasesToggle.addEventListener('change', (e) => {
-        cardGenerationOptions.showPhrases = e.target.checked;
-        saveOptions();
-    });
-    const balancedPronounsToggle = document.getElementById('balanced-pronouns-toggle');
-    if (balancedPronounsToggle) balancedPronounsToggle.addEventListener('change', (e) => {
-        cardGenerationOptions.balancedPronouns = e.target.checked;
-        saveOptions();
-    });
-    if (verbsWithSentencesToggle) verbsWithSentencesToggle.addEventListener('change', (e) => {
-        cardGenerationOptions.verbsWithSentencesOnly = ENABLE_LEGACY_SENTENCE_DATA && e.target.checked;
-        e.target.checked = cardGenerationOptions.verbsWithSentencesOnly;
-        saveOptions();
-        // Generate a new card immediately to reflect the filter change
-        if (cardGenerationOptions.verbsWithSentencesOnly) {
-            // When enabling the filter, get a new card that should have gap sentences
-            hideAnswer();
-            setTimeout(() => {
-                nextCard();
-            }, 300);
-        }
-        // Update the options filters count label if visible
-        updateVerbFiltersCountLabel();
-    });
-
     // --- Correct Dictation Next Question Toggle Logic ---
     const correctDictationToggle = document.getElementById('correct-dictation-toggle');
     if (correctDictationToggle) {
@@ -3568,8 +3656,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setMicAnswerMode(correctDictationToggle.checked);
             syncMicModeSettingUi();
             refreshDictationButton();
-            activePreset = "Custom";
-            highlightActivePreset();
+            updateCustomPresetFromUI();
         });
     }
 
@@ -3705,6 +3792,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTutorialState();
         if (dictateBtn) setupDictation();
         populateOptions();
+        syncAppVersionUi();
         syncMicModeSettingUi();
         refreshContextAudioButton();
         refreshDictationButton();
@@ -4049,90 +4137,379 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 }
 
-// ---------- PRESET SYSTEM ----------
+// ---------- DRILL SYSTEM ----------
+const DRILL_STORAGE_KEY = 'savedDrills';
+const LAST_DRILL_STORAGE_KEY = 'lastDrill';
+const STARTER_DRILL_ID = 'most-common';
+const DRILL_SHARE_VERSION = 1;
+const DRILL_OPTION_KEYS = [
+    'tenseWeights',
+    'frequencyWeights',
+    'hierarchical',
+    'balancedPronouns',
+    'useMicToAnswer',
+    'reflexiveMode',
+    'regularityFilter',
+    'endingFilter',
+    'categoryFilter',
+];
+
+function deepClone(value) {
+    return JSON.parse(JSON.stringify(value));
+}
+
+function getStandardFrequencyKeys() {
+    const ordered = ['top20', 'top50', 'top100', 'top500', 'top1000'];
+    return ordered.filter((key) => allFrequencies.includes(key));
+}
+
+function hasRareFrequencyBucket() {
+    return allFrequencies.includes('rare');
+}
+
+function buildEmptyTenseWeights() {
+    return Object.keys(tenses).reduce((acc, tense) => {
+        acc[tense] = 0;
+        return acc;
+    }, {});
+}
+
+function buildAllTenseWeights() {
+    return Object.keys(tenses).reduce((acc, tense) => {
+        acc[tense] = 1;
+        return acc;
+    }, {});
+}
+
+function buildRangeFrequencyWeights(maxKey, options = {}) {
+    const weights = {};
+    const rangeKeys = getStandardFrequencyKeys();
+    const maxIndex = rangeKeys.indexOf(maxKey);
+    rangeKeys.forEach((key, index) => {
+        weights[key] = maxIndex >= 0 && index <= maxIndex ? 1 : 0;
+    });
+    if (hasRareFrequencyBucket()) {
+        weights.rare = options.includeRare ? 1 : 0;
+    }
+    return weights;
+}
+
+function buildDrillCardOptions(overrides = {}) {
+    const baseTenseWeights = buildEmptyTenseWeights();
+    const baseFrequencyWeights = buildRangeFrequencyWeights('top50');
+    return {
+        hierarchical: true,
+        balancedPronouns: false,
+        useMicToAnswer: false,
+        reflexiveMode: 'include',
+        regularityFilter: { regular: true, irregular: true },
+        endingFilter: { er: true, ir: true, re: true, other: true },
+        categoryFilter: 'all',
+        tenseWeights: { ...baseTenseWeights, ...(overrides.tenseWeights || {}) },
+        frequencyWeights: { ...baseFrequencyWeights, ...(overrides.frequencyWeights || {}) },
+        ...overrides,
+        regularityFilter: { regular: true, irregular: true, ...(overrides.regularityFilter || {}) },
+        endingFilter: { er: true, ir: true, re: true, other: true, ...(overrides.endingFilter || {}) },
+    };
+}
+
 const defaultPresets = [
   {
-    emoji: "🌱",
-    name: "Master the Basics I",
-    desc: "Top 50 verbs · présent only",
+    id: 'most-common',
+    emoji: "🎯",
+    name: "Most Crucial",
+    desc: "présent · top 20",
     config: {
-      cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 0, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0, plusQueParfait: 0 },
-        frequencyWeights: { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 },
-      },
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { present: 1 },
+        frequencyWeights: buildRangeFrequencyWeights('top20'),
+      }),
     },
   },
   {
-    emoji: "🌿",
-    name: "Master the Basics II",
-    desc: "Top 50 verbs · présent + passé composé",
+    id: 'present',
+    emoji: "☀️",
+    name: "Master Present",
+    desc: "présent · top 100 · extra weight on top 20 and 50",
     config: {
-      cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 1, imparfait: 0, futurSimple: 0, conditionnelPresent: 0, subjonctifPresent: 0, plusQueParfait: 0 },
-        frequencyWeights: { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 },
-      },
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { present: 1 },
+        frequencyWeights: {
+            ...buildRangeFrequencyWeights('top100'),
+            top20: 3,
+            top50: 2,
+            top100: 1,
+        },
+      }),
     },
   },
   {
-    emoji: "🌳",
-    name: "Master the Basics III",
-    desc: "Top 50 verbs · futur + conditionnel + subjonctif",
+    id: 'passe-compose',
+    emoji: "🕰️",
+    name: "Passé composé",
+    desc: "passé composé · top 100",
     config: {
-      cardGenerationOptions: {
-        tenseWeights: { present: 0, passeCompose: 0, imparfait: 0, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1, plusQueParfait: 0 },
-        frequencyWeights: { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 },
-      },
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { passeCompose: 1 },
+        frequencyWeights: buildRangeFrequencyWeights('top100'),
+      }),
     },
   },
   {
+    id: 'common-irregulars',
+    emoji: "🌀",
+    name: "Common Irregulars",
+    desc: "présent · top 100 · irregular only",
+    config: {
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { present: 1 },
+        frequencyWeights: buildRangeFrequencyWeights('top100'),
+        regularityFilter: { regular: false, irregular: true },
+      }),
+    },
+  },
+  {
+    id: 'beyond-present',
+    emoji: "📈",
+    name: "Beyond Present",
+    desc: "imparfait + futur simple + conditionnel · top 100",
+    config: {
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { imparfait: 1, futurSimple: 1, conditionnelPresent: 1 },
+        frequencyWeights: buildRangeFrequencyWeights('top100'),
+      }),
+    },
+  },
+  {
+    id: 'subjonctif',
+    emoji: "⚡",
+    name: "Subjonctif",
+    desc: "subjonctif présent · top 100",
+    config: {
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { subjonctifPresent: 1 },
+        frequencyWeights: buildRangeFrequencyWeights('top100'),
+      }),
+    },
+  },
+  {
+    id: 'subjonctif-no-er',
+    emoji: "✂️",
+    name: "Subjonctif sans -er",
+    desc: "subjonctif présent · top 100 · no -er verbs",
+    config: {
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { subjonctifPresent: 1 },
+        frequencyWeights: buildRangeFrequencyWeights('top100'),
+        endingFilter: { er: false, ir: true, re: true, other: true },
+      }),
+    },
+  },
+  {
+    id: 'explore-500',
     emoji: "🌍",
-    name: "Broaden Horizons",
-    desc: "Top 1000 verbs · all tenses",
+    name: "Explore 500",
+    desc: "all tenses · top 500",
     config: {
-      cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 1, imparfait: 1, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1, plusQueParfait: 1 },
-        frequencyWeights: { top20: 1, top50: 1, top100: 2, top500: 2, top1000: 2, rare: 0 },
-      },
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: buildAllTenseWeights(),
+        frequencyWeights: buildRangeFrequencyWeights('top500'),
+      }),
     },
   },
   {
-    emoji: "🧠",
-    name: "All Verbs All Tenses",
-    desc: "All verbs · all tenses · equal weight",
+    id: 'irregular-500',
+    emoji: "🧩",
+    name: "Irregular 500",
+    desc: "all tenses · top 500 · irregular only",
     config: {
-      cardGenerationOptions: {
-        tenseWeights: { present: 1, passeCompose: 1, imparfait: 1, futurSimple: 1, conditionnelPresent: 1, subjonctifPresent: 1, plusQueParfait: 1 },
-        frequencyWeights: { top20: 1, top50: 1, top100: 1, top500: 1, top1000: 1, rare: 1 },
-      },
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: buildAllTenseWeights(),
+        frequencyWeights: buildRangeFrequencyWeights('top500'),
+        regularityFilter: { regular: false, irregular: true },
+      }),
     },
   },
   {
+    id: 'reflexive-challenge',
+    emoji: "🔁",
+    name: "Reflexive Challenge",
+    desc: "passé composé + subjonctif · top 500 · reflexive only",
+    config: {
+      cardGenerationOptions: buildDrillCardOptions({
+        tenseWeights: { passeCompose: 1, subjonctifPresent: 1 },
+        frequencyWeights: buildRangeFrequencyWeights('top500'),
+        reflexiveMode: 'only',
+      }),
+    },
+  },
+  {
+    id: 'custom',
     emoji: "⚙️",
     name: "Custom",
     desc: "Your current settings",
-    config: {} // gets filled from localStorage on load
+    isCustom: true,
+    config: { cardGenerationOptions: {} }
   }
 ];
 
 let activePreset = "Custom";
-let presets = defaultPresets; // always use hardcoded defaults; only Custom config persists
+let activePresetKey = "builtin:custom";
+let presets = defaultPresets;
+let savedDrills = [];
 
-// Apply a preset (except 👤), update UI but do not overwrite custom config
-function applyPreset(preset) {
-  const { cardGenerationOptions: cfg } = preset.config;
-  if (cfg) {
-    if (cfg.tenseWeights) cardGenerationOptions.tenseWeights = { ...cardGenerationOptions.tenseWeights, ...cfg.tenseWeights };
-    if (cfg.frequencyWeights) cardGenerationOptions.frequencyWeights = { ...cardGenerationOptions.frequencyWeights, ...cfg.frequencyWeights };
-    // Re-render the whole settings UI so pills + step buttons reflect the new values
+function getPresetKey(preset, source = 'builtin') {
+    return `${source}:${preset.id || preset.name}`;
+}
+
+function loadSavedDrills() {
+    try {
+        const raw = getScopedStorageItem(DRILL_STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        console.warn('Could not load saved drills:', error);
+        return [];
+    }
+}
+
+function persistSavedDrills() {
+    try {
+        setScopedStorageItem(DRILL_STORAGE_KEY, JSON.stringify(savedDrills));
+    } catch (error) {
+        console.warn('Could not save drills:', error);
+    }
+}
+
+function getCustomPreset() {
+    return presets.find((preset) => preset.isCustom || preset.name === 'Custom');
+}
+
+function getActiveDrill() {
+    const builtin = presets.find((preset) => getPresetKey(preset, 'builtin') === activePresetKey);
+    if (builtin) return { preset: builtin, source: 'builtin' };
+    const saved = savedDrills.find((preset) => getPresetKey(preset, 'saved') === activePresetKey);
+    if (saved) return { preset: saved, source: 'saved' };
+    const custom = getCustomPreset();
+    return custom ? { preset: custom, source: 'builtin' } : null;
+}
+
+function getCurrentDrillDisplayName() {
+    return getActiveDrill()?.preset?.name || 'Custom';
+}
+
+function snapshotCurrentDrillConfig() {
+    const snapshot = {};
+    DRILL_OPTION_KEYS.forEach((key) => {
+        if (cardGenerationOptions[key] === undefined) return;
+        snapshot[key] = deepClone(cardGenerationOptions[key]);
+    });
+    return { cardGenerationOptions: snapshot };
+}
+
+function summarizeFrequencyWeights(frequencyWeights = {}) {
+    const selectedRange = getSelectedVerbPoolRangeKey(frequencyWeights);
+    const parts = [];
+    if (selectedRange) {
+        parts.push(selectedRange.replace('top', 'top '));
+    } else {
+        parts.push('custom pool');
+    }
+    if ((frequencyWeights.rare || 0) > 0) {
+        parts.push('rare on');
+    }
+    return parts.join(' · ');
+}
+
+function describeDrillConfig(config = {}) {
+    const options = config.cardGenerationOptions || config;
+    const tenseLabels = Object.entries(options.tenseWeights || {})
+        .filter(([, value]) => value > 0)
+        .map(([key]) => window.frenchTenseKeyToLabel?.[key] || key);
+    const tenseSummary = tenseLabels.length === Object.keys(tenses).length
+        ? 'all tenses'
+        : tenseLabels.length === 1
+            ? tenseLabels[0]
+            : tenseLabels.slice(0, 2).join(' + ');
+
+    const parts = [tenseSummary || 'mixed tenses', summarizeFrequencyWeights(options.frequencyWeights || {})];
+    if (options.regularityFilter && options.regularityFilter.regular === false && options.regularityFilter.irregular !== false) {
+        parts.push('irregular focus');
+    }
+    if (options.reflexiveMode === 'only') {
+        parts.push('reflexive only');
+    }
+    return parts.join(' · ');
+}
+
+function setVerbPoolRange(maxKey) {
+    const rangeWeights = buildRangeFrequencyWeights(maxKey, {
+        includeRare: (cardGenerationOptions.frequencyWeights.rare || 0) > 0,
+    });
+    cardGenerationOptions.frequencyWeights = {
+        ...cardGenerationOptions.frequencyWeights,
+        ...rangeWeights,
+    };
+}
+
+function getSelectedVerbPoolRangeKey(frequencyWeights = cardGenerationOptions.frequencyWeights) {
+    const rangeKeys = getStandardFrequencyKeys();
+    let selected = null;
+    for (const freqKey of rangeKeys) {
+        const index = rangeKeys.indexOf(freqKey);
+        const prefixEnabled = rangeKeys.slice(0, index + 1).every((key) => (frequencyWeights[key] || 0) > 0);
+        const suffixDisabled = rangeKeys.slice(index + 1).every((key) => (frequencyWeights[key] || 0) === 0);
+        if (prefixEnabled && suffixDisabled) {
+            selected = freqKey;
+        }
+    }
+    return selected;
+}
+
+function getVerbPoolSummary() {
+    const selectedRange = getSelectedVerbPoolRangeKey();
+    const parts = [];
+    parts.push(selectedRange ? `Including verbs through ${selectedRange.replace('top', 'Top ')}` : 'Using a custom frequency mix');
+    if (hasRareFrequencyBucket() && (cardGenerationOptions.frequencyWeights.rare || 0) > 0) {
+        parts.push('rare verbs included');
+    }
+    return parts.join(' · ');
+}
+
+function applyDrillCardOptions(config = {}) {
+    const resolved = buildDrillCardOptions(config);
+    cardGenerationOptions.tenseWeights = deepClone(resolved.tenseWeights);
+    cardGenerationOptions.frequencyWeights = deepClone(resolved.frequencyWeights);
+    cardGenerationOptions.hierarchical = resolved.hierarchical;
+    cardGenerationOptions.balancedPronouns = resolved.balancedPronouns;
+    cardGenerationOptions.useMicToAnswer = resolved.useMicToAnswer;
+    cardGenerationOptions.reflexiveMode = resolved.reflexiveMode;
+    cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
+    cardGenerationOptions.endingFilter = deepClone(resolved.endingFilter);
+    cardGenerationOptions.categoryFilter = resolved.categoryFilter;
+}
+
+function applyPreset(preset, options = {}) {
+    const source = options.source || 'builtin';
+    const cfg = preset?.config?.cardGenerationOptions || {};
+    applyDrillCardOptions(cfg);
+
+    saveOptions({ preserveActiveDrill: true });
+    if (typeof syncMicModeSettingUi === 'function') syncMicModeSettingUi();
+    if (typeof refreshDictationButton === 'function') refreshDictationButton();
+    if (typeof refreshTutorialAwareUi === 'function') refreshTutorialAwareUi();
+
+    activePreset = preset.name;
+    activePresetKey = getPresetKey(preset, source);
+    setScopedStorageItem(LAST_DRILL_STORAGE_KEY, activePresetKey);
+    setScopedStorageItem("lastPreset", activePreset);
     if (window._populateOptions) window._populateOptions();
-  }
-  activePreset = preset.name;
-  setScopedStorageItem("lastPreset", activePreset);
-  highlightActivePreset();
+    highlightActivePreset();
 }
 
 function resetTutorialPracticeBaseline() {
-  const starter = presets.find(p => p.name === "Master the Basics I");
+  const starter = presets.find(p => p.id === STARTER_DRILL_ID);
   if (starter) {
     applyPreset(starter);
   }
@@ -4155,29 +4532,243 @@ function resetTutorialPracticeBaseline() {
     console.warn("Could not save tutorial baseline options to localStorage:", e);
   }
 
+  updateCustomPresetFromUI();
+  if (starter) {
+    applyPreset(starter);
+  }
   if (window._populateOptions) window._populateOptions();
   if (typeof syncMicModeSettingUi === 'function') syncMicModeSettingUi();
   if (typeof refreshTutorialAwareUi === 'function') refreshTutorialAwareUi();
 }
 
+function refreshCurrentDrillCard() {
+    if (!currentDrillCard) return;
+    const active = getActiveDrill();
+    const currentPreset = active?.preset || getCustomPreset();
+    if (!currentPreset) return;
+    const currentConfig = currentPreset.isCustom ? snapshotCurrentDrillConfig() : currentPreset.config;
+    currentDrillCard.innerHTML = `
+        <div class="current-drill-label">Current drill</div>
+        <div class="current-drill-name">${currentPreset.emoji || '📚'} ${currentPreset.name}</div>
+        <div class="current-drill-desc">${currentPreset.desc || describeDrillConfig(currentConfig)}</div>
+    `;
+}
 
+function renderSavedDrills() {
+    if (!savedDrillsContainer || !savedDrillsGroup) return;
+    savedDrillsContainer.innerHTML = '';
+    savedDrillsGroup.classList.toggle('hidden', savedDrills.length === 0);
+
+    savedDrills.forEach((preset) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'preset-btn';
+        btn.dataset.presetKey = getPresetKey(preset, 'saved');
+        if (getPresetKey(preset, 'saved') === activePresetKey) btn.classList.add('active');
+        btn.innerHTML = `
+            <span class="preset-icon">${preset.emoji || '💾'}</span>
+            <span class="preset-text">
+                <span class="preset-name">${preset.name}</span>
+                <span class="preset-desc">${preset.desc || describeDrillConfig(preset.config)}</span>
+            </span>
+            <span class="drill-card-actions">
+                <span class="drill-card-action-btn danger" data-action="delete">Delete</span>
+            </span>
+        `;
+        btn.addEventListener('click', () => {
+            applyPreset(preset, { source: 'saved' });
+        });
+        btn.querySelector('[data-action="delete"]')?.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (!window.confirm(`Delete saved drill "${preset.name}"?`)) return;
+            savedDrills = savedDrills.filter((item) => item.id !== preset.id);
+            persistSavedDrills();
+            if (activePresetKey === getPresetKey(preset, 'saved')) {
+                updateCustomPresetFromUI();
+            } else {
+                renderSavedDrills();
+                highlightActivePreset();
+            }
+        });
+        savedDrillsContainer.appendChild(btn);
+    });
+}
+
+function renderPresets() {
+  const container = document.getElementById("presets-container");
+  if (!container) return;
+  container.innerHTML = "";
+  presets.forEach(preset => {
+    const btn = document.createElement("button");
+    btn.type = 'button';
+    btn.className = "preset-btn preset-block";
+    btn.dataset.presetKey = getPresetKey(preset, 'builtin');
+    if (getPresetKey(preset, 'builtin') === activePresetKey) btn.classList.add("active");
+    btn.title = preset.desc || describeDrillConfig(preset.config);
+    btn.innerHTML = `<span class="preset-icon">${preset.emoji}</span><span class="preset-text"><span class="preset-name">${preset.name}</span></span>`;
+    btn.onclick = () => {
+      applyPreset(preset);
+    };
+    container.appendChild(btn);
+  });
+  renderSavedDrills();
+}
+
+function highlightActivePreset() {
+  document.querySelectorAll(".preset-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.presetKey === activePresetKey);
+  });
+  refreshCurrentDrillCard();
+  const badge = document.getElementById('preset-badge');
+  if (badge) {
+    const active = getActiveDrill();
+    const currentPreset = active?.preset;
+    const isCustom = currentPreset?.isCustom || activePreset === 'Custom';
+    if (!isCustom && currentPreset) {
+      const emoji = currentPreset.emoji || '📚';
+      badge.innerHTML = `<span class="preset-badge-icon">${emoji}</span><span class="preset-badge-name">${currentPreset.name}</span>`;
+      badge.style.display = 'inline-flex';
+    } else {
+      badge.innerHTML = '';
+      badge.style.display = 'none';
+    }
+  }
+}
+
+function promptForDrillMetadata(defaultName, defaultDescription = '') {
+    const name = window.prompt('Drill name', defaultName || '');
+    if (name === null) return null;
+    const trimmedName = name.trim();
+    if (!trimmedName) return null;
+    const description = window.prompt('Short description (optional)', defaultDescription || '');
+    if (description === null) return null;
+    return { name: trimmedName, desc: description.trim() };
+}
+
+function encodeDrillPayload(payload) {
+    return btoa(unescape(encodeURIComponent(JSON.stringify(payload))))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/g, '');
+}
+
+function decodeDrillPayload(encoded) {
+    const normalized = encoded.replace(/-/g, '+').replace(/_/g, '/');
+    const padded = normalized + '='.repeat((4 - normalized.length % 4) % 4);
+    return JSON.parse(decodeURIComponent(escape(atob(padded))));
+}
+
+function buildCurrentDrillPayload(options = {}) {
+    const active = getActiveDrill();
+    const currentPreset = active?.preset;
+    return {
+        version: DRILL_SHARE_VERSION,
+        name: options.name || currentPreset?.name || 'Custom',
+        desc: options.desc ?? currentPreset?.desc ?? '',
+        seed: options.seed || currentPreset?.seed || '',
+        config: snapshotCurrentDrillConfig(),
+    };
+}
+
+function shareCurrentDrill() {
+    const active = getActiveDrill();
+    const currentPreset = active?.preset;
+    let metadata = {
+        name: currentPreset?.name || 'Custom',
+        desc: currentPreset?.desc || '',
+    };
+    if (!currentPreset || currentPreset.isCustom) {
+        const prompted = promptForDrillMetadata(metadata.name, metadata.desc);
+        if (!prompted) return;
+        metadata = prompted;
+    }
+
+    const payload = buildCurrentDrillPayload(metadata);
+    const encoded = encodeDrillPayload(payload);
+    const url = `${window.location.origin}${window.location.pathname}#drill=${encoded}`;
+    copyTextToClipboard(url)
+        .then((copied) => {
+            if (copied) {
+                window.alert(`Copied drill link for "${payload.name}".`);
+                return;
+            }
+            window.prompt('Copy this drill link', url);
+        })
+        .catch(() => window.prompt('Copy this drill link', url));
+}
+
+function saveCurrentDrillPrompt() {
+    const active = getActiveDrill();
+    const currentPreset = active?.preset;
+    const prompted = promptForDrillMetadata(
+        currentPreset?.isCustom ? '' : `${currentPreset?.name || 'Custom'} copy`,
+        currentPreset?.isCustom ? '' : (currentPreset?.desc || '')
+    );
+    if (!prompted) return;
+
+    const payload = buildCurrentDrillPayload(prompted);
+    const savedDrill = {
+        id: `saved-${Date.now().toString(36)}`,
+        emoji: '💾',
+        name: payload.name,
+        desc: payload.desc,
+        seed: payload.seed,
+        config: payload.config,
+    };
+    savedDrills.unshift(savedDrill);
+    persistSavedDrills();
+    renderSavedDrills();
+    applyPreset(savedDrill, { source: 'saved' });
+}
+
+function importSharedDrillFromHash() {
+    const hash = window.location.hash.startsWith('#') ? window.location.hash.slice(1) : '';
+    if (!hash) return null;
+    const params = new URLSearchParams(hash);
+    const encoded = params.get('drill');
+    if (!encoded) return null;
+    try {
+        const payload = decodeDrillPayload(encoded);
+        if (!payload || payload.version !== DRILL_SHARE_VERSION || !payload.config?.cardGenerationOptions) {
+            return null;
+        }
+        const signature = hashString(JSON.stringify(payload.config));
+        const existing = savedDrills.find((drill) => hashString(JSON.stringify(drill.config)) === signature);
+        if (existing) {
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
+            return existing;
+        }
+        const imported = {
+            id: `shared-${Date.now().toString(36)}`,
+            emoji: '🔗',
+            name: payload.name || 'Shared drill',
+            desc: payload.desc || describeDrillConfig(payload.config),
+            seed: payload.seed || '',
+            config: payload.config,
+        };
+        savedDrills.unshift(imported);
+        persistSavedDrills();
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        return imported;
+    } catch (error) {
+        console.warn('Could not import drill from URL:', error);
+        return null;
+    }
+}
 
 // Switch to Custom and save config whenever user changes any setting
 function updateCustomPresetFromUI() {
     activePreset = "Custom";
-    setScopedStorageItem("lastPreset", "Custom");
-    highlightActivePreset();
-    const custom = presets.find(p => p.name === "Custom");
+    activePresetKey = getPresetKey(getCustomPreset(), 'builtin');
+    setScopedStorageItem(LAST_DRILL_STORAGE_KEY, activePresetKey);
+    setScopedStorageItem("lastPreset", activePreset);
+    const custom = getCustomPreset();
     if (custom) {
-        custom.config.cardGenerationOptions = {
-        tenseWeights: { ...cardGenerationOptions.tenseWeights },
-        frequencyWeights: { ...cardGenerationOptions.frequencyWeights },
-        };
-        setScopedStorageItem("presets", JSON.stringify(presets));
-        activePreset = "Custom";
-        setScopedStorageItem("lastPreset", activePreset);
-        highlightActivePreset();
+        custom.config = snapshotCurrentDrillConfig();
+        custom.desc = describeDrillConfig(custom.config);
     }
+    renderPresets();
+    highlightActivePreset();
 }
 
 // function applyPreset(preset) {
@@ -4216,71 +4807,15 @@ function updateCustomPresetFromUI() {
   
 // }
 
-// function updateCustomPresetFromUI() {
-//   const weights = {};
-//   document.querySelectorAll("input[data-tense-weight]").forEach(input => {
-//     weights[input.dataset.tenseWeight] = parseFloat(input.value || "1");
-//   });
+savedDrills = loadSavedDrills();
 
-//   const dictateToAnswer = document.getElementById("dictate_to_answer")?.checked || false;
-//   const balancedRandomizer = document.getElementById("balanced_verb_randomizer")?.checked || false;
-
-//   const custom = presets.find(p => p.emoji === "👤");
-//   if (custom) {
-//     custom.config = { weights, dictateToAnswer, balancedRandomizer };
-//     localStorage.setItem("presets", JSON.stringify(presets));
-//     activePreset = "👤";
-//     localStorage.setItem("lastPreset", activePreset);
-//     highlightActivePreset();
-//   }
-// }
-
-function renderPresets() {
-  const container = document.getElementById("presets-container");
-  if (!container) return;
-  container.innerHTML = "";
-  presets.forEach(preset => {
-    const btn = document.createElement("button");
-    btn.className = "preset-btn";
-    btn.dataset.presetName = preset.name;
-    if (preset.name === activePreset) btn.classList.add("active");
-    btn.innerHTML = `<span class="preset-icon">${preset.emoji}</span><span class="preset-text"><span class="preset-name">${preset.name}</span><span class="preset-desc">${preset.desc || ''}</span></span>`;
-    btn.onclick = () => {
-      applyPreset(preset);
-      setScopedStorageItem("lastPreset", preset.name);
-    };
-    container.appendChild(btn);
-  });
-}
-
-function highlightActivePreset() {
-  document.querySelectorAll(".preset-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.presetName === activePreset);
-  });
-  const badge = document.getElementById('preset-badge');
-  if (badge) {
-    const isCustom = activePreset === 'Custom';
-    if (!isCustom && activePreset) {
-      const preset = presets.find(p => p.name === activePreset);
-      const emoji = preset?.emoji || '📚';
-      badge.innerHTML = `<span class="preset-badge-icon">${emoji}</span><span class="preset-badge-name">${activePreset}</span>`;
-      badge.style.display = 'inline-flex';
-    } else {
-      badge.innerHTML = '';
-      badge.style.display = 'none';
-    }
-  }
-}
-
-// On load, fill 👤 from localStorage cardGenerationOptions
+// On load, fill Custom from localStorage cardGenerationOptions
 const storedOptions = JSON.parse(localStorage.getItem(localStorageKey) || 'null');
 if (storedOptions) {
-  const custom = presets.find(p => p.name === "Custom");
+  const custom = getCustomPreset();
   if (custom) {
-    custom.config.cardGenerationOptions = {
-      tenseWeights: storedOptions.tenseWeights || {},
-      frequencyWeights: storedOptions.frequencyWeights || {},
-    };
+    custom.config = snapshotCurrentDrillConfig();
+    custom.desc = describeDrillConfig(custom.config);
   }
 }
 
@@ -4329,17 +4864,43 @@ function applyConfigToUI(config) {
 }
 
 
-// Load last-used preset on startup; default to "Master the Basics I" on first open
-if (tutorialState.active) {
+const importedSharedDrill = importSharedDrillFromHash();
+if (importedSharedDrill) {
+  applyPreset(importedSharedDrill, { source: 'saved' });
+} else if (tutorialState.active) {
   resetTutorialPracticeBaseline();
 } else {
-  const lastUsed = getScopedStorageItem("lastPreset");
-  if (lastUsed) {
-    const found = presets.find(p => p.name === lastUsed || p.emoji === lastUsed);
-    if (found) applyPreset(found);
-  } else {
-    // First time ever — start with the most beginner-friendly preset
-    const starter = presets.find(p => p.name === "Master the Basics I");
+  const lastDrill = getScopedStorageItem(LAST_DRILL_STORAGE_KEY);
+  const lastPreset = getScopedStorageItem("lastPreset");
+  let found = null;
+
+  if (lastDrill) {
+    found = presets.find((preset) => getPresetKey(preset, 'builtin') === lastDrill)
+      || savedDrills.find((preset) => getPresetKey(preset, 'saved') === lastDrill);
+    if (found) {
+      applyPreset(found, { source: savedDrills.includes(found) ? 'saved' : 'builtin' });
+    }
+  }
+
+  if (!found && lastPreset) {
+    const legacyPresetMap = {
+      'Master the Basics I': 'most-common',
+      'Master the Basics II': 'present',
+      'Master the Basics III': 'explore',
+      'Broaden Horizons': 'explore',
+      'All Verbs All Tenses': 'explore',
+      'Custom': 'custom',
+    };
+    const targetId = legacyPresetMap[lastPreset];
+    const legacyMatch = presets.find((preset) => preset.id === targetId || preset.name === lastPreset || preset.emoji === lastPreset);
+    if (legacyMatch) {
+      applyPreset(legacyMatch);
+      found = legacyMatch;
+    }
+  }
+
+  if (!found) {
+    const starter = presets.find((preset) => preset.id === STARTER_DRILL_ID);
     if (starter) applyPreset(starter);
   }
 }
