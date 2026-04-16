@@ -17,6 +17,7 @@ except ImportError:
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DIST_DIR = os.path.join(ROOT_DIR, "dist")
 APP_DIST_DIR = os.path.join(DIST_DIR, "french")
+DESKTOP_DIR = os.path.dirname(ROOT_DIR)
 
 HTML_TEMPLATE_PATH = os.path.join(ROOT_DIR, "index.html")
 LANDING_TEMPLATE_PATH = os.path.join(ROOT_DIR, "site_landing.html")
@@ -31,7 +32,28 @@ APP_STANDALONE_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "franconjugue.html")
 APP_INDEX_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "index.html")
 APP_VERSION_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "version.json")
 APP_FILES_TO_COPY = ["manifest.json", "favicon_big.png", "sw.js"]
-ROOT_FILES_TO_COPY = ["favicon_big.png", "CNAME", "landing-greek.png", "landing-portugese.png", "landing-french.png"]
+ROOT_FILES_TO_COPY = ["favicon_big.png", "CNAME", "landing-greek.png", "landing-portugese.png", "landing-french.png", "landing-russian.png"]
+
+SIBLING_APPS = [
+    {
+        "name": "greek",
+        "source_dist": os.path.join(DESKTOP_DIR, "greek-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "greek"),
+        "standalone": "greekonjugation.html",
+    },
+    {
+        "name": "portugese",
+        "source_dist": os.path.join(DESKTOP_DIR, "portuguese-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "portugese"),
+        "standalone": "portoconjugue.html",
+    },
+    {
+        "name": "russian",
+        "source_dist": os.path.join(DESKTOP_DIR, "russian-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "russian"),
+        "standalone": "glagoly.html",
+    },
+]
 
 GENERATED_TTS_DIR = os.path.join(ROOT_DIR, "generated_tts")
 APP_DIST_TTS_DIR = os.path.join(APP_DIST_DIR, "tts")
@@ -212,6 +234,7 @@ def build_french_app(force_jpeg=False):
     os.makedirs(APP_DIST_DIR, exist_ok=True)
     write_text(APP_INDEX_OUTPUT_PATH, web_html)
     write_text(APP_STANDALONE_OUTPUT_PATH, standalone_html)
+    write_text(os.path.join(DIST_DIR, "franconjugue.html"), standalone_html)
     write_text(APP_VERSION_OUTPUT_PATH, json.dumps({
         "version": app_version,
         "app": "french",
@@ -260,15 +283,37 @@ def build_root_site():
         print(f"   - Removed legacy root TTS bundle at {ROOT_TTS_DIR}")
 
 
+def sync_sibling_apps():
+    print("   - Syncing sibling app builds...")
+    for app in SIBLING_APPS:
+        source_dist = app["source_dist"]
+        target_dir = app["target_dir"]
+        standalone_name = app["standalone"]
+
+        if not os.path.isdir(source_dist):
+            print(f"⚠️  Warning: sibling dist missing for {app['name']}: {source_dist}")
+            continue
+
+        if os.path.exists(target_dir):
+            shutil.rmtree(target_dir)
+        shutil.copytree(source_dist, target_dir)
+        print(f"   - Synced {app['name']} app to {target_dir}")
+
+        standalone_src = os.path.join(source_dist, standalone_name)
+        standalone_dest = os.path.join(DIST_DIR, standalone_name)
+        if os.path.exists(standalone_src):
+            copy_file(standalone_src, standalone_dest)
+            print(f"   - Copied {app['name']} standalone to {standalone_dest}")
+        else:
+            print(f"⚠️  Warning: standalone missing for {app['name']}: {standalone_src}")
+
+
 def write_legacy_redirects():
     print("   - Writing legacy redirects...")
     legacy_greek_dir = os.path.join(DIST_DIR, "greek-verbs")
     if os.path.isdir(legacy_greek_dir):
         shutil.rmtree(legacy_greek_dir)
     redirects = {
-        os.path.join(DIST_DIR, "franconjugue.html"): ("/french/", "French App Redirect"),
-        os.path.join(DIST_DIR, "greekonjugation.html"): ("/greek/", "Greek App Redirect"),
-        os.path.join(DIST_DIR, "portoconjugue.html"): ("/portugese/", "Portuguese App Redirect"),
         os.path.join(legacy_greek_dir, "index.html"): ("/greek/", "Greek Legacy Redirect"),
         os.path.join(legacy_greek_dir, "greekonjugation.html"): ("/greek/", "Greek Legacy Redirect"),
     }
@@ -285,6 +330,7 @@ def build(force_jpeg=False):
         os.makedirs(DIST_DIR, exist_ok=True)
         build_french_app(force_jpeg=force_jpeg)
         build_root_site()
+        sync_sibling_apps()
         write_legacy_redirects()
 
         print("\n✅ Build successful!")
@@ -317,6 +363,7 @@ WATCHED_FILES = [
     "landing-greek.png",
     "landing-portugese.png",
     "landing-french.png",
+    "landing-russian.png",
 ]
 WATCHED_FILES = [os.path.join(ROOT_DIR, path) for path in WATCHED_FILES]
 

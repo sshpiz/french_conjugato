@@ -621,6 +621,9 @@
                   </span>
                   <span id="daily-progress-label"></span>
                 </div>
+                <button id="app-install-pill" class="hidden" type="button" aria-live="polite" title="Install the app">
+                  Install on Home Screen
+                </button>
                 <button id="app-update-pill" class="hidden" type="button" aria-live="polite" title="Open settings to update the app">
                   Update available
                 </button>
@@ -933,6 +936,17 @@
                     <summary>App</summary>
                     <div class="collapsible-body">
                         <div class="toggle-rows">
+                            <div class="toggle-row settings-action-row">
+                                <div class="settings-row-copy">
+                                    <label for="app-install-action-btn">Install app</label>
+                                    <p id="app-install-status-text" class="setting-helper-text">Add this app to your Home Screen for a cleaner, app-like experience.</p>
+                                </div>
+                                <div class="settings-inline-actions">
+                                    <button id="app-install-action-btn" type="button" class="settings-inline-action-btn">Start install</button>
+                                    <button id="app-install-dismiss-btn" type="button" class="settings-inline-secondary-btn">Don't remind me</button>
+                                </div>
+                            </div>
+
                             <div class="toggle-row settings-action-row">
                                 <div class="settings-row-copy">
                                     <label for="app-update-action-btn">Update app</label>
@@ -1339,6 +1353,16 @@
         localStorage.removeItem(window.getAppStorageKey(name));
     };
     </script>
+    <div id="app-install-modal" class="install-modal hidden" role="dialog" aria-modal="true" aria-labelledby="app-install-modal-title">
+        <div class="install-modal-backdrop" data-close-install-modal="true"></div>
+        <div class="install-modal-panel">
+            <button id="app-install-modal-close-btn" type="button" class="install-modal-close-btn" aria-label="Close install instructions">✕</button>
+            <div id="app-install-modal-title" class="install-modal-title">Install Les Verbes</div>
+            <p id="app-install-modal-text" class="install-modal-text">Add the app to your Home Screen for a cleaner, app-like experience.</p>
+            <ol id="app-install-modal-steps" class="install-modal-steps"></ol>
+            <p id="app-install-modal-note" class="install-modal-note"></p>
+        </div>
+    </div>
     <script src="js/verbs.full.generated.js?v=20260411b"></script>
     <script src="verb_usages.js?v=20260411b" onerror="window.verbUsages=[]"></script>
     <script src="js/preRenderedTts.js?v=20260411b"></script>

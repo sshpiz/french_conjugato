@@ -7,6 +7,12 @@ python3 build.py
 ```
 
 Produces `dist/index.html` (standalone, all assets inlined) + `dist/sw.js`, `dist/manifest.json`, `dist/favicon_big.png`, `dist/CNAME`.
+It also refreshes:
+- `dist/french/`
+- `dist/greek/`
+- `dist/portugese/`
+- `dist/russian/`
+- root standalones like `franconjugue.html`, `greekonjugation.html`, `portoconjugue.html`, `glagoly.html`
 
 ## Deploy to lesverb.es (GitHub Pages)
 
@@ -16,13 +22,16 @@ Produces `dist/index.html` (standalone, all assets inlined) + `dist/sw.js`, `dis
 # 1. Build
 python3 build.py
 
-# 2. Copy into gh-pages worktree
+# 2. Sync sibling apps + refresh the local gh-pages mirror
+./sync_shared_apps.sh
+
+# 3. Copy the rest of the hub files into gh-pages worktree
 cp dist/index.html dist-gh/index.html
 cp dist/franconjugue.html dist-gh/franconjugue.html
 cp dist/sw.js dist-gh/sw.js
 cp dist/manifest.json dist-gh/manifest.json
 
-# 3. Commit & push
+# 4. Commit & push
 cd dist-gh
 git add -A
 git commit -m "deploy"

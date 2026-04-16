@@ -4,6 +4,7 @@ set -euo pipefail
 PROJ1_DIR="/Users/simeon/Desktop/proj1"
 GREEK_DIR="/Users/simeon/Desktop/greek-verbs"
 PORTUGUESE_DIR="/Users/simeon/Desktop/portuguese-verbs"
+RUSSIAN_DIR="/Users/simeon/Desktop/russian-verbs"
 LOG_FILE="$PROJ1_DIR/v091_watch.log"
 
 GREEK_PID="42140"
@@ -79,11 +80,20 @@ log "Rebuilding Portuguese app bundle from current source + generated_tts."
 log "Syncing Greek and Portuguese dist outputs into French deploy tree."
 rsync -a --delete "$GREEK_DIR/dist/" "$PROJ1_DIR/dist/greek/" >>"$LOG_FILE" 2>&1
 rsync -a --delete "$PORTUGUESE_DIR/dist/" "$PROJ1_DIR/dist/portugese/" >>"$LOG_FILE" 2>&1
+if [[ -d "$RUSSIAN_DIR/dist" ]]; then
+  rsync -a --delete "$RUSSIAN_DIR/dist/" "$PROJ1_DIR/dist/russian/" >>"$LOG_FILE" 2>&1
+fi
 
 log "Rebuilding French deploy hub."
 (
   cd "$PROJ1_DIR"
   /usr/bin/python3 build.py
+) >>"$LOG_FILE" 2>&1
+
+log "Refreshing shared sibling app mirrors."
+(
+  cd "$PROJ1_DIR"
+  ./sync_shared_apps.sh
 ) >>"$LOG_FILE" 2>&1
 
 log "Refreshing dist-gh from fresh deploy output."

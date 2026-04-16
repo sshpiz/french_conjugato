@@ -579,11 +579,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const ttsWarningBanner = document.getElementById('tts-warning-banner');
     const ttsWarningText = document.getElementById('tts-warning-text');
     const ttsWarningOpenSettingsBtn = document.getElementById('tts-warning-open-settings-btn');
+    const appInstallPill = document.getElementById('app-install-pill');
+    const appInstallActionBtn = document.getElementById('app-install-action-btn');
+    const appInstallDismissBtn = document.getElementById('app-install-dismiss-btn');
+    const appInstallStatusText = document.getElementById('app-install-status-text');
     const appUpdatePill = document.getElementById('app-update-pill');
     const appUpdateActionBtn = document.getElementById('app-update-action-btn');
     const appUpdateStatusText = document.getElementById('app-update-status-text');
     const appVersionBadge = document.getElementById('app-version-badge');
     const appVersionDetail = document.getElementById('app-version-detail');
+    const appInstallModal = document.getElementById('app-install-modal');
+    const appInstallModalTitle = document.getElementById('app-install-modal-title');
+    const appInstallModalText = document.getElementById('app-install-modal-text');
+    const appInstallModalSteps = document.getElementById('app-install-modal-steps');
+    const appInstallModalNote = document.getElementById('app-install-modal-note');
+    const appInstallModalCloseBtn = document.getElementById('app-install-modal-close-btn');
     
     const backBtn = document.getElementById('back-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -653,6 +663,13 @@ document.addEventListener('DOMContentLoaded', () => {
         completed: false,
         stepIndex: 0
     };
+    const INSTALL_REMINDER_DISMISSED_KEY = 'installReminderDismissedV1';
+    const installState = {
+        deferredPrompt: null,
+        installed: false,
+        reminderDismissed: getScopedStorageItem(INSTALL_REMINDER_DISMISSED_KEY) === 'true',
+        cardsSeenThisSession: 0
+    };
     const appUpdateState = Object.assign({
         registration: null,
         status: 'idle',
@@ -695,6 +712,173 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const isStandaloneInstalled = () => {
+        const standaloneMatch = window.matchMedia && typeof window.matchMedia === 'function'
+            ? window.matchMedia('(display-mode: standalone)').matches
+            : false;
+        return standaloneMatch || window.navigator.standalone === true;
+    };
+
+    const isAppleInstallPlatform = () => {
+        const ua = navigator.userAgent || '';
+        const platform = navigator.platform || '';
+        const maxTouchPoints = navigator.maxTouchPoints || 0;
+        return /iPad|iPhone|iPod/i.test(ua) || (/Mac/i.test(platform) && maxTouchPoints > 1);
+    };
+
+    const isSafariFamilyBrowser = () => {
+        const ua = navigator.userAgent || '';
+        if (!isAppleInstallPlatform()) return false;
+        return /Safari/i.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/i.test(ua);
+    };
+
+    const isInstallPromptSupported = () => !!installState.deferredPrompt;
+
+    const shouldShowInstallPill = () => {
+        if (installState.installed || installState.reminderDismissed) return false;
+        if (installState.cardsSeenThisSession < 1 || installState.cardsSeenThisSession > 5) return false;
+        const flashcardView = document.getElementById('flashcard-view');
+        if (!flashcardView || flashcardView.classList.contains('hidden')) return false;
+        if (appUpdatePill && !appUpdatePill.classList.contains('hidden')) return false;
+        return isInstallPromptSupported() || isAppleInstallPlatform();
+    };
+
+    const getInstallSupportKind = () => {
+        if (installState.installed) return 'installed';
+        if (isInstallPromptSupported()) return 'prompt';
+        if (isAppleInstallPlatform()) return 'apple';
+        return 'browser-menu';
+    };
+
+    const getInstallStatusText = () => {
+        const supportKind = getInstallSupportKind();
+        let message = 'Add this app to your Home Screen for a cleaner, app-like experience.';
+        if (supportKind === 'installed') {
+            message = 'This app is already installed on this device.';
+        } else if (supportKind === 'prompt') {
+            message = 'This browser can install the app directly. Tap Start install to open the install prompt.';
+        } else if (supportKind === 'apple') {
+            message = isSafariFamilyBrowser()
+                ? 'On iPad or iPhone, install from Safari with Share > Add to Home Screen.'
+                : 'For iPad or iPhone install, open this page in Safari and use Share > Add to Home Screen.';
+        } else {
+            message = 'Use your browser menu to install the app or add it to your Home Screen if offered.';
+        }
+        if (installState.reminderDismissed && !installState.installed) {
+            message += ' Install reminders are off.';
+        }
+        return message;
+    };
+
+    const openInstallInstructionsModal = (options = {}) => {
+        if (!appInstallModal || !appInstallModalText || !appInstallModalSteps || !appInstallModalNote || !appInstallModalTitle) {
+            return;
+        }
+        const supportKind = options.kind || getInstallSupportKind();
+        const inSafari = isSafariFamilyBrowser();
+        let title = 'Install Les Verbes';
+        let text = 'Add the app to your Home Screen for a cleaner, app-like experience.';
+        let steps = [];
+        let note = '';
+
+        if (supportKind === 'apple') {
+            title = 'Install on iPad or iPhone';
+            text = inSafari
+                ? 'Use Safari’s standard Home Screen flow.'
+                : 'Open this page in Safari to install it like an app.';
+            steps = inSafari
+                ? [
+                    'Tap the Share button in Safari.',
+                    'Choose Add to Home Screen.',
+                    'If iPadOS offers Open as Web App, keep that enabled.',
+                    'Tap Add.'
+                ]
+                : [
+                    'Open this page in Safari.',
+                    'Tap the Share button.',
+                    'Choose Add to Home Screen.',
+                    'Tap Add.'
+                ];
+            note = 'After that, open Les Verbes from your Home Screen for the best app-like behavior.';
+        } else {
+            title = 'Install this app';
+            text = 'This browser did not expose a direct install prompt just now, but it may still offer install from its menu.';
+            steps = [
+                'Open the browser menu.',
+                'Look for Install app, Add to Home Screen, or a similar option.',
+                'Confirm the install if the browser offers it.'
+            ];
+            note = 'If you do not see an install option here, try Safari on iPad/iPhone or Chrome on Android.';
+        }
+
+        appInstallModalTitle.textContent = title;
+        appInstallModalText.textContent = text;
+        appInstallModalSteps.innerHTML = steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('');
+        appInstallModalNote.textContent = note;
+        appInstallModal.classList.remove('hidden');
+    };
+
+    const closeInstallInstructionsModal = () => {
+        if (appInstallModal) {
+            appInstallModal.classList.add('hidden');
+        }
+    };
+
+    const setInstallReminderDismissed = (dismissed) => {
+        installState.reminderDismissed = !!dismissed;
+        if (dismissed) {
+            setScopedStorageItem(INSTALL_REMINDER_DISMISSED_KEY, 'true');
+        } else {
+            removeScopedStorageItem(INSTALL_REMINDER_DISMISSED_KEY);
+        }
+        syncAppInstallUi();
+    };
+
+    const syncAppInstallUi = () => {
+        if (appInstallStatusText) {
+            appInstallStatusText.textContent = getInstallStatusText();
+        }
+        if (appInstallActionBtn) {
+            appInstallActionBtn.textContent = installState.installed ? 'Installed' : 'Start install';
+            appInstallActionBtn.disabled = installState.installed;
+        }
+        if (appInstallDismissBtn) {
+            appInstallDismissBtn.textContent = installState.reminderDismissed ? 'Show reminders again' : "Don't remind me";
+            appInstallDismissBtn.disabled = installState.installed;
+        }
+        if (appInstallPill) {
+            appInstallPill.classList.toggle('hidden', !shouldShowInstallPill());
+        }
+    };
+
+    const triggerInstallFlow = async () => {
+        installState.installed = isStandaloneInstalled();
+        if (installState.installed) {
+            syncAppInstallUi();
+            return;
+        }
+        if (installState.deferredPrompt) {
+            const promptEvent = installState.deferredPrompt;
+            installState.deferredPrompt = null;
+            try {
+                await promptEvent.prompt();
+                const choice = await promptEvent.userChoice;
+                if (choice && choice.outcome === 'accepted') {
+                    installState.installed = true;
+                }
+            } catch (error) {
+                console.warn('Install prompt failed:', error);
+                openInstallInstructionsModal({ kind: 'browser-menu' });
+            }
+            syncAppInstallUi();
+            return;
+        }
+        openInstallInstructionsModal({ kind: getInstallSupportKind() });
+        syncAppInstallUi();
+    };
+
+    installState.installed = isStandaloneInstalled();
+
     const syncAppUpdateUi = () => {
         const status = appUpdateState.status || 'idle';
         const showPill = !!(appUpdateState.updateAvailable || appUpdateState.debugForceVisible);
@@ -716,6 +900,7 @@ document.addEventListener('DOMContentLoaded', () => {
             appUpdateActionBtn.disabled = status === 'checking';
             appUpdateActionBtn.textContent = appUpdateState.updateAvailable ? 'Reload now' : 'Check for updates';
         }
+        syncAppInstallUi();
     };
 
     const setAppUpdateState = (patch = {}) => {
@@ -794,6 +979,18 @@ document.addEventListener('DOMContentLoaded', () => {
         syncExternalAppUpdateState(event.detail || {});
     });
 
+    window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        installState.deferredPrompt = event;
+        syncAppInstallUi();
+    });
+
+    window.addEventListener('appinstalled', () => {
+        installState.installed = true;
+        installState.deferredPrompt = null;
+        syncAppInstallUi();
+    });
+
     const playAudioElement = (element, options = {}) => {
         if (!element) return;
         const audioId = element.dataset.audioId || null;
@@ -844,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     };
 
-    const isAppleMobileBrowser = () => /iPad|iPhone|iPod/i.test(navigator.userAgent || '');
+    const isAppleMobileBrowser = () => isAppleInstallPlatform();
 
     const getMicUnavailableOverlayMessage = (availability, micMode) => {
         if (availability === 'unsupported') {
@@ -972,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isInteractiveFlashcardTarget = (target) => {
         if (!(target instanceof Element)) return false;
         return !!target.closest(
-            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner, #app-update-pill'
+            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner, #app-update-pill, #app-install-pill'
         );
     };
 
@@ -2503,6 +2700,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayCard = (card) => {
         currentCard = card;
+        installState.cardsSeenThisSession += 1;
         // Track recent cards to avoid immediate repeats
         if (card.verb) {
             recentCardKeys.push(cardKey(card));
@@ -2573,6 +2771,7 @@ document.addEventListener('DOMContentLoaded', () => {
             refreshAnswerFlowButton();
             refreshDictationButton();
             renderTutorialHint();
+            syncAppInstallUi();
             return;
         } else {
             // --- VERB MODE ---
@@ -2676,6 +2875,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         void ensureAutomaticPackagedTtsDownload();
         void maybePrefetchCurrentCardPackagedAudio(card);
+        syncAppInstallUi();
     }
     
 
@@ -2809,6 +3009,7 @@ document.addEventListener('DOMContentLoaded', () => {
             refreshDictationButton();
             syncUsageNuggetVisibility();
         }
+        syncAppInstallUi();
     }
 
     const showExplorerList = () => {
@@ -2838,6 +3039,13 @@ document.addEventListener('DOMContentLoaded', () => {
             openSettingsForUpdate();
         });
     }
+    if (appInstallPill) {
+        appInstallPill.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            await triggerInstallFlow();
+        });
+    }
 
     const showMnemonics = () => {
         showView('mnemonics-view');
@@ -2858,7 +3066,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetBlock) {
             // Use a timeout to ensure the view is rendered before scrolling
             setTimeout(() => {
-                targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const containerRect = verbDetailContainer ? verbDetailContainer.getBoundingClientRect() : null;
+                const targetRect = targetBlock.getBoundingClientRect();
+                const isAlreadyVisible = containerRect
+                    ? targetRect.top >= containerRect.top + 12 && targetRect.bottom <= containerRect.bottom - 12
+                    : true;
+                if (!isAlreadyVisible) {
+                    targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
                 // Add a temporary highlight class for visual feedback
                 targetBlock.classList.add('highlight');
                 // Remove the highlight after the animation
@@ -3692,6 +3907,39 @@ document.addEventListener('DOMContentLoaded', () => {
             await checkForAppUpdates();
         });
     }
+    if (appInstallActionBtn) {
+        appInstallActionBtn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            await triggerInstallFlow();
+        });
+    }
+    if (appInstallDismissBtn) {
+        appInstallDismissBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            setInstallReminderDismissed(!installState.reminderDismissed);
+        });
+    }
+    if (appInstallModal) {
+        appInstallModal.addEventListener('click', (e) => {
+            if (e.target instanceof Element && e.target.closest('[data-close-install-modal="true"]')) {
+                closeInstallInstructionsModal();
+            }
+        });
+    }
+    if (appInstallModalCloseBtn) {
+        appInstallModalCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            closeInstallInstructionsModal();
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && appInstallModal && !appInstallModal.classList.contains('hidden')) {
+            closeInstallInstructionsModal();
+        }
+    });
     if (contextAudioBtn) {
         if (!FRENCH_FLASHCARD_FEATURES.contextualSpeakerButton) {
             contextAudioBtn.style.display = 'none';

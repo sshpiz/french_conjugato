@@ -1186,6 +1186,33 @@ body {
   transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
 
+#app-install-pill {
+  position: absolute;
+  top: 0.68rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  margin: 0;
+  padding: 0.28rem 0.88rem;
+  border-radius: 999px;
+  border: 1px solid rgba(75, 166, 132, 0.34);
+  background: linear-gradient(180deg, rgba(241, 251, 246, 0.98), rgba(225, 245, 234, 0.97));
+  color: #287858;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 18px rgba(57, 120, 91, 0.12);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+#app-install-pill:hover,
+#app-install-pill:focus-visible {
+  transform: translateX(-50%) translateY(-1px);
+  box-shadow: 0 10px 22px rgba(57, 120, 91, 0.18);
+  background: linear-gradient(180deg, rgba(246, 253, 249, 0.99), rgba(230, 247, 237, 0.99));
+}
+
 #app-update-pill:hover,
 #app-update-pill:focus-visible {
   transform: translateX(-50%) translateY(-1px);
@@ -2052,6 +2079,14 @@ html {
   gap: 1rem;
 }
 
+.settings-inline-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .settings-row-copy {
   display: flex;
   flex-direction: column;
@@ -2097,6 +2132,28 @@ html {
 
 .settings-inline-action-btn:active {
   transform: translateY(0);
+}
+
+.settings-inline-secondary-btn {
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 0.56rem 0.92rem;
+  background: transparent;
+  color: var(--meta-color);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+}
+
+.settings-inline-secondary-btn:hover,
+.settings-inline-secondary-btn:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--settings-card-hover-border);
+  color: var(--text-color);
+  background: var(--settings-subtle-bg);
 }
 
 .settings-meta-badge {
@@ -2456,6 +2513,70 @@ html {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.install-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+}
+
+.install-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 31, 46, 0.42);
+  backdrop-filter: blur(4px);
+}
+
+.install-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 28rem);
+  border-radius: 22px;
+  border: 1px solid rgba(122, 149, 175, 0.22);
+  background: rgba(255, 255, 255, 0.97);
+  color: var(--text-color);
+  box-shadow: 0 22px 48px rgba(24, 44, 70, 0.18);
+  padding: 1.35rem 1.2rem 1.15rem;
+}
+
+.install-modal-close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.78rem;
+  border: none;
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.install-modal-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.45rem;
+}
+
+.install-modal-text,
+.install-modal-note {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--meta-color);
+}
+
+.install-modal-steps {
+  margin: 0.95rem 0 0.85rem 1.1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
 }
 
 /* ── Settings: styled native select ─────────────────────── */
@@ -2995,9 +3116,19 @@ html[data-theme="dark"] #app-update-pill {
   color: #a4d6ff;
   box-shadow: 0 12px 24px rgba(4, 14, 26, 0.34);
 }
+html[data-theme="dark"] #app-install-pill {
+  border-color: rgba(83, 169, 132, 0.36);
+  background: linear-gradient(180deg, rgba(22, 52, 42, 0.96), rgba(15, 37, 31, 0.98));
+  color: #9fe8c5;
+  box-shadow: 0 12px 24px rgba(4, 18, 14, 0.34);
+}
 html[data-theme="dark"] #app-update-pill:hover,
 html[data-theme="dark"] #app-update-pill:focus-visible {
   background: linear-gradient(180deg, rgba(33, 58, 82, 0.98), rgba(23, 40, 58, 0.98));
+}
+html[data-theme="dark"] #app-install-pill:hover,
+html[data-theme="dark"] #app-install-pill:focus-visible {
+  background: linear-gradient(180deg, rgba(28, 63, 50, 0.98), rgba(18, 43, 35, 0.98));
 }
 html[data-theme="dark"] .styled-select { background-color: var(--card-bg); border-color: var(--border-color); }
 html[data-theme="dark"] .action-icon-btn { box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
@@ -3016,6 +3147,26 @@ html[data-theme="dark"] .settings-inline-action-btn:hover,
 html[data-theme="dark"] .settings-inline-action-btn:focus-visible {
   border-color: rgba(122, 170, 210, 0.58);
   background: linear-gradient(180deg, rgba(36, 55, 76, 0.98), rgba(26, 40, 56, 0.98));
+}
+html[data-theme="dark"] .settings-inline-secondary-btn {
+  border-color: rgba(82, 101, 121, 0.72);
+  color: #93a7bb;
+}
+html[data-theme="dark"] .settings-inline-secondary-btn:hover,
+html[data-theme="dark"] .settings-inline-secondary-btn:focus-visible {
+  border-color: rgba(115, 139, 164, 0.72);
+  color: #d7e6f5;
+  background: rgba(30, 43, 58, 0.85);
+}
+html[data-theme="dark"] .install-modal-panel {
+  border-color: rgba(91, 113, 135, 0.38);
+  background: rgba(22, 30, 40, 0.98);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
+}
+html[data-theme="dark"] .install-modal-close-btn,
+html[data-theme="dark"] .install-modal-text,
+html[data-theme="dark"] .install-modal-note {
+  color: #9eb1c6;
 }
 
 /* Force light (overrides dark system preference)            */
@@ -3178,6 +3329,11 @@ html[data-theme="light"] .settings-inline-action-btn {
   border-color: rgba(140, 177, 210, 0.48) !important;
   background: linear-gradient(180deg, rgba(240, 248, 255, 0.95), rgba(227, 239, 250, 0.98)) !important;
   color: #2f77b2 !important;
+}
+html[data-theme="light"] #app-install-pill {
+  border-color: rgba(75, 166, 132, 0.34) !important;
+  background: linear-gradient(180deg, rgba(241, 251, 246, 0.98), rgba(225, 245, 234, 0.97)) !important;
+  color: #287858 !important;
 }
 html[data-theme="light"] #english-verb-infinitive {
   color: var(--accent-color) !important;
