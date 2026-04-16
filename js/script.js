@@ -3171,7 +3171,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         tenseWeightsContainer.innerHTML = '';
-        Object.entries(cardGenerationOptions.tenseWeights).forEach(([tense, weight]) => createSlider(tense, weight, tenseWeightsContainer, 'tenseWeights'));
+        Object.keys(tenses).forEach((tense) => {
+            const weight = cardGenerationOptions.tenseWeights[tense] || 0;
+            createSlider(tense, weight, tenseWeightsContainer, 'tenseWeights');
+        });
 
         if (verbPoolBasicContainer) {
             verbPoolBasicContainer.innerHTML = '';
