@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the Russian app.
 
 const CACHE_PREFIX = 'ru-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v2';
+const CACHE_NAME = CACHE_PREFIX + 'v3';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -14,7 +14,7 @@ function appPath(relative = '') {
 
 const INDEX_PATH = appPath('index.html');
 const MANIFEST_PATH = appPath('manifest.json');
-const FAVICON_PATH = appPath('favicon_big.png');
+const FAVICON_PATH = appPath('favicon_russian_20260416.png');
 const VERSION_PATH = appPath('version.json');
 const LOG_PATH = appPath(LOG_KEY);
 const TTS_PREFIX = appPath('tts/');
