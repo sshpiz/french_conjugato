@@ -733,6 +733,9 @@ document.addEventListener('DOMContentLoaded', () => {
         error: 'Could not check right now. Please try again.'
     };
 
+    const DETAIL_ROUTE_VERB_PARAM = 'verb';
+    const DETAIL_ROUTE_TENSE_PARAM = 'tense';
+
     const formatReopenElapsedText = (elapsedMs) => {
         if (!Number.isFinite(elapsedMs) || elapsedMs < REOPEN_MESSAGE_THRESHOLD_MS) {
             return '';
@@ -3395,7 +3398,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // We only push a new state if it's different from the current one
             // to avoid duplicate entries when handling popstate.
             if (!window.history.state || window.history.state.view !== viewId) {
-                window.history.pushState({ view: viewId }, '', `#${viewId}`);
+                window.history.pushState({ view: viewId }, '', buildUrlForView(viewId));
             }
         }
 
@@ -3412,6 +3415,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const showExplorerList = () => {
         showView('explorer-list-view');
         populateExplorerList(searchBar.value);
+    };
+
+    const openSearchFromFlashcard = () => {
+        showView('explorer-list-view');
+        searchBar.value = '';
+        populateExplorerList('');
+        focusSearchBarForEntry({ clear: true });
     };
 
     const showFlashcards = () => {
@@ -3453,7 +3463,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!verb) return;
         recordVerbDetailOpen(verbInfinitive);
         currentDetailVerb = verb;
-        showView('explorer-detail-view'); // This pushes state for the back button
+        showView('explorer-detail-view', false);
+        window.history.pushState(
+            {
+                view: 'explorer-detail-view',
+                verbInfinitive: verb.infinitive,
+                tenseToFocus: normalizeDetailRouteTense(tenseToFocus),
+            },
+            '',
+            buildVerbDetailUrl(verb.infinitive, tenseToFocus)
+        );
         populateVerbDetail(verb, tenseToFocus);
     };
 
@@ -3650,6 +3669,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // After populating, scroll to the focused tense if provided
         highlightAndScrollToTense(tenseToFocus);
+    };
+
+    const normalizeDetailRouteTense = (tense) => (tense && tenses[tense]) ? tense : null;
+
+    const getVerbDetailRouteParams = () => {
+        const params = new URLSearchParams(window.location.search);
+        const verbInfinitive = params.get(DETAIL_ROUTE_VERB_PARAM);
+        if (!verbInfinitive) return null;
+        return {
+            verbInfinitive,
+            tenseToFocus: normalizeDetailRouteTense(params.get(DETAIL_ROUTE_TENSE_PARAM))
+        };
+    };
+
+    const buildCurrentUrl = (mutateParams, hashValue = window.location.hash) => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('__refresh');
+        mutateParams(url.searchParams);
+        const search = url.searchParams.toString();
+        const normalizedHash = hashValue
+            ? (hashValue.startsWith('#') ? hashValue : `#${hashValue}`)
+            : '';
+        return `${url.pathname}${search ? `?${search}` : ''}${normalizedHash}`;
+    };
+
+    const buildUrlForView = (viewId) => buildCurrentUrl((params) => {
+        params.delete(DETAIL_ROUTE_VERB_PARAM);
+        params.delete(DETAIL_ROUTE_TENSE_PARAM);
+    }, viewId);
+
+    const buildVerbDetailUrl = (verbInfinitive, tenseToFocus = null) => buildCurrentUrl((params) => {
+        params.set(DETAIL_ROUTE_VERB_PARAM, verbInfinitive);
+        const normalizedTense = normalizeDetailRouteTense(tenseToFocus);
+        if (normalizedTense) {
+            params.set(DETAIL_ROUTE_TENSE_PARAM, normalizedTense);
+        } else {
+            params.delete(DETAIL_ROUTE_TENSE_PARAM);
+        }
+    }, '');
+
+    const focusSearchBarForEntry = ({ clear = false } = {}) => {
+        if (!searchBar) return;
+        if (clear) {
+            searchBar.value = '';
+        }
+        const applyFocus = () => {
+            try {
+                searchBar.focus({ preventScroll: true });
+            } catch (error) {
+                searchBar.focus();
+            }
+            if (typeof searchBar.setSelectionRange === 'function') {
+                searchBar.setSelectionRange(searchBar.value.length, searchBar.value.length);
+            }
+        };
+        // First focus is still inside the original click gesture, which helps mobile keyboards.
+        applyFocus();
+        requestAnimationFrame(() => {
+            requestAnimationFrame(applyFocus);
+        });
+    };
+
+    const openVerbDetailFromRoute = ({ verbInfinitive, tenseToFocus }, useReplaceState = false) => {
+        const verb = uniqueVerbs.find(v => v.infinitive === verbInfinitive);
+        if (!verb) return false;
+        recordVerbDetailOpen(verb.infinitive);
+        currentDetailVerb = verb;
+        showView('explorer-detail-view', false);
+        populateVerbDetail(verb, tenseToFocus);
+        const method = useReplaceState ? 'replaceState' : 'pushState';
+        window.history[method](
+            {
+                view: 'explorer-detail-view',
+                verbInfinitive: verb.infinitive,
+                tenseToFocus: normalizeDetailRouteTense(tenseToFocus),
+            },
+            '',
+            buildVerbDetailUrl(verb.infinitive, tenseToFocus)
+        );
+        return true;
     };
 
     // --- Options UI Logic ---
@@ -4289,7 +4388,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // View Toggling
-    explorerToggleBtn.addEventListener('click', showExplorerList);
+    explorerToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        openSearchFromFlashcard();
+    });
     optionsToggleBtn.addEventListener('click', showOptions);
     [helpBtn, helpNavBtn].filter(Boolean).forEach((btn) => {
         btn.addEventListener('click', (e) => {
@@ -4373,6 +4476,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener for browser's back/forward buttons
     window.addEventListener('popstate', (event) => {
+        const routedDetail = getVerbDetailRouteParams();
+        if (event.state && event.state.view === 'explorer-detail-view' && event.state.verbInfinitive) {
+            openVerbDetailFromRoute({
+                verbInfinitive: event.state.verbInfinitive,
+                tenseToFocus: event.state.tenseToFocus,
+            }, true);
+            return;
+        }
+        if (routedDetail && (!event.state || event.state.view === 'explorer-detail-view')) {
+            openVerbDetailFromRoute(routedDetail, true);
+            return;
+        }
         if (event.state && event.state.view) {
             showView(event.state.view, false); // false to prevent re-pushing state
         } else {
@@ -4547,7 +4662,8 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshContextAudioButton();
         refreshDictationButton();
         renderTutorialHint();
-        
+        const detailRoute = getVerbDetailRouteParams();
+
         // Check for URL parameters for initial card - but only if no seed is present
         const urlParams = new URLSearchParams(window.location.search);
         const hasSeed = urlParams.get('seed');
@@ -4583,7 +4699,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Don't overwrite hash if we have card parameters
         const currentHash = window.location.hash;
         if (!currentHash.includes('pronoun=') || !currentHash.includes('verb=') || !currentHash.includes('tense=')) {
-            window.history.replaceState({ view: 'flashcard-view' }, '', '#flashcard-view');
+            window.history.replaceState({ view: 'flashcard-view' }, '', buildUrlForView('flashcard-view'));
+        }
+        if (detailRoute) {
+            openVerbDetailFromRoute(detailRoute, false);
         }
     };
 
