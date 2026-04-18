@@ -306,6 +306,22 @@ function prepareTextForSpeech(text) {
 })();
 
 // ── Verb usages index ─────────────────────────────────────────────────────────
+const verbCorePatternsIndex = {};
+(function buildCorePatternsIndex() {
+    const entries = window.verbCorePatterns || [];
+    for (const entry of entries) {
+        if (!entry || !entry.verb || !Array.isArray(entry.core_patterns)) continue;
+        const patterns = entry.core_patterns.filter((patternEntry) =>
+            patternEntry &&
+            typeof patternEntry.pattern === 'string' &&
+            patternEntry.pattern.trim()
+        );
+        if (patterns.length) {
+            verbCorePatternsIndex[entry.verb] = patterns;
+        }
+    }
+})();
+
 const verbUsagesIndex = {};
 (function buildUsagesIndex() {
     const usages = window.verbUsages || [];
@@ -315,12 +331,67 @@ const verbUsagesIndex = {};
     }
 })();
 
+function appendVerbSectionHeading(container, text, className) {
+    if (!text) return;
+    const headingEl = document.createElement('h3');
+    headingEl.className = className || 'verb-usages-heading';
+    headingEl.textContent = text;
+    container.appendChild(headingEl);
+}
+
+function renderVerbCorePatterns(container, infinitive, options = {}) {
+    if (!container) return 0;
+
+    const {
+        sectionClass = '',
+        heading = '',
+        headingClass = 'verb-usages-heading',
+    } = options;
+
+    container.innerHTML = '';
+    if (sectionClass) container.className = sectionClass;
+
+    const patterns = verbCorePatternsIndex[infinitive];
+    if (!patterns || !patterns.length) return 0;
+
+    appendVerbSectionHeading(container, heading, headingClass);
+
+    patterns.forEach((entry) => {
+        const item = document.createElement('div');
+        item.className = 'core-pattern-item';
+
+        const patternEl = document.createElement('span');
+        patternEl.className = 'core-pattern-pattern';
+        patternEl.textContent = entry.pattern || '';
+        item.appendChild(patternEl);
+
+        if (entry.meaning_en) {
+            const meaningEl = document.createElement('span');
+            meaningEl.className = 'core-pattern-meaning';
+            meaningEl.textContent = entry.meaning_en;
+            item.appendChild(meaningEl);
+        }
+
+        if (entry.notes) {
+            const notesEl = document.createElement('span');
+            notesEl.className = 'core-pattern-notes';
+            notesEl.textContent = entry.notes;
+            item.appendChild(notesEl);
+        }
+
+        container.appendChild(item);
+    });
+
+    return patterns.length;
+}
+
 function renderVerbUsages(container, infinitive, options = {}) {
     if (!container) return 0;
 
     const {
         sectionClass = '',
         heading = '',
+        headingClass = 'verb-usages-heading',
     } = options;
 
     container.innerHTML = '';
@@ -329,12 +400,7 @@ function renderVerbUsages(container, infinitive, options = {}) {
     const usages = verbUsagesIndex[infinitive];
     if (!usages || !usages.length) return 0;
 
-    if (heading) {
-        const headingEl = document.createElement('h3');
-        headingEl.className = 'verb-usages-heading';
-        headingEl.textContent = heading;
-        container.appendChild(headingEl);
-    }
+    appendVerbSectionHeading(container, heading, headingClass);
 
     usages.forEach(u => {
         const item = document.createElement('div');
@@ -363,6 +429,42 @@ function renderVerbUsages(container, infinitive, options = {}) {
     });
 
     return usages.length;
+}
+
+function renderVerbUsagePanel(container, infinitive, options = {}) {
+    if (!container) return 0;
+
+    const {
+        sectionClass = '',
+        coreHeading = 'Core patterns',
+        usageHeading = 'Usages & examples',
+        headingClass = 'verb-context-heading',
+    } = options;
+
+    container.innerHTML = '';
+    if (sectionClass) container.className = sectionClass;
+
+    const coreSection = document.createElement('section');
+    const coreCount = renderVerbCorePatterns(coreSection, infinitive, {
+        sectionClass: 'verb-context-subsection verb-core-patterns-subsection',
+        heading: coreHeading,
+        headingClass,
+    });
+    if (coreCount > 0) {
+        container.appendChild(coreSection);
+    }
+
+    const usageSection = document.createElement('section');
+    const usageCount = renderVerbUsages(usageSection, infinitive, {
+        sectionClass: 'verb-context-subsection verb-usages-subsection',
+        heading: coreCount > 0 ? usageHeading : '',
+        headingClass,
+    });
+    if (usageCount > 0) {
+        container.appendChild(usageSection);
+    }
+
+    return coreCount + usageCount;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1275,26 +1377,70 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 450);
     };
 
+    const DICTATION_POST_RESULT_SILENCE_MS = 1500;
+    const DICTATION_LONG_SILENCE_MS = 10000;
+
+    const clearDictationListeningTimers = () => {
+        clearTimeout(dictationPostResultTimeout);
+        dictationPostResultTimeout = null;
+        clearTimeout(dictationLongTimeout);
+        dictationLongTimeout = null;
+    };
+
+    const clearDictationOverlayTimeout = () => {
+        clearTimeout(dictationOverlayTimeout);
+        dictationOverlayTimeout = null;
+    };
+
+    const scheduleDictationPostResultTimeout = () => {
+        clearTimeout(dictationPostResultTimeout);
+        if (!isDictating || !recognition) return;
+        dictationPostResultTimeout = setTimeout(() => {
+            if (isDictating && recognition) {
+                stopActiveDictation({ silent: false });
+            }
+        }, DICTATION_POST_RESULT_SILENCE_MS);
+    };
+
+    const scheduleDictationLongTimeout = () => {
+        clearTimeout(dictationLongTimeout);
+        if (!isDictating || !recognition) return;
+        dictationLongTimeout = setTimeout(() => {
+            if (isDictating && recognition) {
+                stopActiveDictation({ silent: false });
+            }
+        }, DICTATION_LONG_SILENCE_MS);
+    };
+
     const stopActiveDictation = (options = {}) => {
         const { abort = false, silent = true } = options;
-        clearTimeout(dictationTimeout);
-        if (recognition) {
-            ignoreNextDictationEnd = true;
-            try {
-                if (abort) recognition.abort();
-                else recognition.stop();
-            } catch (error) {
-                console.warn('Dictation stop failed:', error);
-            }
-        }
+        const activeRecognition = recognition;
+        clearDictationListeningTimers();
+        clearDictationOverlayTimeout();
         recognition = null;
         isDictating = false;
+        dictationStopRequested = !silent;
         setDictating(false);
+        refreshDictationButton();
         if (silent && dictationResultEl) {
-            dictationResultEl.style.opacity = '0';
-            window.setTimeout(() => {
-                if (dictationResultEl) dictationResultEl.style.display = 'none';
-            }, 120);
+            hideDictationOverlay();
+        }
+        if (!activeRecognition) {
+            dictationStopRequested = false;
+            return;
+        }
+        if (silent) {
+            activeRecognition.onstart = null;
+            activeRecognition.onresult = null;
+            activeRecognition.onend = null;
+            activeRecognition.onerror = null;
+        }
+        try {
+            if (abort) activeRecognition.abort();
+            else activeRecognition.stop();
+        } catch (error) {
+            dictationStopRequested = false;
+            console.warn('Dictation stop failed:', error);
         }
     };
 
@@ -1655,8 +1801,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let recognition = null;
     let isDictating = false;
     let dictationResultEl = null;
-    let dictationTimeout = null;
-    let ignoreNextDictationEnd = false;
+    let dictationOverlayTimeout = null;
+    let dictationPostResultTimeout = null;
+    let dictationLongTimeout = null;
+    let dictationStopRequested = false;
     let activeDictationPromptText = '';
 
     // Overlay helpers (already defined above)
@@ -1683,7 +1831,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl.style.display = 'none';
             dictationResultEl.style.zIndex = '100';
             dictationResultEl.style.textAlign = 'center';
-            dictationResultEl.style.pointerEvents = 'none';
             dictationResultEl.style.transition = 'opacity 0.5s';
             flashcard.style.position = 'relative';
             const applyDictationResultTheme = () => {
@@ -1703,6 +1850,18 @@ document.addEventListener('DOMContentLoaded', () => {
             applyDictationResultTheme();
             window.addEventListener('app-theme-change', applyDictationResultTheme);
             flashcard.appendChild(dictationResultEl);
+        }
+        dictationResultEl.style.pointerEvents = 'auto';
+        dictationResultEl.style.cursor = 'pointer';
+        if (!dictationResultEl._dictationStopHandlerAttached) {
+            dictationResultEl.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                if (isDictating && recognition) {
+                    stopActiveDictation({ silent: false });
+                }
+            });
+            dictationResultEl._dictationStopHandlerAttached = true;
         }
 
         // Attach click handler ONCE
@@ -1728,16 +1887,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 // If already dictating, stop
                 if (isDictating && recognition) {
-                    recognition.stop();
+                    stopActiveDictation({ silent: false });
                     return;
                 }
                 // Clean up any previous session
                 if (recognition) {
-                    try { recognition.abort(); } catch (e) {}
-                    recognition = null;
+                    stopActiveDictation({ abort: true, silent: true });
                 }
-                clearTimeout(dictationTimeout);
+                clearDictationListeningTimers();
                 isDictating = true;
+                dictationStopRequested = false;
                 setDictating(true);
                 // Reset overlay for new session
                 dictationResultEl.textContent = '';
@@ -1753,20 +1912,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition.onstart = () => {
                     isDictating = true;
                     setDictating(true);
+                    dictationStopRequested = false;
                     dictationResultEl.textContent = '';
                     dictationResultEl.style.display = 'block';
                     activeDictationPromptText = getDictationPromptText();
                     showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
+                    scheduleDictationLongTimeout();
                 };
                 recognition.onend = () => {
-                    if (ignoreNextDictationEnd) {
-                        ignoreNextDictationEnd = false;
-                        return;
-                    }
+                    dictationStopRequested = false;
+                    recognition = null;
                     isDictating = false;
                     setDictating(false);
                     refreshDictationButton();
-                    clearTimeout(dictationTimeout);
+                    clearDictationListeningTimers();
                     if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
                         showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
                     } else {
@@ -1774,14 +1933,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
                 recognition.onerror = (event) => {
-                    if (ignoreNextDictationEnd) {
-                        ignoreNextDictationEnd = false;
+                    if (dictationStopRequested) {
                         return;
                     }
+                    recognition = null;
                     isDictating = false;
                     setDictating(false);
                     refreshDictationButton();
-                    clearTimeout(dictationTimeout);
+                    clearDictationListeningTimers();
                     showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
                 };
                 recognition.onresult = (event) => {
@@ -1815,8 +1974,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     }
+                    scheduleDictationLongTimeout();
+                    scheduleDictationPostResultTimeout();
                     const isCorrect = currentCard && !autoskipLock && isDictationMatch(bestTranscript, currentCard);
                     if (isCorrect) {
+                        clearDictationListeningTimers();
                         dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                         dictationResultEl.style.display = 'block';
                         dictationResultEl.style.opacity = '1';
@@ -1827,10 +1989,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     showDictationOverlay(html, 'normal', 0, true, false);
                 };
                 recognition.start();
-                // Safety: stop after 10s if not already ended
-                dictationTimeout = setTimeout(() => {
-                    if (isDictating && recognition) recognition.stop();
-                }, 10000);
+                scheduleDictationLongTimeout();
             });
             dictateBtn._dictationHandlerAttached = true;
         }
@@ -3251,11 +3410,11 @@ document.addEventListener('DOMContentLoaded', () => {
         questionPhraseEl.style.display = 'none';
         currentCard.chosenPhrase = null;
 
-        // ── Usage nugget — all usages for this verb, revealed with answer ────────
+        // ── Usage nugget — core patterns first, then usages/examples ─────────────
         const nuggetEl = document.getElementById('usage-nugget');
         if (nuggetEl) {
             nuggetEl.style.display = 'none';
-            currentCard._hasUsages = renderVerbUsages(nuggetEl, card.verb.infinitive) > 0;
+            currentCard._hasUsages = renderVerbUsagePanel(nuggetEl, card.verb.infinitive) > 0;
         }
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
@@ -3657,6 +3816,15 @@ document.addEventListener('DOMContentLoaded', () => {
             tenseBlock.appendChild(grid);
             verbDetailContainer.appendChild(tenseBlock);
         });
+
+        const corePatternSection = document.createElement('section');
+        const corePatternCount = renderVerbCorePatterns(corePatternSection, verb.infinitive, {
+            sectionClass: 'verb-core-patterns-detail-section',
+            heading: 'Core patterns',
+        });
+        if (corePatternCount > 0) {
+            verbDetailContainer.appendChild(corePatternSection);
+        }
 
         const usageSection = document.createElement('section');
         const usageCount = renderVerbUsages(usageSection, verb.infinitive, {
@@ -4734,12 +4902,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dictationResultEl.style.display = 'block';
         dictationResultEl.style.opacity = '1'; // Ensure visible every time
         dictationResultEl.className = 'dictation-result ' + (type || 'prompt');
-        clearTimeout(dictationTimeout);
+        clearDictationOverlayTimeout();
         if (allowTimeout) {
-            dictationTimeout = setTimeout(hideDictationOverlay, duration);
+            dictationOverlayTimeout = setTimeout(hideDictationOverlay, duration);
         }
     }
     function hideDictationOverlay() {
+        clearDictationOverlayTimeout();
         dictationResultEl.style.opacity = '0';
         setTimeout(() => {
             dictationResultEl.style.display = 'none';
