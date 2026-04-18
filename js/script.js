@@ -788,38 +788,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const INSTALL_REMINDER_DISMISSED_KEY = 'installReminderDismissedV1';
     const REOPEN_MESSAGE_LAST_OPEN_KEY = 'reopenMessageLastOpenAtV1';
     const REOPEN_MESSAGE_THRESHOLD_MS = 12 * 60 * 60 * 1000;
+    const REOPEN_MESSAGE_WELCOME_BACK_THRESHOLD_MS = 24 * 60 * 60 * 1000;
+    const REOPEN_MESSAGE_SHORT_GAP_CHANCE = 0.45;
     const REOPEN_MESSAGE_EXTRA_PROMPTS = [
         {
-            badge: 'Practicing or just looking up? 🔎',
-            body: ''
+            badge: '',
+            body: '',
+            includeElapsedLead: true
         },
         {
-            badge: 'Small wins count',
-            body: 'A few clean cards still count. Keep the language alive.'
+            badge: '',
+            body: '💡 Search also works by English translation.'
         },
         {
-            badge: 'Keep it simple',
-            body: 'Top 50 in the present is still serious work. Build there first.'
+            badge: '',
+            body: '💡 Try a drill first. Then change one thing.'
         },
         {
-            badge: 'Feature hint',
-            body: 'If a tense starts feeling easy, add just one more in Settings instead of changing everything at once.'
+            badge: '',
+            body: 'You can create drills, save them, and share them.'
         },
         {
-            badge: 'Drill or reference',
-            body: 'Look it up if you need to. Then make it automatic.'
+            badge: '',
+            body: '💡 Open verb details for the full table and usage patterns.'
         },
         {
-            badge: 'Feature hint',
-            body: 'Usage examples help when a verb feels fuzzy. Turn them on when you want context, then hide them again when drilling.'
+            badge: '',
+            body: '💡 You can use the mic to answer the cards. Go to Settings.'
         },
         {
-            badge: 'Feature hint',
-            body: 'Search is there when you need clarity fast. The cards are there when you want the form to stick.'
-        },
-        {
-            badge: 'Still counts',
-            body: 'Even a short return is a return. Make one form come out cleanly.'
+            badge: '',
+            body: '💡 Tap any word or phrase in French to hear how it sounds.'
         }
     ];
     const reopenMessageState = {
@@ -907,7 +906,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const dayMs = 24 * 60 * 60 * 1000;
         if (elapsedMs < dayMs) return 'less than a day';
         const days = Math.max(1, Math.floor(elapsedMs / dayMs));
-        if (days > 7) return 'a long while';
         return days === 1 ? '1 day' : `${days} days`;
     };
 
@@ -928,13 +926,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (elapsed < REOPEN_MESSAGE_THRESHOLD_MS) return;
 
-        const elapsedText = formatReopenElapsedText(elapsed);
         const extra = REOPEN_MESSAGE_EXTRA_PROMPTS[Math.floor(Math.random() * REOPEN_MESSAGE_EXTRA_PROMPTS.length)];
+        const isLongGap = elapsed >= REOPEN_MESSAGE_WELCOME_BACK_THRESHOLD_MS;
+        if (!isLongGap && Math.random() > REOPEN_MESSAGE_SHORT_GAP_CHANCE) {
+            console.log('[reopen-debug] short-gap reopen prompt skipped by chance gate');
+            return;
+        }
         reopenMessageState.active = true;
         reopenMessageState.dismissed = false;
         reopenMessageState.badge = extra.badge;
-        const lead = `Welcome back. It has been ${elapsedText} since your last conjugation.`;
-        reopenMessageState.body = extra.body ? `${lead} ${extra.body}` : lead;
+        reopenMessageState.shownCardKey = null;
+        if (extra.includeElapsedLead) {
+            const elapsedText = formatReopenElapsedText(elapsed);
+            const lead = `Welcome back. It has been ${elapsedText} since your last conjugation.`;
+            reopenMessageState.body = extra.body ? `${lead} ${extra.body}` : lead;
+        } else {
+            reopenMessageState.body = extra.body || '';
+        }
         console.log('[reopen-debug] reopen message activated', {
             badge: reopenMessageState.badge,
             body: reopenMessageState.body
@@ -2078,7 +2086,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyIndex = -1;
     let isAnswerVisible = false;
     let recentCardKeys = []; // track last N card keys to avoid immediate repeats
-    const IDLE_HIDDEN_NUDGE_DELAY_MS = 3000;
+    const IDLE_HIDDEN_NUDGE_DELAY_MS = 7000;
     const IDLE_REVEALED_NUDGE_DELAY_MS = 6000;
     let idleGuidanceTimeout = null;
 
@@ -2228,8 +2236,10 @@ document.addEventListener('DOMContentLoaded', () => {
             reopenMessageState.shownCardKey = currentCardKey;
             console.log('[reopen-debug] reopen message locked to card', currentCardKey);
         }
+        const badgeText = shouldShow ? String(reopenMessageState.badge || '').trim() : '';
         returnInlineMessageEl.classList.toggle('hidden', !shouldShow);
-        returnInlineBadgeEl.textContent = shouldShow ? reopenMessageState.badge : '';
+        returnInlineBadgeEl.textContent = badgeText;
+        returnInlineBadgeEl.style.display = badgeText ? '' : 'none';
         returnInlineBodyEl.textContent = shouldShow ? reopenMessageState.body : '';
     };
 
