@@ -8,6 +8,7 @@
   "orientation": "portrait-primary",
   "background_color": "#050b0d",
   "theme_color": "#050b0d",
+  "description": "Master Catalan verb conjugations",
   "icons": [
     {
       "src": "favicon_big.png",

@@ -13851,7 +13851,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260418_030112";
+      window.APP_BUILD_VERSION = "20260418_042558";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -14449,7 +14449,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         <div id="explorer-list-view" class="hidden">
             <div class="explorer-header">
                 <button id="back-to-flashcard-btn" class="back-link-btn">← Back to Flashcards</button>
-                <input type="text" id="search-bar" placeholder="Search for a verb (e.g. etre)...">
+                <input type="text" id="search-bar" placeholder="Search for a verb (e.g. parlar)...">
             </div>
             <div style="position:relative;">
                 <div id="verb-list-mode-toggle" style="position:absolute;top:0.2em;left:0.2em;z-index:11;visibility: hidden;">
@@ -14531,7 +14531,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                             <div class="toggle-row">
                                 <div class="settings-row-copy">
                                     <label for="balanced-pronouns-toggle">Balance pronouns equally</label>
-                                    <p class="setting-helper-text">Keeps eu, tu, ele/ela/você, nós, and plural forms from being drowned out by common cards.</p>
+                                    <p class="setting-helper-text">Keeps jo, tu, ell/ella, nosaltres, and plural forms from being drowned out by common cards.</p>
                                 </div>
                                 <div class="toggle-switch">
                                     <input type="checkbox" id="balanced-pronouns-toggle" class="toggle-input">
@@ -14660,39 +14660,39 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         <!-- Mnemonics Page (hidden by default) -->
         <div id="mnemonics-view" class="hidden">
           <button id="back-to-options-btn" class="back-link-btn">← Back to Options</button>
-          <h1 style=”margin-top:0.5em;”>Catalan Verb Patterns &amp; Tips</h1>
-          <div class=”mnemonic-tabs mnemonic-card”>
-            <div class=”tab-buttons”>
-              <button class=”tab-button active” data-tab=”ar”>-AR Verbs</button>
-              <button class=”tab-button” data-tab=”er”>-ER Verbs</button>
-              <button class=”tab-button” data-tab=”ir”>-IR Verbs</button>
-              <button class=”tab-button” data-tab=”irreg”>Irregulars</button>
+          <h1 style="margin-top:0.5em;">Catalan Verb Patterns &amp; Tips</h1>
+          <div class="mnemonic-tabs mnemonic-card">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="ar">-AR Verbs</button>
+              <button class="tab-button" data-tab="er">-ER Verbs</button>
+              <button class="tab-button" data-tab="ir">-IR Verbs</button>
+              <button class="tab-button" data-tab="irreg">Irregulars</button>
             </div>
-            <div class=”tab-content”>
-              <div class=”tab-panel active” id=”ar”>
+            <div class="tab-content">
+              <div class="tab-panel active" id="ar">
                 <h2>-AR Verbs (Present)</h2>
-                <p><strong>Endings:</strong> <code>o, as, a, amos, ais, am</code></p>
-                <p><strong>Rhyme:</strong> <span class=”singsong” data-say=”o, as, a, amos, am, am”>”eu -o, tu -as, ele -a... nós -amos, vocês/eles -am” <button class=”audio-btn small-audio” title=”Hear this”>🔊</button></span></p>
-                <p><strong>Example:</strong> <code>parlar</code> → jo parlo, tu parles, ell parla, nosaltres parlem...</p>
+                <p><strong>Endings:</strong> <code>o, es, a, em, eu, en</code></p>
+                <p><strong>Rhyme:</strong> <span class="singsong" data-say="o, es, a, em, eu, en">"jo -o, tu -es, ell -a... nosaltres -em, vosaltres -eu, ells -en" <button class="audio-btn small-audio" title="Hear this">🔊</button></span></p>
+                <p><strong>Example:</strong> <code>parlar</code> → jo parlo, tu parles, ell parla, nosaltres parlem, vosaltres parleu, ells parlen</p>
               </div>
-              <div class=”tab-panel” id=”er”>
-                <h2>-ER Verbs (Present)</h2>
-                <p><strong>Endings:</strong> <code>o, es, e, emos, eis, em</code></p>
-                <p><strong>Rhyme:</strong> <span class=”singsong” data-say=”o, es, e, emos, em, em”>”eu -o, tu -es, ele -e... nós -emos, vocês/eles -em” <button class=”audio-btn small-audio” title=”Hear this”>🔊</button></span></p>
-                <p><strong>Example:</strong> <code>comer</code> → eu como, tu comes, ele come, nós comemos...</p>
+              <div class="tab-panel" id="er">
+                <h2>-RE / -ER Verbs (Present)</h2>
+                <p><strong>Endings:</strong> <code>c, s, —, em, eu, en</code></p>
+                <p><strong>Note:</strong> jo ends in <code>-c</code> (or silent); ell/ella has no ending added.</p>
+                <p><strong>Example:</strong> <code>córrer</code> → jo corro, tu corres, ell corre, nosaltres correm, vosaltres correu, ells corren</p>
               </div>
-              <div class=”tab-panel” id=”ir”>
+              <div class="tab-panel" id="ir">
                 <h2>-IR Verbs (Present)</h2>
-                <p><strong>Endings:</strong> <code>o, es, e, imos, is, em</code></p>
-                <p><strong>Note:</strong> Like -ER but <code>nós → -imos</code>, <code>vocês/eles → -em</code></p>
-                <p><strong>Example:</strong> <code>partir</code> → eu parto, tu partes, ele parte, nós partimos...</p>
+                <p><strong>Two patterns:</strong> pure (-ir) and inchoative (-eix- infix).</p>
+                <p><strong>Pure:</strong> <code>dormir</code> → jo dormo, tu dorms, ell dorm, nosaltres dormim, vosaltres dormiu, ells dormen</p>
+                <p><strong>Inchoative:</strong> <code>servir</code> → jo serveixo, tu serveixes, ell serveix, nosaltres servim, vosaltres serviu, ells serveixen</p>
               </div>
-              <div class=”tab-panel” id=”irreg”>
+              <div class="tab-panel" id="irreg">
                 <h2>Key Irregular Verbs</h2>
-                <p><strong>ser:</strong> sou, és, é, somos, vocês/eles são</p>
-                <p><strong>estar:</strong> estou, estás, está, estamos, vocês/eles estão</p>
-                <p><strong>ter:</strong> tenho, tens, tem, temos, vocês/eles têm</p>
-                <p><strong>ir:</strong> vou, vais, vai, vamos, vocês/eles vão</p>
+                <p><strong>ser:</strong> jo sóc, tu ets, ell és, nosaltres som, vosaltres sou, ells són</p>
+                <p><strong>estar:</strong> jo estic, tu estàs, ell està, nosaltres estem, vosaltres esteu, ells estan</p>
+                <p><strong>tenir:</strong> jo tinc, tu tens, ell té, nosaltres tenim, vosaltres teniu, ells tenen</p>
+                <p><strong>anar:</strong> jo vaig, tu vas, ell va, nosaltres anem, vosaltres aneu, ells van</p>
                 <p><strong>Tip:</strong> <em>ser</em> = permanent identity; <em>estar</em> = temporary state/location.</p>
               </div>
             </div>
@@ -14702,8 +14702,8 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         <!-- Ready? Autosay modal (hidden by default) -->
         <div id="autosay-ready-modal" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100vw; height:100vh; background:rgba(30,32,36,0.85); color:#fff; align-items:center; justify-content:center;">
           <div style="background:#23272b; border-radius:1.2em; box-shadow:0 4px 24px #0008; padding:2.5em 2em 2em 2em; text-align:center; max-width:90vw;">
-            <div style="font-size:2.1em; font-weight:700; margin-bottom:0.7em;">Pronto&nbsp;?</div>
-            <div style="font-size:1.1em; margin-bottom:1.5em;">A leitura automática está ativada.<br>Pressione Continuar para começar.</div>
+            <div style="font-size:2.1em; font-weight:700; margin-bottom:0.7em;">Llest&nbsp;?</div>
+            <div style="font-size:1.1em; margin-bottom:1.5em;">La lectura automàtica està activada.<br>Premeu Continua per començar.</div>
             <button id="autosay-ready-continue-btn" style="font-size:1.2em; padding:0.5em 2em; border-radius:0.7em; background:#6ec6ff; color:#23272b; border:none; font-weight:600; cursor:pointer;">Continuar</button>
           </div>
         </div>
@@ -30406,7 +30406,7 @@ const practicePhrases = [
     if (!audioContext) {
       const Ctor = window.AudioContext || window.webkitAudioContext;
       if (!Ctor) {
-        throw new Error('Web Audio API not supported');
+        throw new Error('Web Audio API unavailable');
       }
       audioContext = new Ctor();
     }
@@ -30416,164 +30416,359 @@ const practicePhrases = [
     return audioContext;
   }
 
+  async function openCache() {
+    if (!('caches' in window)) {
+      return null;
+    }
+    return caches.open(CACHE_NAME);
+  }
+
+  function packUrl(pack) {
+    return `tts/${pack.file}`;
+  }
+
+  function itemUrl(item) {
+    return item && item.file ? `tts/${item.file}` : null;
+  }
+
+  function isClipLayout(manifest) {
+    return manifest && manifest.layout === 'clips';
+  }
+
+  async function syncManifestVersion(version) {
+    const existing = localStorage.getItem(MANIFEST_VERSION_KEY);
+    if (existing && existing !== version && 'caches' in window) {
+      await caches.delete(CACHE_NAME);
+      bufferPromises.clear();
+      appLog(`cache-reset old=${existing} new=${version}`);
+    }
+    localStorage.setItem(MANIFEST_VERSION_KEY, version);
+  }
+
+  function buildPackIndex(manifest) {
+    packIndex = new Map();
+    Object.entries(manifest.packs || {}).forEach(([packId, pack]) => {
+      Object.keys(pack.items || {}).forEach((itemId) => {
+        packIndex.set(itemId, packId);
+      });
+    });
+  }
+
   async function loadManifest() {
-    if (manifestPromise) return manifestPromise;
-    manifestPromise = (async () => {
-      try {
-        const cache = await caches.open(CACHE_NAME);
-        let response = await cache.match(MANIFEST_URL);
-        if (!response) {
-          response = await fetch(MANIFEST_URL);
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          await cache.put(MANIFEST_URL, response.clone());
-        }
-        manifestData = await response.json();
-        // Build pack index: audioId → packId
-        packIndex = new Map();
-        for (const [packId, ids] of Object.entries(manifestData.packs || {})) {
-          for (const id of ids) {
-            packIndex.set(id, packId);
+    if (window.location && window.location.protocol === 'file:') {
+      const error = new Error('Packaged Catalan audio cannot load from file://. Use http(s) or a local server.');
+      appLog(`manifest-error message="${error.message}"`);
+      throw error;
+    }
+    if (manifestData) return manifestData;
+    if (!manifestPromise) {
+      manifestPromise = (async () => {
+        const cache = await openCache();
+        let response = null;
+        try {
+          response = await fetch(MANIFEST_URL, { cache: 'no-store' });
+          if (!response.ok) {
+            throw new Error(`manifest fetch failed: ${response.status}`);
           }
+          if (cache) {
+            await cache.put(MANIFEST_URL, response.clone());
+          }
+        } catch (error) {
+          const cached = cache ? await cache.match(MANIFEST_URL) : null;
+          if (!cached) {
+            throw error;
+          }
+          response = cached;
+          appLog('manifest-cache-hit');
         }
-        const v = manifestData.version || 'unknown';
-        localStorage.setItem(MANIFEST_VERSION_KEY, v);
-        appLog(`manifest loaded v=${v} ids=${packIndex.size}`);
-        return manifestData;
-      } catch (e) {
-        appLog(`manifest load failed: ${e.message}`);
-        manifestPromise = null;
-        throw e;
-      }
-    })();
+        return response.json();
+      })()
+        .then(async (manifest) => {
+          manifestData = manifest;
+          buildPackIndex(manifest);
+          await syncManifestVersion(manifest.version);
+          appLog(`manifest-loaded version=${manifest.version} layout=${manifest.layout || 'packed'}`);
+          return manifestData;
+        })
+        .catch((error) => {
+          appLog(`manifest-error message="${error.message}"`);
+          throw error;
+        });
+    }
     return manifestPromise;
   }
 
-  function isAudioIdAvailable(audioId) {
-    return packIndex.has(audioId);
+  async function ensureAssetCached(url, logKey) {
+    const cache = await openCache();
+    const cached = cache ? await cache.match(url) : null;
+    if (cached) {
+      appLog(`cache-hit ${logKey}`);
+      return cached;
+    }
+
+    appLog(`download-start ${logKey}`);
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) {
+      appLog(`download-fail ${logKey} status=${response.status}`);
+      throw new Error(`asset fetch failed: ${response.status}`);
+    }
+    if (cache) {
+      await cache.put(url, response.clone());
+    }
+    appLog(`download-success ${logKey}`);
+    return response;
   }
 
-  async function prefetchPack(packId) {
-    if (packPromises.has(packId)) return packPromises.get(packId);
-    const p = (async () => {
-      const url = `tts/${packId}`;
-      const cache = await caches.open(CACHE_NAME);
-      let resp = await cache.match(url);
-      if (!resp) {
-        resp = await fetch(url);
-        if (!resp.ok) throw new Error(`HTTP ${resp.status} for ${url}`);
-        await cache.put(url, resp.clone());
+  async function isPackCached(packId) {
+    const manifest = await loadManifest();
+    const pack = manifest.packs[packId];
+    if (!pack) return false;
+    const cache = await openCache();
+    if (!cache) return false;
+    if (isClipLayout(manifest)) {
+      const itemFiles = [...new Set(Object.values(pack.items || {}).map((item) => item.file).filter(Boolean))];
+      for (const file of itemFiles) {
+        const match = await cache.match(`tts/${file}`);
+        if (!match) return false;
       }
-      return await resp.arrayBuffer();
-    })();
-    packPromises.set(packId, p);
-    return p;
-  }
-
-  async function prefetchAudioId(audioId) {
-    if (!manifestData) await loadManifest();
-    const packId = packIndex.get(audioId);
-    if (!packId) return;
-    await prefetchPack(packId);
-  }
-
-  async function prefetchTop20() {
-    if (!manifestData) {
-      try { await loadManifest(); } catch { return; }
+      return itemFiles.length > 0;
     }
-    const top20Packs = new Set();
-    for (const [id, packId] of packIndex.entries()) {
-      if (id.startsWith('top20/')) top20Packs.add(packId);
-    }
-    await Promise.allSettled([...top20Packs].map(p => prefetchPack(p)));
+    const match = await cache.match(packUrl(pack));
+    return !!match;
   }
 
-  async function playAudioId(audioId) {
-    if (!isEnabled()) return false;
-    try {
-      if (!manifestData) await loadManifest();
-      const packId = packIndex.get(audioId);
-      if (!packId) return false;
+  async function isAudioIdAvailable(itemId) {
+    const manifest = await loadManifest();
+    const packId = packIndex.get(itemId);
+    if (!packId) return false;
+    const pack = manifest.packs[packId];
+    if (!pack || !pack.items || !pack.items[itemId]) return false;
+    if (isClipLayout(manifest)) {
+      const cache = await openCache();
+      if (!cache) return false;
+      const url = itemUrl(pack.items[itemId]);
+      if (!url) return false;
+      return !!(await cache.match(url));
+    }
+    return isPackCached(packId);
+  }
 
-      const packBuffer = await prefetchPack(packId);
-      if (!manifestData.index || !manifestData.index[audioId]) return false;
-      const [offset, length] = manifestData.index[audioId];
-
-      const slice = packBuffer.slice(offset, offset + length);
-      const ctx = await getAudioContext();
-      const decoded = await ctx.decodeAudioData(slice.slice(0));
-
-      stopPlayback();
-      currentSource = ctx.createBufferSource();
-      currentSource.buffer = decoded;
-      currentSource.playbackRate.value = getPlaybackRate();
-      currentSource.connect(ctx.destination);
-      currentSource.start(0);
+  async function ensurePackCached(packId) {
+    const manifest = await loadManifest();
+    const pack = manifest.packs[packId];
+    if (!pack) {
+      throw new Error(`unknown pack: ${packId}`);
+    }
+    if (await isPackCached(packId)) {
       return true;
-    } catch (e) {
-      appLog(`playAudioId failed ${audioId}: ${e.message}`);
+    }
+    if (!packPromises.has(packId)) {
+      packPromises.set(packId, (async () => {
+        try {
+          if (isClipLayout(manifest)) {
+            const itemFiles = [...new Set(Object.values(pack.items || {}).map((item) => item.file).filter(Boolean))];
+            appLog(`download-start pack=${packId}`);
+            for (const file of itemFiles) {
+              await ensureAssetCached(`tts/${file}`, `file=${file}`);
+            }
+            appLog(`download-success pack=${packId}`);
+            return true;
+          }
+          const url = packUrl(pack);
+          await ensureAssetCached(url, `pack=${packId}`);
+          return true;
+        } finally {
+          packPromises.delete(packId);
+        }
+      })());
+    }
+    return packPromises.get(packId);
+  }
+
+  async function prefetchAudioId(itemId) {
+    const manifest = await loadManifest();
+    const packId = packIndex.get(itemId);
+    if (!packId || !manifest.packs[packId]) {
       return false;
     }
+    await ensurePackCached(packId);
+    return true;
+  }
+
+  async function getDecodedAsset(cacheKey, url) {
+    if (!bufferPromises.has(cacheKey)) {
+      bufferPromises.set(
+        cacheKey,
+        (async () => {
+          const response = await ensureAssetCached(url, cacheKey);
+          const arrayBuffer = await response.arrayBuffer();
+          const ctx = await getAudioContext();
+          return ctx.decodeAudioData(arrayBuffer.slice(0));
+        })().catch((error) => {
+          bufferPromises.delete(cacheKey);
+          throw error;
+        })
+      );
+    }
+    return bufferPromises.get(cacheKey);
+  }
+
+  async function playAudioId(itemId) {
+    if (!isEnabled()) return false;
+    const manifest = await loadManifest();
+    const packId = packIndex.get(itemId);
+    if (!packId) {
+      appLog(`lookup-miss id=${itemId}`);
+      return false;
+    }
+
+    const pack = manifest.packs[packId];
+    const item = pack && pack.items && pack.items[itemId];
+    if (!item) {
+      appLog(`item-miss id=${itemId} pack=${packId}`);
+      return false;
+    }
+
+    let buffer;
+    let start = item.start || 0;
+    let end = item.end || 0;
+
+    if (item.file) {
+      const url = itemUrl(item);
+      if (!url) return false;
+      buffer = await getDecodedAsset(`item=${itemId}`, url);
+      start = 0;
+      end = buffer.duration;
+    } else {
+      await ensurePackCached(packId);
+      buffer = await getDecodedAsset(`pack=${packId}`, packUrl(pack));
+    }
+
+    const ctx = await getAudioContext();
+    if (currentSource) {
+      try {
+        currentSource.stop();
+      } catch (error) {
+        appLog(`stop-error message="${error.message}"`);
+      }
+      currentSource = null;
+    }
+
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.playbackRate.value = getPlaybackRate();
+    source.connect(ctx.destination);
+    source.onended = () => {
+      if (currentSource === source) {
+        currentSource = null;
+      }
+    };
+
+    currentSource = source;
+    const duration = Math.max(0, end - start);
+    if (item.file) {
+      appLog(`play id=${itemId} pack=${packId} file=${item.file}`);
+    } else {
+      appLog(`play id=${itemId} pack=${packId} start=${start.toFixed(3)} end=${end.toFixed(3)}`);
+    }
+    source.start(0, start, duration);
+    return true;
   }
 
   function stopPlayback() {
     if (currentSource) {
-      try { currentSource.stop(); } catch (_) {}
+      try {
+        currentSource.stop();
+      } catch (error) {
+        appLog(`stop-error message="${error.message}"`);
+      }
       currentSource = null;
     }
   }
 
-  async function downloadTier(tier) {
-    if (!manifestData) await loadManifest();
-    const tierPacks = new Set();
-    const prefix = tier + '/';
-    for (const [id, packId] of packIndex.entries()) {
-      if (id.startsWith(prefix)) tierPacks.add(packId);
-    }
-    appLog(`downloading tier=${tier} packs=${tierPacks.size}`);
-    let done = 0;
-    for (const packId of tierPacks) {
-      await prefetchPack(packId);
-      done++;
-      appLog(`tier=${tier} ${done}/${tierPacks.size}`);
-    }
+  async function listPackIds(filterFn) {
+    const manifest = await loadManifest();
+    return Object.entries(manifest.packs || {})
+      .filter((entry) => (filterFn ? filterFn(entry[1], entry[0]) : true))
+      .map(([packId]) => packId);
   }
 
-  async function downloadAllAudio() {
-    if (!manifestData) await loadManifest();
-    for (const tier of CUMULATIVE_DOWNLOAD_TIERS) {
-      await downloadTier(tier);
+  async function prefetchPack(packId) {
+    await ensurePackCached(packId);
+    return true;
+  }
+
+  async function prefetchPacks(packIds, onProgress) {
+    let completed = 0;
+    for (const packId of packIds) {
+      await ensurePackCached(packId);
+      completed += 1;
+      if (typeof onProgress === 'function') {
+        onProgress({ completed, total: packIds.length, packId });
+      }
     }
+    return true;
+  }
+
+  async function prefetchTop20(onProgress) {
+    return downloadTier('top20', onProgress);
+  }
+
+  function getIncludedFrequenciesForTier(tier) {
+    if (!CUMULATIVE_DOWNLOAD_TIERS.includes(tier)) {
+      throw new Error(`unsupported download tier: ${tier}`);
+    }
+    const included = [];
+    for (const frequency of FREQUENCY_ORDER) {
+      included.push(frequency);
+      if (frequency === tier) break;
+    }
+    return included;
+  }
+
+  async function downloadTier(tier, onProgress) {
+    const included = getIncludedFrequenciesForTier(tier);
+    const frequencySet = new Set(included);
+    const packIds = await listPackIds((pack, packId) => packId === 'shared' || frequencySet.has(pack.frequency));
+    await prefetchPacks(packIds, onProgress);
+    setDownloadMode(tier);
+    appLog(`download-tier tier=${tier} packs=${packIds.length}`);
+    return true;
+  }
+
+  async function downloadAllAudio(onProgress) {
+    const packIds = await listPackIds();
+    await prefetchPacks(packIds, onProgress);
+    setDownloadMode('full');
+    return true;
   }
 
   async function removeAllAudio() {
-    await caches.delete(CACHE_NAME);
-    manifestPromise = null;
-    manifestData = null;
-    packIndex = new Map();
-    bufferPromises = new Map();
-    packPromises = new Map();
-    appLog('removed all audio');
+    if ('caches' in window) {
+      await caches.delete(CACHE_NAME);
+    }
+    bufferPromises.clear();
+    stopPlayback();
+    setDownloadMode('none');
+    appLog('cache-cleared');
   }
 
   async function getStatus() {
     try {
-      if (!manifestData) await loadManifest();
-      const cache = await caches.open(CACHE_NAME);
-      const packIds = [...new Set(packIndex.values())];
+      const manifest = await loadManifest();
+      const packIds = Object.keys(manifest.packs || {});
       let cached = 0;
       for (const packId of packIds) {
-        const hit = await cache.match(`tts/${packId}`);
-        if (hit) cached++;
+        if (await isPackCached(packId)) {
+          cached += 1;
+        }
       }
-      const availableFrequencies = FREQUENCY_ORDER.filter(freq => {
-        const prefix = freq + '/';
-        return [...packIndex.keys()].some(id => id.startsWith(prefix));
-      });
       return {
         enabled: isEnabled(),
         mode: getDownloadMode(),
-        layout: manifestData.layout || 'unknown',
-        availableFrequencies,
+        manifestVersion: manifest.version,
+        layout: manifest.layout || 'packed',
+        availableFrequencies: manifest.included_frequencies || [],
         totalPacks: packIds.length,
         cachedPacks: cached,
         ready: cached > 0,
@@ -30629,7 +30824,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260418_030112') ? 'dev' : raw;
+    return !raw || raw.includes('20260418_042558') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());

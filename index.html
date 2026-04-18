@@ -297,6 +297,25 @@
       text-transform: uppercase;
     }
 
+    .badge-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .beta-badge {
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(179, 84, 30, 0.12);
+      color: var(--accent-deep);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(179, 84, 30, 0.14);
+    }
+
     .card-link {
       font-weight: 700;
       color: var(--accent-deep);
@@ -555,7 +574,10 @@
           </div>
         </div>
         <div class="card-meta">
-          <span class="badge">Catalan App</span>
+          <span class="badge-row">
+            <span class="badge">Catalan App</span>
+            <span class="beta-badge">Beta</span>
+          </span>
           <span class="caption">Daily drilling</span>
         </div>
         <h2>Verbs</h2>
@@ -571,7 +593,10 @@
           </div>
         </div>
         <div class="card-meta">
-          <span class="badge">Ukrainian App</span>
+          <span class="badge-row">
+            <span class="badge">Ukrainian App</span>
+            <span class="beta-badge">Beta</span>
+          </span>
           <span class="caption">Core drills</span>
         </div>
         <h2>Дієслова</h2>
@@ -587,7 +612,10 @@
           </div>
         </div>
         <div class="card-meta">
-          <span class="badge">Latvian App</span>
+          <span class="badge-row">
+            <span class="badge">Latvian App</span>
+            <span class="beta-badge">Beta</span>
+          </span>
           <span class="caption">Verb trainer</span>
         </div>
         <h2>Darbības vārdi</h2>
@@ -715,7 +743,7 @@
       </div>
     </section>
 
-    <p class="footer">Version 20260418_042030</p>
+    <p class="footer">Version 20260418_042643</p>
   </div>
 </body>
 </html>
