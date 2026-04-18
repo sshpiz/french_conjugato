@@ -1,0 +1,22 @@
+# LesVerbes
+
+LesVerbes is a multi-language verb conjugation app suite for French, Greek, Portuguese, Russian, and Catalan.
+
+## Primary URLs
+
+- https://www.lesverb.es/
+- https://www.lesverb.es/french/
+- https://www.lesverb.es/greek/
+- https://www.lesverb.es/portugese/
+- https://www.lesverb.es/russian/
+- https://www.lesverb.es/catalan/
+
+## SEO Reference Content
+
+- https://www.lesverb.es/reference/
+- https://www.lesverb.es/sitemap.xml
+
+## Notes
+
+- Reference pages contain crawlable verb conjugation tables and links back into the interactive app.
+- Audio playback on interactive app pages may require browser support for speech or cached TTS assets.
