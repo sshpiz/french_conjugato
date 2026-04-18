@@ -29,7 +29,7 @@
     <link rel="apple-touch-icon" href="favicon_big.png">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon_big.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css?v=20260416g">
+    <link rel="stylesheet" href="css/style.css?v=20260418a">
     <link rel="stylesheet" href="css/dictate-btn.css?v=20260411b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -969,6 +969,14 @@
                                 <span id="app-version-badge" class="settings-meta-badge" aria-live="polite">dev</span>
                             </div>
 
+                            <div class="toggle-row settings-action-row settings-support-row">
+                                <div class="settings-row-copy">
+                                    <label for="support-email-link">Support email</label>
+                                    <p class="setting-helper-text">Questions, bug reports, or feedback.</p>
+                                </div>
+                                <a id="support-email-link" class="settings-support-link" href="mailto:lesverbes.support@gmail.com">lesverbes.support@gmail.com</a>
+                            </div>
+
                             <div class="toggle-row">
                                 <label>Theme</label>
                                 <div class="reflexive-mode-pills" id="theme-pills">
@@ -1370,9 +1378,10 @@
         </div>
     </div>
     <script src="js/verbs.full.generated.js?v=20260411b"></script>
+    <script src="verb_core_patterns.js?v=20260418a" onerror="window.verbCorePatterns=[]"></script>
     <script src="verb_usages.js?v=20260411b" onerror="window.verbUsages=[]"></script>
     <script src="js/preRenderedTts.js?v=20260411b"></script>
-    <script src="js/script.js?v=20260416f"></script>
+    <script src="js/script.js?v=20260418a"></script>
     <script>
 function getFrenchVoices() {
     if (!window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {

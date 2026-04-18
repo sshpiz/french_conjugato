@@ -467,6 +467,23 @@ function renderVerbUsagePanel(container, infinitive, options = {}) {
     return coreCount + usageCount;
 }
 
+function focusUsageExamplesInPanel(container, options = {}) {
+    if (!container) return;
+    const usageSection = container.querySelector('.verb-usages-subsection');
+    const coreSection = container.querySelector('.verb-core-patterns-subsection');
+    if (!usageSection || !coreSection) return;
+
+    const targetTop = Math.max(0, usageSection.offsetTop - 10);
+    const behavior = options.behavior || 'smooth';
+    window.requestAnimationFrame(() => {
+        try {
+            container.scrollTo({ top: targetTop, behavior });
+        } catch (error) {
+            container.scrollTop = targetTop;
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const PACKAGED_TTS = window.preRenderedFrenchTts || null;
     // --- Dictation (Speech Recognition) ---
@@ -837,6 +854,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const DETAIL_ROUTE_VERB_PARAM = 'verb';
     const DETAIL_ROUTE_TENSE_PARAM = 'tense';
+    const REOPEN_MESSAGE_DEBUG_PARAM = 'backAfter';
+
+    const parseBackAfterOverrideMs = () => {
+        try {
+            const url = new URL(window.location.href);
+            const raw = String(url.searchParams.get(REOPEN_MESSAGE_DEBUG_PARAM) || '').trim();
+            if (!raw) return null;
+
+            console.log('[reopen-debug] backAfter raw param:', raw);
+
+            const normalized = raw.toLowerCase();
+            let overrideMs = null;
+
+            if (/^\d+$/.test(normalized)) {
+                overrideMs = Number(normalized) * 60 * 60 * 1000;
+            } else {
+                const match = normalized.match(/^(\d+(?:\.\d+)?)(m|h|d|w)$/);
+                if (match) {
+                    const value = Number(match[1]);
+                    const unit = match[2];
+                    const unitMs = unit === 'm'
+                        ? 60 * 1000
+                        : unit === 'h'
+                            ? 60 * 60 * 1000
+                            : unit === 'd'
+                                ? 24 * 60 * 60 * 1000
+                                : 7 * 24 * 60 * 60 * 1000;
+                    overrideMs = value * unitMs;
+                }
+            }
+
+            url.searchParams.delete(REOPEN_MESSAGE_DEBUG_PARAM);
+            const cleanedUrl = `${url.pathname}${url.search}${url.hash}`;
+            window.history.replaceState(window.history.state, '', cleanedUrl);
+
+            console.log('[reopen-debug] backAfter normalized ms:', overrideMs);
+            console.log('[reopen-debug] backAfter param removed from URL after parsing');
+
+            return Number.isFinite(overrideMs) && overrideMs > 0 ? overrideMs : null;
+        } catch (error) {
+            console.warn('Could not parse backAfter override:', error);
+            return null;
+        }
+    };
 
     const formatReopenElapsedText = (elapsedMs) => {
         if (!Number.isFinite(elapsedMs) || elapsedMs < REOPEN_MESSAGE_THRESHOLD_MS) {
@@ -851,11 +912,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initializeReopenMessageState = () => {
         const now = Date.now();
+        const debugOverrideMs = parseBackAfterOverrideMs();
         const previousRaw = Number(getScopedStorageItem(REOPEN_MESSAGE_LAST_OPEN_KEY) || 0);
         setScopedStorageItem(REOPEN_MESSAGE_LAST_OPEN_KEY, String(now));
 
-        if (!Number.isFinite(previousRaw) || previousRaw <= 0) return;
-        const elapsed = now - previousRaw;
+        const elapsed = Number.isFinite(debugOverrideMs) && debugOverrideMs > 0
+            ? debugOverrideMs
+            : (Number.isFinite(previousRaw) && previousRaw > 0 ? now - previousRaw : 0);
+        console.log('[reopen-debug] initializeReopenMessageState', {
+            debugOverrideMs,
+            previousRaw,
+            elapsed,
+            thresholdMs: REOPEN_MESSAGE_THRESHOLD_MS
+        });
         if (elapsed < REOPEN_MESSAGE_THRESHOLD_MS) return;
 
         const elapsedText = formatReopenElapsedText(elapsed);
@@ -864,6 +933,10 @@ document.addEventListener('DOMContentLoaded', () => {
         reopenMessageState.dismissed = false;
         reopenMessageState.badge = extra.badge;
         reopenMessageState.body = `Welcome back. It has been ${elapsedText} since your last conjugation. ${extra.body}`;
+        console.log('[reopen-debug] reopen message activated', {
+            badge: reopenMessageState.badge,
+            body: reopenMessageState.body
+        });
     };
 
     initializeReopenMessageState();
@@ -2002,6 +2075,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyIndex = -1;
     let isAnswerVisible = false;
     let recentCardKeys = []; // track last N card keys to avoid immediate repeats
+    const IDLE_HIDDEN_NUDGE_DELAY_MS = 3000;
+    const IDLE_REVEALED_NUDGE_DELAY_MS = 6000;
+    let idleGuidanceTimeout = null;
 
     const loadTutorialState = () => {
         try {
@@ -2127,6 +2203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tutorialInlineHeadingEl.textContent = hint && heading ? heading : '';
         tutorialInlineBodyEl.innerHTML = hint || '';
         renderReopenMessage();
+        refreshIdleGuidance();
     };
 
     const renderReopenMessage = () => {
@@ -2155,6 +2232,164 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshTutorialAwareUi = () => {
         renderTutorialHint();
         syncMicModeSettingUi();
+    };
+
+    const clearIdleGuidanceTimer = () => {
+        if (idleGuidanceTimeout) {
+            clearTimeout(idleGuidanceTimeout);
+            idleGuidanceTimeout = null;
+        }
+    };
+
+    const clearIdleGuidanceState = () => {
+        clearIdleGuidanceTimer();
+        if (questionPhraseEl) {
+            questionPhraseEl.classList.remove('idle-nudge-active');
+            if (questionPhraseEl.classList.contains('flashcard-task-prompt')) {
+                questionPhraseEl.style.display = 'none';
+            }
+        }
+        if (tutorialInlineHintEl) tutorialInlineHintEl.classList.remove('idle-nudge-active');
+        if (answerFlowBtn) answerFlowBtn.classList.remove('idle-nudge-active');
+        if (nextBtn) nextBtn.classList.remove('idle-nudge-active');
+    };
+
+    const isFlashcardViewActive = () => !!(flashcardView && !flashcardView.classList.contains('hidden'));
+
+    const getIdleGuidancePromptText = (card) => {
+        if (!card || !card.verb) return '';
+        const rawPrompt = typeof getPrompt === 'function' ? String(getPrompt(card) || '') : '';
+        const normalizedPrompt = rawPrompt
+            .replace(/<br\s*\/?>/gi, ' ')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        const promptWithoutReveal = normalizedPrompt
+            .replace(/\s*(tap|click)\s+show\s+to\s+reveal(?:\s+the\s+answer)?\.?$/i, '')
+            .replace(/\s*think\s+of\s+the\s+answer.*$/i, '')
+            .trim();
+        const tenseLabels = {
+            passeCompose: 'passé composé',
+            imparfait: 'imperfect',
+            futurSimple: 'future',
+            plusQueParfait: 'pluperfect',
+            subjonctifPresent: 'present subjunctive',
+            conditionnelPresent: 'conditional',
+            preterite: 'preterite',
+            imperfect: 'imperfect',
+            future: 'future',
+            conditional: 'conditional',
+            imperative: 'imperative',
+            presentSubjunctive: 'present subjunctive',
+            pastSubjunctive: 'past subjunctive',
+            activePresent: 'present',
+            activePast: 'past',
+            activeFuture: 'future',
+            aorist: 'aorist'
+        };
+        const verb = String(card.verb.infinitive || '').trim();
+        const pronoun = String(card.pronoun || '').trim();
+        const tenseKey = String(card.tense || '').trim();
+        const tense = tenseLabels[tenseKey] || tenseKey.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ').toLowerCase();
+        const fallbackPrompt = (
+            (verb && pronoun && tense) ? `Conjugate "${verb}" for "${pronoun}" in ${tense}.`
+                : (verb && pronoun) ? `Conjugate "${verb}" for "${pronoun}".`
+                    : verb ? `Conjugate "${verb}".`
+                        : ''
+        );
+        const basePrompt = promptWithoutReveal || fallbackPrompt;
+        if (!basePrompt) return '';
+        const lead = /[.?!]$/.test(basePrompt) ? basePrompt : `${basePrompt}.`;
+        return `${lead} Think of the answer, then tap Show or tap anywhere to reveal.`;
+    };
+
+    const syncTaskPromptVisibility = () => {
+        if (!questionPhraseEl) return;
+
+        const isPhraseMode = !!(currentCard && (currentCard.isPhraseMode || (!currentCard.verb && currentCard.phrase)));
+        const hasGapSentencePrompt = !!(
+            ENABLE_GAP_SENTENCES
+            && currentCard
+            && currentCard.chosenPhrase
+            && currentCard.chosenPhrase.gap_sentence
+        );
+
+        if (isPhraseMode || hasGapSentencePrompt) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            return false;
+        }
+
+        if (!currentCard || !currentCard.verb || isAnswerVisible) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            questionPhraseEl.textContent = '';
+            questionPhraseEl.style.display = 'none';
+            questionPhraseEl.style.top = '';
+            return false;
+        }
+
+        const tutorialVisible = !!(tutorialInlineHintEl && !tutorialInlineHintEl.classList.contains('hidden'));
+        if (tutorialVisible) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            questionPhraseEl.textContent = '';
+            questionPhraseEl.style.display = 'none';
+            questionPhraseEl.style.top = '';
+            return false;
+        }
+
+        const promptText = getIdleGuidancePromptText(currentCard);
+        if (!promptText) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            questionPhraseEl.textContent = '';
+            questionPhraseEl.style.display = 'none';
+            questionPhraseEl.style.top = '';
+            return false;
+        }
+
+        questionPhraseEl.textContent = promptText;
+        questionPhraseEl.style.display = 'none';
+        questionPhraseEl.style.top = '';
+        questionPhraseEl.classList.add('flashcard-task-prompt');
+        return true;
+    };
+
+    const showGeneratedTaskPrompt = () => {
+        if (
+            !questionPhraseEl
+            || !questionPhraseEl.classList.contains('flashcard-task-prompt')
+            || !questionPhraseEl.textContent.trim()
+        ) {
+            return false;
+        }
+        questionPhraseEl.style.display = 'block';
+        questionPhraseEl.classList.add('idle-nudge-active');
+        return true;
+    };
+
+    const refreshIdleGuidance = () => {
+        clearIdleGuidanceState();
+        const hasGeneratedPrompt = syncTaskPromptVisibility();
+
+        if (!isFlashcardViewActive() || !currentCard) return;
+
+        if (isAnswerVisible) {
+            if (!answerFlowBtn) return;
+            idleGuidanceTimeout = setTimeout(() => {
+                if (!isFlashcardViewActive() || !currentCard || !isAnswerVisible) return;
+                answerFlowBtn.classList.add('idle-nudge-active');
+            }, IDLE_REVEALED_NUDGE_DELAY_MS);
+            return;
+        }
+
+        idleGuidanceTimeout = setTimeout(() => {
+            if (!isFlashcardViewActive() || !currentCard || isAnswerVisible) return;
+            if (tutorialInlineHintEl && !tutorialInlineHintEl.classList.contains('hidden')) {
+                tutorialInlineHintEl.classList.add('idle-nudge-active');
+                return;
+            }
+            if (hasGeneratedPrompt) {
+                showGeneratedTaskPrompt();
+            }
+        }, IDLE_HIDDEN_NUDGE_DELAY_MS);
     };
 
     const completeTutorialIfNeeded = () => {
@@ -3542,6 +3777,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showView(viewId, pushState = true) {
         if (viewId !== 'flashcard-view') {
             stopActiveDictation({ abort: true, silent: true });
+            clearIdleGuidanceState();
         }
         let targetView = null;
         views.forEach(view => {
@@ -4519,9 +4755,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     questionPhraseEl.addEventListener('click', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
         if (e.target.classList.contains('tappable-audio') && e.target.textContent) {
+            e.stopPropagation();
+            e.preventDefault();
             playAudioElement(e.target);
         }
     });
@@ -4613,6 +4849,14 @@ document.addEventListener('DOMContentLoaded', () => {
             closeInstallInstructionsModal();
         }
     });
+    document.addEventListener('pointerdown', () => {
+        if (!isFlashcardViewActive()) return;
+        refreshIdleGuidance();
+    }, true);
+    document.addEventListener('keydown', () => {
+        if (!isFlashcardViewActive()) return;
+        refreshIdleGuidance();
+    }, true);
     if (contextAudioBtn) {
         if (!FRENCH_FLASHCARD_FEATURES.contextualSpeakerButton) {
             contextAudioBtn.style.display = 'none';
@@ -4627,9 +4871,13 @@ document.addEventListener('DOMContentLoaded', () => {
         usageVisibilityBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (usageVisibilityBtn.disabled) return;
+            const wasShowing = !!cardGenerationOptions.showUsageNugget;
             cardGenerationOptions.showUsageNugget = !cardGenerationOptions.showUsageNugget;
             saveOptions();
             syncUsageNuggetVisibility();
+            if (!wasShowing && cardGenerationOptions.showUsageNugget && usageNuggetEl && isAnswerVisible) {
+                focusUsageExamplesInPanel(usageNuggetEl);
+            }
         });
     }
     // These buttons should now act like the browser's back button
