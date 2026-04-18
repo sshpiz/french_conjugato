@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Conjujunkie</title>
-  <meta name="description" content="French, Greek, Portuguese, and Russian verb practice apps with offline support, usage examples, and focused daily drilling.">
+  <meta name="description" content="French, Greek, Portuguese, Russian, Catalan, Ukrainian, and Latvian verb practice apps with offline support, usage examples, and focused daily drilling.">
   <meta name="theme-color" content="#102127">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -158,6 +158,18 @@
       transform: rotate(-0.45deg) translateY(8px);
     }
 
+    .card:nth-child(5) .app-thumb {
+      transform: rotate(0.45deg) translateY(6px);
+    }
+
+    .card:nth-child(6) .app-thumb {
+      transform: rotate(-0.35deg) translateY(7px);
+    }
+
+    .card:nth-child(7) .app-thumb {
+      transform: rotate(0.3deg) translateY(5px);
+    }
+
     .phone {
       position: relative;
       width: min(262px, 84%);
@@ -232,6 +244,19 @@
     .card:nth-child(3) .thumb-shot {
       object-position: center top;
       transform: scale(1.02);
+      transform-origin: center top;
+    }
+
+    .card:nth-child(5) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.015);
+      transform-origin: center top;
+    }
+
+    .card:nth-child(6) .thumb-shot,
+    .card:nth-child(7) .thumb-shot {
+      object-position: center top;
+      transform: scale(1.015);
       transform-origin: center top;
     }
 
@@ -519,6 +544,54 @@
         </div>
         <h2>Глаголы</h2>
         <span class="card-link">Enter the Russian app →</span>
+      </a>
+
+      <a class="card" href="/catalan/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-catalan.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Catalan App</span>
+          <span class="caption">Daily drilling</span>
+        </div>
+        <h2>Verbs</h2>
+        <span class="card-link">Enter the Catalan app →</span>
+      </a>
+
+      <a class="card" href="/ukrainian/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-ukrainian.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Ukrainian App</span>
+          <span class="caption">Core drills</span>
+        </div>
+        <h2>Дієслова</h2>
+        <span class="card-link">Enter the Ukrainian app →</span>
+      </a>
+
+      <a class="card" href="/latvian/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-latvian.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Latvian App</span>
+          <span class="caption">Verb trainer</span>
+        </div>
+        <h2>Darbības vārdi</h2>
+        <span class="card-link">Enter the Latvian app →</span>
       </a>
     </section>
 

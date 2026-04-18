@@ -42,6 +42,9 @@ ROOT_FILES_TO_COPY = [
     "landing-portugese.png",
     "landing-french.png",
     "landing-russian.png",
+    "landing-catalan.png",
+    "landing-ukrainian.png",
+    "landing-latvian.png",
 ]
 
 SIBLING_APPS = [
@@ -68,6 +71,12 @@ SIBLING_APPS = [
         "source_dist": os.path.join(DESKTOP_DIR, "catalan-verbs", "dist"),
         "target_dir": os.path.join(DIST_DIR, "catalan"),
         "standalone": "catalanjugacio.html",
+    },
+    {
+        "name": "latvian",
+        "source_dist": os.path.join(DESKTOP_DIR, "latvian-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "latvian"),
+        "standalone": "darbibasvardi.html",
     },
 ]
 
@@ -403,6 +412,9 @@ WATCHED_FILES = [
     "landing-portugese.png",
     "landing-french.png",
     "landing-russian.png",
+    "landing-catalan.png",
+    "landing-ukrainian.png",
+    "landing-latvian.png",
 ]
 WATCHED_FILES = [os.path.join(ROOT_DIR, path) for path in WATCHED_FILES]
 
