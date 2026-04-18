@@ -5,6 +5,7 @@ import re
 import shutil
 import sys
 import time
+from reference_pages import generate_reference_pages
 
 try:
     from PIL import Image
@@ -32,7 +33,16 @@ APP_STANDALONE_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "franconjugue.html")
 APP_INDEX_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "index.html")
 APP_VERSION_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "version.json")
 APP_FILES_TO_COPY = ["manifest.json", "favicon_big.png", "sw.js"]
-ROOT_FILES_TO_COPY = ["favicon_big.png", "CNAME", "landing-greek.png", "landing-portugese.png", "landing-french.png", "landing-russian.png"]
+ROOT_FILES_TO_COPY = [
+    "favicon_big.png",
+    "CNAME",
+    "robots.txt",
+    "llms.txt",
+    "landing-greek.png",
+    "landing-portugese.png",
+    "landing-french.png",
+    "landing-russian.png",
+]
 
 SIBLING_APPS = [
     {
@@ -52,6 +62,12 @@ SIBLING_APPS = [
         "source_dist": os.path.join(DESKTOP_DIR, "russian-verbs", "dist"),
         "target_dir": os.path.join(DIST_DIR, "russian"),
         "standalone": "glagoly.html",
+    },
+    {
+        "name": "catalan",
+        "source_dist": os.path.join(DESKTOP_DIR, "catalan-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "catalan"),
+        "standalone": "catalanjugacio.html",
     },
 ]
 
@@ -332,6 +348,27 @@ def build(force_jpeg=False):
         build_root_site()
         sync_sibling_apps()
         write_legacy_redirects()
+        reference_report = generate_reference_pages(ROOT_DIR, DIST_DIR)
+        if reference_report and reference_report.get("total_pages", 0) > 0:
+            print(
+                "   - Generated SEO reference pages: "
+                f'{reference_report["total_pages"]} total'
+            )
+            by_language = reference_report.get("by_language", {})
+            if by_language:
+                summary = ", ".join(
+                    f"{language}={count}" for language, count in sorted(by_language.items())
+                )
+                print(f"     By language: {summary}")
+            for path in reference_report.get("sample_paths", []):
+                print(f"     Sample: {path}")
+            if reference_report.get("limited"):
+                print(
+                    "     Note: limited by SEO_REFERENCE_LIMIT="
+                    f'{reference_report["limited"]}'
+                )
+        for warning in (reference_report or {}).get("warnings", []):
+            print(f"⚠️  SEO warning: {warning}")
 
         print("\n✅ Build successful!")
         print(f"   Landing page: {os.path.join(DIST_DIR, 'index.html')}")
@@ -360,6 +397,8 @@ WATCHED_FILES = [
     "favicon_big.png",
     "sw.js",
     "CNAME",
+    "robots.txt",
+    "llms.txt",
     "landing-greek.png",
     "landing-portugese.png",
     "landing-french.png",

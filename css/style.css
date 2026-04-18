@@ -1516,6 +1516,11 @@ html {
   --tutorial-heading-color: rgba(88, 112, 136, 0.86);
   --tutorial-body-color: rgba(47, 68, 91, 0.96);
   --tutorial-body-after-color: rgba(69, 88, 110, 0.9);
+  --return-message-badge-bg: rgba(31, 89, 100, 0.1);
+  --return-message-badge-color: #2a6a73;
+  --return-message-card-bg: rgba(255, 255, 255, 0.58);
+  --return-message-card-border: rgba(94, 120, 143, 0.16);
+  --return-message-body-color: rgba(52, 72, 96, 0.96);
 }
 
 .tutorial-inline-text {
@@ -1567,6 +1572,60 @@ html {
   font-weight: 500;
   color: var(--tutorial-body-after-color);
   font-style: normal;
+}
+
+#return-inline-message {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(3.55rem, 23%, 6.1rem);
+  transform: translateX(-50%);
+  width: min(78%, 410px);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#return-inline-message.hidden {
+  display: none !important;
+}
+
+.return-inline-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem 1.05rem;
+  border-radius: 22px;
+  border: 1px solid var(--return-message-card-border);
+  background: var(--return-message-card-bg);
+  box-shadow: 0 18px 34px rgba(24, 44, 70, 0.08);
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.return-inline-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.85rem;
+  padding: 0.3rem 0.78rem;
+  border-radius: 999px;
+  background: var(--return-message-badge-bg);
+  color: var(--return-message-badge-color);
+  font-size: calc(0.8rem * var(--font-scale, 1));
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.return-inline-body {
+  display: block;
+  margin: 0;
+  font-size: calc(1rem * var(--font-scale, 1));
+  line-height: 1.58;
+  color: var(--return-message-body-color);
+  text-wrap: balance;
 }
 
 /* Thin rule above the whole answer+sentence block */
@@ -3417,6 +3476,11 @@ html[data-theme="light"] #go-to-verb-btn-container button {
     --tutorial-heading-color: rgba(193, 214, 236, 0.84);
     --tutorial-body-color: rgba(236, 244, 252, 0.96);
     --tutorial-body-after-color: rgba(198, 215, 233, 0.9);
+    --return-message-badge-bg: rgba(52, 97, 109, 0.34);
+    --return-message-badge-color: #b5f1df;
+    --return-message-card-bg: rgba(19, 27, 38, 0.66);
+    --return-message-card-border: rgba(114, 149, 178, 0.18);
+    --return-message-body-color: rgba(225, 237, 248, 0.96);
     --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
     --control-tray-border: rgba(84, 103, 126, 0.42);
     --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);
@@ -3472,6 +3536,11 @@ html[data-theme="dark"] {
   --tutorial-heading-color: rgba(193, 214, 236, 0.84);
   --tutorial-body-color: rgba(236, 244, 252, 0.96);
   --tutorial-body-after-color: rgba(198, 215, 233, 0.9);
+  --return-message-badge-bg: rgba(52, 97, 109, 0.34);
+  --return-message-badge-color: #b5f1df;
+  --return-message-card-bg: rgba(19, 27, 38, 0.66);
+  --return-message-card-border: rgba(114, 149, 178, 0.18);
+  --return-message-body-color: rgba(225, 237, 248, 0.96);
   --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
   --control-tray-border: rgba(84, 103, 126, 0.42);
   --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);
