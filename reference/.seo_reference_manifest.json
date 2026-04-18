@@ -1,8 +1,8 @@
 {
   "entries": {
     "/reference/": {
-      "hash": "16247dbcb2da87e22a29f01b6d3c64a6ee4a0eb2790ee8eac2b375aa6738bb7c",
-      "lastmod": "2026-04-18T15:11:30Z"
+      "hash": "cd9aaacc9500d819a509a7d1168b95ccaf1ed0eb08b80ceb69dbd03df19d08c6",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/catalan/": {
       "hash": "499c3693ff3de583aa4a30bad606729ae5d8f35fe54f574677ce90b9b60c0436",
@@ -41465,8 +41465,8 @@
       "lastmod": "2026-04-17T23:45:14Z"
     },
     "/reference/spanish/": {
-      "hash": "f209d3a291c67966d217988387a50d697426505e602f32b263ea6dc36890ab7d",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "29c513dcafb349260c69a43b916af69d16255bb2d6f3a88a4390bd02798a58c1",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/abacadear/": {
       "hash": "43745544d2285212909ea7111743c89ea1a333b83963f8bfe2bf3ce57b03c2c1",
@@ -41609,8 +41609,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/abarcar/": {
-      "hash": "65312c745d665b9244d60a02a8309d43a30ba58b766f9d8363b4fbcacdb024df",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e44bedf731536c0a2a82ef4ca027322001d6cf9612721b27162fbf434cf6cb16",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/abarcuzar/": {
       "hash": "bcf8be0a90213e49f2a1db00aeb811640425064b1407602585d251dae353921b",
@@ -41913,8 +41913,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/abrasar/": {
-      "hash": "f06a2b04bf5010d86b3e5de43deb214e71cc837da9f4384d4232c018a28142dd",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e8bf84d97ceeb2b4cf63e719e39b0a262440563f25567e37bac7c1c8af4dffb4",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/abravecer/": {
       "hash": "5d812592b0fc7abae7bc9ed2a1b12bca728fcce481621e31351281f823284b37",
@@ -42027,6 +42027,10 @@
     "/reference/spanish/aburrir/": {
       "hash": "49c4345b8d827599f40359bba1183fd01ae032b47da97b1fe24ae096a4c30d24",
       "lastmod": "2026-04-18T15:11:30Z"
+    },
+    "/reference/spanish/aburrirse/": {
+      "hash": "ae4cf244cdb03ff90c8739502dd1c0177efaac6d3b6867a54980d6455d34a30d",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/aburujar/": {
       "hash": "481c3a73e2089e681f6177dde92152d34d00186a0f8479d9545d1e084af59cf1",
@@ -42300,6 +42304,10 @@
       "hash": "c6fb26f99f4795829e4ec2e1ff945ab70f3c0d4fe4be378355615111971d1693",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/acercarse/": {
+      "hash": "4c79e74275d0add98200525815204dc302c048b61374145b1d8cb5922106c7b0",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/acernadar/": {
       "hash": "25b46da9ceedeaf4a3b9460ddabd4afca49e13f2aa786c4145f85aa2c7ce7cb7",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -42309,8 +42317,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/acertar/": {
-      "hash": "7610ffc700f7457616ee55770860a8bf7849ec8fbe454d2739b4f4c14c10cf37",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "dc7eb3edcf075249aae5115dd4ef8484c2063d2c6ae16ded00be93ff7442c3b7",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/acetificar/": {
       "hash": "ff500b21405a03e6f71a1fe947f9098c9c924a043474af5dda64aa8a36a62160",
@@ -42581,8 +42589,8 @@
       "lastmod": "2026-04-18T15:11:30Z"
     },
     "/reference/spanish/acompasar/": {
-      "hash": "886321b3ce976abc756ec596efd413b814285aca43c11c4c2a8e553b24d829c1",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "c64a1874790c8bb6aeedd07ad9dd775ea9012a3c1759db684dbc65424d604843",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/acompañar/": {
       "hash": "7ab847d514763baf7990d84402d4bda29f45bfab1579442bf1d2b52d0ccac5ee",
@@ -42644,6 +42652,10 @@
       "hash": "fbd67dcf83e9c5e5465bf2f5b700204ddb91bd0be2371617a9b448acaba896be",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/acordarse/": {
+      "hash": "2574aca6dc1f408b6bb86302e39f56c49c4772a15ab70f77dd48651548f34ed3",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/acordelar/": {
       "hash": "3c6ebefd76c36e3699bf357a17a8ea86762ea787a9a0845bf2a6735ba7b83111",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -42692,9 +42704,17 @@
       "hash": "ee1cde40b7cd4ba92bf85f232c1c8dc9192fa56667064cb03b222a2ca88de79e",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/acostarse/": {
+      "hash": "798b03fdc4011d88885fb169eefb876c88cb501a00ef4563e9e09e759a0f686a",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/acostumbrar/": {
       "hash": "05f4abb4431ff567b11b6046c736434b1f644a0d3526ad9e69467ccb8f14e2fe",
       "lastmod": "2026-04-18T15:02:24Z"
+    },
+    "/reference/spanish/acostumbrarse/": {
+      "hash": "b45975492b42b43dea162c8d3548e8c839d31a27bf72defcedc873e1f8769071",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/acotar/": {
       "hash": "4e9dbeba7a5258594756c66f9cf46f45f0dafd109c81941481b1f3ecf1860089",
@@ -42765,8 +42785,8 @@
       "lastmod": "2026-04-18T15:11:30Z"
     },
     "/reference/spanish/actualizar/": {
-      "hash": "717f77e11e8ba9f897bdeaa863b992d656d521a139f88d862ac1c4da0e44284a",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "615cfa8a7784d42d99f62c7c349c1e4574bd1b0d425d2344f3c772adfc483b19",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/actuar/": {
       "hash": "6779a252b4dc24856dc3ee019dfc9e0acdb89a957d232d4c283768bad553486d",
@@ -43473,8 +43493,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/agrupar/": {
-      "hash": "6c8fd5e21266b2346575f88eda69e3c65c78c8d45447076d03aefd54b8d6a2a1",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "88b5cd2a26d2c0afb63cef4f9dbf23e7e55d4da1c8ab32258042e8a21351dfe2",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/aguachar/": {
       "hash": "50bff41f03ddd20b403cfcf356d9b40c65da9312ec0da1dcd18ab146f987d565",
@@ -43589,8 +43609,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/ahorcar/": {
-      "hash": "fb35f65d470943e1f31b744dd9a3a188744e01283245248cc415277fb27d5d1c",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "fa756105d312cc64f2787212ebff91aa8d25d52d5f392ffa3b1fa44ad6f58ee6",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/ahormar/": {
       "hash": "36a7f6de4ef8ac289ee4d00085ce632de53afcbd987058b7009b01783437c14f",
@@ -43653,8 +43673,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/ajar/": {
-      "hash": "96dceff41803602f8c3450d893f6f79bc19c66cb26519f283111d1041cd05505",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "6f9041038145900914625d8addcc72b7f5f96d3018a1113dd41b4431a39db1d0",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/ajardinar/": {
       "hash": "1ef580c91c057cb2099be89f60de4ee5e343c0bc24257abcea1cd7af0e832031",
@@ -43713,8 +43733,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/alabar/": {
-      "hash": "1ce8e350a2bb54c8727aa9c304321b035a79278843ecec1cf734dfd0f8ec1f1e",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "0d9069fe052f87b6911a0bafe2fd3ad1553d88a5d984b87b3d840275f5ab840f",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/alabear/": {
       "hash": "1c38ad724c6b8037dbfcc1d9fd54a54fed1bcf8c40701ef073bb978b1be72caf",
@@ -43869,8 +43889,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/alegar/": {
-      "hash": "eea2926cd3b6e67daa181cc8e00272b869c485cfd3bd0aa3d5860259155ee298",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e7211a738ccc7ca4851255b55baee98e051533f30dba2873863a0d873bb2bd04",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/alegorizar/": {
       "hash": "6180f9cb1335944951f7ca2162b9f646055ab9b0dceb83620a8a3d0d2353b57b",
@@ -44045,8 +44065,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/almacenar/": {
-      "hash": "4e26784c5d3825a0aa0024388e167545687e2f7e0bc71ddf2c7b658706138631",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "69676ef920c64736526228a9413f11e41a5fb6b93bb129c234ae0b7f748bee34",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/almacigar/": {
       "hash": "3cdc434f2037d745eb8a9a646eade329c327fd16f60513c489b0d020753684ea",
@@ -44357,8 +44377,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/amasar/": {
-      "hash": "5349a1c2ac0fe215c9a9ea830525b82d620cbb3a425778bbf6342c08c1ad68b4",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "ee07d5d57c8901634153cbfac6008ca0a402e758891ae1c38778fe1d575e3bab",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/amayorazgar/": {
       "hash": "9f4d4639c8d829716431651d28061bac8ea2262ce3778a68c17e93612406d21d",
@@ -44865,8 +44885,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/antepasar/": {
-      "hash": "27db58bb8ee0dbe3b9d0db0c1eb19d12a9c4cef5a5959f7e498943a322a737db",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "a02c23fb130450a8325708ae2e7d34d2ac00060eaba5298093ac391f3a51efdf",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/anteponer/": {
       "hash": "9d69e6dc6d29d4d56af5e61d28152e8e8906d7b03f8b54509c2ab1d47523902c",
@@ -45005,8 +45025,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/aparcar/": {
-      "hash": "b7c2f797cb6f6fda6918c1ee84eca5986893d39e8f660f3b608806da4601918c",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "57edecc67863772e418077bfbeca8e37303e3350d3397335c98c3d1004d5e593",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/aparear/": {
       "hash": "5478061d8553eeec2b8fdb570c9fed7f73afde099ea6325cf4e2248fcf3b1df0",
@@ -45053,8 +45073,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/apayasar/": {
-      "hash": "dcf1d529611868bae895802661f3a7d0ad2bb9874229a788e0465f519eb585e4",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "9be3e4612c1a7290e017ae856a0dde79474fe645dd5d278ff1179a0546e357f0",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/apañar/": {
       "hash": "ec6f7ac1df215866e6f83ef51c22d5eef4280784fe5a6d57c65807df2f5f6d05",
@@ -45281,8 +45301,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/apoderar/": {
-      "hash": "a9c489be403dc29d46351af1fc0a9bc9b3bc271ee4401883409bf6c060e13016",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "8072805a82d6254f5a50ce87a8848bbb3955f610bc6f2933df03af4d5f70f518",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/apolillar/": {
       "hash": "24ebc3e95838a13b09c393ffc599bdb1be0bb9f2d21f26259b3ace0a9d769a82",
@@ -45472,6 +45492,10 @@
       "hash": "3a6d8d667b8db5e93bea391b5dab60933f58d219a97bc0de13f3cf2849470dac",
       "lastmod": "2026-04-18T15:02:24Z"
     },
+    "/reference/spanish/apurarse/": {
+      "hash": "9dcf6fee3ff1a9e8d613ae97476f54c9588666ab8ff4e0f82d089c4676f75b7c",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/apuñalar/": {
       "hash": "c5078ce67124fb5d3790e851fa8a41eb5ef9cb1300c3926436a0d7dc0f228329",
       "lastmod": "2026-04-18T15:11:30Z"
@@ -45513,8 +45537,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/arar/": {
-      "hash": "2fcfc981fa20ffa86cfa74e15d29c35dfca1a7da56de2df9641699b19da070c2",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b5b2210a41eb9a3ba2c40674f76e185a66143d3c9d19aa9d6bca169ca3f028f3",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/arañar/": {
       "hash": "b2f518de42b1193d2b5206a415c33e31a95829c25a00ab54cff190708ad589bd",
@@ -45589,8 +45613,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/argamasar/": {
-      "hash": "42a626d7ad998c5cadc28d35824b7abdbb589dfa763396047b51f336bb0cbc3a",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "6f1ad22313ec1ae6c33da3cb76017df9ab0cda05e27998e264d1a32b02e7b5b1",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/argayar/": {
       "hash": "7152ec1abf9f9f26563895087217b4f900dfaea11359e888c57183ea460c7294",
@@ -45605,8 +45629,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/argumentar/": {
-      "hash": "021a4f3a672e4a20439ff075be419b47a746fba2d7ee5156dbaf1af9417ccee3",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "4e9bf69403cbef432492b18b06cd513e9c601f548312396d38ad2961373f73e5",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/argüir/": {
       "hash": "c24325b7696d44a2d57a9217c55466dc45648af146dc9c23f2bbd1c42d44e4e4",
@@ -45709,8 +45733,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/arrasar/": {
-      "hash": "3d15b7aa3fd5c450c38c55877e79440358c7aab860fa3f517eaab93d4cec36c0",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "985df6d990fc5e8a612a6a35e613daabcda1a5fbd9dca063b9110103bc204271",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/arrastrar/": {
       "hash": "4bdb9bd972ef62ce2dffe2a2e0a5292155018e1117a7ac9b87d7586bbd2fc0fc",
@@ -45721,8 +45745,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/arrebatar/": {
-      "hash": "76b89641ce1e3b392613ec2a8412de6759c3a4679d449d11b86e5d8ef543e731",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "f799d59e057a2cbe6029fcca04a4fdaff1ba5ed042d7a4a00d11d443a63e1287",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/arrebañar/": {
       "hash": "8e2d7c78e6fc0fea0ad22d1f9e7ef5c117bd0614cd6e922191e5cd7a44302d0a",
@@ -46017,8 +46041,8 @@
       "lastmod": "2026-04-18T15:11:30Z"
     },
     "/reference/spanish/asar/": {
-      "hash": "9c6069e6979b2deb29fdc606bac73fae1f536de48bae3331b3c01e561a5eb86d",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "5cab4397fbd55761730c56123870a0864e9b38f30247450283ff0948305d79ff",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/ascender/": {
       "hash": "594b94ea448f7e3e9acf27e26acc64212fff20ee4be9bf300d0e183b8bd74136",
@@ -46149,8 +46173,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/asociar/": {
-      "hash": "2a992cdeb7980bbf597f8bdc0bddfec2f4d5a795b4ab96533b661aaf3e3869e9",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "ed88dccd1721924122a433958f105cc6d6075eb23fae64a494a96140932f5f68",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/asolanar/": {
       "hash": "0438735434e9fcd3bc430ac537aba2f8bce13753ea94e06bf58ea77b6a812c0f",
@@ -46573,8 +46597,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/atormentar/": {
-      "hash": "03977bb391c18a0e373eae89a2d714d549bed3149abcb5ef03655339c49e4583",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e63bad516d0ffaabbb82f8d5d765cd9db04b4aebe00dac99f46937a75fe7e40a",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/atornillar/": {
       "hash": "dbcb65ec8c836f7af157ad590c0c23ae9413604e4fd6e03bbb82246a581c90cd",
@@ -46641,8 +46665,8 @@
       "lastmod": "2026-04-18T14:54:49Z"
     },
     "/reference/spanish/atrasar/": {
-      "hash": "e6d21efb7d462b32fdf1171b9ad0632a6cd558732842153af6ab46ff45977da8",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "03d18ec209d547aaf94439ca14d474bafa49b67699beaeb238ce50e5a63c7d62",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/atravesar/": {
       "hash": "5ca03ab11583cbbcc870c29230d3ac34d0283bcc7cc1f4cb2ba778ecf5e574be",
@@ -46659,6 +46683,10 @@
     "/reference/spanish/atrever/": {
       "hash": "b8a1f241c3cae6e36d8d40c575091aef2ceb41d133863becfdc3997562f3ad0d",
       "lastmod": "2026-04-18T14:54:49Z"
+    },
+    "/reference/spanish/atreverse/": {
+      "hash": "0c7dca0500a3779e18a2e6035ffcb8c4ab4a7603d4c38ed408fdb9cc0a0f96e3",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/atribuir/": {
       "hash": "98e6849873d86826b6da42d1c0582b9d1e6646b791c1646fa4bbc317624855b0",
@@ -46809,8 +46837,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/auxiliar/": {
-      "hash": "738650cf5d99adedec0214a4a00281f61448f2bb072ec45add191ab9c7081243",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "0d0b73e4df4f5aa5b2fcebeb179911ab1b6a247e03072f8397b61819e3085bdc",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/avadar/": {
       "hash": "47105bbde4b258d0d53c94fea4e455ef5f295eaa5d592a1e680e9b38f1830784",
@@ -47373,8 +47401,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/basar/": {
-      "hash": "67a182f25797f68188d95e332258fe0b4e5c011cc737d3dd64488cca526c9c0a",
-      "lastmod": "2026-04-18T15:02:24Z"
+      "hash": "035fc347db85dcc6e20daea134dd268eec6893babdfa20ca0fec7eca16494e3f",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/bascular/": {
       "hash": "6bf68a583d99996d47e32aaeeafc15bfb51d820ffe37d44b841ffa98486dd82d",
@@ -47457,8 +47485,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/bautizar/": {
-      "hash": "d794dc98dabcff59de40c1d15d7dd736d799d2c2abf00ea716a1ced492698e6d",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b636e0db75469e8121a288556a35e571f9dc4f10bd558ffbdd0da7508d848959",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/bazucar/": {
       "hash": "f764d05b46ec877263a4e1e92f93a3f42fe8f9d87967e0c84fcc8b08909b41e6",
@@ -48057,8 +48085,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/cabalgar/": {
-      "hash": "df43b6957dd6cd5afe48f9413e2ecd1267f6b39829575cff208768a405ef5dbb",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "a6f6c8c96fae4c921edefd04c247c141e770d48ff129bfabe327a1bc2ae52d8f",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/cabalierear/": {
       "hash": "7451d2964021cd61586d181075b3360bd8f7e6952391c5bc4fcf7e8e73bfdf3a",
@@ -48253,8 +48281,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/calibrar/": {
-      "hash": "c16ab8b1f5512d1a76bc2bc7f44d40edb4e44568c7b07b52b024f5bca69182f8",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "2ce85b8e4435e9299364f9792de93f6bc0f434c5773f272b14bfa1980431a858",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/calificar/": {
       "hash": "6dc367c31f4aa867153e96b1d8b48cb0c00f13ad6f1b1f7b07ae369f42b22371",
@@ -48279,6 +48307,10 @@
     "/reference/spanish/callar/": {
       "hash": "a843d613ca2724188d02b8e430d0702cde6c10d31bc42064d9e36f8e98c0efa5",
       "lastmod": "2026-04-18T14:39:02Z"
+    },
+    "/reference/spanish/callarse/": {
+      "hash": "207b6a33316491201bfcd2c220af26bac438104c61596fe1240e7ff856e6c377",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/callear/": {
       "hash": "8c654008741566260197962775c311617d58a9594ef7e8e0b5c2e1eb7e81620b",
@@ -48673,8 +48705,12 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/casar/": {
-      "hash": "c020973f184e54ff584f62b60e445b816bdacbf4911bccc669a7c8148ca952fe",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "2962779f91064ad28587278c147438eb5915765a86281be824412988f6d2f62b",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
+    "/reference/spanish/casarse/": {
+      "hash": "6dcab1512f8b04665e5014b040501e00c407a8d439e82e6706770baf974e3c4c",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/cascabelear/": {
       "hash": "caaff491d04fa021cc0f9f30932d888a6178717afd91ba4f5045ef87c8a49dc0",
@@ -49689,8 +49725,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/clasificar/": {
-      "hash": "9972a3928f71233777fffb88f5d24bc52a543a5217e0c04fc68bad5dddd3bbd1",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "c346901545f537d1d554881006af9ca19fd771cf42514ba3cda3ca81616ad68e",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/claudicar/": {
       "hash": "006e50f810f24f1d2416d24f32d3846094ae38660263b500b236b21e22f302c9",
@@ -49885,8 +49921,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/colapsar/": {
-      "hash": "dcda578685e6377f0d0b4cfa62e4e8ea686f8932cdd2be00f30f514c6e72f2ab",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "df68a5caa04e971e01b6eff04a52a26fc9e669ddcef60aeec05f65e559d71b9b",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/colar/": {
       "hash": "b949962bbfc3aecc16f14f51e9f071a2d0495620f8df499a4f16be2c90671d11",
@@ -50101,8 +50137,8 @@
       "lastmod": "2026-04-18T14:54:49Z"
     },
     "/reference/spanish/compasar/": {
-      "hash": "03f8c384e888828d1db3df747b86c1bb4fb1aa1cb7d19e227c2a6aedbfcdb4da",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "7ec14412635da1090ed044ec79b2c572f8f7a48c428740840cb3b0cd63d90d0c",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/compatibilizar/": {
       "hash": "03641685caa71f1195f8c8c9a605287b2dba0354a5e4953875ba48861e5d7218",
@@ -50253,8 +50289,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/concernir/": {
-      "hash": "8a58d686a2e6469989be638961ef3ff2871ca979e5efc25dd77c93a811e30231",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "9143a00d4885f924f84971e509dcce36b9d830e1df0a2314b945069d9d870ee6",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/concertar/": {
       "hash": "a1bf97de1a69346e640f2decc5255b63df33915c24f059a0f669abe701ce1371",
@@ -50285,16 +50321,16 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/concordar/": {
-      "hash": "17bbe222d1083f8bd76fc048d21cfad26afffa9a7f46cded7a56149c2673d680",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "ff8a3831e44277b480f665eaa964b2402b9142ac9dfc6814ecc11cf4115ae1be",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/concrecionar/": {
       "hash": "7d599c30a5e4255858ee7d1e9f798b9d2400ff080b117db41c8554ca5d3adbd9",
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/concretar/": {
-      "hash": "98f54152441ce20b51b783fbee0dc16504113a0d257e672b265a3973a79e9f95",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "4ea956429650ec3b05fa033faf2437dbeb117fb66c8cd4aeef74e72d7eb0c173",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/conculcar/": {
       "hash": "47cb9c1ef85bc7ee1cc9956519f78d63a801551fae51624f89b1b7c29cb12566",
@@ -50533,8 +50569,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/conmover/": {
-      "hash": "2df6f437133dd4e8e7dc7c83a521b083d6bade816c993957c8dec1aecfd33aaa",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "8bd9363deeca66b7fcef8c738599552da7c1b47b13db5dff66b60a161b410eda",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/conmutar/": {
       "hash": "7e02cf437498847408aaa8452712485d98824af94f2134e53c62530e55b53eb0",
@@ -50555,6 +50591,10 @@
     "/reference/spanish/conocer/": {
       "hash": "81c68f280cb92a3e391ddf2759feae21717d31b6e128ca65abbce07aee563632",
       "lastmod": "2026-04-18T14:54:49Z"
+    },
+    "/reference/spanish/conocerse/": {
+      "hash": "461b21612dcdb03835859c8657ec9847fb8597482dce19947c955dff3f1411a4",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/conquistar/": {
       "hash": "ffc08b818d071ce0229e0939142447be23f2bb0054d6587f42d50871cf4f6948",
@@ -50577,8 +50617,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/consentir/": {
-      "hash": "461190be3352352360652bd923dca63f817972ed7fa19a519e0776c9e6df01ec",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "2d93a556e67262715b1b31c594d2265254a9ecc71ab2afc7c1d240028de5d1f1",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/conservar/": {
       "hash": "936665bd1a084a7566090c136c403378582ae76d17dc79c49367af8e2c88fccf",
@@ -50597,8 +50637,8 @@
       "lastmod": "2026-04-18T15:02:24Z"
     },
     "/reference/spanish/consolar/": {
-      "hash": "e473535728b0b31b4cc0542dc01eb7c5002e006350254fca28631f3f9dfbdca7",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "5fbc61f6084654706872bff55d4b788711b141fecc1ddaafcaca6d0a24e74854",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/consolidar/": {
       "hash": "6dae8764e4895512ba6fa7e70a39a2220f0cd811b609dc1cf4c050897bf65332",
@@ -50757,8 +50797,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/contraer/": {
-      "hash": "7b654325894d9f8f888a0f365299f5a0a37fc0971c8968a7faf84c32c3bdd112",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "9eab4454eda92b27686673cf737f80c34dd216426310369b0c671af6e39ad173",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/contrafacer/": {
       "hash": "8acfbd93942d54a48981deedc1efe14933728e83f9c07a7c969299ad030e8294",
@@ -50813,8 +50853,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/contrapasar/": {
-      "hash": "37da56bdfcdc4df8462046e045b500d60b0fdf274b0ba3f8d07eb52c1d8505d9",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b2def88d41d7c74450604099a47ec564ef1ccf3cc64b152378971df43de9ed83",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/contrapear/": {
       "hash": "a8ab7cbe670ed7e3c10259f768f7d72e97862c834f4fc9981d8f0fa3d88bf2a5",
@@ -51584,9 +51624,13 @@
       "hash": "de50b9bd18afbc2f24efd9e84ef8424566b2f2fc090bd55cc88b7eb0d480757d",
       "lastmod": "2026-04-18T14:39:02Z"
     },
+    "/reference/spanish/darse/": {
+      "hash": "c4d719211383df9aa61532ace6d8e20b2e5019c55ba0fedc3080957ededcef5b",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/datar/": {
-      "hash": "484467578fb630962de5cb4619fd5ff8b8831a83c41ac916a5701ff4fa6e192f",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b47926a0c4b1aacbe76e22c33f9e6d220bfddfa8c4cc54bca23d5dbc5980d3b6",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/davalar/": {
       "hash": "1eae20846a4c221409a2365c457c771d1e3a83c4a807b5572d967800e8658600",
@@ -51613,8 +51657,8 @@
       "lastmod": "2026-04-18T14:54:49Z"
     },
     "/reference/spanish/debilitar/": {
-      "hash": "3c0272ff1fd28218098259a3bf7213e3949bae39730619f1f5ae365fa59f0856",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "f906996e1291c4fd1ebb842e8600107b2661f31190d09fb205e3acaf5cda60d8",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/debitar/": {
       "hash": "e66f4b43b6d9071083d1b68a7e77b9e82e39c731b8b1a08bea0bc6424b9d85bb",
@@ -51669,8 +51713,8 @@
       "lastmod": "2026-04-18T14:54:49Z"
     },
     "/reference/spanish/decir/": {
-      "hash": "4bb438391edd3deeb1e2b5508230143a88fcb3552ca024697d4c9dafa5079dff",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "327dfb8c2dd6a925dcd7c365823800a65c5d7458681873d2c3374bef26f3f237",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/declamar/": {
       "hash": "4ce09ebb0ec8a206b1539608bce87748ad59497b3a0c5d4d44b75c5c98b8660a",
@@ -52037,8 +52081,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/derretir/": {
-      "hash": "c8bb0b2fece54d76d9f1ef67ef3eb5c49fc8befa2f234d05c6c5c240f8c03d27",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e186cd7111caaed75e1ccf5fec90d607ea2e3de49d4dec1158ea94297323d188",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/derribar/": {
       "hash": "8541293977b55d0bc63e2741cea78471d010e48151e341f036af5d0ec5a1e34f",
@@ -53109,8 +53153,8 @@
       "lastmod": "2026-04-18T15:02:24Z"
     },
     "/reference/spanish/descasar/": {
-      "hash": "ba558c89c40a18e5196ddc71df9f6be798fad9eb7f2ff59c31e1bd057c856f56",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "be150f017ac3b9f14859f94cc900d9da6f190b14ee6d368d3fd33aa7859dd890",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/descascar/": {
       "hash": "7648b748f4efabb9aac08b15cc240a435e263e0d5b9d4b3beb8f9bd400185ebc",
@@ -53197,8 +53241,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/descifrar/": {
-      "hash": "0480e3d24d5a2e1199277bf97636beeabcce4bc6558f3f1fa0c43b290d3bafa2",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "9737f43bee6f8feae1594fe8cf36561f508638d015a5d77387950c141ed2319f",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/descimbrar/": {
       "hash": "7b0035af8f56d4f83dcfae428a42f376635b9ab565f9287df52b15273bf61a06",
@@ -54077,8 +54121,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/desengrasar/": {
-      "hash": "ad960406ef2a78b250afe0566e07c0b7630fbbbb0a2d0b5fc37eac88d707f1d0",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "25707bc33b1f7048b93b7c0da700fc111095ecb38718122e3b92789dd343f526",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/desengrilletar/": {
       "hash": "36e6afa844de49d7748990dc167e37e0caf70729d1bcb79c76b99617dec9377f",
@@ -54365,8 +54409,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/desfasar/": {
-      "hash": "479c35580f29812daeb76cf3fb1a297ed71fd844a2b81e888ef040554287cd8b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "6797a0a6d972fc5ac2c9d720443e0860cf86a7961ce812433c16b47c162de73d",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/desfavorecer/": {
       "hash": "8cc8eed47f77d2b6e9974ef67c596a4083e3eb93863268e6704a24d7392e7b3b",
@@ -54517,8 +54561,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/desgrasar/": {
-      "hash": "6f8fb2841b0d6cb393de6a04450a62abbd0af30aeaae51ce6e70fdfef3250bd6",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "3ba9dbf8079da540e2ecf7f80377293843930fd40ddc25f19c9ab987e26a08bf",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/desgravar/": {
       "hash": "7ae555eeb4ed016fdb1538e4e3e4cb375afdca56457d9b23b51a46d4fc280010",
@@ -55081,8 +55125,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/desnudar/": {
-      "hash": "a869e03e011c2d3e50bb1d7c80ed7ec7511625faa631670bd1e7935085503361",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "dfb5cf10ebf16f02fb2c4eabdd330e7716e600306411b228599d8ff340984851",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/desobedecer/": {
       "hash": "e42d0ea5d4457691541a62e1e73fdd9a7741ea6f7ed7ded09e20fa525a249a15",
@@ -55289,8 +55333,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/despasar/": {
-      "hash": "577513a0dfdac7276601c0b7263a24483f4a45bb2f95e4637472aadc596771fa",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "0831ce9d1b0667cda9547fa509c5fa151260151b62659a49701b39a32f6613d5",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/despatarrar/": {
       "hash": "ec44b4dbe154dde24b0fce09f9d0abc17f39b8a110094de4d02a80f9c5514a84",
@@ -55395,6 +55439,10 @@
     "/reference/spanish/despertar/": {
       "hash": "f899a9844bb09a4b092d3663af25a49257a542adb4223d9e3dd308c37e182147",
       "lastmod": "2026-04-18T14:54:49Z"
+    },
+    "/reference/spanish/despertarse/": {
+      "hash": "447a98a8621ac1c7c9d825e306bcfe9602364cd5371aaa54b2769957a8e5cc46",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/despescar/": {
       "hash": "4612ce6027d4e8349449565a15de7dac7129341dcd730bb9ac3feebb4dc9a307",
@@ -55557,8 +55605,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/despreciar/": {
-      "hash": "99a910bfb5e9dfdda5d18b9ab63ba45061e517fb4ee487fb7300c9305e147a25",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "f808368e228c2ffb5ec74d7db3a4ba4ed323af0c052e39339cfafdab624af5f8",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/desprender/": {
       "hash": "c5b6d3f25fd8905fc2dccbac626d0dfd81814ef86aa1b3c63cb5882fd1e93087",
@@ -55925,8 +55973,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/desvanecer/": {
-      "hash": "d41bec44e535d48a7aafd1df04760a5d2000807cc9fd765563f90179426dd996",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "a06ac3e03c9dfefe61ca3ba5f708e1bdfb9141af3ff3751d08d4f3916b7bbef7",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/desvarar/": {
       "hash": "be0b7c73040c610b61c726cc7366bfab29fd5ce06c44f1e96b57d198b9343e0a",
@@ -56141,8 +56189,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/diagnosticar/": {
-      "hash": "199186a3df6c3e22d315e28e7402ff360f82a7a769fcda40fa6e40b11513b3f8",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "9296eda05fb412ac72a6f1c0405ba0d855f3f7f95adc6117f0eed231f9b913d2",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/dializar/": {
       "hash": "74d5cc6350d501b4e9857fe3cf6df1c49c4758e034d4713541c7b10d96b6ef95",
@@ -56520,6 +56568,10 @@
       "hash": "6a3ba4590d6704ce00be073ddc1cd8adcbb35ef8221d499a4b366218cf15f9a6",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/divertirse/": {
+      "hash": "83edd3b0ce2812eedcee4bccb6edb0ea5756c6425aca131fbeaf279a36d0cbd4",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/dividir/": {
       "hash": "0ffa1fb3f94e163390bc3884e82606ee5348c4b77f009c601dbf94eb45d0e0eb",
       "lastmod": "2026-04-18T15:02:24Z"
@@ -56620,6 +56672,10 @@
       "hash": "de098b8c8b508d47a3cb652b11861166d8ef59417abdfdd5a43ef213e7d96155",
       "lastmod": "2026-04-18T14:39:02Z"
     },
+    "/reference/spanish/dormirse/": {
+      "hash": "54bb65fa543dca20e7c394af387affef5aeb18ddd4df753e5635f384ddd841d5",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/dormitar/": {
       "hash": "a3ba624179a815f0df54d7d7cfbd76f66e4801de29511efc95caf01346afada4",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -56697,8 +56753,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/eclipsar/": {
-      "hash": "530d8174025e6c031bd7cde5c8a9f9c5440f90e2c3345b7b714af3519085aaf3",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "1998ee6dd3bf1b264508cdbcc9bc11e71e655656d1519cace1029d5af0f646cb",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/eclosionar/": {
       "hash": "86f2a7f20827598956a4bd007b70c84ecfcbdd942c1e962f2e1ae207d8af8519",
@@ -56725,8 +56781,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/educar/": {
-      "hash": "c0b1ecad8f6a996689809350c3817d9cb37fdb0262bd38ff5e877e0b07e67c7d",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b3df06631bb738b4f7c3f01ffa126ea13ac0a31feb3a36e048c7fe6ac257af97",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/educir/": {
       "hash": "f796a27a309316ead388152823f84d0198e2c468ef06af0e9d079e9d536fb48a",
@@ -56909,8 +56965,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/embarcar/": {
-      "hash": "49a32561754f9bc2992c7c764c7df92b0ed5c83888f3c113cbac1037216e4d4b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "cbba98f3dc5f9666c83303f131b747cbe81e481c5276d5ae6d6aea11c9888e17",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/embarcínar/": {
       "hash": "31eb2eaf3dff9d0ffcc4ff534a13d4f0512edb203e155fb2c094ac5b9e33c3d6",
@@ -57273,8 +57329,8 @@
       "lastmod": "2026-04-18T15:02:24Z"
     },
     "/reference/spanish/emocionar/": {
-      "hash": "3c8519a95333d3952fff6211666b029e56de78253e56ef45a4b0eece9bc10168",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e756376554c53e120fa9bc680496316f17e998c0d9d93de58230121f047f6225",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/empacar/": {
       "hash": "65c2ee1f85a0081077d83d11072f6b48c6d866f1960957da5658bc8d15e3ddfb",
@@ -58085,8 +58141,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/encarcelar/": {
-      "hash": "0bac5b8b8d727dd3427beed0322d915ba3f333ad9aeb9f1f6398412d9f2e6f6b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "f69a8ac4ebb2d9b8fa9b5e6d31a42cd51190ec329aac205c186be1b6bb2c0180",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/encarecer/": {
       "hash": "2bb6b347c77efed7d8205066839a885186837261a5d09b0821b9af1ee26fe77c",
@@ -58141,8 +58197,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/encasar/": {
-      "hash": "500c67c917e43a71d923a1cebe7e499489b73ecde12c464b32036a651f0bf362",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "83f021ca06cb925f336d22f6b5dc3ec9ef8cbd502ae8c4943ca2f75e3b4781f1",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/encascabelar/": {
       "hash": "4f6fc27fe33456125f7ff9a4cb9f95f77bd21ef28707f34e048684fa52b69cf3",
@@ -58480,6 +58536,10 @@
       "hash": "86a0289f9f181c4189727e3b4252c86bb23ff066b188206cf41aa319c33688f3",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/encontrarse/": {
+      "hash": "5e6bbbfec34ddbaa320207788601e0a041840e359b1cb34d0fad19a59027f3e1",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/encopetar/": {
       "hash": "3911f460b56bff2f4bde4c513dc4f9f4e22a4abd6c1e9d4858c8bfc00b5cc2bb",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -58737,8 +58797,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/enerasar/": {
-      "hash": "549705c727208d77c4fb7fe86b2cda57fb5f06ec938d7bd050e21dfb621a0404",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "036364cccb30375d6b1b980c0d50cccc59896e7d75dcf5c5bcc281eb43d4288c",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/energizar/": {
       "hash": "e3654b4be13e8902b0ff5be44c54d5d0ca1a48535c34b1cfc4295c718f6a3323",
@@ -58751,6 +58811,10 @@
     "/reference/spanish/enfadar/": {
       "hash": "92ffeb3a1d94b7d12fb972536b3e83135aa9c296950f3d361e7df3aa926734a1",
       "lastmod": "2026-04-18T15:02:24Z"
+    },
+    "/reference/spanish/enfadarse/": {
+      "hash": "46baf4ea41f0471f2b4fd86b75ca300bd1b9754848bf8cfd1c5b21523bbfeced",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/enfajar/": {
       "hash": "e8e6ef58c380351d40a5b796644919b3330e9834eba0842fd46d2f3af2bdf5a2",
@@ -58817,8 +58881,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/enfocar/": {
-      "hash": "515e0794eed6f7669973e974595bc5f4457dd275d71fc4937da90bbb11345f08",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e58d65ca52f884759d7063c23e5e54a302d2446d3eece9ab41d6d32ab9c3b88a",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/enfoscar/": {
       "hash": "2baccbcc9d1b988e248e8a1c1b75ee387afa66403d745940b97ede621ea0255d",
@@ -59073,8 +59137,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/engrasar/": {
-      "hash": "0ddee799c6a28875ab92344e0ef841c01a13dc0dd7c825fadfcde3696f37de7e",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e108c910c3fce117db4b845a9f24c3d19bf07011216d5e332afea72788e75d7e",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/engravecer/": {
       "hash": "a6153bfeb0df7d573bdb0a14132aaa00bd1789039040446fb06b622caa5f7386",
@@ -59625,8 +59689,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/enrasar/": {
-      "hash": "8c88fbbfb7139d98af8aa14418ac99f67c22184658828021efb8f08438c2a558",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "8e8de604bcb45c73d2724f9c277a8f44c348271b0478cc74c0acc8e4d14eedde",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/enrasillar/": {
       "hash": "2f4be7b06d2f21aa6c6d5a397e88c427deaa127584b7fa0bc5f57e3d9f927d03",
@@ -59917,8 +59981,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/ensuciar/": {
-      "hash": "907c3d64b6b578fe3c477815171e300c117dbbfb6bee2a9390ac6f12b3710cff",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b041187b5afc407cf4b15e73dcb582df1ba0ec71c641c54ad72acbdd3fcc4ee9",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/ensugar/": {
       "hash": "7c6681cad70f5cbe8c0c3acd83aeb12c4636e09a9d90431c4ebe6ce89a855111",
@@ -60465,20 +60529,20 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/envasar/": {
-      "hash": "bc8e4690988026f2964f7774e76c5537de7262dadc49b123adf3b74c88f9f206",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "bab9698581ffe8b8b70c0536051984961a09a9a7741211d87febf0ffeef3893d",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/envejecer/": {
-      "hash": "87c75d1cc1a28a67241fdddf71492bb014d1ab7adecc2864cdb83920a78ecf8c",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "a9b79d240705e2419889607641df3278a733a671e8b8dfb5e5a88c2e33058edc",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/envelar/": {
       "hash": "80a626010443028dad907c6b88ef4d46f829ce85f28aaa07cbf782fef3b990e5",
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/envenenar/": {
-      "hash": "a80848649db1ec39b098fcde50f3fbf29ff3e6f7bfc5c0d224085a0d3a3e4466",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "eb938bf55a2b19a9be42556a23fa4a274e8998a3a9d0820a8ea9bf3a5a20ee87",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/enverar/": {
       "hash": "77bb81bac1dcb664a21fcd51dd661b8fa088344f9a91bdc9cc6b7835dbf15f20",
@@ -60652,6 +60716,10 @@
       "hash": "5b200c10ed40a9c026930410f94eb482bfe9c7758800a11910a1ec605574911b",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/equivocarse/": {
+      "hash": "3e7312e0ba03318b78cc78ff0c61c120d87ae97a7bf12f89e031fe27c47382fc",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/erar/": {
       "hash": "e372dea7ae12355fd7d3b8dca704218ea0df8c02c723d6c5a6cf05269769e4b4",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -60753,8 +60821,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/escalar/": {
-      "hash": "170cc7b9189685f7f30bf8e77c542823058f54a2e994ac836f35143d8fe58eee",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "76dd3001fd0a5e03a2267108b030ec193e25bdcf55a90be7dd6cf98a6aafda5a",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/escaldar/": {
       "hash": "bbcc5c2bd20cb1698cdf0b4117e2b9baf6fdb7cd8074b07bdbb07b3acf7a633f",
@@ -61517,8 +61585,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/estacionar/": {
-      "hash": "d397bdafc30d6671ebe8c73aa03dfe71c724c30ec8acae40a213c77266ae8b7d",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "3e0ad5bc5cf3c58f4a90fe8f8c112bcf1e13c16b57d4f16b98599de0f1670541",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/estadificar/": {
       "hash": "82e30c67e7c886096488dee47b06da106c9311ce6cfe9486378523141f9c6155",
@@ -61849,8 +61917,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/evacuar/": {
-      "hash": "67296a86ed775dd8fdcdc107e76e95ad3701143224b7a648c74da4e7841c74a1",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "f065915b945b123485eec84cb1cfe817eaf2e0b71e9c5e1f5dcba8530a5d2a6d",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/evadir/": {
       "hash": "a71cab008cb2b78be455607199d1dc9619c6163a6513a26115a1ffd761b21d7f",
@@ -62528,6 +62596,10 @@
       "hash": "9e99c380f870a12a8c401241bdfc1ea95b8c98069e213175443a0865fa03edac",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/fijarse/": {
+      "hash": "10accba44cf3d22bb111db62f7663956af5fd419be2f8f289c5357ad473ea729",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/filetear/": {
       "hash": "7083a3eab8d5eeea6a161d510cf8e5d5f33955e84bf99d38a1b98d4837f48197",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -62545,8 +62617,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/filtrar/": {
-      "hash": "282844da4d5761fe7d23f2581c5ac4a69cf5035cb7f611893e9dfa0faeaa5f93",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "205c8f264fb310fa3c09926d6728725625508668062528eaf4b033ddf36c1453",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/finalizar/": {
       "hash": "aac14da89c1dd325ba248adf05e598dfbc15b4821c76d1c0ac060e0265392f10",
@@ -62677,8 +62749,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/florecer/": {
-      "hash": "b4cce087bbd9a28aee73c1044ea65e6a2f86b776ebb428cc66f0d2c125559f88",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "a41e77291bd6480b1e08bf82b50d60fd76cb1bc78c305512e00d55e976f52615",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/floretear/": {
       "hash": "dfa0bdc2ca58ceccbd5be9e48ed021c5f2e798c04c8aec1cec4b43ff7fbfad3d",
@@ -62821,8 +62893,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/fotografiar/": {
-      "hash": "b42c43e5ef688828a247e53960f732bc0a7f07dccf785249895295239e539e4e",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "1ae63bf781c684b951f3a45f291a3ed7817a73739d5834e68a04889302bf1b4f",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/fotolitografiar/": {
       "hash": "b1ca795306ae0195c7683157f3e16cc5ea1844d54edb92e7a784209178a47a60",
@@ -62833,8 +62905,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/fracasar/": {
-      "hash": "0e668c11f2718e0aeda28c7e842fc18d68d2fdcaa568c54ad8dc7e15f28f801c",
-      "lastmod": "2026-04-18T15:02:24Z"
+      "hash": "e516679a92285c3c787f5f57d4fe5668eba9709d607cdaf4cf4015942b95527e",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/fraccionar/": {
       "hash": "ff00cc29699d759a253d00cc2762a12f7ec2c330e00a649ca684970c458f7cc5",
@@ -62881,8 +62953,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/fratasar/": {
-      "hash": "9bea6678f049982f88d698c03a0ea68a4c04cacd6eaaa4ddc5a9340e1ccd7675",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "3f7405f1d7e6c595630e488cdb2d75d0af100316e0a305632f1caa1624f79218",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/fratemizar/": {
       "hash": "9200c68af77d6bba0897f46e5cada1bd14e4511c0b7c63f0c0e31d2fe20649e5",
@@ -62957,8 +63029,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/frotar/": {
-      "hash": "d3d4b37e5252962c7a42e9b5218a12159fda91801f5750b282f2b627fdc25923",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "ded4151213178aabb25b4e3d1b795188fa691170af47a221c707d2b3c9609402",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/fructificar/": {
       "hash": "c4833772d920ef876cf29cd672b626f76cb28625d08f0737cae9363017e121e4",
@@ -62997,8 +63069,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/fugar/": {
-      "hash": "6e3db7362cc205e462a7916c0cf7ac15ee5ad42447b845f1e4bfaf7d57c183ab",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "caf8121b1dadf1b3acd67e497d19629cba9d889f47a2593b4b527399f31ced2c",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/fulgir/": {
       "hash": "34fd379bd2a65307650b8a52d2cb67cd1225a751ad728411ebcead95e4d01e43",
@@ -63313,8 +63385,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/generalizar/": {
-      "hash": "14fffc11fe2b535246a8e9d0670637893854c3215630115516210ca2af07d3b1",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "31e27d35d0cbea75b2757c452c2bd8ddce59450d95ae4697415de5d0dd1209bf",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/generar/": {
       "hash": "4ade78ebd1a00a760ec12f167cf78b29b56719ce4121e8b43d6105a5373d0363",
@@ -63780,6 +63852,10 @@
       "hash": "d26e124b7faf0a82638f554595fcb4709beec31576bb06cb9c1bde19281186b3",
       "lastmod": "2026-04-18T14:39:02Z"
     },
+    "/reference/spanish/hacerse/": {
+      "hash": "26d824bb989160e065a4eb8407014978ff3891a830d4c67c91dc76a49e60efbb",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/hachar/": {
       "hash": "53a6faaf5668053350ec03599efec5462421257d97327f0640330f2956b49588",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -63801,8 +63877,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/halar/": {
-      "hash": "5c46184016538b99f0ed86aeb468757a46e8075ae3e57a0fa47586681a1a98d4",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "c5ce71b89cdd6fc5c7622347bed28005556478ac33333815691faa9f778fb046",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/halconear/": {
       "hash": "dd0a480a996b9587b449ee44223a30832165436a8ef485a74669ee77211beeb6",
@@ -64173,8 +64249,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/honrar/": {
-      "hash": "9a4879ce15635ec681f5cea0aadc6d1b5f59821f14ac61e47be1b4fa19f8fb67",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "c291d9745ab3abc414bf0450afe75db2be98c2b1bfd3944d788f022baa3983be",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/hopear/": {
       "hash": "c828ae48d8101f4f7cf9a4f1ef0a7e270f5f0ced437105d9349b539844d7bf41",
@@ -64293,8 +64369,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/humillar/": {
-      "hash": "a7ae18f089eb6fe643ef686f9d4d5917160516992037c724a606a9e4eaf0324d",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "965b02774abe94d9c620c594c756390f8e0fe0be884902f092e0ddc13a816497",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/hundir/": {
       "hash": "cddc80ec88f605d173b9793588f74a9d6f98e9b05633acbe17d3f2656125f16d",
@@ -64601,8 +64677,8 @@
       "lastmod": "2026-04-18T15:02:24Z"
     },
     "/reference/spanish/incrasar/": {
-      "hash": "db28d380bf2f8d6590b5a367b9c07c83e57eaed7f93bc2db16afca55c1f713aa",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "be665408d2b50d5bbd99ec973bedced9724f50173652083ca32203067e84ed87",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/incrementar/": {
       "hash": "fa1489163650d32e0e163b8ec42a2cbbc769296583fb0297287c3d68634813c7",
@@ -64705,8 +64781,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/inducir/": {
-      "hash": "57d6c92b32d6fd50b93e351b22399d293b47313e541bc8d16fc022d912eea7b1",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "286f11f8ea3496a377a01cea1a3fe0fc1367725482966880ebddabf1bccd71a3",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/indultar/": {
       "hash": "10fdebd8e952c89974b6e16fe396fa7e9936b028ea79edcd1e4a9ecdd21168ff",
@@ -64773,8 +64849,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/infiltrar/": {
-      "hash": "7c766fbadfd773aed590d9ef0e149a9bea3352ae7e1fc35bb55a514995897c6b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "9a3202ccbdba702ad68a5d164b7e68d6d573abc6ddcfd5340b25fd83e26ecf8a",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/infirmar/": {
       "hash": "2d8230ad6ef25b6694acc6056c6fd87486710dbdf5f2b273ba0a1d3aa62bebe6",
@@ -64921,8 +64997,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/inquietar/": {
-      "hash": "058cbbb5b531ab55f107feca97c91f06dabce6af5e9d5020f46fa03714c36630",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "acf75b142eaa778e13c921b2f6bb4a99825ccfa64a01132c1be960cb82a74ea8",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/inquinar/": {
       "hash": "2b149cd8f914f46eda5079adc6c2400833acd27da63d9aa81111d823a6456a49",
@@ -65120,6 +65196,10 @@
       "hash": "7e5beb03e745f30028ccb58f6b7535409a4bd20cfa5e12b8661a61ae2be1a0dc",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/interesarse/": {
+      "hash": "93d2708e5ffa68b373a75006fc063cae4a05ac9c1931a84b66a8d0043e0da121",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/interferir/": {
       "hash": "4ffcc41e9d2f6084951e73f24470ed520024337bffcded8ec836d00f36f2072f",
       "lastmod": "2026-04-18T15:11:30Z"
@@ -65201,8 +65281,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/intimidar/": {
-      "hash": "d667f1cc1adc2085a3c43f62a1fe861772e313bc109415d2dcaa0a114b21579b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "2afbe9c6538a53c3a3667a506bda444e0ee58a3b971731a23810caba5c515963",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/intitular/": {
       "hash": "17974de9184e8ba2b09cc42c3a6d4702f4e27f61dc9905e8798cf3232dd5e529",
@@ -65341,8 +65421,12 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/irrumpir/": {
-      "hash": "d230ae90f0839c360765a187c6aab0c049fa932df561895bb57e8d11f3516131",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "85d3a5e70f14be8b0189644957ea7d8c410cb543fec00f93b604509ee009b1a1",
+      "lastmod": "2026-04-18T15:21:46Z"
+    },
+    "/reference/spanish/irse/": {
+      "hash": "b492980d3b44aec34bfa7774751fd76477a283ae970e93f4cede9092067acf5d",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/islamizar/": {
       "hash": "774af43f9fe5574dbb609b285058a649dac7968eb90ee71273af8e00e14c19f7",
@@ -65880,6 +65964,10 @@
       "hash": "fd353005d1a3be349e5533195b0ece754a696f69ccc04c58947f238277aa4dcc",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/lavarse/": {
+      "hash": "f5fc84b6e6d8301724004788f12eece1d8a5c725d26142574621c0b34b1f5b3a",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/lavotear/": {
       "hash": "d78148c003abcf7ab88ba23a9a400084c526e6c0032a2dfa49fd2dab8dc7fb5f",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -65963,6 +66051,10 @@
     "/reference/spanish/levantar/": {
       "hash": "b700d6380fd1ecc6317c47ae8ab00dd5a8900a908708ac11ca484795b0f1b3bd",
       "lastmod": "2026-04-18T14:39:02Z"
+    },
+    "/reference/spanish/levantarse/": {
+      "hash": "fb674f5ad682011ef2a315d58cebe3336967f462ecd49f6ca2d70c583c528b6b",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/levar/": {
       "hash": "8f32ffb86b57275ce79bc76373e0221658214753954ea0cedca1508893562cea",
@@ -66093,8 +66185,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/liquidar/": {
-      "hash": "25fe225ab6c63dedd3914fdf28b69a6dd143558a8e74bdb254814f381c91aa78",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "ac035d0066783caa38277c426e34ef64275559fc04c82a5538abde7666adecfb",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/lisar/": {
       "hash": "2b44973154eb74191394404fb00b59cdf04ba8116e8f7330b71b617814fa025a",
@@ -66159,6 +66251,10 @@
     "/reference/spanish/llamar/": {
       "hash": "ca36dd3a05c2372a3011de1020d87f37cc3074c5877d04750eddfe03561f5d84",
       "lastmod": "2026-04-18T14:54:49Z"
+    },
+    "/reference/spanish/llamarse/": {
+      "hash": "2bb3efd2506b14b4b49c0c0115eb9688e4835c77e18bbc7bbd2f119373e790bf",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/llamear/": {
       "hash": "ba27e162da2b9603b8c4954c01f5c1e5472feded41b248171aedc229d6adf1ae",
@@ -66453,8 +66549,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/malcasar/": {
-      "hash": "4e856c0edddc48a127d4acc6e01839052c4b712f302b852e9c2eb8ddde996410",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "1a5cc18dc2e608fae903a1b30061680dd60b1890241a2c8be5d45a1bc3dcb2d3",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/malcomer/": {
       "hash": "c05b0558a57e0090c845c0d3351edacbf1b338a5ed71901279b7b17867b93828",
@@ -66469,8 +66565,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/maldecir/": {
-      "hash": "b7b285976b056e5365546f905454a98a3077af6447d46104a480cbd4bdbd21ff",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "978ec86eccdf8dd4a120162ec3ed0ede2a8dadcdf46a90ae5e4a75754c398bb7",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/maleabilizar/": {
       "hash": "dabbe2e29e6247501d7a13f7e852e48e681342682e4e3b0faf62692c05568824",
@@ -66893,8 +66989,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/masar/": {
-      "hash": "f241cd9e5069842b5c1281c9a7c79b6205fda04cda7aed015465c34062e67edc",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "2f202f1905997bb8607633db414b8afa9b294dc70e6d76b440007a7c4a0342f0",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/mascar/": {
       "hash": "dbc9bd6fc74741222c88536f1fceec5ec86aaa0ef028f6e0bd2bc8b7bfe88057",
@@ -67267,6 +67363,10 @@
     "/reference/spanish/meter/": {
       "hash": "d55240d4f276a732f663d99080813f18bbc2bd3e66398761144a5f068f9d96d4",
       "lastmod": "2026-04-18T14:39:02Z"
+    },
+    "/reference/spanish/meterse/": {
+      "hash": "b21de9fb0cc6b8a13da8942db3d80be3bf252da126be37e291455ded0d20f363",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/metodizar/": {
       "hash": "66d6c64ba78222b60c0393dc4dc3be9e26184dc6f06c7be43f7edc8f5e20da22",
@@ -67712,6 +67812,10 @@
       "hash": "e0c06a7be173b3dbb38225039bb707791117dc46340d626f250f1fd1dd523588",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/moverse/": {
+      "hash": "04136f40b39b7f62a4d84d42c0fa723ce04958c25a84c428a13b06271dfa82ff",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/movilizar/": {
       "hash": "17f6ae46d275136f55e1f9e9289f8c83914646bd6927ea5d2e99c7c2caf03069",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -68033,8 +68137,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/notificar/": {
-      "hash": "dfac4b00b61e421b361db071634f0cc7f15a241124c471deb932d005f562cd78",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "fbcc8f9e4b3f6ba7a6bf70a16b6d27c278f8a0a7ad79295829ac7dd801dc1378",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/novar/": {
       "hash": "334ff8ad3bc1808953ef50b5bfc1d17a06b2949ef26d20973709ee3610c0ed3c",
@@ -68061,8 +68165,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/numerar/": {
-      "hash": "efd5c7f658a9f7e5c9f93e053a7f5dc878b5d5141dbba15f26846fad73513b23",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "9662f2cf5e511136ee2e7e3da2a7a43d16a28da19a9f4ec69945c6a84348800f",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/nutrir/": {
       "hash": "4d32f6398d8880160d65a48222838c46290b6db1cdb1c353c526ee252a0ee58d",
@@ -68161,8 +68265,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/ocasionar/": {
-      "hash": "be216c7c1d3513e171f5ee229afefb316e2302f92b017bc713ccc8bac939f5bf",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "8ccb89d425932bd61147c9e421da93cdadf035f0f4c6f2fd716af1ef67210287",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/occidentalizar/": {
       "hash": "b00c53e5b7b3487fa05fa3a36409a36504079e35e15bc8dfab1d5a21a67909e0",
@@ -68195,6 +68299,10 @@
     "/reference/spanish/ocupar/": {
       "hash": "8ef9357d239a7d784eb3761e54c27b9039e8368fba2579ecde319abd7659a0ce",
       "lastmod": "2026-04-18T14:54:49Z"
+    },
+    "/reference/spanish/ocuparse/": {
+      "hash": "6f521cb0d9a4e70af35476d91305aa648e492314b4c0b094caf65d7c880cf326",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/ocurrir/": {
       "hash": "73742324116a9bd125c702f00836f507cebd05d8c8031f858f5bca7e30f08a6a",
@@ -68441,8 +68549,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/oscurecer/": {
-      "hash": "06f8c6b4cd00f4acae7e5dc4f5236e531ca344753be3a7b0748196aa833ab771",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "52ba7b107a7f0b0534d8dadd30edb540212df0b47bc7fdfefd0b1b3cc1eb05d0",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/osear/": {
       "hash": "33789a80bc852c1724015dfeabaa9715f50785cc442520f753cdd1cb8c01b7bd",
@@ -68883,6 +68991,14 @@
     "/reference/spanish/pasaportear/": {
       "hash": "9a8daef5c03430929574a010b114267f6474a79614ca98c04fc4e80dfcac4f51",
       "lastmod": "2026-04-18T14:39:02Z"
+    },
+    "/reference/spanish/pasar/": {
+      "hash": "ab6fb17cc2f399fc8a3ff73107c32eb1bc4de5d7eaeb7072fab8f1e38e8da7bf",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
+    "/reference/spanish/pasarse/": {
+      "hash": "2ce77a8dced2f1d266d25b509eaf0a9ad04856fe3fb70af394ccf12e0595a623",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/pasear/": {
       "hash": "de9195648a16414e302c260012b30c404c7f7c411e4b3198e7c194020b45fd25",
@@ -69537,8 +69653,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/pinchar/": {
-      "hash": "319507c8b64770169deaee06268db9dc867706e4fe66773203e34bdad931d2b0",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "c08fda016680eccb32e2da2cfad4fa7615ced0655e7a083e6a99c9dcf9ee5f00",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/pinchulear/": {
       "hash": "cc37f46f674193a18ebb5d9db7ad508cb4ca9a43742c6ae78d793e1e015c6712",
@@ -69888,6 +70004,10 @@
       "hash": "e1c399e1ef23a653eccccfc94378fac38326571ad1d2545695bd9a69d1062039",
       "lastmod": "2026-04-18T13:15:22Z"
     },
+    "/reference/spanish/ponerse/": {
+      "hash": "a0eb904a1febbe796da2aec10232433a5a0d405ae163232a709c47001d7459cf",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/pontear/": {
       "hash": "0d4cb8bce57c736579faf13c88d7e2484adb5ccca43c5128a79df3f969c8efec",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -69941,8 +70061,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/posar/": {
-      "hash": "915706e7dcbcf242319901888c8d995a8710f03fdc9a469c331f711c19205cbf",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b9e3cc238a87d6041d4b2af3f8401820559c096f98b8f7e16dfd9561bb881e61",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/poseer/": {
       "hash": "ad3df622cc0d43a7f750cab61bb3189b48afab1b2892b5b60e07b3ff8951e1af",
@@ -70241,8 +70361,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/presenciar/": {
-      "hash": "ea62f560754d81455562070efdcfc93c0ea6648bd25bada95cc181b68b40076b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "a083f74ccc8356cab2c6e9bff5ad6526a4ab0948a5212351af84ce7261bbfd44",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/presentar/": {
       "hash": "d61b9f4f92398fc84cbbad021256eab2437e96b8dddfb493779b5a366a323aa8",
@@ -70253,8 +70373,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/preservar/": {
-      "hash": "970079c073cf3039c48471ac26e4e99da8f3844f8442a1044809fe7e9d1830a5",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "68e82c00928404bb61011cd7ecfc177ccf4c1689651e1dcefcfcb9485154e836",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/presidiar/": {
       "hash": "07ba1df4eedb50de96b9f95b76865e131ae80aaf5f520ce2a95f561ec736396b",
@@ -70445,8 +70565,8 @@
       "lastmod": "2026-04-18T15:11:30Z"
     },
     "/reference/spanish/progresar/": {
-      "hash": "4850df84ed9a70712cd381d1f44643871fcd600abd8669c134c481e841d321d3",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "f27a6ab014b5e844c7898ab6a57ba330ffa35479a6cfed8d259f9d738cabef3c",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/prohibir/": {
       "hash": "99744316dc7e41973638bc6c4d4e5f898990fc36422911564d7a316206bd4dbe",
@@ -70473,8 +70593,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/prolongar/": {
-      "hash": "91199cf9a763f22bfe92368db2262c2e49079282999c2d7d9f6eb0a66e442566",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "a9d4c78def7f301ab58b1457694d33535b4bcd99e1fd9e090c69d40e2d0d8aee",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/promediar/": {
       "hash": "4321e7aa0f38f949c8aec892b3ec7dd5e0e5fe8fafd47a99d4c67e4ac12e849c",
@@ -70521,16 +70641,16 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/propasar/": {
-      "hash": "52a193b13290004da920e119f297989c97cd7e21b39a682cb36d69c9a9ac105f",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "45ceaf015eb92f15d38ca41267131f99d1faf04d6ed35efa3b0ece386f8f2a34",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/propender/": {
       "hash": "c839911a5824fc855bfb564a3e2374dda481125f7c60d23a0f7efb877f430c4f",
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/propiciar/": {
-      "hash": "d618699e70ce53ba6634a0d50f15f5bff5a30fd995b6ae962b7dcb5c7e8d0731",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "bc6c3323441575239db1b04e7dc1860772a1f4a913ad5d9a787caebe26111bd8",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/propinar/": {
       "hash": "df24c298b14023f9324225feb23cfede2572d33042484bdc3c89ba499e65c53c",
@@ -70597,8 +70717,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/protagonizar/": {
-      "hash": "41b570dbc5d8aed7ac0eb9c5410457cdceb83cac87a1404a3ac9d7ba975d6363",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "8b6040d6174f10a42a2a128333d2a1566673e4d3197d464e8f2d2c3b498ed842",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/proteger/": {
       "hash": "23d2ebf3e6e4d0c70d9dfac9a913e9cc511f3d59dab46ea1727689284d2e1447",
@@ -70800,9 +70920,17 @@
       "hash": "9350782a072a7dec548219871971b194da899e5bc3d90c4c51654103ecf82edb",
       "lastmod": "2026-04-18T14:39:02Z"
     },
+    "/reference/spanish/quedarse/": {
+      "hash": "8aed7b82639b3e462497e1bab188e800b99d9cccf7e834cf8540f1c2832c2e5a",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/quejar/": {
       "hash": "da16bb56bd7a789046f19203189436dad175f56b7121473818c89c99fb3d843b",
       "lastmod": "2026-04-18T14:39:02Z"
+    },
+    "/reference/spanish/quejarse/": {
+      "hash": "965f74458a8fc3aa209a78738365f3e90f05cdde60a50f3156b95e22c778f33f",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/quemar/": {
       "hash": "99791a72c546ceb78bcadf5d8bec05c77463b548275d34755508aa92d884223f",
@@ -71065,8 +71193,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/rasar/": {
-      "hash": "9911e8ef82ca535a7af55e94d3412be9944cf5e773dfc5724798d34334f51cd2",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "3b93f0ef1891429d4c4b405767d9f34b36a20ecc3ead8ab20c4f48fbbbb29041",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/rascabuchar/": {
       "hash": "2b68dd2d6cc905c9924410dafca404480f1a6ad190a34678a628bd20d14b5887",
@@ -71305,8 +71433,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/rebasar/": {
-      "hash": "5b080edca4e0392fa90c35710c3e9c85bb8d39d985785746d292ed9e7ec10fcd",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "ded4da6c9a7c38cbd674786585c112bcdc511a3de18219c79e43a448f9cda0f8",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/rebatir/": {
       "hash": "9cf46ff02a11b386da4ef65b41950d2e1a60d4c26a1e4a8749e696892774a6d9",
@@ -71589,8 +71717,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/reclutar/": {
-      "hash": "17ff9031d072f10742d3c8c4d84424812552952ed0708c7042440d951fde3f28",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "ab8fb75a3f993c87975b547c25a75147d404795a2e55128d2ae4cd6eebc8c7bf",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/recobrar/": {
       "hash": "e419eb7e383d717a12bd7b681a5660a0333add9dd76ecff615e96323ab1655e0",
@@ -71809,8 +71937,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/redactar/": {
-      "hash": "f19497f871fc0e854fb3979f2966f75baf34d503db3279df2d9179f8209d8995",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "5235389f93a4fd9c16ba8096cc5632a23ef456e71831d749074dfe8f7703ec6f",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/redar/": {
       "hash": "547fc3c38451e6745fcffe819984d4fe3a9254eb2a72f195cdd5df94486205a0",
@@ -72237,8 +72365,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/regular/": {
-      "hash": "497a2178b7c5106b8a0a5337d1339b97a4727a36a5c11109878f958b518f1c4a",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "f896f5574eba9f86f263daffd35c33b513144b2933569b232963dd78f071d06c",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/regularizar/": {
       "hash": "9eb3fcdff77c8abdb552de4ec29d17232e6eb9e04d513b5611b0ce618661eff6",
@@ -72369,8 +72497,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/reiterar/": {
-      "hash": "715f80d3706559de5070b4eb09df9dc19aae51ea5c505cf421f8066c2b7e91b1",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "8381e768149a13b6e305195987a884a66da402156289337026c3901445c2c8c6",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/reivindicar/": {
       "hash": "4bfaad8b843744cb544685da5c6bf37e2d671b483c4e7fa7fb4ab0bc30ba1c9e",
@@ -72633,8 +72761,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/remontar/": {
-      "hash": "0578026ab2090888a34a957f92889dc60db683189707fa30cfd66b33e205fb36",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "3a5874f3fd8e52ba26e033c1089552516d5140a957c6252ba8ae9590cbec9d88",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/remorder/": {
       "hash": "96814e85ee611617f6fa8a584a10e3e378a9312c635b1f71992b912dd22c4f49",
@@ -72781,8 +72909,8 @@
       "lastmod": "2026-04-18T15:02:24Z"
     },
     "/reference/spanish/repasar/": {
-      "hash": "3e84d77e94f1d559f708f11c68352f52f79be0e6a16dfcc3ac3ff9623c8f644c",
-      "lastmod": "2026-04-18T15:11:30Z"
+      "hash": "0ac5b2677651b8549d467d50d2ed70a3d52fccba0116d498ad8a8c3507bc0bcf",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/repastar/": {
       "hash": "91af97100faab6480b8dece65b4d67993ae26fc32e17a3d2d142bdd56005e968",
@@ -73061,8 +73189,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/resaltar/": {
-      "hash": "26c3893276685472c7c88fcb917e652d023ded2f730fb56641a7b144727e3524",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "0e657980b532c62e00d18b99aaad9be967fdd659a6463428acb71b4611b9e3c9",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/resaludar/": {
       "hash": "12f5cae9a4c919977dd5f832e4156481062c27616ac66c0ca99accb9f0edaaa7",
@@ -73077,8 +73205,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/resbalar/": {
-      "hash": "d3ad0e7e91ea9b2ce3c6371042afb3b4d29c9cecff8635acf80a85947fac7769",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "18b15e6531118c87087d105d04c8e477be36aedf2965080f577e69f20657ef8c",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/rescaldar/": {
       "hash": "c5288bf2bc535665387157b965fcd168b038a4f6aac7e80d2536d2c23e62e39b",
@@ -73209,8 +73337,8 @@
       "lastmod": "2026-04-18T15:11:30Z"
     },
     "/reference/spanish/respectar/": {
-      "hash": "1353fed2d43bc6be230cd37e6a682b19ef2479852f5727c4896520c6eb30d994",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "65a07baf39a438e0b9e98e7ca89c7b47feded0a26c9be4e2a51152386624a7a2",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/respeluzar/": {
       "hash": "9bbbdf4d8d22c2030f681bea001732fd12cc637ffb2583eacb886e6d0d470442",
@@ -73277,8 +73405,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/restar/": {
-      "hash": "c3310147bc66bcf465a8b5597704df09c6520fafacba38dc99e0b0edaeee782e",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "74eee5ec123366b0c5560fa2b0c6026cbce37ab742928a4525e434b897725422",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/restaurar/": {
       "hash": "565d9921d3ba6becc1366e276add0c1a78e6f4d5c0f04e3da85cfec663835163",
@@ -73317,8 +73445,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/resucitar/": {
-      "hash": "69865e8f0019e8169d665c5bd098f6ed08f17a57f38c03ab595c41fe6cc17765",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "cc9e5d95300f85e96f9ad52752ba47bc3d1bffa6fea99271e276ebb16a4c0c6e",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/resudar/": {
       "hash": "ea0dbac5ee4514c377d7cf5bbad5d5ef651eadaed5039abc691a0ca20da0fc59",
@@ -73365,8 +73493,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/retasar/": {
-      "hash": "747eff60f4d9e428fb06e4b83310cd00d3e20ea9b32b90352e41e624a71952a6",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "18def45bd30e59beafdd86a0c2215c15cb2d8551078db41c5f3cf53cfdab3569",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/retazar/": {
       "hash": "e91e75c0b24b815b821957bf22008b16c12cf360d2e55ccaab664648c90e3db1",
@@ -73429,8 +73557,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/retomar/": {
-      "hash": "dd626058c53fe1a1d541b6da71936f85de515e3f2e91c1e2739276210bc3adb8",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b648067cd50e28077d379c1c89b2a011d5dba7b0f5d5b7e2c572e46aa0e490db",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/retorcer/": {
       "hash": "098f864d09e7589cc985ed2ffd851ae4f2054930d1aa808c4846842d98f531e8",
@@ -73489,8 +73617,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/retrasar/": {
-      "hash": "df3fe54fc01ffe2ba6b2b908f1318fd4f38a6685d77f63614b0fb129c72fe2af",
-      "lastmod": "2026-04-18T15:11:30Z"
+      "hash": "1ffcf717a2caf6bdfc4a40e0c64dc5e4f7e7090b71e4ba96ed025ea8b38e7e67",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/retratar/": {
       "hash": "ba17bc617170daf9be07b501f78483f4051bac490429524308c4210a0712c1a7",
@@ -73677,8 +73805,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/revivir/": {
-      "hash": "60b121fdea6f8ea77a1fc15a5ed1addcc91ba064da05319d363812198c5c853a",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "846e26cb87c5c03192531a29e367e11b36d2f66b1a5067c11f50825385f4a15c",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/revocar/": {
       "hash": "6759ad6a022e2168cd7d83e9fb9fe3af3f75664e1342dc39d06db8070592818c",
@@ -73705,8 +73833,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/revolver/": {
-      "hash": "21083a60aa3210c1f4948288ca6b99e2cb1b1062db6f505d7ee51e032dff2ea7",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "c4810be42f9a7b9cb1a46f5a98a64cd56144ac6604e90ddf9738ee3928215aad",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/reyar/": {
       "hash": "997251888915b756b61f8053eea4bac131c700ffbefb0ff7acbd06e078a06152",
@@ -74409,8 +74537,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/sembrar/": {
-      "hash": "44186ce202202a2563d10c971414dbfcba503f77b594dc4a24b31944d94bbc01",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "b12a2593e85b8477bf07b4017c29df0f0397111e7669da3c1665dc964dda0c6f",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/semejar/": {
       "hash": "babbb9b19ea3128c0950e9aa67f39ddb0343a95ddbbc16662063759f550670e0",
@@ -74436,6 +74564,10 @@
       "hash": "74ab46e3d149fb9516b0ac8a66fe6c3fcf90ccb90004becff81c8e68103e28af",
       "lastmod": "2026-04-18T14:54:49Z"
     },
+    "/reference/spanish/sentarse/": {
+      "hash": "e0dfc369c28f51ba49ffefcdecb13fac8f2c0a6bd93947ef9a83ea8037545fae",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/sentenciar/": {
       "hash": "6705785e4ba8d71991c8bce8156066c46269ce69d3e398846c5026c63ed539c7",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -74443,6 +74575,10 @@
     "/reference/spanish/sentir/": {
       "hash": "7b72b467423c6df6cf12f8a594abf9276a1cd6059db271830b46208b7bbb20ca",
       "lastmod": "2026-04-18T14:54:49Z"
+    },
+    "/reference/spanish/sentirse/": {
+      "hash": "fc393908fe11a7fddaedc6d6e5e16617d199dc1d482cf7edbcafa3ddd009c2f9",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/separar/": {
       "hash": "5ce8f1f769f71234921e92ead5277737565169d6c1539b5b93c0c05ea608c661",
@@ -74621,8 +74757,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/simular/": {
-      "hash": "a14baa81de340400e80454ac65a35a3b0a0d5d11c55e230199e7444b6128640b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "718c2b474712600a6a12fb9642dfcd214cc520b8b68498a04521735f3da314f8",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/simultanear/": {
       "hash": "396f4f7e87f7c1e1097e8bc7747a23cb02a24545d01816956a2762b019a79eb8",
@@ -74709,8 +74845,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/soasar/": {
-      "hash": "cde29785878065979fb4db08bdb81037ca7c7f01702320fa37f815985621960b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "0bf340626042fd89cb952940a727eaa3dc5d9fde4de78c122ab5aa826e43d70b",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/sobajar/": {
       "hash": "854f9a858f5180190b2c56a3737dc3090efba7b11cbe138d3d89ab8cd0fe4700",
@@ -74745,8 +74881,8 @@
       "lastmod": "2026-04-18T15:11:30Z"
     },
     "/reference/spanish/sobrasar/": {
-      "hash": "1e5c848ea64bebef70edaa0f24e67780053b37ef13689ad0c3e1d7f1bb5fac69",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "cbe59a807e6f6e44015a8c99730e4af2cd123f0178352445fa10de03797d6fca",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/sobreabundar/": {
       "hash": "56f078d209e72e27d4ea2eb47344cb1b554d5f19c54ce1f779b5557675c022dd",
@@ -74769,8 +74905,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/sobreasar/": {
-      "hash": "1491d59621004e7ebdabcd1f5783db1321e85bd0c608f50fabb5e3a603f1a28b",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "c6a80240cbe2986747ed045fdf2f4bb15712fbd419b9187c4ed5939d1f9dc71a",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/sobreañadir/": {
       "hash": "b317a663f6a1cd96725803d660344aa928726584208af3849e6c38d715298382",
@@ -74889,8 +75025,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/sobrepasar/": {
-      "hash": "af606842a047309c447fcbb5c555f8bffb7ca80efed6223fc6516480fb187306",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "20010d2391afe5cd042d7da3c5c3672d721a2848a2888a7b7f6e809189dc37a4",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/sobreponer/": {
       "hash": "dd843d9c22427db72aafbdd357fe07545d6962f85b71fd35fb21640216f03cf1",
@@ -75389,8 +75525,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/subestimar/": {
-      "hash": "d679f46ff4dcaee55faf9c18b6e68a10095bf8bab032ab7624ece9c8472ad62e",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "09b60e3e5da4cd799fd2362a4cad576acb4eaa6c18cb340e750f9378f2d3c7ba",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/subexponer/": {
       "hash": "f8a75840d418ebb05a833b9d06dac600b2a934595a0e0d0d85553e380fe57737",
@@ -75569,8 +75705,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/suministrar/": {
-      "hash": "690eaaa5b33f1364f7a901f64ea31c0ad4937f8f1786e6bbc7261477d6f369cf",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "11329399e84d04b0076a019a938dd59a07a850535a4748e89744f2e5784addb4",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/sumir/": {
       "hash": "2b95570a1ceee6fef79016f17049974d1f918dd9b4b52d94e5c907ce95ec05f0",
@@ -75621,8 +75757,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/supervisar/": {
-      "hash": "bb21f0503549a71304a37fb641c5e4c63d6accb306553842650e461a1b920de9",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "bcb356519abcc3fd6c1cf5707d09267856ba005453d265e288e81d7ba1813384",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/supervivir/": {
       "hash": "d9756772e74c78a87ffd0e4ffc90eec0c0d5ff01a0764c6ec64a4b8d6369cdcf",
@@ -75693,8 +75829,8 @@
       "lastmod": "2026-04-18T15:11:30Z"
     },
     "/reference/spanish/suspirar/": {
-      "hash": "3de92a88714a90e14c9f11da26b65d523e59e6e8e5b988e13d6c46e5906bc6e9",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "4201f83fc08c770bc4c304b014911ada4e9562d79f2ec537b4ebf2f3e462c243",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/sustanciar/": {
       "hash": "921dfac4d492f525779aa52fb696dbc55fecd91ddfa23808a1d32640f6469e18",
@@ -75949,8 +76085,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/tasar/": {
-      "hash": "2e3607d862a23bd570b097d280497e1d1622924d9c629919e408f0aa48075bbe",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "0c361dc768abdfc86f19ef7999ecad2bbe749903e3c150839a0d7190f52489c8",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/tascar/": {
       "hash": "16e23dc77368f79567f75d1de49dcdd3bf006af23ecb0490c9f57ddb3497aa52",
@@ -76105,8 +76241,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/tentar/": {
-      "hash": "ffc81dbf5342aca9cf09980ecebb91ad6ddfd25740e7ddadabdb6b18d3679df9",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e67695350cc2dc699cac90adc3b1dd07a53268547e5c9d76868a51eafc69f6c8",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/teologizar/": {
       "hash": "906848825afef9028fee172f2b850e43163995882633c9140251199f8f9d00fa",
@@ -76373,8 +76509,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/topar/": {
-      "hash": "10a1a2d29aacb4f6a021688eefd9fb20d9f7a483da12968e051c2ed93d3d8876",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "3cd5a80ab8f57e7f4a2e3fd92975cfe6458db98cfc817b3537e1837abb16a68d",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/topear/": {
       "hash": "a35b1ef500f3864967fe6138526c53baac5fe0b7f073b9331cbdd86da01a7df4",
@@ -76681,8 +76817,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/transvasar/": {
-      "hash": "7ca1da5be4fbb86a08a4291870f5fb504707904478faf270f0f56272d2581553",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "63594c36576b5a6b1b5cc2207afe9e75d223688abe3d8a923ee32e5bee78eefc",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/transverberar/": {
       "hash": "916d2e8b096518c0a3190009f2e02d3fa3fb1c050853638aa86e92e57f892a83",
@@ -76909,8 +77045,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/traspasar/": {
-      "hash": "509c3868ebac5c711f821d4800cdd97c1136e4975f3c7a104f7ecd3169db2ee2",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "54d50d498e14dc933e95225ee06edaadeb54493d773ef24022916e1c910f9e31",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/traspeinar/": {
       "hash": "d41929bff8def75565a595a655d5a4f6708aa2343e4fd4a4237a634a9164a2d2",
@@ -76997,8 +77133,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/trasvasar/": {
-      "hash": "5f810a6d7330fcdabc0a2420eaad0992cf9fad386dc0e32a2d4d626215906f0f",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "6af13e63eff370d3e8f77e3e20f03e0a4b34b5074985e4378051626a981d01cd",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/trasver/": {
       "hash": "be4e17ac7668847ae36ef28429e6dce0c1b54c4d64d59611296f2bde7230fa51",
@@ -77269,8 +77405,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/tumbar/": {
-      "hash": "d25da501172e93bd6cb05c89542f6e8defd6c564132406fececf8a947a314264",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "0b41df69ea6b239047e2c800e4ca26ee49b6c34e08ebd1db7b22017261acfdaf",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/tumefacer/": {
       "hash": "9db3c9fe5140dec0be468aa19dfe6d041005cf5c4d65f3a9d2955696ddf01b64",
@@ -77357,8 +77493,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/ultrapasar/": {
-      "hash": "8d742602ec478b74a8be8e8ecf8a77b7fc5038803186c71bdc1189102148000d",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "85ccccb6fe839d40e5785e5c4fa497f391b829ea3cde59054afd5917652a2f56",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/ulular/": {
       "hash": "ca651bea67ad2121d8c8f33d06a42abaa4243317c3389354748db4b1dd0de8e7",
@@ -77736,6 +77872,10 @@
       "hash": "6afe28556bf46db3252e93cefa44a6620280c80c503f7422871a9409233f1f4a",
       "lastmod": "2026-04-18T14:39:02Z"
     },
+    "/reference/spanish/verse/": {
+      "hash": "69ca0549b4de57880bfeab836873c2e0757f0388ce8d49528d9b0fef29f313ba",
+      "lastmod": "2026-04-18T16:16:31Z"
+    },
     "/reference/spanish/versear/": {
       "hash": "19b5ef5323e9bd5be373454a6f5a1636551985fa30392c3e69f549b728a30173",
       "lastmod": "2026-04-18T14:39:02Z"
@@ -77749,12 +77889,16 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/verter/": {
-      "hash": "680b9c9078d39d588f5d7328f398671c5036e40438931199b797a534b4374154",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "18bf1e1aa2dc266eded23df034e884ad19884b61f6e513d9565f43cb108060c3",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/vestir/": {
       "hash": "933599b44ac65ba95f0b5ae4ef63c17b28245aa38b8fb67fb3a5f3c4e455b428",
       "lastmod": "2026-04-18T14:54:49Z"
+    },
+    "/reference/spanish/vestirse/": {
+      "hash": "09eed7c52f5bb929d5bc6a8e918899251e6092fbce95d2e5e2902f91a9a0d84b",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/vetar/": {
       "hash": "ba16f803bcfe329949e6f236dcc80dd84f64ef69cbaafd0ef6d4d81e8d5857e3",
@@ -77953,8 +78097,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/volcar/": {
-      "hash": "d44ca622a36a51f60d0fbeab83c0c33f2b8aa9d3413ec293efacb7a6e0ff6a42",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e40e9795ab814e6b68fc2ded9481ed03277743b331a43f288bae8266cefbe5bc",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/volear/": {
       "hash": "2a6d2dd5fce61f81bce39cfbd5f73e0dd1acf2e1ee8ce5ffd42e99e20838ff5b",
@@ -77965,8 +78109,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/voltear/": {
-      "hash": "daf9b814da0eb04ffa5bffc4e747d7bf4feb84b2a8549fd27c34024046502d51",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "e03d3593b1102b66b95bf71bf7335b9b54733c9a6769a1230b58ec691eedbbb2",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/voltejear/": {
       "hash": "f5382af85adb9abab524132c956d2f510a6676567af9b26da43c67e02159f9cf",
@@ -77975,6 +78119,10 @@
     "/reference/spanish/volver/": {
       "hash": "2c6240b5fd07fa2984236defe65f11570031dba684216c4ad034b00d51462c0e",
       "lastmod": "2026-04-18T14:39:02Z"
+    },
+    "/reference/spanish/volverse/": {
+      "hash": "06ea57488aa9b8938090cf79c6e424b5229a1ab514a92082885f716b0970c589",
+      "lastmod": "2026-04-18T16:16:31Z"
     },
     "/reference/spanish/vomitar/": {
       "hash": "58585e5b7e38727ea7a7a3bf09c4b898ea8362f2090d4a377cd2c5378c7cfd7a",
@@ -78017,8 +78165,8 @@
       "lastmod": "2026-04-18T14:39:02Z"
     },
     "/reference/spanish/yacer/": {
-      "hash": "f01a76b0f8bffb20dbb56ad6e02ddea8b48c0847bb9ad47bcff8f857de6609ec",
-      "lastmod": "2026-04-18T14:39:02Z"
+      "hash": "16956df36620564e4c23f7b2042d584c3e60b2cce98364e6c7edf91d77d3acae",
+      "lastmod": "2026-04-18T15:21:46Z"
     },
     "/reference/spanish/yapar/": {
       "hash": "cabfbefb0c6b52404cceb1179e7b5dba86ecbf5c843b428abb98c7ee089ec538",
@@ -81629,6 +81777,6 @@
       "lastmod": "2026-04-18T15:11:30Z"
     }
   },
-  "generated_at": "2026-04-18T15:11:56Z",
+  "generated_at": "2026-04-18T16:16:50Z",
   "version": 1
 }

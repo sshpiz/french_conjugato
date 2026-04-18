@@ -14,7 +14,7 @@ function appPath(relative = '') {
 
 const INDEX_PATH = appPath('index.html');
 const MANIFEST_PATH = appPath('manifest.json');
-const FAVICON_PATH = appPath('favicon_big.png');
+const FAVICON_PATH = appPath('favicon_ukrainian_20260418.png');
 const VERSION_PATH = appPath('version.json');
 const LOG_PATH = appPath(LOG_KEY);
 const TTS_PREFIX = appPath('tts/');
