@@ -1530,6 +1530,11 @@ html {
   --tutorial-heading-color: rgba(88, 112, 136, 0.86);
   --tutorial-body-color: rgba(47, 68, 91, 0.96);
   --tutorial-body-after-color: rgba(69, 88, 110, 0.9);
+  --return-message-badge-bg: rgba(31, 89, 100, 0.1);
+  --return-message-badge-color: #2a6a73;
+  --return-message-card-bg: rgba(255, 255, 255, 0.58);
+  --return-message-card-border: rgba(94, 120, 143, 0.16);
+  --return-message-body-color: rgba(52, 72, 96, 0.96);
 }
 
 .tutorial-inline-text {
@@ -1581,6 +1586,60 @@ html {
   font-weight: 500;
   color: var(--tutorial-body-after-color);
   font-style: normal;
+}
+
+#return-inline-message {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(3.55rem, 23%, 6.1rem);
+  transform: translateX(-50%);
+  width: min(78%, 410px);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#return-inline-message.hidden {
+  display: none !important;
+}
+
+.return-inline-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem 1.05rem;
+  border-radius: 22px;
+  border: 1px solid var(--return-message-card-border);
+  background: var(--return-message-card-bg);
+  box-shadow: 0 18px 34px rgba(24, 44, 70, 0.08);
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.return-inline-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.85rem;
+  padding: 0.3rem 0.78rem;
+  border-radius: 999px;
+  background: var(--return-message-badge-bg);
+  color: var(--return-message-badge-color);
+  font-size: calc(0.8rem * var(--font-scale, 1));
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.return-inline-body {
+  display: block;
+  margin: 0;
+  font-size: calc(1rem * var(--font-scale, 1));
+  line-height: 1.58;
+  color: var(--return-message-body-color);
+  text-wrap: balance;
 }
 
 /* Thin rule above the whole answer+sentence block */
@@ -2738,6 +2797,11 @@ html[data-theme="light"] #go-to-verb-btn-container button {
     --tutorial-heading-color: rgba(193, 214, 236, 0.84);
     --tutorial-body-color: rgba(236, 244, 252, 0.96);
     --tutorial-body-after-color: rgba(198, 215, 233, 0.9);
+    --return-message-badge-bg: rgba(52, 97, 109, 0.34);
+    --return-message-badge-color: #b5f1df;
+    --return-message-card-bg: rgba(19, 27, 38, 0.66);
+    --return-message-card-border: rgba(114, 149, 178, 0.18);
+    --return-message-body-color: rgba(225, 237, 248, 0.96);
     --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
     --control-tray-border: rgba(84, 103, 126, 0.42);
     --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);
@@ -2770,6 +2834,11 @@ html[data-theme="dark"] {
   --tutorial-heading-color: rgba(193, 214, 236, 0.84);
   --tutorial-body-color: rgba(236, 244, 252, 0.96);
   --tutorial-body-after-color: rgba(198, 215, 233, 0.9);
+  --return-message-badge-bg: rgba(52, 97, 109, 0.34);
+  --return-message-badge-color: #b5f1df;
+  --return-message-card-bg: rgba(19, 27, 38, 0.66);
+  --return-message-card-border: rgba(114, 149, 178, 0.18);
+  --return-message-body-color: rgba(225, 237, 248, 0.96);
   --control-tray-bg: linear-gradient(180deg, rgba(20,28,39,0.96), rgba(12,18,28,0.98));
   --control-tray-border: rgba(84, 103, 126, 0.42);
   --control-tray-shadow: 0 16px 32px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(12,16,22,0.4);
@@ -3701,7 +3770,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260418_053737";
+      window.APP_BUILD_VERSION = "20260418_142200";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -4188,6 +4257,12 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                         <span class="tutorial-inline-body"></span>
                       </div>
                     </div>
+                    <div id="return-inline-message" class="hidden" aria-live="polite">
+                      <div class="return-inline-card">
+                        <span class="return-inline-badge"></span>
+                        <span class="return-inline-body"></span>
+                      </div>
+                    </div>
                     
                     <div id="answer-container">
                         <div class="conjugated-line">
@@ -4505,38 +4580,36 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
         <!-- Mnemonics Page (hidden by default) -->
         <div id="mnemonics-view" class="hidden">
           <button id="back-to-options-btn" class="back-link-btn">← Back to Options</button>
-          <h1 style="margin-top:0.5em;">Greek Verb Mnemonics & Tips</h1>
+          <h1 style="margin-top:0.5em;">Greek Verb Mnemonics &amp; Tips</h1>
           <div class="mnemonic-tabs mnemonic-card">
             <div class="tab-buttons">
-              <button class="tab-button active" data-tab="er">-ER Verbs</button>
-              <button class="tab-button" data-tab="ir">-IR Verbs</button>
-              <button class="tab-button" data-tab="re">-RE Verbs</button>
-              <button class="tab-button" data-tab="boot">Boot Verbs</button>
+              <button class="tab-button active" data-tab="present">Present</button>
+              <button class="tab-button" data-tab="aorist">Aorist</button>
+              <button class="tab-button" data-tab="middle">Middle/Passive</button>
+              <button class="tab-button" data-tab="irreg">Irregulars</button>
             </div>
             <div class="tab-content">
-              <div class="tab-panel active" id="er">
-                <h2>-ER Verbs Mnemonic</h2>
-                <p><strong>Mnemonic:</strong> <code>e, es, e, ons, ez, ent</code></p>
-                <p><strong>Rhyme:</strong> <span class="singsong" data-say="Je e, Tu es, Il e, Nous ons, Vous ez, Ils ent">“Je -e, Tu -es, Il -e... Nous -ons, Vous -ez, Ils -ent.” <button class="audio-btn small-audio" title="Hear this">🔊</button></span></p>
-                <p><strong>Example:</strong> <code>parler</code> → je parle, tu parles, il parle, nous parlons...</p>
+              <div class="tab-panel active" id="present">
+                <h2>Present Active</h2>
+                <p><strong>Pattern:</strong> Many common verbs use endings like <code>-ω/-άω, -εις/-άς, -ει/-ά, -ουμε/-άμε, -ετε/-άτε, -ουν/-άνε</code>.</p>
+                <p><strong>Rhythm:</strong> <span class="singsong" data-say="μιλάω, μιλάς, μιλά, μιλάμε, μιλάτε, μιλάνε">"μιλάω, μιλάς, μιλά... μιλάμε, μιλάτε, μιλάνε" <button class="audio-btn small-audio" title="Hear this">🔊</button></span></p>
+                <p><strong>Example:</strong> <code>μιλάω</code> → μιλάω, μιλάς, μιλά, μιλάμε, μιλάτε, μιλάνε</p>
               </div>
-              <div class="tab-panel" id="ir">
-                <h2>-IR Verbs Mnemonic</h2>
-                <p><strong>Mnemonic:</strong> <code>is, is, it, issons, issez, issent</code></p>
-                <p><strong>Phrase:</strong> <span class="singsong" data-say="is, is, it, issons, issez, issent">"IS, IS, IT – ISSONS, ISSEZ, ISSENT" <button class="audio-btn small-audio" title="Hear this">🔊</button></span></p>
-                <p><strong>Example:</strong> <code>finir</code> → je finis, tu finis, il finit, nous finissons...</p>
+              <div class="tab-panel" id="aorist">
+                <h2>Aorist Snapshot</h2>
+                <p><strong>Tip:</strong> Watch for the augment <code>ε-</code> in the past and memorize the stem changes of your highest-frequency verbs.</p>
+                <p><strong>Example:</strong> <code>μιλάω</code> → μίλησα, μίλησες, μίλησε, μιλήσαμε, μιλήσατε, μίλησαν</p>
               </div>
-              <div class="tab-panel" id="re">
-                <h2>-RE Verbs Mnemonic</h2>
-                <p><strong>Mnemonic:</strong> <code>s, s, –, ons, ez, ent</code></p>
-                <p><strong>Note:</strong> “Il/Elle gets nothing — they’re shy.”</p>
-                <p><strong>Example:</strong> <code>vendre</code> → je vends, tu vends, il vend, nous vendons...</p>
+              <div class="tab-panel" id="middle">
+                <h2>Middle / Passive</h2>
+                <p><strong>Pattern:</strong> These often end in <code>-μαι, -σαι, -ται, -μαστε, -στε, -νται</code>. Learn them as a full set.</p>
+                <p><strong>Example:</strong> <code>θυμάμαι</code> → θυμάμαι, θυμάσαι, θυμάται, θυμόμαστε, θυμάστε, θυμούνται</p>
               </div>
-              <div class="tab-panel" id="boot">
-                <h2>Boot Verbs (Stem-changing)</h2>
-                <p><strong>Mnemonic:</strong> Think of a <span style="color:#3498db;font-weight:bold">boot</span> shape covering forms: je, tu, il/elle, ils/elles</p>
-                <p><strong>Rule:</strong> Stem changes apply <span style="color:#27ae60;font-weight:bold">inside the boot</span>, but not to <code>nous</code> and <code>vous</code>.</p>
-                <p><strong>Example:</strong> <code>acheter</code> → j’achète, tu achètes, nous achetons</p>
+              <div class="tab-panel" id="irreg">
+                <h2>Key Irregulars</h2>
+                <p><strong>είμαι:</strong> είμαι, είσαι, είναι, είμαστε, είστε, είναι</p>
+                <p><strong>έχω:</strong> έχω, έχεις, έχει, έχουμε, έχετε, έχουν</p>
+                <p><strong>Tip:</strong> Keep your most common irregulars separate from the regular families. They carry a lot of the real conversation load.</p>
               </div>
             </div>
           </div>
@@ -39140,7 +39213,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260418_053737') ? 'dev' : raw;
+    return !raw || raw.includes('20260418_142200') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -39327,6 +39400,23 @@ function prepareTextForSpeech(text) {
 (function initTheme() {
     const html = document.documentElement;
     const saved = localStorage.getItem('themeMode') || 'system';
+    const systemDarkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+    function isDarkThemeActive() {
+        const forcedTheme = html.getAttribute('data-theme');
+        if (forcedTheme === 'dark') return true;
+        if (forcedTheme === 'light') return false;
+        return !!(systemDarkQuery && systemDarkQuery.matches);
+    }
+
+    function emitThemeChange() {
+        window.dispatchEvent(new CustomEvent('app-theme-change', {
+            detail: {
+                mode: localStorage.getItem('themeMode') || 'system',
+                isDark: isDarkThemeActive(),
+            }
+        }));
+    }
 
     function applyTheme(mode) {
         localStorage.setItem('themeMode', mode);
@@ -39338,6 +39428,8 @@ function prepareTextForSpeech(text) {
         document.querySelectorAll('#theme-pills .reflexive-pill').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === mode);
         });
+
+        emitThemeChange();
     }
 
     // Wire up pills (may run before or after DOMContentLoaded)
@@ -39354,8 +39446,17 @@ function prepareTextForSpeech(text) {
         bindThemePills();
     }
 
+    if (systemDarkQuery) {
+        systemDarkQuery.addEventListener('change', () => {
+            if (!html.hasAttribute('data-theme')) {
+                emitThemeChange();
+            }
+        });
+    }
+
     // Expose for external use
     window.applyTheme = applyTheme;
+    window.isDarkThemeActive = isDarkThemeActive;
 })();
 
 // ── Font size ─────────────────────────────────────────────────────────────────
@@ -39739,6 +39840,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const tutorialInlineTextEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-text') : null;
     const tutorialInlineHeadingEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-heading') : null;
     const tutorialInlineBodyEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-body') : null;
+    const returnInlineMessageEl = document.getElementById('return-inline-message');
+    const returnInlineBadgeEl = returnInlineMessageEl ? returnInlineMessageEl.querySelector('.return-inline-badge') : null;
+    const returnInlineBodyEl = returnInlineMessageEl ? returnInlineMessageEl.querySelector('.return-inline-body') : null;
     const correctDictationHelperEl = document.getElementById('correct-dictation-helper');
 
     const searchBar = document.getElementById('search-bar');
@@ -39789,6 +39893,48 @@ document.addEventListener('DOMContentLoaded', () => {
         stepIndex: 0
     };
     const INSTALL_REMINDER_DISMISSED_KEY = 'installReminderDismissedV1';
+    const REOPEN_MESSAGE_LAST_OPEN_KEY = 'reopenMessageLastOpenAtV1';
+    const REOPEN_MESSAGE_THRESHOLD_MS = 12 * 60 * 60 * 1000;
+    const REOPEN_MESSAGE_EXTRA_PROMPTS = [
+        {
+            badge: 'Practicing or just looking up? 🔎',
+            body: 'Search is there when you need a verb fast. The cards are there when you want it to stick.'
+        },
+        {
+            badge: 'Small wins count',
+            body: '100 a day means no matter what else happens, you already won today.'
+        },
+        {
+            badge: 'Feature hint',
+            body: 'Hear is useful before reveal. Say becomes useful after reveal, when you want the form to come out cleanly.'
+        },
+        {
+            badge: 'Keep it simple',
+            body: 'Top 50 in the present is still serious work. Fluency usually grows from that layer outward.'
+        },
+        {
+            badge: 'A better rhythm',
+            body: 'A few clean reps beat a vague hour of “studying.” Make the form come out fast.'
+        },
+        {
+            badge: 'Feature hint',
+            body: 'If a tense starts feeling easy, add just one more in Settings instead of changing everything at once.'
+        },
+        {
+            badge: 'Drill or reference',
+            body: 'Use Search and verb details when you need clarity, then come back to the cards to make it automatic.'
+        },
+        {
+            badge: 'Feature hint',
+            body: 'Usage examples help when a verb feels fuzzy. Turn them on when you want context, then hide them again when drilling.'
+        }
+    ];
+    const reopenMessageState = {
+        active: false,
+        dismissed: false,
+        badge: '',
+        body: ''
+    };
     const INSTALL_APP_NAME = 'Τα Ρήματα';
     const installState = {
         deferredPrompt: null,
@@ -39813,6 +39959,36 @@ document.addEventListener('DOMContentLoaded', () => {
         unsupported: 'Updates are only available when the app is installed from the web.',
         error: 'Could not check right now. Please try again.'
     };
+
+    const formatReopenElapsedText = (elapsedMs) => {
+        if (!Number.isFinite(elapsedMs) || elapsedMs < REOPEN_MESSAGE_THRESHOLD_MS) {
+            return '';
+        }
+        const dayMs = 24 * 60 * 60 * 1000;
+        if (elapsedMs < dayMs) return 'less than a day';
+        const days = Math.max(1, Math.floor(elapsedMs / dayMs));
+        if (days > 7) return 'a long while';
+        return days === 1 ? '1 day' : `${days} days`;
+    };
+
+    const initializeReopenMessageState = () => {
+        const now = Date.now();
+        const previousRaw = Number(getScopedStorageItem(REOPEN_MESSAGE_LAST_OPEN_KEY) || 0);
+        setScopedStorageItem(REOPEN_MESSAGE_LAST_OPEN_KEY, String(now));
+
+        if (!Number.isFinite(previousRaw) || previousRaw <= 0) return;
+        const elapsed = now - previousRaw;
+        if (elapsed < REOPEN_MESSAGE_THRESHOLD_MS) return;
+
+        const elapsedText = formatReopenElapsedText(elapsed);
+        const extra = REOPEN_MESSAGE_EXTRA_PROMPTS[Math.floor(Math.random() * REOPEN_MESSAGE_EXTRA_PROMPTS.length)];
+        reopenMessageState.active = true;
+        reopenMessageState.dismissed = false;
+        reopenMessageState.badge = extra.badge;
+        reopenMessageState.body = `Welcome back. It has been ${elapsedText} since your last conjugation. ${extra.body}`;
+    };
+
+    initializeReopenMessageState();
 
     const getReloadUrlForFreshApp = () => {
         const url = new URL(window.location.href);
@@ -40171,6 +40347,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dictateBtn) return;
         const availability = getMicAvailability();
         const micMode = getEffectiveMicMode();
+        const hardDisabled = availability === 'tutorial-locked' || availability === 'phase-disabled';
 
         dictateBtn.style.display = 'inline-flex';
         dictateBtn.dataset.micMode = micMode;
@@ -40180,7 +40357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dictateBtn.classList.toggle('is-phase-disabled', availability === 'phase-disabled');
         dictateBtn.classList.toggle('is-unsupported', availability === 'unsupported' || availability === 'safeModeBlocked');
         dictateBtn.classList.toggle('is-no-content', false);
-        dictateBtn.disabled = availability !== 'enabled';
+        dictateBtn.disabled = hardDisabled;
 
         if (dictateBtnLabelEl) {
             dictateBtnLabelEl.textContent = micMode === 'answerByVoice' ? 'Answer' : 'Say';
@@ -40656,6 +40833,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'enabled';
     };
 
+    const getMicUnavailableOverlayMessage = (availability, micMode) => {
+        if (availability === 'unsupported') {
+            if (isAppleMobileBrowser()) {
+                return 'Sorry, voice dictation is not available on iPhone Safari yet. Use Hear for now, or wait for our iOS app.';
+            }
+            return 'Sorry, voice dictation is not available on this browser yet.';
+        }
+        if (availability === 'safeModeBlocked') {
+            return 'Mic input is disabled in Safe mode.';
+        }
+        if (availability === 'tutorial-locked') {
+            return 'The tutorial unlocks the mic on step 3, after reveal.';
+        }
+        if (availability === 'phase-disabled') {
+            return micMode === 'answerByVoice'
+                ? 'Voice-answer mode listens before reveal.'
+                : 'Reveal the answer first, then tap Say.';
+        }
+        return '';
+    };
+
     const setMicAnswerMode = (enabled, options = {}) => {
         const { persist = true } = options;
         cardGenerationOptions.useMicToAnswer = !!enabled;
@@ -40699,6 +40897,30 @@ document.addEventListener('DOMContentLoaded', () => {
         tutorialInlineHintEl.classList.toggle('tutorial-after', !!hint && isAnswerVisible);
         tutorialInlineHeadingEl.textContent = hint && heading ? heading : '';
         tutorialInlineBodyEl.innerHTML = hint || '';
+        renderReopenMessage();
+    };
+
+    const renderReopenMessage = () => {
+        if (!returnInlineMessageEl || !returnInlineBadgeEl || !returnInlineBodyEl) return;
+        const shouldShow = !!(
+            reopenMessageState.active
+            && !reopenMessageState.dismissed
+            && tutorialState.completed
+            && !tutorialState.active
+            && !isAnswerVisible
+            && currentCard
+            && currentCard.verb
+            && installState.cardsSeenThisSession === 1
+        );
+        returnInlineMessageEl.classList.toggle('hidden', !shouldShow);
+        returnInlineBadgeEl.textContent = shouldShow ? reopenMessageState.badge : '';
+        returnInlineBodyEl.textContent = shouldShow ? reopenMessageState.body : '';
+    };
+
+    const dismissReopenMessage = () => {
+        if (!reopenMessageState.active || reopenMessageState.dismissed) return;
+        reopenMessageState.dismissed = true;
+        renderReopenMessage();
     };
 
     const refreshTutorialAwareUi = () => {
@@ -40778,17 +41000,78 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const normalizeDictationText = (value) => String(value || '')
+        .toLowerCase()
+        .replace(/[’']/g, "'")
+        .replace(/[.,!?;:()\[\]{}]/g, '')
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    const getExpectedDictationText = (card = currentCard) => {
+        if (!card) return '';
+        if (card.isPhraseMode || !card.verb) {
+            return (card.phrase || '').trim();
+        }
+        return window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated).trim();
+    };
+
+    const isDictationMatch = (transcript, card = currentCard) => {
+        if (!card) return false;
+        const expected = normalizeDictationText(getExpectedDictationText(card));
+        const heard = normalizeDictationText(transcript);
+        if (!expected || !heard) return false;
+
+        if (card.isPhraseMode || !card.verb) {
+            const expectedWords = expected.split(' ');
+            const heardWords = heard.split(' ');
+            let matchCount = 0;
+            expectedWords.forEach((word) => {
+                if (heardWords.includes(word)) matchCount += 1;
+            });
+            return expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9;
+        }
+
+        return heard.includes(expected);
+    };
+
+    const handleMicSuccess = () => {
+        const micMode = getEffectiveMicMode();
+        if (!currentCard) return;
+
+        if (!currentCard.isPhraseMode && currentCard.verb) {
+            logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
+        } else {
+            logSessionEntry('phrase', '', '', 'bravo');
+        }
+
+        maybeWhisperMolodez();
+
+        if (micMode === 'answerByVoice' && !isAnswerVisible) {
+            showAnswer();
+            window.setTimeout(() => {
+                if (recognition) {
+                    try { recognition.stop(); } catch (error) {}
+                }
+                handleNext();
+            }, 1450);
+            return;
+        }
+
+        window.setTimeout(() => {
+            if (recognition) {
+                try { recognition.stop(); } catch (error) {}
+            }
+        }, 1350);
+    };
+
     // Overlay helpers (already defined above)
     // function showDictationOverlay(...) {...}
     // function hideDictationOverlay() {...}
 
     function setupDictation() {
         if (!dictateBtn) return;
-        const speechState = getSpeechRecognitionState();
-        if (speechState !== 'ready') {
-            refreshDictationButton();
-            return;
-        }
         dictationResultEl = document.getElementById('dictation-result');
         if (!dictationResultEl) {
             dictationResultEl = document.createElement('div');
@@ -40809,24 +41092,11 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl.style.pointerEvents = 'none';
             dictationResultEl.style.transition = 'opacity 0.5s';
             flashcard.style.position = 'relative';
-            // Color scheme aware background/text
-            const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (isDark) {
-                dictationResultEl.style.background = 'rgba(24, 32, 48, 0.92)';
-                dictationResultEl.style.color = '#eaf6fb';
-                dictationResultEl.style.border = '2px solid #2c3e50';
-            } else {
-                dictationResultEl.style.background = 'rgba(255,255,255,0.92)';
-                dictationResultEl.style.color = '#222';
-                dictationResultEl.style.border = '2px solid #3498db55';
-            }
-            flashcard.appendChild(dictationResultEl);
-        }
-        // Update overlay style on color scheme change
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!dictationResultEl) return;
-                if (e.matches) {
+            const applyDictationResultTheme = () => {
+                const isDark = typeof window.isDarkThemeActive === 'function'
+                    ? window.isDarkThemeActive()
+                    : !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                if (isDark) {
                     dictationResultEl.style.background = 'rgba(24, 32, 48, 0.92)';
                     dictationResultEl.style.color = '#eaf6fb';
                     dictationResultEl.style.border = '2px solid #2c3e50';
@@ -40835,14 +41105,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     dictationResultEl.style.color = '#222';
                     dictationResultEl.style.border = '2px solid #3498db55';
                 }
-            });
+            };
+            applyDictationResultTheme();
+            window.addEventListener('app-theme-change', applyDictationResultTheme);
+            flashcard.appendChild(dictationResultEl);
         }
         // Attach click handler ONCE
         if (!dictateBtn._dictationHandlerAttached) {
             dictateBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                if (getMicAvailability() !== 'enabled') {
+                const availability = getMicAvailability();
+                const micMode = getEffectiveMicMode();
+                if (availability !== 'enabled') {
+                    const unavailableMessage = getMicUnavailableOverlayMessage(availability, micMode);
+                    if (unavailableMessage) {
+                        showDictationOverlay(
+                            unavailableMessage,
+                            availability === 'unsupported' || availability === 'safeModeBlocked' ? 'error' : 'prompt',
+                            2600,
+                            false,
+                            true
+                        );
+                    }
                     refreshDictationButton();
                     return;
                 }
@@ -40904,8 +41189,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearTimeout(dictationTimeout);
                     showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
                 };
-                // let bravoHappened = false; // Track if Bravo was shown
-                let correctDictationWasShown = false; // Track if correct dictation was shown
                 recognition.onresult = (event) => {
                     let html = '';
                     let bestTranscript = '';
@@ -40937,135 +41220,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     }
-                    // --- CHECK FOR CORRECT DICTATION (ALWAYS SHOW BRAVO) ---
-                    if (!isAnswerVisible && currentCard && !autoskipLock) {
-                        let expected;
-                        let isPhrase = currentCard.isPhraseMode || !currentCard.verb;
-                        
-                        if (isPhrase) {
-                            expected = (currentCard.phrase || '').trim();
-                        } else {
-                            expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
-                        }
-                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").replace(/[.,!?;:()\[\]{}]/g, '').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/\s+/g, ' ').trim();
-                        const normExpected = normalize(expected);
-                        const normTranscript = normalize(bestTranscript);
-                        let isCorrect = false;
-                        if (isPhrase) {
-                            // Fuzzy word match: at least 70% of expected words present in transcript
-                            const expectedWords = normExpected.split(' ');
-                            const transcriptWords = normTranscript.split(' ');
-                            let matchCount = 0;
-                            expectedWords.forEach(word => {
-                                if (transcriptWords.includes(word)) matchCount++;
-                            });
-                            if (expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9) {
-                                isCorrect = true;
-                            }
-                            console.log(`Phrase match: expected "${normExpected}", got "${normTranscript}" - ${isCorrect ? 'correct' : 'incorrect'}`);
-                        } else {
-                            // Strict match for verbs
-                            if (normTranscript.includes(normExpected)) {
-                                isCorrect = true;
-                            }
-                        }
-                        if (isCorrect || correctDictationWasShown) {
-                            // console.log(`🎉 Bravo! Correct dictation: "${bestTranscript}" matches expected: "${expected}". stopping recognition`);
-                            // autoskipLock = true;
-                            // setTimeout(() => {
-                            //         if (recognition) {
-                            //             try { recognition.stop(); } catch (e) {}
-                            //         }
-                            //     }, 500);
-                            // Always show Bravo for correct answers
-                            dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
-                            dictationResultEl.style.display = 'block';
-                            dictationResultEl.style.opacity = '1';
-                            correctDictationWasShown= true;
-                            
-                        }
-                        if (isCorrect) {
-                            showAnswer();
-
-                            // Log bravo event (robust for phrase mode)
-                            if (isPhrase) {
-                                logSessionEntry('phrase', '', '', 'bravo');
-                            } else if (currentCard.verb) {
-                            if (currentCard.verb) {
-                                logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
-                            } else {
-                                // Phrase mode: log safe values
-                                logSessionEntry('phrase', '', '', 'bravo');
-                            }
-                            }
-                            maybeWhisperMolodez();
-                            
-                            // Check if auto-advance is enabled
-                            const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
-                            const correctDictationNextQuestion = getEffectiveMicMode() === 'answerByVoice';
-                            
-                            if (autosayOn || correctDictationNextQuestion) {
-                                // Auto-advance to next question
-                                setTimeout(() => {
-                                    if (recognition) {
-                                        try { recognition.stop(); } catch (e) {}
-                                    }
-                                    handleNext();
-                                }, 1500); // 1.5s delay for Bravo
-                            } else {
-                                // Just stop recognition, don't auto-advance
-                                setTimeout(() => {
-                                    if (recognition) {
-                                        try { recognition.stop(); } catch (e) {}
-                                    }
-                                }, 1500);
-                            }
-                            return;
-                        }
+                    const isCorrect = currentCard && !autoskipLock && isDictationMatch(bestTranscript, currentCard);
+                    if (isCorrect) {
+                        dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                        dictationResultEl.style.display = 'block';
+                        dictationResultEl.style.opacity = '1';
+                        handleMicSuccess();
+                        return;
                     }
-                    // Only update overlay if not showing Bravo
+
                     showDictationOverlay(html, 'normal', 0, true, false);
-                        let expected;
-                        if (currentCard.isPhraseMode || !currentCard.verb) {
-                            expected = (currentCard.phrase || '').trim();
-                        } else {
-                            expected = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated).trim();
-                        }
-                        const normalize = s => s.toLowerCase().replace(/[’']/g, "'").normalize('NFD').replace(/\p{Diacritic}/gu, '');
-                        const normExpected = normalize(expected);
-                        const normTranscript = normalize(bestTranscript);
-                        if(correctDictationWasShown){
-                            if(!dictationResultEl.innerHTML.includes('🎉 Bravo !')) {
-                            dictationResultEl.innerHTML = dictationResultEl.innerHTML + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
-                            }
-                        }
-                        if (normTranscript.includes(normExpected)) {
-                            autoskipLock = true;
-                            correctDictationWasShown = true;
-
-                            dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
-                            dictationResultEl.style.display = 'block';
-                            dictationResultEl.style.opacity = '1';
-                            showAnswer();
-
-                            // Log bravo event
-                            if (currentCard.verb) {
-                                logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'bravo');
-                            } else {
-                                logSessionEntry('phrase', '', '', 'bravo');
-                            }
-                            maybeWhisperMolodez();
-
-                            setTimeout(() => {
-                                if (recognition) {
-                                    try { recognition.stop(); } catch (e) {}
-                                }
-                                if (getEffectiveMicMode() === 'answerByVoice') {
-                                    handleNext();
-                                }
-                            }, 1500);
-                            return;
-                        }
                 };
                 recognition.start();
                 // Safety: stop after 10s if not already ended
@@ -41146,6 +41310,289 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return cleaned;
     };
+
+    const REVIEW_MODEL_STORAGE_KEY = 'reviewModelStateV1';
+    const reviewModelConfig = {
+        enabled: true,
+        selection: {
+            recentHardBlockTurns: 6,
+            candidatePoolSize: 0,
+            randomnessExponent: 1,
+            minimumWeight: 0.0001,
+        },
+        staticDifficulty: {
+            tenseBonuses: {
+                present: 0,
+                imperfect: 0.1,
+                aorist: 0.16,
+                futureContinuous: 0.12,
+                futureSimple: 0.14,
+                subjunctiveContinuous: 0.18,
+                subjunctiveSimple: 0.2,
+            },
+            frequencyBonuses: {
+                top20: 0,
+                top50: 0.04,
+                top100: 0.08,
+                top500: 0.14,
+                top1000: 0.2,
+                rare: 0.26,
+            },
+            irregularVerbBonus: 0.14,
+            reflexiveVerbBonus: 0.05,
+        },
+        familiarity: {
+            maxBoost: 0.45,
+            decayExponent: 0.85,
+        },
+        recency: {
+            floorMultiplier: 0.12,
+            fullRecoveryTurns: 18,
+        },
+        detailsHint: {
+            boostPerOpen: 0.1,
+            maxBoost: 0.28,
+            seenDecayPerExposure: 0.18,
+            fullDecayTurns: 48,
+        },
+        dwellHint: {
+            enabled: false,
+            minBaselineSamples: 4,
+            ewmaAlpha: 0.18,
+            slowThresholdMultiplier: 1.6,
+            minimumRevealMs: 900,
+            maximumTrackedRevealMs: 45000,
+            boostPerHint: 0.04,
+            maxBoost: 0.12,
+            hardHintCap: 3,
+        },
+        storage: {
+            maxCardEntries: 12000,
+            maxVerbEntries: 2000,
+        },
+    };
+
+    const buildEmptyReviewModelState = () => ({
+        turnCounter: 0,
+        cards: {},
+        verbs: {},
+        dwellBaselineMs: 0,
+        dwellSampleCount: 0,
+    });
+
+    const loadReviewModelState = () => {
+        try {
+            const raw = getScopedStorageItem(REVIEW_MODEL_STORAGE_KEY);
+            if (!raw) return buildEmptyReviewModelState();
+            const parsed = JSON.parse(raw);
+            return {
+                ...buildEmptyReviewModelState(),
+                ...parsed,
+                cards: parsed && typeof parsed.cards === 'object' && parsed.cards ? parsed.cards : {},
+                verbs: parsed && typeof parsed.verbs === 'object' && parsed.verbs ? parsed.verbs : {},
+            };
+        } catch (error) {
+            console.warn('Could not load review model state:', error);
+            return buildEmptyReviewModelState();
+        }
+    };
+
+    const getVerbReviewFreshness = (meta = {}) => Math.max(meta.lastSeenTurn || 0, meta.lastDetailsOpenedTurn || 0);
+
+    const pruneReviewModelState = (state) => {
+        const pruneMap = (entries, maxEntries, getFreshness) => {
+            const keys = Object.keys(entries || {});
+            if (keys.length <= maxEntries) return;
+            keys
+                .sort((a, b) => getFreshness(entries[b]) - getFreshness(entries[a]))
+                .slice(maxEntries)
+                .forEach((key) => {
+                    delete entries[key];
+                });
+        };
+        pruneMap(state.cards, reviewModelConfig.storage.maxCardEntries, (meta) => meta.lastSeenTurn || 0);
+        pruneMap(state.verbs, reviewModelConfig.storage.maxVerbEntries, getVerbReviewFreshness);
+    };
+
+    const persistReviewModelState = () => {
+        try {
+            pruneReviewModelState(reviewModelState);
+            setScopedStorageItem(REVIEW_MODEL_STORAGE_KEY, JSON.stringify(reviewModelState));
+        } catch (error) {
+            console.warn('Could not save review model state:', error);
+        }
+    };
+
+    const getCardReviewMeta = (card, create = false) => {
+        if (!card || !card.verb) return null;
+        const key = cardKey(card);
+        if (!reviewModelState.cards[key] && create) {
+            reviewModelState.cards[key] = { seenCount: 0, lastSeenTurn: 0, slowHintCount: 0 };
+        }
+        return reviewModelState.cards[key] || null;
+    };
+
+    const getVerbReviewMeta = (verbInfinitive, create = false) => {
+        if (!verbInfinitive) return null;
+        if (!reviewModelState.verbs[verbInfinitive] && create) {
+            reviewModelState.verbs[verbInfinitive] = { seenCount: 0, lastSeenTurn: 0, openedDetailsCount: 0, lastDetailsOpenedTurn: 0 };
+        }
+        return reviewModelState.verbs[verbInfinitive] || null;
+    };
+
+    const getTurnsSinceLastSeen = (card) => {
+        const meta = getCardReviewMeta(card);
+        if (!meta || !meta.lastSeenTurn) return null;
+        return Math.max(0, (reviewModelState.turnCounter || 0) - meta.lastSeenTurn);
+    };
+
+    const isCardHardBlockedByRecency = (card) => {
+        const turnsSinceLastSeen = getTurnsSinceLastSeen(card);
+        if (turnsSinceLastSeen === null) return false;
+        return turnsSinceLastSeen < reviewModelConfig.selection.recentHardBlockTurns;
+    };
+
+    const recordCardSeen = (card) => {
+        if (!reviewModelConfig.enabled || !card || !card.verb) return;
+        reviewModelState.turnCounter = (reviewModelState.turnCounter || 0) + 1;
+        const currentTurn = reviewModelState.turnCounter;
+        const cardMeta = getCardReviewMeta(card, true);
+        const verbMeta = getVerbReviewMeta(card.verb.infinitive, true);
+        cardMeta.seenCount = (cardMeta.seenCount || 0) + 1;
+        cardMeta.lastSeenTurn = currentTurn;
+        verbMeta.seenCount = (verbMeta.seenCount || 0) + 1;
+        verbMeta.lastSeenTurn = currentTurn;
+        persistReviewModelState();
+    };
+
+    const recordVerbDetailOpen = (verbInfinitive) => {
+        if (!reviewModelConfig.enabled || !verbInfinitive) return;
+        const verbMeta = getVerbReviewMeta(verbInfinitive, true);
+        verbMeta.openedDetailsCount = (verbMeta.openedDetailsCount || 0) + 1;
+        verbMeta.lastDetailsOpenedTurn = reviewModelState.turnCounter || 0;
+        persistReviewModelState();
+    };
+
+    const recordSlowRevealHintIfNeeded = (card, elapsedMs) => {
+        const dwellConfig = reviewModelConfig.dwellHint;
+        if (!reviewModelConfig.enabled || !dwellConfig.enabled || !card || !card.verb) return;
+        if (!Number.isFinite(elapsedMs)) return;
+        if (elapsedMs < dwellConfig.minimumRevealMs || elapsedMs > dwellConfig.maximumTrackedRevealMs) return;
+
+        const previousBaseline = reviewModelState.dwellBaselineMs || 0;
+        const previousSamples = reviewModelState.dwellSampleCount || 0;
+        const hasBaseline = previousSamples >= dwellConfig.minBaselineSamples && previousBaseline > 0;
+
+        if (hasBaseline && elapsedMs >= previousBaseline * dwellConfig.slowThresholdMultiplier) {
+            const cardMeta = getCardReviewMeta(card, true);
+            cardMeta.slowHintCount = Math.min(dwellConfig.hardHintCap, (cardMeta.slowHintCount || 0) + 1);
+        }
+
+        reviewModelState.dwellBaselineMs = previousSamples <= 0
+            ? elapsedMs
+            : (previousBaseline * (1 - dwellConfig.ewmaAlpha)) + (elapsedMs * dwellConfig.ewmaAlpha);
+        reviewModelState.dwellSampleCount = previousSamples + 1;
+        persistReviewModelState();
+    };
+
+    const getStaticDifficultyMultiplier = (card) => {
+        if (!card || !card.verb) return 1;
+        const staticConfig = reviewModelConfig.staticDifficulty;
+        let bonus = staticConfig.tenseBonuses[card.tense] || 0;
+        bonus += staticConfig.frequencyBonuses[card.verb.frequency || 'top50'] || 0;
+        if (IRREGULAR_VERBS.has(card.verb.infinitive)) bonus += staticConfig.irregularVerbBonus;
+        if (card.verb.reflexive) bonus += staticConfig.reflexiveVerbBonus;
+        return 1 + bonus;
+    };
+
+    const getFamiliarityMultiplier = (card) => {
+        if (!card || !card.verb) return 1;
+        const seenCount = getCardReviewMeta(card)?.seenCount || 0;
+        const familiarityConfig = reviewModelConfig.familiarity;
+        const boost = familiarityConfig.maxBoost / Math.pow(seenCount + 1, familiarityConfig.decayExponent);
+        return 1 + boost;
+    };
+
+    const getRecencyMultiplier = (card) => {
+        if (!card || !card.verb) return 1;
+        const turnsSinceLastSeen = getTurnsSinceLastSeen(card);
+        if (turnsSinceLastSeen === null) return 1;
+        const recencyConfig = reviewModelConfig.recency;
+        const blockTurns = reviewModelConfig.selection.recentHardBlockTurns;
+        if (turnsSinceLastSeen < blockTurns) {
+            return recencyConfig.floorMultiplier;
+        }
+        const recoveryTurns = Math.max(blockTurns + 1, recencyConfig.fullRecoveryTurns);
+        const progress = Math.min(1, (turnsSinceLastSeen - blockTurns) / Math.max(1, recoveryTurns - blockTurns));
+        return recencyConfig.floorMultiplier + ((1 - recencyConfig.floorMultiplier) * progress);
+    };
+
+    const getDetailsHintMultiplier = (card) => {
+        if (!card || !card.verb) return 1;
+        const detailsConfig = reviewModelConfig.detailsHint;
+        const verbMeta = getVerbReviewMeta(card.verb.infinitive);
+        if (!verbMeta || !verbMeta.openedDetailsCount) return 1;
+        const turnsSinceDetails = Math.max(0, (reviewModelState.turnCounter || 0) - (verbMeta.lastDetailsOpenedTurn || 0));
+        const timeDecay = turnsSinceDetails >= detailsConfig.fullDecayTurns
+            ? 0
+            : 1 - (turnsSinceDetails / Math.max(1, detailsConfig.fullDecayTurns));
+        const detailPressure = Math.max(0, (verbMeta.openedDetailsCount || 0) - ((verbMeta.seenCount || 0) * detailsConfig.seenDecayPerExposure));
+        const boost = Math.min(detailsConfig.maxBoost, detailPressure * detailsConfig.boostPerOpen * timeDecay);
+        return 1 + boost;
+    };
+
+    const getDwellHintMultiplier = (card) => {
+        if (!reviewModelConfig.dwellHint.enabled || !card || !card.verb) return 1;
+        const slowHintCount = getCardReviewMeta(card)?.slowHintCount || 0;
+        const dwellConfig = reviewModelConfig.dwellHint;
+        const boost = Math.min(dwellConfig.maxBoost, slowHintCount * dwellConfig.boostPerHint);
+        return 1 + boost;
+    };
+
+    const scoreCardForReviewModel = (card, baseScore) => {
+        if (!reviewModelConfig.enabled || !card || !card.verb) {
+            return Math.max(reviewModelConfig.selection.minimumWeight, baseScore || 0);
+        }
+        const adjusted = (baseScore || 0)
+            * getStaticDifficultyMultiplier(card)
+            * getFamiliarityMultiplier(card)
+            * getRecencyMultiplier(card)
+            * getDetailsHintMultiplier(card)
+            * getDwellHintMultiplier(card);
+        return Math.max(reviewModelConfig.selection.minimumWeight, adjusted);
+    };
+
+    const buildWeightedCandidatePool = (weightedItems, options = {}) => {
+        const { allowRecentCardBlocking = false } = options;
+        if (!Array.isArray(weightedItems) || weightedItems.length === 0) return [];
+
+        let pool = weightedItems;
+        if (allowRecentCardBlocking) {
+            const filtered = weightedItems.filter((item) => !isCardHardBlockedByRecency(item.card));
+            if (filtered.length > 0) {
+                pool = filtered;
+            }
+        }
+
+        const candidatePoolSize = reviewModelConfig.selection.candidatePoolSize || 0;
+        if (candidatePoolSize > 0 && pool.length > candidatePoolSize) {
+            pool = [...pool]
+                .sort((a, b) => (b.score || 0) - (a.score || 0))
+                .slice(0, candidatePoolSize);
+        }
+
+        return pool;
+    };
+
+    const applyReviewModelToWeightedDeck = (weightedDeck) => (
+        weightedDeck.map((item) => ({
+            ...item,
+            score: scoreCardForReviewModel(item.card, item.score || 0),
+        }))
+    );
+
+    let reviewModelState = loadReviewModelState();
+    let currentCardShownAtMs = 0;
 
     // --- Local Storage for Options ---
     // Use generic localStorageKey for options
@@ -41613,26 +42060,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const cardKey = (card) => `${card.verb?.infinitive}|${card.tense}|${card.pronoun}`;
 
-    const performWeightedSelection = (weightedItems) => {
+    const performWeightedSelection = (weightedItems, options = {}) => {
         if (!weightedItems || weightedItems.length === 0) return null;
 
-        // Filter out recently seen cards (keep at most 1/3 of deck size as buffer)
-        const bufferSize = Math.max(1, Math.floor(weightedItems.length / 3));
-        const recentSet = new Set(recentCardKeys.slice(-bufferSize));
-        const filtered = weightedItems.filter(item => !recentSet.has(cardKey(item.card)));
-        const pool = filtered.length > 0 ? filtered : weightedItems; // fallback to full deck if all recent
+        const pool = buildWeightedCandidatePool(weightedItems, options);
 
         const totalWeight = pool.reduce((sum, item) => sum + (item.score || 0), 0);
         if (totalWeight <= 0) {
             return pool[Math.floor(Math.random() * pool.length)].card;
         }
 
-        let random = Math.random() * totalWeight;
-        for (const item of pool) {
+        const randomnessExponent = reviewModelConfig.selection.randomnessExponent || 1;
+        const weightedPool = randomnessExponent === 1
+            ? pool
+            : pool.map((item) => ({
+                ...item,
+                score: Math.pow(Math.max(reviewModelConfig.selection.minimumWeight, item.score || 0), randomnessExponent),
+            }));
+
+        const adjustedTotalWeight = weightedPool.reduce((sum, item) => sum + (item.score || 0), 0);
+        let random = Math.random() * adjustedTotalWeight;
+        for (const item of weightedPool) {
             random -= (item.score || 0);
             if (random <= 0) return item.card;
         }
-        return pool[pool.length - 1].card;
+        return weightedPool[weightedPool.length - 1].card;
     };
 
     const generateNewCard = (options = {}) => {
@@ -41757,7 +42209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
-            newCard = performWeightedSelection(weightedDeck);
+            newCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
 
         } else {
             // ...existing code...
@@ -41804,7 +42256,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
-            newCard = performWeightedSelection(weightedDeck);
+            newCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
         }
 
         if (!newCard) {
@@ -41889,7 +42341,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const displayCard = (card) => {
         currentCard = card;
+        currentCardShownAtMs = performance.now();
         installState.cardsSeenThisSession += 1;
+        recordCardSeen(card);
         // Track recent cards to avoid immediate repeats
         if (card.verb) {
             recentCardKeys.push(cardKey(card));
@@ -42061,6 +42515,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showAnswer = () => {
         if (!isAnswerVisible) {
+            if (currentCard && currentCard.verb) {
+                recordSlowRevealHintIfNeeded(currentCard, performance.now() - currentCardShownAtMs);
+            }
+            dismissReopenMessage();
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
             if (window.incrementDailyCount) window.incrementDailyCount();
@@ -42233,6 +42691,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showVerbDetail = (verbInfinitive, tenseToFocus = null) => {
         const verb = uniqueVerbs.find(v => v.infinitive === verbInfinitive);
         if (!verb) return;
+        recordVerbDetailOpen(verbInfinitive);
         currentDetailVerb = verb;
         showView('explorer-detail-view'); // This pushes state for the back button
         populateVerbDetail(verb, tenseToFocus);

@@ -1,5 +1,9 @@
 {
   "entries": {
+    "/reference/": {
+      "hash": "ec6a8a4746ea3559b58b2da63263e3d153605390342eb0b264fb9b31c7536340",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
     "/reference/catalan/": {
       "hash": "499c3693ff3de583aa4a30bad606729ae5d8f35fe54f574677ce90b9b60c0436",
       "lastmod": "2026-04-18T00:08:16Z"
@@ -31628,6 +31632,2010 @@
       "hash": "135ddbc24cf8ea7e3d553e0402549bb5784517415696ba5c3b513ebf60597724",
       "lastmod": "2026-04-17T23:45:14Z"
     },
+    "/reference/latvian/": {
+      "hash": "3faa040c46bce357feb892046b67292e2ac48e7b2cb77c7a82516de38d626f97",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizbeigt/": {
+      "hash": "3454418f0b2b83930477dfbc98cf63ec12955cfeff4ea929da53961ddbadae1a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizdarīt/": {
+      "hash": "7f79302f7532116139eb755bbe2634e4568294bcc649bb96835f72e9d869c3ea",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizdejot/": {
+      "hash": "ebe12ea1c47f93a0fed2835456a22663b632752f42808c88828b8a0377bb7722",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizdomāt/": {
+      "hash": "15c1f024117fdec13b7d3af933cbea57ddd65d4823b134c0f683560a1a4b816d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizdot/": {
+      "hash": "b13fe442d0d3c29ce5e8ae7b58682a24e6ec2bd9352608c6e77841262f2b271b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizdziedāt/": {
+      "hash": "1846111a8610d46ae52185a35cf7a3941c348c2f3af0c46855e58e3a4aef1d7c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizdzīvot/": {
+      "hash": "a121cb9f93f09172961e6bcebb9519e303bbc239e3bd59426df0106bf56a798c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizgaidīt/": {
+      "hash": "ef6264150bee1993fbfa0f8c72289aaad57fb29739e9d760fb3df44864f817c7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizgribēt/": {
+      "hash": "b98d4258b6e13f58c97d556503b0cb289d3921d4ad142f639d3deae0b4f810f8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizgulēt/": {
+      "hash": "0689830e9fa699bbd7299e576ed09f67c8e02fa0ea97448e159bc67be29ca499",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aiziet/": {
+      "hash": "22b611696c8033cf6279499d3d6e411fe87f4ab61f458797ff83c61c6f57ca32",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizjautāt/": {
+      "hash": "ed75fa05006bd1a48db99eae989aff68f8c9ea4400c4685af1b125e0f2b620b0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizlasīt/": {
+      "hash": "bf80b6d568bdb1fbf492494ea5aab0278782f63cf34208ccf825b5f1ad954736",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizliegt/": {
+      "hash": "5efa8a30ccdf0cbdfd51d13236407ffb37c40ccf857ab71a5d788055d938a12e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizmirst/": {
+      "hash": "18e72363fccf17c577950332525aa8717d25f0c6c6b839aecf8a2a7c035776cf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizmācīties/": {
+      "hash": "ab31bc4b34fb5b1a30946dedea990ded9b06d4dc14af1349b38962c2d758b3d2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aiznest/": {
+      "hash": "93b25e81a899549beffc73f471329ba6c8b90a6636a00bdce8e71fc98529350d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aiznākt/": {
+      "hash": "3836ae9457d738c4cf839578e6a5784b78b6babd82ace47e7441bcb57e0bf146",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizpirkt/": {
+      "hash": "8370b6d65fb878f9b38b19defd8dff9539d7cbef4605c13b41755fd1b58d9830",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizrakstīt/": {
+      "hash": "bc0fa8321a4c05e68d2f2244027b8cd5e8dc8943fe4d15fad0d2098e59b9bf4f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizredzēt/": {
+      "hash": "5a422044a5dbb0676e573c3e8b588b70fef23d325b87c586aa978d4f764d39b6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizrunāt/": {
+      "hash": "4d05002e7ec3826ba958aede5f5bd09857b446265b2aea636070112ae9b2b3eb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizsargāt/": {
+      "hash": "ff23bce87b73d023950b3c84828bea90424830071422f1c8a16ca6b0078bc1f9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizskriet/": {
+      "hash": "88cccfee7f1bdfedaf3fe8e0f92b2c7cb73b9e751bf022b0446826b6ef215acd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizslēgt/": {
+      "hash": "fd6c204fa2e2c2b5cacd4f1f76d6cab4575ddaf7dc8525c5c66526cb259e9303",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizspēlēt/": {
+      "hash": "bb3f643d6afc8fb8a68993eb55a43b93b23b46dd4811ede7efc74e38c6657f94",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizstrādāt/": {
+      "hash": "09d0359a790c1dd2c5151040178dbd2170fbbda26e1daad187e20d5559bb995f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizstāvēt/": {
+      "hash": "600ca35e6d16ba38f668bd3133a7050febbd4bb2854fc1c8d21fe7023c416f44",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizsēdēt/": {
+      "hash": "b86a87f83fbc96b6f6a7b33a776a25076076b5ca11f3b4c7c48d480cafd809f1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizteikt/": {
+      "hash": "59ac28fd0c420f7bc695538d9fbf8cd5c1440039850bf27e736c9b8c270bf34f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizvarēt/": {
+      "hash": "66710ac4604b46ac958cc67805f1ffcef646e323297726d1c083a3275555a930",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizvērt/": {
+      "hash": "c81b3af1a12480877ded04320c0c9ab770c9cc5c0869e367226287a087fd46d4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizzināt/": {
+      "hash": "8bac8c77874e207558e526fd6a0d4a32943abb28734a307a54a4bf246f3da7a7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizēst/": {
+      "hash": "c094b10ac659852c43eada3a565211a5ef7c610ca6eab5604d15d7ac489872f9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aizņemt/": {
+      "hash": "bb30f0355b91d77a680f4248b424cf10f4ad1974121567e5a70b9404f8bc7e2c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apbeigt/": {
+      "hash": "facf1eeb98ead6369b6a44a1b49933d954911bad2dc7925eb273b96e143f5b14",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apdarīt/": {
+      "hash": "810ac6971c5411cce91bdcf0828546a5787620275cde4b4ab07160484c6aa388",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apdejot/": {
+      "hash": "0142f6948ca92b389ad87a8f7a6c10a01ba07cbc72f8ba0acc276618f84d4141",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apdomāt/": {
+      "hash": "2c19d39d2dcf468ece4db77163b192bbac6391f76fccae17c1cb74c1fb55b974",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apdot/": {
+      "hash": "32bfbe63c7d1e370acfd0cec3c8b05cc013d204f15c6e76d6e2ad86b57fada40",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apdzert/": {
+      "hash": "4f5e8e640d74e4c25ba6a4e31ebae993874deb2f2164fe36679066dc9a1cf393",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apdziedāt/": {
+      "hash": "24a7728e7f71f115398c254bd352d9211a3f9ad285012893d793a8f46012679d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apdzīvot/": {
+      "hash": "50b733fd59010648a0a5545440154bd072b6cb1ae62af9b6d35518971c9372ea",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apgaidīt/": {
+      "hash": "015025254fd75ec8f30fb40383d94c71295f0684a719606971a5d5f2406aa9ca",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apgribēt/": {
+      "hash": "f720b58b02ddd58a46f808781c444f8ea2b8ae1123549ff706361fc077259199",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apgulēt/": {
+      "hash": "b752c217956d45f950f70bcec7aa430a2720df8ebfd895c1388bd7fd10ad2932",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apgūt/": {
+      "hash": "f442673d4bb22891039ca2feec34266830c890046a6f90b3bfed27c9ce66a086",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apjautāt/": {
+      "hash": "c854af44166ae1cc837ff6cefdd5bb9d53a4b7627455ebda449cdbb6f49889e5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aplasīt/": {
+      "hash": "648dd7a8d493573a8c976b5bdc90bed8174191750257653ad4c56fb5cedfe36e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aplūkot/": {
+      "hash": "d263acc5c77ef70c6e537c28985948859f3f5a59173ddbc27cf38cbe1975a932",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apmeklēt/": {
+      "hash": "7f80593f91d5326a77d5c3fdbfa6214cb0e4f8fa579957c9bc23f86e1ffcf6b8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apmācīties/": {
+      "hash": "c6fc1ccc83543d3211d6735f1d4a1a0c7896e81e0ee1ce34ed0fa66b627d5e8b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apnākt/": {
+      "hash": "546b510f51ac25005e6f0139983bef53705873610f78db901755c9655199e66d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/appirkt/": {
+      "hash": "6527d0721d43636017913fe046d40d05ff4dbfd08b868859b88858577b933a57",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aprakstīt/": {
+      "hash": "b7b456726003b1344670da63df1d167ed71ac0c2dce0090cbc534bcc63573364",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apredzēt/": {
+      "hash": "ab699fb3d24632f64b9d01f662bfe5bd8b9cafaf8611508396385f5e667bb039",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/aprunāt/": {
+      "hash": "6aed2fb485427c3e72b4d5ca9b1890800211dd2958816703284e25504557e364",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apskatīt/": {
+      "hash": "cba6c9b500cbe87cc40b69dfdfa354e4d7949ef2fb8670bf383a670b9a67778d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apskriet/": {
+      "hash": "3a50ded31672276661c9d00c1ff8b3592282f919c01ddc8dc1f4840bbde251c3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apsolīt/": {
+      "hash": "446b4e585d55f2ba447fca9a78d240ace1bfdcc88aa4f7ee08f83da009c2186c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apspēlēt/": {
+      "hash": "54d982868232338beeb4739ae3bc2533c9f596af03e37826cb6e3cce0a19fdbe",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apstrādāt/": {
+      "hash": "1dcb1120f3d475e389083cdce885ce826a5c3ae31291e371625c0dba7d443439",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apstāvēt/": {
+      "hash": "6c5ab724aacdbf97f68066e3ef73462439253b5dc6344707621b1f6b185d6134",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apsēdēt/": {
+      "hash": "3cc657813300f13e2c0f525dca533c89080e6800dc5fe0af6a730b178cbbd765",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apteikt/": {
+      "hash": "37b67f07484ec3f0339a9b1aeff72e96c9a2b0d8d3d212a2f1f6dc74a527f7d6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apvarēt/": {
+      "hash": "8baf77fb821a14d4446015a9ef4aaa29dda56c9399b8652c3e3b79902af7dd98",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apzināt/": {
+      "hash": "e1334be550fa584526a46ae60e8a765a7c772b3ab4f91fecaf783475b7dcf27c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apēst/": {
+      "hash": "cefb0709ec82a60f701a393376fc6097ae32022cef00d036e88e9ba3402367da",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/apņemt/": {
+      "hash": "f5f1595def69b663a46ead97921cae9222014d7f6ef5ffa67108b48cee03b437",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atbeigt/": {
+      "hash": "42828526aba2756814754b27f79a334876365f48ff2583ae33943f5c8f96df9e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atbildēt/": {
+      "hash": "39e881492937699dd548d91dde2e71f6f3d6dcf2d3d49eb584e3564148d8e4bf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atcerēt/": {
+      "hash": "7e5709c878d4e5067af1525a6fa124f7fd5fa6c519f12435f0bf1ef7744e9026",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atcerēties/": {
+      "hash": "079f79aedae4c88c37a4c7446e4852e362fa70652378a4c32dfc18acc5dcfac5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdarīt/": {
+      "hash": "47694df4a26e27a55c9931f1f492caaf93115ddb568c87b718943f31a3ac1016",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdejot/": {
+      "hash": "f327ae1d895386d1f7e900d3519b9b78f658ae8c8511ab615b99909f7a3d7d6d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdomāt/": {
+      "hash": "e5be2119956ccf3c64658d99a10df6716ff378c749af76fde8d811aad41b6b08",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdot/": {
+      "hash": "e98837f7ac210675194f917c231552c15c7993541e35ec594068a27fdd75fe70",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdoties/": {
+      "hash": "33c5acb46787804433349b778e2550289c430e463ac9e8b463dcad75d454e28c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdzert/": {
+      "hash": "631b87bb810aa5f76795e238645131416f8ba521778c48d75014def4f94e6370",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdziedāt/": {
+      "hash": "c94ac773e0080b2e1f4bbd6a4a968fa0236f57fac3210e10971e23544bb27de7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atdzīvot/": {
+      "hash": "3e941dd578cba9304b7ae8925acc73ba4128eee2564d2a98e9ab3f0c761e4ee1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atgaidīt/": {
+      "hash": "220e8034b7b0bc58b495cbfbe4d5242b04bf746a5ba5d26aa7dd6f6c7035b132",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atgribēt/": {
+      "hash": "0858fe3302bdf6aae4b6d61d7d83a2ea765fadfe0f33b049efd0ae6b487ecd06",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atgriezt/": {
+      "hash": "40050794ef9c9f0ef6bfe695558d8bb30dd5342c7bf5ea442d9509c75d93a772",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atgriezties/": {
+      "hash": "e99731fccb8a406ca2f2f8f42a206bc82f50dfad26e5e64109057cbb16092081",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atgulēt/": {
+      "hash": "cd2fed72eecf232a5b9488120a708c07b94c5f1cb851eb96295fa45e83bfd4ef",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atgūt/": {
+      "hash": "38e6d268e45ac9391250bdda3b47c736826ee7dbf6acf0803c8dfc50490f4120",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atjautāt/": {
+      "hash": "cff7b484ee34f3aad7e8ed0feeea50c181fca148cee2ba0fb9da5c6c5d150177",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atlasīt/": {
+      "hash": "8669152c0bad0abfae5544f011f0a0c59cb1ccfc7bd6cdb071d833796861c671",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atmācīties/": {
+      "hash": "7413da543abd3ace7fb99e34901d3c71849bacd0559cd86737cc66dfec65ee3b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atnākt/": {
+      "hash": "6f22a33b4512de6de7a2174b735b82a927092a4e43105cf1f3a28446c39a5c7d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atpirkt/": {
+      "hash": "82dc05af46815be732a84c458f1ecc15902765582fbfa6474e7c20b3fcbf1c1f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atrakstīt/": {
+      "hash": "5b9bc350c5ddb209516f20ec996c4eb1e9ddfcdb1b7e04b80982a8f31a22703f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atrast/": {
+      "hash": "739c745af6e26d20d1ac37169bc08b847ca71724ed8b84ac59a25938332c9ee1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atredzēt/": {
+      "hash": "282bd6f080a9f53f107f9d97bd85451f7461e982a818db26d43bc75e0976f862",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atrunāt/": {
+      "hash": "9b3a3881e8b505a943ba9a47445a79bf5151ccc5a83743991c95796250bc951f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atskriet/": {
+      "hash": "996e4394ee298e2ae18a3cb3a490bfdbb9fafed4bf8303ee06c9a7acad0da6df",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atspēlēt/": {
+      "hash": "198eadb44899d22189bf4285b6f34f1f4a07bd8cb9e10c0dccb4bf22c20a5f31",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atstrādāt/": {
+      "hash": "60ee75d962b11b8939843bbbbc99ca4b1c8d2089521360bf500ce03a5dea4ec6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atstāt/": {
+      "hash": "90df60278ffea3ba5359acd8413f1997a42beed12d8d9574c3e72ce6c9a4bab9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atstāties/": {
+      "hash": "c0f65fb0dcf9b781c17e30afdc7b3aa0fc1e2bf7d608acf4f9ef445f418aad2c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atstāvēt/": {
+      "hash": "2fe54d3a7ca3cce9bfce56533803536eab18ff3d84732ea178bee5f712fc2ecc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atsākt/": {
+      "hash": "78bfa0367c5ac913ea3f879fb8daf1446231757408b6ef4e843f4147a83cf2de",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atsēdēt/": {
+      "hash": "70e1addb22f956998447884070fb2721ebb1138479286a73dd3fd12921747f0f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atteikt/": {
+      "hash": "e7e1a7fdcfb100505ac0c03c72c11601e0bcec059f6d0c34b347d8341fdd3674",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atvarēt/": {
+      "hash": "7ebd215b3e65167e972493c5598dc28749ece73d7bca92c81d369567f99e034a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atvērt/": {
+      "hash": "cd74401bf05ad288c459ec77a0dee701d1dbaac84beb62c18d5834e23cebca4b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atēst/": {
+      "hash": "a5900722abe20c1a19f0d08f965adc3939fb3fbd263058ce1503d7e1d2fb26f1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atļaut/": {
+      "hash": "cc8eebc864047ba7e3e01b92f82d6cce2dc3d3cb96160ee050c279d21fa59fab",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atļauties/": {
+      "hash": "5da4f72a8fb02041504951d76c12e5d8270421c25e01490b34bd6f5730d7c5a0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/atņemt/": {
+      "hash": "6740537049b54d9c13c2413d81662ea4005f13fce9b4c2ead136a3eb0e9133c9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/beigt/": {
+      "hash": "5436bb2a935f8ce827778b8eff918cfdb68c04e2419290c71bb5ea033fd5363c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/beigties/": {
+      "hash": "533fcecdb920736c67a2ac6ce6c4c93caaf48867171c133ce3351cc401e80ed0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/braukt/": {
+      "hash": "f6a8e0f6eb396d6263803973f6c72d3b252001006b2b1f457116a5dfce9ebb35",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/būt/": {
+      "hash": "8f4e0601f17caa83e993c9a8bcb62fa10cf7d8246f0d5976f81a4cea7cc64b5c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/būvēt/": {
+      "hash": "e9f9394fa1b1b2ba492cc6abbb626d0255c8028ff073ef22e1c63b2ae47e5575",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/celties/": {
+      "hash": "d48d04495532657b53fb72875729d034f11ee3b17566bba35d0622ca0fe3e8ad",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/cept/": {
+      "hash": "97884f84c8877f24057548b41188aa9b2761554e91b1387a5187f7604b032df8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/cerēt/": {
+      "hash": "3f8e3fd05778dad56d57e80584bc5b9df4b68e9a3b69963328e9c1ff9e5d3f9e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ceļot/": {
+      "hash": "9f154a291f15f102e89481bd21f0838cdd8202ebb6e6da5268ba824f56ed2d22",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dalīt/": {
+      "hash": "263130342250bf4dfef2862780c50888c9b289d95298b151fbf9ef5e0bac546b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dalīties/": {
+      "hash": "e8a7124940dd890e1986015b67a1389325c62822f52069a1f4058b06d5c8e291",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/darīt/": {
+      "hash": "dc369a84c1a9c584fab9701efa57ccfbe4ba74be979461b481496a5df2bcf163",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dejot/": {
+      "hash": "2b6dc66fdc0a4ead292f0608d04553cae335119080c70d16850489811c118467",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/domāt/": {
+      "hash": "a41cf8bc783f55a2572be457f3e99bd7726ffe89c540c4b6e618407ff6448ed9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dot/": {
+      "hash": "41d180cf6962f9eae9357ddab6a0df022f75c0405283edd2fb29e38f09ee80e3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dzert/": {
+      "hash": "6964e728d3f57fc03b0c72acce88ac261b6777ac10d9099a9750ee3979270adf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dziedāt/": {
+      "hash": "963ef7703abb6b024027eb6a018c9c5972d618634be5690c4661ccd4bdd368bc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dzimt/": {
+      "hash": "8ad304e2b4d292875b128d052c7e5c17aeba2c2c6fe7b1b6498c190a98c13421",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/dzīvot/": {
+      "hash": "6664b7e843fb81da445b36bbc981393271b9628c87469c0bbc8fb18ca48daea1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/elpot/": {
+      "hash": "6481e9267ab2c97817d4337e46798928da0e9b0e4fc1da3f3751e9d27751a31f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/gaidīt/": {
+      "hash": "a33f9e8285d0c9ec86e4aad5df75daf20446cdb1728242138befa97be84506b9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/gatavot/": {
+      "hash": "dce492c7ca2a45b4e2eeb64f972ccaedd54236a8a765234503b4dac43053cbbe",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/glābt/": {
+      "hash": "f62b274ee943ea453c603aabdbf2ec0ca467844d01a1098592467efc84be78f1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/gribēt/": {
+      "hash": "5b06fd270c863c25dfb7a2289c5f64ae97b113ac3d6eea57a0c8f0c794950aac",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/gulēt/": {
+      "hash": "02736735f059cd00e240532d4c875ab92e7c85d7246e1528923551b7b1c77a10",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iebeigt/": {
+      "hash": "9c2bb75fe8984314aff4988ae6499bd125b421e5951c1faf2fd7d40b8ef37c7e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iebilst/": {
+      "hash": "5dd9c6a30c4996e42908f8e724485f92e4b73b017c5fd9afeb9e2a3c1271745a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iedarīt/": {
+      "hash": "ac04d98d06cf5bcf65674c4f893a05fb37ca3b138ab342e0e2ac69c6e9c90548",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iedejot/": {
+      "hash": "e647937c530ac9e4cc9e40bc3d8efee552f0ce2c7acd36cb8aa410cef7a695a6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iedomāt/": {
+      "hash": "34fb16241f7f411a6c47cf6a2324283a15e9a9cfb0d7fccb11211fb2875a4bab",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iedot/": {
+      "hash": "ca3002c867132fc7c6a7df861f2808ca132e9794a3209d08c298ca15e4a2c586",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iedzert/": {
+      "hash": "4d42ce03c8dc46642e036d250843d06268e9a3dc87f5b72b2ac2ff26d85000b5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iedziedāt/": {
+      "hash": "5701f07e4d4eef1a8a16125036a18c49940e6a2285a31346c8c0e48dfea5a4d5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iedzīvot/": {
+      "hash": "9ad86d7853ef23ce1b0d782ee3aa3c59d1eb1d66c7974d4adb34b80564dc664f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iegaidīt/": {
+      "hash": "fb60a3fa64c3277bba87a8c52dad8437411a77e8cbdaa01ca732c8f9bad94a73",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iegribēt/": {
+      "hash": "5f9c367260128e471eafd861466d68df5c246e65b845073f07b80bb67e07c8f9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iegulēt/": {
+      "hash": "957a06e7c51767547189121527e50b83bb3c34af16f6c7e1be4ba9cb77db4f28",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iejautāt/": {
+      "hash": "f34f2fcb322196c4f6b96f48d180ea053f358c797bfe40621f1b01c1eee3e943",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iekļaut/": {
+      "hash": "860d123480c01a366ffad7b8298c8fcf6ae55da76242f079107edda7dfaa5caf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ielasīt/": {
+      "hash": "2ba15303c498519f9ad53cd908b9dc043efd8da350b556bb02c9e03d0840ca05",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iemigt/": {
+      "hash": "ca54ce79c0aef76c422702f851596874ce43accf5f0554b5bcf90fd848014260",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iemācīt/": {
+      "hash": "6be6bc3ae7d0ed55254274c0485739b4071a6a84918df98687b3df07a83d6063",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iemācīties/": {
+      "hash": "9af2be8b1127f2c6892671cf1981d0a2c88159f2ebd1dd99470c822112733739",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ienest/": {
+      "hash": "bf723484d1fd5c1ad85551dbeedcb4f76aee6c2a145bd3de174110449da8ffbb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ienākt/": {
+      "hash": "ea06724c2d9932b18109125cae93d8703627c6842c2c95d477a9a5b0d1f86364",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iepirkt/": {
+      "hash": "4a8a794ed9175f47e8a829b2705b304b5e08a8f9b5c92c574ee9b23c3ba774cb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ierakstīt/": {
+      "hash": "85924725a31dbd08b3e5f1cc6922ad1e9ed7bfb6f1c682b3a244635ababb7db8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ierast/": {
+      "hash": "4618229b2dd5cc91bfee6e5c38ce108450bd6d19df42b031dd8866244f1578e0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ierasties/": {
+      "hash": "d98055ef6c5489f7b8cf1a0168a92ec54966d332d1ea240ad8235bae3caebc7b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ieredzēt/": {
+      "hash": "0f738d482eda4e286fd57c36d5b4c5cbdfde71ae54136f6bc1616ded43198c69",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ierunāt/": {
+      "hash": "013637081192e982f8fb31ceed6dc0e6bca7c2c5e9596035c20fe5f7a1771f10",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ieskriet/": {
+      "hash": "feb86fba9284949354cdd517ad240871a13bf7a31fb58f69d16709a4173941e7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ieslēgt/": {
+      "hash": "a9d32725b1b6f75ffc07f3bea70abc6b727aeba2b793e0de1eacf8e0078f24c0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iespaidot/": {
+      "hash": "ccdb13a48cb7382d9e9f9402ca000560c1ff58e2bdcc4f7c627fc43a4f120ee3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iespēlēt/": {
+      "hash": "ba7da57c70b594ca0dfdb98ea1269576f3649c5640631ffa5ed171ac661626d7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iestrādāt/": {
+      "hash": "a18989948d1ffece092a829d99e9dff766a44126f39efe36b1528484124103fd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iestāvēt/": {
+      "hash": "985e641377c5e9fd20d262e5a6057b8ca1851977e02f18a77a39fe4cfcd7da15",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iesākt/": {
+      "hash": "d5ec346a61135ecc1cc3ef4d6e2e092ae8edc1eabbd7e632e27958db467f627b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iesākties/": {
+      "hash": "5ae9888ab9fc73d366048e5beb922cbd1acdc709f8493ba3b9899067b086ea94",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iesēdēt/": {
+      "hash": "bee80eb13438e658c401379113111af14ed454a94eba8654d1b6c69f1e24b655",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iet/": {
+      "hash": "62d799b862ee09d7f101fdc725a069446977ffd35eec592b8aa5c56d5a3e3a52",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ieteikt/": {
+      "hash": "96e4a79e1acb5d43e17594563ee2527c5bee945461ffbc8ef223b9495e1c8de4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ietekmēt/": {
+      "hash": "c812f4a3455bcafd2b2733e85bb3829802700d0eb906b1c1424e2aed1103a4c7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ievadīt/": {
+      "hash": "4c7086944d79cf777af0f055c591a215e88a76e76948538106a76b0d153d913a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ievarēt/": {
+      "hash": "f020351666bace154bca6a6197a0f346e5553b66be0505bb51b1a2cef5823f84",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iezināt/": {
+      "hash": "df2b50a057453af95e15f7df68fa456b4b7fb5466f68f5ad94a4d3754aa5d98f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ieēst/": {
+      "hash": "9cb4ad832b95ea4c2badcc4f2ede4495c990e70359236b453ecb9693af2484bd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ieņemt/": {
+      "hash": "774474d71ec6be397fe61ee068c68e7b36f8cf3363c916562aa249568f799862",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izbeigt/": {
+      "hash": "93b0f5169087445f1c38823952c0ed9f81f3662511a630f2b0fdda88cad18c9c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izcelt/": {
+      "hash": "1539e0f28f35b045cfbb132f8c0984d47cab48ba7973b3c16c4b818577fcca7a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izdarīt/": {
+      "hash": "36b83b72994fe824b0b78b2355768bc56f37ae6d79e5245362442fbcbe81ba83",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izdejot/": {
+      "hash": "10ff5ffec454d15e1bbc6c7d4997eb1b5cbdadc32bf96685c3da4347dc45ee75",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izdomāt/": {
+      "hash": "adc19ed32c6002644e23a0b7eb623a3a10ee93616121221a7377fa0a854b0e7b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izdot/": {
+      "hash": "a98168a2d0be9922950e9b7dd45083f2979939257acfec43641899a0a2eaa2cd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izdzert/": {
+      "hash": "ff8bdd4977ecb39a92104d09b162184468cd5d78c06067c61738cf0d5ccbdad0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izdziedāt/": {
+      "hash": "dbecd6b949a30dec18a307e01808b8ccebaedddce410c22310aab22e1bbd1002",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izdzīvot/": {
+      "hash": "57f6cc26bed037405c151f81cfa2cc89718577b540e24aa0e71cef4725f7ba52",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izgaidīt/": {
+      "hash": "fd7dcc278e5771bad72f61f119cda8f18cae785ff909cf01897ee81c032c9dbe",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izgribēt/": {
+      "hash": "8ac9cc8c5c1803920a52c5037fd398d60d5524844dbf8cbd2b46e828579190e6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izgulēt/": {
+      "hash": "23d4341a8f5a592c724b6348757142ca3998723d0b4a54dfdf12957d5a7279ef",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iziet/": {
+      "hash": "e6f3aeaeab722686a2644428f570e3dc888d0f4478c5b0eceeedb1590ce213a3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izieties/": {
+      "hash": "e53732a89da964c5a1beb2e9df8eceb573637c04aac1a44753ad3c407a798542",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izjautāt/": {
+      "hash": "ac2f9fa61a5199d7ddf01305f4fc0666b30ffe2c240aae68b4e8e035898d7519",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izlasīt/": {
+      "hash": "6e32ec460c8c509790278bc391b75e3daf74876aa6d92eb830c9fbee662ee879",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izmantot/": {
+      "hash": "51dfb200880db958b93c0ac17407aa6fc958faa69f39b9223a2d50c1c0903af6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izmazgāt/": {
+      "hash": "54b5c9532a80e6e3365cc4d8c58b8767a862baa67f82da3f44bbbb91b356cb2f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izmācīties/": {
+      "hash": "1257cbd27e7029ab1a3a7dee94ebb6abfb6ecfd8c439977f2f1687e9a082cd5b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iznest/": {
+      "hash": "9e269b81115a685772b43830828a4d91e98b6746c45354f9488ec37ff403487f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/iznākt/": {
+      "hash": "861f3c2e06c729a705f4b3dd4e4dfe37a5c58ddfabf6b0a39cdaa731e2c24202",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izpirkt/": {
+      "hash": "c20b246692e9b0272f79730c3ff518c42a477c3b0c95fde8980e25a673a5c29d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izrakstīt/": {
+      "hash": "012706c1e8dfa08c47de59a60c2f06b315dff0b3e66111718d54e53978679451",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izredzēt/": {
+      "hash": "204f7bc5df231f9a90eecdcbe7f6fbae036b1a173424b204a85b88b0ae3fc1e0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izrunāt/": {
+      "hash": "92e7d437827e0c698ea195c30553794e40d67b73ee80dceb219417bcc97f2a9f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izrādīt/": {
+      "hash": "418d487d08b2d6a278697bd9dd6f9853ef5c2594a8fd9e063f08521490fdc959",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izskaidrot/": {
+      "hash": "c579148c0960370f06feefc3ec2bda6d963bc8088b80e140165541a4cccb624e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izskatīties/": {
+      "hash": "ec90ec809293a433cdb6befee37e2a87ad1e0bc092533d212810e4b04b1cf949",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izskriet/": {
+      "hash": "04d8e35ef4ca01729bcc1790e416626766dec49b710d2d7b3124110292643588",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izslēgt/": {
+      "hash": "1a707c8afeffed982545c566f3bab564cccb2c14922e9003a620611d908a3435",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izspēlēt/": {
+      "hash": "6519c83410689f5b95de1d45d92b68eea547f5a92c72c73d7841f6d046bdd9c4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izstrādāt/": {
+      "hash": "e6fb2a4eff9db8a763c54ca54c811131b6fcea3f7c2945031852007eee68dc11",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izstāvēt/": {
+      "hash": "6c039b2ca2b08e7c2e7ad83defa4db848117fae3e70b739f1afc7b936752ee76",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izsēdēt/": {
+      "hash": "6b9573401966a4828011920990a0945e6306a3a14d17904f45fece8f612ffe88",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izteikt/": {
+      "hash": "a0ad974d0ea46516bb5544250fd7210b50d9861f71d779f97bf2bfad55aa118f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izvadīt/": {
+      "hash": "9a4d28010ed59f563cf43f718ee5fd831de16555b81af5ac94687527be4039d1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izvarēt/": {
+      "hash": "2ed112d1b553b189967255f5688893bda35e036b323b02a8c05a5afa8864fce5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izveidot/": {
+      "hash": "02c42efd563be7fe2c3f3edb477d093738b0f2fb622d594ec8a794f0674cc802",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izvēlēties/": {
+      "hash": "10d62de3e0c7c4ca669dc449ad0b2d5724940efa941b230901bc952243208d3c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izvērtēt/": {
+      "hash": "180b0088ec22ed2e3070ecc678c51c3a248deea2315176022c6ef73f4c6ceabe",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izzināt/": {
+      "hash": "b2283742058efd0baaaa07760ae3ffa11bf0401ce0b23c0cbb52e5bb3ea47fac",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izēst/": {
+      "hash": "dbb319a6983b23a73c4e1b545bc8bd8816ff01000ecccdf6370b268df4fc6050",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/izņemt/": {
+      "hash": "9013f9395244dbca9b2d4008fe64428c18b93c174a756ead319a0b49ae16c67d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/jautāt/": {
+      "hash": "811e7507f9e1ee7bda609d5823b944e2ed242eb40e8e0145fa772cc93b19e8ab",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/klausīties/": {
+      "hash": "e2c9e365d24c4856679f5c9bde57dc08733e73412b412fd9d5b47a2e458a73bd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/krāt/": {
+      "hash": "761a422968eb193ca5323c709ed189216d29ee4f372599d233cabc64c605be89",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/kļūt/": {
+      "hash": "aa27829411c01a741ad2002c12fe0e0f07ad3f6bed6fb17a220f1ad15dbbb066",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/lasīt/": {
+      "hash": "6a526bd4770b875682cdb5e1a9ff342f2b4b42d6e0ee9c48c4c950dd8b8a6066",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/liet/": {
+      "hash": "58667c6d2510109108c21ac6fe97685f97e6f76562395c9b402668523463eebf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/lietot/": {
+      "hash": "59f2431cb54db1d6c7bbccd8a44c123aefa0818896247c75695722f0cb6e93ab",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/likt/": {
+      "hash": "81ddf27baf21de1353f66a4d7a972ce415a58e420cc45f8ffbf5a8d49131adbb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/mainīt/": {
+      "hash": "b2f6d46d4e5b776e31cff51b29f2b8117609e946dbc93de2f18e385ae162edc4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/maksāt/": {
+      "hash": "910fb3fdfd5f420f59ac94b19b3e1690ba09e11e2d691e1b58bbf8db2da68c8e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/mazgāt/": {
+      "hash": "fbb0a456ec02647e00daea097024bb291b4753d5af2c98fc3d7b7cd997e09793",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/mazgāties/": {
+      "hash": "1d2877123ae86e82ae6027bdb7c56f12a8b3ff3fd4e1c54d165077c7c78da501",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/mazināt/": {
+      "hash": "382130233f791fb6671c38cfe7f801d76e42a2f10cb169a5ba433bfb1ea16845",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/meklēt/": {
+      "hash": "e7a49e431a0090b23fb5effdf2ee18a2751fd0e8fb4d4478856ead37d4170cb5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/mirt/": {
+      "hash": "d4de7fdbcfb77cacd046f992857344027b6bc5bed9ec8b6be0e16fe59cd9276f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/mācīties/": {
+      "hash": "a64fa244c8d2b367ef0a22a514f62aa07993d41a16ed4c57d7017fbd65aa74c5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/mīlēt/": {
+      "hash": "a86ae73b26aa8c411c2d02769b4585a4a227a9d9f50969b3b9fb021809f4fb07",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nest/": {
+      "hash": "7535955436c56a5bfa803a07cee00501cb525dbd11cb96fb737180a7ce09f3ef",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nesties/": {
+      "hash": "cd1155563dce531147f1e2672a29f69982a9d8324e64e92cdeb9961106d8ba61",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nobeigt/": {
+      "hash": "502839dc910356f1607d7712d6d629216ac1051e3785bb85b164bbad45697263",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodarīt/": {
+      "hash": "29eddda476f27cb25f437296444364f280089e34b4e2767a636d5cc8a7073d12",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodejot/": {
+      "hash": "0c7a1e7d334cfeae8f1730f59193ca729af96bc7c5cad5d5a8c1c5db13fa8dc9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodomāt/": {
+      "hash": "9811902f0ca8efd9621794f1d765dae7a09bc4a38ae5e7d0d4ad03bc670f895a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodot/": {
+      "hash": "69d50e404412023c860a5d46f15130ed40e0c698dc838bfc763da79bbe8d50f7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodrošināt/": {
+      "hash": "0a46da8498daa3e748919bbb2c050fd4358a52e5a3e9a8291ecf88466cb0a21f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodzert/": {
+      "hash": "0405aedb1c1d486d867bfdbf250218dcb93800ca3c13bd939cb5d37e75fa9911",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodziedāt/": {
+      "hash": "3bb626fc15321ba4e291661de358fe21b75c584ad448c57841b7d4bca905f220",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nodzīvot/": {
+      "hash": "cb7c7c5e6d531aef6df5228ffbec2d1ea6d2ca9732e68439c8cb5bb2f7432bb9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nogaidīt/": {
+      "hash": "4ff6a64af24fcde2e07651fa1e0b65a84240f89f0fd35a01f89b3f4ca6ab4c80",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nogribēt/": {
+      "hash": "4d0e7c1fd576ba903f89f530ec6dae0248245fced946cce5d9038aad30490a6d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nogulties/": {
+      "hash": "c29e74d7387a56b9216d21414309a5f5776bc80fd6bedd00054a065331f33eaa",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nogulēt/": {
+      "hash": "779288a6bc79dd2c28dfa8801513bf40cc8fc6729513d15d109fc46a09c4563e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nojautāt/": {
+      "hash": "6b10cbdf18d54ccf24956253123ca37a5372df5150605f43fb948d065293d1b4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nolasīt/": {
+      "hash": "82bb84d7d380f93c389817075b45b1ecd04a75ef4b6b5b6ade3e7aa409ade560",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nomazgāt/": {
+      "hash": "a3392ef6410830eef56144dd5263b6a4e6e7a012d352000c42913aea61733817",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nomācīties/": {
+      "hash": "477a89146fcfc17a745b0a54ddbeee40bae8682aec2d979943372270996cac24",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nonākt/": {
+      "hash": "05eb35e4c3acd253b1d9aaa27adff55a3cba48372e7f593a00ba1d92374dde12",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nopelnīt/": {
+      "hash": "e0f65e9df2c7d6e478fe8c7235b410ec7b12e4ce2e1e7a85f2a70c609c41ec3e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nopirkt/": {
+      "hash": "1b1e1602a69456a2807aab94a0d1f583c5edfa16151596a1b064bc4bcce879e8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/noraidīt/": {
+      "hash": "8ef764cbd67d1f982a775843e85fa1cc9fa09a33ac757fe65a99a75d513ccaf8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/norakstīt/": {
+      "hash": "9d3f76ba374fe8e3b75daa8bb519411db7bd0a06f2d1a0e80535a092237d6be5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/noredzēt/": {
+      "hash": "93dd0339964d2b8a52f109f0c96aa224baadf8277c9564cabd6d3ae202278411",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/norunāt/": {
+      "hash": "47e321c7b51e221634a786623e34ed4e9fbf23b21c409fb1519833d8b322a53e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/noskriet/": {
+      "hash": "25d0f134b08e968e96ede703400f325583d2a201a4901bec0d23ae993f99658f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nospēlēt/": {
+      "hash": "38bac427bfe7468dfc595caf3f85deee54739658b1ddc32e4047d3b4fc7b585c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nostrādāt/": {
+      "hash": "05d1a02a960d66cbc25a9cd1c9756bcb3b391bc4821678cd6949ef4b808398a3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nostāvēt/": {
+      "hash": "ada020ee9bebfed5dd64242affc0ef187d989f43828978c0a55a3cb08563c3a6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nosēdēt/": {
+      "hash": "083380730e6f979763e9ed2854d16dec4cb8d0ccffaa7289bd947f09cb3ab83b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/noteikt/": {
+      "hash": "be0c3fa2eda410a2b6f557905bbb314c44b82840093d54beee3071a8a5273117",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/novarēt/": {
+      "hash": "d5fdfb6bcb17572574d869ca540cb3a3c7216d02a24286c4357f8b34be8cda8b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/novilkt/": {
+      "hash": "8374565d764bfc88af30c89d67d4e8acc576e7d6237a8159579782852c85af33",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/novērtēt/": {
+      "hash": "ae102bb086dfe5a7e9da5e7e5543b5f6b4a8bcfc737006c4df560202ac59de6a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nozināt/": {
+      "hash": "27639c4e866cba554f910d31e7d099b2a148f2a7b9082230cf0513ce30d8c3ad",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/noēst/": {
+      "hash": "edcd16ce338a63545337a865e76c8cdc867dcf2c26a0ba4220ef569770fbe81b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/noņemt/": {
+      "hash": "f4dd5cfe04a961632999f7f73b01cd658a614bdbb86d8bf3d7f1f79c257ece13",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nākt/": {
+      "hash": "45a8daca0ca7305c21107e59f8cf06a32913077602b730f0a3aeac274c0edab5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/nēsāt/": {
+      "hash": "948b41a3bbb2cd1e74e4e8f504b6cab3228b1d2e79e39b452bc2df42fc58eaf5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pabeigt/": {
+      "hash": "2fc6645108779485b814530651e5162de294bdee43b45a0fbc64b347cc0aa6e4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pabeigties/": {
+      "hash": "617fdb14ef43e57642ec59c6682ab81df23689ec501b5054bda0414b89a864fd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/padarīt/": {
+      "hash": "69a757d96eebbdea604d95c74ee4c66b113fce52fc9c18a77eef2dcd3e92af92",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/padejot/": {
+      "hash": "09ea2b41640da43cbf0672c6d701c074b8e035f331cd591d1274f063d0f4fb98",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/padomāt/": {
+      "hash": "9d8b7ad661cc58ffe6e72e193f029faf93fe52180ae7f9726b1f6a353df504d2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/padot/": {
+      "hash": "f1105bb469a1c2cecc9cb461230459c52b949d487b64c4c1fba619185826a5d6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/padzert/": {
+      "hash": "fc4d6fded65af160e5cb17cbec711e0cc89b54b6b859881b5beba27174a07a6d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/padziedāt/": {
+      "hash": "c8d50ca5a152acd607b31fa178e9bda8142cf70987cf1e4ac883149d2c9c3127",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/padzīvot/": {
+      "hash": "c6971b5ee6bda4fedc98e7e0739da246e5b4406ab4dae5fbd9311300e201e87d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pagaidīt/": {
+      "hash": "7245784a6cc5f7b38b0563243712331c5666a3f70c98b8b1e4504f4bed4a1f54",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pagribēt/": {
+      "hash": "c94803e82b1237dd2d95126c1aba24367f2e661ac5b64e67d8688ac5ca85ec57",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pagulēt/": {
+      "hash": "1f4a89bb6ea2e96588e55c9ebdf5dae8812117ca30fb46590296f5a41387e076",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pajautāt/": {
+      "hash": "bdae602656a0887ba009ecd3ba2a35be487b60cb6d0802cbcc61a65724a00c9e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/palasīt/": {
+      "hash": "3612882ac3dcc7f8811902964314f81502435d3abe68797246a5b15bebf18b94",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/palielināt/": {
+      "hash": "5410428a02db54a84afac6e16c724f7d25229597c2f2f5b34d9f1d0653d1e8be",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/palikt/": {
+      "hash": "a1599e1a548ef73f01f0d0efc48bead0c186a3b40b8b5e5a72071489cd4b80c7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/palīdzēt/": {
+      "hash": "2500cef47daa6d5ce710af05adfc426adc836d20f4daf3fea4bf321db61c513c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pamosties/": {
+      "hash": "52aa63e4c276fd29420fc3901ca66219623cece2897ad7f8befc09c76f5eaad5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pamācīties/": {
+      "hash": "fe6a5a97becba8adad53dd16ff19c0864ea3bdda7a6471f075a50915a8c34420",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/panākt/": {
+      "hash": "01002cfa66d3f6dac266d53076cf8996a24749302e5186e0bd3467b625b5c754",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/papirkt/": {
+      "hash": "8475fa3f41102569858b0e45c8abb7b9094e15c3ca90dc4154bd9a3e89db7ac7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/parakstīt/": {
+      "hash": "dc9e4d150f4f50573faa9700c54efd6d7b07fb75dd4c567f57b4151fa5dd3b39",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/paredzēt/": {
+      "hash": "5d4969199a79f62c98ce3efb71799f29857e00a5524fdd8fef8e70785b995c1a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/parunāt/": {
+      "hash": "e0a785a2195190d013041ea38c6585fd18f8bc99e8442ad4af6765231cba643f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/parādīt/": {
+      "hash": "c4611f1f09447441039cb9ec122989ba509679400b2a7af529c5db4c3a761b0b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/paskaidrot/": {
+      "hash": "b34981fc6982d8b4d5cbce7122ff46f666a7cf8918f886956dfdf50866f6965e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/paskriet/": {
+      "hash": "b69ec3a5186e7ba43bca1620648719b0007316a63a41409d2a74d279cba0307a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/paslēpt/": {
+      "hash": "6c459023258a842e632f3fa6ea98b837111eff67539ed19c67efd5e7c9d89ee8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pasmaidīt/": {
+      "hash": "cdb4404141b9f046ce052b6dc61cf8a108d948d7199f76bda71d4fd31764395a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/paspēlēt/": {
+      "hash": "34e8c9f6e3160fbc32dfe7e2f43b6c48edd1700b0a9d4f9d3654776ec46eee8f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pastrādāt/": {
+      "hash": "c37fc856c67a11a6877a070b3cfb24f43aedd5aa1e88eb3e154ed44d7e4afdee",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pastāvēt/": {
+      "hash": "b5456a5b4df45021a710a3fa3d5a09c72a840bd2c3353f383944a573274ec92b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pasēdēt/": {
+      "hash": "0629b0aa012694a4ed5c4e4b17cec411edcfea9a4908c1dad41f11e488d42580",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pateikt/": {
+      "hash": "82e42695b8529fd8b9c16a34fda750eb35ffef99ca71ba6dd615efd684354117",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/patikt/": {
+      "hash": "f293aea83b1b07eafe8e2d94b8cf84c4bc53846c878602cf97175a74b9fb00a4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pavadīt/": {
+      "hash": "6756b71614d39e627135dcfb152febf405b6f559902232cb87e19b4dfefdfef6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pavarēt/": {
+      "hash": "783383bd0468ed1784d8fdac833a68906ee6c126215df39becab43be54cc67b3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/paēst/": {
+      "hash": "6598596663e758d6428bb1e24fecb5a9836de2158c0455133492ff95f057cedf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/paņemt/": {
+      "hash": "700ad0069b40831aeb35a49329a69c33094c3fc45267af581322ce70865d4844",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/peldēties/": {
+      "hash": "3b30e5bba21a60808884d9adf18491f8a566c67b495dd6086476368e3eb2da2b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piebeigt/": {
+      "hash": "92c92724c677ca21ab36a5e0f37ac47636b127bc24320bc3eabffdb66831a549",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piecelties/": {
+      "hash": "d6c9f152e77ded4ccdb0f629c6c035d2c7a6fc5a1a4f613b56843121b4dfdae5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedarīt/": {
+      "hash": "53348a26c9aff501a80c61ddb4a66c79d4ff9341a7d963bd782841bf65faaa2c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedejot/": {
+      "hash": "7c470e2e4629e4167edd06ebbe78e6380521a469427dc6b6a4ecd52148ad4e94",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedomāt/": {
+      "hash": "377b5d9e4a881907d5e7c76baedc4e1b0b8c9cdb4ad9e214421436876d25bc96",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedot/": {
+      "hash": "3eb471bbb16c9d86bd17f47439dd77bfa799fe3091ef5628ca30bcca3f51f326",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedzert/": {
+      "hash": "30e936227658dae3804cef68be7ce68071642944db1444f945a8e25e2e61f6e7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedziedāt/": {
+      "hash": "37b0a4f2c30d83f7cda1f3ad26ff38986a8f474dc993c2e21f39d50dea857e95",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedzīvot/": {
+      "hash": "7c43e857f89db473777933b67f1d9e6cc4b6880d6006ae735cb9da689c526dce",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piedāvāt/": {
+      "hash": "daa39842c8512910d0d7799e9444be7262f753195b02c69a3eba989195d00f94",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piegaidīt/": {
+      "hash": "86d669d63672adaf03b6279f10d89100f7e408262aef57e2037d3a7cdee6a045",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piegribēt/": {
+      "hash": "5f3c3f3304e6fb0481ad9504b70650a510dda2be739356a1dfbc7745c89a68a4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piegulēt/": {
+      "hash": "a171a9f89f18fc326eea06ce20f7f606657b10fa7bbecba6546f546181aa0aa9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pieiet/": {
+      "hash": "0a67b05899752d92a098b13c7988dceea5e4b47e769d8888d17fb96744d7ea53",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piejautāt/": {
+      "hash": "ebcce5738a17e82023b53019bfc4aceae6dd0c72c69ecd27767729c05a71660e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piekrist/": {
+      "hash": "0aaecc9667cc879029539d0d9937b3f94a0af136620a2db6a51693c2eb3e9b43",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pielasīt/": {
+      "hash": "b7c9cf43cdeccfa7bb27603d24d258185fc040d44f787a7738116b3e46a7fbc3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piemācīties/": {
+      "hash": "7210a2acc730bd683bb7b740bfdd62757a295edd002d394edf1e882dbee975b1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pienest/": {
+      "hash": "ac6b1e116c842c9576e731bb94237c5fa73132a2feaeaee096738dc74d347e2a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pienākt/": {
+      "hash": "d0f858c952ffd3c763d74a6ab9f764a3af389e1e461c275b7a6ec44a3d8fb381",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piepirkt/": {
+      "hash": "a3f591aede72bc87f16f05c430380952a1735cbcac8f30c440950f762e94a47a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pierakstīt/": {
+      "hash": "0ebd8d2959235e0087153d26914aceace85915bbfb5348a6970a27646c6c9612",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pieredzēt/": {
+      "hash": "372a35ba8c0b400867d38f74264b5ad24b21602f0b0d6fccc9e598f00f0ebcfd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pierunāt/": {
+      "hash": "8ddfbc1498d696a23766b5651ddc17b959ec0275a36b55bf7b70be22763db6be",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pierādīt/": {
+      "hash": "e43eb5bc59afdfea83b5598d8823d1269d93c4b44b25a66a5bc3d802c410976d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piespēlēt/": {
+      "hash": "58d5afb2740eecb820311ae66063e5dc9f24355b2dd8c5845c5bbf155e99aaef",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piestrādāt/": {
+      "hash": "384eaf8be26542ac7340045c788c3b5e78c1749169865e53304d5c8f7c07befb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piestāvēt/": {
+      "hash": "f12ef85a81604377e8c265d56ca9dd8559db4c901ab951b0c0611e2c6481abc0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piesēdēt/": {
+      "hash": "9fa971c8b5b6ba06fc05c8629f9dcf7cf4c928ce3a0c82468d4c87112a8e28fd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pieteikt/": {
+      "hash": "97facc105081e966fd8b1904feaa448b84e51ed06246df29153cdb8a09bbfd1a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pievarēt/": {
+      "hash": "e527d261fd3f68b8fe70900d7363fb117ebd442ea40478862d009a3920861855",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/piezināt/": {
+      "hash": "16c68f9ce38bc313be5eacc58403a7d5fa8eb15eb569f2b62b7eaa9b02670363",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pieēst/": {
+      "hash": "7e52649788ed67e82c8fd867470c2da70bb51b3d67b1b19dfb76bfa923d8da7d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pieņemt/": {
+      "hash": "674004504add2cacb91582abb1c0ef8a0d78d8998efc96331c3a049522136ccd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pirkt/": {
+      "hash": "66e752fdd611ec8f1a41b99b77036a6fe58d828b85ee8152460752f281b53334",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārbeigt/": {
+      "hash": "813ae22fc63102ce6b414693e4a8c31a59c0c0f081284dc40ff62629ccef95a6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārdarīt/": {
+      "hash": "3a75eb99f93347674567e7e67f8a343ce4cd0bce363c1f2b07463ac7d272615c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārdejot/": {
+      "hash": "3f42bea5df748ff8119538848b1cedf1b3bb79246d55a87f4dbb3f88840a93d8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārdomāt/": {
+      "hash": "34ed440ad22219f9069c1fab830d037b0faa659f1f84e56f5599b728c160ac5b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārdot/": {
+      "hash": "af76f5f21411800a22b32b607ddc3bd6edd1d098682a3ceadb34e751c1e592fe",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārdzert/": {
+      "hash": "39cf1acccd922b03369efcbd00d876f79947518e98b2858c0b874d3243c7ca49",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārdziedāt/": {
+      "hash": "099fc1131281535ca119846a06c01a7f25428cdacaa69d77a436efa8727b3774",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārdzīvot/": {
+      "hash": "9c353add8e83e426ed4afea830b5719e7bd99fd846343d0856a1ebda86239a86",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārgaidīt/": {
+      "hash": "89638cbaafefa6a19f45f6d92269a93d694f0a073e224557d1a6ee40b2c5552d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārgribēt/": {
+      "hash": "8073f2528b1000b1694254b5a1bf9c877f1bc5ad8251b8bb0f68c1296289a825",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārgulēt/": {
+      "hash": "f5850d23d853e64ef764f46908c2629b2d7d4c50a928baae3deaabb9a6927eec",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pāriet/": {
+      "hash": "012b665d055c417bd9a2ed639cd8593d49f1d955e7d9d6c9cbb5910b0d256cb9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārjautāt/": {
+      "hash": "ca520e1b2838d0f3a6bf78e9abfa75f4595ab48026d9d6b427c23ffc4c0cdcf0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārlasīt/": {
+      "hash": "dfc2183b324f790d2860f583ff02e0824d7c490419b538a2ce8c088d9c49c4de",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārmācīties/": {
+      "hash": "f0a15675e970bd41e8e101ff18a2c20a8ec477f9fec84feb248997c4f0367b2c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārnest/": {
+      "hash": "fa492cf26491f5bd0f0a12c4611cd52797d7f1340bb1f4aa1b378f38146c04b4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārnākt/": {
+      "hash": "19a9b82b5376a3c49a527d7c0c65a462f47d44c51e95113f086f1a565b0605fd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārpirkt/": {
+      "hash": "90050f76c516c714cf206264b41898ce83f8dea500a79f5d8c36c319fa7a2b79",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārrakstīt/": {
+      "hash": "e39c3647007bde8f4895bc00e9b163b094ff229aafb73a692a80d27283c35053",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārredzēt/": {
+      "hash": "ea045157f4d0f5997b23a1d0386ef9608d5b0c6999aba5999c1c9bf62b738562",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārrunāt/": {
+      "hash": "3992aa45e3a7f1deef149ac55590d44b1f7afddec64a2ef2be884c48ce098899",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārskriet/": {
+      "hash": "ec01d6e9a2a3a5bbcc8aa5ed2ea3702c68769909e0c240334e412c379d3b7433",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārspēlēt/": {
+      "hash": "f2189c1f156c09f9d789b3bb4e0f425191442c6ebb302e60b57678f32f65adb8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārstrādāt/": {
+      "hash": "e361c02a3fe689145cd916e52fbaa88b3907538cf4216131b0ad63835d3e4458",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārstāvēt/": {
+      "hash": "08567b386dd458e89e9f8bd5cc498d6d17609110080c38635ee87d15f5da5ff3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārsēdēt/": {
+      "hash": "c20b2c2274c08d64114965e3af2a58f4010e9612b31166f2201d0d476dffcfa1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārteikt/": {
+      "hash": "749893a972afb43d704120e71a200f3c0376d3e96c6bd2f9b325cc0b9bb42a48",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārvarēt/": {
+      "hash": "502e6ddce44d22f7eb44f8784964cd4a82381d309fcc881171e82458bdc382e8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārzināt/": {
+      "hash": "07f6390b08a3dab3b6a016a4b8830ff80c2a2cffba87a7ae4a406a5432d4e36f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārēst/": {
+      "hash": "a5517ae404e046632f0aa9ba5c38c7addcee3a24117d72cc64f820638c6f3ffc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/pārņemt/": {
+      "hash": "56ee2eef10980da58e09247858a133c9e5eb45bd06b57710e9ce687fe24e2433",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/radīt/": {
+      "hash": "7cffb1d453efe0967d3bc91113416c9487544cc8088617384f5148da39e3b88c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/rakstīt/": {
+      "hash": "bbb9df91e0a6f1d129565cbbce72b29f2408a10af0d7836a4743133e5af3b554",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/raudāt/": {
+      "hash": "9f9c5c07d427f106740036ca1d351f320f875911c22d147170506f5ebb56e239",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/redzēt/": {
+      "hash": "64ae1ea3d2832fb338bbb0ac6e17f94d650e4d31987fcdeb2f81112b7253506b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/runāt/": {
+      "hash": "9bc6e2b0fc4140842e39d84afc58cd97daf4c1e5eb01ba5f5f0bdaeeb022e193",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/rādīt/": {
+      "hash": "d170a9bbd3af7a0526431c2f425306f7d7f116cc5ab06d8b41b0549a527c6d79",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sabeigt/": {
+      "hash": "0f3d1b532571f87c6a49b1f1a68f57c8bb34def188cb3298a7878aa49c3a2af8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sadarīt/": {
+      "hash": "2f31dc8ac8970379ebe0a507941c14ebfa9b5e86dc39445340caef2b402f8495",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sadejot/": {
+      "hash": "735f164c4529b3a32538ce07203a7dc711d66c8decd2b0566d21eff581f84834",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sadomāt/": {
+      "hash": "ce3d38285d0f259ba3c624ed2d91ff0a2c114ddb6407aa821c3671f738f57707",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sadot/": {
+      "hash": "e29df74954cf8a2bcf67ce81580de003a3652e727aefff0e5527c7d3b4cdcbd3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sadzert/": {
+      "hash": "1d9c2edaf9bbd614cb38757b75b849e468d2d972a7a5368ed9f39d7b44815490",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sadziedāt/": {
+      "hash": "c00a19ee8bb58ad38be218029e33f72fa45d93cff249cf81b0fcf741dd289c67",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sadzīvot/": {
+      "hash": "0da45afbb91f09e90649e17272498a41d9b0b19df37adec5b37388df417353ad",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sagaidīt/": {
+      "hash": "d529a2d4ff055d0b345298d11c0181ecdc492f33aebd0f91145efb79b7abfe12",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sagribēt/": {
+      "hash": "07a1f799170792ce5b6c6c53569933b8d25bdcc3a690b6abf53739a6938e599a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sagulēt/": {
+      "hash": "efebbf410ee1d56f095a8f0b98e4707f9e8890197cb8b1b18fce6f952c1a9c79",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/salasīt/": {
+      "hash": "68bbb89955545677b0be1d8396ada7d8b21eafbc094221bb9502cf18d5c4c2b2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/salīdzināt/": {
+      "hash": "4a61ad12ed2e83ef0e38b807e9178ad344840b52a76de11147633aa8f65c856f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/samaksāt/": {
+      "hash": "7253a43574e5c499cc8d2ec7cf5b83b16f82b77af31646fbec36b33f5ee462e5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/samācīties/": {
+      "hash": "b3914f7f328afafb5641e106a0deded90c55fc70c77858d0c2c9e4984618ee8f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sanākt/": {
+      "hash": "34b78315d0278f2a09254ba0a03e4d3b691ee4cc5e19b995a0bd08bea21a5c9c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sapirkt/": {
+      "hash": "e0331c31e0ce4adcf9f022b07a4bb9bd7f32602d6208b6e35cd7814b5ba2f72e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/saprast/": {
+      "hash": "4318b3e9dc66c4385eb0715ab4f1f75a9ea89617d8d4ff8c3c994d09cb2a3fe6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/saprasties/": {
+      "hash": "c8e3f428124dcb08ab917ff4146f8baf60dbee8bbff138aaaf4272462dab4f84",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sarakstīt/": {
+      "hash": "c86454b3b36a02b9053fff0bac9babbe1bc6e78668c59034c4f1feb2283362f6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/saredzēt/": {
+      "hash": "57be089ec6446ed836fe5e241f40423ddaef7b3a7961311e6c24336e93674f2b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sargāt/": {
+      "hash": "a2d80ce5f0f42373da117b6db506b167f11a57d8bc115a7f8e298d53c3ff5733",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sarunāt/": {
+      "hash": "3454a51978f3b924a949f9ab0312b5529686731ce22fbc84c4ee4f54e64eca3c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/saspēlēt/": {
+      "hash": "2907583201047c1d60337a11c2ac0459116c99d3d602c706acb46c419e9a3d0c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sastrādāt/": {
+      "hash": "3be8bbe2a6c80aeeb999b24939376aa3ab22597baceceebdc0881389fafe5c3e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sastāvēt/": {
+      "hash": "da58539e8353fc1af801dd948ce8596e8370ee597c3dbc83a0c58c01f80a20dc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sasēdēt/": {
+      "hash": "db8c84d3f3b4f3649c7ee85d5a0396290930ded924ef705d2a46b9a63560ef0a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sateikt/": {
+      "hash": "c1f6f965078bb7293f2081655a096b8c1e42ded491b11beefa92ab85174f8010",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/satikt/": {
+      "hash": "bf2fb1bfa4b81ac339652c9fe0bd2329901b955b785655dc52f1bf37904405aa",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/satikties/": {
+      "hash": "b9f0a210c3221bf7bae8db072addf6db850bbaebb474b3b308cccb543b91f142",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/saukt/": {
+      "hash": "868b1e736c05233b94d3dadedb3b6c426cd798ec4024d0680f29ff17512f15d4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/savarēt/": {
+      "hash": "abee2ee801f196410efb75ab74dfe71dbdcf31ba4a22f4e1bee399553a16c0f7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/savienot/": {
+      "hash": "37a17286fea2f35783c290f9e43cc2e773939057e1ab5ffacf44a9428e9e4ae2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sazināt/": {
+      "hash": "326075b734e4b0cd55f70470a83b6a26629cf43a73dac1358830c9569f4e4e7d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/saēst/": {
+      "hash": "229615ee5911bba038d58e96c2482b39a037094a31d46e8e9aa09d8fef3e3416",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/saņemt/": {
+      "hash": "008bcfeb4e72773b2fd2d6ab8d604eb1fd5d7fc36699f20bfa2e2d875f8cf49e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/skatīties/": {
+      "hash": "a6883539c1e04cb5ffb46c0a21689db0f9f56eba50b0d0e93afebcd03c6ebdf8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/skriet/": {
+      "hash": "afafc8f5cfbc85199090fb716ad2a45fb0f50dfa4e8ffd3cb7ca511bc2a0f69f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/slēgt/": {
+      "hash": "f077c5c8689bbbde67d5e05a8222798a9c330dce832452a188bdcfe0c2596db2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/slēpt/": {
+      "hash": "591a7d4cf5de98cf0db14d72e176aae60f11a3735ea14dbcc04d3653ed086b03",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/smaidīt/": {
+      "hash": "a03bea2618b971a0eb1c37b64a2433147e34d6036f8f8ef57803f3d23b4ec50d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/smieties/": {
+      "hash": "30f1bbf53d52ffdb4f53e1862926f68993e432b7b5ec49ea2db2808482b88c3d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/solīt/": {
+      "hash": "124b473143b9a97afff2bc9de722e3c311854ec108394c45313dfcec9250331d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/spēkoties/": {
+      "hash": "c2a4320c776bbd364d495d47fa443d9be2a78048f9e17fd6c5ecc0bdd1b112f9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/spēlēt/": {
+      "hash": "b68095289a4b95346b1d4966f084083533e3f860ad1dff4a5ebe9a01b5b2bb93",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/spēt/": {
+      "hash": "15651368e1d6e4b17333f3c2e3a7a39ee6424af6c0623157326cd757c01cd201",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/strādāt/": {
+      "hash": "4fbb2c612dde7d26cdc085bdcb789a66665175385c7f3f125e50b11f6375ebd5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/stāvēt/": {
+      "hash": "c79ce5938a936e0e2161dc5622fccca80b75d827ea959b474c44b9cecc83c877",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sākt/": {
+      "hash": "22c751a273a174c0c796c2a6a0b7e1c9f112751e5a183016789a2c949aa1e157",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sēdēt/": {
+      "hash": "194b76b6589e47ac2ae1e20efeb33c92822d388ae3c11b98db20f1fe84f6f4f6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sēsties/": {
+      "hash": "13b3cdcba42ae64fc27083a6b2a0cd3e1656cb735989063038b9a09585d65003",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/sūtīt/": {
+      "hash": "1e53fb9fff44f120718da88b084dfb9841176307c6acad0cad5f83c0880a7893",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/taupīt/": {
+      "hash": "35df58b5da4e6f3c7f11b6aed51e25c2ecef0f937fc19fc0d015777c422693bd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/teikt/": {
+      "hash": "c06f65b5651ef57592af268bd0d6fe1a1c7eda15d7bd9fcadfd32c68adfed96e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ticēt/": {
+      "hash": "4dde822aeec330d3f6d75016c219c4d4089f4a4cfdfccd417c095798b45db994",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/tikt/": {
+      "hash": "b6db997c1482a40412c446aaa69805f15af75dd68f2023a9ebec7f0b4ec11d6d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/turpināt/": {
+      "hash": "35af605f8b4c1e272de56b695ba286c0dabd28d18764e296fb4408e2fd4f4bcb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/turpināties/": {
+      "hash": "abd9f4ee884a704285b21cd7638e315f2be4693b5fe1cd52ed5dd0eab17e4f75",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/tīrīt/": {
+      "hash": "e33a0df8d88596914577a7877077e3d45b45fd5aa2c82939641bfc534f287d85",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzaicināt/": {
+      "hash": "7610a0d8684809c9eeb3f214f415a6cf287bb10087722bca6a606de1bb0ada96",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzbeigt/": {
+      "hash": "84c1bfb2e3a426c82cbbc42036394bcf40d27b7660a77d00d73cbe1ac8a32e2a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzdarīt/": {
+      "hash": "aa57573444d0f53abf98e3b7cabbfb8603ff82e4e5140817057b666d9b78388f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzdejot/": {
+      "hash": "473d448db4359d2735cec6680d056a231f5bf0b55d1bc06fb213b9bc83aee37b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzdomāt/": {
+      "hash": "395915a9497af66cc05c987b974a336cfda85cac3d8b8dc97a958ac114e06716",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzdot/": {
+      "hash": "fb5ae270c9c3cd45633c25d213d510971df94273a0b766f3f70cf0c11c67d2a7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzdzert/": {
+      "hash": "be3a2f9ea733b85cd2bf54be948cbb2080212f344ad34ca235e7843c556a29a8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzdziedāt/": {
+      "hash": "d70385b20f9fd0b909c9b5acf3bfd4acb6be3478541f15e5dbbba90d210d9331",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzdzīvot/": {
+      "hash": "79b0d052abea2187f0e3f71d52f02bf269a0762c0be551a618a33b6744c86416",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzgaidīt/": {
+      "hash": "3edd258f3d61c703e7a91b19805a08caaeeaf8042b90a81b74a3b0b4ae8c9df4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzgribēt/": {
+      "hash": "9e898fa8ef65ee1c9b87b7676368ec8fbed4c29411d7bf30063de98e00665507",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzgulēt/": {
+      "hash": "02d3e4c6febc1ddd2dca8599e2baab44252fdc91de64fcb149620475ff869863",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzjautāt/": {
+      "hash": "49a51f1a391cf9e7c94667e9f9c1a78aa11c3436d0d39b57d043e0a17145c2ee",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzlasīt/": {
+      "hash": "72ac4a451e422e6152afed585cc9ec2866b4439f67380064c72ae190b907f5f7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzmācīties/": {
+      "hash": "98c98abba2855cfa3b8e3c6a5b97a6c3919056c262fa2ae72e9b288bfd514c07",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uznest/": {
+      "hash": "2546815839110f1b64c388609c267ce93dec0e02482ff6780839822dd1ad41c9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uznākt/": {
+      "hash": "929fba51ce25115214044ddf26cfa14281d9392690ced91bf6ee77001488ff9e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzpirkt/": {
+      "hash": "3ea8bbf2bc2ecac655882f0bdbcbc68138ecb9ed1e0859d7ba60d88fe6227fe2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzrakstīt/": {
+      "hash": "135597f2d8905e833472a65e56c7fded6b35f606c478efd2453d07dc5496ac19",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzredzēt/": {
+      "hash": "10438a0eff1edf47591a41af17128a9dce4d06d6e937c3f4008a80864a72ce29",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzrunāt/": {
+      "hash": "2e34f8deecd25b4021673409ce91f6f9ad38b13647998c2b8a730164a5dc37e7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzspēlēt/": {
+      "hash": "b725f7e59599882e8e328c181330e832ef410479a017f1aab47007a3ce1224c6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzstrādāt/": {
+      "hash": "3f22328ab692bb88f1262f2bc8aabd7d2dc25c488e5ccc4a524c478697583768",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzstāvēt/": {
+      "hash": "a679c01a5b000a91763345900d17cf20f3e9c56f2834568d57c759a1f704f830",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzsākt/": {
+      "hash": "c440224b756b8d637249c5f5cf6b078f12007f9335e864f0d977fdef29fdaa0a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzsēdēt/": {
+      "hash": "477bf1bd27830ea9750e062d837931f52746fc6237e489ed4679a5e535e077a2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzteikt/": {
+      "hash": "95ee4ee2a3bc81d7fbfdea3a63415017e0026f33ea5d01463afac7749dcc19eb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzticēt/": {
+      "hash": "346ade6620f6d1867ebc98faea472aba57b811c662bd7270c602378823d5206a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzticēties/": {
+      "hash": "4c14fda149ad693c0b1d115bc1c81b64052b02299e0f52179bac1fddf1c7bd29",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzvarēt/": {
+      "hash": "e64f0cde8bbdce0f335b0ed07e86b7b8725f0195201afba26ad37f82faf8ba32",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzvilkt/": {
+      "hash": "7d91d0325a3945c86b25a5a19d3db1af7b7900e69ecf3f606d015dcbdd783243",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzzināt/": {
+      "hash": "ecafe32f47672014279d2d7206e678e4eb4068c5d600c3a6594149f2411cb911",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzēst/": {
+      "hash": "4a5bfda50e411c36ff5b5f9e3e60f5ac6666ccd567c480ac0d5c612a0e154bd7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/uzņemt/": {
+      "hash": "ee883cf8d2a35760d026eb3dc36bd6fe3246cfd57e775482f55388aaa2966eaa",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/vadīt/": {
+      "hash": "83512358220cb60ff373e96fe63b047251588b5a3da2e339a4f94fbbebb6be31",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/valdīt/": {
+      "hash": "ee68a983bd9f199f71a30184fe38e092041860e87562e6e75d7f39c72f02d0f9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/varēt/": {
+      "hash": "403a6860e7ad4a9257d7503c4e93699d8d03c5312fc86902919bd54b1423a220",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/veidot/": {
+      "hash": "9baff0ec9e0853455c8e36aab66f440017546275c9bb563bd51f157dac5771b4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/vest/": {
+      "hash": "d801b69f81e811db09f9e1847bf7d4b5d74c8b4aa533aaf8a8ef2cf33f399f61",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/vārīt/": {
+      "hash": "2f1b10983442c5ed05bb1c394379dfd7613084f88c412d56a40fa1df9fadc9ed",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/vēlēties/": {
+      "hash": "7d68c3e7a09d8e83b679a86c3e861ac46d3463581c86aae3e4883eb952b74b64",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/vērot/": {
+      "hash": "e84a5a8e6dca2e123cd6fb8d221142c18d1156a3cbfa3f22a75ee4720ebb7b52",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/zaudēt/": {
+      "hash": "75e51722fe52748b700bb1abdd2fb4da4e82450de76b33821af5e8bc74d54682",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/zināt/": {
+      "hash": "38e1be1a18461833c045c6190a32eabd9a6ed6963d10342d3aea7ba0550dacb5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/zināties/": {
+      "hash": "d78f7170de3d8de74ff831910d02d4c2f94ebbca55613f53ce6637068d2c00a7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/zvanīt/": {
+      "hash": "f276e2530dbebea76f1cde2c4b57414d4cf89759d33b077ca97ef86cd3b90253",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ēst/": {
+      "hash": "1e0ebb9e46cf32f0e72692808c193520df4678bcc9b4c0f17000a6f2f0a1b981",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/ņemt/": {
+      "hash": "a9fc3be6a71a8f788f756c326bef88cce1092f0785b7856c0b6cebb346e7b3b0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/šķirot/": {
+      "hash": "1e9a6ac6bce75f3ebf72506dafbbced5dc68fffd488edc90a311f394bacf4119",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/latvian/šķirt/": {
+      "hash": "733a9b73103940d4eeeb6b6dcdd4b6e4e58b8370cf249caa27511a2da009ec4a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
     "/reference/portugese/": {
       "hash": "e3c567342072b0882b12e5b39c4a0bd649c3c6508fc317b6e2c3e65464fdb3a1",
       "lastmod": "2026-04-17T23:48:30Z"
@@ -39455,8 +41463,1724 @@
     "/reference/russian/экономить/": {
       "hash": "ac991c6c0c7475c298d300fc22d4a1f2aaadf1a28c289350da307aac2d22d980",
       "lastmod": "2026-04-17T23:45:14Z"
+    },
+    "/reference/ukrainian/": {
+      "hash": "c236dddf7adf5f3640ecf4a9bf82266a204391e51064424d78a70b63224b68dd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/автоматизувати/": {
+      "hash": "b8b6ca97d8bd06c8d1ea2a23ba1a03dfafbfe4e90a49fcb97b23bf75e80dac03",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/аналізувати/": {
+      "hash": "fb49fba99896999295fe5f131e15e77356477d6eafca3950103fad0f611fa9ec",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/архівувати/": {
+      "hash": "82e03a9fccc3e2922687bf65bd2dc6460235a825a6fa158337889c682e2078b5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/бачити/": {
+      "hash": "d8162c6cc437159f105dea06070cd7629a212a08e1309b152e3b1f789bc22a57",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/блискати/": {
+      "hash": "16fdd7eac23ba74d06cc55fa5b8f1c087cc4881f2084ebdef7488c244b1958d4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/блокувати/": {
+      "hash": "cd3060fb202fea5f5fd9b82b3eae57a64e468fa598fa7514749e5374cc09b8cf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/болити/": {
+      "hash": "be17c471eed9dad25423723f06a50b56150dc2caee06f602dea5d3750db607c1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/боятися/": {
+      "hash": "3797663077c28813a23ed1682ad4537ebfa1e817e18850ad034500d6dbdcd997",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/брати/": {
+      "hash": "05157b4274bd6c9b7d93fb0a97d2f6ab189124e0510fc043a48fdf745959c36f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/брехати/": {
+      "hash": "12af22f468448ce02c8e8af392949bf13e3df2d246274320b214a64e418f8455",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/будувати/": {
+      "hash": "24c568f005548006486920bb8a62e19c54c0dbd39294b1054abd9e8338a52ca8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/бути/": {
+      "hash": "6727dc4134a76bf98a0023f161484ee198124f367c3b6d4400a80c2872d717b3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/бігти/": {
+      "hash": "a260698f7ef22b2d0723e606d8d00190e7a81d5f29e06690bec1e539d3568fc5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/варити/": {
+      "hash": "f511b25f007822cd6eb388054ebd05b9cfa1c1692bb7d454bc411c015a9efdf1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вважати/": {
+      "hash": "8959dd1de9ee0cb9971e99b4377055c28677708e6541fa94c9fb172aafb0487b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вдаватися/": {
+      "hash": "aa3f3e542c80f2b41b2358bbb3a0c44847469a9223576183f50af95a3aef2b59",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вдягати/": {
+      "hash": "f1108029e13cee484b6f3260faceacbca5d73ff216cdaa60e0ee8ff4440450ea",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/везти/": {
+      "hash": "d3197317921fb8b3c5948cc7fa0a8d56bb9acb17321872e5c9fe8a56f1d65b19",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вести/": {
+      "hash": "7f44e756ea882f114cd1a7bcf5766cfb30fdd044b212ae0950944c4f688d6f26",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/взувати/": {
+      "hash": "bdd6e48ebad22d78bb44072ece814fcbd493eb84ce1e75bee2640ec56d7cf1b6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вибачатися/": {
+      "hash": "df71f6ca7493fea9cedea1dd428a1151aa9ea0fcaff6feef4d016031912b93a2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вибирати/": {
+      "hash": "6166314d9f072bdaa066e97ab100b81a717d8403fd0fa76850d6546512fc29e4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вивантажувати/": {
+      "hash": "37726addca4a00122d00dae8c22eea249342b9ed6fe95352316d00b31a28959a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вивчати/": {
+      "hash": "640e655f3ff9d82a4fe5cc330c277ef7860a1f5b477ccd9ddc679189769f493a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виграватися/": {
+      "hash": "ebf92331c1f657495bee077125881a8546f5647f468c7d378155d843bc308d0b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/видаляти/": {
+      "hash": "a925579dfdb7b80e644bdf6aa07427a10c3acf576936c23aa716bd5c866b5d39",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виділяти/": {
+      "hash": "6dd44167fbb1a5d8dac7412cc3444347dd4e31132b9df22b3195b7ed87b87ecb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виключати/": {
+      "hash": "27e2e0a9ac6da8fa54f13118a12833e7d6ee263f93d7e8066e5d65f446780f1e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/використовувати/": {
+      "hash": "52c31a3028b13e14bf25392035ee5bc3a811d6e6b9feee37df7cdf9260786376",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виливати/": {
+      "hash": "d769dcecfcb8178b3fcebe64d4b2c4e32210ee2e1e0e5784940b5300e12a6f82",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вимагати/": {
+      "hash": "54a913c05aea884317a9d9bf7b323eda07a5030b6816a101073b20d0e63b23ba",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вимикати/": {
+      "hash": "97c571ea30ea93094bd608d5bf86ad5d111109dbe6f4cbab67f8bdebc9b08858",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вимірювати/": {
+      "hash": "1d89b6ffc6bf2181130afb67d5a5d74da08f6c861da53db001d0efa51725db9d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/винаходити/": {
+      "hash": "db62ba63e5b2fe4f70ea22744addb8d643a29f46fbedecf37ac30e420c7f49b5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виносити/": {
+      "hash": "72da342b2810eae05bde24d6e7d30f1ba946b249f93044b25711b1ec42b4c2c4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виправляти/": {
+      "hash": "175455ad2efa584cdd44f5c7c74c6edc6bc6228ce167aaa0f17151551f95aa5a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виробляти/": {
+      "hash": "a66310ed6ed06e2dc5f57d04b53fe9b2097e0b179f82cdac0d5dc9414a6cbea7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вирішувати/": {
+      "hash": "2023eed260e82bc4dec70d5dbad176741c801d856e8b5cb1d227caa88eebb5c5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/витирати/": {
+      "hash": "67a7d7b8eece87b5071edbf753abfda03ae3228b06097bae8c90d4e2cedb403f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/витрачати/": {
+      "hash": "2f8a91ef2c7eb0c7fb9fa875617d3158340c70dd212172fa7bb295671886b033",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/виходити/": {
+      "hash": "2d226c1237ead5829fe7c8b6bd3643401ddbd11c0caced9ff658213996070590",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/включати/": {
+      "hash": "4a91cb2fde18300c7353233762d1c23121e923396c1498b0579ae20d0456ca7e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вмикати/": {
+      "hash": "3c7dfdc89f574b2c9a9780a2a990c9add9ab96f99f224a6bc29e23ea0538eb8a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/воювати/": {
+      "hash": "fd425ca642fb3b28cb517f211d1124c3511cddcd35034bf1b86aa8446ee6a242",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/впливати/": {
+      "hash": "a1c652ab28c9abd70fb2d1cb0503e53bcc5cfcd3665fece46e9df957decbeecd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вправлятися/": {
+      "hash": "f67829bff52af2b7baa3bc22da01337adad4623787decb2cb8363bc311d4be28",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вставати/": {
+      "hash": "c6ad3a2bcb0fa488a167662a1534bea5d1309f2a31eaea8f3f832612c7cad15d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вставляти/": {
+      "hash": "4d3a65eca33de06649be8c8a775a29fe533ccdf16747e35c203ec31cadb9c8be",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/встановлювати/": {
+      "hash": "41d102e4dc4d2aef5a676b1e715b7ee9ddc4a524757b3255fe1af18c2b819e92",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/входити/": {
+      "hash": "0060ce2e5c068e386d7e709da28d4905debac0c5eee108d5b0dd27c26c9cd864",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вчитися/": {
+      "hash": "098f6bd208ca1c9910addb08a74e763fc684277467c4764d1cfc39e14b1be3eb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вязати/": {
+      "hash": "cdecc8e19158850fd36a3a579bd54ae64d6e2adff986103b16e7513cbe0e2bb6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вянути/": {
+      "hash": "6b9cbd337de0892a9d9a66a4eb5d587b1683a7d13f40ef9da6e20e221ef0ed98",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відбуватися/": {
+      "hash": "88603604b60f7b38710ca66cc771901f20635e3dca685b3f125665b4b65519b8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відвідувати/": {
+      "hash": "fd7fedbead2157fd7c3c4a3757ff3d3a1227f59c919d338f1a2b4f49d51c3a9f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відключати/": {
+      "hash": "68b7a30fcd2b9c58b449a64af8acd394afff0dfe056a52941b93988c2dcf8c6b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відкривати/": {
+      "hash": "30514dd4bc89700a16111edc7634d43f75783606374e04cee6892eada5223288",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відкріплювати/": {
+      "hash": "2849350422b055490a0b1cd3ea8a64c865badd072f931956facbd120154df3a1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відмовляти/": {
+      "hash": "36c0d8206c3f41b2ebcbf8bb4dc8f0852b542a73085e57980f25cdf6eeb14c02",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відмовлятися/": {
+      "hash": "2d7747403938297b8a7494f895def4555c61c96ab1a0f2e77fc1a84b5a6c8258",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відновлювати/": {
+      "hash": "12cbb219191f33865c338b4dd2698b5a01d5296a1636c261a04cdc52089072bb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відносити/": {
+      "hash": "a925773231569af8d94d127ef86d06ea77d7e1b69bf51de05b5cb48de1776362",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/віднімати/": {
+      "hash": "b765b39f6ea929f314a2a481659caa68dc7ba5893d326fc4495bcff48673c502",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відображати/": {
+      "hash": "356438da5dfe88eb3f5bfd3897d7dd024c290a94122004d8f7707051a0c5d536",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відписуватися/": {
+      "hash": "7a598cd5e8a91b534fed61386776e9b8c4803740954d096e08561c419231ca26",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відповідати/": {
+      "hash": "84296acd9d4ec3cbe1e559ed0c4870a62ac87b8fe93d64ad236c81de931bb40c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відпочивати/": {
+      "hash": "cb5ba625a99ed2c4575871e07bea34580129c497da3109db9e43ea02ea7a9256",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відправляти/": {
+      "hash": "f4639060c960632e07f90d0b274d41f84ef9065b6ae2351482687e561f0eb840",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відрізнятися/": {
+      "hash": "c6377fcf07e1175aca1e7419834b3349b62ad96fa14abef655dd88c8b1a2927d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відхиляти/": {
+      "hash": "3f0ac5ecae75cd7fb042500dd88391479dc39dff0ed0dd59e28644f0607e4f1e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відчиняти/": {
+      "hash": "1cf504fb862c8ad120d95f82ebb898cbbe4cfa6ed04003f27336c887c9f0e558",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/відчувати/": {
+      "hash": "8d0cb5716c10f2d883aab6cbc7f8982cc2e037d873b9f576bb27351ca5196520",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вірити/": {
+      "hash": "e35ae33de4436dc0af8bccad2564f97c4dc76b9c5bb64644a29b52e8986c4b77",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/вітати/": {
+      "hash": "226fd0de14282a32291d50acd86b1b2b6226608b705c75d79040ace12fafe47b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/гарантувати/": {
+      "hash": "93888ad937f93387de38cb3beca4ae1ce24c2115f3338e0e7ae1df992a7ccdc0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/гасити/": {
+      "hash": "fbb1ed1e740de6444371e8afa6f73bec52eac1004d8dcb2dfcbe74024d2ebe98",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/генерувати/": {
+      "hash": "cce578165d63462b5d857c662eb0834adec154719bba0b1060a74038d323332d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/гладити/": {
+      "hash": "fedc3e4b02f8a0236aef8ece2e04b1f93d0c8496191d65ee4a6ce29316ffc971",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/гнути/": {
+      "hash": "60f0a7df68e6412024e2e0e646c8e068ed9858ce79885413f236d10138f386cf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/говорити-правду/": {
+      "hash": "e780dbc70384aae1d4c47e49bc59dab10fb6a9c6c87cc4e5d952de2bb7ed2752",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/говорити/": {
+      "hash": "34828246b694a8594a94bf5b041d1660cad15d345507ed02f5c76c30fcbd3fa0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/годувати/": {
+      "hash": "635525fd32d4bcd36871915897d27a4e53b1556200a870c0e13939c51e7b619a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/голити/": {
+      "hash": "c491afc2b08a58e6da79e69ac593bcb4e6bc8c3a7bb492b096010d083c18a0ea",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/голосувати/": {
+      "hash": "083a2640a34813c5f85d9ca3a56116ae5612578caf9db44c98199d15d5b0c48b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/горіти/": {
+      "hash": "af08594db133902df97e3da17128d6433b2fa27bb3f5ad799da792bf12e4fc1c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/готувати/": {
+      "hash": "aabd90e6951c9d2742387b0d7721e359c37c374f6657d4bef67984fd6ef8cbed",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/грати/": {
+      "hash": "1341f0d59a25beeaaf73167f8d9aea4f8a8cd6807c3bcfb04774d71389898ff2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/гриміти/": {
+      "hash": "61084c9d61cd79ab1a8933c2c8e3258794d229c6a197fbd9e8fb909be288fe07",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/групувати/": {
+      "hash": "e83ebc36829ebb4f4501e41af82005bc2ffa76b760f45a90723413fc09c49104",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/гуляти/": {
+      "hash": "9dd3d14112f9549abba2d23eefe962dda7b4ccca05f349cfdcae1de08571e65f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/давати/": {
+      "hash": "4014c65b7c41eaf1b85c8a8523463051b66c2887a2302a51e8769dfd5d81958e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/декламувати/": {
+      "hash": "a35b7ece295c60af13f327dff65e17b6b1da1f95a4c7812139f52b539b85961c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/дзвонити/": {
+      "hash": "7651e6b57f6ca45a324c250e8e25c8f5862d10bc4261a9eb35b9ec2361ab4a5e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/дивитися/": {
+      "hash": "00192d4188232cdcefc241fed1774ac3e91b02572e5623488801bf364d032a81",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/дивуватися/": {
+      "hash": "aa2620f14f60818156793d64d99a0fc5fb78b59cacbd01ba75cd49fe54923ae5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/дихати/": {
+      "hash": "2d6ea8e5f8ac77788daace15f545a35dc1baabbb7778b1c756f4420450199101",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/довіряти/": {
+      "hash": "a6a9657e5174ea9ac2d694bce88e1e077d6bf6a671db14015db5f30743e4fc2e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/додавати/": {
+      "hash": "ee3163b8ee2d0efa46cf965aba7497b2ba447027f7ef6e3a3843edd984a6cbd2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/дозволяти/": {
+      "hash": "8e80c6fda18ae15d3cd884bcfec90314f7a0068709dc3d68ecf0316bd7ea2375",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/допомагати/": {
+      "hash": "db0f271d238cd79c3762c76510d4a7974b519d52f9e3c110f6231e022d50c9b9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/допускати/": {
+      "hash": "99cbbd90a48bdc3c4aa8bb242410de25d1e6a3b53cb468e0d2a3c45038a08620",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/досліджувати/": {
+      "hash": "786d8336c43d80936a20651d13629049c658d152cd31b241a4bdc035a199a837",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/друкувати/": {
+      "hash": "dce4320c6e2581093ea4bd6b72e124ca42f2070c68fa73f79ecf3f9dc78e01a3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/думати/": {
+      "hash": "97c3908beeb70f96e5c4d9dc5be1d10045eaa6bd8f7c41caffbd5a1a9a6df9f4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/дути/": {
+      "hash": "0f3f48ebe70676a298f6ec5e848124a789c6dbc17d2c39ecfe5865d49f7087bf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/дякувати/": {
+      "hash": "5933a244ae1cc902141acab2a7ca8efccbeb7a580786fd99e7abfa07a9cc3e4b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ділити/": {
+      "hash": "85165daa8a4fea7d69ad53224e27793106a24016c7d76accd179c804a9a4ec12",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ділитися/": {
+      "hash": "a9224cb10aa86b8ace8e50de063315d023416e640f73df92e7e6512bd515dac4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/економити/": {
+      "hash": "7bf23b163d65c7bb0088472cf2551a0d739e913a91db068c4f76185c5e465cba",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/експортувати/": {
+      "hash": "722f68ecd177d112806132156960fea7383d06df03263434b28ae21bf05cb0b7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/жартувати/": {
+      "hash": "2e40fa1e6d6abc36ab745ed0babb9311d498f49d0cbc4c784af98f555214db0f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/жити/": {
+      "hash": "bac528f7b32ece992c6da9a1de15a1c3227fb65e04702476866dd9353762f3c2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/забезпечувати/": {
+      "hash": "27da594cb6070c6bed23341aba9e231ffb6991f088e3150552b25c2b16a55789",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/забороняти/": {
+      "hash": "1b3cfd1dfc7f32d5ae2149f9e1275ea8854a49413cb18f40dee79e18a483e742",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/забувати/": {
+      "hash": "483550928ed7fb07c473bcfc990d692de0c6fd323497f33d16bb907c3864065c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/заважати/": {
+      "hash": "9f207b2bf26191f7a01012ae995558937a0a41c35cc71172c3cda6b95fe6cccd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/завантажувати/": {
+      "hash": "82dca7879cfe32fa7e69cd499e787cef363973f1f479aed07dd60953f14da5e7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/завидувати/": {
+      "hash": "1d68fba0412a64b837a172c188a3a72817bc077c8a5010cac58fcd872be2c956",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/завязувати/": {
+      "hash": "fa7e2ccd08f183a866aaa98db226c34c2d6dc134f873f2c5a87e6401dbc77f10",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/загортати/": {
+      "hash": "afff951e66c180db470f6b956d233b766509defeef039b79cb885f45f198f9b9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/займатися/": {
+      "hash": "b0b342b76ea9cf607c818409dad515b9be3c6c3f2477d01b7cc83548cc0e16be",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/закривати/": {
+      "hash": "c26032d73cd23f5b31d9e52cefd8bb6bdf0c2a40de68c8bf1121315396d69efd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/закінчувати/": {
+      "hash": "df98ae44adc97db5dd616a2f3b9259942a948302dfa8d4e4886cbe9818ea67cf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/закінчуватися/": {
+      "hash": "4378276af125204b37e30036f5cbc9785ec92f73aa92dfe9eb9f8a6cf4c1d48e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/залежати/": {
+      "hash": "32ae6e2d491692000f3fa6a0ae45996c336f1c541450aae672492b5c93a86fd1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/залишати/": {
+      "hash": "a5f0d34983ea616125782c5efda438c050d32dde261227527a8baa0c80e101c2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/залишатися/": {
+      "hash": "b4ead1915087487b492be5390278c1f29ddfeacd358df3f43fedd9dda96b1b42",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/замерзати/": {
+      "hash": "51d394eb13333a2a9a95275d31b1803a94394e6b74fef94361670f8fc8e8e881",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/замовляти/": {
+      "hash": "d20538ae98db69246d330e0ff2d1b6e5d730ca77d150c6a878d67c7a9dfe6608",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/замінювати/": {
+      "hash": "47f6d5c96ad2960135c78dfe1558e1dc5d90017943f6c3dbe0ae33a05706e443",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/заносити/": {
+      "hash": "f74d14f977c6f06241f7e65374bd7da4741aa6e4d3f84c69bd04c4fdb9e96832",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/заперечувати/": {
+      "hash": "ea2b1c1a276d6e25075da3660c6b4df48c723aa130af258fc2a41a7a4bf9dc2f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/запитувати/": {
+      "hash": "3d9b8998919af468dc3045abfe1317a5ac41148871511b37c53a5cd46756de84",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/запобігати/": {
+      "hash": "64734771181cf23c6504df7d8d68071595d74dfe90b816108a42dde08b2a785c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/заповнювати/": {
+      "hash": "40cee95631439759ef357190eb45c3393c619d14241b518a0891f6ba76b106af",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/запрошувати/": {
+      "hash": "a680fed45140ef20953dc9098ec6550f82737ab8272efabb77ae9061749d80c8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/заробляти/": {
+      "hash": "36874c0cf272b4c8fd31e3e0bd6ff275284000494f0dff80d11cd1bd75fcb5c2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/застосовувати/": {
+      "hash": "59a171eb04685da35380139368ef100762b99acc79d2e25bf3213661606fa4e0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/захищати/": {
+      "hash": "19628172baffa5835d9b289c1d14ce6a86b83824f49556f0bcbec2d92e82213d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/захоплюватися/": {
+      "hash": "b717a7fa5ce44c61d4b322e3325e605a4b4b10fc7753d43068fe8a1eda1cc1df",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зачиняти/": {
+      "hash": "46adacf31a632a893653a98c7e266330da9bcdb37b866d440dbc8ad8b12ba17c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зберігати/": {
+      "hash": "a8f6dc6ed9522e3d328c3ef2a1cac02be7566a85aaa27ccdb31ce639d16fbd95",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/збирати/": {
+      "hash": "d97586df67a7303da41f1c692b47be7424bdec92e94cd07122ad59a587452690",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/збиратися/": {
+      "hash": "39a0e102471138bae467b8284b956e2d179fb4031d4819940dba813a1d5830e4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/збігатися/": {
+      "hash": "3177b2341002395e159ed48ff48a8a882a18a82b7f8d1996f3e739f39bdea298",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/збільшувати/": {
+      "hash": "28f893b5d2b16ed7e87d9e8b64f3bc26b747628b12a0e8e338e15e06614b7f74",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/збільшуватися/": {
+      "hash": "bd9a2d69d630980e6410bde7485ed4998b4f58c59fe722d9aee57f4e2f1812b6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зважувати/": {
+      "hash": "94cf9962634f9b288bcb1b76a3c3b467cb6194534e514a1d40360020f6f60039",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/звинувачувати/": {
+      "hash": "1474d9cdc32a6f5c816f9acfd852e97e20095663d6fa9e395452f7e385b11484",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/здаватися/": {
+      "hash": "595582384f15aafd976235a9230a5f50e8d093f2c5cbb252ef240574d5f26632",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/злитися/": {
+      "hash": "7fafa182f6833e9545053f1fed543a00adf4666ebbb464afc09ffd3d40d07b03",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/змагатися/": {
+      "hash": "1c1f6093f1d93fda325427b6a7045729c162b6b840c1df80e70525272a1db836",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зменшувати/": {
+      "hash": "14e84f0e4076ae828c01c47b8e4931319e57d436435fa083d8b93a1e94e831c4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зменшуватися/": {
+      "hash": "5bfd8687c471dc4e5755235069f2d31945c001f0d226776d8b700676277ffd37",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/змінювати/": {
+      "hash": "f0a8846613aaccc4854fdbdfc343c1cb6089856ea91e5eb388bee5162f7e1b2b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/змінюватися/": {
+      "hash": "5ca9d6097e6a4be0e8d9ebd0b56eb36e886d928ae2ea48f2d9412f45a0e7eba2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/знайомитися/": {
+      "hash": "735a3be99038f23321eee2504c23872569bf06de3a475528be9715498dc2a0a2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/знати/": {
+      "hash": "c83964772988cce4ebeae70f0f8a958149ddb05d5c7880573a6ef6802ccf688a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/знаходити/": {
+      "hash": "bea45d910fa2aa0150ca87b4b2492ec0cb8d10246b9b597784af23be5aa143b2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зникати/": {
+      "hash": "046f0afae986aaabaad4d1ae4dda3aec1ff61362891641c2efcdd3c5e9a04fc3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/знімати/": {
+      "hash": "80c536ac66518e6b631cfa3dedaf7129b05830eba300cbf5a3e9de80c6bacb6b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зупинятися/": {
+      "hash": "8eaa3731e0446513f83a28831441accbc0a7304350047260d52f72f1de4ead44",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зустрічати/": {
+      "hash": "c9fdd377ac65ca604380a06d4c5a1542f176ae7d6e30195f3271dae7f1e6b669",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зустрічатися/": {
+      "hash": "a03225d4b84daa37137de6580a699ce810b605c6ec7ca224957f302864e6e5d0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зявлятися/": {
+      "hash": "d81018720fd1b74c42aa3b013d80499b09c1f00f09084b976074774e8ded839e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/зєднувати/": {
+      "hash": "f8037628cbc147b0dcba3a1d4f15315d46d8dfd62c46145066ebf9584451d90f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/казати/": {
+      "hash": "be0edbfb566f865c12feda302f8c57c946675152eb4814a4aa0aaaed295718e1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/кататися/": {
+      "hash": "51ecb8278dcfd05a051a2ed6eeb0c2a20946d26d2442dc7a918b489ff1a4bc99",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/кашляти/": {
+      "hash": "86b9af2aac412e42ea7b5c4b2d43398c4ae80349274cf237a2cfd14781f0eb13",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/керувати/": {
+      "hash": "5a640b36e563d4308825b3dd08199c75b30374a8f25292f951c99d199f07a39a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/кидати/": {
+      "hash": "3f6d8ed9c243750099ab7c8745cb8d278c0ef88eaadb778eb18eede00249d81a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/кипіти/": {
+      "hash": "0c951791076c458517dd8657e4376a79ee7439dc88ffaeaefe0dcd19227c384a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/класти/": {
+      "hash": "c714e2a0c26558ae5b1e144efa99ab17657b36b3134591652a606623ce3ea341",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/клеїти/": {
+      "hash": "8c78252be8b6d883856ecc1e7ce221500aaac203978fb7845a54649bb868a008",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/клястися/": {
+      "hash": "cddb7f7180154ddd2252ae2ac256e9c5192c15b0fbf408b2bbb71bac12770dcb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/кодувати/": {
+      "hash": "cd78a3cc3c753824afa4063d777e78b011d1d1f4e18660aaa033b65cd173c6e6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/коментувати/": {
+      "hash": "2daa808c5b9acbdad3d3f4342eef4cb7f5affc8800627347aba5fb4728f183db",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/конвертувати/": {
+      "hash": "b3fe1aa313ab6330147b2022450206f354c11dfe1f1e1c83fd601d45472c63e6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/контролювати/": {
+      "hash": "9ec9fb8cbbbc3924ea96fdc47e5a1515ab113751c64d54cf3109146ef3890e86",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/копати/": {
+      "hash": "b04317e44cc2815a9461a7eb0744a6d145aeb557cb8537265eaddf7cb7ff8fef",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/копіювати/": {
+      "hash": "8bc85127d2b7b15d96d1b76e21b533a468cd9e3e4e2a6d070daa4687530934fc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/косити/": {
+      "hash": "54ed806805b298a28327d361b662df38a9583fbde990a20f3efd28f5193501f2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/коштувати/": {
+      "hash": "acebdde55fa5c30b544a366af8923e4a94b6ffa2d4b7414b040b30ebdd5e8c21",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/критикувати/": {
+      "hash": "95e10d83648a837ca64d70770543e96bf6281ed9a33b39160c28c52ef66649cc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/кричати/": {
+      "hash": "ce7045dc7526103d50e235b286f0d51d30cec2d8570998e379a1c28759a9d901",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/купувати/": {
+      "hash": "a23f049af4d140fc1f71818408a41164bb5998e3635b8eadf9ed04cd0449fe29",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/куштувати/": {
+      "hash": "f583917c2b33286318a2ba0b74f0317533e400b24763a1c54a639af4b7551c97",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/лайкати/": {
+      "hash": "3ab8fc093f4ab4b99b56ff4f27d054f15ab2e57c0ad59ffeb91f3d538159c6e4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ламати/": {
+      "hash": "ad771938f536976cdfb423e5c48a507374f590a4f312d3fce8b52b3d6722037a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/летіти/": {
+      "hash": "7a92f12fddf932e9a66313ffcb4c00151e029aa23a3a8f66a5e1fe9ba183c04b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ловити/": {
+      "hash": "120b34df687fc4bc4c571f5ccace1cc4dcd123aaa3a3bf2f9fde7f9eda15aee9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/любити/": {
+      "hash": "4b8524e9c093711f60a638333f9b19d386af8cf99855976e1cf243a61993022c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/лягати/": {
+      "hash": "99273bd1368e004820c21d5d54ae9925002f8f7bece3eb2d39a98c74ed0eb773",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/лікувати/": {
+      "hash": "53a7ebb07b56292b3b2f06e24b7d17ee2747f14bcdf03e595d392fb98b12afa6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/лікуватися/": {
+      "hash": "d2787b2c24e25341324b1de0b6921ae156608e017c13a8face620266115450f0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ліпити/": {
+      "hash": "a3695c4cca706a092d2ea95c0ed2291db48d8e25ce45ce4f07e4f65bc29abf16",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/літати/": {
+      "hash": "e92e55f8ba4e12b84aadc3dc2c0328b2928df4dc6ecfcb0c7cd10bca8dad4ba6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/малювати/": {
+      "hash": "7bf30a9b63136022352a66dc092210dcdcf888675bf92e16ca3cf1d84b1e99dd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/мандрувати/": {
+      "hash": "a1c5261ea0a297d378b24cbe827d4d1ae1f649f49d3d125323e45cc7f669445d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/мати/": {
+      "hash": "b874fe9161e0e1a2733a55dceb55d6ef5b700e4259481f2390569fd611191909",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/мити/": {
+      "hash": "7bc179ee940972f270a0673541ecb72cc55469b53708356d5248aa1560f4868f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/множити/": {
+      "hash": "9b3452bb0013773deaca93e99a7e13a87d87f41f28c1eaf72d3c4b08a196759a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/мовчати/": {
+      "hash": "c67a31b834b3278ced3bfae6a3a2eae55a8b7c63f7b27b110e9fe08193801756",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/могти/": {
+      "hash": "b633da8c893a6456c1b57d161825623b90673cde9a7c52e14b7625d20efc5ed2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/морозити/": {
+      "hash": "9a4340d8884bdd4e5cf05a102067050baa4e876b87858dd40f85b66de9db2b02",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/мріяти/": {
+      "hash": "8f72632b6315bef6756bce0fcb09a13b0bf5221899ba9475623b69d53f8d8276",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/містити/": {
+      "hash": "4b9316d8a3649547a187d7164cf8b2b32155eb4c08f65c9fab48bbe910d03fd9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/мішати/": {
+      "hash": "8c304ff218414b72e2127b6063eb70f9506c84355828ddbdeeea46f0473bdeb1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/навчати/": {
+      "hash": "c3a1ead4ebbb417606bb1fe772dd1eb95e9d41e09a3ea2e4dcafa3a37ea21ef4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/навчатися/": {
+      "hash": "189d48ec3d5c539d0725edd93eb49c2df5bb05814333bdde2a939f57fb5c4b60",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/нагрівати/": {
+      "hash": "88b0a5455e240306d44a4fa13dc4f676978c8bdf8cb26f1e1f2d494e2fae78c0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/надавати-доступ/": {
+      "hash": "d2ed8ece4021e750795ddf0f5ed3dec6754cc89f3711ce9d3f59cc6ab585ec8e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/надавати/": {
+      "hash": "53511435901a1bab7aef741a740afa6dd276087f18ea800788663679bb534fe0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/надсилати/": {
+      "hash": "058585ec7aeeb2c2aabd1c284f58acebeb36078e646016ba9867ace0dbe4bddc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/налагоджувати/": {
+      "hash": "8368de07fcbeae11ed48008e13887ba5294c296a69deb5b4a5a558fd5c247126",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/налаштовувати/": {
+      "hash": "72640c9f6bc825fcb837f1faada4ed92ecab00d7b9b1285288945bac7c4866c2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/наливати/": {
+      "hash": "ee5b77f74522e5fa7d7d735d732534360ce633564cc38269a2f134778b72095e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/намагатися/": {
+      "hash": "a41712ec79141dbb1c80a8363675ebb37b2e665a12bd2dd58dc46594d72b7270",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/нападати/": {
+      "hash": "16287847715e0251c48d44cba483395dc82d8052e526cb379e34a0428eb7170d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/наповнювати/": {
+      "hash": "d8926b599aba668a7fa46a54860806a0463d79439aa2e49ee8d353dad49af1d7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/наполягати/": {
+      "hash": "c7f1ca7a93ff0914fa72eb143b08aa1012b326ababfa8b2fe4104b129ce58ef6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/напувати/": {
+      "hash": "76035985908d372f8e7a8414a69ad1fb206bf7e341aed6400a8676d25c6eca53",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/насолоджуватися/": {
+      "hash": "e6b1d2638d074072445c3d63d5bd388aa6f0854d9f901a0c6638fea74c5b81ee",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/натискати/": {
+      "hash": "5d100c236fd924282f2f1e6edd6019210c2d536710200149a7c3ce2c307efb7f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ненавидіти/": {
+      "hash": "58442905ea3bee7c0ba81d0afcc23e69b220be152f25a46687e85eefde632683",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/нервувати/": {
+      "hash": "e6fc23a955ec405561102c9e15f966275ccbb5849491329bc2950b059b020bc1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/нести/": {
+      "hash": "54b8b7a31e5c25041a8dda509ddf755f8639cfa436a0cc49b3d5ff77c7003478",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/носити/": {
+      "hash": "c07d9ef3379dd28486f14b810d4e03a87510b2aa8e1615225249c9b4592f684d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/обговорювати/": {
+      "hash": "372a8f7f84f266a8cae3a4a5162086acbc456431cea2503ded3948181549a106",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/обирати/": {
+      "hash": "bc03b0060c2c3d8e92f195948f4afb7803adb46f7f97991c82519d9e45fc60a8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/обмежуватися/": {
+      "hash": "91dc752e1f4e4b93e617f33959b9d3209a851664b8b82f29f26cacd0a2dfffb2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/обожнювати/": {
+      "hash": "e2fd25bd00da3d97492477362e43868be7bcc10dc800eacb49a3111159e893e1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ображати/": {
+      "hash": "113c904d0dc468795e2d339c65245cf54cc8e3456017d5973c0865b15d1f74f8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/обіцяти/": {
+      "hash": "67d3a9ba5d0fb79bc095eab36ce88f75a1c53963c417ac4bb318c0de873f8a75",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/оголошувати/": {
+      "hash": "739f33feb82bf9a7974658d2d2630cc0137bcabf8d0214d458479f1ed8f632f3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/одужувати/": {
+      "hash": "6426f8c5fd96e1c91b38aeab6d27f88435a3228b19779762b19969e19e78b43c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/оновлювати/": {
+      "hash": "4974b0aedffc919a5338e4705edaa4f9edcc644a8ab7905e3d37be3b4c126a46",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/оптимізувати/": {
+      "hash": "0c783a512cc4c582d0b6eeb8aa2e4f5f7c37ac6a75a782850e59effb7e467abb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/опускати/": {
+      "hash": "e53078730463696a821960711d45aff9439f1093c8ae7b81e99396cef0d53220",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/орати/": {
+      "hash": "c3530bc709c1f118289852fa35b740db1499412e34dcc825842f62f5243ae2d2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/організовувати/": {
+      "hash": "08e3aff581304dba9bdbf7bf06859f65a55d95a889970eed68755c9d943fb386",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/отлагоджувати/": {
+      "hash": "8cf98d61307e2696df3749efd948face978c7b01e0a484af2c7f990512161ef7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/отримувати/": {
+      "hash": "12c0b489fab05f3497637ced09c875d49ba0474fbd1836e8462531a593a4b1ac",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/охолоджувати/": {
+      "hash": "68fcf1fad1c2ac6e1972d2bf6e88df05b8aa5d756014cefb8f386d56b4354982",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/охороняти/": {
+      "hash": "c5df6960fc40c03a39e6464ea9cb1e715c7db1feaa4f48196acbaf8b81a66e5c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/оцінювати/": {
+      "hash": "87074231f687052759caba0a6685d67b111951220870528bce72545118317563",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/падати/": {
+      "hash": "7fc4d7a1e2844deee287349b1dd7eff45c3f61ed6b972a03986f502534889eea",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пакувати/": {
+      "hash": "a7ce0bd45304e449cf70194dd97a66bb2a201a52a7277de3f3b3ec09012d5605",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/палити/": {
+      "hash": "d50a81eb7a09a91c485a10fb09f5d507916c8f22c8bdb2b763e3ff283d36826f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/памятати/": {
+      "hash": "ded6808ba9f0d151b2a959d2fbf04b8105134413f36ab77401902877c3cb827e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пасти/": {
+      "hash": "6cf202eb9108f8b271cc566f2d26ebca3f8bae32f4d0d8110db0c82a34debd64",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пекти/": {
+      "hash": "7faf306ae37c87059529abea1c4b17d757c589301511613751fd7471bfad65a2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/переадресовувати/": {
+      "hash": "f1b6808ae29652dfd719d4dddd4c753421534f27169a57afe390562f53122e72",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/перевозити/": {
+      "hash": "aceb644a6c5daad26d852a1c851c7a70c05a50ea028b1e2ade6409f48b602bb7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/перевіряти/": {
+      "hash": "9188dfe01de97a041e7610c5da6554b193b849834bb3e8fe2e1551430e451549",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/передавати/": {
+      "hash": "496f62c1ed0ec0a8351b02977854dc8cb1487aefe320158866c835425cf01185",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/перекладати/": {
+      "hash": "9ffa30ab09cb3d858b5e31c86180a681674f9e6a9ec6698d6c7e04b4e056aea9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/переливати/": {
+      "hash": "0481497d3c35124168513388199666c295ae023cd95d82839d537a274bf042d0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/перемагати/": {
+      "hash": "dcd632a823b36152118e9c0289b3ad6532ec7d3309fe2814ee607ddd436adb2e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/переносити/": {
+      "hash": "2ff639ef1142f2336db9e82959e70ae2755559e7e1f4a86eb722079887941a5b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/писати/": {
+      "hash": "f5f620e469b832439e21dbbaa8154be48a924f206fe8cc5f68afd8157d97c684",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/питати/": {
+      "hash": "e8af1d1db1e2ed40ea22d8b18ec88c173d2cfb7c969aaa95d2bc24b109e92738",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пити/": {
+      "hash": "c9a608fc38647312da4e16687090764c1ef1ce36f21320fd00c4de9430d96212",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пишатися/": {
+      "hash": "4a2d35542151d062f7570dbe8c7130893ad6325e9d62f5c8bf0ee7ea01eb3b81",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/плавати/": {
+      "hash": "c8737cbab7848a03bce3bbe2fcc033b5750baebbc18ff9b1029f89f0ecd75d0b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/плакати/": {
+      "hash": "35aaa7e907c2110f2ac91aff6d803df805507b13635a78b429da4f8987e82db0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/планувати/": {
+      "hash": "b46a15cbdd387b2084f57e2adc4b65d8f0df91eb2e61e422bbefff50ecf18cd5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/платити/": {
+      "hash": "e016aceaf6c7b8a7b61ecc2fe850b8bd4b1e2d4d1455f7d73e93b1451731b447",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/плести/": {
+      "hash": "336b58d1b4951b24b2e48f3f591f07f0679ceaf3588ec2c0a536d0f0bc181cbc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/поважати/": {
+      "hash": "e7427a1bfed22f913369162ea446ffe3bfc79cc4c506cf25c9cc543401907fc9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/повертати/": {
+      "hash": "e6a4422d46074d4d591110100fcbfb96868262f5b206f3ea3b39e1974ad2437a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/повертатися/": {
+      "hash": "384ce812f753ecbf39b83ffcb655f1b9885f5fb551461ff3d8ace7ef3f94071c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/повідомляти/": {
+      "hash": "4a28a2f8ddee0d617f6c542adb1057eebdeca6605fc1304f9a89fa1c0100c9b5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/погоджуватися/": {
+      "hash": "bc4e4b328fb0400f0a1f716f92dbc593ba1a95dc8c0fcb1ba0cc3c200d6f81e9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/погіршувати/": {
+      "hash": "1e1a86922c1c756755670333e5da1e5b1be02b2a2989808cb07b7230b5ebecdc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/погіршуватися/": {
+      "hash": "711f76d4824b23493774a9cb1d75619a7a1473965864bb2e44eb40a355b2c40d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/подавати/": {
+      "hash": "0624260b64650ca76b4b015e84b830ce58ce6b747260d52c23bae32985e94909",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/подорожувати/": {
+      "hash": "0a64121cb5629ad1073cdafe0423f608a55424bd18c6d23e57bb0a777de6d24e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/позичати/": {
+      "hash": "48fafbcc4684fbc945075a9dcad77c91f92bbe273ee6befa6e4364be5e76b0ef",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/показувати/": {
+      "hash": "656b74d0a3f75a756240d0ad66a02212a95d1c16b5f5fb1557f1be40c6027e62",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/покращувати/": {
+      "hash": "b4e0f74af583c9ff47dc027b5d75f0f511051d7619a5c2867a709a915affbbf9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/покращуватися/": {
+      "hash": "7323e0c9548064f17eb26a3e2c3abcccb47cc7a22fe35fdd241b3c6ec7760363",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/поливати/": {
+      "hash": "25f8f6ed82d3455fe446363397e2d8acacf84293a65724b1681aea5412197a1e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/полоскати/": {
+      "hash": "905cbfc98a1636e7579eabbbac614e1afb963b104c093923a8d8df158c49f618",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/поновлювати/": {
+      "hash": "178407a417718034ec23dab6f7edb5cd6fcf83fb7c30eb4a610e2c99182751ef",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/порівнювати/": {
+      "hash": "a70e4582a97fc14d865329e0bb6b6163d50587d85da9f85bf36ea604971aa11f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/потребувати/": {
+      "hash": "4e07f5d8b8ab3e516c588b8a777d8f80494f2767cc99601486766084896456b0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/починати/": {
+      "hash": "224bc072cefff8da4ddfd20661069fcd81aa7d1f2e0e3affc8f58708b3e3cea8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/поширювати/": {
+      "hash": "6ee21b7811d69a5f1d2f722f5500f0ace1b5013746cfe5c14a186ec070f5a80c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/поширюватися/": {
+      "hash": "25538f118d27b96626d9f43e0ce03c883d7c6eaa5b8da2ca54fd6ff52814a26d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пояснювати/": {
+      "hash": "d26811a6f06875b554199ccde63df86f96a1c3afa674397eaffdad2f5d03b95b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/поєднувати/": {
+      "hash": "15963a125e45c0871d0ad6994ae20dcf490c2a12963a5cf6c232761aa34b949d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/прати/": {
+      "hash": "387c20b9d1c653d664f0ccdf23ff6b5dd76a0f7f99bbff6dd8cae2628b44086c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/працювати/": {
+      "hash": "f1455a1328164340259f2da39b6dba3704434d1757f5f1884c28c4f0fb5a89b9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/прибирати/": {
+      "hash": "ae492f8a59d4803dd3be050373bc0e3047168a6a345f9392e5f189c685c1bdee",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/привозити/": {
+      "hash": "a86acebd0d8c2ab370e7eed7fded047a7a39e4474a6f84794f8ddec1e0377dbc",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пригадувати/": {
+      "hash": "691cc68f0451ee8aff25c28dbe3d5cf2256414cb8fecfb89405e77db1462f085",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/приймати/": {
+      "hash": "ebfa06a9e515abcf68c52c78fd4f62c3d3d4d7a0f75e6fd99624da37b26d82e2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/прикріплювати/": {
+      "hash": "7fa707df21a9a4eeffe04bb32cd0ae96f5f2cd34a3f116845e80019ff0db78ed",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/приносити/": {
+      "hash": "9541b78c5ccd4e0971c3e09284d080eb6b7540126092c8f94abb356321104d25",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/прискорюватися/": {
+      "hash": "3d1f4f83cbe69110dd2617c8bcba651a992c940c1b2ded59fd698fda5678aaba",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/приховувати/": {
+      "hash": "2877b9e663ad8a5cbe013213e1f9035dd5283487ba072c63f3df3216c9b23945",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/приходити/": {
+      "hash": "91116001b544683103778dc9c7ee9dfa56de204f3522423494c6c49e1cd719b2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пробачати/": {
+      "hash": "17f9169f50a56c4afd2d0cd9522fa4be80c2eed00623d733d4df1e088b5668b7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пробувати/": {
+      "hash": "6f50439987ab69b82c1b16b7253453dd2e8d519ebb7ac089b079473c78213046",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/програвати/": {
+      "hash": "b5311d215bc1045274ccc751a6b5132966c71ea04c6482fde2ad84c3e54d8530",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/програмувати/": {
+      "hash": "ef79fbf592fe7846bbc457907489dcf97b283c87cac6fbc7d23532cc9c90f4be",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/продавати/": {
+      "hash": "a08ea41a672de707cc570a73858f70897e33b34ecad13258a774eb4cafbba039",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/продовжувати/": {
+      "hash": "018fd32eb3807259b61d5aaca1132dc823d986ea0d389a1de57888796f6ca82f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/проектувати/": {
+      "hash": "a4078c7536e4f6e66136c35a07a786617595fc20f73152431aecb36ca314ffed",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/пропонувати/": {
+      "hash": "747d6513ddb1531aed539056fc766be2124574d30fb210c8084ed9ed1635d6b9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/просити/": {
+      "hash": "13758ce46001c98c66b5a822e7900cab2640cc95ce116bce654a5895ac3b7914",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/прощатися/": {
+      "hash": "e0a79d54564d9088e1d5aac46044f9d0e2bd6d26359d1f69754cd3ec9899878b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/псувати/": {
+      "hash": "16fc5145b1a35d68af455604f9862ed3f53d71b7069d7769011925e9b2b5cf2c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/публікувати/": {
+      "hash": "79507358a7a8ee5a9aacb5140f4a89a710e82a440e8bee48289e9ca586f05915",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підмітати/": {
+      "hash": "07767fd12c506357c88973fa9736dd29105ab5030968b960c61896780690722d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/піднімати/": {
+      "hash": "37a07bd832850ee4fa851608b1723423e83805f6c3f885ceafcd8c14c854c1d8",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підніматися/": {
+      "hash": "243f637ef6f39fcb59926a6121e2357baedafb506eae5c15e5684145ae73df9d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підозрювати/": {
+      "hash": "4ad26e7acf9fd485e1d4e5cd173cb165c28ee167bfcc8136d8ebcfe4ff1cad68",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підписувати/": {
+      "hash": "9058b11723bb27cb66d5d28e40cda9e45a58fcfcbeaa33599454db3f625ced3c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підписуватися/": {
+      "hash": "d6f61224059a53931f0b81d656b8b0cfd7df7615435226271f4b03704f078d0a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підраховувати/": {
+      "hash": "4e9c47cccc44f2dc550268ec2dfa7fff23b514a014bc6066c1df8ca5e5bb0866",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підтверджувати/": {
+      "hash": "33ac7303bfb6bccef313b7ced18be815b4fc3a965e86f84034a6d51d9eb53a44",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/підтримувати/": {
+      "hash": "01475998592fcc757854a0b230a102fdef64ec71d117e3d47ddf5f3c57f1edc9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/радіти/": {
+      "hash": "65a3916f8a058c20dd50df4cd0639d4e89ce9cc04b13db7a02f083671f5dd60a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/рахувати/": {
+      "hash": "e728bc7fbf2d4f72c3fe8f2060c6df13d278eff62a36562db1574dbcd929e2fd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/редагувати/": {
+      "hash": "fba6b3e55414f0b333588bae8de1a06828f89781263125bafa8eb56373472498",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/реконструювати/": {
+      "hash": "930248d8cd29a4cfd5094c8d768ecf3186c63190b58ca5a36ec74d93838a38f6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ремонтувати/": {
+      "hash": "dbd5b3c640a532842f9285c4aa81ecbe6e3fc4ec132bfc1543109619e330ab7b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/реєструвати/": {
+      "hash": "0ca99b044763934f373899909efe0ba3545d22e9864fb89c7797f9ddbaf7682a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ризикувати/": {
+      "hash": "2047fb75fae58e2024afd88e9106e1ec67d0a95921cccbe275c4eb98c72cecbd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/робити/": {
+      "hash": "197eacba4e83d1607777f587bd475bde7f50bc0898bc492fd1c7642679a8037f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розблоковувати/": {
+      "hash": "1fd1dd0749a3416f04e2d2520feb7099b2b906e5e1751f4e8f540b93853d081e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розвивати/": {
+      "hash": "35c0a805a65c6b3dfb270169e0f18806c42bbca9f8b951e7d3b0234decf7ea9c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розвиватися/": {
+      "hash": "6b66168c932788a7a2fc896826c6355ebb055200a97eda6f6dcd84935f5365ed",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розвязувати/": {
+      "hash": "b72a8e3f14149f646277d50720ed38b900236c6073adc215eaee4a436612ee6a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розгортати/": {
+      "hash": "3cbb22b7d9b0602ae2996c307cbedc848ca4904b41b7337ed2e0c627fc2098b7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/роздягати/": {
+      "hash": "1b014cbc3d811930da2d2c62355f0bcbe6324742b51391d7747fa18b62202cff",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розділяти/": {
+      "hash": "56d713a885fedbac7047eff94cf5f3f03fa0319c0c4aa0d98af5f90692403537",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розкладати/": {
+      "hash": "be4187aea7b77d193825572c276c829fa52d6294d80c57488435cfc11d09660b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розмовляти/": {
+      "hash": "5ab3b95e084396e3d2b5f47454c79c94d3190a5ed61da06337a501eaf2285365",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розморожувати/": {
+      "hash": "5c031670287a0e29e5fb7f5c1920ec36a4324200d346f317524fbe6d9587693b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розмірковувати/": {
+      "hash": "5223c2a19ba8a01906cc2c6c79894dab0894070242ee9d98fed2bd579b04e191",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розміщувати/": {
+      "hash": "887881441d9f7194e1ddc7f8d857ab63635bbb1d8f897b4abf7c8cbbacdf2736",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розпаковувати/": {
+      "hash": "044641f38935b89811a9a8babf99d2c3e24f45ea0eaa5f3ba6e5000031f642f9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розповідати/": {
+      "hash": "1ca248ed1cc78d1e63da2c86e7bbb1129e3178e3dad093ce39e9630592286165",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розпізнавати/": {
+      "hash": "fd8036dd25843543c749cab04d16935d586619496069a59863e379bf783d2db4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розраховувати/": {
+      "hash": "d4f590489752e3577fc50cb3e32830bb0e05ecd1598cfbeb42f304131dfd5aad",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розуміти/": {
+      "hash": "2094b29a767713646205efffcaaee6d86e70aa281e1bc01fd8f9f6e64f8bef44",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розцвітати/": {
+      "hash": "b3541776a62a02b5051be5e8f3f71624564e74793d8d65714d8ae376c276d126",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/розєднувати/": {
+      "hash": "9a41af403db5af58b70ed1069475cdba39def88284d3f44444defa87fdaf4adf",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/рости/": {
+      "hash": "c6aa66bfed769c753e36a4da064538adeb6ad93b40f18e05968a3902e28785ca",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/руйнувати/": {
+      "hash": "7760ef58e55b98187885a9fd9ff9821a804a91b21a45cf168a613f0ce46bcc0d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/рятувати/": {
+      "hash": "811750c93ec7724079d68db2e28f8086380e2444e36c218e2cd2de215fd2d223",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/різати/": {
+      "hash": "3f11bb6215fafe921b2410f10f00abe724e77ce525c7ac5c930c76fd998d4112",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/саджати/": {
+      "hash": "00bae742850360816963828e386dac8d0644d306b9e0ee23bb1024e049226a45",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/світити/": {
+      "hash": "a27de35a46465e11e82d68b453b6bbd3aa2006ea245795107e9795e7fb9cb9e1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сервірувати/": {
+      "hash": "53474a4727a324b36abf29504b7e73e27834b262d9a7721f6210d27d1737948e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сидіти/": {
+      "hash": "b40be24afb2cfa64738b70bff56ef9860737aeb45839f490353fd98021a3e689",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/синхронізувати/": {
+      "hash": "3822ae92d66b6775780c39fcc20d3cebd0f6339191d30ed444d50c4ddbd6c6c4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сканувати/": {
+      "hash": "bd09a2d7fa1d7078bfd45398387220d41cd3ac5fda479b7c10df87ff83553ec3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/скаржитися/": {
+      "hash": "e744e428e482debe5b8036644a97b4f7ca36537787db075dae6d9c337e0dd9ce",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/скасовувати/": {
+      "hash": "6042ce31ade1bb0d02055c41df25c632f64d524c839a076bfaced6332834a02d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/складати/": {
+      "hash": "c4abcf17546e704e338e47b8c0a6547fad055823d803876b9436d1d05bc7501d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/складатися/": {
+      "hash": "71012eda8b3ce836383cc34271f7bcc4d992218197494152cdd7a56c1eb498b1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/слухати/": {
+      "hash": "5427a11f64d4b9843908a4fab648d58bba99d3919489b820958d7f8581d91b42",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/смажити/": {
+      "hash": "55bada58e85fe1cf5c19c3e2168b19a554e7749d31ea5190b10260e96689baf6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сміятися/": {
+      "hash": "959763e0a0f1683f7cd6280751fc89670de21eb7f734aebab00259098ef4a0f7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/снігувати/": {
+      "hash": "1d9c3201825ca88fa715c954216c27845f05ae4c272a4da8c1cca294103d6f87",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/соромитися/": {
+      "hash": "b73d26334b873e7dc1d7be2cc7c388a5efa8a3608c458eb5f406a63a29209399",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сортувати/": {
+      "hash": "2a0723901f16abe6097294c9f5701c305201ad71262e224a2215dad2c70cd84b",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/спати/": {
+      "hash": "64321a36b028c04e7e5c1998a28b992b457ed3d1601228bfe08432f9fc22e632",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сповільнюватися/": {
+      "hash": "8573516210b79417ce7e0af9d14731015df4642f33be0d40915f2aff7d83124e",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/спортувати/": {
+      "hash": "a93dee6e6ba4262850d48d3766c042f80c389016505464032132b650716f74a5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сприяти/": {
+      "hash": "d56ef8b4922334853a5954a3e733582edad6aaf6e01faf21012cff3e4bd6963d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/спускатися/": {
+      "hash": "869ebbf85b8f83c9a08d7d847bd02a140162ea70c5ef0ed1c9d40b104aecc02a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/співати/": {
+      "hash": "7cd276dd0eb3354d663e5d7c12183a33c29c37c0f982a3c4dbf09f33ba5e48e2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ставати/": {
+      "hash": "5f1ed75c4938ade4e9bcb0a9642b78f58313531991fc134036ef3694839b9b45",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ставити/": {
+      "hash": "bb5d6801661cfd0a32004ca522a5792413b73fbe0f14c1ef03b6533c15d833a9",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/створювати/": {
+      "hash": "b69c540876119556762358c80159813969bb9e3543da2636128a50a65ba37b1a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/стосуватися/": {
+      "hash": "af8a5f602324407b0264467ad94b8749a07418ac90a07a6171508a1692a53ac1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/стояти/": {
+      "hash": "3247410435db590a4c36f148bcc7dee2af4ccba607633d79f5403fb92d9b5e0f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/страждати/": {
+      "hash": "43f052e680fc350cf47d49ebfed98b84edcce29a76dd44e5afa751b5014f4939",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/страхувати/": {
+      "hash": "9452675207fde680b018a46109977929eb52715eae6882995675253365efbda4",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/стригти/": {
+      "hash": "e86f54b93c1adcc48560838b4462972c7816c914430f7880f81f62ce0c9cdbb1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/судити/": {
+      "hash": "982d1d56abf765e3f8b26273721f462fef12688b95189aab21b4e8402d7c9a63",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сумувати/": {
+      "hash": "5b57f361dba7b8d5fade623a216567e7b1fa67160bc40a777ec26c3468f68751",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/сушити/": {
+      "hash": "a94835cac34450e17b5dd7c0b12e0a508094796026b74d2980b556218a8c291f",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/танути/": {
+      "hash": "6fcc88a49864d6039452e6fa22b364f1f477bd21c3215c3bee302ee2502a64c7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/телефонувати/": {
+      "hash": "43f5f2a986b240879aad536c1a4846a32af3a15ae97c1045ce339bf726da2cd6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/темніти/": {
+      "hash": "a4afa7ec5c48e0a512f6728986291e0a2597f81cfd74e13fff6741db34dfd879",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/тестувати/": {
+      "hash": "938356b60ced1d5f82a4a4f78e03352be402c216664a0bc25bac127158562ebb",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/торгувати/": {
+      "hash": "55daf781f953b93f20196fe918def6e3964b41c318d051c89fc56a60fce97454",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/тренуватися/": {
+      "hash": "ecd391ecdec682ae7e7a63753779e724ef7c6e985fc2abd1122f94c1a239c320",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/тримати/": {
+      "hash": "653aa33f56d2ce114fc1ff3dd3e1d8ce28346a25963b64056088a83afc72b156",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/тріскати/": {
+      "hash": "bfe1c8bdb882c965fc7f2f6a76a11a82cf499078eabf90b3e6d3cb740b717361",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/турбуватися/": {
+      "hash": "c685a5f59be98d021c3bffaf60b5317ce529c4083334ef68e0b61fe18c51699a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/тягнути/": {
+      "hash": "2cc3b940244b5587769a6db8bca856b5513851628db317a7aaf24463e24503ce",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/уникати/": {
+      "hash": "3c9a8fa1346ebec339af438f11a8d9115c203784d806a76054874a7c5990e702",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/уявляти/": {
+      "hash": "31a5c3d3100b173e4de4a66a2b1289c834398a94a7430c7e8efeff65b17b1446",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/фарбувати/": {
+      "hash": "616a1f5c83d6d3db0bd9aeab06ea9bde29691b27e6e8ab4fe07b65fed1359793",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/форматувати/": {
+      "hash": "3e6d009477f4a367172fff3addfe7a2f5fbbf0f1f83e1583bfc5897117883194",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/фотографувати/": {
+      "hash": "c54da4e3d72fa9053eb451d4caf9c7f488e011a7fa450d51a718d36c26bc8803",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/фільтрувати/": {
+      "hash": "606bb6deaa5249cec624c46acc8ed5e2ad0089f04e4f4302a4f37cb22d904185",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/хвалити/": {
+      "hash": "359a78174157b9d5be76a6394ba65e1b300a3150d5de69522900659fe275d9e2",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/хворіти/": {
+      "hash": "405fce8b6c8db9e22324df04a1ec3df2ae04519dde34dbe2b37142980df0dde3",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/ходити/": {
+      "hash": "6155c0079ff1c00550e81d33927584f753ccbbb58fb7ef6f6b8bc5a062bb1630",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/хотіти/": {
+      "hash": "240f0b0273f4085b06db5b65e65dabd9b4f9286109b8b1590bd9ac2fdb52558a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/цікавитися/": {
+      "hash": "b98090bb26c24bd08136264e73e187ff28bcc3b3c19ec747a5bd977d9895cbf1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/цінувати/": {
+      "hash": "98e7e16916be71da0fae25b55f6a64317b2ab80845c00a1f58a0b2c5820b88d6",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/чекати/": {
+      "hash": "d92bd452fd0f11f109348092904a9fe8c8573567c3cbc8ca0a0e5548700b16b1",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/чистити/": {
+      "hash": "816e1c03a1f67076ee76d3f7b7d158be16623751c29d7f9f714d0a422ee71095",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/читати/": {
+      "hash": "0b6fc3a46dc90bf91333e40bb24dec8a5cf915b2776a14e1f029210e0cc6852c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/чхати/": {
+      "hash": "2fe6d464640e3edf4c647141a24b0211d74b22942b591bf1168c2c920cf06692",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/шептати/": {
+      "hash": "5119631cce5b134808d7630a88b4ea27749948c7cba55c9f438552daa9289b35",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/шити/": {
+      "hash": "5b50b638a410a0a5bad3527e690e8c3c727642a263d5f8adb277c9bff8797e4d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/шифрувати/": {
+      "hash": "9c995f7fda3de6b01d60d29a676bc53780f9893eede0beb841c79bf4588b9a3a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/штовхати/": {
+      "hash": "6ee560e444733e1e2c644ed08ecaa9ddefd57c8cc3dfd7c281a724340323c600",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/шукати/": {
+      "hash": "e7e30c86dbc5e3a43fbe745664aaef4d12e5cb744836b73d141909ef7ac091fd",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/імпортувати/": {
+      "hash": "8f51fc3673d3ba3bfedcadf213d137071979ce63d889db17b4d0491d4613628a",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/інвестувати/": {
+      "hash": "a596558ccb3ad06fd82e60f0d952c1573270eaf75a05aa4746eb9cb6e5a1abf7",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/інтегрувати/": {
+      "hash": "4edd2072c404c7dd67e44f311bf16ed9bcc6ed5f3583105426dd4b5be322d46d",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/існувати/": {
+      "hash": "f413fe10bef446c8354911d04b9f77fb10f6db4c926bc8c5c2d1c53c04ca9729",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/іти-дощ/": {
+      "hash": "73005418f4a286b907b15e73b905b4bb6084cc49676c9b19dd00b5253d3a6013",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/іти/": {
+      "hash": "c5ec562e1d3828c8a33f93413427563b849da82f2011ae23e61b20bb60051b9c",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/їздити/": {
+      "hash": "68125fa03449740a1fa0001dbbaea185abde8ed3dd074ae80bb92a9b786cfbf0",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/їсти/": {
+      "hash": "22594a802237d4191ab504d8e567a23c932a79cea2bcf3abda29b4e8ae2d4ac5",
+      "lastmod": "2026-04-18T11:52:14Z"
+    },
+    "/reference/ukrainian/їхати/": {
+      "hash": "55a653567640c836c4fd638f145fd3dfc8787b9618594bed37f56ff2cadda2e7",
+      "lastmod": "2026-04-18T11:52:14Z"
     }
   },
-  "generated_at": "2026-04-18T03:39:06Z",
+  "generated_at": "2026-04-18T12:28:42Z",
   "version": 1
 }
