@@ -118,6 +118,47 @@ LANGUAGE_CONFIGS = [
             "imperative",
         ],
     },
+    {
+        "id": "ukrainian",
+        "label": "Ukrainian",
+        "html_lang": "uk",
+        "reference_slug": "ukrainian",
+        "app_path": "/ukrainian/",
+        "speech_lang": "uk-UA",
+        "source_js": ("desktop", "ukrainian-verbs/js/verbs.full.js"),
+        "index_html": ("desktop", "ukrainian-verbs/index.html"),
+        "usage_js_candidates": [
+            ("desktop", "ukrainian-verbs/verb_usages.js"),
+            ("desktop", "ukrainian-verbs/js/verb_usages.js"),
+        ],
+        "tense_map_var": "ukrainianTenseKeyToLabel",
+        "pronoun_mapping_var": "ukrainianPronounMapping",
+        "tense_order": ["present", "past", "future", "imperative", "conditional"],
+    },
+    {
+        "id": "latvian",
+        "label": "Latvian",
+        "html_lang": "lv",
+        "reference_slug": "latvian",
+        "app_path": "/latvian/",
+        "speech_lang": "lv-LV",
+        "source_js": ("desktop", "latvian-verbs/js/verbs.full.js"),
+        "index_html": ("desktop", "latvian-verbs/index.html"),
+        "usage_js_candidates": [("desktop", "latvian-verbs/verb_usages.js")],
+        "tense_map_var": "latvianTenseKeyToLabel",
+        "pronoun_mapping_var": "latvianPronounMapping",
+        "tense_order": [
+            "present",
+            "preterite",
+            "imperfect",
+            "past",
+            "future",
+            "pastPerfect",
+            "presentSubjunctive",
+            "imperative",
+            "conditional",
+        ],
+    },
 ]
 
 
@@ -1067,6 +1108,155 @@ def _render_language_index_html(
 """
 
 
+def _render_reference_home_html(*, base_url, language_rows):
+    title = "Verb conjugation reference"
+    description = (
+        "Browse language-specific verb reference indexes with full conjugation tables and open any verb in its practice app."
+    )
+    canonical = f"{base_url}/reference/"
+    item_list = [
+        {
+            "@type": "ListItem",
+            "position": i + 1,
+            "url": f'{base_url}{item["reference_path"]}',
+            "name": f'{item["label"]} verb reference',
+        }
+        for i, item in enumerate(language_rows)
+    ]
+    structured_data = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "CollectionPage",
+                    "name": title,
+                    "description": description,
+                    "url": canonical,
+                },
+                {
+                    "@type": "ItemList",
+                    "name": "Language reference indexes",
+                    "itemListElement": item_list,
+                },
+            ],
+        },
+        ensure_ascii=False,
+    ).replace("</", "<\\/")
+
+    cards = []
+    for item in language_rows:
+        cards.append(
+            '<li class="language-card">'
+            f'<a class="language-link" href="{html.escape(item["reference_path"])}">'
+            f'<span class="language-name">{html.escape(item["label"])}</span>'
+            f'<span class="language-count">{int(item["count"])} verbs</span>'
+            "</a>"
+            f'<a class="open-app" href="{html.escape(item["app_path"])}">Open app</a>'
+            "</li>"
+        )
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{html.escape(title)}</title>
+  <meta name="description" content="{html.escape(description)}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{html.escape(canonical)}">
+  <script type="application/ld+json">{structured_data}</script>
+  <style>
+    body {{
+      margin: 0;
+      background: #f4f7f9;
+      color: #2c3e50;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.45;
+      padding: 1rem;
+    }}
+    .wrap {{
+      max-width: 920px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 1rem 1.1rem 1.2rem;
+    }}
+    .breadcrumbs {{
+      margin: 0 0 0.45rem;
+      color: #5f6f82;
+      font-size: 0.85rem;
+    }}
+    .breadcrumbs a {{
+      color: #5f6f82;
+      text-decoration: none;
+    }}
+    .breadcrumbs .sep {{
+      margin: 0 0.35rem;
+    }}
+    h1 {{
+      margin: 0.25rem 0 0.35rem;
+      font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+    }}
+    p {{
+      margin: 0 0 1rem;
+      color: #5f6f82;
+    }}
+    ul {{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }}
+    .language-card {{
+      border: 1px solid #d8e2ec;
+      border-radius: 14px;
+      padding: 0.85rem 0.9rem;
+      background: linear-gradient(180deg, #fbfdff, #f5f9fc);
+    }}
+    .language-link {{
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      margin-bottom: 0.45rem;
+    }}
+    .language-name {{
+      display: block;
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 0.12rem;
+    }}
+    .language-count {{
+      display: block;
+      color: #5f6f82;
+      font-size: 0.9rem;
+    }}
+    .open-app {{
+      color: #3498db;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span><span aria-current="page">Reference</span>
+    </nav>
+    <h1>Verb Conjugation Reference</h1>
+    <p>Pick a language to browse verb reference pages and jump straight into the corresponding practice app.</p>
+    <ul>
+      {''.join(cards)}
+    </ul>
+  </main>
+</body>
+</html>
+"""
+
+
 def _write_text(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as handle:
@@ -1168,6 +1358,7 @@ def generate_reference_pages(root_dir, dist_dir):
     warnings = []
     new_manifest_entries = {}
     lastmod_by_path = {}
+    reference_home_rows = []
 
     for config in LANGUAGE_CONFIGS:
         source_js_path = _resolve_path(root_dir, desktop_dir, config["source_js"])
@@ -1321,6 +1512,14 @@ def generate_reference_pages(root_dir, dist_dir):
         if language_count > 0:
             by_language_counts[config["id"]] = language_count
             generated_languages.append(config["id"])
+            reference_home_rows.append(
+                {
+                    "label": config["label"],
+                    "reference_path": language_reference_path,
+                    "app_path": config["app_path"],
+                    "count": language_count,
+                }
+            )
 
             language_index_html = _render_language_index_html(
                 html_lang=config["html_lang"],
@@ -1354,6 +1553,37 @@ def generate_reference_pages(root_dir, dist_dir):
             }
             lastmod_by_path[language_reference_path] = language_index_lastmod
             generated_reference_paths.append(language_reference_path)
+
+    reference_home_path = "/reference/"
+    if reference_home_rows:
+        reference_home_rows.sort(key=lambda item: item["label"].lower())
+        reference_home_html = _render_reference_home_html(
+            base_url=BASE_URL,
+            language_rows=reference_home_rows,
+        )
+        reference_home_hash = _sha256_text(reference_home_html)
+        reference_home_previous = old_entries.get(reference_home_path, {})
+        reference_home_previous_hash = reference_home_previous.get("hash")
+        reference_home_previous_lastmod = reference_home_previous.get("lastmod")
+        if reference_home_previous_hash == reference_home_hash and reference_home_previous_lastmod:
+            reference_home_lastmod = reference_home_previous_lastmod
+        else:
+            reference_home_lastmod = now_iso
+
+        reference_home_output_path = os.path.join(
+            dist_dir,
+            "reference",
+            "index.html",
+        )
+        if not (reference_home_previous_hash == reference_home_hash and os.path.exists(reference_home_output_path)):
+            _write_text(reference_home_output_path, reference_home_html)
+
+        new_manifest_entries[reference_home_path] = {
+            "hash": reference_home_hash,
+            "lastmod": reference_home_lastmod,
+        }
+        lastmod_by_path[reference_home_path] = reference_home_lastmod
+        generated_reference_paths.append(reference_home_path)
 
     app_paths = [
         config["app_path"]
