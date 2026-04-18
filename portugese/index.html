@@ -40,6 +40,36 @@
 .verb-phrase {
     font-weight: bolder;  
 }
+
+html {
+  --idle-prompt-bg: rgba(255, 255, 255, 0.66);
+  --idle-prompt-border: rgba(97, 120, 144, 0.16);
+  --idle-prompt-text: rgba(47, 68, 91, 0.96);
+  --idle-prompt-shadow: 0 16px 32px rgba(24, 44, 70, 0.08);
+  --idle-nudge-glow: rgba(86, 134, 182, 0.16);
+  --idle-next-shadow: 0 10px 24px rgba(44, 62, 80, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]),
+  html[data-theme="system"] {
+    --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+    --idle-prompt-border: rgba(143, 176, 210, 0.2);
+    --idle-prompt-text: rgba(232, 241, 250, 0.92);
+    --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+    --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+    --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+}
+
+html[data-theme="dark"] {
+  --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+  --idle-prompt-border: rgba(143, 176, 210, 0.2);
+  --idle-prompt-text: rgba(232, 241, 250, 0.92);
+  --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+  --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+  --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
 @media (prefers-color-scheme: dark) {
   /* Conjugated verb: dark, bold, easy to read */
   #conjugated-verb, .conjugated-line h2 {
@@ -1518,7 +1548,7 @@ body {
 #tutorial-inline-hint {
   position: absolute;
   left: 50%;
-  bottom: clamp(3.15rem, 26%, 6.4rem);
+  bottom: var(--tutorial-inline-bottom);
   transform: translateX(-50%);
   width: min(82%, 430px);
   min-height: clamp(7.8rem, 19vh, 9.6rem);
@@ -1534,6 +1564,7 @@ body {
 }
 
 html {
+  --tutorial-inline-bottom: clamp(4.85rem, 34%, 8.8rem);
   --tutorial-heading-color: rgba(88, 112, 136, 0.86);
   --tutorial-body-color: rgba(47, 68, 91, 0.96);
   --tutorial-body-after-color: rgba(69, 88, 110, 0.9);
@@ -1609,6 +1640,89 @@ html {
 
 #return-inline-message.hidden {
   display: none !important;
+}
+
+#question-phrase.flashcard-task-prompt {
+  position: absolute;
+  left: 50%;
+  top: auto;
+  bottom: var(--tutorial-inline-bottom);
+  transform: translateX(-50%);
+  width: min(82%, 430px);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--tutorial-body-color) !important;
+  box-shadow: none;
+  font-size: calc(1.14rem * var(--font-scale, 1));
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  text-align: center;
+  text-wrap: balance;
+  z-index: 4;
+  opacity: 0;
+  will-change: opacity;
+}
+
+#question-phrase.idle-nudge-active {
+  animation: idlePromptRevealOpacity 5.2s ease-in-out infinite;
+}
+
+#tutorial-inline-hint.idle-nudge-active .tutorial-inline-text {
+  animation: idlePromptVisibleOpacity 5.2s ease-in-out infinite;
+}
+
+#answer-flow-btn.idle-nudge-active {
+  animation: idleNextReveal 2.8s ease-in-out infinite;
+  background: var(--bottom-nav-btn-hover-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+  box-shadow: var(--idle-next-shadow);
+  will-change: opacity, transform, box-shadow, filter, border-color;
+}
+
+#answer-flow-btn.idle-nudge-active svg,
+#answer-flow-btn.idle-nudge-active .control-dock-label {
+  color: var(--accent-color) !important;
+}
+
+@keyframes idlePromptRevealOpacity {
+  0% {
+    opacity: 0;
+  }
+  38% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes idlePromptVisibleOpacity {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes idleNextReveal {
+  0%, 100% {
+    opacity: 0.82;
+    transform: translateY(0) scale(1);
+    box-shadow: var(--idle-next-shadow);
+    filter: saturate(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.018);
+    box-shadow: var(--idle-next-shadow), 0 0 0 12px var(--idle-nudge-glow);
+    filter: saturate(1.08);
+  }
 }
 
 .return-inline-card {
@@ -2131,6 +2245,33 @@ html {
   letter-spacing: 0.03em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   white-space: nowrap;
+}
+
+.settings-support-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(100%, 19rem);
+  padding: 0.52rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--settings-subtle-bg);
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  text-align: center;
+  word-break: break-word;
+  box-shadow: 0 4px 14px rgba(52, 98, 141, 0.06);
+  transition: transform 0.16s ease, border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+}
+
+.settings-support-link:hover,
+.settings-support-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--settings-card-hover-border);
+  color: var(--settings-action-color);
 }
 
 /* ── Settings: presets description text ─────────────────── */
@@ -3609,6 +3750,24 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   border-color: rgba(92, 166, 232, 0.78);
   background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
   box-shadow: 0 14px 28px rgba(35,104,156,0.16);
+}
+
+html[data-theme="dark"] #options-container .current-drill-card {
+  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
+  border-color: rgba(96, 152, 202, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+html[data-theme="dark"] #options-container .preset-btn {
+  background: rgba(20,29,40,0.94);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+}
+
+html[data-theme="dark"] #options-container .preset-btn.active {
+  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
+  border-color: rgba(109,180,245,0.72);
+  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
 }
 
 #options-container .advanced-card {
@@ -3774,6 +3933,36 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 .verb-phrase {
     font-weight: bolder;  
 }
+
+html {
+  --idle-prompt-bg: rgba(255, 255, 255, 0.66);
+  --idle-prompt-border: rgba(97, 120, 144, 0.16);
+  --idle-prompt-text: rgba(47, 68, 91, 0.96);
+  --idle-prompt-shadow: 0 16px 32px rgba(24, 44, 70, 0.08);
+  --idle-nudge-glow: rgba(86, 134, 182, 0.16);
+  --idle-next-shadow: 0 10px 24px rgba(44, 62, 80, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]),
+  html[data-theme="system"] {
+    --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+    --idle-prompt-border: rgba(143, 176, 210, 0.2);
+    --idle-prompt-text: rgba(232, 241, 250, 0.92);
+    --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+    --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+    --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+}
+
+html[data-theme="dark"] {
+  --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+  --idle-prompt-border: rgba(143, 176, 210, 0.2);
+  --idle-prompt-text: rgba(232, 241, 250, 0.92);
+  --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+  --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+  --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
 @media (prefers-color-scheme: dark) {
   /* Conjugated verb: dark, bold, easy to read */
   #conjugated-verb, .conjugated-line h2 {
@@ -5252,7 +5441,7 @@ body {
 #tutorial-inline-hint {
   position: absolute;
   left: 50%;
-  bottom: clamp(3.15rem, 26%, 6.4rem);
+  bottom: var(--tutorial-inline-bottom);
   transform: translateX(-50%);
   width: min(82%, 430px);
   min-height: clamp(7.8rem, 19vh, 9.6rem);
@@ -5268,6 +5457,7 @@ body {
 }
 
 html {
+  --tutorial-inline-bottom: clamp(4.85rem, 34%, 8.8rem);
   --tutorial-heading-color: rgba(88, 112, 136, 0.86);
   --tutorial-body-color: rgba(47, 68, 91, 0.96);
   --tutorial-body-after-color: rgba(69, 88, 110, 0.9);
@@ -5343,6 +5533,89 @@ html {
 
 #return-inline-message.hidden {
   display: none !important;
+}
+
+#question-phrase.flashcard-task-prompt {
+  position: absolute;
+  left: 50%;
+  top: auto;
+  bottom: var(--tutorial-inline-bottom);
+  transform: translateX(-50%);
+  width: min(82%, 430px);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--tutorial-body-color) !important;
+  box-shadow: none;
+  font-size: calc(1.14rem * var(--font-scale, 1));
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  text-align: center;
+  text-wrap: balance;
+  z-index: 4;
+  opacity: 0;
+  will-change: opacity;
+}
+
+#question-phrase.idle-nudge-active {
+  animation: idlePromptRevealOpacity 5.2s ease-in-out infinite;
+}
+
+#tutorial-inline-hint.idle-nudge-active .tutorial-inline-text {
+  animation: idlePromptVisibleOpacity 5.2s ease-in-out infinite;
+}
+
+#answer-flow-btn.idle-nudge-active {
+  animation: idleNextReveal 2.8s ease-in-out infinite;
+  background: var(--bottom-nav-btn-hover-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+  box-shadow: var(--idle-next-shadow);
+  will-change: opacity, transform, box-shadow, filter, border-color;
+}
+
+#answer-flow-btn.idle-nudge-active svg,
+#answer-flow-btn.idle-nudge-active .control-dock-label {
+  color: var(--accent-color) !important;
+}
+
+@keyframes idlePromptRevealOpacity {
+  0% {
+    opacity: 0;
+  }
+  38% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes idlePromptVisibleOpacity {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes idleNextReveal {
+  0%, 100% {
+    opacity: 0.82;
+    transform: translateY(0) scale(1);
+    box-shadow: var(--idle-next-shadow);
+    filter: saturate(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.018);
+    box-shadow: var(--idle-next-shadow), 0 0 0 12px var(--idle-nudge-glow);
+    filter: saturate(1.08);
+  }
 }
 
 .return-inline-card {
@@ -5865,6 +6138,33 @@ html {
   letter-spacing: 0.03em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   white-space: nowrap;
+}
+
+.settings-support-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(100%, 19rem);
+  padding: 0.52rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--settings-subtle-bg);
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  text-align: center;
+  word-break: break-word;
+  box-shadow: 0 4px 14px rgba(52, 98, 141, 0.06);
+  transition: transform 0.16s ease, border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+}
+
+.settings-support-link:hover,
+.settings-support-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--settings-card-hover-border);
+  color: var(--settings-action-color);
 }
 
 /* ── Settings: presets description text ─────────────────── */
@@ -7343,6 +7643,24 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   border-color: rgba(92, 166, 232, 0.78);
   background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
   box-shadow: 0 14px 28px rgba(35,104,156,0.16);
+}
+
+html[data-theme="dark"] #options-container .current-drill-card {
+  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
+  border-color: rgba(96, 152, 202, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+html[data-theme="dark"] #options-container .preset-btn {
+  background: rgba(20,29,40,0.94);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+}
+
+html[data-theme="dark"] #options-container .preset-btn.active {
+  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
+  border-color: rgba(109,180,245,0.72);
+  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
 }
 
 #options-container .advanced-card {
@@ -7512,6 +7830,36 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 .verb-phrase {
     font-weight: bolder;  
 }
+
+html {
+  --idle-prompt-bg: rgba(255, 255, 255, 0.66);
+  --idle-prompt-border: rgba(97, 120, 144, 0.16);
+  --idle-prompt-text: rgba(47, 68, 91, 0.96);
+  --idle-prompt-shadow: 0 16px 32px rgba(24, 44, 70, 0.08);
+  --idle-nudge-glow: rgba(86, 134, 182, 0.16);
+  --idle-next-shadow: 0 10px 24px rgba(44, 62, 80, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]),
+  html[data-theme="system"] {
+    --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+    --idle-prompt-border: rgba(143, 176, 210, 0.2);
+    --idle-prompt-text: rgba(232, 241, 250, 0.92);
+    --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+    --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+    --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+}
+
+html[data-theme="dark"] {
+  --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+  --idle-prompt-border: rgba(143, 176, 210, 0.2);
+  --idle-prompt-text: rgba(232, 241, 250, 0.92);
+  --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+  --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+  --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
 @media (prefers-color-scheme: dark) {
   /* Conjugated verb: dark, bold, easy to read */
   #conjugated-verb, .conjugated-line h2 {
@@ -8990,7 +9338,7 @@ body {
 #tutorial-inline-hint {
   position: absolute;
   left: 50%;
-  bottom: clamp(3.15rem, 26%, 6.4rem);
+  bottom: var(--tutorial-inline-bottom);
   transform: translateX(-50%);
   width: min(82%, 430px);
   min-height: clamp(7.8rem, 19vh, 9.6rem);
@@ -9006,6 +9354,7 @@ body {
 }
 
 html {
+  --tutorial-inline-bottom: clamp(4.85rem, 34%, 8.8rem);
   --tutorial-heading-color: rgba(88, 112, 136, 0.86);
   --tutorial-body-color: rgba(47, 68, 91, 0.96);
   --tutorial-body-after-color: rgba(69, 88, 110, 0.9);
@@ -9081,6 +9430,89 @@ html {
 
 #return-inline-message.hidden {
   display: none !important;
+}
+
+#question-phrase.flashcard-task-prompt {
+  position: absolute;
+  left: 50%;
+  top: auto;
+  bottom: var(--tutorial-inline-bottom);
+  transform: translateX(-50%);
+  width: min(82%, 430px);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--tutorial-body-color) !important;
+  box-shadow: none;
+  font-size: calc(1.14rem * var(--font-scale, 1));
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  text-align: center;
+  text-wrap: balance;
+  z-index: 4;
+  opacity: 0;
+  will-change: opacity;
+}
+
+#question-phrase.idle-nudge-active {
+  animation: idlePromptRevealOpacity 5.2s ease-in-out infinite;
+}
+
+#tutorial-inline-hint.idle-nudge-active .tutorial-inline-text {
+  animation: idlePromptVisibleOpacity 5.2s ease-in-out infinite;
+}
+
+#answer-flow-btn.idle-nudge-active {
+  animation: idleNextReveal 2.8s ease-in-out infinite;
+  background: var(--bottom-nav-btn-hover-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+  box-shadow: var(--idle-next-shadow);
+  will-change: opacity, transform, box-shadow, filter, border-color;
+}
+
+#answer-flow-btn.idle-nudge-active svg,
+#answer-flow-btn.idle-nudge-active .control-dock-label {
+  color: var(--accent-color) !important;
+}
+
+@keyframes idlePromptRevealOpacity {
+  0% {
+    opacity: 0;
+  }
+  38% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes idlePromptVisibleOpacity {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes idleNextReveal {
+  0%, 100% {
+    opacity: 0.82;
+    transform: translateY(0) scale(1);
+    box-shadow: var(--idle-next-shadow);
+    filter: saturate(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.018);
+    box-shadow: var(--idle-next-shadow), 0 0 0 12px var(--idle-nudge-glow);
+    filter: saturate(1.08);
+  }
 }
 
 .return-inline-card {
@@ -9603,6 +10035,33 @@ html {
   letter-spacing: 0.03em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   white-space: nowrap;
+}
+
+.settings-support-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(100%, 19rem);
+  padding: 0.52rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--settings-subtle-bg);
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  text-align: center;
+  word-break: break-word;
+  box-shadow: 0 4px 14px rgba(52, 98, 141, 0.06);
+  transition: transform 0.16s ease, border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+}
+
+.settings-support-link:hover,
+.settings-support-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--settings-card-hover-border);
+  color: var(--settings-action-color);
 }
 
 /* ── Settings: presets description text ─────────────────── */
@@ -11081,6 +11540,24 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   border-color: rgba(92, 166, 232, 0.78);
   background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
   box-shadow: 0 14px 28px rgba(35,104,156,0.16);
+}
+
+html[data-theme="dark"] #options-container .current-drill-card {
+  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
+  border-color: rgba(96, 152, 202, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+html[data-theme="dark"] #options-container .preset-btn {
+  background: rgba(20,29,40,0.94);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+}
+
+html[data-theme="dark"] #options-container .preset-btn.active {
+  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
+  border-color: rgba(109,180,245,0.72);
+  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
 }
 
 #options-container .advanced-card {
@@ -11246,6 +11723,36 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 .verb-phrase {
     font-weight: bolder;  
 }
+
+html {
+  --idle-prompt-bg: rgba(255, 255, 255, 0.66);
+  --idle-prompt-border: rgba(97, 120, 144, 0.16);
+  --idle-prompt-text: rgba(47, 68, 91, 0.96);
+  --idle-prompt-shadow: 0 16px 32px rgba(24, 44, 70, 0.08);
+  --idle-nudge-glow: rgba(86, 134, 182, 0.16);
+  --idle-next-shadow: 0 10px 24px rgba(44, 62, 80, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]),
+  html[data-theme="system"] {
+    --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+    --idle-prompt-border: rgba(143, 176, 210, 0.2);
+    --idle-prompt-text: rgba(232, 241, 250, 0.92);
+    --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+    --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+    --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+}
+
+html[data-theme="dark"] {
+  --idle-prompt-bg: rgba(19, 30, 43, 0.76);
+  --idle-prompt-border: rgba(143, 176, 210, 0.2);
+  --idle-prompt-text: rgba(232, 241, 250, 0.92);
+  --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+  --idle-nudge-glow: rgba(123, 170, 222, 0.18);
+  --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
 @media (prefers-color-scheme: dark) {
   /* Conjugated verb: dark, bold, easy to read */
   #conjugated-verb, .conjugated-line h2 {
@@ -12724,7 +13231,7 @@ body {
 #tutorial-inline-hint {
   position: absolute;
   left: 50%;
-  bottom: clamp(3.15rem, 26%, 6.4rem);
+  bottom: var(--tutorial-inline-bottom);
   transform: translateX(-50%);
   width: min(82%, 430px);
   min-height: clamp(7.8rem, 19vh, 9.6rem);
@@ -12740,6 +13247,7 @@ body {
 }
 
 html {
+  --tutorial-inline-bottom: clamp(4.85rem, 34%, 8.8rem);
   --tutorial-heading-color: rgba(88, 112, 136, 0.86);
   --tutorial-body-color: rgba(47, 68, 91, 0.96);
   --tutorial-body-after-color: rgba(69, 88, 110, 0.9);
@@ -12815,6 +13323,89 @@ html {
 
 #return-inline-message.hidden {
   display: none !important;
+}
+
+#question-phrase.flashcard-task-prompt {
+  position: absolute;
+  left: 50%;
+  top: auto;
+  bottom: var(--tutorial-inline-bottom);
+  transform: translateX(-50%);
+  width: min(82%, 430px);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--tutorial-body-color) !important;
+  box-shadow: none;
+  font-size: calc(1.14rem * var(--font-scale, 1));
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  text-align: center;
+  text-wrap: balance;
+  z-index: 4;
+  opacity: 0;
+  will-change: opacity;
+}
+
+#question-phrase.idle-nudge-active {
+  animation: idlePromptRevealOpacity 5.2s ease-in-out infinite;
+}
+
+#tutorial-inline-hint.idle-nudge-active .tutorial-inline-text {
+  animation: idlePromptVisibleOpacity 5.2s ease-in-out infinite;
+}
+
+#answer-flow-btn.idle-nudge-active {
+  animation: idleNextReveal 2.8s ease-in-out infinite;
+  background: var(--bottom-nav-btn-hover-bg) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+  box-shadow: var(--idle-next-shadow);
+  will-change: opacity, transform, box-shadow, filter, border-color;
+}
+
+#answer-flow-btn.idle-nudge-active svg,
+#answer-flow-btn.idle-nudge-active .control-dock-label {
+  color: var(--accent-color) !important;
+}
+
+@keyframes idlePromptRevealOpacity {
+  0% {
+    opacity: 0;
+  }
+  38% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes idlePromptVisibleOpacity {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes idleNextReveal {
+  0%, 100% {
+    opacity: 0.82;
+    transform: translateY(0) scale(1);
+    box-shadow: var(--idle-next-shadow);
+    filter: saturate(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.018);
+    box-shadow: var(--idle-next-shadow), 0 0 0 12px var(--idle-nudge-glow);
+    filter: saturate(1.08);
+  }
 }
 
 .return-inline-card {
@@ -13337,6 +13928,33 @@ html {
   letter-spacing: 0.03em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   white-space: nowrap;
+}
+
+.settings-support-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: min(100%, 19rem);
+  padding: 0.52rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--settings-subtle-bg);
+  color: var(--text-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  text-align: center;
+  word-break: break-word;
+  box-shadow: 0 4px 14px rgba(52, 98, 141, 0.06);
+  transition: transform 0.16s ease, border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+}
+
+.settings-support-link:hover,
+.settings-support-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--settings-card-hover-border);
+  color: var(--settings-action-color);
 }
 
 /* ── Settings: presets description text ─────────────────── */
@@ -14817,6 +15435,24 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   box-shadow: 0 14px 28px rgba(35,104,156,0.16);
 }
 
+html[data-theme="dark"] #options-container .current-drill-card {
+  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
+  border-color: rgba(96, 152, 202, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+html[data-theme="dark"] #options-container .preset-btn {
+  background: rgba(20,29,40,0.94);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+}
+
+html[data-theme="dark"] #options-container .preset-btn.active {
+  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
+  border-color: rgba(109,180,245,0.72);
+  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
+}
+
 #options-container .advanced-card {
   border: 1px solid var(--border-color);
 }
@@ -14967,7 +15603,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260418_142200";
+      window.APP_BUILD_VERSION = "20260419_013837";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -15733,6 +16369,14 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                                     <p id="app-version-detail" class="setting-helper-text">Build information</p>
                                 </div>
                                 <span id="app-version-badge" class="settings-meta-badge" aria-live="polite">dev</span>
+                            </div>
+
+                            <div class="toggle-row settings-action-row settings-support-row">
+                                <div class="settings-row-copy">
+                                    <label for="support-email-link">Support email</label>
+                                    <p class="setting-helper-text">Questions, bug reports, or feedback.</p>
+                                </div>
+                                <a id="support-email-link" class="settings-support-link" href="mailto:lesverbes.support@gmail.com">lesverbes.support@gmail.com</a>
                             </div>
                             <div class="toggle-row">
                                 <label>Theme</label>
@@ -26930,7 +27574,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260418_142200') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_013837') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -28294,8 +28938,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let recognition = null;
     let isDictating = false;
     let dictationResultEl = null;
-    let dictationTimeout = null;
-    let ignoreNextDictationEnd = false;
+    let dictationOverlayTimeout = null;
+    let dictationPostResultTimeout = null;
+    let dictationLongTimeout = null;
+    let dictationStopRequested = false;
     let activeDictationPromptText = '';
 
     const loadTutorialState = () => {
@@ -28366,7 +29012,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const micMode = getEffectiveMicMode();
         if (micMode === 'practiceAfterReveal' && !isAnswerVisible) return 'phase-disabled';
-        if (micMode === 'answerByVoice' && isAnswerVisible) return 'phase-disabled';
         return 'enabled';
     };
 
@@ -28443,6 +29088,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tutorialInlineHeadingEl.textContent = hint && heading ? heading : '';
         tutorialInlineBodyEl.innerHTML = hint || '';
         renderReopenMessage();
+        refreshIdleGuidance();
     };
 
     const renderReopenMessage = () => {
@@ -28471,6 +29117,164 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshTutorialAwareUi = () => {
         renderTutorialHint();
         syncMicModeSettingUi();
+    };
+
+    const clearIdleGuidanceTimer = () => {
+        if (idleGuidanceTimeout) {
+            clearTimeout(idleGuidanceTimeout);
+            idleGuidanceTimeout = null;
+        }
+    };
+
+    const clearIdleGuidanceState = () => {
+        clearIdleGuidanceTimer();
+        if (questionPhraseEl) {
+            questionPhraseEl.classList.remove('idle-nudge-active');
+            if (questionPhraseEl.classList.contains('flashcard-task-prompt')) {
+                questionPhraseEl.style.display = 'none';
+            }
+        }
+        if (tutorialInlineHintEl) tutorialInlineHintEl.classList.remove('idle-nudge-active');
+        if (answerFlowBtn) answerFlowBtn.classList.remove('idle-nudge-active');
+        if (nextBtn) nextBtn.classList.remove('idle-nudge-active');
+    };
+
+    const isFlashcardViewActive = () => !!(flashcardView && !flashcardView.classList.contains('hidden'));
+
+    const getIdleGuidancePromptText = (card) => {
+        if (!card || !card.verb) return '';
+        const rawPrompt = typeof getPrompt === 'function' ? String(getPrompt(card) || '') : '';
+        const normalizedPrompt = rawPrompt
+            .replace(/<br\s*\/?>/gi, ' ')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        const promptWithoutReveal = normalizedPrompt
+            .replace(/\s*(tap|click)\s+show\s+to\s+reveal(?:\s+the\s+answer)?\.?$/i, '')
+            .replace(/\s*think\s+of\s+the\s+answer.*$/i, '')
+            .trim();
+        const tenseLabels = {
+            passeCompose: 'passé composé',
+            imparfait: 'imperfect',
+            futurSimple: 'future',
+            plusQueParfait: 'pluperfect',
+            subjonctifPresent: 'present subjunctive',
+            conditionnelPresent: 'conditional',
+            preterite: 'preterite',
+            imperfect: 'imperfect',
+            future: 'future',
+            conditional: 'conditional',
+            imperative: 'imperative',
+            presentSubjunctive: 'present subjunctive',
+            pastSubjunctive: 'past subjunctive',
+            activePresent: 'present',
+            activePast: 'past',
+            activeFuture: 'future',
+            aorist: 'aorist'
+        };
+        const verb = String(card.verb.infinitive || '').trim();
+        const pronoun = String(card.pronoun || '').trim();
+        const tenseKey = String(card.tense || '').trim();
+        const tense = tenseLabels[tenseKey] || tenseKey.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ').toLowerCase();
+        const fallbackPrompt = (
+            (verb && pronoun && tense) ? `Conjugate "${verb}" for "${pronoun}" in ${tense}.`
+                : (verb && pronoun) ? `Conjugate "${verb}" for "${pronoun}".`
+                    : verb ? `Conjugate "${verb}".`
+                        : ''
+        );
+        const basePrompt = promptWithoutReveal || fallbackPrompt;
+        if (!basePrompt) return '';
+        const lead = /[.?!]$/.test(basePrompt) ? basePrompt : `${basePrompt}.`;
+        return `${lead} Think of the answer, then tap Show or tap anywhere to reveal.`;
+    };
+
+    const syncTaskPromptVisibility = () => {
+        if (!questionPhraseEl) return;
+
+        const isPhraseMode = !!(currentCard && (currentCard.isPhraseMode || (!currentCard.verb && currentCard.phrase)));
+        const hasGapSentencePrompt = !!(
+            ENABLE_GAP_SENTENCES
+            && currentCard
+            && currentCard.chosenPhrase
+            && currentCard.chosenPhrase.gap_sentence
+        );
+
+        if (isPhraseMode || hasGapSentencePrompt) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            return false;
+        }
+
+        if (!currentCard || !currentCard.verb || isAnswerVisible) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            questionPhraseEl.textContent = '';
+            questionPhraseEl.style.display = 'none';
+            questionPhraseEl.style.top = '';
+            return false;
+        }
+
+        const tutorialVisible = !!(tutorialInlineHintEl && !tutorialInlineHintEl.classList.contains('hidden'));
+        if (tutorialVisible) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            questionPhraseEl.textContent = '';
+            questionPhraseEl.style.display = 'none';
+            questionPhraseEl.style.top = '';
+            return false;
+        }
+
+        const promptText = getIdleGuidancePromptText(currentCard);
+        if (!promptText) {
+            questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
+            questionPhraseEl.textContent = '';
+            questionPhraseEl.style.display = 'none';
+            questionPhraseEl.style.top = '';
+            return false;
+        }
+
+        questionPhraseEl.textContent = promptText;
+        questionPhraseEl.style.display = 'none';
+        questionPhraseEl.style.top = '';
+        questionPhraseEl.classList.add('flashcard-task-prompt');
+        return true;
+    };
+
+    const showGeneratedTaskPrompt = () => {
+        if (
+            !questionPhraseEl
+            || !questionPhraseEl.classList.contains('flashcard-task-prompt')
+            || !questionPhraseEl.textContent.trim()
+        ) {
+            return false;
+        }
+        questionPhraseEl.style.display = 'block';
+        questionPhraseEl.classList.add('idle-nudge-active');
+        return true;
+    };
+
+    const refreshIdleGuidance = () => {
+        clearIdleGuidanceState();
+        const hasGeneratedPrompt = syncTaskPromptVisibility();
+
+        if (!isFlashcardViewActive() || !currentCard) return;
+
+        if (isAnswerVisible) {
+            if (!answerFlowBtn) return;
+            idleGuidanceTimeout = setTimeout(() => {
+                if (!isFlashcardViewActive() || !currentCard || !isAnswerVisible) return;
+                answerFlowBtn.classList.add('idle-nudge-active');
+            }, IDLE_REVEALED_NUDGE_DELAY_MS);
+            return;
+        }
+
+        idleGuidanceTimeout = setTimeout(() => {
+            if (!isFlashcardViewActive() || !currentCard || isAnswerVisible) return;
+            if (tutorialInlineHintEl && !tutorialInlineHintEl.classList.contains('hidden')) {
+                tutorialInlineHintEl.classList.add('idle-nudge-active');
+                return;
+            }
+            if (hasGeneratedPrompt) {
+                showGeneratedTaskPrompt();
+            }
+        }, IDLE_HIDDEN_NUDGE_DELAY_MS);
     };
 
     const completeTutorialIfNeeded = () => {
@@ -28523,26 +29327,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.startTutorial = () => restartTutorialFlow({ confirmRestart: false });
 
+    const DICTATION_POST_RESULT_SILENCE_MS = 1500;
+    const DICTATION_LONG_SILENCE_MS = 10000;
+
+    const clearDictationListeningTimers = () => {
+        clearTimeout(dictationPostResultTimeout);
+        dictationPostResultTimeout = null;
+        clearTimeout(dictationLongTimeout);
+        dictationLongTimeout = null;
+    };
+
+    const clearDictationOverlayTimeout = () => {
+        clearTimeout(dictationOverlayTimeout);
+        dictationOverlayTimeout = null;
+    };
+
+    const scheduleDictationPostResultTimeout = () => {
+        clearTimeout(dictationPostResultTimeout);
+        if (!isDictating || !recognition) return;
+        dictationPostResultTimeout = setTimeout(() => {
+            if (isDictating && recognition) {
+                stopActiveDictation({ silent: false });
+            }
+        }, DICTATION_POST_RESULT_SILENCE_MS);
+    };
+
+    const scheduleDictationLongTimeout = () => {
+        clearTimeout(dictationLongTimeout);
+        if (!isDictating || !recognition) return;
+        dictationLongTimeout = setTimeout(() => {
+            if (isDictating && recognition) {
+                stopActiveDictation({ silent: false });
+            }
+        }, DICTATION_LONG_SILENCE_MS);
+    };
+
     const stopActiveDictation = (options = {}) => {
         const { abort = false, silent = true } = options;
-        clearTimeout(dictationTimeout);
-        if (recognition) {
-            ignoreNextDictationEnd = true;
-            try {
-                if (abort) recognition.abort();
-                else recognition.stop();
-            } catch (error) {
-                console.warn('Dictation stop failed:', error);
-            }
-        }
+        const activeRecognition = recognition;
+        clearDictationListeningTimers();
+        clearDictationOverlayTimeout();
         recognition = null;
         isDictating = false;
+        dictationStopRequested = !silent;
         setDictating(false);
+        refreshDictationButton();
         if (silent && dictationResultEl) {
-            dictationResultEl.style.opacity = '0';
-            window.setTimeout(() => {
-                if (dictationResultEl) dictationResultEl.style.display = 'none';
-            }, 120);
+            hideDictationOverlay();
+        }
+        if (!activeRecognition) {
+            dictationStopRequested = false;
+            return;
+        }
+        if (silent) {
+            activeRecognition.onstart = null;
+            activeRecognition.onresult = null;
+            activeRecognition.onend = null;
+            activeRecognition.onerror = null;
+        }
+        try {
+            if (abort) activeRecognition.abort();
+            else activeRecognition.stop();
+        } catch (error) {
+            dictationStopRequested = false;
+            console.warn('Dictation stop failed:', error);
         }
     };
 
@@ -28594,7 +29442,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         maybeWhisperMolodez();
 
-        if (micMode === 'answerByVoice' && !isAnswerVisible) {
+        const shouldAutoAdvanceOnMicSuccess = micMode === 'answerByVoice' && !isAnswerVisible;
+        if (shouldAutoAdvanceOnMicSuccess) {
             showAnswer();
             window.setTimeout(() => {
                 if (recognition) {
@@ -28635,7 +29484,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl.style.display = 'none';
             dictationResultEl.style.zIndex = '100';
             dictationResultEl.style.textAlign = 'center';
-            dictationResultEl.style.pointerEvents = 'none';
             dictationResultEl.style.transition = 'opacity 0.5s';
             flashcard.style.position = 'relative';
             const applyDictationResultTheme = () => {
@@ -28655,6 +29503,18 @@ document.addEventListener('DOMContentLoaded', () => {
             applyDictationResultTheme();
             window.addEventListener('app-theme-change', applyDictationResultTheme);
             flashcard.appendChild(dictationResultEl);
+        }
+        dictationResultEl.style.pointerEvents = 'auto';
+        dictationResultEl.style.cursor = 'pointer';
+        if (!dictationResultEl._dictationStopHandlerAttached) {
+            dictationResultEl.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                if (isDictating && recognition) {
+                    stopActiveDictation({ silent: false });
+                }
+            });
+            dictationResultEl._dictationStopHandlerAttached = true;
         }
         // Attach click handler ONCE
         if (!dictateBtn._dictationHandlerAttached) {
@@ -28679,16 +29539,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 // If already dictating, stop
                 if (isDictating && recognition) {
-                    recognition.stop();
+                    stopActiveDictation({ silent: false });
                     return;
                 }
                 // Clean up any previous session
                 if (recognition) {
-                    try { recognition.abort(); } catch (e) {}
-                    recognition = null;
+                    stopActiveDictation({ abort: true, silent: true });
                 }
-                clearTimeout(dictationTimeout);
+                clearDictationListeningTimers();
                 isDictating = true;
+                dictationStopRequested = false;
                 setDictating(true);
                 // Reset overlay for new session
                 dictationResultEl.textContent = '';
@@ -28704,20 +29564,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 recognition.onstart = () => {
                     isDictating = true;
                     setDictating(true);
+                    dictationStopRequested = false;
                     dictationResultEl.textContent = '';
                     dictationResultEl.style.display = 'block';
                     activeDictationPromptText = getDictationPromptText();
                     showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
+                    scheduleDictationLongTimeout();
                 };
                 recognition.onend = () => {
-                    if (ignoreNextDictationEnd) {
-                        ignoreNextDictationEnd = false;
-                        return;
-                    }
+                    dictationStopRequested = false;
+                    recognition = null;
                     isDictating = false;
                     setDictating(false);
                     refreshDictationButton();
-                    clearTimeout(dictationTimeout);
+                    clearDictationListeningTimers();
                     if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
                         showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
                     } else {
@@ -28725,14 +29585,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
                 recognition.onerror = (event) => {
-                    if (ignoreNextDictationEnd) {
-                        ignoreNextDictationEnd = false;
+                    if (dictationStopRequested) {
                         return;
                     }
+                    recognition = null;
                     isDictating = false;
                     setDictating(false);
                     refreshDictationButton();
-                    clearTimeout(dictationTimeout);
+                    clearDictationListeningTimers();
                     showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
                 };
                 recognition.onresult = (event) => {
@@ -28766,8 +29626,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     }
+                    scheduleDictationLongTimeout();
+                    scheduleDictationPostResultTimeout();
                     const isCorrect = currentCard && !autoskipLock && isDictationMatch(bestTranscript, currentCard);
                     if (isCorrect) {
+                        clearDictationListeningTimers();
                         dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                         dictationResultEl.style.display = 'block';
                         dictationResultEl.style.opacity = '1';
@@ -28778,10 +29641,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     showDictationOverlay(html, 'normal', 0, true, false);
                 };
                 recognition.start();
-                // Safety: stop after 10s if not already ended
-                dictationTimeout = setTimeout(() => {
-                    if (isDictating && recognition) recognition.stop();
-                }, 10000);
+                scheduleDictationLongTimeout();
             });
             dictateBtn._dictationHandlerAttached = true;
         }
@@ -28794,6 +29654,9 @@ document.addEventListener('DOMContentLoaded', () => {
     var historyIndex = -1;
     var isAnswerVisible = false;
     let recentCardKeys = []; // track last N card keys to avoid immediate repeats
+    const IDLE_HIDDEN_NUDGE_DELAY_MS = 7000;
+    const IDLE_REVEALED_NUDGE_DELAY_MS = 6000;
+    let idleGuidanceTimeout = null;
 
     // --- Options UI Elements ---
     const hierarchicalToggle = document.getElementById('hierarchical-toggle');
@@ -30112,6 +30975,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showView(viewId, pushState = true) {
         if (viewId !== 'flashcard-view') {
             stopActiveDictation({ abort: true, silent: true });
+            clearIdleGuidanceState();
         }
         let targetView = null;
         views.forEach(view => {
@@ -31074,6 +31938,14 @@ document.addEventListener('DOMContentLoaded', () => {
             closeInstallInstructionsModal();
         }
     });
+    document.addEventListener('pointerdown', () => {
+        if (!isFlashcardViewActive()) return;
+        refreshIdleGuidance();
+    }, true);
+    document.addEventListener('keydown', () => {
+        if (!isFlashcardViewActive()) return;
+        refreshIdleGuidance();
+    }, true);
 
     // Explorer Search and Audio
     searchBar.addEventListener('input', (e) => populateExplorerList(e.target.value));
@@ -31541,12 +32413,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dictationResultEl.style.display = 'block';
         dictationResultEl.style.opacity = '1'; // Ensure visible every time
         dictationResultEl.className = 'dictation-result ' + (type || 'prompt');
-        clearTimeout(dictationTimeout);
+        clearDictationOverlayTimeout();
         if (allowTimeout) {
-            dictationTimeout = setTimeout(hideDictationOverlay, duration);
+            dictationOverlayTimeout = setTimeout(hideDictationOverlay, duration);
         }
     }
     function hideDictationOverlay() {
+        clearDictationOverlayTimeout();
         dictationResultEl.style.opacity = '0';
         setTimeout(() => {
             dictationResultEl.style.display = 'none';
