@@ -41,6 +41,7 @@ ROOT_FILES_TO_COPY = [
     "landing-greek.png",
     "landing-portugese.png",
     "landing-french.png",
+    "landing-spanish.png",
     "landing-russian.png",
     "landing-catalan.png",
     "landing-ukrainian.png",
@@ -65,6 +66,12 @@ SIBLING_APPS = [
         "source_dist": os.path.join(DESKTOP_DIR, "russian-verbs", "dist"),
         "target_dir": os.path.join(DIST_DIR, "russian"),
         "standalone": "glagoly.html",
+    },
+    {
+        "name": "spanish",
+        "source_dist": os.path.join(DESKTOP_DIR, "spanish-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "spanish"),
+        "standalone": "conjugaespanol.html",
     },
     {
         "name": "catalan",
@@ -436,6 +443,7 @@ WATCHED_FILES = [
     "landing-greek.png",
     "landing-portugese.png",
     "landing-french.png",
+    "landing-spanish.png",
     "landing-russian.png",
     "landing-catalan.png",
     "landing-ukrainian.png",
