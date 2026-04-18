@@ -791,23 +791,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const REOPEN_MESSAGE_EXTRA_PROMPTS = [
         {
             badge: 'Practicing or just looking up? 🔎',
-            body: 'Search is there when you need a verb fast. The cards are there when you want it to stick.'
+            body: ''
         },
         {
             badge: 'Small wins count',
-            body: '100 a day means no matter what else happens, you already won today.'
-        },
-        {
-            badge: 'Feature hint',
-            body: 'Hear is useful before reveal. Say becomes useful after reveal, when you want the form to come out cleanly.'
+            body: 'A few clean cards still count. Keep the language alive.'
         },
         {
             badge: 'Keep it simple',
-            body: 'Top 50 in the present is still serious work. Fluency usually grows from that layer outward.'
-        },
-        {
-            badge: 'A better rhythm',
-            body: 'A few clean reps beat a vague hour of “studying.” Make the form come out fast.'
+            body: 'Top 50 in the present is still serious work. Build there first.'
         },
         {
             badge: 'Feature hint',
@@ -815,18 +807,27 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             badge: 'Drill or reference',
-            body: 'Use Search and verb details when you need clarity, then come back to the cards to make it automatic.'
+            body: 'Look it up if you need to. Then make it automatic.'
         },
         {
             badge: 'Feature hint',
             body: 'Usage examples help when a verb feels fuzzy. Turn them on when you want context, then hide them again when drilling.'
+        },
+        {
+            badge: 'Feature hint',
+            body: 'Search is there when you need clarity fast. The cards are there when you want the form to stick.'
+        },
+        {
+            badge: 'Still counts',
+            body: 'Even a short return is a return. Make one form come out cleanly.'
         }
     ];
     const reopenMessageState = {
         active: false,
         dismissed: false,
         badge: '',
-        body: ''
+        body: '',
+        shownCardKey: null
     };
     const installState = {
         deferredPrompt: null,
@@ -932,7 +933,8 @@ document.addEventListener('DOMContentLoaded', () => {
         reopenMessageState.active = true;
         reopenMessageState.dismissed = false;
         reopenMessageState.badge = extra.badge;
-        reopenMessageState.body = `Welcome back. It has been ${elapsedText} since your last conjugation. ${extra.body}`;
+        const lead = `Welcome back. It has been ${elapsedText} since your last conjugation.`;
+        reopenMessageState.body = extra.body ? `${lead} ${extra.body}` : lead;
         console.log('[reopen-debug] reopen message activated', {
             badge: reopenMessageState.badge,
             body: reopenMessageState.body
@@ -1565,7 +1567,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         maybeWhisperMolodez();
 
-        if (micMode === 'answerByVoice' && !isAnswerVisible) {
+        const shouldAutoAdvanceOnMicSuccess = micMode === 'answerByVoice' && !isAnswerVisible;
+        if (shouldAutoAdvanceOnMicSuccess) {
             showAnswer();
             window.setTimeout(() => {
                 if (recognition) {
@@ -2147,7 +2150,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const micMode = getEffectiveMicMode();
         if (micMode === 'practiceAfterReveal' && !isAnswerVisible) return 'phase-disabled';
-        if (micMode === 'answerByVoice' && isAnswerVisible) return 'phase-disabled';
         return 'enabled';
     };
 
@@ -2208,6 +2210,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderReopenMessage = () => {
         if (!returnInlineMessageEl || !returnInlineBadgeEl || !returnInlineBodyEl) return;
+        const currentCardKey = currentCard && currentCard.verb
+            ? `verb:${currentCard.verb.infinitive}|${currentCard.tense}|${currentCard.pronoun}`
+            : '';
+        const isSameShownCard = !!(reopenMessageState.shownCardKey && currentCardKey && reopenMessageState.shownCardKey === currentCardKey);
         const shouldShow = !!(
             reopenMessageState.active
             && !reopenMessageState.dismissed
@@ -2216,8 +2222,12 @@ document.addEventListener('DOMContentLoaded', () => {
             && !isAnswerVisible
             && currentCard
             && currentCard.verb
-            && installState.cardsSeenThisSession === 1
+            && (!reopenMessageState.shownCardKey || isSameShownCard)
         );
+        if (shouldShow && !reopenMessageState.shownCardKey && currentCardKey) {
+            reopenMessageState.shownCardKey = currentCardKey;
+            console.log('[reopen-debug] reopen message locked to card', currentCardKey);
+        }
         returnInlineMessageEl.classList.toggle('hidden', !shouldShow);
         returnInlineBadgeEl.textContent = shouldShow ? reopenMessageState.badge : '';
         returnInlineBodyEl.textContent = shouldShow ? reopenMessageState.body : '';
@@ -2228,6 +2238,11 @@ document.addEventListener('DOMContentLoaded', () => {
         reopenMessageState.dismissed = true;
         renderReopenMessage();
     };
+
+    const isReopenMessageVisible = () => !!(
+        returnInlineMessageEl
+        && !returnInlineMessageEl.classList.contains('hidden')
+    );
 
     const refreshTutorialAwareUi = () => {
         renderTutorialHint();
@@ -2370,6 +2385,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hasGeneratedPrompt = syncTaskPromptVisibility();
 
         if (!isFlashcardViewActive() || !currentCard) return;
+        if (isReopenMessageVisible()) return;
 
         if (isAnswerVisible) {
             if (!answerFlowBtn) return;

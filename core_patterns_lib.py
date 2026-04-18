@@ -142,6 +142,10 @@ def infer_pattern_type(pattern: str) -> str:
         return "combo-a"
     if " qqch de qqn" in text:
         return "combo-de"
+    if " qqn / qqch à + " in text or " qqch à + " in text:
+        return "combo-a"
+    if " qqn / qqch de + " in text or " qqch de + " in text:
+        return "combo-de"
     if " si + proposition" in text:
         return "si-clause"
     if " que + proposition" in text or " que + subj." in text:

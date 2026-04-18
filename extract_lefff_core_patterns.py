@@ -539,8 +539,8 @@ def resolve_target_verbs(args: argparse.Namespace) -> list[str]:
     if args.verbs:
         verbs = [verb.strip() for verb in args.verbs if verb and verb.strip()]
     else:
-        tiers = set(args.tiers or ["top20"])
-        verbs = [item["infinitive"] for item in load_verbs(tiers)]
+        tiers = set(args.tiers or [])
+        verbs = [item["infinitive"] for item in load_verbs(tiers or None)]
     if args.max_verbs:
         verbs = verbs[: args.max_verbs]
     return verbs
