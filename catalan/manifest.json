@@ -1,0 +1,19 @@
+{
+  "name": "Els Verbs — Catalan Verb Trainer",
+  "short_name": "Els Verbs",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b0d",
+  "theme_color": "#050b0d",
+  "icons": [
+    {
+      "src": "favicon_big.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

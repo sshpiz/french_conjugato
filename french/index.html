@@ -11,7 +11,7 @@
       })();
     </script>
     <script>
-      window.APP_BUILD_VERSION = "20260418_020813";
+      window.APP_BUILD_VERSION = "20260418_042029";
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
@@ -15074,7 +15074,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260418_020813') ? 'dev' : raw;
+    return !raw || raw.includes('20260418_042029') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
