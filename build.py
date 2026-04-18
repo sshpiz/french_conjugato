@@ -73,6 +73,12 @@ SIBLING_APPS = [
         "standalone": "catalanjugacio.html",
     },
     {
+        "name": "ukrainian",
+        "source_dist": os.path.join(DESKTOP_DIR, "ukrainian-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "ukrainian"),
+        "standalone": "dieslova.html",
+    },
+    {
         "name": "latvian",
         "source_dist": os.path.join(DESKTOP_DIR, "latvian-verbs", "dist"),
         "target_dir": os.path.join(DIST_DIR, "latvian"),
@@ -144,6 +150,25 @@ def copy_file(src_path, dest_path):
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
     with open(src_path, "rb") as src_file, open(dest_path, "wb") as dest_file:
         dest_file.write(src_file.read())
+
+
+def remove_tree(path, attempts=3, delay=0.12):
+    if not os.path.exists(path):
+        return
+    last_error = None
+    for attempt in range(attempts):
+        try:
+            shutil.rmtree(path)
+            return
+        except FileNotFoundError:
+            return
+        except OSError as exc:
+            last_error = exc
+            if attempt == attempts - 1:
+                raise
+            time.sleep(delay)
+    if last_error:
+        raise last_error
 
 
 def write_text(path, text):
@@ -276,7 +301,7 @@ def build_french_app(force_jpeg=False):
 
     if os.path.isdir(GENERATED_TTS_DIR):
         if os.path.exists(APP_DIST_TTS_DIR):
-            shutil.rmtree(APP_DIST_TTS_DIR)
+            remove_tree(APP_DIST_TTS_DIR)
         shutil.copytree(GENERATED_TTS_DIR, APP_DIST_TTS_DIR)
         print(f"   - Copied French TTS assets to {APP_DIST_TTS_DIR}")
     else:
@@ -304,7 +329,7 @@ def build_root_site():
     copy_file(LANDING_SW_PATH, os.path.join(DIST_DIR, "sw.js"))
 
     if os.path.isdir(ROOT_TTS_DIR):
-        shutil.rmtree(ROOT_TTS_DIR)
+        remove_tree(ROOT_TTS_DIR)
         print(f"   - Removed legacy root TTS bundle at {ROOT_TTS_DIR}")
 
 
@@ -320,7 +345,7 @@ def sync_sibling_apps():
             continue
 
         if os.path.exists(target_dir):
-            shutil.rmtree(target_dir)
+            remove_tree(target_dir)
         shutil.copytree(source_dist, target_dir)
         print(f"   - Synced {app['name']} app to {target_dir}")
 
@@ -337,7 +362,7 @@ def write_legacy_redirects():
     print("   - Writing legacy redirects...")
     legacy_greek_dir = os.path.join(DIST_DIR, "greek-verbs")
     if os.path.isdir(legacy_greek_dir):
-        shutil.rmtree(legacy_greek_dir)
+        remove_tree(legacy_greek_dir)
     redirects = {
         os.path.join(legacy_greek_dir, "index.html"): ("/greek/", "Greek Legacy Redirect"),
         os.path.join(legacy_greek_dir, "greekonjugation.html"): ("/greek/", "Greek Legacy Redirect"),

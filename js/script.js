@@ -3462,21 +3462,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const targetBlock = document.getElementById(`detail-tense-${tenseToFocus}`);
         if (targetBlock) {
-            // Use a timeout to ensure the view is rendered before scrolling
-            setTimeout(() => {
-                const containerRect = verbDetailContainer ? verbDetailContainer.getBoundingClientRect() : null;
-                const targetRect = targetBlock.getBoundingClientRect();
-                const isAlreadyVisible = containerRect
-                    ? targetRect.top >= containerRect.top + 12 && targetRect.bottom <= containerRect.bottom - 12
-                    : true;
-                if (!isAlreadyVisible) {
-                    targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                // Add a temporary highlight class for visual feedback
-                targetBlock.classList.add('highlight');
-                // Remove the highlight after the animation
-                setTimeout(() => targetBlock.classList.remove('highlight'), 1500);
-            }, 100); // A small delay allows the DOM to update
+            // The focused tense is rendered highlighted from the start, so this pass only
+            // corrects visibility once layout has settled instead of causing a second-phase repaint.
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    const containerRect = verbDetailContainer ? verbDetailContainer.getBoundingClientRect() : null;
+                    const targetRect = targetBlock.getBoundingClientRect();
+                    const isAlreadyVisible = containerRect
+                        ? targetRect.top >= containerRect.top + 12 && targetRect.bottom <= containerRect.bottom - 12
+                        : true;
+                    if (!isAlreadyVisible) {
+                        targetBlock.scrollIntoView({ behavior: 'auto', block: 'center' });
+                    }
+                    window.setTimeout(() => targetBlock.classList.remove('detail-focus-highlight'), 1500);
+                });
+            });
         }
     };
 
@@ -3599,6 +3599,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const tenseBlock = document.createElement('div');
             tenseBlock.className = 'tense-block';
             tenseBlock.id = `detail-tense-${tenseName}`; // Add ID for focusing
+            if (tenseName === tenseToFocus) {
+                tenseBlock.classList.add('detail-focus-highlight');
+            }
 
             const tenseHeader = document.createElement('h4');
             tenseHeader.className = 'tense-header tappable-audio';
