@@ -116,7 +116,7 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 22px;
       margin-top: 8px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .card {
@@ -131,6 +131,7 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
+      height: 100%;
     }
 
     .app-thumb {
@@ -262,10 +263,11 @@
 
     .card-meta {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
       margin-top: 2px;
+      min-height: 3.25rem;
     }
 
     .caption {
@@ -273,6 +275,8 @@
       font-size: 0.92rem;
       font-style: italic;
       white-space: nowrap;
+      align-self: center;
+      text-align: right;
     }
 
     .card h2 {
@@ -319,6 +323,7 @@
     .card-link {
       font-weight: 700;
       color: var(--accent-deep);
+      margin-top: auto;
     }
 
     .why {
@@ -501,38 +506,6 @@
     </section>
 
     <section class="grid" aria-label="Language apps">
-      <a class="card" href="/greek/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-greek.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge">Greek App</span>
-          <span class="caption">Flashcard flow</span>
-        </div>
-        <h2>Τα Ρήματα</h2>
-        <span class="card-link">Enter the Greek app →</span>
-      </a>
-
-      <a class="card" href="/portugese/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-portugese.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge">Portuguese App</span>
-          <span class="caption">Verb details</span>
-        </div>
-        <h2>Os Verbos</h2>
-        <span class="card-link">Enter the Portuguese app →</span>
-      </a>
-
       <a class="card" href="/french/">
         <div class="app-thumb" aria-hidden="true">
           <div class="phone">
@@ -549,20 +522,20 @@
         <span class="card-link">Enter the French app →</span>
       </a>
 
-      <a class="card" href="/russian/">
+      <a class="card" href="/portugese/">
         <div class="app-thumb" aria-hidden="true">
           <div class="phone">
             <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-russian.png" alt="">
+              <img class="thumb-shot" src="/landing-portugese.png" alt="">
             </div>
           </div>
         </div>
         <div class="card-meta">
-          <span class="badge">Russian App</span>
-          <span class="caption">Aspect pairs</span>
+          <span class="badge">Portuguese App</span>
+          <span class="caption">Verb details</span>
         </div>
-        <h2>Глаголы</h2>
-        <span class="card-link">Enter the Russian app →</span>
+        <h2>Os Verbos</h2>
+        <span class="card-link">Enter the Portuguese app →</span>
       </a>
 
       <a class="card" href="/catalan/">
@@ -582,6 +555,38 @@
         </div>
         <h2>Verbs</h2>
         <span class="card-link">Enter the Catalan app →</span>
+      </a>
+
+      <a class="card" href="/russian/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-russian.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Russian App</span>
+          <span class="caption">Aspect pairs</span>
+        </div>
+        <h2>Глаголы</h2>
+        <span class="card-link">Enter the Russian app →</span>
+      </a>
+
+      <a class="card" href="/greek/">
+        <div class="app-thumb" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <img class="thumb-shot" src="/landing-greek.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="badge">Greek App</span>
+          <span class="caption">Flashcard flow</span>
+        </div>
+        <h2>Τα Ρήματα</h2>
+        <span class="card-link">Enter the Greek app →</span>
       </a>
 
       <a class="card" href="/ukrainian/">
@@ -743,7 +748,7 @@
       </div>
     </section>
 
-    <p class="footer">Version 20260418_043451</p>
+    <p class="footer">Version 20260418_053853</p>
   </div>
 </body>
 </html>

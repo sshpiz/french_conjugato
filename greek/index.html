@@ -788,6 +788,11 @@ body.greek-tts-unavailable #autosay-toggle-btn {
     margin-bottom: 0.5rem;
 }
 
+.tense-block.detail-focus-highlight {
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1px rgba(52, 152, 219, 0.24);
+}
+
 .tense-header {
     font-size: 1rem;
     font-weight: 600;
@@ -2477,6 +2482,9 @@ html[data-theme="dark"] .mnemonic-card { background: linear-gradient(120deg, #23
 html[data-theme="dark"] .meta-info,
 html[data-theme="dark"] .frequency-tag { background: #23272b !important; color: var(--meta-color) !important; }
 html[data-theme="dark"] .highlight { background-color: #b77b3a44 !important; }
+html[data-theme="dark"] .tense-block.detail-focus-highlight {
+  box-shadow: inset 0 0 0 1px rgba(183, 123, 58, 0.36);
+}
 html[data-theme="dark"] #info-panel { background: #23272b !important; color: var(--text-color) !important; border-color: var(--border-color) !important; }
 html[data-theme="dark"] #flashcard { background: linear-gradient(170deg, #141c26 0%, #0e1520 100%); }
 html[data-theme="dark"] .toggle-switch .toggle-label { background-color: #1a242a; border-radius: 999px; }
@@ -2581,6 +2589,9 @@ html[data-theme="light"] .frequency-tag {
 }
 html[data-theme="light"] .highlight {
   background-color: rgba(52,152,219,0.15) !important;
+}
+html[data-theme="light"] .tense-block.detail-focus-highlight {
+  box-shadow: inset 0 0 0 1px rgba(52, 152, 219, 0.24);
 }
 html[data-theme="light"] #info-panel,
 html[data-theme="light"] #verb-detail-container,
@@ -3471,6 +3482,100 @@ html[data-theme="light"] #app-install-pill {
   color: #287858 !important;
 }
 
+/* Softer tutorial lock treatment */
+.control-dock-btn.is-tutorial-locked,
+#dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
+#usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled {
+  background: linear-gradient(180deg, rgba(229,235,242,0.9), rgba(216,224,233,0.92)) !important;
+  border-color: rgba(156, 170, 187, 0.72) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 4px rgba(44,62,80,0.04) !important;
+  color: rgba(102, 115, 129, 0.82) !important;
+  filter: saturate(0.55) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .control-dock-btn.is-tutorial-locked,
+  html[data-theme="system"] .control-dock-btn.is-tutorial-locked,
+  html:not([data-theme]) #dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
+  html[data-theme="system"] #dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
+  html:not([data-theme]) #usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled,
+  html[data-theme="system"] #usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled {
+    background: linear-gradient(180deg, rgba(42,48,58,0.96), rgba(30,36,45,0.98)) !important;
+    border-color: rgba(93, 106, 122, 0.7) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.12) !important;
+    color: rgba(150, 161, 175, 0.78) !important;
+    filter: saturate(0.7) !important;
+  }
+}
+
+html[data-theme="dark"] .control-dock-btn.is-tutorial-locked,
+html[data-theme="dark"] #dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
+html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled {
+  background: linear-gradient(180deg, rgba(42,48,58,0.96), rgba(30,36,45,0.98)) !important;
+  border-color: rgba(93, 106, 122, 0.7) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.12) !important;
+  color: rgba(150, 161, 175, 0.78) !important;
+  filter: saturate(0.7) !important;
+}
+
+/* Settings drill parity with French */
+#options-container .current-drill-card {
+  border: 1px solid rgba(135, 168, 197, 0.22);
+  background: linear-gradient(180deg, rgba(244,248,252,0.94), rgba(236,242,248,0.98));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
+}
+
+#options-container .preset-btn {
+  border: 1.5px solid var(--border-color);
+  background: var(--card-bg);
+  box-shadow: 0 10px 22px rgba(16,32,49,0.04);
+}
+
+#options-container .preset-btn:hover,
+#options-container .preset-btn:focus-visible {
+  border-color: rgba(96, 152, 202, 0.42);
+  box-shadow: 0 12px 24px rgba(16,32,49,0.08);
+}
+
+#options-container .preset-btn.active {
+  border-color: rgba(92, 166, 232, 0.78);
+  background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
+  box-shadow: 0 14px 28px rgba(35,104,156,0.16);
+}
+
+#options-container .advanced-card {
+  border: 1px solid var(--border-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) #options-container .current-drill-card,
+  html[data-theme="system"] #options-container .current-drill-card {
+    background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
+    border-color: rgba(96, 152, 202, 0.28);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  html:not([data-theme]) #options-container .preset-btn,
+  html[data-theme="system"] #options-container .preset-btn {
+    background: rgba(20,29,40,0.94);
+    border-color: rgba(255,255,255,0.12);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+  }
+
+  html:not([data-theme]) #options-container .preset-btn.active,
+  html[data-theme="system"] #options-container .preset-btn.active {
+    background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
+    border-color: rgba(109,180,245,0.72);
+    box-shadow: 0 14px 28px rgba(3,12,20,0.34);
+  }
+
+  html:not([data-theme]) #options-container .advanced-card,
+  html[data-theme="system"] #options-container .advanced-card {
+    background: rgba(13,22,31,0.55);
+    border-color: rgba(255,255,255,0.1);
+  }
+}
+
 </style>
     <style>
 /* ── Big dictate mic button (inside phrase-container) ── */
@@ -3596,7 +3701,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260418_004727";
+      window.APP_BUILD_VERSION = "20260418_053737";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -39035,7 +39140,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260418_004727') ? 'dev' : raw;
+    return !raw || raw.includes('20260418_053737') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -42138,21 +42243,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const targetBlock = document.getElementById(`detail-tense-${tenseToFocus}`);
         if (targetBlock) {
-            // Use a timeout to ensure the view is rendered before scrolling
-            setTimeout(() => {
-                const containerRect = verbDetailContainer ? verbDetailContainer.getBoundingClientRect() : null;
-                const targetRect = targetBlock.getBoundingClientRect();
-                const isAlreadyVisible = containerRect
-                    ? targetRect.top >= containerRect.top + 12 && targetRect.bottom <= containerRect.bottom - 12
-                    : true;
-                if (!isAlreadyVisible) {
-                    targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                // Add a temporary highlight class for visual feedback
-                targetBlock.classList.add('highlight');
-                // Remove the highlight after the animation
-                setTimeout(() => targetBlock.classList.remove('highlight'), 1500);
-            }, 100); // A small delay allows the DOM to update
+            // The focused tense is rendered highlighted from the start, so this pass only
+            // corrects visibility once layout has settled instead of causing a second-phase repaint.
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    const containerRect = verbDetailContainer ? verbDetailContainer.getBoundingClientRect() : null;
+                    const targetRect = targetBlock.getBoundingClientRect();
+                    const isAlreadyVisible = containerRect
+                        ? targetRect.top >= containerRect.top + 12 && targetRect.bottom <= containerRect.bottom - 12
+                        : true;
+                    if (!isAlreadyVisible) {
+                        targetBlock.scrollIntoView({ behavior: 'auto', block: 'center' });
+                    }
+                    window.setTimeout(() => targetBlock.classList.remove('detail-focus-highlight'), 1500);
+                });
+            });
         }
     };
 
@@ -42266,6 +42371,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const tenseBlock = document.createElement('div');
             tenseBlock.className = 'tense-block';
             tenseBlock.id = `detail-tense-${tenseName}`; // Add ID for focusing
+            if (tenseName === tenseToFocus) {
+                tenseBlock.classList.add('detail-focus-highlight');
+            }
 
             const tenseHeader = document.createElement('h4');
             tenseHeader.className = 'tense-header tappable-audio';
