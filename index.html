@@ -281,6 +281,10 @@
       margin-top: 24px;
     }
 
+    .about-site {
+      margin-top: 24px;
+    }
+
     .panel {
       border-radius: 28px;
       border: 1px solid var(--line);
@@ -292,6 +296,103 @@
     .panel h3 {
       margin: 0 0 12px;
       font-size: 1.45rem;
+    }
+
+    .about-panel-main {
+      padding: 24px;
+    }
+
+    .about-kicker {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(179, 84, 30, 0.08);
+      color: var(--accent-deep);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .about-panel-main h3 {
+      margin-bottom: 10px;
+      font-size: clamp(1.85rem, 3vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .about-lead {
+      margin: 0 0 18px;
+      max-width: 700px;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: rgba(19, 32, 38, 0.88);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .about-block {
+      border-radius: 22px;
+      border: 1px solid rgba(19, 32, 38, 0.1);
+      background: rgba(255, 252, 245, 0.72);
+      padding: 18px 18px 16px;
+    }
+
+    .about-block h4 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      color: var(--accent-deep);
+    }
+
+    .about-block p,
+    .about-block li {
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .about-pull {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      border-left: 4px solid rgba(179, 84, 30, 0.75);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.44);
+      color: var(--accent-deep);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .about-contrast {
+      border-radius: 18px;
+      border: 1px solid rgba(19, 32, 38, 0.1);
+      background: rgba(255,255,255,0.5);
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .about-contrast p + p {
+      margin-top: 10px;
+    }
+
+    .about-site details {
+      margin-top: 18px;
+      border-top: 1px solid rgba(19, 32, 38, 0.1);
+      padding-top: 16px;
+    }
+
+    .about-site summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--sea);
+    }
+
+    .about-site details p,
+    .about-site details li {
+      color: rgba(19, 32, 38, 0.74);
     }
 
     ul {
@@ -309,7 +410,7 @@
     @media (max-width: 900px) {
       .intro-points,
       .grid,
-      .why {
+      .about-grid {
         grid-template-columns: 1fr;
       }
 
@@ -433,7 +534,115 @@
       </div>
     </section>
 
-    <p class="footer">Version 20260416_193437</p>
+    <section class="about-site">
+      <div class="panel about-panel-main">
+        <span class="about-kicker">About</span>
+        <h3>Why the verb obsession?</h3>
+        <p class="about-lead">
+          Because it is a giant low-hanging fruit. If you get verbs under control early,
+          two things improve fast: saying what you mean, and following fast speech.
+        </p>
+
+        <p>
+          The problem usually is not that you do not know enough words. It is that when you try to say
+          something, it does not come out cleanly. You hesitate. You are unsure about the form. The sentence
+          loses momentum. And verbs are usually where that starts.
+        </p>
+
+        <div class="about-pull">
+          Conjugation uncertainty is a major source of stuttering, simplification, and confidence loss.
+        </div>
+
+        <div class="about-grid">
+          <div class="about-block">
+            <h4>Two learners</h4>
+            <div class="about-contrast">
+              <p><strong>Learner A</strong> knows more words and understands quite a bit, but still has to think about verb forms.</p>
+              <p><strong>Learner B</strong> knows fewer words, but the verbs come out quickly, so they speak more freely and separate fast speech into actual words more easily.</p>
+            </div>
+            <p>Usually the second one ends up speaking more. When the verb is shaky, everything built on top of it gets shaky too: timing, confidence, rhythm, and the willingness to keep going.</p>
+          </div>
+
+          <div class="about-block">
+            <h4>Why it pays off so early</h4>
+            <ul>
+              <li>you attempt more sentences</li>
+              <li>you simplify less</li>
+              <li>you use more of what you already know</li>
+              <li>you give yourself more chances to improve in real time</li>
+            </ul>
+            <p>Verb endings also carry structure. In fast speech, they give you anchors for who is doing what and when it happens, so native speech starts feeling less like mush.</p>
+          </div>
+
+          <div class="about-block">
+            <h4>What this tool is for</h4>
+            <p>This tool is here to do one thing well: make your verb usage fast and reliable.</p>
+            <p>And secondarily, to serve as a quick reference when you just need a conjugation without friction.</p>
+          </div>
+
+          <div class="about-block">
+            <h4>No account, no tracking</h4>
+            <p>No login. No tracking. No backend watching what you do.</p>
+            <p>It runs locally. Your data stays with you. It is just a tool.</p>
+          </div>
+        </div>
+
+        <details>
+          <summary>The slightly more academic version</summary>
+          <p>The case for focused verb practice does not rest on one single paper. It comes from several overlapping areas of research.</p>
+
+          <p><strong>1. Verb-centered patterns are a real part of how language is learned</strong></p>
+          <p>Usage-based and construction-based research treats language as recurring form-meaning patterns, many of them organized around verbs and their argument structures. Learners are not just collecting words and rules; they are building networks of verb-centered patterns.</p>
+          <ul>
+            <li>Nick C. Ellis, Matthew Brook O’Donnell, and Ute Römer, <em>The processing of verb-argument constructions is sensitive to form, function, frequency, contingency and prototypicality</em>:
+              <a href="https://sites.lsa.umich.edu/nickellis-new/wp-content/uploads/sites/1284/2021/07/CognitiveLinguisticsUMichOffprint.pdf">PDF</a>
+            </li>
+            <li>Ellis et al., <em>Second language learner knowledge of verb-argument constructions</em>:
+              <a href="https://uteroemer.weebly.com/uploads/5/5/7/7/5577406/ellis_et_al_lab_2014_l2_knowledgeofvacs.pdf">PDF</a>
+            </li>
+          </ul>
+
+          <p><strong>2. Grammar becomes usable through practice, not just understanding</strong></p>
+          <p>Second-language acquisition research has long distinguished between knowing a rule and being able to use it quickly under pressure. Practice contributes to proceduralization: forms become more available, less effortful, and more automatic.</p>
+
+          <p><strong>3. Retrieval matters</strong></p>
+          <p>Memory research consistently finds that active recall improves later retention more than passive review alone. That is one reason a “try to say it, then check” loop is often more useful than simply rereading tables.</p>
+          <ul>
+            <li>Roediger &amp; Karpicke (2006), <em>Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention</em>:
+              <a href="https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01693.x">link</a>
+            </li>
+          </ul>
+
+          <p><strong>4. Confidence affects whether people actually speak</strong></p>
+          <p>Research on willingness to communicate in a second language shows that learners speak more when they feel able to produce language reliably in the moment. If uncertainty around forms makes speech halting, that affects not only accuracy but also whether the learner keeps participating at all.</p>
+          <ul>
+            <li>MacIntyre, Dörnyei, Clément, and Noels (1998), <em>Conceptualizing Willingness to Communicate in a L2</em>:
+              <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1540-4781.1998.tb05543.x">link</a>
+            </li>
+          </ul>
+
+          <p><strong>5. Morphology can help with fast speech</strong></p>
+          <p>Research in usage-based learning and processing also supports the idea that structural cues help listeners parse language in real time. In practical terms, knowing common endings and verb patterns can make fast speech easier to segment and less chaotic.</p>
+          <ul>
+            <li><em>Usage-based approaches to language and language learning</em> (Cambridge overview):
+              <a href="https://www.cambridge.org/core/journals/language-and-cognition/article/usagebased-approaches-to-language-and-language-learning-an-introduction-to-the-special-issue/3673FA47599D71F472F5C0FF19798AE9">link</a>
+            </li>
+          </ul>
+
+          <p><strong>Bottom line</strong></p>
+          <ul>
+            <li>verb-centered patterns matter</li>
+            <li>practice helps forms become usable</li>
+            <li>retrieval strengthens memory</li>
+            <li>confidence affects whether learners speak</li>
+            <li>morphological cues support fast parsing</li>
+          </ul>
+          <p>That is the overlap this tool is trying to target.</p>
+        </details>
+      </div>
+    </section>
+
+    <p class="footer">Version 20260418_020814</p>
   </div>
 </body>
 </html>
