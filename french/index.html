@@ -11,7 +11,7 @@
       })();
     </script>
     <script>
-      window.APP_BUILD_VERSION = "20260419_030920";
+      window.APP_BUILD_VERSION = "20260419_125235";
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
@@ -18838,7 +18838,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_030920') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_125235') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -20390,11 +20390,78 @@ document.addEventListener('DOMContentLoaded', () => {
         return window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated).trim();
     };
 
-    const isDictationMatch = (transcript, card = currentCard) => {
-        if (!card) return false;
+    const FRENCH_HOMOPHONE_FALLBACK_TENSES = new Set(['present', 'imparfait', 'subjonctifPresent']);
+    const FRENCH_PLURAL_HOMOPHONE_SINGULAR_MAP = {
+        ils: 'il',
+        elles: 'elle',
+    };
+    const FRENCH_SAFE_HOMOPHONE_SUFFIX_PATTERNS = [
+        { singular: 'e', plural: 'ent' },
+        { singular: 'ait', plural: 'aient' },
+        { singular: 'isse', plural: 'issent' },
+    ];
+
+    const getFrenchPronounLookupKey = (pronoun) => {
+        const mapping = {
+            il: 'il/elle/on',
+            elle: 'il/elle/on',
+            on: 'il/elle/on',
+            ils: 'ils/elles',
+            elles: 'ils/elles',
+        };
+        return mapping[String(pronoun || '').trim()] || String(pronoun || '').trim();
+    };
+
+    const getFrenchConjugationForPronoun = (card, pronoun) => {
+        if (!card || !card.verb || !card.tense) return '';
+        const conjugations = tenses?.[card.tense]?.[card.verb.infinitive];
+        if (!conjugations) return '';
+        const directKey = String(pronoun || '').trim();
+        const lookupKey = getFrenchPronounLookupKey(directKey);
+        return String(conjugations[directKey] || conjugations[lookupKey] || '').trim();
+    };
+
+    const matchesFrenchSafeHomophonePattern = (singularForm, pluralForm) => {
+        const singular = normalizeDictationText(singularForm);
+        const plural = normalizeDictationText(pluralForm);
+        if (!singular || !plural || singular.includes(' ') || plural.includes(' ')) return false;
+
+        return FRENCH_SAFE_HOMOPHONE_SUFFIX_PATTERNS.some(({ singular: singularSuffix, plural: pluralSuffix }) => (
+            singular.endsWith(singularSuffix)
+            && plural.endsWith(pluralSuffix)
+            && singular.slice(0, -singularSuffix.length) === plural.slice(0, -pluralSuffix.length)
+        ));
+    };
+
+    const getFrenchPluralHomophoneFallbackResult = (transcript, card = currentCard) => {
+        if (!card || card.isPhraseMode || !card.verb) return null;
+        const pluralPronoun = String(card.pronoun || '').trim();
+        const singularPronoun = FRENCH_PLURAL_HOMOPHONE_SINGULAR_MAP[pluralPronoun];
+        if (!singularPronoun) return null;
+        if (!FRENCH_HOMOPHONE_FALLBACK_TENSES.has(card.tense)) return null;
+
+        const pluralPhrase = getExpectedDictationText(card);
+        const pluralConjugation = String(card.conjugated || '').trim();
+        const singularConjugation = getFrenchConjugationForPronoun(card, singularPronoun);
+        if (!pluralPhrase || !pluralConjugation || !singularConjugation) return null;
+        if (!matchesFrenchSafeHomophonePattern(singularConjugation, pluralConjugation)) return null;
+
+        const singularPhrase = window.handleLanguageSpecificLastChange(singularPronoun, singularConjugation).trim();
+        const heard = normalizeDictationText(transcript);
+        const normalizedSingularPhrase = normalizeDictationText(singularPhrase);
+        if (!heard || !normalizedSingularPhrase || !heard.includes(normalizedSingularPhrase)) return null;
+
+        return {
+            matched: true,
+            displayText: `${singularPhrase} / ${pluralPhrase}`,
+        };
+    };
+
+    const getDictationMatchResult = (transcript, card = currentCard) => {
+        if (!card) return { matched: false };
         const expected = normalizeDictationText(getExpectedDictationText(card));
         const heard = normalizeDictationText(transcript);
-        if (!expected || !heard) return false;
+        if (!expected || !heard) return { matched: false };
 
         if (card.isPhraseMode || !card.verb) {
             const expectedWords = expected.split(' ');
@@ -20403,10 +20470,25 @@ document.addEventListener('DOMContentLoaded', () => {
             expectedWords.forEach((word) => {
                 if (heardWords.includes(word)) matchCount += 1;
             });
-            return expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9;
+            return {
+                matched: expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9,
+            };
         }
 
-        return heard.includes(expected);
+        if (heard.includes(expected)) {
+            return { matched: true };
+        }
+
+        const frenchFallback = getFrenchPluralHomophoneFallbackResult(transcript, card);
+        if (frenchFallback?.matched) {
+            return {
+                matched: true,
+                viaFrenchPluralHomophoneFallback: true,
+                displayText: frenchFallback.displayText,
+            };
+        }
+
+        return { matched: false };
     };
 
     const handleMicSuccess = () => {
@@ -20906,10 +20988,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     scheduleDictationLongTimeout();
                     scheduleDictationPostResultTimeout();
-                    const isCorrect = currentCard && !autoskipLock && isDictationMatch(bestTranscript, currentCard);
-                    if (isCorrect) {
+                    const matchResult = currentCard && !autoskipLock
+                        ? getDictationMatchResult(bestTranscript, currentCard)
+                        : { matched: false };
+                    if (matchResult.matched) {
                         clearDictationListeningTimers();
-                        dictationResultEl.innerHTML = html + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                        const successHtml = matchResult.viaFrenchPluralHomophoneFallback
+                            ? `<div style="opacity:1;font-weight:700;margin-bottom:0.1em;">${escapeHtml(matchResult.displayText)}</div>`
+                            : html;
+                        dictationResultEl.innerHTML = successHtml + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                         dictationResultEl.style.display = 'block';
                         dictationResultEl.style.opacity = '1';
                         handleMicSuccess();

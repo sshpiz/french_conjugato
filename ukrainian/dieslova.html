@@ -4011,7 +4011,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260419_030242";
+      window.APP_BUILD_VERSION = "20260419_125235";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -30167,7 +30167,7 @@ const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_030242') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_125235') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -30742,9 +30742,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let longPressCopyTimer = null;
     let suppressTapAudioUntil = 0;
     let recentCardKeys = [];
+    const ANSWER_HIDE_TRANSITION_MS = 300;
     const IDLE_HIDDEN_NUDGE_DELAY_MS = 7000;
     const IDLE_REVEALED_NUDGE_DELAY_MS = 6000;
     let idleGuidanceTimeout = null;
+    let pendingAdvanceTimeout = null;
     let currentCardShownAtMs = 0;
     let selectedReportType = null;
     let packagedTtsBusy = false;
@@ -32536,7 +32538,37 @@ document.addEventListener('DOMContentLoaded', () => {
         renderReopenMessage();
     };
 
+    const clearPendingAdvanceTimeout = () => {
+        if (pendingAdvanceTimeout === null) return;
+        window.clearTimeout(pendingAdvanceTimeout);
+        pendingAdvanceTimeout = null;
+    };
+
+    const hideAnswer = () => {
+        if (!answerContainer) {
+            isAnswerVisible = false;
+            syncUsageNuggetVisibility();
+            refreshAnswerFlowButton();
+            refreshContextAudioButton();
+            refreshDictationButton();
+            refreshTutorialAwareUi();
+            renderReopenMessage();
+            return;
+        }
+        answerContainer.classList.remove('is-visible');
+        answerContainer.style.visibility = 'hidden';
+        answerContainer.style.opacity = '0';
+        isAnswerVisible = false;
+        syncUsageNuggetVisibility();
+        refreshAnswerFlowButton();
+        refreshContextAudioButton();
+        refreshDictationButton();
+        refreshTutorialAwareUi();
+        renderReopenMessage();
+    };
+
     const nextCard = () => {
+        clearPendingAdvanceTimeout();
         stopActiveDictation({ abort: true, silent: true });
         const card = generateCard();
         if (!card) return;
@@ -32555,6 +32587,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const prevCard = () => {
+        clearPendingAdvanceTimeout();
         stopActiveDictation({ abort: true, silent: true });
         if (historyIndex <= 0) {
             refreshHistoryUi();
@@ -33508,8 +33541,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleAdvanceFromCard = () => {
-        if (isAnswerVisible && tutorialState.active) {
-            completeTutorialIfNeeded();
+        if (pendingAdvanceTimeout !== null) return;
+        if (isAnswerVisible) {
+            if (tutorialState.active) {
+                completeTutorialIfNeeded();
+            }
+            hideAnswer();
+            // Let the hide state settle before rendering the next card.
+            pendingAdvanceTimeout = window.setTimeout(() => {
+                pendingAdvanceTimeout = null;
+                nextCard();
+            }, ANSWER_HIDE_TRANSITION_MS);
+            return;
         }
         nextCard();
     };
