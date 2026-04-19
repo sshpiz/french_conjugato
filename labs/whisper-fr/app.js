@@ -33,8 +33,11 @@
     const MODEL_DB_NAME = 'whisper.ggerganov.com';
     const MODEL_DB_VERSION = 1;
     const SAMPLE_RATE = 16000;
-    const STREAM_CHUNK_MS = 4000;
-    const MAX_RECORDING_SECONDS = 120;
+    const MAX_UTTERANCE_MS = 8000;
+    const MAX_WAIT_FOR_SPEECH_MS = 3500;
+    const MIN_SPEECH_MS = 300;
+    const SILENCE_HOLD_MS = 900;
+    const RMS_THRESHOLD = 0.028;
 
     var dbName = MODEL_DB_NAME;
     var dbVersion = MODEL_DB_VERSION;
@@ -42,9 +45,12 @@
 
     let context = null;
     let mediaRecorder = null;
+    let currentStream = null;
+    let analyserNode = null;
+    let sourceNode = null;
+    let silenceMonitorTimer = null;
     let doRecording = false;
     let audio = null;
-    let audio0 = null;
     let instance = null;
     let currentModelKey = null;
     let transcriptLines = [];
@@ -52,6 +58,7 @@
     let updateTimer = null;
     let startTime = 0;
     let runtimeReady = false;
+    let transcriptionPollDeadline = 0;
 
     const correctAnswerEl = document.getElementById('correct-answer');
     const modelGridEl = document.getElementById('model-grid');
@@ -209,11 +216,104 @@
         }
     }
 
+    function clearSilenceMonitor() {
+        if (silenceMonitorTimer) {
+            clearInterval(silenceMonitorTimer);
+            silenceMonitorTimer = null;
+        }
+    }
+
+    function cleanupMediaResources() {
+        clearSilenceMonitor();
+        if (sourceNode) {
+            try {
+                sourceNode.disconnect();
+            } catch (_) {}
+            sourceNode = null;
+        }
+        if (analyserNode) {
+            try {
+                analyserNode.disconnect();
+            } catch (_) {}
+            analyserNode = null;
+        }
+        if (currentStream) {
+            currentStream.getTracks().forEach((track) => track.stop());
+            currentStream = null;
+        }
+        mediaRecorder = null;
+    }
+
+    function computeRms(analyser, buffer) {
+        analyser.getByteTimeDomainData(buffer);
+        let sumSquares = 0;
+        for (let i = 0; i < buffer.length; i += 1) {
+            const normalized = (buffer[i] - 128) / 128;
+            sumSquares += normalized * normalized;
+        }
+        return Math.sqrt(sumSquares / buffer.length);
+    }
+
+    function decodeBlobToFloat32(blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const buf = event.target.result;
+                if (!context) {
+                    reject(new Error('Audio context unavailable'));
+                    return;
+                }
+                context.decodeAudioData(buf.slice(0), (audioBuffer) => {
+                    const OfflineAudioContextCtor = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+                    if (!OfflineAudioContextCtor) {
+                        reject(new Error('OfflineAudioContext unavailable'));
+                        return;
+                    }
+                    const offlineContext = new OfflineAudioContextCtor(
+                        1,
+                        audioBuffer.duration * SAMPLE_RATE,
+                        SAMPLE_RATE
+                    );
+                    const source = offlineContext.createBufferSource();
+                    source.buffer = audioBuffer;
+                    source.connect(offlineContext.destination);
+                    source.start(0);
+                    offlineContext.startRendering().then((renderedBuffer) => {
+                        resolve(renderedBuffer.getChannelData(0));
+                    }).catch(reject);
+                }, reject);
+            };
+            reader.onerror = reject;
+            reader.readAsArrayBuffer(blob);
+        });
+    }
+
+    async function finalizeRecordingBlob(blob, reason) {
+        if (!blob || !blob.size) {
+            printTextarea(`mic: no audio captured (${reason})`);
+            return;
+        }
+
+        printTextarea(`mic: captured ${blob.size} bytes (${reason}), decoding ...`);
+
+        try {
+            const floatAudio = await decodeBlobToFloat32(blob);
+            audio = floatAudio;
+            printTextarea(`mic: decoded ${floatAudio.length} samples`);
+            if (instance) {
+                Module.set_audio(instance, floatAudio);
+                transcriptionPollDeadline = Date.now() + 5000;
+                printTextarea('mic: audio sent to whisper');
+            }
+        } catch (error) {
+            printTextarea(`mic: decode failed: ${error}`);
+        }
+    }
+
     function stopRecording() {
         doRecording = false;
-        audio0 = null;
         audio = null;
-        context = null;
+        cleanupMediaResources();
         if (updateTimer) {
             clearInterval(updateTimer);
             updateTimer = null;
@@ -222,88 +322,97 @@
         stopBtn.disabled = true;
     }
 
+    function stopMediaRecorder(reason) {
+        if (!mediaRecorder || mediaRecorder.state === 'inactive') {
+            cleanupMediaResources();
+            return;
+        }
+        printTextarea(`mic: stopping recorder (${reason})`);
+        doRecording = false;
+        clearSilenceMonitor();
+        mediaRecorder.stop();
+    }
+
     function startRecording() {
         ensureContext();
         Module.set_status('');
 
         doRecording = true;
         startTime = Date.now();
+        audio = null;
         startBtn.disabled = true;
         stopBtn.disabled = false;
-        printTextarea('mic: starting recording ...');
+        transcriptionPollDeadline = 0;
+        printTextarea('mic: starting single-utterance capture ...');
 
         let chunks = [];
-        let stream = null;
 
         navigator.mediaDevices.getUserMedia({ audio: true, video: false })
             .then((s) => {
-                stream = s;
-                mediaRecorder = new MediaRecorder(stream);
+                currentStream = s;
+                mediaRecorder = new MediaRecorder(currentStream);
+                sourceNode = context.createMediaStreamSource(currentStream);
+                analyserNode = context.createAnalyser();
+                analyserNode.fftSize = 2048;
+                sourceNode.connect(analyserNode);
+
+                const sampleBuffer = new Uint8Array(analyserNode.fftSize);
+                let speechDetected = false;
+                let speechStartedAt = 0;
+                let lastLoudAt = 0;
 
                 mediaRecorder.ondataavailable = (event) => {
-                    chunks.push(event.data);
-                    const blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
-                    const reader = new FileReader();
-
-                    reader.onload = (fileEvent) => {
-                        const buf = new Uint8Array(fileEvent.target.result);
-                        if (!context) return;
-                        context.decodeAudioData(buf.buffer, (audioBuffer) => {
-                            const offlineContext = new OfflineAudioContext(
-                                audioBuffer.numberOfChannels,
-                                audioBuffer.length,
-                                audioBuffer.sampleRate
-                            );
-                            const source = offlineContext.createBufferSource();
-                            source.buffer = audioBuffer;
-                            source.connect(offlineContext.destination);
-                            source.start(0);
-
-                            offlineContext.startRendering().then((renderedBuffer) => {
-                                audio = renderedBuffer.getChannelData(0);
-
-                                const audioAll = new Float32Array(audio0 == null ? audio.length : audio0.length + audio.length);
-                                if (audio0 != null) {
-                                    audioAll.set(audio0, 0);
-                                }
-                                audioAll.set(audio, audio0 == null ? 0 : audio0.length);
-
-                                if (instance) {
-                                    Module.set_audio(instance, audioAll);
-                                }
-                            });
-                        }, () => {
-                            audio = null;
-                        });
-                    };
-
-                    reader.readAsArrayBuffer(blob);
-                };
-
-                mediaRecorder.onstop = () => {
-                    if (doRecording) {
-                        setTimeout(() => {
-                            startRecording();
-                        }, 0);
+                    if (event.data && event.data.size) {
+                        chunks.push(event.data);
                     }
                 };
 
-                mediaRecorder.start(STREAM_CHUNK_MS);
+                mediaRecorder.onstop = async () => {
+                    const blob = new Blob(chunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+                    cleanupMediaResources();
+                    updateStartButtonState();
+                    stopBtn.disabled = true;
+                    await finalizeRecordingBlob(blob, speechDetected ? 'speech ended' : 'no speech detected');
+                    updateRuntimeStatus();
+                };
 
-                const interval = setInterval(() => {
-                    if (!doRecording) {
-                        clearInterval(interval);
-                        mediaRecorder.stop();
-                        stream.getTracks().forEach((track) => track.stop());
-                        mediaRecorder = null;
+                mediaRecorder.start();
+                printTextarea('mic: listening for one short answer ...');
+
+                silenceMonitorTimer = setInterval(() => {
+                    if (!doRecording || !analyserNode) {
+                        clearSilenceMonitor();
+                        return;
                     }
 
-                    if (audio != null && audio.length > SAMPLE_RATE * MAX_RECORDING_SECONDS) {
-                        clearInterval(interval);
-                        audio0 = audio;
-                        audio = null;
-                        mediaRecorder.stop();
-                        stream.getTracks().forEach((track) => track.stop());
+                    const elapsed = Date.now() - startTime;
+                    const rms = computeRms(analyserNode, sampleBuffer);
+
+                    if (rms >= RMS_THRESHOLD) {
+                        lastLoudAt = Date.now();
+                        if (!speechDetected) {
+                            speechDetected = true;
+                            speechStartedAt = lastLoudAt;
+                            printTextarea(`mic: speech detected (rms=${rms.toFixed(4)})`);
+                        }
+                    }
+
+                    if (!speechDetected && elapsed >= MAX_WAIT_FOR_SPEECH_MS) {
+                        stopMediaRecorder('speech timeout');
+                        return;
+                    }
+
+                    if (speechDetected) {
+                        const speechDuration = Date.now() - speechStartedAt;
+                        const silenceDuration = Date.now() - lastLoudAt;
+                        if (speechDuration >= MIN_SPEECH_MS && silenceDuration >= SILENCE_HOLD_MS) {
+                            stopMediaRecorder('silence after speech');
+                            return;
+                        }
+                    }
+
+                    if (elapsed >= MAX_UTTERANCE_MS) {
+                        stopMediaRecorder('max utterance reached');
                     }
                 }, 100);
             })
@@ -317,9 +426,16 @@
         if (!instance || typeof Module.get_transcribed !== 'function') return;
         const transcribed = Module.get_transcribed();
         if (transcribed && transcribed.trim()) {
-            latestTranscript = transcribed.trim();
-            transcriptLines.push(latestTranscript);
-            renderTranscript();
+            const trimmed = transcribed.trim();
+            if (trimmed !== latestTranscript) {
+                latestTranscript = trimmed;
+                transcriptLines.push(trimmed);
+                renderTranscript();
+            }
+        }
+        if (transcriptionPollDeadline && Date.now() > transcriptionPollDeadline && !doRecording) {
+            clearInterval(updateTimer);
+            updateTimer = null;
         }
         updateRuntimeStatus();
     }
@@ -356,7 +472,11 @@
 
     function onStop() {
         printTextarea(`mic: stopping after ${((Date.now() - startTime) / 1000).toFixed(1)}s`);
-        stopRecording();
+        if (doRecording) {
+            stopMediaRecorder('manual stop');
+        } else {
+            stopRecording();
+        }
         updateRuntimeStatus();
     }
 
