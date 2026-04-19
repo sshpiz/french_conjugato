@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the Catalan app.
 
 const CACHE_PREFIX = 'ca-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v1';
+const CACHE_NAME = CACHE_PREFIX + 'v2';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -59,7 +59,9 @@ self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      for (const url of [INDEX_PATH, MANIFEST_PATH, FAVICON_PATH, VERSION_PATH]) {
+      // Keep install light: cache only the small essentials here.
+      // The large app shell HTML is warmed after first usable render instead.
+      for (const url of [MANIFEST_PATH, FAVICON_PATH, VERSION_PATH]) {
         try { await cache.add(url); swLog.add(`pre-cached ${url}`); }
         catch (e) { swLog.add(`pre-cache failed ${url}: ${e.message}`); }
       }
@@ -103,6 +105,28 @@ self.addEventListener('fetch', event => {
 
   event.respondWith(serveWithSWR(event.request, url));
 });
+
+self.addEventListener('message', event => {
+  const data = event.data || {};
+  if (data.type === 'WARM_INDEX') {
+    event.waitUntil(warmIndexCache(data.reason || 'message'));
+  }
+});
+
+async function warmIndexCache(reason = 'unknown') {
+  try {
+    const cache = await caches.open(CACHE_NAME);
+    const response = await fetch(new Request(INDEX_PATH, { cache: 'no-store' }));
+    if (!response.ok) {
+      swLog.add(`warm-index bad-status reason=${reason} status=${response.status}`);
+      return;
+    }
+    await cache.put(INDEX_PATH, response.clone());
+    swLog.add(`warm-index ok reason=${reason} status=${response.status}`);
+  } catch (e) {
+    swLog.add(`warm-index failed reason=${reason}: ${e.message}`);
+  }
+}
 
 async function serveWithSWR(request, url) {
   const isNav = request.mode === 'navigate'

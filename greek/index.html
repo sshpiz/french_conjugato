@@ -3929,7 +3929,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260419_030241";
+      window.APP_BUILD_VERSION = "20260419_183553";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -39400,7 +39400,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_030241') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_183553') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -39435,7 +39435,7 @@ const formatAppVersionLabel = (version) => {
 const formatAppVersionDetail = (version) => {
     const builtAt = buildAppVersionDate(version);
     if (!builtAt) {
-        return version === 'dev' ? 'Unbuilt workspace source' : 'Build version';
+        return 'Build time unavailable';
     }
     return `Built ${builtAt.toLocaleString(undefined, {
         year: 'numeric',
