@@ -792,7 +792,10 @@ body {
 }
 
 .verb-detail-header {
+    position: relative;
     text-align: center;
+    padding: 0.1rem 4.8rem 0.2rem;
+    min-height: 3rem;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     font-weight: 700;
@@ -850,6 +853,149 @@ body {
     font-weight: 400;
     color: var(--meta-color);
     margin-top: 0.25rem;
+}
+
+.verb-detail-share-shell {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 30;
+}
+
+.verb-detail-share-toggle-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.45rem 0.72rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--meta-color);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+    box-shadow: 0 8px 20px rgba(24, 44, 70, 0.08);
+    cursor: pointer;
+    transition: border-color 0.16s ease, color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.verb-detail-share-toggle-btn svg,
+.verb-detail-share-menu-btn svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex-shrink: 0;
+}
+
+.verb-detail-share-toggle-btn:hover,
+.verb-detail-share-toggle-btn:focus-visible,
+.verb-detail-share-menu-btn:hover,
+.verb-detail-share-menu-btn:focus-visible {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.verb-detail-share-toggle-btn:active,
+.verb-detail-share-menu-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(24, 44, 70, 0.12);
+}
+
+.verb-detail-share-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: rgba(18, 28, 40, 0.14);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+}
+
+.verb-detail-share-menu {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: 0;
+    z-index: 3;
+    display: grid;
+    gap: 0.35rem;
+    min-width: 12rem;
+    padding: 0.42rem;
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    background: color-mix(in srgb, var(--card-bg) 96%, white 4%);
+    box-shadow: 0 18px 36px rgba(18, 28, 40, 0.18);
+    opacity: 0;
+    transform: translateY(-0.35rem) scale(0.98);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.verb-detail-share-shell.is-open .verb-detail-share-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.verb-detail-share-shell.is-open .verb-detail-share-menu {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.verb-detail-share-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 0.78rem 0.85rem;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--text-color);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.verb-detail-share-menu-btn:hover,
+.verb-detail-share-menu-btn:focus-visible {
+    background: color-mix(in srgb, var(--accent-color) 10%, var(--card-bg) 90%);
+}
+
+@media (max-width: 720px) {
+    .verb-detail-share-backdrop {
+        background: rgba(18, 28, 40, 0.24);
+    }
+
+    .verb-detail-share-menu {
+        position: fixed;
+        left: max(0.9rem, env(safe-area-inset-left));
+        right: max(0.9rem, env(safe-area-inset-right));
+        top: auto;
+        bottom: calc(0.9rem + env(safe-area-inset-bottom));
+        min-width: 0;
+        padding: 0.5rem;
+        border-radius: 22px;
+        transform: translateY(1rem);
+        transform-origin: bottom center;
+        box-shadow: 0 22px 44px rgba(10, 18, 28, 0.24);
+    }
+
+    .verb-detail-share-menu-btn {
+        padding: 0.92rem 0.95rem;
+        font-size: 0.98rem;
+    }
 }
 
 .tappable-audio {
