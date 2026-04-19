@@ -52,7 +52,7 @@ const formatAppVersionLabel = (version) => {
 const formatAppVersionDetail = (version) => {
     const builtAt = buildAppVersionDate(version);
     if (!builtAt) {
-        return version === 'dev' ? 'Unbuilt workspace source' : 'Build version';
+        return 'Build time unavailable';
     }
     return `Built ${builtAt.toLocaleString(undefined, {
         year: 'numeric',
@@ -1600,9 +1600,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return String(conjugations[directKey] || conjugations[lookupKey] || '').trim();
     };
 
+    const getFrenchComparableVerbForm = (value) => {
+        const normalized = normalizeDictationText(value);
+        if (!normalized) return '';
+        return normalized.replace(/^(il|elle|on|ils|elles)\s+/, '').trim();
+    };
+
     const matchesFrenchSafeHomophonePattern = (singularForm, pluralForm) => {
-        const singular = normalizeDictationText(singularForm);
-        const plural = normalizeDictationText(pluralForm);
+        const singular = getFrenchComparableVerbForm(singularForm);
+        const plural = getFrenchComparableVerbForm(pluralForm);
         if (!singular || !plural || singular.includes(' ') || plural.includes(' ')) return false;
 
         return FRENCH_SAFE_HOMOPHONE_SUFFIX_PATTERNS.some(({ singular: singularSuffix, plural: pluralSuffix }) => (
