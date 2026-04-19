@@ -11,7 +11,7 @@
       })();
     </script>
     <script>
-      window.APP_BUILD_VERSION = "20260419_165456";
+      window.APP_BUILD_VERSION = "20260419_174259";
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
@@ -18980,7 +18980,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_165456') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_174259') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -19110,6 +19110,30 @@ function initializeSeededRandom() {
 
 // Initialize seeded random before anything else
 initializeSeededRandom();
+
+const startupMark = (() => {
+    let fallbackBaseMs = null;
+    return (label, extra = '') => {
+        if (typeof window.appStartupMark === 'function') {
+            window.appStartupMark(label, extra);
+            return;
+        }
+        const now = (window.performance && typeof window.performance.now === 'function')
+            ? window.performance.now()
+            : Date.now();
+        if (fallbackBaseMs === null) fallbackBaseMs = now;
+        const delta = Math.round(now - fallbackBaseMs);
+        const suffix = extra ? ` ${extra}` : '';
+        const msg = `startup t+${delta}ms ${label}${suffix}`;
+        if (window.appLog) {
+            window.appLog(msg);
+        } else {
+            console.log('[APP]', msg);
+        }
+    };
+})();
+
+startupMark('main-script-start');
 
 // Ensure language-specific last change handler exists
 if (typeof window.handleLanguageSpecificLastChange !== 'function') {
@@ -19489,6 +19513,7 @@ function focusUsageExamplesInPanel(container, options = {}) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    startupMark('dom-bootstrap-start');
     const PACKAGED_TTS = window.preRenderedFrenchTts || null;
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
@@ -22830,9 +22855,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    let hasLoggedFirstCardDisplay = false;
     const displayCard = (card) => {
         currentCard = card;
         currentCardShownAtMs = performance.now();
+        if (!hasLoggedFirstCardDisplay) {
+            hasLoggedFirstCardDisplay = true;
+            const cardSummary = card && card.verb
+                ? `verb=${card.verb.infinitive} tense=${card.tense} pronoun=${card.pronoun}`
+                : (card && card.phrase ? 'phrase-mode' : 'unknown-card');
+            startupMark('first-card-displayed', cardSummary);
+        }
         recordCardSeen(card);
         installState.cardsSeenThisSession += 1;
         // Track recent cards to avoid immediate repeats
@@ -23127,7 +23160,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mnemonicsView = document.getElementById('mnemonics-view');
     const views = [flashcardView, explorerListView, explorerDetailView, optionsView, mnemonicsView];
 
+    let hasLoggedFirstViewShown = false;
     function showView(viewId, pushState = true) {
+        if (!hasLoggedFirstViewShown) {
+            hasLoggedFirstViewShown = true;
+            startupMark('first-view-shown', `view=${viewId}`);
+        }
         if (viewId !== 'flashcard-view') {
             stopActiveDictation({ abort: true, silent: true });
             clearIdleGuidanceState();
@@ -24705,6 +24743,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Load ---
     const initializeApp = () => {
+        startupMark('initialize-app-start');
         loadOptions();
         loadTutorialState();
         if (dictateBtn) setupDictation();
@@ -24765,6 +24804,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card: sharedDetailCard,
             }, false);
         }
+        startupMark('initialize-app-complete');
     };
 
     // Expose showView globally for inline script
@@ -25882,6 +25922,7 @@ if (loader) {
     loader.style.opacity = '0';
     setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
 }
+startupMark('app-ready');
 if (window.appLog) window.appLog('app-ready');
 // Load card from URL hash on initial load
 loadCardFromHash();
@@ -26187,7 +26228,27 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('[APP]', msg);
   }
 
+  function perfNowMs() {
+    try {
+      if (window.performance && typeof window.performance.now === 'function') {
+        return window.performance.now();
+      }
+    } catch(e) {}
+    return 0;
+  }
+
+  function formatStartupDelta(ms) {
+    return 't+' + Math.round(ms) + 'ms';
+  }
+
+  window.appStartupMark = function(label, extra) {
+    var delta = perfNowMs();
+    var suffix = extra ? ' ' + extra : '';
+    appLog('startup ' + formatStartupDelta(delta) + ' ' + label + suffix);
+  };
+
   appLog('script-executed');
+  window.appStartupMark('inline-debug-ready');
   window.addEventListener('DOMContentLoaded', function() { appLog('DOMContentLoaded'); });
   window.addEventListener('load', function() { appLog('load'); });
   document.addEventListener('visibilitychange', function() { appLog('visibility=' + document.visibilityState); });
