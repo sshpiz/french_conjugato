@@ -148,6 +148,30 @@ function initializeSeededRandom() {
 // Initialize seeded random before anything else
 initializeSeededRandom();
 
+const startupMark = (() => {
+    let fallbackBaseMs = null;
+    return (label, extra = '') => {
+        if (typeof window.appStartupMark === 'function') {
+            window.appStartupMark(label, extra);
+            return;
+        }
+        const now = (window.performance && typeof window.performance.now === 'function')
+            ? window.performance.now()
+            : Date.now();
+        if (fallbackBaseMs === null) fallbackBaseMs = now;
+        const delta = Math.round(now - fallbackBaseMs);
+        const suffix = extra ? ` ${extra}` : '';
+        const msg = `startup t+${delta}ms ${label}${suffix}`;
+        if (window.appLog) {
+            window.appLog(msg);
+        } else {
+            console.log('[APP]', msg);
+        }
+    };
+})();
+
+startupMark('main-script-start');
+
 // Ensure language-specific last change handler exists
 if (typeof window.handleLanguageSpecificLastChange !== 'function') {
     window.handleLanguageSpecificLastChange = function(pronoun, conjugated) {
@@ -526,6 +550,7 @@ function focusUsageExamplesInPanel(container, options = {}) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    startupMark('dom-bootstrap-start');
     const PACKAGED_TTS = window.preRenderedFrenchTts || null;
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
@@ -3867,9 +3892,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    let hasLoggedFirstCardDisplay = false;
     const displayCard = (card) => {
         currentCard = card;
         currentCardShownAtMs = performance.now();
+        if (!hasLoggedFirstCardDisplay) {
+            hasLoggedFirstCardDisplay = true;
+            const cardSummary = card && card.verb
+                ? `verb=${card.verb.infinitive} tense=${card.tense} pronoun=${card.pronoun}`
+                : (card && card.phrase ? 'phrase-mode' : 'unknown-card');
+            startupMark('first-card-displayed', cardSummary);
+        }
         recordCardSeen(card);
         installState.cardsSeenThisSession += 1;
         // Track recent cards to avoid immediate repeats
@@ -4164,7 +4197,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mnemonicsView = document.getElementById('mnemonics-view');
     const views = [flashcardView, explorerListView, explorerDetailView, optionsView, mnemonicsView];
 
+    let hasLoggedFirstViewShown = false;
     function showView(viewId, pushState = true) {
+        if (!hasLoggedFirstViewShown) {
+            hasLoggedFirstViewShown = true;
+            startupMark('first-view-shown', `view=${viewId}`);
+        }
         if (viewId !== 'flashcard-view') {
             stopActiveDictation({ abort: true, silent: true });
             clearIdleGuidanceState();
@@ -5742,6 +5780,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Load ---
     const initializeApp = () => {
+        startupMark('initialize-app-start');
         loadOptions();
         loadTutorialState();
         if (dictateBtn) setupDictation();
@@ -5802,6 +5841,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card: sharedDetailCard,
             }, false);
         }
+        startupMark('initialize-app-complete');
     };
 
     // Expose showView globally for inline script
@@ -6919,6 +6959,7 @@ if (loader) {
     loader.style.opacity = '0';
     setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
 }
+startupMark('app-ready');
 if (window.appLog) window.appLog('app-ready');
 // Load card from URL hash on initial load
 loadCardFromHash();

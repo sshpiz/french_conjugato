@@ -1701,7 +1701,27 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('[APP]', msg);
   }
 
+  function perfNowMs() {
+    try {
+      if (window.performance && typeof window.performance.now === 'function') {
+        return window.performance.now();
+      }
+    } catch(e) {}
+    return 0;
+  }
+
+  function formatStartupDelta(ms) {
+    return 't+' + Math.round(ms) + 'ms';
+  }
+
+  window.appStartupMark = function(label, extra) {
+    var delta = perfNowMs();
+    var suffix = extra ? ' ' + extra : '';
+    appLog('startup ' + formatStartupDelta(delta) + ' ' + label + suffix);
+  };
+
   appLog('script-executed');
+  window.appStartupMark('inline-debug-ready');
   window.addEventListener('DOMContentLoaded', function() { appLog('DOMContentLoaded'); });
   window.addEventListener('load', function() { appLog('load'); });
   document.addEventListener('visibilitychange', function() { appLog('visibility=' + document.visibilityState); });
