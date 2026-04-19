@@ -4011,7 +4011,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260419_013838";
+      window.APP_BUILD_VERSION = "20260419_030242";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -4510,6 +4510,26 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                                     <p class="setting-helper-text">Questions, bug reports, or feedback.</p>
                                 </div>
                                 <a id="support-email-link" class="settings-support-link" href="mailto:lesverbes.support@gmail.com">lesverbes.support@gmail.com</a>
+                            </div>
+                            <div class="toggle-row compact-toggle-row">
+                                <div class="settings-row-copy">
+                                    <label for="idle-nudge-toggle">Idle nudge</label>
+                                    <p class="setting-helper-text">Gently nudges the prompt before reveal and Next after reveal if you pause.</p>
+                                </div>
+                                <div class="toggle-control">
+                                    <input type="checkbox" id="idle-nudge-toggle" class="toggle-input">
+                                    <label for="idle-nudge-toggle" class="toggle-label"></label>
+                                </div>
+                            </div>
+                            <div class="toggle-row compact-toggle-row">
+                                <div class="settings-row-copy">
+                                    <label for="show-tips-toggle">Show tips</label>
+                                    <p class="setting-helper-text">Shows welcome-back tips. Time-since-last-conjugation messages still appear.</p>
+                                </div>
+                                <div class="toggle-control">
+                                    <input type="checkbox" id="show-tips-toggle" class="toggle-input">
+                                    <label for="show-tips-toggle" class="toggle-label"></label>
+                                </div>
                             </div>
                             <div class="toggle-row">
                                 <label>Theme</label>
@@ -30147,7 +30167,7 @@ const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_013838') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_030242') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -30636,8 +30656,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const MIC_MODE_KEY = 'micAnswerMode';
     const INSTALL_APP_NAME = 'Дієслова';
     const INSTALL_REMINDER_DISMISSED_KEY = 'installReminderDismissedV1';
+    const IDLE_NUDGE_ENABLED_KEY = 'idleNudgeEnabledV1';
+    const SHOW_TIPS_ENABLED_KEY = 'showTipsEnabledV1';
     const REOPEN_MESSAGE_LAST_OPEN_KEY = 'reopenMessageLastOpenAtV1';
     const REOPEN_MESSAGE_THRESHOLD_MS = 12 * 60 * 60 * 1000;
+    const REOPEN_MESSAGE_WELCOME_BACK_THRESHOLD_MS = 24 * 60 * 60 * 1000;
+    const REOPEN_MESSAGE_SHORT_GAP_CHANCE = 0.45;
     const DRILL_STORAGE_KEY = 'savedDrills';
     const LAST_DRILL_STORAGE_KEY = 'lastDrill';
     const DRILL_SHARE_VERSION = 1;
@@ -30739,7 +30763,12 @@ document.addEventListener('DOMContentLoaded', () => {
         dismissed: false,
         badge: '',
         body: '',
+        elapsedMs: 0,
+        prompt: null,
+        shownCardKey: null,
     };
+    let idleNudgeEnabled = getScopedStorageItem(IDLE_NUDGE_ENABLED_KEY) !== 'false';
+    let showTipsEnabled = getScopedStorageItem(SHOW_TIPS_ENABLED_KEY) !== 'false';
     const appUpdateState = Object.assign({
         registration: null,
         status: 'idle',
@@ -30786,20 +30815,33 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const REOPEN_MESSAGE_EXTRA_PROMPTS = [
         {
-            badge: 'Welcome back',
-            body: 'A quick review run is often enough to get the forms moving again.',
+            badge: '',
+            body: '',
+            includeElapsedLead: true,
         },
         {
-            badge: 'Small wins count',
-            body: 'A short clean session is usually better than waiting for the perfect long one.',
+            badge: '',
+            body: '💡 Search also works by English translation.',
         },
         {
-            badge: 'Feature hint',
-            body: 'Use verb details when a form feels fuzzy, then come back to the cards to make it stick.',
+            badge: '',
+            body: '💡 Try a drill first. Then change one thing.',
         },
         {
-            badge: 'Feature hint',
-            body: 'If the mic feels distracting, switch it off in Settings and bring it back when you want speaking reps.',
+            badge: '',
+            body: 'You can create drills, save them, and share them.',
+        },
+        {
+            badge: '',
+            body: '💡 Open verb details for the full table and usage patterns.',
+        },
+        {
+            badge: '',
+            body: '💡 You can use the mic to answer the cards. Go to Settings.',
+        },
+        {
+            badge: '',
+            body: '💡 Tap any word or phrase to hear how it sounds.',
         },
     ];
 
@@ -31201,9 +31243,35 @@ document.addEventListener('DOMContentLoaded', () => {
             correctDictationHelperEl.textContent = tutorialLocksMicMode
                 ? 'The tutorial begins with after-reveal pronunciation practice.'
                 : (enabled
-                    ? 'Speak the conjugated answer before reveal. After reveal, the mic pauses.'
+                    ? 'Use the mic to answer before reveal. After reveal, it stays available for practice.'
                     : 'When off, the mic is used for pronunciation practice after reveal.');
         }
+    };
+
+    const setIdleNudgeEnabled = (enabled) => {
+        idleNudgeEnabled = !!enabled;
+        setScopedStorageItem(IDLE_NUDGE_ENABLED_KEY, idleNudgeEnabled ? 'true' : 'false');
+        clearIdleGuidanceState();
+        refreshIdleGuidance();
+    };
+
+    const syncIdleNudgeSettingUi = () => {
+        const idleNudgeToggle = document.getElementById('idle-nudge-toggle');
+        if (!idleNudgeToggle) return;
+        idleNudgeToggle.checked = idleNudgeEnabled;
+    };
+
+    const setShowTipsEnabled = (enabled) => {
+        showTipsEnabled = !!enabled;
+        setScopedStorageItem(SHOW_TIPS_ENABLED_KEY, showTipsEnabled ? 'true' : 'false');
+        applyReopenMessagePrompt();
+        renderReopenMessage();
+    };
+
+    const syncShowTipsSettingUi = () => {
+        const showTipsToggle = document.getElementById('show-tips-toggle');
+        if (!showTipsToggle) return;
+        showTipsToggle.checked = showTipsEnabled;
     };
 
     const isTutorialMicLocked = () => {
@@ -31245,8 +31313,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const dayMs = 24 * 60 * 60 * 1000;
         if (elapsedMs < dayMs) return 'less than a day';
         const days = Math.max(1, Math.floor(elapsedMs / dayMs));
-        if (days > 7) return 'a long while';
         return days === 1 ? '1 day' : `${days} days`;
+    };
+
+    const getElapsedOnlyReopenPrompt = () => ({
+        badge: '',
+        body: '',
+        includeElapsedLead: true,
+    });
+
+    const buildReopenMessageBody = (elapsedMs, prompt) => {
+        const activePrompt = prompt || getElapsedOnlyReopenPrompt();
+        if (activePrompt.includeElapsedLead) {
+            const elapsedText = formatReopenElapsedText(elapsedMs);
+            const lead = `Welcome back. It has been ${elapsedText} since your last conjugation.`;
+            return activePrompt.body ? `${lead} ${activePrompt.body}` : lead;
+        }
+        return activePrompt.body || '';
+    };
+
+    const applyReopenMessagePrompt = () => {
+        const prompt = showTipsEnabled
+            ? (reopenMessageState.prompt || getElapsedOnlyReopenPrompt())
+            : getElapsedOnlyReopenPrompt();
+        reopenMessageState.badge = prompt.badge || '';
+        reopenMessageState.body = buildReopenMessageBody(reopenMessageState.elapsedMs, prompt);
     };
 
     const initializeReopenMessageState = () => {
@@ -31258,16 +31349,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const elapsed = now - previousRaw;
         if (elapsed < REOPEN_MESSAGE_THRESHOLD_MS) return;
 
-        const elapsedText = formatReopenElapsedText(elapsed);
         const extra = REOPEN_MESSAGE_EXTRA_PROMPTS[Math.floor(Math.random() * REOPEN_MESSAGE_EXTRA_PROMPTS.length)];
+        const isLongGap = elapsed >= REOPEN_MESSAGE_WELCOME_BACK_THRESHOLD_MS;
+        if (!isLongGap && Math.random() > REOPEN_MESSAGE_SHORT_GAP_CHANCE) return;
         reopenMessageState.active = true;
         reopenMessageState.dismissed = false;
-        reopenMessageState.badge = extra.badge;
-        reopenMessageState.body = `Welcome back. It has been ${elapsedText} since your last conjugation. ${extra.body}`;
+        reopenMessageState.elapsedMs = elapsed;
+        reopenMessageState.prompt = extra;
+        reopenMessageState.shownCardKey = null;
+        applyReopenMessagePrompt();
     };
 
     const renderReopenMessage = () => {
         if (!returnInlineMessageEl || !returnInlineBadgeEl || !returnInlineBodyEl) return;
+        const currentCardKey = currentCard && currentCard.verb
+            ? `verb:${currentCard.verb.infinitive}|${currentCard.tense}|${currentCard.pronoun}`
+            : '';
+        const isSameShownCard = !!(reopenMessageState.shownCardKey && currentCardKey && reopenMessageState.shownCardKey === currentCardKey);
         const shouldShow = !!(
             reopenMessageState.active
             && !reopenMessageState.dismissed
@@ -31276,10 +31374,15 @@ document.addEventListener('DOMContentLoaded', () => {
             && !isAnswerVisible
             && currentCard
             && currentCard.verb
-            && installState.cardsSeenThisSession === 1
+            && (!reopenMessageState.shownCardKey || isSameShownCard)
         );
+        if (shouldShow && !reopenMessageState.shownCardKey && currentCardKey) {
+            reopenMessageState.shownCardKey = currentCardKey;
+        }
+        const badgeText = shouldShow ? String(reopenMessageState.badge || '').trim() : '';
         returnInlineMessageEl.classList.toggle('hidden', !shouldShow);
-        returnInlineBadgeEl.textContent = shouldShow ? reopenMessageState.badge : '';
+        returnInlineBadgeEl.textContent = badgeText;
+        returnInlineBadgeEl.style.display = badgeText ? '' : 'none';
         returnInlineBodyEl.textContent = shouldShow ? reopenMessageState.body : '';
     };
 
@@ -31289,9 +31392,16 @@ document.addEventListener('DOMContentLoaded', () => {
         renderReopenMessage();
     };
 
+    const isReopenMessageVisible = () => !!(
+        returnInlineMessageEl
+        && !returnInlineMessageEl.classList.contains('hidden')
+    );
+
     const refreshTutorialAwareUi = () => {
         renderTutorialHint();
         syncMicModeSettingUi();
+        syncIdleNudgeSettingUi();
+        syncShowTipsSettingUi();
     };
 
     const clearIdleGuidanceTimer = () => {
@@ -31416,7 +31526,8 @@ document.addEventListener('DOMContentLoaded', () => {
         clearIdleGuidanceState();
         const hasGeneratedPrompt = syncTaskPromptVisibility();
 
-        if (!isFlashcardViewActive() || !currentCard) return;
+        if (!idleNudgeEnabled || !isFlashcardViewActive() || !currentCard) return;
+        if (isReopenMessageVisible()) return;
 
         if (isAnswerVisible) {
             if (!answerFlowBtn) return;
@@ -32981,7 +33092,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (availability === 'unsupported') {
             title = 'Speech recognition is unavailable on this device';
         } else if (micMode === 'answerByVoice') {
-            title = 'Answer by voice before reveal';
+            title = 'Use the mic to answer before reveal, or practice after reveal';
         }
 
         dictateBtn.setAttribute('title', title);
@@ -33602,6 +33713,22 @@ document.addEventListener('DOMContentLoaded', () => {
             setScopedStorageItem(MIC_MODE_KEY, correctDictationToggle.checked ? 'true' : 'false');
             syncMicModeSettingUi();
             refreshDictationButton();
+        });
+    }
+
+    const idleNudgeToggle = document.getElementById('idle-nudge-toggle');
+    if (idleNudgeToggle) {
+        idleNudgeToggle.addEventListener('change', () => {
+            setIdleNudgeEnabled(idleNudgeToggle.checked);
+            syncIdleNudgeSettingUi();
+        });
+    }
+
+    const showTipsToggle = document.getElementById('show-tips-toggle');
+    if (showTipsToggle) {
+        showTipsToggle.addEventListener('change', () => {
+            setShowTipsEnabled(showTipsToggle.checked);
+            syncShowTipsSettingUi();
         });
     }
 
