@@ -51,6 +51,7 @@
     let latestTranscript = '';
     let updateTimer = null;
     let startTime = 0;
+    let runtimeReady = false;
 
     const correctAnswerEl = document.getElementById('correct-answer');
     const modelGridEl = document.getElementById('model-grid');
@@ -90,6 +91,10 @@
         el.textContent = value;
         el.classList.remove('ok', 'warn', 'bad');
         if (tone) el.classList.add(tone);
+    }
+
+    function updateStartButtonState() {
+        startBtn.disabled = !(currentModelKey && runtimeReady);
     }
 
     function updateComparison() {
@@ -152,7 +157,7 @@
     function setModelLoaded(key) {
         currentModelKey = key;
         instance = null;
-        startBtn.disabled = false;
+        updateStartButtonState();
         stopBtn.disabled = true;
         setModelStatus(`Loaded model: ${key}`);
         setDownloadProgress(1, `Model ready: ${key}`);
@@ -213,7 +218,7 @@
             clearInterval(updateTimer);
             updateTimer = null;
         }
-        startBtn.disabled = currentModelKey == null;
+        updateStartButtonState();
         stopBtn.disabled = true;
     }
 
@@ -325,6 +330,12 @@
             return;
         }
 
+        if (!runtimeReady || typeof Module === 'undefined' || typeof Module.init !== 'function') {
+            printTextarea('js: whisper runtime is not ready yet. Wait for initialization to finish, then try again.');
+            updateRuntimeStatus();
+            return;
+        }
+
         if (!instance) {
             instance = Module.init('whisper.bin', LANGUAGE);
             if (instance) {
@@ -377,9 +388,13 @@
         },
         monitorRunDependencies: function () {},
         preRun: function () {
+            runtimeReady = false;
+            updateStartButtonState();
             printTextarea('js: Preparing whisper runtime ...');
         },
         postRun: function () {
+            runtimeReady = true;
+            updateStartButtonState();
             printTextarea('js: Whisper runtime initialized.');
             updateRuntimeStatus();
         }
@@ -405,6 +420,7 @@
     renderModelButtons();
     resetTranscriptState();
     updateRuntimeStatus();
+    updateStartButtonState();
     setModelStatus('No model loaded yet.');
     setDownloadProgress(0, 'Choose a model to download and cache.');
 })();
