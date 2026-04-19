@@ -15,9 +15,10 @@ const getScopedStorageItem = window.getAppStoredItem || ((name) => localStorage.
 const setScopedStorageItem = window.setAppStoredItem || ((name, value) => localStorage.setItem(getScopedStorageKey(name), value));
 const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localStorage.removeItem(getScopedStorageKey(name)));
 const ENABLE_LEGACY_SENTENCE_DATA = false;
+const APP_VERSION_TEMPLATE_MARKER = ['{{APP_VERSION', '}}'].join('');
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('{{APP_VERSION}}') ? 'dev' : raw;
+    return !raw || raw.includes(APP_VERSION_TEMPLATE_MARKER) ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
