@@ -305,10 +305,44 @@ function prepareTextForSpeech(text) {
     }
 })();
 
-// ── Verb usages index ─────────────────────────────────────────────────────────
-const verbCorePatternsIndex = {};
-(function buildCorePatternsIndex() {
-    const entries = window.verbCorePatterns || [];
+// ── Deferred verb context data ────────────────────────────────────────────────
+const VERB_CORE_PATTERNS_DATA_ELEMENT_ID = 'verb-core-patterns-data';
+const VERB_USAGES_DATA_ELEMENT_ID = 'verb-usages-data';
+let verbCorePatternsIndex = null;
+let verbUsagesIndex = null;
+
+function parseDeferredJsonDataScript(elementId) {
+    const element = document.getElementById(elementId);
+    if (!element) return [];
+    try {
+        const parsed = JSON.parse(element.textContent || '[]');
+        element.remove();
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        console.warn(`[verb-context] Failed to parse deferred data from #${elementId}`, error);
+        return [];
+    }
+}
+
+function ensureVerbCorePatternsLoaded() {
+    if (!Array.isArray(window.verbCorePatterns)) {
+        window.verbCorePatterns = parseDeferredJsonDataScript(VERB_CORE_PATTERNS_DATA_ELEMENT_ID);
+    }
+    return window.verbCorePatterns;
+}
+
+function ensureVerbUsagesLoaded() {
+    if (!Array.isArray(window.verbUsages)) {
+        window.verbUsages = parseDeferredJsonDataScript(VERB_USAGES_DATA_ELEMENT_ID);
+    }
+    return window.verbUsages;
+}
+
+function getVerbCorePatternsIndex() {
+    if (verbCorePatternsIndex) return verbCorePatternsIndex;
+
+    const index = {};
+    const entries = ensureVerbCorePatternsLoaded();
     for (const entry of entries) {
         if (!entry || !entry.verb || !Array.isArray(entry.core_patterns)) continue;
         const patterns = entry.core_patterns.filter((patternEntry) =>
@@ -317,19 +351,26 @@ const verbCorePatternsIndex = {};
             patternEntry.pattern.trim()
         );
         if (patterns.length) {
-            verbCorePatternsIndex[entry.verb] = patterns;
+            index[entry.verb] = patterns;
         }
     }
-})();
+    verbCorePatternsIndex = index;
+    return verbCorePatternsIndex;
+}
 
-const verbUsagesIndex = {};
-(function buildUsagesIndex() {
-    const usages = window.verbUsages || [];
+function getVerbUsagesIndex() {
+    if (verbUsagesIndex) return verbUsagesIndex;
+
+    const index = {};
+    const usages = ensureVerbUsagesLoaded();
     for (const u of usages) {
-        if (!verbUsagesIndex[u.verb]) verbUsagesIndex[u.verb] = [];
-        verbUsagesIndex[u.verb].push(u);
+        if (!u || !u.verb) continue;
+        if (!index[u.verb]) index[u.verb] = [];
+        index[u.verb].push(u);
     }
-})();
+    verbUsagesIndex = index;
+    return verbUsagesIndex;
+}
 
 function appendVerbSectionHeading(container, text, className) {
     if (!text) return;
@@ -351,7 +392,7 @@ function renderVerbCorePatterns(container, infinitive, options = {}) {
     container.innerHTML = '';
     if (sectionClass) container.className = sectionClass;
 
-    const patterns = verbCorePatternsIndex[infinitive];
+    const patterns = getVerbCorePatternsIndex()[infinitive];
     if (!patterns || !patterns.length) return 0;
 
     appendVerbSectionHeading(container, heading, headingClass);
@@ -397,7 +438,7 @@ function renderVerbUsages(container, infinitive, options = {}) {
     container.innerHTML = '';
     if (sectionClass) container.className = sectionClass;
 
-    const usages = verbUsagesIndex[infinitive];
+    const usages = getVerbUsagesIndex()[infinitive];
     if (!usages || !usages.length) return 0;
 
     appendVerbSectionHeading(container, heading, headingClass);

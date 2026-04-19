@@ -260,6 +260,26 @@ def build_french_app(force_jpeg=False):
         return STYLESHEET_HREF_RE.sub(repl, html)
 
     def inline_local_scripts(html):
+        deferred_json_scripts = {
+            "verb_usages.js": {
+                "element_id": "verb-usages-data",
+                "variable_prefix": "window.verbUsages =",
+            },
+            "verb_core_patterns.js": {
+                "element_id": "verb-core-patterns-data",
+                "variable_prefix": "window.verbCorePatterns =",
+            },
+        }
+
+        def convert_assignment_script_to_json(content, prefix):
+            normalized = content.strip()
+            if not normalized.startswith(prefix):
+                raise ValueError(f"Expected script to start with {prefix!r}")
+            json_text = normalized[len(prefix):].strip()
+            if json_text.endswith(";"):
+                json_text = json_text[:-1].rstrip()
+            return json_text
+
         def repl(match):
             src = match.group(2)
             if not is_local_asset(src):
@@ -274,6 +294,18 @@ def build_french_app(force_jpeg=False):
                 content = f.read()
             clean_src = strip_url_suffix(src)
             print("   - Inlining script:", clean_src, f"(len={len(content)})")
+
+            deferred_spec = deferred_json_scripts.get(clean_src)
+            if deferred_spec:
+                json_text = convert_assignment_script_to_json(content, deferred_spec["variable_prefix"])
+                json_text = json_text.replace("</script>", "<\\/script>")
+                return (
+                    f'<script id="{deferred_spec["element_id"]}" '
+                    f'type="application/json" data-source="{clean_src}">\n'
+                    f'{json_text}\n'
+                    f'</script>'
+                )
+
             return f"<script>\n// --- {clean_src} ---\n{content}\n</script>"
 
         return SCRIPT_SRC_RE.sub(repl, html)
