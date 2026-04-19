@@ -1171,12 +1171,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return normalizeAppVersion(payload && payload.version);
     };
 
+    const getVersionValueForUi = () => {
+        if (APP_VERSION !== 'dev') return APP_VERSION;
+        return appUpdateState.latestVersion || APP_VERSION;
+    };
+
     const syncAppVersionUi = () => {
+        const versionForUi = getVersionValueForUi();
         if (appVersionBadge) {
-            appVersionBadge.textContent = formatAppVersionLabel(APP_VERSION);
+            appVersionBadge.textContent = formatAppVersionLabel(versionForUi);
         }
         if (appVersionDetail) {
-            appVersionDetail.textContent = formatAppVersionDetail(APP_VERSION);
+            if (APP_VERSION === 'dev' && appUpdateState.latestVersion) {
+                appVersionDetail.textContent = `Latest published ${formatAppVersionDetail(appUpdateState.latestVersion).replace(/^Built /, 'build ')}`;
+            } else {
+                appVersionDetail.textContent = formatAppVersionDetail(versionForUi);
+            }
+        }
+    };
+
+    let shellWarmupRequested = false;
+    const requestShellWarmup = async (reason = 'unknown') => {
+        if (shellWarmupRequested || !('serviceWorker' in navigator)) return;
+        try {
+            const registration = await navigator.serviceWorker.getRegistration('./');
+            const worker = registration && (registration.active || registration.waiting || registration.installing);
+            if (!worker) return;
+            worker.postMessage({ type: 'WARM_INDEX', reason });
+            shellWarmupRequested = true;
+            if (window.appLog) window.appLog(`shell-warmup requested reason=${reason}`);
+        } catch (error) {
+            if (window.appLog) window.appLog(`shell-warmup failed reason=${reason} message="${error.message}"`);
         }
     };
 
@@ -1378,11 +1403,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         syncAppUpdateUi();
+        syncAppVersionUi();
     };
 
     const syncExternalAppUpdateState = (detail = {}) => {
         Object.assign(appUpdateState, detail);
         syncAppUpdateUi();
+        syncAppVersionUi();
     };
 
     const openSettingsForUpdate = () => {
@@ -1452,6 +1479,15 @@ document.addEventListener('DOMContentLoaded', () => {
         installState.deferredPrompt = event;
         syncAppInstallUi();
     });
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(() => {
+            requestShellWarmup('ready');
+        }).catch(() => {});
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            requestShellWarmup('controllerchange');
+        });
+    }
 
     window.addEventListener('appinstalled', () => {
         installState.installed = true;
@@ -5786,6 +5822,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dictateBtn) setupDictation();
         populateOptions();
         syncAppVersionUi();
+        if (APP_VERSION === 'dev') {
+            fetchLatestAppVersion()
+                .then((latestVersion) => {
+                    if (latestVersion) setAppUpdateState({ latestVersion });
+                })
+                .catch(() => {});
+        }
         syncMicModeSettingUi();
         refreshContextAudioButton();
         refreshDictationButton();
