@@ -171,6 +171,14 @@ const startupMark = (() => {
     };
 })();
 
+const appDebugLog = (message) => {
+    if (window.appLog) {
+        window.appLog(message);
+    } else {
+        console.log('[APP]', message);
+    }
+};
+
 startupMark('main-script-start');
 
 // Ensure language-specific last change handler exists
@@ -917,6 +925,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const returnInlineBadgeEl = returnInlineMessageEl ? returnInlineMessageEl.querySelector('.return-inline-badge') : null;
     const returnInlineBodyEl = returnInlineMessageEl ? returnInlineMessageEl.querySelector('.return-inline-body') : null;
     const correctDictationHelperEl = document.getElementById('correct-dictation-helper');
+    const pressToDictateHelperEl = document.getElementById('press-to-dictate-helper');
 
     const searchBar = document.getElementById('search-bar');
     const verbListContainer = document.getElementById('verb-list-container');
@@ -967,6 +976,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const INSTALL_REMINDER_DISMISSED_KEY = 'installReminderDismissedV1';
     const IDLE_NUDGE_ENABLED_KEY = 'idleNudgeEnabledV1';
+    const PRESS_TO_DICTATE_ENABLED_KEY = 'pressToDictateEnabledV1';
     const SHOW_TIPS_ENABLED_KEY = 'showTipsEnabledV1';
     const REOPEN_MESSAGE_LAST_OPEN_KEY = 'reopenMessageLastOpenAtV1';
     const REOPEN_MESSAGE_THRESHOLD_MS = 12 * 60 * 60 * 1000;
@@ -1013,6 +1023,7 @@ document.addEventListener('DOMContentLoaded', () => {
         shownCardKey: null
     };
     let idleNudgeEnabled = getScopedStorageItem(IDLE_NUDGE_ENABLED_KEY) !== 'false';
+    let pressToDictateEnabled = getScopedStorageItem(PRESS_TO_DICTATE_ENABLED_KEY) === 'true';
     let showTipsEnabled = getScopedStorageItem(SHOW_TIPS_ENABLED_KEY) !== 'false';
     const installState = {
         deferredPrompt: null,
@@ -1658,6 +1669,10 @@ document.addEventListener('DOMContentLoaded', () => {
             title = 'Speech recognition is unavailable on this device';
         } else if (availability === 'safeModeBlocked') {
             title = 'Mic input is disabled in safe mode';
+        } else if (pressToDictateEnabled) {
+            title = micMode === 'answerByVoice'
+                ? 'Hold the mic to answer before reveal, or practice after reveal'
+                : 'Hold the mic while speaking, then release to transcribe';
         } else if (micMode === 'answerByVoice') {
             title = 'Use the mic to answer before reveal, or practice after reveal';
         }
@@ -2277,6 +2292,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let dictationLongTimeout = null;
     let dictationStopRequested = false;
     let activeDictationPromptText = '';
+    let activeDictationPointerId = null;
+    let suppressNextDictationClick = false;
 
     // Overlay helpers (already defined above)
     // function showDictationOverlay(...) {...}
@@ -2335,11 +2352,200 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl._dictationStopHandlerAttached = true;
         }
 
+        const beginDictationSession = () => {
+            const availability = getMicAvailability();
+            const micMode = getEffectiveMicMode();
+            if (availability !== 'enabled') {
+                const unavailableMessage = getMicUnavailableOverlayMessage(availability, micMode);
+                if (unavailableMessage) {
+                    showDictationOverlay(
+                        unavailableMessage,
+                        availability === 'unsupported' || availability === 'safeModeBlocked' ? 'error' : 'prompt',
+                        2600,
+                        false,
+                        true
+                    );
+                }
+                refreshDictationButton();
+                return false;
+            }
+            if (isDictating && recognition) {
+                return true;
+            }
+            if (recognition) {
+                stopActiveDictation({ abort: true, silent: true });
+            }
+            clearDictationListeningTimers();
+            isDictating = true;
+            dictationStopRequested = false;
+            setDictating(true);
+            dictationResultEl.textContent = '';
+            dictationResultEl.style.display = 'block';
+            activeDictationPromptText = getDictationPromptText();
+            showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = speechLang;
+            recognition.interimResults = true;
+            recognition.continuous = true;
+            recognition.onstart = () => {
+                isDictating = true;
+                setDictating(true);
+                dictationStopRequested = false;
+                dictationResultEl.textContent = '';
+                dictationResultEl.style.display = 'block';
+                activeDictationPromptText = getDictationPromptText();
+                showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
+                scheduleDictationLongTimeout();
+            };
+            recognition.onend = () => {
+                dictationStopRequested = false;
+                recognition = null;
+                isDictating = false;
+                activeDictationPointerId = null;
+                setDictating(false);
+                refreshDictationButton();
+                clearDictationListeningTimers();
+                if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
+                    showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
+                } else {
+                    showDictationOverlay(dictationResultEl.innerHTML, 'normal', 4000, true, true);
+                }
+            };
+            recognition.onerror = (event) => {
+                if (dictationStopRequested) {
+                    return;
+                }
+                recognition = null;
+                isDictating = false;
+                activeDictationPointerId = null;
+                setDictating(false);
+                refreshDictationButton();
+                clearDictationListeningTimers();
+                showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
+            };
+            recognition.onresult = (event) => {
+                let html = '';
+                let bestTranscript = '';
+                let bestConfidence = 0;
+                let bestFinalTranscript = '';
+                let bestFinalConfidence = 0;
+                let sawFinalResult = false;
+                clearTimeout(dictationPostResultTimeout);
+                dictationPostResultTimeout = null;
+
+                appDebugLog('[dictation] results-start');
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    const alternatives = event.results[i];
+                    const resultKind = alternatives.isFinal ? 'final' : 'interim';
+                    appDebugLog(`[dictation][${resultKind}] result=${i} alternatives=${alternatives.length}`);
+                    if (alternatives.isFinal) {
+                        sawFinalResult = true;
+                    }
+                    for (let j = 0; j < alternatives.length; ++j) {
+                        const alt = alternatives[j];
+                        const transcript = alt.transcript.trim();
+                        const confidencePct = ((alt.confidence || 0) * 100).toFixed(1);
+                        appDebugLog(`[dictation][${resultKind}] result=${i} alt=${j} text="${transcript}" confidence=${confidencePct}%`);
+                    }
+                }
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    const alternatives = event.results[i];
+                    for (let j = 0; j < alternatives.length; ++j) {
+                        const alt = alternatives[j];
+                        let opacity = 0.4 + 0.6 * (alt.confidence || 0);
+                        if (opacity > 1) opacity = 1;
+                        if (opacity < 0.4) opacity = 0.4;
+                        const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
+                        html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${alt.transcript}${conf}</div>`;
+
+                        if (j === 0 && (!bestTranscript || (alt.confidence || 0) > bestConfidence)) {
+                            bestTranscript = alt.transcript.trim();
+                            bestConfidence = alt.confidence || 0;
+                        }
+                        if (alternatives.isFinal && j === 0 && (!bestFinalTranscript || (alt.confidence || 0) >= bestFinalConfidence)) {
+                            bestFinalTranscript = alt.transcript.trim();
+                            bestFinalConfidence = alt.confidence || 0;
+                        }
+                    }
+                }
+                const transcriptForMatch = bestFinalTranscript || bestTranscript;
+                appDebugLog(`[dictation] best-overall="${bestTranscript}" best-final="${bestFinalTranscript}" transcript-for-match="${transcriptForMatch}"`);
+                scheduleDictationLongTimeout();
+                if (sawFinalResult) {
+                    scheduleDictationPostResultTimeout();
+                }
+                const matchResult = currentCard && !autoskipLock
+                    ? getDictationMatchResult(transcriptForMatch, currentCard)
+                    : { matched: false };
+                if (matchResult.matched) {
+                    clearDictationListeningTimers();
+                    const successHtml = matchResult.viaFrenchPluralHomophoneFallback
+                        ? `<div style="opacity:1;font-weight:700;margin-bottom:0.1em;">${escapeHtml(matchResult.displayText)}</div>`
+                        : html;
+                    dictationResultEl.innerHTML = successHtml + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                    dictationResultEl.style.display = 'block';
+                    dictationResultEl.style.opacity = '1';
+                    handleMicSuccess();
+                    return;
+                }
+
+                showDictationOverlay(html, 'normal', 0, true, false);
+            };
+            recognition.start();
+            scheduleDictationLongTimeout();
+            return true;
+        };
+
+        const endPressToDictateSession = (pointerId) => {
+            if (activeDictationPointerId !== pointerId) return;
+            activeDictationPointerId = null;
+            if (isDictating && recognition) {
+                stopActiveDictation({ silent: false });
+            }
+        };
+
         // Attach click handler ONCE
         if (!dictateBtn._dictationHandlerAttached) {
+            dictateBtn.addEventListener('pointerdown', (event) => {
+                if (!pressToDictateEnabled) return;
+                if (event.button !== undefined && event.button !== 0) return;
+                if (activeDictationPointerId !== null || (isDictating && recognition)) return;
+                activeDictationPointerId = event.pointerId;
+                suppressNextDictationClick = true;
+                if (typeof dictateBtn.setPointerCapture === 'function') {
+                    try {
+                        dictateBtn.setPointerCapture(event.pointerId);
+                    } catch (error) {
+                        console.warn('Could not capture dictation pointer:', error);
+                    }
+                }
+                event.preventDefault();
+                event.stopPropagation();
+                beginDictationSession();
+            });
+            dictateBtn.addEventListener('pointerup', (event) => {
+                if (!pressToDictateEnabled) return;
+                event.preventDefault();
+                event.stopPropagation();
+                endPressToDictateSession(event.pointerId);
+            });
+            dictateBtn.addEventListener('pointercancel', (event) => {
+                if (!pressToDictateEnabled) return;
+                endPressToDictateSession(event.pointerId);
+            });
             dictateBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
+                if (pressToDictateEnabled) {
+                    if (suppressNextDictationClick) {
+                        suppressNextDictationClick = false;
+                        return;
+                    }
+                    if (e.detail !== 0) {
+                        return;
+                    }
+                }
                 const availability = getMicAvailability();
                 const micMode = getEffectiveMicMode();
                 if (availability !== 'enabled') {
@@ -2356,116 +2562,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     refreshDictationButton();
                     return;
                 }
-                // If already dictating, stop
                 if (isDictating && recognition) {
                     stopActiveDictation({ silent: false });
                     return;
                 }
-                // Clean up any previous session
-                if (recognition) {
-                    stopActiveDictation({ abort: true, silent: true });
-                }
-                clearDictationListeningTimers();
-                isDictating = true;
-                dictationStopRequested = false;
-                setDictating(true);
-                // Reset overlay for new session
-                dictationResultEl.textContent = '';
-                dictationResultEl.style.display = 'block';
-                activeDictationPromptText = getDictationPromptText();
-                showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
-                // Create new recognition instance
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                recognition = new SpeechRecognition();
-                recognition.lang = speechLang;
-                recognition.interimResults = true;
-                recognition.continuous = true; // Allow continuous dictation, not just single utterance
-                recognition.onstart = () => {
-                    isDictating = true;
-                    setDictating(true);
-                    dictationStopRequested = false;
-                    dictationResultEl.textContent = '';
-                    dictationResultEl.style.display = 'block';
-                    activeDictationPromptText = getDictationPromptText();
-                    showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
-                    scheduleDictationLongTimeout();
-                };
-                recognition.onend = () => {
-                    dictationStopRequested = false;
-                    recognition = null;
-                    isDictating = false;
-                    setDictating(false);
-                    refreshDictationButton();
-                    clearDictationListeningTimers();
-                    if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
-                        showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
-                    } else {
-                        showDictationOverlay(dictationResultEl.innerHTML, 'normal', 4000, true, true);
-                    }
-                };
-                recognition.onerror = (event) => {
-                    if (dictationStopRequested) {
-                        return;
-                    }
-                    recognition = null;
-                    isDictating = false;
-                    setDictating(false);
-                    refreshDictationButton();
-                    clearDictationListeningTimers();
-                    showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
-                };
-                recognition.onresult = (event) => {
-                    let html = '';
-                    let bestTranscript = '';
-                    let bestConfidence = 0;
-
-                    console.log('--- Speech Recognition Results ---');
-                    for (let i = event.resultIndex; i < event.results.length; ++i) {
-                        const alternatives = event.results[i];
-                        console.log(`Result ${i}: isFinal = ${alternatives.isFinal}`);
-                        for (let j = 0; j < alternatives.length; ++j) {
-                            const alt = alternatives[j];
-                            console.log(`  [${j}] "${alt.transcript.trim()}" (${(alt.confidence * 100).toFixed(1)}% confidence)`);
-                        }
-                    }
-                    for (let i = event.resultIndex; i < event.results.length; ++i) {
-                        const alternatives = event.results[i];
-                        for (let j = 0; j < alternatives.length; ++j) {
-                            const alt = alternatives[j];
-                            // Use confidence for opacity, min 0.4 for visibility
-                            let opacity = 0.4 + 0.6 * (alt.confidence || 0);
-                            if (opacity > 1) opacity = 1;
-                            if (opacity < 0.4) opacity = 0.4;
-                            const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
-                            html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${alt.transcript}${conf}</div>`;
-                            
-                            if (j === 0 && (!bestTranscript || (alt.confidence || 0) > bestConfidence)) {
-                                bestTranscript = alt.transcript.trim();
-                                bestConfidence = alt.confidence || 0;
-                            }
-                        }
-                    }
-                    scheduleDictationLongTimeout();
-                    scheduleDictationPostResultTimeout();
-                    const matchResult = currentCard && !autoskipLock
-                        ? getDictationMatchResult(bestTranscript, currentCard)
-                        : { matched: false };
-                    if (matchResult.matched) {
-                        clearDictationListeningTimers();
-                        const successHtml = matchResult.viaFrenchPluralHomophoneFallback
-                            ? `<div style="opacity:1;font-weight:700;margin-bottom:0.1em;">${escapeHtml(matchResult.displayText)}</div>`
-                            : html;
-                        dictationResultEl.innerHTML = successHtml + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
-                        dictationResultEl.style.display = 'block';
-                        dictationResultEl.style.opacity = '1';
-                        handleMicSuccess();
-                        return;
-                    }
-
-                    showDictationOverlay(html, 'normal', 0, true, false);
-                };
-                recognition.start();
-                scheduleDictationLongTimeout();
+                beginDictationSession();
             });
             dictateBtn._dictationHandlerAttached = true;
         }
@@ -2583,10 +2684,29 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshIdleGuidance();
     };
 
+    const setPressToDictateEnabled = (enabled) => {
+        pressToDictateEnabled = !!enabled;
+        setScopedStorageItem(PRESS_TO_DICTATE_ENABLED_KEY, pressToDictateEnabled ? 'true' : 'false');
+        if (!pressToDictateEnabled) {
+            activeDictationPointerId = null;
+            suppressNextDictationClick = false;
+        }
+        refreshDictationButton();
+    };
+
     const syncIdleNudgeSettingUi = () => {
         const idleNudgeToggle = document.getElementById('idle-nudge-toggle');
         if (!idleNudgeToggle) return;
         idleNudgeToggle.checked = idleNudgeEnabled;
+    };
+
+    const syncPressToDictateSettingUi = () => {
+        const pressToDictateToggle = document.getElementById('press-to-dictate-toggle');
+        if (!pressToDictateToggle) return;
+        pressToDictateToggle.checked = pressToDictateEnabled;
+        if (pressToDictateHelperEl) {
+            pressToDictateHelperEl.textContent = 'Hold the mic while speaking, then release to transcribe.';
+        }
     };
 
     const setShowTipsEnabled = (enabled) => {
@@ -5681,6 +5801,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const pressToDictateToggle = document.getElementById('press-to-dictate-toggle');
+    if (pressToDictateToggle) {
+        pressToDictateToggle.addEventListener('change', function() {
+            setPressToDictateEnabled(pressToDictateToggle.checked);
+            syncPressToDictateSettingUi();
+        });
+    }
+
     const showTipsToggle = document.getElementById('show-tips-toggle');
     if (showTipsToggle) {
         showTipsToggle.addEventListener('change', function() {
@@ -5831,6 +5959,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(() => {});
         }
         syncMicModeSettingUi();
+        syncPressToDictateSettingUi();
         refreshContextAudioButton();
         refreshDictationButton();
         renderTutorialHint();
