@@ -11,7 +11,7 @@
       })();
     </script>
     <script>
-      window.APP_BUILD_VERSION = "20260419_130742";
+      window.APP_BUILD_VERSION = "20260419_145645";
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
@@ -824,7 +824,10 @@ body {
 }
 
 .verb-detail-header {
+    position: relative;
     text-align: center;
+    padding: 0.1rem 4.8rem 0.2rem;
+    min-height: 3rem;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     font-weight: 700;
@@ -882,6 +885,149 @@ body {
     font-weight: 400;
     color: var(--meta-color);
     margin-top: 0.25rem;
+}
+
+.verb-detail-share-shell {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 30;
+}
+
+.verb-detail-share-toggle-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.45rem 0.72rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--meta-color);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+    box-shadow: 0 8px 20px rgba(24, 44, 70, 0.08);
+    cursor: pointer;
+    transition: border-color 0.16s ease, color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.verb-detail-share-toggle-btn svg,
+.verb-detail-share-menu-btn svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex-shrink: 0;
+}
+
+.verb-detail-share-toggle-btn:hover,
+.verb-detail-share-toggle-btn:focus-visible,
+.verb-detail-share-menu-btn:hover,
+.verb-detail-share-menu-btn:focus-visible {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.verb-detail-share-toggle-btn:active,
+.verb-detail-share-menu-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(24, 44, 70, 0.12);
+}
+
+.verb-detail-share-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: rgba(18, 28, 40, 0.14);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+}
+
+.verb-detail-share-menu {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: 0;
+    z-index: 3;
+    display: grid;
+    gap: 0.35rem;
+    min-width: 12rem;
+    padding: 0.42rem;
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    background: color-mix(in srgb, var(--card-bg) 96%, white 4%);
+    box-shadow: 0 18px 36px rgba(18, 28, 40, 0.18);
+    opacity: 0;
+    transform: translateY(-0.35rem) scale(0.98);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.verb-detail-share-shell.is-open .verb-detail-share-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.verb-detail-share-shell.is-open .verb-detail-share-menu {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.verb-detail-share-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 0.78rem 0.85rem;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--text-color);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.verb-detail-share-menu-btn:hover,
+.verb-detail-share-menu-btn:focus-visible {
+    background: color-mix(in srgb, var(--accent-color) 10%, var(--card-bg) 90%);
+}
+
+@media (max-width: 720px) {
+    .verb-detail-share-backdrop {
+        background: rgba(18, 28, 40, 0.24);
+    }
+
+    .verb-detail-share-menu {
+        position: fixed;
+        left: max(0.9rem, env(safe-area-inset-left));
+        right: max(0.9rem, env(safe-area-inset-right));
+        top: auto;
+        bottom: calc(0.9rem + env(safe-area-inset-bottom));
+        min-width: 0;
+        padding: 0.5rem;
+        border-radius: 22px;
+        transform: translateY(1rem);
+        transform-origin: bottom center;
+        box-shadow: 0 22px 44px rgba(10, 18, 28, 0.24);
+    }
+
+    .verb-detail-share-menu-btn {
+        padding: 0.92rem 0.95rem;
+        font-size: 0.98rem;
+    }
 }
 
 .tappable-audio {
@@ -18838,7 +18984,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_130742') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_145645') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -19400,6 +19546,119 @@ document.addEventListener('DOMContentLoaded', () => {
         return pronoun;
     };
 
+    const FRENCH_IL_ONLY_VERBS = new Set(['falloir', 'pleuvoir']);
+    const FRENCH_IL_ONLY_CARD_PRONOUN = 'il/elle/on';
+    const FRENCH_IL_ONLY_DETAIL_PRONOUN = 'il';
+    const FRENCH_IL_ONLY_SOURCE_KEYS = [
+        FRENCH_IL_ONLY_CARD_PRONOUN,
+        'je',
+        'tu',
+        'nous',
+        'vous',
+        'ils/elles',
+    ];
+
+    const isFrenchIlOnlyVerb = (verbInfinitive) => FRENCH_IL_ONLY_VERBS.has(String(verbInfinitive || '').trim());
+
+    const isFrenchIlOnlySingularForm = (conjugated) => String(conjugated || '')
+        .trim()
+        .toLowerCase()
+        .startsWith('il ');
+
+    const resolveFrenchIlOnlyConjugation = (verbInfinitive, conjugations) => {
+        if (!isFrenchIlOnlyVerb(verbInfinitive) || !conjugations) return null;
+
+        for (const sourcePronounKey of FRENCH_IL_ONLY_SOURCE_KEYS) {
+            const conjugated = String(conjugations[sourcePronounKey] || '').trim();
+            if (!conjugated || !isFrenchIlOnlySingularForm(conjugated)) continue;
+            return {
+                cardPronoun: FRENCH_IL_ONLY_CARD_PRONOUN,
+                detailPronoun: FRENCH_IL_ONLY_DETAIL_PRONOUN,
+                sourcePronounKey,
+                conjugated,
+            };
+        }
+
+        const canonicalConjugation = String(conjugations[FRENCH_IL_ONLY_CARD_PRONOUN] || '').trim();
+        if (!canonicalConjugation) return null;
+
+        return {
+            cardPronoun: FRENCH_IL_ONLY_CARD_PRONOUN,
+            detailPronoun: FRENCH_IL_ONLY_DETAIL_PRONOUN,
+            sourcePronounKey: FRENCH_IL_ONLY_CARD_PRONOUN,
+            conjugated: canonicalConjugation,
+        };
+    };
+
+    const buildFlashcardPronounEntries = (verbInfinitive, conjugations, options = {}) => {
+        if (!conjugations) return [];
+
+        const impersonalEntry = resolveFrenchIlOnlyConjugation(verbInfinitive, conjugations);
+        if (isFrenchIlOnlyVerb(verbInfinitive)) {
+            return impersonalEntry ? [{
+                pronoun: impersonalEntry.cardPronoun,
+                pronounKey: impersonalEntry.sourcePronounKey,
+                conjugated: impersonalEntry.conjugated,
+            }] : [];
+        }
+
+        const entries = [];
+        const availablePronouns = pronouns.filter((pronounKey) => conjugations[pronounKey]);
+        for (const pronounKey of availablePronouns) {
+            if (options.balancedPronouns && pronounKey.includes('/')) {
+                for (const pronoun of pronounKey.split('/')) {
+                    entries.push({
+                        pronoun,
+                        pronounKey,
+                        conjugated: conjugations[pronounKey],
+                    });
+                }
+                continue;
+            }
+
+            let pronoun = pronounKey;
+            if (pronounKey.includes('/')) {
+                const variants = pronounKey.split('/');
+                pronoun = variants[Math.floor(Math.random() * variants.length)];
+            }
+            entries.push({
+                pronoun,
+                pronounKey,
+                conjugated: conjugations[pronounKey],
+            });
+        }
+
+        return entries;
+    };
+
+    const buildVerbDetailRows = (verbInfinitive, conjugations) => {
+        const impersonalEntry = resolveFrenchIlOnlyConjugation(verbInfinitive, conjugations);
+        if (isFrenchIlOnlyVerb(verbInfinitive)) {
+            return [{
+                pronounLabel: FRENCH_IL_ONLY_DETAIL_PRONOUN,
+                pronounAudio: FRENCH_IL_ONLY_DETAIL_PRONOUN,
+                pronounKey: impersonalEntry ? impersonalEntry.sourcePronounKey : FRENCH_IL_ONLY_CARD_PRONOUN,
+                conjugated: impersonalEntry ? impersonalEntry.conjugated : '—',
+            }];
+        }
+
+        return pronouns.map((pronoun) => ({
+            pronounLabel: pronoun,
+            pronounAudio: pronoun,
+            pronounKey: pronoun,
+            conjugated: conjugations?.[pronoun] || '—',
+        }));
+    };
+
+    const normalizeRequestedCardPronoun = (pronoun, verbInfinitive) => {
+        const normalized = String(pronoun || '').trim();
+        if (!normalized) return normalized;
+        if (isFrenchIlOnlyVerb(verbInfinitive)) {
+            return FRENCH_IL_ONLY_CARD_PRONOUN;
+        }
+        return normalized;
+    };
+
     const tenseAudioId = (tenseKey) => `shared:tense:${tenseKey}`;
     const pronounAudioId = (pronoun) => `shared:pronoun:${canonicalPronounKey(pronoun)}`;
     const lemmaAudioId = (infinitive) => `lemma:${infinitive}`;
@@ -19681,6 +19940,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const DETAIL_ROUTE_VERB_PARAM = 'verb';
     const DETAIL_ROUTE_TENSE_PARAM = 'tense';
+    const DETAIL_ROUTE_PRONOUN_PARAM = 'pronoun';
     const REOPEN_MESSAGE_DEBUG_PARAM = 'backAfter';
 
     const parseBackAfterOverrideMs = () => {
@@ -20114,21 +20374,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const shouldSuppressTapAudio = () => Date.now() < suppressTapAudioUntil;
 
-    const copyTextToClipboard = async (text) => {
+    const showTransientFeedback = (message, duration = 1100) => {
+        const trimmed = String(message || '').trim();
+        if (!trimmed) return;
+        if (dictationResultEl && typeof showDictationOverlay === 'function') {
+            showDictationOverlay(trimmed, 'prompt', duration, false, true);
+            return;
+        }
+        window.alert(trimmed);
+    };
+
+    const legacyCopyTextToClipboard = (text) => {
         const trimmed = String(text || '').trim();
-        if (!trimmed || !navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+        if (!trimmed || !document.body) {
+            return false;
+        }
+        const activeElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        const textarea = document.createElement('textarea');
+        textarea.value = trimmed;
+        textarea.setAttribute('readonly', 'readonly');
+        textarea.setAttribute('aria-hidden', 'true');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.left = '-9999px';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+
+        let copied = false;
+        try {
+            copied = !!document.execCommand('copy');
+        } catch (error) {
+            console.warn('Legacy clipboard copy failed:', error);
+        } finally {
+            document.body.removeChild(textarea);
+            if (activeElement && typeof activeElement.focus === 'function') {
+                try {
+                    activeElement.focus({ preventScroll: true });
+                } catch (error) {
+                    activeElement.focus();
+                }
+            }
+        }
+        return copied;
+    };
+
+    const copyTextToClipboard = async (text, options = {}) => {
+        const trimmed = String(text || '').trim();
+        const successMessage = typeof options.successMessage === 'string'
+            ? options.successMessage
+            : `Copied: ${trimmed}`;
+        if (!trimmed) {
             return false;
         }
         try {
-            await navigator.clipboard.writeText(trimmed);
-            if (navigator.vibrate) navigator.vibrate(12);
-            if (dictationResultEl && typeof showDictationOverlay === 'function') {
-                showDictationOverlay(`Copied: ${trimmed}`, 'prompt', 1100, false, true);
+            if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+                await navigator.clipboard.writeText(trimmed);
+            } else if (!legacyCopyTextToClipboard(trimmed)) {
+                return false;
             }
+            if (navigator.vibrate) navigator.vibrate(12);
+            showTransientFeedback(successMessage);
             return true;
         } catch (error) {
             console.warn('Clipboard copy failed:', error);
-            return false;
+            const copied = legacyCopyTextToClipboard(trimmed);
+            if (copied) {
+                if (navigator.vibrate) navigator.vibrate(12);
+                showTransientFeedback(successMessage);
+            }
+            return copied;
         }
     };
 
@@ -21021,10 +21338,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- State ---
     let currentCard = null;
     let currentDetailVerb = null;
+    let currentDetailRouteState = null;
     let history = [];
     let historyIndex = -1;
     let isAnswerVisible = false;
     let recentCardKeys = []; // track last N card keys to avoid immediate repeats
+    let sharedEntryTutorialPending = false;
     const IDLE_HIDDEN_NUDGE_DELAY_MS = 7000;
     const IDLE_REVEALED_NUDGE_DELAY_MS = 6000;
     let idleGuidanceTimeout = null;
@@ -21071,8 +21390,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'ready';
     };
 
+    const isTutorialDeferredForSharedEntry = () => !!(
+        sharedEntryTutorialPending
+        && currentCard
+        && currentCard._sharedDetailEntryCard
+    );
+
     const getEffectiveMicMode = () => (
-        tutorialState.active
+        tutorialState.active && !isTutorialDeferredForSharedEntry()
             ? 'practiceAfterReveal'
             : (cardGenerationOptions.useMicToAnswer ? 'answerByVoice' : 'practiceAfterReveal')
     );
@@ -21085,6 +21410,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const isTutorialMicLocked = () => {
+        if (isTutorialDeferredForSharedEntry()) return false;
         if (!tutorialState.active) return false;
         return tutorialState.stepIndex < 2 || (tutorialState.stepIndex === 2 && !isAnswerVisible);
     };
@@ -21102,7 +21428,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getUsageAvailability = () => {
         if (!FRENCH_FLASHCARD_FEATURES.usageNuggetVisibilityToggle) return 'hidden';
-        if (tutorialState.active) return 'tutorial-locked';
+        if (tutorialState.active && !isTutorialDeferredForSharedEntry()) return 'tutorial-locked';
         if (!currentCard || currentCard.isPhraseMode) return 'phase-disabled';
         if (!currentCard._hasUsages) return 'no-content';
         return 'enabled';
@@ -21143,7 +21469,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const syncMicModeSettingUi = () => {
         const correctDictationToggle = document.getElementById('correct-dictation-toggle');
         if (!correctDictationToggle) return;
-        const tutorialLocksMicMode = tutorialState.active;
+        const tutorialLocksMicMode = tutorialState.active && !isTutorialDeferredForSharedEntry();
         correctDictationToggle.checked = !!cardGenerationOptions.useMicToAnswer;
         correctDictationToggle.disabled = tutorialLocksMicMode;
         if (correctDictationHelperEl) {
@@ -21154,6 +21480,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getCurrentTutorialHint = () => {
+        if (isTutorialDeferredForSharedEntry()) return '';
         if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
         const step = TUTORIAL_STEPS[tutorialState.stepIndex];
         if (!step) return '';
@@ -21162,6 +21489,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getCurrentTutorialHeading = () => {
+        if (isTutorialDeferredForSharedEntry()) return '';
         if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
         const step = TUTORIAL_STEPS[tutorialState.stepIndex];
         if (!step) return '';
@@ -22307,28 +22635,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        const availablePronouns = pronouns.filter(p => conjugations[p]);
-                        for (const pronounKey of availablePronouns) {
-                            if (cardGenerationOptions.balancedPronouns && pronounKey.includes('/')) {
-                                // Balanced: one entry per individual pronoun with equal weight
-                                const options = pronounKey.split('/');
-                                for (const pronoun of options) {
-                                    weightedDeck.push({
-                                        card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
-                                        score: tenseWeight
-                                    });
-                                }
-                            } else {
-                                let pronoun = pronounKey;
-                                if (pronounKey.includes('/')) {
-                                    const options = pronounKey.split('/');
-                                    pronoun = options[Math.floor(Math.random() * options.length)];
-                                }
-                                weightedDeck.push({
-                                    card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
-                                    score: tenseWeight
-                                });
-                            }
+                        const pronounEntries = buildFlashcardPronounEntries(verbInfo.infinitive, conjugations, {
+                            balancedPronouns: cardGenerationOptions.balancedPronouns,
+                        });
+                        for (const pronounEntry of pronounEntries) {
+                            weightedDeck.push({
+                                card: {
+                                    verb: verbInfo,
+                                    tense: tenseName,
+                                    pronoun: pronounEntry.pronoun,
+                                    pronounKey: pronounEntry.pronounKey,
+                                    conjugated: pronounEntry.conjugated,
+                                },
+                                score: tenseWeight
+                            });
                         }
                     }
                 }
@@ -22358,27 +22678,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tenseData = tenses[tenseName];
                     const conjugations = tenseData && tenseData[verbInfo.infinitive];
                     if (conjugations) {
-                        const availablePronouns = pronouns.filter(p => conjugations[p]);
-                        for (const pronounKey of availablePronouns) {
-                            if (cardGenerationOptions.balancedPronouns && pronounKey.includes('/')) {
-                                const options = pronounKey.split('/');
-                                for (const pronoun of options) {
-                                    weightedDeck.push({
-                                        card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
-                                        score: score
-                                    });
-                                }
-                            } else {
-                                let pronoun = pronounKey;
-                                if (pronounKey.includes('/')) {
-                                    const options = pronounKey.split('/');
-                                    pronoun = options[Math.floor(Math.random() * options.length)];
-                                }
-                                weightedDeck.push({
-                                    card: { verb: verbInfo, tense: tenseName, pronoun, conjugated: conjugations[pronounKey] },
-                                    score: score
-                                });
-                            }
+                        const pronounEntries = buildFlashcardPronounEntries(verbInfo.infinitive, conjugations, {
+                            balancedPronouns: cardGenerationOptions.balancedPronouns,
+                        });
+                        for (const pronounEntry of pronounEntries) {
+                            weightedDeck.push({
+                                card: {
+                                    verb: verbInfo,
+                                    tense: tenseName,
+                                    pronoun: pronounEntry.pronoun,
+                                    pronounKey: pronounEntry.pronounKey,
+                                    conjugated: pronounEntry.conjugated,
+                                },
+                                score: score
+                            });
                         }
                     }
                 }
@@ -22588,7 +22901,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (verbHintEl) verbHintEl.textContent = card.verb.hint || '';
         if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^[\(|\)]/g, '');
         if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
-        let pronounDisplay = card.pronoun;
+        let pronounDisplay = isFrenchIlOnlyVerb(card.verb.infinitive)
+            ? FRENCH_IL_ONLY_DETAIL_PRONOUN
+            : card.pronoun;
         if (pronounDisplay.includes('/')) {
             pronounDisplay = pronounDisplay.split('/').map(p => (pronounEmojiMap[p.trim()] || '') + ' ' + p.trim()).join(' / ');
         } else {
@@ -22706,6 +23021,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextCard = () => {
         autoskipLock = false;
         stopActiveDictation({ abort: true, silent: true });
+        if (isTutorialDeferredForSharedEntry()) {
+            sharedEntryTutorialPending = false;
+            if (showTutorialIntroCard()) {
+                refreshTutorialAwareUi();
+                return;
+            }
+        }
         if (currentCard && currentCard.verb) {
             logSessionEntry(currentCard.verb.infinitive, currentCard.tense, currentCard.pronoun, 'next');
         }
@@ -22734,7 +23056,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleNext = () => {
         if (isAnswerVisible) {
-            if (tutorialState.active) {
+            if (tutorialState.active && !isTutorialDeferredForSharedEntry()) {
                 completeTutorialIfNeeded();
             }
             hideAnswer();
@@ -22847,22 +23169,182 @@ document.addEventListener('DOMContentLoaded', () => {
         showView('mnemonics-view');
     };
 
-    const showVerbDetail = (verbInfinitive, tenseToFocus = null) => {
-        const verb = uniqueVerbs.find(v => v.infinitive === verbInfinitive);
+    const normalizeDetailRouteTense = (tense) => (tense && tenses[tense]) ? tense : null;
+
+    const normalizeDetailRoutePronoun = (pronoun) => {
+        const normalized = String(pronoun || '').trim();
+        return normalized || null;
+    };
+
+    const hydrateDetailRouteCard = ({ verbInfinitive, tenseToFocus, pronoun }) => {
+        const normalizedPronoun = normalizeDetailRoutePronoun(pronoun);
+        const normalizedTense = normalizeDetailRouteTense(tenseToFocus);
+        if (!verbInfinitive || !normalizedPronoun || !normalizedTense) {
+            return null;
+        }
+        return generateCardFromParams(normalizedPronoun, verbInfinitive, normalizedTense);
+    };
+
+    const resolveVerbDetailRouteState = (route = {}) => {
+        const verbInfinitive = String(route.verbInfinitive || route.verb || '').trim();
+        if (!verbInfinitive) return null;
+        const tenseToFocus = normalizeDetailRouteTense(route.tenseToFocus || route.tense || route.card?.tense);
+        const pronoun = normalizeDetailRoutePronoun(route.pronoun || route.card?.pronoun);
+        let card = route.card || null;
+        if (card && (!card.verb || card.verb.infinitive !== verbInfinitive || (tenseToFocus && card.tense !== tenseToFocus))) {
+            card = null;
+        }
+        if (!card) {
+            card = hydrateDetailRouteCard({ verbInfinitive, tenseToFocus, pronoun });
+        }
+        return {
+            verbInfinitive,
+            tenseToFocus,
+            pronoun: card ? (normalizeDetailRoutePronoun(card.pronoun) || pronoun) : pronoun,
+            card,
+        };
+    };
+
+    const buildVerbDetailHistoryState = (routeState) => ({
+        view: 'explorer-detail-view',
+        verbInfinitive: routeState.verbInfinitive,
+        tenseToFocus: routeState.tenseToFocus,
+        pronoun: routeState.card ? routeState.card.pronoun : routeState.pronoun,
+    });
+
+    const seedFlashcardHistoryWithCard = (card, options = {}) => {
+        if (!card) return false;
+        sharedEntryTutorialPending = !!options.deferTutorial;
+        if (options.deferTutorial) {
+            card._sharedDetailEntryCard = true;
+        } else {
+            delete card._sharedDetailEntryCard;
+        }
+        history = [card];
+        historyIndex = 0;
+        displayCard(card);
+        backBtn.disabled = true;
+        return true;
+    };
+
+    const buildVerbDetailShareUrl = (route = currentDetailRouteState) => {
+        const routeState = resolveVerbDetailRouteState(route || {});
+        if (!routeState) return '';
+        const url = new URL(window.location.href);
+        url.hash = '';
+        url.search = '';
+        url.searchParams.set(DETAIL_ROUTE_VERB_PARAM, routeState.verbInfinitive);
+        if (routeState.tenseToFocus) {
+            url.searchParams.set(DETAIL_ROUTE_TENSE_PARAM, routeState.tenseToFocus);
+        }
+        if (routeState.card && routeState.card.pronoun) {
+            url.searchParams.set(DETAIL_ROUTE_PRONOUN_PARAM, routeState.card.pronoun);
+        }
+        return url.toString();
+    };
+
+    const buildVerbDetailSharePayload = (route = currentDetailRouteState) => {
+        const routeState = resolveVerbDetailRouteState(route || {});
+        if (!routeState) return null;
+        const tenseLabel = routeState.tenseToFocus
+            ? (tenseKeyToLabel[routeState.tenseToFocus] || routeState.tenseToFocus)
+            : '';
+        const pronoun = routeState.card?.pronoun || null;
+        const text = pronoun && tenseLabel
+            ? `Open ${routeState.verbInfinitive} in ${tenseLabel} for ${pronoun}.`
+            : tenseLabel
+                ? `Open ${routeState.verbInfinitive} in ${tenseLabel}.`
+                : `Open ${routeState.verbInfinitive} in Les Verbes.`;
+        return {
+            routeState,
+            title: `Les Verbes · ${routeState.verbInfinitive}`,
+            text,
+            url: buildVerbDetailShareUrl(routeState),
+        };
+    };
+
+    const shareCurrentVerbDetail = async () => {
+        const payload = buildVerbDetailSharePayload();
+        if (!payload || !payload.url) return;
+
+        const shareData = {
+            title: payload.title,
+            text: payload.text,
+            url: payload.url,
+        };
+
+        if (typeof navigator.share === 'function') {
+            try {
+                await navigator.share(shareData);
+                return;
+            } catch (error) {
+                if (error && error.name === 'AbortError') {
+                    return;
+                }
+                console.warn('Native share failed, falling back to clipboard:', error);
+            }
+        }
+
+        const copied = await copyTextToClipboard(payload.url, { successMessage: 'Link copied' });
+        if (!copied) {
+            showTransientFeedback('Could not copy link');
+        }
+    };
+
+    const copyCurrentVerbDetailLink = async () => {
+        const payload = buildVerbDetailSharePayload();
+        if (!payload || !payload.url) return;
+        const copied = await copyTextToClipboard(payload.url, { successMessage: 'Link copied' });
+        if (!copied) {
+            showTransientFeedback('Could not copy link');
+        }
+    };
+
+    const canNativeShareVerbDetail = () => typeof navigator.share === 'function';
+
+    const setVerbDetailShareMenuOpen = (shareShell, isOpen) => {
+        if (!(shareShell instanceof HTMLElement)) return;
+        shareShell.classList.toggle('is-open', isOpen);
+        const toggleButton = shareShell.querySelector('.verb-detail-share-toggle-btn');
+        if (toggleButton instanceof HTMLElement) {
+            toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+    };
+
+    const closeAllVerbDetailShareMenus = () => {
+        document.querySelectorAll('.verb-detail-share-shell.is-open').forEach((shareShell) => {
+            setVerbDetailShareMenuOpen(shareShell, false);
+        });
+    };
+
+    const toggleVerbDetailShareMenu = (shareShell) => {
+        if (!(shareShell instanceof HTMLElement)) return;
+        const shouldOpen = !shareShell.classList.contains('is-open');
+        closeAllVerbDetailShareMenus();
+        if (shouldOpen) {
+            setVerbDetailShareMenuOpen(shareShell, true);
+        }
+    };
+
+    const showVerbDetail = (verbInfinitive, tenseToFocus = null, options = {}) => {
+        const routeState = resolveVerbDetailRouteState({
+            verbInfinitive,
+            tenseToFocus,
+            card: options.card || null,
+        });
+        if (!routeState) return;
+        const verb = uniqueVerbs.find(v => v.infinitive === routeState.verbInfinitive);
         if (!verb) return;
-        recordVerbDetailOpen(verbInfinitive);
+        recordVerbDetailOpen(routeState.verbInfinitive);
         currentDetailVerb = verb;
+        currentDetailRouteState = routeState;
         showView('explorer-detail-view', false);
         window.history.pushState(
-            {
-                view: 'explorer-detail-view',
-                verbInfinitive: verb.infinitive,
-                tenseToFocus: normalizeDetailRouteTense(tenseToFocus),
-            },
+            buildVerbDetailHistoryState(routeState),
             '',
-            buildVerbDetailUrl(verb.infinitive, tenseToFocus)
+            buildVerbDetailUrl(routeState)
         );
-        populateVerbDetail(verb, tenseToFocus);
+        populateVerbDetail(verb, routeState.tenseToFocus);
     };
 
     const highlightAndScrollToTense = (tenseToFocus) => {
@@ -22983,9 +23465,96 @@ document.addEventListener('DOMContentLoaded', () => {
     const populateVerbDetail = (verb, tenseToFocus = null) => {
         verbDetailContainer.innerHTML = ''; // Clear previous content
         verbDetailContainer.scrollTop = 0;
+        closeAllVerbDetailShareMenus();
 
         const header = document.createElement('div');
         header.className = 'verb-detail-header';
+        const shareShell = document.createElement('div');
+        shareShell.className = 'verb-detail-share-shell';
+
+        const shareButton = document.createElement('button');
+        shareButton.type = 'button';
+        shareButton.className = 'verb-detail-share-toggle-btn';
+        shareButton.setAttribute('aria-label', 'Open share options');
+        shareButton.setAttribute('aria-haspopup', 'menu');
+        shareButton.setAttribute('aria-expanded', 'false');
+        shareButton.title = 'Share options';
+        shareButton.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <path d="M8.7 10.7l6.6-3.4"></path>
+                <path d="M8.7 13.3l6.6 3.4"></path>
+            </svg>
+            <span>Share</span>
+        `;
+        shareButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            toggleVerbDetailShareMenu(shareShell);
+        });
+        shareShell.appendChild(shareButton);
+
+        const shareBackdrop = document.createElement('button');
+        shareBackdrop.type = 'button';
+        shareBackdrop.className = 'verb-detail-share-backdrop';
+        shareBackdrop.setAttribute('aria-label', 'Close share options');
+        shareBackdrop.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            closeAllVerbDetailShareMenus();
+        });
+        shareShell.appendChild(shareBackdrop);
+
+        const shareMenu = document.createElement('div');
+        shareMenu.className = 'verb-detail-share-menu';
+        shareMenu.setAttribute('role', 'menu');
+
+        if (canNativeShareVerbDetail()) {
+            const nativeShareButton = document.createElement('button');
+            nativeShareButton.type = 'button';
+            nativeShareButton.className = 'verb-detail-share-menu-btn';
+            nativeShareButton.setAttribute('role', 'menuitem');
+            nativeShareButton.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <path d="M8.7 10.7l6.6-3.4"></path>
+                    <path d="M8.7 13.3l6.6 3.4"></path>
+                </svg>
+                <span>Share…</span>
+            `;
+            nativeShareButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                closeAllVerbDetailShareMenus();
+                await shareCurrentVerbDetail();
+            });
+            shareMenu.appendChild(nativeShareButton);
+        }
+
+        const copyButton = document.createElement('button');
+        copyButton.type = 'button';
+        copyButton.className = 'verb-detail-share-menu-btn';
+        copyButton.setAttribute('role', 'menuitem');
+        copyButton.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy link</span>
+        `;
+        copyButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            closeAllVerbDetailShareMenus();
+            await copyCurrentVerbDetailLink();
+        });
+        shareMenu.appendChild(copyButton);
+        shareShell.appendChild(shareMenu);
+        header.appendChild(shareShell);
         const detailTranslation = cleanTranslation(verb.infinitive, verb.translation);
         const infinitiveSpan = document.createElement('span');
         infinitiveSpan.className = 'infinitive tappable-audio';
@@ -23022,22 +23591,23 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.className = 'conjugation-grid';
 
             const conjugationsForVerb = tenses[tenseName][verb.infinitive];
-            pronouns.forEach(pronoun => {
-                const conjugation = conjugationsForVerb[pronoun] || '—'; // Fallback for missing conjugations
+            const detailRows = buildVerbDetailRows(verb.infinitive, conjugationsForVerb);
+            detailRows.forEach((row) => {
+                const conjugation = row.conjugated || '—';
                 const item = document.createElement('div');
                 item.className = 'conjugation-item';
                 const pronounSpan = document.createElement('span');
                 pronounSpan.className = 'pronoun tappable-audio';
-                pronounSpan.dataset.speak = pronoun;
-                pronounSpan.dataset.audioId = pronounAudioId(pronoun);
-                pronounSpan.textContent = pronoun;
+                pronounSpan.dataset.speak = row.pronounAudio;
+                pronounSpan.dataset.audioId = pronounAudioId(row.pronounAudio);
+                pronounSpan.textContent = row.pronounLabel;
                 item.appendChild(pronounSpan);
 
                 const conjugationSpan = document.createElement('span');
                 conjugationSpan.className = conjugation === '—' ? 'conjugation' : 'conjugation tappable-audio';
                 conjugationSpan.dataset.speak = conjugation === '—' ? '' : conjugation;
                 if (conjugation !== '—') {
-                    conjugationSpan.dataset.audioId = conjugationAudioId(verb.infinitive, tenseName, pronoun);
+                    conjugationSpan.dataset.audioId = conjugationAudioId(verb.infinitive, tenseName, row.pronounKey);
                 }
                 conjugationSpan.textContent = conjugation;
                 item.appendChild(conjugationSpan);
@@ -23069,15 +23639,14 @@ document.addEventListener('DOMContentLoaded', () => {
         highlightAndScrollToTense(tenseToFocus);
     };
 
-    const normalizeDetailRouteTense = (tense) => (tense && tenses[tense]) ? tense : null;
-
     const getVerbDetailRouteParams = () => {
         const params = new URLSearchParams(window.location.search);
         const verbInfinitive = params.get(DETAIL_ROUTE_VERB_PARAM);
         if (!verbInfinitive) return null;
         return {
             verbInfinitive,
-            tenseToFocus: normalizeDetailRouteTense(params.get(DETAIL_ROUTE_TENSE_PARAM))
+            tenseToFocus: normalizeDetailRouteTense(params.get(DETAIL_ROUTE_TENSE_PARAM)),
+            pronoun: normalizeDetailRoutePronoun(params.get(DETAIL_ROUTE_PRONOUN_PARAM)),
         };
     };
 
@@ -23095,17 +23664,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const buildUrlForView = (viewId) => buildCurrentUrl((params) => {
         params.delete(DETAIL_ROUTE_VERB_PARAM);
         params.delete(DETAIL_ROUTE_TENSE_PARAM);
+        params.delete(DETAIL_ROUTE_PRONOUN_PARAM);
     }, viewId);
 
-    const buildVerbDetailUrl = (verbInfinitive, tenseToFocus = null) => buildCurrentUrl((params) => {
-        params.set(DETAIL_ROUTE_VERB_PARAM, verbInfinitive);
-        const normalizedTense = normalizeDetailRouteTense(tenseToFocus);
-        if (normalizedTense) {
-            params.set(DETAIL_ROUTE_TENSE_PARAM, normalizedTense);
-        } else {
-            params.delete(DETAIL_ROUTE_TENSE_PARAM);
-        }
-    }, '');
+    const buildVerbDetailUrl = (routeOrVerb, tenseToFocus = null, card = null) => {
+        const routeState = typeof routeOrVerb === 'object'
+            ? resolveVerbDetailRouteState(routeOrVerb)
+            : resolveVerbDetailRouteState({ verbInfinitive: routeOrVerb, tenseToFocus, card });
+        if (!routeState) return buildUrlForView('explorer-detail-view');
+        return buildCurrentUrl((params) => {
+            params.set(DETAIL_ROUTE_VERB_PARAM, routeState.verbInfinitive);
+            if (routeState.tenseToFocus) {
+                params.set(DETAIL_ROUTE_TENSE_PARAM, routeState.tenseToFocus);
+            } else {
+                params.delete(DETAIL_ROUTE_TENSE_PARAM);
+            }
+            if (routeState.card && routeState.card.pronoun) {
+                params.set(DETAIL_ROUTE_PRONOUN_PARAM, routeState.card.pronoun);
+            } else {
+                params.delete(DETAIL_ROUTE_PRONOUN_PARAM);
+            }
+        }, '');
+    };
 
     const focusSearchBarForEntry = ({ clear = false } = {}) => {
         if (!searchBar) return;
@@ -23129,22 +23709,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const openVerbDetailFromRoute = ({ verbInfinitive, tenseToFocus }, useReplaceState = false) => {
-        const verb = uniqueVerbs.find(v => v.infinitive === verbInfinitive);
+    const openVerbDetailFromRoute = (route, useReplaceState = false) => {
+        const routeState = resolveVerbDetailRouteState(route || {});
+        if (!routeState) return false;
+        const verb = uniqueVerbs.find(v => v.infinitive === routeState.verbInfinitive);
         if (!verb) return false;
         recordVerbDetailOpen(verb.infinitive);
         currentDetailVerb = verb;
+        currentDetailRouteState = routeState;
         showView('explorer-detail-view', false);
-        populateVerbDetail(verb, tenseToFocus);
+        populateVerbDetail(verb, routeState.tenseToFocus);
         const method = useReplaceState ? 'replaceState' : 'pushState';
         window.history[method](
-            {
-                view: 'explorer-detail-view',
-                verbInfinitive: verb.infinitive,
-                tenseToFocus: normalizeDetailRouteTense(tenseToFocus),
-            },
+            buildVerbDetailHistoryState(routeState),
             '',
-            buildVerbDetailUrl(verb.infinitive, tenseToFocus)
+            buildVerbDetailUrl(routeState)
         );
         return true;
     };
@@ -23634,8 +24213,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     goToVerbBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (currentCard) {
-            showVerbDetail(currentCard.verb.infinitive, currentCard.tense);
+        if (currentCard && currentCard.verb) {
+            showVerbDetail(currentCard.verb.infinitive, currentCard.tense, { card: currentCard });
         }
     });
 
@@ -23842,6 +24421,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && appInstallModal && !appInstallModal.classList.contains('hidden')) {
             closeInstallInstructionsModal();
         }
+        if (e.key === 'Escape') {
+            closeAllVerbDetailShareMenus();
+        }
     });
     document.addEventListener('pointerdown', () => {
         if (!isFlashcardViewActive()) return;
@@ -23883,14 +24465,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (backToOptionsBtn) {
         backToOptionsBtn.addEventListener('click', () => window.history.back());
     }
+    if (verbDetailContainer) {
+        verbDetailContainer.addEventListener('scroll', () => {
+            closeAllVerbDetailShareMenus();
+        }, { passive: true });
+    }
 
     // Event listener for browser's back/forward buttons
     window.addEventListener('popstate', (event) => {
+        closeAllVerbDetailShareMenus();
         const routedDetail = getVerbDetailRouteParams();
         if (event.state && event.state.view === 'explorer-detail-view' && event.state.verbInfinitive) {
             openVerbDetailFromRoute({
                 verbInfinitive: event.state.verbInfinitive,
                 tenseToFocus: event.state.tenseToFocus,
+                pronoun: event.state.pronoun,
             }, true);
             return;
         }
@@ -24089,12 +24678,22 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshDictationButton();
         renderTutorialHint();
         const detailRoute = getVerbDetailRouteParams();
+        const sharedDetailCard = detailRoute ? hydrateDetailRouteCard(detailRoute) : null;
+        const shouldDeferTutorialForSharedEntry = !!(
+            sharedDetailCard
+            && tutorialState.active
+            && tutorialState.stepIndex === 0
+        );
 
         // Check for URL parameters for initial card - but only if no seed is present
         const urlParams = new URLSearchParams(window.location.search);
         const hasSeed = urlParams.get('seed');
         
-        if (tutorialState.active && tutorialState.stepIndex === 0 && showTutorialIntroCard()) {
+        if (sharedDetailCard && seedFlashcardHistoryWithCard(sharedDetailCard, {
+            deferTutorial: shouldDeferTutorialForSharedEntry,
+        })) {
+            // Shared detail routes keep their exact source card underneath the detail view.
+        } else if (tutorialState.active && tutorialState.stepIndex === 0 && showTutorialIntroCard()) {
             // Keep the tutorial intro deterministic on the first card.
         } else if (!hasSeed) {
             const params = parseHashParams();
@@ -24122,13 +24721,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set initial state without adding to history, then replace it
         // to have a state for the initial page.
         showView('flashcard-view', false);
-        // Don't overwrite hash if we have card parameters
-        const currentHash = window.location.hash;
-        if (!currentHash.includes('pronoun=') || !currentHash.includes('verb=') || !currentHash.includes('tense=')) {
-            window.history.replaceState({ view: 'flashcard-view' }, '', buildUrlForView('flashcard-view'));
-        }
+        window.history.replaceState({ view: 'flashcard-view' }, '', buildUrlForView('flashcard-view'));
         if (detailRoute) {
-            openVerbDetailFromRoute(detailRoute, false);
+            openVerbDetailFromRoute({
+                ...detailRoute,
+                card: sharedDetailCard,
+            }, false);
         }
     };
 
@@ -24230,11 +24828,28 @@ document.addEventListener('DOMContentLoaded', () => {
             return null;
         }
 
+        const normalizedPronoun = normalizeRequestedCardPronoun(pronoun, verb);
+
+        if (isFrenchIlOnlyVerb(verb)) {
+            const impersonalEntry = resolveFrenchIlOnlyConjugation(verb, conjugations);
+            if (!impersonalEntry) {
+                console.warn(`No impersonal conjugation found for ${verb} ${tense}`);
+                return null;
+            }
+            return {
+                verb: verbInfo,
+                tense: tense,
+                pronoun: impersonalEntry.cardPronoun,
+                pronounKey: impersonalEntry.sourcePronounKey,
+                conjugated: impersonalEntry.conjugated,
+            };
+        }
+
         // Handle pronoun mapping - find the correct pronoun key in the data
-        let actualPronounKey = pronoun;
+        let actualPronounKey = normalizedPronoun;
         
         // If direct match doesn't exist, try to find the combined form
-        if (!conjugations[pronoun]) {
+        if (!conjugations[normalizedPronoun]) {
             // Map individual pronouns to their combined forms in the data
             const pronounMapping = {
                 'il': 'il/elle/on',
@@ -24244,14 +24859,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 'elles': 'ils/elles'
             };
             
-            if (pronounMapping[pronoun]) {
-                actualPronounKey = pronounMapping[pronoun];
+            if (pronounMapping[normalizedPronoun]) {
+                actualPronounKey = pronounMapping[normalizedPronoun];
             }
         }
         
         // Check if we have the conjugation
         if (!conjugations[actualPronounKey]) {
-            console.warn(`No conjugation found for ${pronoun} (tried ${actualPronounKey}) ${verb} ${tense}`);
+            console.warn(`No conjugation found for ${normalizedPronoun} (tried ${actualPronounKey}) ${verb} ${tense}`);
             return null;
         }
 
@@ -24259,7 +24874,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             verb: verbInfo,
             tense: tense,
-            pronoun: pronoun, // Keep the original pronoun for display
+            pronoun: normalizedPronoun, // Keep the requested pronoun for display after normalization
             pronounKey: actualPronounKey, // Store the actual key used for lookup
             conjugated: conjugations[actualPronounKey]
         };
@@ -24282,6 +24897,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Card Loading ---
     const loadCardFromHash = () => {
+        // Shared verb-detail links already hydrate the underlying flashcard during
+        // initializeApp(); re-running the legacy hash startup here would replace it
+        // with tutorial or random fallback state before Back can reveal the right card.
+        if (getVerbDetailRouteParams()) {
+            return;
+        }
         const params = parseHashParams();
         if (params.pronoun && params.verb && params.tense) {
             const card = generateCardFromParams(params.pronoun, params.verb, params.tense);
