@@ -786,6 +786,8 @@ document.addEventListener('DOMContentLoaded', () => {
         stepIndex: 0
     };
     const INSTALL_REMINDER_DISMISSED_KEY = 'installReminderDismissedV1';
+    const IDLE_NUDGE_ENABLED_KEY = 'idleNudgeEnabledV1';
+    const SHOW_TIPS_ENABLED_KEY = 'showTipsEnabledV1';
     const REOPEN_MESSAGE_LAST_OPEN_KEY = 'reopenMessageLastOpenAtV1';
     const REOPEN_MESSAGE_THRESHOLD_MS = 12 * 60 * 60 * 1000;
     const REOPEN_MESSAGE_WELCOME_BACK_THRESHOLD_MS = 24 * 60 * 60 * 1000;
@@ -826,8 +828,12 @@ document.addEventListener('DOMContentLoaded', () => {
         dismissed: false,
         badge: '',
         body: '',
+        elapsedMs: 0,
+        prompt: null,
         shownCardKey: null
     };
+    let idleNudgeEnabled = getScopedStorageItem(IDLE_NUDGE_ENABLED_KEY) !== 'false';
+    let showTipsEnabled = getScopedStorageItem(SHOW_TIPS_ENABLED_KEY) !== 'false';
     const installState = {
         deferredPrompt: null,
         installed: false,
@@ -909,6 +915,30 @@ document.addEventListener('DOMContentLoaded', () => {
         return days === 1 ? '1 day' : `${days} days`;
     };
 
+    const getElapsedOnlyReopenPrompt = () => ({
+        badge: '',
+        body: '',
+        includeElapsedLead: true
+    });
+
+    const buildReopenMessageBody = (elapsedMs, prompt) => {
+        const activePrompt = prompt || getElapsedOnlyReopenPrompt();
+        if (activePrompt.includeElapsedLead) {
+            const elapsedText = formatReopenElapsedText(elapsedMs);
+            const lead = `Welcome back. It has been ${elapsedText} since your last conjugation.`;
+            return activePrompt.body ? `${lead} ${activePrompt.body}` : lead;
+        }
+        return activePrompt.body || '';
+    };
+
+    const applyReopenMessagePrompt = () => {
+        const prompt = showTipsEnabled
+            ? (reopenMessageState.prompt || getElapsedOnlyReopenPrompt())
+            : getElapsedOnlyReopenPrompt();
+        reopenMessageState.badge = prompt.badge || '';
+        reopenMessageState.body = buildReopenMessageBody(reopenMessageState.elapsedMs, prompt);
+    };
+
     const initializeReopenMessageState = () => {
         const now = Date.now();
         const debugOverrideMs = parseBackAfterOverrideMs();
@@ -934,15 +964,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         reopenMessageState.active = true;
         reopenMessageState.dismissed = false;
-        reopenMessageState.badge = extra.badge;
+        reopenMessageState.elapsedMs = elapsed;
+        reopenMessageState.prompt = extra;
         reopenMessageState.shownCardKey = null;
-        if (extra.includeElapsedLead) {
-            const elapsedText = formatReopenElapsedText(elapsed);
-            const lead = `Welcome back. It has been ${elapsedText} since your last conjugation.`;
-            reopenMessageState.body = extra.body ? `${lead} ${extra.body}` : lead;
-        } else {
-            reopenMessageState.body = extra.body || '';
-        }
+        applyReopenMessagePrompt();
         console.log('[reopen-debug] reopen message activated', {
             badge: reopenMessageState.badge,
             body: reopenMessageState.body
@@ -1360,7 +1385,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (availability === 'safeModeBlocked') {
             title = 'Mic input is disabled in safe mode';
         } else if (micMode === 'answerByVoice') {
-            title = 'Answer by voice before reveal';
+            title = 'Use the mic to answer before reveal, or practice after reveal';
         }
 
         dictateBtn.setAttribute('title', title);
@@ -2175,6 +2200,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (persist) saveOptions();
     };
 
+    const setIdleNudgeEnabled = (enabled) => {
+        idleNudgeEnabled = !!enabled;
+        setScopedStorageItem(IDLE_NUDGE_ENABLED_KEY, idleNudgeEnabled ? 'true' : 'false');
+        clearIdleGuidanceState();
+        refreshIdleGuidance();
+    };
+
+    const syncIdleNudgeSettingUi = () => {
+        const idleNudgeToggle = document.getElementById('idle-nudge-toggle');
+        if (!idleNudgeToggle) return;
+        idleNudgeToggle.checked = idleNudgeEnabled;
+    };
+
+    const setShowTipsEnabled = (enabled) => {
+        showTipsEnabled = !!enabled;
+        setScopedStorageItem(SHOW_TIPS_ENABLED_KEY, showTipsEnabled ? 'true' : 'false');
+        applyReopenMessagePrompt();
+        renderReopenMessage();
+    };
+
+    const syncShowTipsSettingUi = () => {
+        const showTipsToggle = document.getElementById('show-tips-toggle');
+        if (!showTipsToggle) return;
+        showTipsToggle.checked = showTipsEnabled;
+    };
+
     const syncMicModeSettingUi = () => {
         const correctDictationToggle = document.getElementById('correct-dictation-toggle');
         if (!correctDictationToggle) return;
@@ -2257,6 +2308,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshTutorialAwareUi = () => {
         renderTutorialHint();
         syncMicModeSettingUi();
+        syncIdleNudgeSettingUi();
+        syncShowTipsSettingUi();
     };
 
     const clearIdleGuidanceTimer = () => {
@@ -2395,6 +2448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hasGeneratedPrompt = syncTaskPromptVisibility();
 
         if (!isFlashcardViewActive() || !currentCard) return;
+        if (!idleNudgeEnabled) return;
         if (isReopenMessageVisible()) return;
 
         if (isAnswerVisible) {
@@ -4964,6 +5018,22 @@ document.addEventListener('DOMContentLoaded', () => {
             syncMicModeSettingUi();
             refreshDictationButton();
             updateCustomPresetFromUI();
+        });
+    }
+
+    const idleNudgeToggle = document.getElementById('idle-nudge-toggle');
+    if (idleNudgeToggle) {
+        idleNudgeToggle.addEventListener('change', function() {
+            setIdleNudgeEnabled(idleNudgeToggle.checked);
+            syncIdleNudgeSettingUi();
+        });
+    }
+
+    const showTipsToggle = document.getElementById('show-tips-toggle');
+    if (showTipsToggle) {
+        showTipsToggle.addEventListener('change', function() {
+            setShowTipsEnabled(showTipsToggle.checked);
+            syncShowTipsSettingUi();
         });
     }
 
