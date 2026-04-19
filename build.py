@@ -19,6 +19,8 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DIST_DIR = os.path.join(ROOT_DIR, "dist")
 APP_DIST_DIR = os.path.join(DIST_DIR, "french")
 DESKTOP_DIR = os.path.dirname(ROOT_DIR)
+LABS_DIR = os.path.join(ROOT_DIR, "labs")
+DIST_LABS_DIR = os.path.join(DIST_DIR, "labs")
 
 HTML_TEMPLATE_PATH = os.path.join(ROOT_DIR, "index.html")
 LANDING_TEMPLATE_PATH = os.path.join(ROOT_DIR, "site_landing.html")
@@ -370,6 +372,12 @@ def build_root_site():
     if os.path.isdir(ROOT_TTS_DIR):
         remove_tree(ROOT_TTS_DIR)
         print(f"   - Removed legacy root TTS bundle at {ROOT_TTS_DIR}")
+
+    if os.path.isdir(LABS_DIR):
+        if os.path.exists(DIST_LABS_DIR):
+            remove_tree(DIST_LABS_DIR)
+        shutil.copytree(LABS_DIR, DIST_LABS_DIR)
+        print(f"   - Copied lab pages to {DIST_LABS_DIR}")
 
 
 def sync_sibling_apps():
