@@ -11,7 +11,7 @@
       })();
     </script>
     <script>
-      window.APP_BUILD_VERSION = "20260419_145645";
+      window.APP_BUILD_VERSION = "20260419_165456";
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
@@ -5757,9 +5757,8 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 })();
 
 </script>
-    <script>
-// --- verb_core_patterns.js ---
-window.verbCorePatterns = [
+    <script id="verb-core-patterns-data" type="application/json" data-source="verb_core_patterns.js">
+[
   {
     "verb": "accorder",
     "core_patterns": [
@@ -9143,12 +9142,10 @@ window.verbCorePatterns = [
       }
     ]
   }
-];
-
+]
 </script>
-    <script>
-// --- verb_usages.js ---
-window.verbUsages = [
+    <script id="verb-usages-data" type="application/json" data-source="verb_usages.js">
+[
   {
     "verb": "abandonner",
     "sense_id": "abandonner_01",
@@ -18501,8 +18498,7 @@ window.verbUsages = [
     "example_fr": "Le problème est que personne n'écoute.",
     "example_en": "The problem is that nobody listens."
   }
-];
-
+]
 </script>
     <script>
 // --- js/preRenderedTts.js ---
@@ -18983,7 +18979,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_145645') ? 'dev' : raw;
+    return !raw || raw.includes('20260419_165456') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -19271,10 +19267,44 @@ function prepareTextForSpeech(text) {
     }
 })();
 
-// ── Verb usages index ─────────────────────────────────────────────────────────
-const verbCorePatternsIndex = {};
-(function buildCorePatternsIndex() {
-    const entries = window.verbCorePatterns || [];
+// ── Deferred verb context data ────────────────────────────────────────────────
+const VERB_CORE_PATTERNS_DATA_ELEMENT_ID = 'verb-core-patterns-data';
+const VERB_USAGES_DATA_ELEMENT_ID = 'verb-usages-data';
+let verbCorePatternsIndex = null;
+let verbUsagesIndex = null;
+
+function parseDeferredJsonDataScript(elementId) {
+    const element = document.getElementById(elementId);
+    if (!element) return [];
+    try {
+        const parsed = JSON.parse(element.textContent || '[]');
+        element.remove();
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        console.warn(`[verb-context] Failed to parse deferred data from #${elementId}`, error);
+        return [];
+    }
+}
+
+function ensureVerbCorePatternsLoaded() {
+    if (!Array.isArray(window.verbCorePatterns)) {
+        window.verbCorePatterns = parseDeferredJsonDataScript(VERB_CORE_PATTERNS_DATA_ELEMENT_ID);
+    }
+    return window.verbCorePatterns;
+}
+
+function ensureVerbUsagesLoaded() {
+    if (!Array.isArray(window.verbUsages)) {
+        window.verbUsages = parseDeferredJsonDataScript(VERB_USAGES_DATA_ELEMENT_ID);
+    }
+    return window.verbUsages;
+}
+
+function getVerbCorePatternsIndex() {
+    if (verbCorePatternsIndex) return verbCorePatternsIndex;
+
+    const index = {};
+    const entries = ensureVerbCorePatternsLoaded();
     for (const entry of entries) {
         if (!entry || !entry.verb || !Array.isArray(entry.core_patterns)) continue;
         const patterns = entry.core_patterns.filter((patternEntry) =>
@@ -19283,19 +19313,26 @@ const verbCorePatternsIndex = {};
             patternEntry.pattern.trim()
         );
         if (patterns.length) {
-            verbCorePatternsIndex[entry.verb] = patterns;
+            index[entry.verb] = patterns;
         }
     }
-})();
+    verbCorePatternsIndex = index;
+    return verbCorePatternsIndex;
+}
 
-const verbUsagesIndex = {};
-(function buildUsagesIndex() {
-    const usages = window.verbUsages || [];
+function getVerbUsagesIndex() {
+    if (verbUsagesIndex) return verbUsagesIndex;
+
+    const index = {};
+    const usages = ensureVerbUsagesLoaded();
     for (const u of usages) {
-        if (!verbUsagesIndex[u.verb]) verbUsagesIndex[u.verb] = [];
-        verbUsagesIndex[u.verb].push(u);
+        if (!u || !u.verb) continue;
+        if (!index[u.verb]) index[u.verb] = [];
+        index[u.verb].push(u);
     }
-})();
+    verbUsagesIndex = index;
+    return verbUsagesIndex;
+}
 
 function appendVerbSectionHeading(container, text, className) {
     if (!text) return;
@@ -19317,7 +19354,7 @@ function renderVerbCorePatterns(container, infinitive, options = {}) {
     container.innerHTML = '';
     if (sectionClass) container.className = sectionClass;
 
-    const patterns = verbCorePatternsIndex[infinitive];
+    const patterns = getVerbCorePatternsIndex()[infinitive];
     if (!patterns || !patterns.length) return 0;
 
     appendVerbSectionHeading(container, heading, headingClass);
@@ -19363,7 +19400,7 @@ function renderVerbUsages(container, infinitive, options = {}) {
     container.innerHTML = '';
     if (sectionClass) container.className = sectionClass;
 
-    const usages = verbUsagesIndex[infinitive];
+    const usages = getVerbUsagesIndex()[infinitive];
     if (!usages || !usages.length) return 0;
 
     appendVerbSectionHeading(container, heading, headingClass);
