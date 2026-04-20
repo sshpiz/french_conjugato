@@ -1791,6 +1791,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scheduleDictationPostResultTimeout = () => {
         clearTimeout(dictationPostResultTimeout);
+        if (pressToDictateEnabled) return;
         if (!isDictating || !recognition) return;
         dictationPostResultTimeout = setTimeout(() => {
             if (isDictating && recognition) {
@@ -1801,6 +1802,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scheduleDictationLongTimeout = () => {
         clearTimeout(dictationLongTimeout);
+        if (pressToDictateEnabled) return;
         if (!isDictating || !recognition) return;
         dictationLongTimeout = setTimeout(() => {
             if (isDictating && recognition) {
@@ -1979,6 +1981,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const shouldAutoAdvanceOnMicSuccess = micMode === 'answerByVoice' && !isAnswerVisible;
         if (shouldAutoAdvanceOnMicSuccess) {
+            pendingPressToDictateRestart = !!(pressToDictateEnabled && activeDictationPointerId !== null);
             showAnswer();
             window.setTimeout(() => {
                 if (recognition) {
@@ -2294,6 +2297,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeDictationPromptText = '';
     let activeDictationPointerId = null;
     let suppressNextDictationClick = false;
+    let pendingPressToDictateRestart = false;
+    let beginDictationSessionRef = null;
 
     // Overlay helpers (already defined above)
     // function showDictationOverlay(...) {...}
@@ -2496,10 +2501,12 @@ document.addEventListener('DOMContentLoaded', () => {
             scheduleDictationLongTimeout();
             return true;
         };
+        beginDictationSessionRef = beginDictationSession;
 
         const endPressToDictateSession = (pointerId) => {
             if (activeDictationPointerId !== pointerId) return;
             activeDictationPointerId = null;
+            pendingPressToDictateRestart = false;
             if (isDictating && recognition) {
                 stopActiveDictation({ silent: false });
             }
@@ -4244,6 +4251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showAnswer = () => {
         if (!isAnswerVisible) {
+            stopActiveDictation({ abort: true, silent: true });
             if (currentCard && currentCard.verb) {
                 recordSlowRevealHintIfNeeded(currentCard, performance.now() - currentCardShownAtMs);
             }
@@ -4282,6 +4290,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Card advance logic ---
     let autoskipLock = false;
+    const maybeRestartPressToDictateOnNewCard = () => {
+        if (!pendingPressToDictateRestart) return;
+        pendingPressToDictateRestart = false;
+        if (!pressToDictateEnabled) return;
+        if (activeDictationPointerId === null) return;
+        if (isAnswerVisible || !currentCard) return;
+        if (typeof beginDictationSessionRef !== 'function') return;
+        window.setTimeout(() => {
+            if (!pressToDictateEnabled) return;
+            if (activeDictationPointerId === null) return;
+            if (isDictating || recognition) return;
+            if (isAnswerVisible || !currentCard) return;
+            beginDictationSessionRef();
+        }, 0);
+    };
+
     const nextCard = () => {
         autoskipLock = false;
         stopActiveDictation({ abort: true, silent: true });
@@ -4316,6 +4340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Do NOT start dictation automatically
         refreshTutorialAwareUi();
+        maybeRestartPressToDictateOnNewCard();
     };
 
     const handleNext = () => {
