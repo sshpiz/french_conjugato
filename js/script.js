@@ -75,7 +75,6 @@ const LEGACY_FREQUENCY_KEY_MAP = {
     'top-4000': 'top4000',
     'top-5000': 'top5000',
 };
-const BASIC_VERB_POOL_PREFERRED_KEYS = ['top20', 'top100', 'top500', 'top1000', 'top5000'];
 
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
@@ -354,6 +353,8 @@ function prepareTextForSpeech(text) {
 // ── Deferred verb context data ────────────────────────────────────────────────
 const VERB_CORE_PATTERNS_DATA_ELEMENT_ID = 'verb-core-patterns-data';
 const VERB_USAGES_DATA_ELEMENT_ID = 'verb-usages-data';
+const FRENCH_HOMOPHONE_GROUP_BY_ANSWER = window.frenchHomophoneGroupByAnswer || {};
+const FRENCH_HOMOPHONE_GROUP_META = window.frenchHomophoneGroupMeta || null;
 let verbCorePatternsIndex = null;
 let verbUsagesIndex = null;
 
@@ -574,6 +575,15 @@ function focusUsageExamplesInPanel(container, options = {}) {
 document.addEventListener('DOMContentLoaded', () => {
     startupMark('dom-bootstrap-start');
     const PACKAGED_TTS = window.preRenderedFrenchTts || null;
+    if (FRENCH_HOMOPHONE_GROUP_META) {
+        appDebugLog(
+            `homophone-groups loaded groups=${FRENCH_HOMOPHONE_GROUP_META.groupCount || 0} `
+            + `normalizedAnswers=${FRENCH_HOMOPHONE_GROUP_META.normalizedAnswerCount || 0} `
+            + `multiGroupAnswers=${FRENCH_HOMOPHONE_GROUP_META.multiGroupAnswerCount || 0}`
+        );
+    } else {
+        appDebugLog('homophone-groups unavailable; homophone dictation fallback disabled');
+    }
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
     const phrasebook = {};
@@ -1862,6 +1872,26 @@ document.addEventListener('DOMContentLoaded', () => {
         .replace(/\s+/g, ' ')
         .trim();
 
+    const getFrenchHomophoneGroupIds = (value) => {
+        const normalized = normalizeDictationText(value);
+        if (!normalized) return [];
+        const entry = FRENCH_HOMOPHONE_GROUP_BY_ANSWER[normalized];
+        if (Array.isArray(entry)) {
+            return entry.filter((groupId) => Number.isInteger(groupId));
+        }
+        return Number.isInteger(entry) ? [entry] : [];
+    };
+
+    const getFrenchSharedHomophoneGroupId = (valueA, valueB) => {
+        const idsA = getFrenchHomophoneGroupIds(valueA);
+        const idsB = getFrenchHomophoneGroupIds(valueB);
+        if (!idsA.length || !idsB.length) {
+            return null;
+        }
+        const idSetB = new Set(idsB);
+        return idsA.find((groupId) => idSetB.has(groupId)) || null;
+    };
+
     const getExpectedDictationText = (card = currentCard) => {
         if (!card) return '';
         if (card.isPhraseMode || !card.verb) {
@@ -1943,6 +1973,34 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
+    const getFrenchHomophoneGroupFallbackResult = (transcript, card = currentCard) => {
+        if (!card || card.isPhraseMode || !card.verb) return null;
+
+        const expectedPhrase = getExpectedDictationText(card);
+        const heardNormalized = normalizeDictationText(transcript);
+        const expectedNormalized = normalizeDictationText(expectedPhrase);
+
+        if (!heardNormalized || !expectedNormalized || heardNormalized === expectedNormalized) {
+            return null;
+        }
+
+        const sharedGroupId = getFrenchSharedHomophoneGroupId(heardNormalized, expectedNormalized);
+        if (!sharedGroupId) {
+            return null;
+        }
+
+        appDebugLog(
+            `[dictation][homophone-group] matched group=${sharedGroupId} `
+            + `heard="${heardNormalized}" expected="${expectedNormalized}"`
+        );
+
+        return {
+            matched: true,
+            groupId: sharedGroupId,
+            displayText: `${String(transcript || '').trim()} / ${expectedPhrase}`,
+        };
+    };
+
     const getDictationMatchResult = (transcript, card = currentCard) => {
         if (!card) return { matched: false };
         const expected = normalizeDictationText(getExpectedDictationText(card));
@@ -1971,6 +2029,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 matched: true,
                 viaFrenchPluralHomophoneFallback: true,
                 displayText: frenchFallback.displayText,
+            };
+        }
+
+        const homophoneGroupFallback = getFrenchHomophoneGroupFallbackResult(transcript, card);
+        if (homophoneGroupFallback?.matched) {
+            return {
+                matched: true,
+                viaFrenchHomophoneGroupFallback: true,
+                displayText: homophoneGroupFallback.displayText,
+                homophoneGroupId: homophoneGroupFallback.groupId,
             };
         }
 
@@ -2514,6 +2582,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearDictationListeningTimers();
                     const successHtml = matchResult.viaFrenchPluralHomophoneFallback
                         ? `<div style="opacity:1;font-weight:700;margin-bottom:0.1em;">${escapeHtml(matchResult.displayText)}</div>`
+                        : matchResult.viaFrenchHomophoneGroupFallback
+                            ? `<div style="opacity:1;font-weight:700;margin-bottom:0.1em;">${escapeHtml(matchResult.displayText)}</div><div style="opacity:0.9;font-size:0.92em;color:#2c3e50;">Accepted as the same-sounding answer.</div>`
                         : html;
                     dictationResultEl.innerHTML = successHtml + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                     dictationResultEl.style.display = 'block';
@@ -6432,12 +6502,7 @@ function hasRareFrequencyBucket() {
 }
 
 function getBasicVerbPoolRangeKeys() {
-    const standardKeys = getStandardFrequencyKeys();
-    if (!standardKeys.length) return [];
-    const compactKeys = BASIC_VERB_POOL_PREFERRED_KEYS.filter((key) => standardKeys.includes(key));
-    const refinedMainPoolKey = getRefinedMainPoolMaxKey();
-    const result = [...new Set([...compactKeys, refinedMainPoolKey].filter(Boolean))];
-    return result.length ? result : standardKeys;
+    return getStandardFrequencyKeys();
 }
 
 function getRefinedMainPoolMaxKey() {
