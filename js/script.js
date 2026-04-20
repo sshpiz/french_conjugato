@@ -2404,13 +2404,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 scheduleDictationLongTimeout();
             };
             recognition.onend = () => {
+                const wasStopRequested = dictationStopRequested;
+                const shouldRestartWhileHeld = !!(
+                    pressToDictateEnabled &&
+                    activeDictationPointerId !== null &&
+                    !wasStopRequested &&
+                    !pendingPressToDictateRestart
+                );
                 dictationStopRequested = false;
                 recognition = null;
                 isDictating = false;
-                activeDictationPointerId = null;
                 setDictating(false);
                 refreshDictationButton();
                 clearDictationListeningTimers();
+                if (shouldRestartWhileHeld) {
+                    appDebugLog('[dictation] engine-ended-while-held restarting');
+                    window.setTimeout(() => {
+                        if (!pressToDictateEnabled) return;
+                        if (activeDictationPointerId === null) return;
+                        if (isDictating || recognition) return;
+                        if (typeof beginDictationSessionRef !== 'function') return;
+                        beginDictationSessionRef();
+                    }, 0);
+                    return;
+                }
+                if (wasStopRequested) {
+                    activeDictationPointerId = null;
+                    pendingPressToDictateRestart = false;
+                }
                 if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
                     showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
                 } else {
