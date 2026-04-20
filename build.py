@@ -49,6 +49,12 @@ ROOT_FILES_TO_COPY = [
     "landing-ukrainian.png",
     "landing-latvian.png",
 ]
+ROOT_EXTERNAL_FILES_TO_COPY = [
+    {
+        "src": os.path.join(DESKTOP_DIR, "german-verbs", "screenshot_german.png"),
+        "dest_name": "landing-german.png",
+    },
+]
 
 SIBLING_APPS = [
     {
@@ -92,6 +98,12 @@ SIBLING_APPS = [
         "source_dist": os.path.join(DESKTOP_DIR, "latvian-verbs", "dist"),
         "target_dir": os.path.join(DIST_DIR, "latvian"),
         "standalone": "darbibasvardi.html",
+    },
+    {
+        "name": "german",
+        "source_dist": os.path.join(DESKTOP_DIR, "german-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "german"),
+        "standalone": "dieverben.html",
     },
 ]
 
@@ -184,6 +196,28 @@ def write_text(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
+
+
+def ensure_sibling_favicon_alias(target_dir):
+    canonical_icon = os.path.join(target_dir, "favicon_big.png")
+    if os.path.exists(canonical_icon):
+        return
+
+    candidates = sorted(
+        name for name in os.listdir(target_dir)
+        if re.fullmatch(r"favicon(?:_[^.]+)*\.png", name)
+    )
+    if not candidates:
+        return
+
+    preferred = None
+    for name in candidates:
+        if name.startswith("favicon_"):
+            preferred = name
+            break
+    source_name = preferred or candidates[0]
+    copy_file(os.path.join(target_dir, source_name), canonical_icon)
+    print(f"   - Aliased sibling favicon {source_name} to {canonical_icon}")
 
 
 def redirect_html(target, title):
@@ -366,6 +400,13 @@ def build_root_site():
             print(f"   - Copying {src_path} to {dest_path}...")
             copy_file(src_path, dest_path)
 
+    for spec in ROOT_EXTERNAL_FILES_TO_COPY:
+        src_path = spec["src"]
+        dest_path = os.path.join(DIST_DIR, spec["dest_name"])
+        if os.path.exists(src_path):
+            print(f"   - Copying {src_path} to {dest_path}...")
+            copy_file(src_path, dest_path)
+
     copy_file(LANDING_MANIFEST_PATH, os.path.join(DIST_DIR, "manifest.json"))
     copy_file(LANDING_SW_PATH, os.path.join(DIST_DIR, "sw.js"))
 
@@ -394,6 +435,7 @@ def sync_sibling_apps():
         if os.path.exists(target_dir):
             remove_tree(target_dir)
         shutil.copytree(source_dist, target_dir)
+        ensure_sibling_favicon_alias(target_dir)
         print(f"   - Synced {app['name']} app to {target_dir}")
 
         standalone_src = os.path.join(source_dist, standalone_name)
@@ -488,6 +530,7 @@ WATCHED_FILES = [
     "landing-catalan.png",
     "landing-ukrainian.png",
     "landing-latvian.png",
+    os.path.join(DESKTOP_DIR, "german-verbs", "screenshot_german.png"),
 ]
 WATCHED_FILES = [os.path.join(ROOT_DIR, path) for path in WATCHED_FILES]
 
