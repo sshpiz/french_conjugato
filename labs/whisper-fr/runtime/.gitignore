@@ -1,0 +1,6 @@
+*
+!.gitignore
+!README.md
+!lesverbes-whisper.js
+!lesverbes-whisper.wasm
+!lesverbes-whisper.worker.js

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Conjujunkie</title>
-  <meta name="description" content="French, Portuguese, Spanish, Catalan, Russian, Greek, Ukrainian, and Latvian verb practice apps with offline support, usage examples, and focused daily drilling.">
+  <meta name="description" content="French, German, Portuguese, Spanish, Catalan, Russian, Greek, Ukrainian, and Latvian verb practice apps with offline support, usage examples, and focused daily drilling.">
   <meta name="theme-color" content="#102127">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -111,118 +111,156 @@
       font-size: 0.95rem;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
+    .apps-showcase {
       margin-top: 8px;
+    }
+
+    .apps-hub {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px 12px;
+      margin-top: 8px;
+      padding: 18px 16px 16px;
+      border-radius: 34px;
+      border: 1px solid rgba(19, 32, 38, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255, 251, 244, 0.72));
+      box-shadow: 0 18px 44px rgba(23, 36, 42, 0.08);
       align-items: stretch;
     }
 
-    .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      box-shadow: 0 14px 40px rgba(23, 36, 42, 0.08);
-      padding: 18px 18px 20px;
-      min-height: 0;
+    .app-tile {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 6px;
+      min-height: 0;
       height: 100%;
+      padding: 10px 6px 8px;
+      border-radius: 24px;
+      border: 1px solid transparent;
+      background: transparent;
+      box-shadow: none;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
     }
 
-    .app-thumb {
-      position: relative;
-      min-height: 402px;
+    .app-tile:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.42);
+      border-color: rgba(31, 89, 100, 0.12);
+    }
+
+    .app-tile-head {
       display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 6px 0 0;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
     }
 
-    .card:nth-child(1) .app-thumb {
-      transform: rotate(-0.7deg) translateY(2px);
-    }
-
-    .card:nth-child(2) .app-thumb {
-      transform: translateY(10px);
-    }
-
-    .card:nth-child(3) .app-thumb {
-      transform: rotate(0.7deg) translateY(4px);
-    }
-
-    .card:nth-child(4) .app-thumb {
-      transform: rotate(-0.45deg) translateY(8px);
-    }
-
-    .card:nth-child(5) .app-thumb {
-      transform: rotate(0.45deg) translateY(6px);
-    }
-
-    .card:nth-child(6) .app-thumb {
-      transform: rotate(-0.35deg) translateY(7px);
-    }
-
-    .card:nth-child(7) .app-thumb {
-      transform: rotate(0.3deg) translateY(5px);
-    }
-
-    .phone {
-      position: relative;
-      width: min(262px, 84%);
-      aspect-ratio: 0.64 / 1;
-      border-radius: 34px;
-      padding: 8px;
-      background:
-        linear-gradient(180deg, #434b4f, #232b2f 45%, #101517 100%);
-      box-shadow:
-        0 24px 42px rgba(24, 34, 38, 0.18),
-        0 8px 16px rgba(24, 34, 38, 0.1),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-    }
-
-    .phone::before {
-      content: "";
-      position: absolute;
-      top: 18px;
-      left: 50%;
-      width: 30%;
-      height: 12px;
-      transform: translateX(-50%);
-      border-radius: 999px;
-      background: rgba(12, 16, 18, 0.72);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-      z-index: 2;
-    }
-
-    .phone::after {
-      content: "";
-      position: absolute;
-      top: 22px;
-      left: 50%;
-      width: 10%;
-      height: 3px;
-      transform: translateX(-50%);
-      border-radius: 999px;
-      background: rgba(104, 120, 126, 0.72);
-      z-index: 3;
-    }
-
-    .phone-screen {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+    .app-icon-wrap {
+      width: 102px;
+      height: 102px;
       border-radius: 28px;
-      background: #0d1113;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(19, 32, 38, 0.06), rgba(19, 32, 38, 0.12));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
     }
 
-    .thumb-shot {
+    .app-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 24px;
+      display: block;
+    }
+
+    .app-tile-copy {
+      min-width: 0;
+      flex: 1 1 auto;
+      text-align: center;
+    }
+
+    .app-tile-copy h2 {
+      margin: 4px 0 0;
+      font-size: 1.12rem;
+      line-height: 1.08;
+    }
+
+    .app-tile-link {
+      margin-top: auto;
+      font-weight: 700;
+      color: var(--accent-deep);
+    }
+
+    .app-tile .badge,
+    .app-tile .badge-row {
+      justify-content: center;
+    }
+
+    .app-tile .badge {
+      padding: 8px 16px;
+    }
+
+    .app-tile .badge-row {
+      gap: 6px;
+    }
+
+    .app-tile .beta-badge {
+      padding: 7px 10px;
+    }
+
+    .gallery-panel {
+      overflow: hidden;
+    }
+
+    .gallery-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .gallery-head p {
+      margin: 0;
+      max-width: 640px;
+      color: rgba(19, 32, 38, 0.78);
+      line-height: 1.6;
+    }
+
+    .gallery-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 340px);
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scroll-snap-type: x proximity;
+      scrollbar-width: thin;
+    }
+
+    .shot-card {
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-radius: 24px;
+      border: 1px solid rgba(19, 32, 38, 0.1);
+      background: rgba(255,255,255,0.7);
+      padding: 14px;
+      box-shadow: 0 12px 30px rgba(23, 36, 42, 0.07);
+    }
+
+    .shot-frame {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(19, 32, 38, 0.08);
+      background: #0e1316;
+      aspect-ratio: 0.9 / 1.7;
+    }
+
+    .shot-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -230,64 +268,16 @@
       display: block;
     }
 
-    .card:nth-child(1) .thumb-shot {
-      object-position: center top;
-      transform: scale(1.03);
-      transform-origin: center top;
-    }
-
-    .card:nth-child(2) .thumb-shot {
-      object-position: center top;
-      transform: scale(1.015);
-      transform-origin: center top;
-    }
-
-    .card:nth-child(3) .thumb-shot {
-      object-position: center top;
-      transform: scale(1.02);
-      transform-origin: center top;
-    }
-
-    .card:nth-child(5) .thumb-shot {
-      object-position: center top;
-      transform: scale(1.015);
-      transform-origin: center top;
-    }
-
-    .card:nth-child(6) .thumb-shot,
-    .card:nth-child(7) .thumb-shot {
-      object-position: center top;
-      transform: scale(1.015);
-      transform-origin: center top;
-    }
-
-    .card-meta {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 2px;
-      min-height: 3.25rem;
-    }
-
-    .caption {
-      color: rgba(19, 32, 38, 0.68);
-      font-size: 0.92rem;
-      font-style: italic;
-      white-space: nowrap;
-      align-self: center;
-      text-align: right;
-    }
-
-    .card h2 {
+    .shot-card h3 {
       margin: 0;
-      font-size: 1.45rem;
+      font-size: 1.1rem;
     }
 
-    .card p {
+    .shot-card p {
       margin: 0;
-      line-height: 1.6;
-      font-size: 0.96rem;
+      color: rgba(19, 32, 38, 0.76);
+      line-height: 1.55;
+      font-size: 0.94rem;
     }
 
     .badge {
@@ -501,19 +491,44 @@
       text-underline-offset: 0.16em;
     }
 
+    @media (max-width: 1040px) {
+      .apps-hub,
+      .about-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     @media (max-width: 900px) {
-      .intro-points,
-      .grid,
+      .intro-points {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-rail {
+        grid-auto-columns: minmax(260px, 82vw);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .apps-hub {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 8px;
+        padding: 14px 10px 12px;
+      }
+
       .about-grid {
         grid-template-columns: 1fr;
       }
 
-      .app-thumb {
-        min-height: 360px;
+      .app-icon-wrap {
+        width: 92px;
+        height: 92px;
+        border-radius: 24px;
       }
 
-      .phone {
-        width: min(250px, 74vw);
+      .app-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 21px;
       }
     }
   </style>
@@ -550,146 +565,172 @@
       </div>
     </section>
 
-    <section class="grid" aria-label="Language apps">
-      <a class="card" href="/french/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-french.png" alt="">
+    <section class="apps-showcase" aria-label="Language apps">
+      <div class="apps-hub">
+        <a class="app-tile" href="/french/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/french/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge">French</span>
+              <h2>Les Verbes</h2>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge">French App</span>
-          <span class="caption">Preset controls</span>
-        </div>
-        <h2>Les Verbes</h2>
-        <span class="card-link">Enter the French app →</span>
-      </a>
+        </a>
 
-      <a class="card" href="/portugese/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-portugese.png" alt="">
+        <a class="app-tile" href="/german/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/german/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge-row">
+                <span class="badge">German</span>
+                <span class="beta-badge">Beta</span>
+              </span>
+              <h2>Die Verben</h2>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge">Portuguese App</span>
-          <span class="caption">Verb details</span>
-        </div>
-        <h2>Os Verbos</h2>
-        <span class="card-link">Enter the Portuguese app →</span>
-      </a>
+        </a>
 
-      <a class="card" href="/spanish/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-spanish.png" alt="">
+        <a class="app-tile" href="/portugese/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/portugese/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge">Portuguese</span>
+              <h2>Os Verbos</h2>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge-row">
-            <span class="badge">Spanish App</span>
-            <span class="beta-badge">Beta</span>
-          </span>
-          <span class="caption">Core conjugation drills</span>
-        </div>
-        <h2>Verbos</h2>
-        <span class="card-link">Enter the Spanish app →</span>
-      </a>
+        </a>
 
-      <a class="card" href="/catalan/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-catalan.png" alt="">
+        <a class="app-tile" href="/spanish/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/spanish/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge-row">
+                <span class="badge">Spanish</span>
+                <span class="beta-badge">Beta</span>
+              </span>
+              <h2>Verbos</h2>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge-row">
-            <span class="badge">Catalan App</span>
-            <span class="beta-badge">Beta</span>
-          </span>
-          <span class="caption">Daily drilling</span>
-        </div>
-        <h2>Verbs</h2>
-        <span class="card-link">Enter the Catalan app →</span>
-      </a>
+        </a>
 
-      <a class="card" href="/russian/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-russian.png" alt="">
+        <a class="app-tile" href="/catalan/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/catalan/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge-row">
+                <span class="badge">Catalan</span>
+                <span class="beta-badge">Beta</span>
+              </span>
+              <h2>Verbs</h2>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge">Russian App</span>
-          <span class="caption">Aspect pairs</span>
-        </div>
-        <h2>Глаголы</h2>
-        <span class="card-link">Enter the Russian app →</span>
-      </a>
+        </a>
 
-      <a class="card" href="/greek/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-greek.png" alt="">
+        <a class="app-tile" href="/russian/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/russian/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge">Russian</span>
+              <h2>Глаголы</h2>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge">Greek App</span>
-          <span class="caption">Flashcard flow</span>
-        </div>
-        <h2>Τα Ρήματα</h2>
-        <span class="card-link">Enter the Greek app →</span>
-      </a>
+        </a>
 
-      <a class="card" href="/ukrainian/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-ukrainian.png" alt="">
+        <a class="app-tile" href="/greek/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/greek/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge">Greek</span>
+              <h2>Τα Ρήματα</h2>
             </div>
           </div>
-        </div>
-        <div class="card-meta">
-          <span class="badge-row">
-            <span class="badge">Ukrainian App</span>
-            <span class="beta-badge">Beta</span>
-          </span>
-          <span class="caption">Core drills</span>
-        </div>
-        <h2>Дієслова</h2>
-        <span class="card-link">Enter the Ukrainian app →</span>
-      </a>
+        </a>
 
-      <a class="card" href="/latvian/">
-        <div class="app-thumb" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <img class="thumb-shot" src="/landing-latvian.png" alt="">
+        <a class="app-tile" href="/ukrainian/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/ukrainian/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge-row">
+                <span class="badge">Ukrainian</span>
+                <span class="beta-badge">Beta</span>
+              </span>
+              <h2>Дієслова</h2>
             </div>
           </div>
+        </a>
+
+        <a class="app-tile" href="/latvian/">
+          <div class="app-tile-head">
+            <div class="app-icon-wrap"><img class="app-icon" src="/latvian/favicon_big.png" alt=""></div>
+            <div class="app-tile-copy">
+              <span class="badge-row">
+                <span class="badge">Latvian</span>
+                <span class="beta-badge">Beta</span>
+              </span>
+              <h2>Darbības vārdi</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="panel gallery-panel">
+        <div class="gallery-head">
+          <div>
+            <h3>A quick feel for the apps</h3>
+            <p>Each language keeps the same direct drill-first spirit, but the screens start revealing their own priorities: aspect, usage, tense focus, or simply getting forms out faster.</p>
+          </div>
+          <span class="badge">Swipe Through</span>
         </div>
-        <div class="card-meta">
-          <span class="badge-row">
-            <span class="badge">Latvian App</span>
-            <span class="beta-badge">Beta</span>
-          </span>
-          <span class="caption">Verb trainer</span>
+        <div class="gallery-rail" aria-label="Screenshot gallery">
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-french.png" alt="French app screenshot"></div>
+            <h3>French</h3>
+            <p>The deepest drill stack so far: strong presets, details, and a lot of iteration around speed and recall.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-german.png" alt="German app screenshot"></div>
+            <h3>German</h3>
+            <p>The new arrival: enough to test the shape of a German verb trainer while the grammar direction gets refined.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-portugese.png" alt="Portuguese app screenshot"></div>
+            <h3>Portuguese</h3>
+            <p>Compact, drillable, and built for quick repetition without the usual streak-and-confetti nonsense.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-spanish.png" alt="Spanish app screenshot"></div>
+            <h3>Spanish</h3>
+            <p>Spanish practice keeps things fast, with cards per pronoun and a growing set of language-specific fixes.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-catalan.png" alt="Catalan app screenshot"></div>
+            <h3>Catalan</h3>
+            <p>A lean Catalan build for focused review when you want forms and not a whole lecture around them.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-russian.png" alt="Russian app screenshot"></div>
+            <h3>Russian</h3>
+            <p>Aspect and verb choice matter more here, so the interface leans into those distinctions instead of hiding them.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-greek.png" alt="Greek app screenshot"></div>
+            <h3>Greek</h3>
+            <p>Greek gets the same clean loop, with a flashcard flow that stays out of the way while you grind the forms.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-ukrainian.png" alt="Ukrainian app screenshot"></div>
+            <h3>Ukrainian</h3>
+            <p>Still evolving, but already useful for pushing through the core tense and pronoun combinations quickly.</p>
+          </article>
+          <article class="shot-card">
+            <div class="shot-frame"><img src="/landing-latvian.png" alt="Latvian app screenshot"></div>
+            <h3>Latvian</h3>
+            <p>Smaller and still rougher, but part of the same experiment: put verbs first and see how much faster speech unlocks.</p>
+          </article>
         </div>
-        <h2>Darbības vārdi</h2>
-        <span class="card-link">Enter the Latvian app →</span>
-      </a>
+      </div>
     </section>
 
     <section class="why">
@@ -822,7 +863,7 @@
       </div>
     </section>
 
-    <p class="footer">Version 20260420_022225</p>
+    <p class="footer">Version 20260420_172316</p>
     <p class="footer footer-contact">Support: <a href="mailto:lesverbes.support@gmail.com">lesverbes.support@gmail.com</a></p>
   </div>
 </body>
