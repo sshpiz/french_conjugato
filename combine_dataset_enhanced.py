@@ -453,11 +453,35 @@ def generate_verbs_data(sentences_data, verb_translations=None):
     top_100_by_usage = set(most_used_verbs[:100]) if len(most_used_verbs) >= 100 else set(most_used_verbs)
     top_500_by_usage = set(most_used_verbs[:500]) if len(most_used_verbs) >= 500 else set(most_used_verbs)
     top_1000_by_usage = set(most_used_verbs[:1000]) if len(most_used_verbs) >= 1000 else set(most_used_verbs)
+    top_2000_by_usage = set(most_used_verbs[:2000]) if len(most_used_verbs) >= 2000 else set(most_used_verbs)
+    top_3000_by_usage = set(most_used_verbs[:3000]) if len(most_used_verbs) >= 3000 else set(most_used_verbs)
+    top_4000_by_usage = set(most_used_verbs[:4000]) if len(most_used_verbs) >= 4000 else set(most_used_verbs)
+    top_5000_by_usage = set(most_used_verbs[:5000]) if len(most_used_verbs) >= 5000 else set(most_used_verbs)
     
-    print(f"Usage-based rankings: top-100 has {len(top_100_by_usage)} verbs, top-500 has {len(top_500_by_usage)} verbs, top-1000 has {len(top_1000_by_usage)} verbs")
+    print(
+        "Usage-based rankings:"
+        f" top-100 has {len(top_100_by_usage)} verbs,"
+        f" top-500 has {len(top_500_by_usage)} verbs,"
+        f" top-1000 has {len(top_1000_by_usage)} verbs,"
+        f" top-2000 has {len(top_2000_by_usage)} verbs,"
+        f" top-3000 has {len(top_3000_by_usage)} verbs,"
+        f" top-4000 has {len(top_4000_by_usage)} verbs,"
+        f" top-5000 has {len(top_5000_by_usage)} verbs"
+    )
     
     verbs_data = []
-    frequency_stats = {"top-20": 0, "top-50": 0, "top-100": 0, "top-500": 0, "top-1000": 0, "rare": 0}
+    frequency_stats = {
+        "top-20": 0,
+        "top-50": 0,
+        "top-100": 0,
+        "top-500": 0,
+        "top-1000": 0,
+        "top-2000": 0,
+        "top-3000": 0,
+        "top-4000": 0,
+        "top-5000": 0,
+        "rare": 0,
+    }
     
     for verb in all_verbs:
         usage_count = verb_usage.get(verb, 0)
@@ -473,6 +497,14 @@ def generate_verbs_data(sentences_data, verb_translations=None):
             frequency = "top-500"
         elif verb in top_1000_by_usage:
             frequency = "top-1000"
+        elif verb in top_2000_by_usage:
+            frequency = "top-2000"
+        elif verb in top_3000_by_usage:
+            frequency = "top-3000"
+        elif verb in top_4000_by_usage:
+            frequency = "top-4000"
+        elif verb in top_5000_by_usage:
+            frequency = "top-5000"
         else:
             frequency = "rare"
         
@@ -507,10 +539,25 @@ def generate_verbs_data(sentences_data, verb_translations=None):
     print(f"  Top-100: {frequency_stats['top-100']} verbs")
     print(f"  Top-500: {frequency_stats['top-500']} verbs")
     print(f"  Top-1000: {frequency_stats['top-1000']} verbs")
+    print(f"  Top-2000: {frequency_stats['top-2000']} verbs")
+    print(f"  Top-3000: {frequency_stats['top-3000']} verbs")
+    print(f"  Top-4000: {frequency_stats['top-4000']} verbs")
+    print(f"  Top-5000: {frequency_stats['top-5000']} verbs")
     print(f"  Rare: {frequency_stats['rare']} verbs")
     
     # Sort by frequency and usage
-    frequency_order = {"top-20": 0, "top-50": 1, "top-100": 2, "top-500": 3, "top-1000": 4, "rare": 5}
+    frequency_order = {
+        "top-20": 0,
+        "top-50": 1,
+        "top-100": 2,
+        "top-500": 3,
+        "top-1000": 4,
+        "top-2000": 5,
+        "top-3000": 6,
+        "top-4000": 7,
+        "top-5000": 8,
+        "rare": 9,
+    }
     verbs_data.sort(key=lambda x: (
         frequency_order[x["frequency"]], 
         -x["usage_count"], 

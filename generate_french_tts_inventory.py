@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parent
 VERBS_PATH = ROOT / "js" / "verbs.full.js"
 USAGES_PATH = ROOT / "verb_usages.js"
 OUTPUT_PATH = ROOT / "french_tts_inventory.json"
-FREQUENCY_ORDER = ["top20", "top50", "top100", "top500", "top1000", "rare"]
+FREQUENCY_ORDER = ["top20", "top50", "top100", "top500", "top1000", "top2000", "top3000", "top4000", "top5000", "rare"]
 
 FRENCH_TENSE_LABELS = {
     "present": "present",
@@ -219,6 +219,10 @@ def normalize_frequency(value):
         "top-100": "top100",
         "top-500": "top500",
         "top-1000": "top1000",
+        "top-2000": "top2000",
+        "top-3000": "top3000",
+        "top-4000": "top4000",
+        "top-5000": "top5000",
     }
     return mapping.get(value, value)
 
@@ -239,19 +243,15 @@ def resolve_allowed_frequencies(tiers):
 
     allowed = set()
     for tier in normalized:
-        if tier in {"top20", "top100", "top500", "top1000"}:
-            cutoff = {
-                "top20": "top20",
-                "top100": "top100",
-                "top500": "top500",
-                "top1000": "top1000",
-            }[tier]
-            for freq in FREQUENCY_ORDER:
-                allowed.add(freq)
-                if freq == cutoff:
-                    break
+        if tier == "rare":
+            allowed.add("rare")
         elif tier in FREQUENCY_ORDER:
-            allowed.add(tier)
+            for freq in FREQUENCY_ORDER:
+                if freq == "rare":
+                    break
+                allowed.add(freq)
+                if freq == tier:
+                    break
         else:
             raise ValueError(f"Unsupported tier: {tier}")
     return allowed
@@ -425,7 +425,7 @@ def parse_args():
     parser.add_argument(
         "--tiers",
         nargs="+",
-        help="Frequency tiers to include. Examples: top20, top100, top500, top1000, rare. top100/top500/top1000 are cumulative.",
+        help="Frequency tiers to include. Examples: top20, top100, top500, top1000, top5000, rare. Non-rare tiers are cumulative; rare is additive.",
     )
     return parser.parse_args()
 

@@ -4,8 +4,8 @@
   const ENABLED_KEY = 'preRenderedFrenchTtsEnabled';
   const DOWNLOAD_MODE_KEY = 'preRenderedFrenchTtsDownloadMode';
   const MANIFEST_VERSION_KEY = 'preRenderedFrenchTtsManifestVersion';
-  const CUMULATIVE_DOWNLOAD_TIERS = ['top20', 'top100', 'top500', 'top1000'];
-  const FREQUENCY_ORDER = ['top20', 'top50', 'top100', 'top500', 'top1000', 'rare'];
+  const CUMULATIVE_DOWNLOAD_TIERS = ['top20', 'top100', 'top500', 'top1000', 'top2000', 'top3000', 'top4000', 'top5000'];
+  const FREQUENCY_ORDER = ['top20', 'top50', 'top100', 'top500', 'top1000', 'top2000', 'top3000', 'top4000', 'top5000', 'rare'];
 
   let manifestPromise = null;
   let manifestData = null;

@@ -63,6 +63,19 @@ const formatAppVersionDetail = (version) => {
         minute: '2-digit'
     })}`;
 };
+const KNOWN_FREQUENCY_ORDER = ['top20', 'top50', 'top100', 'top500', 'top1000', 'top2000', 'top3000', 'top4000', 'top5000', 'rare'];
+const LEGACY_FREQUENCY_KEY_MAP = {
+    'top-20': 'top20',
+    'top-50': 'top50',
+    'top-100': 'top100',
+    'top-500': 'top500',
+    'top-1000': 'top1000',
+    'top-2000': 'top2000',
+    'top-3000': 'top3000',
+    'top-4000': 'top4000',
+    'top-5000': 'top5000',
+};
+const BASIC_VERB_POOL_PREFERRED_KEYS = ['top20', 'top100', 'top500', 'top1000', 'top5000'];
 
 // Feature flag to control gap sentence behavior
 const ENABLE_GAP_SENTENCES = false;
@@ -592,9 +605,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a unique list of verbs, keeping the first entry found for each infinitive.
     // This makes the app resilient to duplicate entries in the data files.
     const uniqueVerbs = Array.from(new Map(verbs.map(v => [v.infinitive, v])).values());
-    // Normalize frequency keys: old data uses "top-500" style; new code expects "top500"
-    const freqNormMap = { 'top-20':'top20','top-50':'top50','top-100':'top100','top-500':'top500','top-1000':'top1000' };
-    uniqueVerbs.forEach(v => { if (freqNormMap[v.frequency]) v.frequency = freqNormMap[v.frequency]; });
+    uniqueVerbs.forEach((verb) => {
+        const normalizedFrequency = normalizeFrequencyKey(verb.frequency);
+        if (normalizedFrequency) verb.frequency = normalizedFrequency;
+    });
     // Compute a classification category for each verb (e.g., "ir/venir-tenir", "er", "re/faire", "oir")
     uniqueVerbs.forEach(v => {
         try {
@@ -606,32 +620,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // All discovered categories for UI filters
     const allVerbCategories = [...new Set(uniqueVerbs.map(v => v.category))].sort();
 
-    // Dynamically determine frequency categories and their order from the data
-    const allFrequencies = [...new Set(uniqueVerbs.map(v => v.frequency || 'common'))];
-    
-    // Create frequency order based on frequency of occurrence in the data
-    const frequencyCount = {};
-    uniqueVerbs.forEach(verb => {
-        const freq = verb.frequency || 'common';
-        frequencyCount[freq] = (frequencyCount[freq] || 0) + 1;
-    });
-    
-    // Sort frequencies by their count (most common first) to create a natural ordering
-    const sortedFrequencies = allFrequencies.sort((a, b) => 
-        (frequencyCount[b] || 0) - (frequencyCount[a] || 0)
-    );
-    
-    // Create frequency order mapping
+    const discoveredFrequencies = [...new Set(uniqueVerbs.map((verb) => normalizeFrequencyKey(verb.frequency) || 'common'))];
+    const allFrequencies = [
+        ...KNOWN_FREQUENCY_ORDER.filter((key) => discoveredFrequencies.includes(key)),
+        ...discoveredFrequencies.filter((key) => !KNOWN_FREQUENCY_ORDER.includes(key)).sort(),
+    ];
+
     const frequencyOrder = {};
-    sortedFrequencies.forEach((freq, index) => {
-        frequencyOrder[freq] = index;
+    let nextFrequencyIndex = 0;
+    KNOWN_FREQUENCY_ORDER.forEach((freq) => {
+        frequencyOrder[freq] = nextFrequencyIndex++;
+    });
+    allFrequencies.forEach((freq) => {
+        if (!(freq in frequencyOrder)) {
+            frequencyOrder[freq] = nextFrequencyIndex++;
+        }
     });
     
     // Sort the unique `verbs` array in place. This is done once on load.
     // Note: we are sorting `uniqueVerbs`, not the original `verbs` array.
     uniqueVerbs.sort((a, b) => {
-        const freqA = frequencyOrder[a.frequency] || 99; // Use a high number for any unclassified verbs
-        const freqB = frequencyOrder[b.frequency] || 99;
+        const freqA = frequencyOrder[normalizeFrequencyKey(a.frequency)] ?? Number.MAX_SAFE_INTEGER;
+        const freqB = frequencyOrder[normalizeFrequencyKey(b.frequency)] ?? Number.MAX_SAFE_INTEGER;
         // First, sort by frequency. If they are different, the sort is done.
         if (freqA !== freqB) return freqA - freqB;
         // If frequency is the same, sort alphabetically by the infinitive.
@@ -640,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Calculate verb counts per frequency for display in options
     const frequencyCounts = uniqueVerbs.reduce((acc, verb) => {
-        const freq = verb.frequency || 'common';
+        const freq = normalizeFrequencyKey(verb.frequency) || 'common';
         acc[freq] = (acc[freq] || 0) + 1;
         return acc;
     }, {});
@@ -2169,15 +2179,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 message = `Clip-debug layout active. ${status.cachedPacks}/${status.totalPacks} groups are fully cached. Disable packaged audio to force browser TTS instead.`;
             } else if (status.cachedPacks > 0 && status.mode === 'full' && status.cachedPacks >= status.totalPacks) {
                 message = 'French audio ready offline for the full set.';
-            } else if (status.cachedPacks > 0 && ['top20', 'top100', 'top500', 'top1000', 'rare'].includes(status.mode)) {
-                const labelMap = {
-                    top20: 'top 20',
-                    top100: 'top 100',
-                    top500: 'top 500',
-                    top1000: 'top 1000',
-                    rare: 'rare verbs',
-                };
-                message = `French audio ready offline for ${labelMap[status.mode] || status.mode} (${status.cachedPacks}/${status.totalPacks} packs cached).`;
+            } else if (status.cachedPacks > 0 && [...getStandardFrequencyKeys(), 'rare'].includes(status.mode)) {
+                const tierLabel = status.mode === 'rare'
+                    ? `verbs ${describeRareFrequencyBucket()}`
+                    : formatFrequencyLabel(status.mode);
+                message = `French audio ready offline for ${tierLabel} (${status.cachedPacks}/${status.totalPacks} packs cached).`;
             } else if (status.cachedPacks > 0) {
                 message = `French audio cached for ${status.cachedPacks}/${status.totalPacks} packs.`;
             } else if (status.enabled) {
@@ -3070,7 +3076,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dynamically create frequency weights from the data.
     // The starter drill later reshapes these into the first real user-facing setup,
     // but we still initialize a sensible beginner-friendly baseline here.
-    const starterWeights = { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, rare: 0 };
+    const starterWeights = { top20: 3, top50: 1, top100: 0, top500: 0, top1000: 0, top2000: 0, top3000: 0, top4000: 0, top5000: 0, rare: 0 };
     const frequencyWeights = {};
     allFrequencies.forEach(freq => {
         frequencyWeights[freq] = starterWeights[freq] ?? 0;
@@ -3122,7 +3128,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 top100: 0.08,
                 top500: 0.14,
                 top1000: 0.2,
-                rare: 0.26,
+                top2000: 0.24,
+                top3000: 0.28,
+                top4000: 0.32,
+                top5000: 0.36,
+                rare: 0.42,
             },
             irregularVerbBonus: 0.14,
             reflexiveVerbBonus: 0.05,
@@ -3432,13 +3442,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Update weights by merging into the existing objects
                 if (savedOptions.tenseWeights) { Object.assign(tenseWeights, savedOptions.tenseWeights); }
                 if (savedOptions.frequencyWeights) {
-                    // Normalize any old hyphenated keys before merging
-                    const savedFW = savedOptions.frequencyWeights;
-                    const fwNorm = { 'top-20':'top20','top-50':'top50','top-100':'top100','top-500':'top500','top-1000':'top1000' };
-                    Object.keys(fwNorm).forEach(old => {
-                        if (old in savedFW) { savedFW[fwNorm[old]] = savedFW[old]; delete savedFW[old]; }
-                    });
-                    Object.assign(frequencyWeights, savedFW);
+                    Object.assign(frequencyWeights, normalizeFrequencyWeightsConfig(savedOptions.frequencyWeights));
                 }
 
                 // Load new filters if present (with backward-compat for old string format)
@@ -4216,10 +4220,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tenseClassMap[card.tense]) {
             verbTenseEl.classList.add(tenseClassMap[card.tense]);
         }
-        const frequencyText = verbFrequency.replace('-', ' ');
+        const normalizedVerbFrequency = normalizeFrequencyKey(verbFrequency) || String(verbFrequency || '').trim();
+        const frequencyText = formatFrequencyLabel(normalizedVerbFrequency);
         verbFrequencyEl.textContent = frequencyText;
         verbFrequencyEl.className = 'meta-info frequency-tag';
-        verbFrequencyEl.classList.add(verbFrequency.replace(/\s+/g, '-'));
+        verbFrequencyEl.classList.add((normalizedVerbFrequency || 'common').replace(/\s+/g, '-'));
         // Set verb category (classification)
         if (verbCategoryEl) {
             const category = (card.verb && card.verb.category) ? card.verb.category : classifyFrenchVerb(card.verb.infinitive);
@@ -5060,11 +5065,6 @@ document.addEventListener('DOMContentLoaded', () => {
             'subjonctifPresent': 'tense-subjonctifPresent',
             'conditionnelPresent': 'tense-conditionnelPresent'
         };
-        const freqDisplayNames = {
-            'top1000': 'Top 1000', 'top500': 'Top 500', 'top100': 'Top 100',
-            'top50': 'Top 50', 'top20': 'Top 20', 'rare': 'Rare'
-        };
-
         const createSlider = (key, value, container, weightType) => {
             if (weightType === 'tenseWeights') {
                 // Render as a colored toggle pill
@@ -5093,7 +5093,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.className = 'freq-weight-row';
                 const label = document.createElement('span');
                 label.className = 'freq-label';
-                let labelText = freqDisplayNames[key] || key.replace(/([A-Z])/g, ' $1');
+                let labelText = formatFrequencyLabel(key, { long: key === 'rare' }) || key.replace(/([A-Z])/g, ' $1');
                 const count = frequencyCounts[key] || 0;
                 if (count) labelText += ` (${count})`;
                 label.textContent = labelText;
@@ -5192,12 +5192,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const rangeRow = document.createElement('div');
             rangeRow.className = 'verb-pool-range';
             const selectedRange = getSelectedVerbPoolRangeKey();
-            getStandardFrequencyKeys().forEach((freqKey) => {
+            getBasicVerbPoolRangeKeys().forEach((freqKey) => {
                 if (!(freqKey in cardGenerationOptions.frequencyWeights)) return;
                 const pill = document.createElement('button');
                 pill.type = 'button';
                 pill.className = `verb-pool-pill${selectedRange === freqKey ? ' active' : ''}`;
-                pill.textContent = freqDisplayNames[freqKey] || freqKey;
+                pill.textContent = formatFrequencyLabel(freqKey);
                 pill.addEventListener('click', () => {
                     setVerbPoolRange(freqKey);
                     saveOptions();
@@ -5235,7 +5235,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (hasRareFrequencyBucket()) {
                 frequencyBehaviorCard.appendChild(createToggleRow(
                     'Include rare verbs',
-                    'Only shown when this language has a rare-verb bucket.',
+                    `Adds verbs ${describeRareFrequencyBucket()} as a separate outlier bucket.`,
                     (cardGenerationOptions.frequencyWeights.rare || 0) > 0,
                     (checked) => {
                         cardGenerationOptions.frequencyWeights.rare = checked ? 1 : 0;
@@ -5252,11 +5252,9 @@ document.addEventListener('DOMContentLoaded', () => {
             freqHelper.className = 'advanced-action-helper';
             freqHelper.textContent = 'Fine-tune the exact weights when the simple Verb Pool controls are not enough.';
             const detailedFrequencyContainer = document.createElement('div');
-            const freqOrder = ['top20', 'top50', 'top100', 'top500', 'top1000', 'rare'];
             const freqEntries = Object.entries(cardGenerationOptions.frequencyWeights);
             freqEntries.sort(([a], [b]) => {
-                const ai = freqOrder.indexOf(a), bi = freqOrder.indexOf(b);
-                return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+                return getFrequencySortIndex(a) - getFrequencySortIndex(b);
             });
             freqEntries.forEach(([freq, weight]) => createSlider(freq, weight, detailedFrequencyContainer, 'frequencyWeights'));
             freqCard.appendChild(detailedFrequencyContainer);
@@ -5588,10 +5586,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (packagedTtsDownloadTop1000Btn) {
         packagedTtsDownloadTop1000Btn.addEventListener('click', () => {
             if (!PACKAGED_TTS) return;
-            if (!window.confirm('Download packaged French audio through the top 1000 verbs?')) return;
+            const refinedMainPoolKey = getRefinedMainPoolMaxKey();
+            const refinedMainPoolLabel = formatFrequencyLabel(refinedMainPoolKey);
+            if (!refinedMainPoolKey || !window.confirm(`Download packaged French audio through ${refinedMainPoolLabel}?`)) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob('Downloading packaged French audio for the top 1000...', async () => {
-                await PACKAGED_TTS.downloadTier('top1000', ({ completed, total }) => {
+            void runPackagedTtsJob(`Downloading packaged French audio through ${refinedMainPoolLabel}...`, async () => {
+                await PACKAGED_TTS.downloadTier(refinedMainPoolKey, ({ completed, total }) => {
                     setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
                 });
             });
@@ -5601,9 +5601,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (packagedTtsDownloadRareBtn) {
         packagedTtsDownloadRareBtn.addEventListener('click', () => {
             if (!PACKAGED_TTS) return;
-            if (!window.confirm('Download packaged French audio for the rare-verb set?')) return;
+            if (!window.confirm(`Download packaged French audio for verbs ${describeRareFrequencyBucket()}?`)) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob('Downloading packaged French audio for rare verbs...', async () => {
+            void runPackagedTtsJob(`Downloading packaged French audio for verbs ${describeRareFrequencyBucket()}...`, async () => {
                 await PACKAGED_TTS.downloadTier('rare', ({ completed, total }) => {
                     setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
                 });
@@ -6408,13 +6408,81 @@ function deepClone(value) {
     return JSON.parse(JSON.stringify(value));
 }
 
+function normalizeFrequencyKey(value) {
+    const raw = String(value || '').trim().toLowerCase();
+    if (!raw) return '';
+    return LEGACY_FREQUENCY_KEY_MAP[raw] || raw;
+}
+
+function getFrequencySortIndex(key) {
+    const normalized = normalizeFrequencyKey(key);
+    if (!normalized) return Number.MAX_SAFE_INTEGER;
+    const knownIndex = KNOWN_FREQUENCY_ORDER.indexOf(normalized);
+    if (knownIndex !== -1) return knownIndex;
+    const discoveredIndex = allFrequencies.indexOf(normalized);
+    return discoveredIndex === -1 ? Number.MAX_SAFE_INTEGER : KNOWN_FREQUENCY_ORDER.length + discoveredIndex;
+}
+
 function getStandardFrequencyKeys() {
-    const ordered = ['top20', 'top50', 'top100', 'top500', 'top1000'];
-    return ordered.filter((key) => allFrequencies.includes(key));
+    return KNOWN_FREQUENCY_ORDER.filter((key) => key !== 'rare' && allFrequencies.includes(key));
 }
 
 function hasRareFrequencyBucket() {
     return allFrequencies.includes('rare');
+}
+
+function getBasicVerbPoolRangeKeys() {
+    const standardKeys = getStandardFrequencyKeys();
+    if (!standardKeys.length) return [];
+    const compactKeys = BASIC_VERB_POOL_PREFERRED_KEYS.filter((key) => standardKeys.includes(key));
+    const refinedMainPoolKey = getRefinedMainPoolMaxKey();
+    const result = [...new Set([...compactKeys, refinedMainPoolKey].filter(Boolean))];
+    return result.length ? result : standardKeys;
+}
+
+function getRefinedMainPoolMaxKey() {
+    const standardKeys = getStandardFrequencyKeys();
+    return standardKeys[standardKeys.length - 1] || null;
+}
+
+function formatFrequencyLabel(key, options = {}) {
+    const { long = false } = options;
+    const normalized = normalizeFrequencyKey(key);
+    if (!normalized) return '';
+    if (normalized === 'rare') {
+        return long ? 'Rare / outlier verbs' : 'Rare / outlier';
+    }
+    const topMatch = normalized.match(/^top(\d+)$/);
+    if (topMatch) {
+        return `Top ${Number(topMatch[1]).toLocaleString('en-US')}`;
+    }
+    return normalized.replace(/-/g, ' ');
+}
+
+function describeRareFrequencyBucket() {
+    const refinedMainPoolKey = getRefinedMainPoolMaxKey();
+    return refinedMainPoolKey ? `beyond ${formatFrequencyLabel(refinedMainPoolKey)}` : 'outside the main pool';
+}
+
+function normalizeFrequencyWeightsConfig(rawFrequencyWeights = {}) {
+    if (!rawFrequencyWeights || typeof rawFrequencyWeights !== 'object') return {};
+
+    const normalized = {};
+    Object.entries(rawFrequencyWeights).forEach(([key, value]) => {
+        const normalizedKey = normalizeFrequencyKey(key) || String(key || '').trim();
+        if (!normalizedKey) return;
+        normalized[normalizedKey] = value;
+    });
+
+    const refinedExtensionKeys = getStandardFrequencyKeys().filter((key) => getFrequencySortIndex(key) > getFrequencySortIndex('top1000'));
+    const hasExplicitRefinedKeys = refinedExtensionKeys.some((key) => Object.prototype.hasOwnProperty.call(normalized, key));
+    if (!hasExplicitRefinedKeys && (normalized.rare || 0) > 0) {
+        refinedExtensionKeys.forEach((key) => {
+            normalized[key] = normalized.rare;
+        });
+    }
+
+    return normalized;
 }
 
 function buildEmptyTenseWeights() {
@@ -6434,7 +6502,7 @@ function buildAllTenseWeights() {
 function buildRangeFrequencyWeights(maxKey, options = {}) {
     const weights = {};
     const rangeKeys = getStandardFrequencyKeys();
-    const maxIndex = rangeKeys.indexOf(maxKey);
+    const maxIndex = rangeKeys.indexOf(normalizeFrequencyKey(maxKey));
     rangeKeys.forEach((key, index) => {
         weights[key] = maxIndex >= 0 && index <= maxIndex ? 1 : 0;
     });
@@ -6447,17 +6515,16 @@ function buildRangeFrequencyWeights(maxKey, options = {}) {
 function buildDrillCardOptions(overrides = {}) {
     const baseTenseWeights = buildEmptyTenseWeights();
     const baseFrequencyWeights = buildRangeFrequencyWeights('top50');
+    const normalizedFrequencyWeights = normalizeFrequencyWeightsConfig(overrides.frequencyWeights || {});
     return {
         hierarchical: true,
         balancedPronouns: false,
         useMicToAnswer: false,
         reflexiveMode: 'include',
-        regularityFilter: { regular: true, irregular: true },
-        endingFilter: { er: true, ir: true, re: true, other: true },
         categoryFilter: 'all',
-        tenseWeights: { ...baseTenseWeights, ...(overrides.tenseWeights || {}) },
-        frequencyWeights: { ...baseFrequencyWeights, ...(overrides.frequencyWeights || {}) },
         ...overrides,
+        tenseWeights: { ...baseTenseWeights, ...(overrides.tenseWeights || {}) },
+        frequencyWeights: { ...baseFrequencyWeights, ...normalizedFrequencyWeights },
         regularityFilter: { regular: true, irregular: true, ...(overrides.regularityFilter || {}) },
         endingFilter: { er: true, ir: true, re: true, other: true, ...(overrides.endingFilter || {}) },
     };
@@ -6617,7 +6684,16 @@ function loadSavedDrills() {
         const raw = getScopedStorageItem(DRILL_STORAGE_KEY);
         if (!raw) return [];
         const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
+        return Array.isArray(parsed)
+            ? parsed.map((drill) => {
+                const normalizedConfig = deepClone(drill.config || {});
+                const target = normalizedConfig.cardGenerationOptions || normalizedConfig;
+                if (target && typeof target === 'object' && target.frequencyWeights) {
+                    target.frequencyWeights = normalizeFrequencyWeightsConfig(target.frequencyWeights);
+                }
+                return { ...drill, config: normalizedConfig };
+            })
+            : [];
     } catch (error) {
         console.warn('Could not load saved drills:', error);
         return [];
@@ -6659,15 +6735,16 @@ function snapshotCurrentDrillConfig() {
 }
 
 function summarizeFrequencyWeights(frequencyWeights = {}) {
-    const selectedRange = getSelectedVerbPoolRangeKey(frequencyWeights);
+    const normalizedFrequencyWeights = normalizeFrequencyWeightsConfig(frequencyWeights);
+    const selectedRange = getSelectedVerbPoolRangeKey(normalizedFrequencyWeights);
     const parts = [];
     if (selectedRange) {
-        parts.push(selectedRange.replace('top', 'top '));
+        parts.push(formatFrequencyLabel(selectedRange));
     } else {
         parts.push('custom pool');
     }
-    if ((frequencyWeights.rare || 0) > 0) {
-        parts.push('rare on');
+    if ((normalizedFrequencyWeights.rare || 0) > 0) {
+        parts.push('rare/outliers on');
     }
     return parts.join(' · ');
 }
@@ -6704,12 +6781,13 @@ function setVerbPoolRange(maxKey) {
 }
 
 function getSelectedVerbPoolRangeKey(frequencyWeights = cardGenerationOptions.frequencyWeights) {
+    const normalizedFrequencyWeights = normalizeFrequencyWeightsConfig(frequencyWeights);
     const rangeKeys = getStandardFrequencyKeys();
     let selected = null;
     for (const freqKey of rangeKeys) {
         const index = rangeKeys.indexOf(freqKey);
-        const prefixEnabled = rangeKeys.slice(0, index + 1).every((key) => (frequencyWeights[key] || 0) > 0);
-        const suffixDisabled = rangeKeys.slice(index + 1).every((key) => (frequencyWeights[key] || 0) === 0);
+        const prefixEnabled = rangeKeys.slice(0, index + 1).every((key) => (normalizedFrequencyWeights[key] || 0) > 0);
+        const suffixDisabled = rangeKeys.slice(index + 1).every((key) => (normalizedFrequencyWeights[key] || 0) === 0);
         if (prefixEnabled && suffixDisabled) {
             selected = freqKey;
         }
@@ -6720,9 +6798,9 @@ function getSelectedVerbPoolRangeKey(frequencyWeights = cardGenerationOptions.fr
 function getVerbPoolSummary() {
     const selectedRange = getSelectedVerbPoolRangeKey();
     const parts = [];
-    parts.push(selectedRange ? `Including verbs through ${selectedRange.replace('top', 'Top ')}` : 'Using a custom frequency mix');
+    parts.push(selectedRange ? `Including verbs through ${formatFrequencyLabel(selectedRange)}` : 'Using a custom frequency mix');
     if (hasRareFrequencyBucket() && (cardGenerationOptions.frequencyWeights.rare || 0) > 0) {
-        parts.push('rare verbs included');
+        parts.push('rare/outlier verbs included');
     }
     return parts.join(' · ');
 }
@@ -6982,7 +7060,11 @@ function importSharedDrillFromHash() {
         if (!payload || payload.version !== DRILL_SHARE_VERSION || !payload.config?.cardGenerationOptions) {
             return null;
         }
-        const signature = hashString(JSON.stringify(payload.config));
+        const normalizedConfig = deepClone(payload.config);
+        if (normalizedConfig.cardGenerationOptions?.frequencyWeights) {
+            normalizedConfig.cardGenerationOptions.frequencyWeights = normalizeFrequencyWeightsConfig(normalizedConfig.cardGenerationOptions.frequencyWeights);
+        }
+        const signature = hashString(JSON.stringify(normalizedConfig));
         const existing = savedDrills.find((drill) => hashString(JSON.stringify(drill.config)) === signature);
         if (existing) {
             window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -6992,9 +7074,9 @@ function importSharedDrillFromHash() {
             id: `shared-${Date.now().toString(36)}`,
             emoji: '🔗',
             name: payload.name || 'Shared drill',
-            desc: payload.desc || describeDrillConfig(payload.config),
+            desc: payload.desc || describeDrillConfig(normalizedConfig),
             seed: payload.seed || '',
-            config: payload.config,
+            config: normalizedConfig,
         };
         savedDrills.unshift(imported);
         persistSavedDrills();

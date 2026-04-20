@@ -379,7 +379,7 @@ def parse_args():
     parser.add_argument(
         "--tiers",
         nargs="+",
-        help="Frequency tiers to include in the generated inventory/build. Examples: top20, top100, top500, top1000, rare.",
+        help="Frequency tiers to include in the generated inventory/build. Examples: top20, top100, top500, top1000, top5000, rare.",
     )
     return parser.parse_args()
 
