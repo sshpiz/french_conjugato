@@ -1,6 +1,6 @@
 # Core Patterns Review
 
-*291 patterns across 151 verbs*
+*310 patterns across 166 verbs*
 
 ---
 
@@ -15,6 +15,13 @@
 - `accorder qqch à qqn`
 - grant something to someone
 - note: LEFFF example: la banque lui a accordé un autre crédit
+
+## accuser (1 patterns)
+
+### accuser_cp01 | combo-de | candidate | usage:ad-combo
+- `accuser qqn de qqch`
+- accuse someone of something
+- note: Usage-backed: accuser + quelqu’un + de + nom
 
 ## accéder (1 patterns)
 
@@ -113,6 +120,13 @@
 - `aller + infinitif`
 - be going to; go and do
 
+## apparaître (1 patterns)
+
+### apparaitre_cp01 | a-object | candidate | lefff:ad-combo
+- `apparaître à qqn`
+- appear to; become apparent to someone
+- note: LEFFF example: la Sainte Vierge lui est apparue trois fois
+
 ## appartenir (1 patterns)
 
 ### appartenir_cp01 | a-object | candidate | lefff:ad-combo
@@ -204,6 +218,13 @@
 - attend (events)
 - note: Usage-backed: assister + à + object
 
+## associer (1 patterns)
+
+### associer_cp01 | combo-a | candidate | lefff:ad-combo
+- `associer qqn / qqch à qqn / qqch`
+- associate; connect with
+- note: LEFFF example: j'associe cette robe à Marie
+
 ## attendre (4 patterns)
 
 ### attendre_cp01 | direct-object | seed | seed-v1
@@ -289,12 +310,17 @@
 - choose; pick someone / something
 - note: Most common pattern
 
-## commander (1 patterns)
+## commander (2 patterns)
 
 ### commander_cp01 | a-object | candidate | usage:ad-combo
 - `commander à qqn / qqch`
 - give an order to someone
 - note: Usage-backed: commander + à + person
+
+### commander_cp02 | combo-a | candidate | lefff:ad-combo
+- `commander qqch à qqn`
+- order something from someone
+- note: LEFFF example: il lui commande de se lever
 
 ## commencer (3 patterns)
 
@@ -355,6 +381,13 @@
 - `confier qqch à qqn`
 - entrust something to someone
 - note: LEFFF example: il leur a confié tous ses biens
+
+## confirmer (1 patterns)
+
+### confirmer_cp01 | combo-a | candidate | lefff:ad-combo
+- `confirmer qqch à qqn`
+- confirm something to someone
+- note: LEFFF example: je vais lui confirmer cet état de choses
 
 ## connaître (1 patterns)
 
@@ -557,12 +590,26 @@
 - decide that; rule that
 - note: Common in official/judicial statements
 
+## découvrir (1 patterns)
+
+### decouvrir_cp01 | combo-a | candidate | lefff:ad-combo
+- `découvrir qqch à qqn`
+- reveal something to someone
+- note: LEFFF example: je lui ai découvert tous mes secrets
+
 ## décrire (1 patterns)
 
 ### decrire_cp01 | combo-a | candidate | usage:ad-combo
 - `décrire qqch à qqn`
 - describe something to someone
 - note: Usage-backed: décrire + object + à + person
+
+## défendre (1 patterns)
+
+### defendre_cp01 | combo-a | candidate | lefff:ad-combo
+- `défendre qqch à qqn`
+- forbid something to someone
+- note: LEFFF example: son mari lui a défendu de couper ses cheveux
 
 ## dépendre (1 patterns)
 
@@ -629,6 +676,13 @@
 ### essayer_cp03 | reflexive-a | seed | seed-v1
 - `s'essayer à + nom / infinitif`
 - try one's hand at
+
+## exiger (1 patterns)
+
+### exiger_cp01 | de-object | candidate | lefff:ad-combo
+- `exiger de qqn`
+- demand from someone; require of someone
+- note: LEFFF example: ses parents exigent trop de lui
 
 ## faire (3 patterns)
 
@@ -706,6 +760,13 @@
 - `indiquer à qqn`
 - tell; indicate to someone
 - note: Usage-backed: indiquer + à + person
+
+## informer (1 patterns)
+
+### informer_cp01 | combo-de | candidate | usage:ad-combo
+- `informer qqn de qqch`
+- inform someone about something
+- note: Usage-backed: informer [quelqu’un] de [quelque chose]
 
 ## inspirer (1 patterns)
 
@@ -815,6 +876,13 @@
 - `offrir qqch à qqn`
 - offer something to someone
 - note: LEFFF example: je lui ai offert mes excuses publiques
+
+## opposer (1 patterns)
+
+### opposer_cp01 | combo-a | candidate | lefff:ad-combo
+- `opposer qqn / qqch à qqn / qqch`
+- oppose; set against
+- note: LEFFF example: la Russie y oppose son véto
 
 ## oublier (3 patterns)
 
@@ -988,12 +1056,17 @@
 - offer; suggest something to someone
 - note: LEFFF example: je lui ai proposé un financement plus intéressant
 
-## préciser (1 patterns)
+## préciser (2 patterns)
 
 ### preciser_cp01 | combo-a | candidate | lefff:ad-combo
 - `préciser qqch à qqn`
 - specify something to someone
 - note: LEFFF example: je tiens à préciser mon hypothèse de travail
+
+### preciser_cp02 | a-object | candidate | usage:ad-combo
+- `préciser à qqn`
+- specify to someone
+- note: Usage-backed: préciser + à + person
 
 ## préférer (1 patterns)
 
@@ -1037,6 +1110,13 @@
 - remind someone of something
 - note: LEFFF example: elle lui rappelle sa promesse de mariage
 
+## rapporter (1 patterns)
+
+### rapporter_cp01 | combo-a | candidate | lefff:ad-combo
+- `rapporter qqch à qqn`
+- bring back; report something to someone
+- note: LEFFF example: c'est une branche qui lui rapporte gros
+
 ## recevoir (2 patterns)
 
 ### recevoir_cp01 | combo-de | audited | ai:gpt-5
@@ -1055,6 +1135,13 @@
 - `recommander qqch à qqn`
 - recommend something to someone
 - note: LEFFF example: il leur a été recommandé par les médecins de s'en tenir aux prescriptions
+
+## reconnaître (1 patterns)
+
+### reconnaitre_cp01 | combo-a | candidate | lefff:ad-combo
+- `reconnaître qqch à qqn`
+- acknowledge something in someone
+- note: LEFFF example: on lui reconnaît une grande rapidité d'esprit
 
 ## refuser (1 patterns)
 
@@ -1217,6 +1304,13 @@
 - `répondre de qqn / qqch`
 - answer for; be responsible for
 - note: LEFFF example: je réponds de mes enfants
+
+## répéter (1 patterns)
+
+### repeter_cp01 | combo-a | candidate | lefff:ad-combo
+- `répéter qqch à qqn`
+- repeat something to someone
+- note: LEFFF example: je lui ai répété mes instructions
 
 ## réserver (2 patterns)
 
@@ -1454,12 +1548,17 @@
 - come out of; get out of
 - note: LEFFF example: le dicovalence est sorti de nos recherches syntaxiques
 
-## souffler (1 patterns)
+## souffler (2 patterns)
 
 ### souffler_cp01 | combo-a | candidate | lefff:ad-combo
 - `souffler qqch à qqn`
 - suggest; whisper something to someone
 - note: LEFFF example: je leur ai soufflé la subvention
+
+### souffler_cp02 | a-object | candidate | usage:ad-combo
+- `souffler à qqn`
+- suggest to someone
+- note: Usage-backed: souffler + à + person
 
 ## souffrir (1 patterns)
 
@@ -1467,6 +1566,13 @@
 - `souffrir de qqn / qqch`
 - suffer from something
 - note: LEFFF example: ma femme souffre d'arthrose
+
+## souhaiter (1 patterns)
+
+### souhaiter_cp01 | combo-a | candidate | lefff:ad-combo
+- `souhaiter qqch à qqn`
+- structural a/de/combo pattern
+- note: LEFFF example: nous leur souhaitons longue vie
 
 ## sourire (1 patterns)
 
@@ -1533,6 +1639,13 @@
 - call someone
 - note: Usage-backed: téléphoner + à + person
 
+## vendre (1 patterns)
+
+### vendre_cp01 | combo-a | candidate | lefff:ad-combo
+- `vendre qqch à qqn`
+- sell something to someone
+- note: LEFFF example: il a vendu tous ses biens à ses enfants pour un prix dérisoire
+
 ## venir (4 patterns)
 
 ### venir_cp01 | intransitive | seed | seed-v1
@@ -1551,12 +1664,17 @@
 - `venir à + infinitif`
 - end up; happen to do
 
-## verser (1 patterns)
+## verser (2 patterns)
 
 ### verser_cp01 | combo-a | candidate | lefff:ad-combo
 - `verser qqch à qqn`
 - pay; pour something for someone
 - note: LEFFF example: je lui verse un verre de bière belge
+
+### verser_cp02 | a-object | candidate | usage:ad-combo
+- `verser à qqn`
+- pay to someone
+- note: Usage-backed: verser + à + person
 
 ## vivre (1 patterns)
 
@@ -1578,6 +1696,13 @@
 ### voir_cp03 | que-clause | seed | seed-v1
 - `voir que + proposition`
 - see; realize that
+
+## voler (1 patterns)
+
+### voler_cp01 | combo-a | candidate | lefff:ad-combo
+- `voler qqch à qqn`
+- steal something from someone
+- note: LEFFF example: je l'ai vu lui voler son portefeuille pendant le match
 
 ## vouloir (3 patterns)
 

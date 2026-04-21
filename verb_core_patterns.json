@@ -25,6 +25,21 @@
     ]
   },
   {
+    "verb": "accuser",
+    "core_patterns": [
+      {
+        "pattern": "accuser qqn de qqch",
+        "meaning_en": "accuse someone of something",
+        "pattern_id": "accuser_cp01",
+        "pattern_type": "combo-de",
+        "notes": "Usage-backed: accuser + quelqu’un + de + nom",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
     "verb": "accéder",
     "core_patterns": [
       {
@@ -227,6 +242,21 @@
     ]
   },
   {
+    "verb": "apparaître",
+    "core_patterns": [
+      {
+        "pattern": "apparaître à qqn",
+        "meaning_en": "appear to; become apparent to someone",
+        "pattern_id": "apparaitre_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: la Sainte Vierge lui est apparue trois fois",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
     "verb": "appartenir",
     "core_patterns": [
       {
@@ -412,6 +442,21 @@
         "notes": "Usage-backed: assister + à + object",
         "confidence": 0.94,
         "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "associer",
+    "core_patterns": [
+      {
+        "pattern": "associer qqn / qqch à qqn / qqch",
+        "meaning_en": "associate; connect with",
+        "pattern_id": "associer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: j'associe cette robe à Marie",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
         "status": "candidate"
       }
     ]
@@ -604,6 +649,16 @@
         "confidence": 0.94,
         "source": "usage:ad-combo",
         "status": "candidate"
+      },
+      {
+        "pattern": "commander qqch à qqn",
+        "meaning_en": "order something from someone",
+        "pattern_id": "commander_cp02",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il lui commande de se lever",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
       }
     ]
   },
@@ -726,6 +781,21 @@
         "pattern_id": "confier_cp01",
         "pattern_type": "combo-a",
         "notes": "LEFFF example: il leur a confié tous ses biens",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "confirmer",
+    "core_patterns": [
+      {
+        "pattern": "confirmer qqch à qqn",
+        "meaning_en": "confirm something to someone",
+        "pattern_id": "confirmer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je vais lui confirmer cet état de choses",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -1153,6 +1223,21 @@
     ]
   },
   {
+    "verb": "découvrir",
+    "core_patterns": [
+      {
+        "pattern": "découvrir qqch à qqn",
+        "meaning_en": "reveal something to someone",
+        "pattern_id": "decouvrir_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui ai découvert tous mes secrets",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
     "verb": "décrire",
     "core_patterns": [
       {
@@ -1163,6 +1248,21 @@
         "notes": "Usage-backed: décrire + object + à + person",
         "confidence": 0.94,
         "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "défendre",
+    "core_patterns": [
+      {
+        "pattern": "défendre qqch à qqn",
+        "meaning_en": "forbid something to someone",
+        "pattern_id": "defendre_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: son mari lui a défendu de couper ses cheveux",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
         "status": "candidate"
       }
     ]
@@ -1302,6 +1402,21 @@
         "pattern_type": "reflexive-a",
         "source": "seed-v1",
         "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "exiger",
+    "core_patterns": [
+      {
+        "pattern": "exiger de qqn",
+        "meaning_en": "demand from someone; require of someone",
+        "pattern_id": "exiger_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: ses parents exigent trop de lui",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
       }
     ]
   },
@@ -1461,6 +1576,21 @@
         "pattern_id": "indiquer_cp01",
         "pattern_type": "a-object",
         "notes": "Usage-backed: indiquer + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "informer",
+    "core_patterns": [
+      {
+        "pattern": "informer qqn de qqch",
+        "meaning_en": "inform someone about something",
+        "pattern_id": "informer_cp01",
+        "pattern_type": "combo-de",
+        "notes": "Usage-backed: informer [quelqu’un] de [quelque chose]",
         "confidence": 0.94,
         "source": "usage:ad-combo",
         "status": "candidate"
@@ -1690,6 +1820,21 @@
         "pattern_id": "offrir_cp01",
         "pattern_type": "combo-a",
         "notes": "LEFFF example: je lui ai offert mes excuses publiques",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "opposer",
+    "core_patterns": [
+      {
+        "pattern": "opposer qqn / qqch à qqn / qqch",
+        "meaning_en": "oppose; set against",
+        "pattern_id": "opposer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: la Russie y oppose son véto",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -2068,6 +2213,16 @@
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
+      },
+      {
+        "pattern": "préciser à qqn",
+        "meaning_en": "specify to someone",
+        "pattern_id": "preciser_cp02",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: préciser + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
       }
     ]
   },
@@ -2162,6 +2317,21 @@
     ]
   },
   {
+    "verb": "rapporter",
+    "core_patterns": [
+      {
+        "pattern": "rapporter qqch à qqn",
+        "meaning_en": "bring back; report something to someone",
+        "pattern_id": "rapporter_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: c'est une branche qui lui rapporte gros",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
     "verb": "recevoir",
     "core_patterns": [
       {
@@ -2195,6 +2365,21 @@
         "pattern_id": "recommander_cp01",
         "pattern_type": "combo-a",
         "notes": "LEFFF example: il leur a été recommandé par les médecins de s'en tenir aux prescriptions",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "reconnaître",
+    "core_patterns": [
+      {
+        "pattern": "reconnaître qqch à qqn",
+        "meaning_en": "acknowledge something in someone",
+        "pattern_id": "reconnaitre_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: on lui reconnaît une grande rapidité d'esprit",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -2535,6 +2720,21 @@
         "pattern_id": "repondre_cp02",
         "pattern_type": "de-object",
         "notes": "LEFFF example: je réponds de mes enfants",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "répéter",
+    "core_patterns": [
+      {
+        "pattern": "répéter qqch à qqn",
+        "meaning_en": "repeat something to someone",
+        "pattern_id": "repeter_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui ai répété mes instructions",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -3048,6 +3248,16 @@
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
+      },
+      {
+        "pattern": "souffler à qqn",
+        "meaning_en": "suggest to someone",
+        "pattern_id": "souffler_cp02",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: souffler + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
       }
     ]
   },
@@ -3060,6 +3270,21 @@
         "pattern_id": "souffrir_cp01",
         "pattern_type": "de-object",
         "notes": "LEFFF example: ma femme souffre d'arthrose",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "souhaiter",
+    "core_patterns": [
+      {
+        "pattern": "souhaiter qqch à qqn",
+        "meaning_en": "structural a/de/combo pattern",
+        "pattern_id": "souhaiter_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: nous leur souhaitons longue vie",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -3204,6 +3429,21 @@
     ]
   },
   {
+    "verb": "vendre",
+    "core_patterns": [
+      {
+        "pattern": "vendre qqch à qqn",
+        "meaning_en": "sell something to someone",
+        "pattern_id": "vendre_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il a vendu tous ses biens à ses enfants pour un prix dérisoire",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
     "verb": "venir",
     "core_patterns": [
       {
@@ -3252,6 +3492,16 @@
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
+      },
+      {
+        "pattern": "verser à qqn",
+        "meaning_en": "pay to someone",
+        "pattern_id": "verser_cp02",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: verser + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
       }
     ]
   },
@@ -3296,6 +3546,21 @@
         "pattern_type": "que-clause",
         "source": "seed-v1",
         "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "voler",
+    "core_patterns": [
+      {
+        "pattern": "voler qqch à qqn",
+        "meaning_en": "steal something from someone",
+        "pattern_id": "voler_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je l'ai vu lui voler son portefeuille pendant le match",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
       }
     ]
   },

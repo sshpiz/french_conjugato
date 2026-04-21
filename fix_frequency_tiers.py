@@ -1,4 +1,6 @@
 """
+LEGACY / MANUAL-ONLY helper.
+
 Reassign frequency tags so tiers are exclusive (non-overlapping):
   top20:   ranks 1–20
   top50:   ranks 21–50
@@ -9,6 +11,10 @@ Reassign frequency tags so tiers are exclusive (non-overlapping):
 
 Sorting within non-rare: by current tier first (top20 < top50 < ... < top1000),
 then alphabetically as tiebreaker.
+
+Do not run this after the refined-tier regeneration flow.
+It does not know about top2000/top3000/top4000/top5000 and will collapse those
+tiers back into the old top1000/rare model.
 """
 
 import re, json

@@ -2,8 +2,8 @@
 
 *Rollout tiers: top20 / top50 / top100 / top500 / top1000*
 
-- covered: 100
-- candidate_add: 96
+- covered: 116
+- candidate_add: 80
 - manual_review: 7
 - likely_none: 544
 
@@ -54,7 +54,7 @@
 - missing: combo-de
 - nugget: `qualifier + object + de + noun` -> describe/call ... as
 
-## candidate_add (96)
+## candidate_add (80)
 
 ### abandonner
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
@@ -63,7 +63,8 @@
 - lefff row: `abandonner qqch à qqn`
 
 ### accuser
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
+- rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
+- core: combo-de
 - usage: de-object
 - lefff: de-object
 - missing: de-object
@@ -76,23 +77,11 @@
 - missing: combo-a
 - lefff row: `amener qqch à qqn`
 
-### apparaître
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: a-object
-- missing: a-object
-- lefff row: `apparaître à qqn / qqch`
-
 ### armer
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
 - lefff: de-object
 - missing: de-object
 - lefff row: `armer de qqn / qqch`
-
-### associer
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `associer qqch à qqn`
 
 ### assurer
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
@@ -131,27 +120,12 @@
 - missing: de-object
 - lefff row: `charger de qqn / qqch`
 
-### commander
-- rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
-- core: a-object
-- usage: a-object
-- lefff: combo-a
-- missing: combo-a
-- nugget: `commander + à + person` -> give an order to someone
-- lefff row: `commander qqch à qqn`
-
 ### conclure
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
 - lefff: a-object, de-object
 - missing: a-object, de-object
 - lefff row: `conclure à qqn / qqch`
 - lefff row: `conclure de qqn / qqch`
-
-### confirmer
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `confirmer qqch à qqn`
 
 ### convaincre
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
@@ -178,17 +152,12 @@
 - lefff row: `débarrasser de qqn / qqch`
 
 ### découvrir
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
+- rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
+- core: combo-a
 - lefff: combo-a, de-object
-- missing: combo-a, de-object
+- missing: de-object
 - lefff row: `découvrir qqch à qqn`
 - lefff row: `découvrir de qqn / qqch`
-
-### défendre
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `défendre qqch à qqn`
 
 ### empêcher
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
@@ -222,7 +191,8 @@
 - lefff row: `fournir de qqn / qqch`
 
 ### informer
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
+- rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
+- core: combo-de
 - lefff: de-object
 - missing: de-object
 - lefff row: `informer de qqn / qqch`
@@ -308,18 +278,6 @@
 - missing: a-object
 - lefff row: `prétendre à qqn / qqch`
 
-### rapporter
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `rapporter qqch à qqn`
-
-### reconnaître
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `reconnaître qqch à qqn`
-
 ### rejeter
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
 - lefff: combo-a
@@ -381,12 +339,6 @@
 - lefff row: `répondre qqch à qqn`
 - lefff row: `répondre de qqn / qqch`
 
-### répéter
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `répéter qqch à qqn`
-
 ### se fâcher
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
 - lefff: de-object
@@ -401,12 +353,6 @@
 - missing: a-object
 - nugget: `se tromper + de + object` -> mistake one thing for another
 - lefff row: `se tromper à qqn / qqch`
-
-### souhaiter
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `souhaiter qqch à qqn`
 
 ### sourire
 - rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
@@ -444,12 +390,6 @@
 - missing: combo-a
 - lefff row: `valoir qqch à qqn`
 
-### vendre
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `vendre qqch à qqn`
-
 ### virer
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
 - usage: a-object
@@ -457,12 +397,6 @@
 - missing: a-object, combo-a
 - nugget: `virer + à + person` -> to transfer (money)
 - lefff row: `virer qqch à qqn`
-
-### voler
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `voler qqch à qqn`
 
 ### écraser
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
@@ -563,12 +497,6 @@
 - missing: de-object
 - lefff row: `entourer de qqn / qqch`
 
-### exiger
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: de-object
-- missing: de-object
-- lefff row: `exiger de qqn / qqch`
-
 ### justifier
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
 - usage: combo-a
@@ -583,26 +511,11 @@
 - missing: a-object
 - lefff row: `mordre à qqn / qqch`
 
-### opposer
-- rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
-- lefff: combo-a
-- missing: combo-a
-- lefff row: `opposer qqch à qqn`
-
 ### plaindre
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
 - lefff: de-object
 - missing: de-object
 - lefff row: `plaindre de qqn / qqch`
-
-### préciser
-- rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
-- core: combo-a
-- usage: a-object
-- lefff: combo-a
-- missing: a-object
-- nugget: `préciser + à + person` -> specify to someone
-- lefff row: `préciser qqch à qqn`
 
 ### prêter
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
@@ -656,15 +569,6 @@
 - missing: a-object
 - lefff row: `satisfaire à qqn / qqch`
 
-### souffler
-- rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
-- core: combo-a
-- usage: a-object
-- lefff: combo-a
-- missing: a-object
-- nugget: `souffler + à + person` -> to suggest (to someone)
-- lefff row: `souffler qqch à qqn`
-
 ### téléphoner
 - rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
 - core: a-object
@@ -673,15 +577,6 @@
 - missing: combo-a
 - nugget: `téléphoner + à + person` -> call someone
 - lefff row: `téléphoner qqch à qqn`
-
-### verser
-- rationale: Verb has some a/de/combo coverage already, but evidence suggests another missing row.
-- core: combo-a
-- usage: a-object
-- lefff: combo-a
-- missing: a-object
-- nugget: `verser + à + person` -> pay someone
-- lefff row: `verser qqch à qqn`
 
 ### vider
 - rationale: Usage and/or LEFFF evidence suggests a missing a/de/combo row.
@@ -2433,7 +2328,7 @@
 ### évacuer
 - rationale: No current a/de/combo evidence in nuggets or LEFFF.
 
-## covered (100)
+## covered (116)
 
 ### arriver
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
@@ -2695,6 +2590,12 @@
 - nugget: `accorder + à + person` -> give to
 - lefff row: `accorder qqch à qqn`
 
+### apparaître
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: a-object
+- lefff: a-object
+- lefff row: `apparaître à qqn / qqch`
+
 ### appartenir
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: a-object
@@ -2709,17 +2610,37 @@
 - usage: a-object
 - nugget: `assister + à + object` -> attend (events)
 
+### associer
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `associer qqch à qqn`
+
 ### cacher
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: a-object
 - usage: a-object
 - nugget: `cacher + à + person` -> hide from someone
 
+### commander
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: a-object, combo-a
+- usage: a-object
+- lefff: combo-a
+- nugget: `commander + à + person` -> give an order to someone
+- lefff row: `commander qqch à qqn`
+
 ### confier
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: combo-a
 - lefff: combo-a
 - lefff row: `confier qqch à qqn`
+
+### confirmer
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `confirmer qqch à qqn`
 
 ### correspondre
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
@@ -2740,6 +2661,12 @@
 - core: de-object
 - lefff: de-object
 - lefff row: `discuter de qqn / qqch`
+
+### défendre
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `défendre qqch à qqn`
 
 ### dépendre
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
@@ -2844,6 +2771,18 @@
 - lefff: combo-a
 - lefff row: `rappeler qqch à qqn`
 
+### rapporter
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `rapporter qqch à qqn`
+
+### reconnaître
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `reconnaître qqch à qqn`
+
 ### refuser
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: combo-a
@@ -2875,6 +2814,12 @@
 - core: a-object
 - lefff: a-object
 - lefff row: `réfléchir à qqn / qqch`
+
+### répéter
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `répéter qqch à qqn`
 
 ### réserver
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
@@ -2914,6 +2859,12 @@
 - nugget: `souffrir + de + noun` -> suffer from something
 - lefff row: `souffrir de qqn / qqch`
 
+### souhaiter
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `souhaiter qqch à qqn`
+
 ### survivre
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: a-object
@@ -2921,6 +2872,18 @@
 - lefff: a-object
 - nugget: `survivre + à + person` -> outlive someone
 - lefff row: `survivre à qqn / qqch`
+
+### vendre
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `vendre qqch à qqn`
+
+### voler
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `voler qqch à qqn`
 
 ### échapper
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
@@ -3009,6 +2972,12 @@
 - usage: combo-a
 - nugget: `décrire + object + à + person` -> describe something to someone
 
+### exiger
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: de-object
+- lefff: de-object
+- lefff row: `exiger de qqn / qqch`
+
 ### imposer
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: a-object
@@ -3033,6 +3002,12 @@
 - lefff: combo-a
 - lefff row: `livrer qqch à qqn`
 
+### opposer
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: combo-a
+- lefff: combo-a
+- lefff row: `opposer qqch à qqn`
+
 ### parvenir
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: a-object
@@ -3048,6 +3023,14 @@
 - lefff: a-object
 - nugget: `procéder + à + object` -> to proceed with
 - lefff row: `procéder à qqn / qqch`
+
+### préciser
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: a-object, combo-a
+- usage: a-object
+- lefff: combo-a
+- nugget: `préciser + à + person` -> specify to someone
+- lefff row: `préciser qqch à qqn`
 
 ### recommander
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
@@ -3096,8 +3079,24 @@
 - lefff row: `rêver à qqn / qqch`
 - lefff row: `rêver de qqn / qqch`
 
+### souffler
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: a-object, combo-a
+- usage: a-object
+- lefff: combo-a
+- nugget: `souffler + à + person` -> to suggest (to someone)
+- lefff row: `souffler qqch à qqn`
+
 ### tendre
 - rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
 - core: combo-a
 - lefff: combo-a
 - lefff row: `tendre qqch à qqn`
+
+### verser
+- rationale: Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.
+- core: a-object, combo-a
+- usage: a-object
+- lefff: combo-a
+- nugget: `verser + à + person` -> pay someone
+- lefff row: `verser qqch à qqn`

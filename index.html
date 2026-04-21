@@ -29,7 +29,7 @@
     <link rel="apple-touch-icon" href="favicon_big.png">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon_big.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css?v=20260418a">
+    <link rel="stylesheet" href="css/style.css?v=20260422a">
     <link rel="stylesheet" href="css/dictate-btn.css?v=20260411b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1217,6 +1217,7 @@
     <script>
       // Daily counter/progress bar logic (circular)
       const DAILY_GOAL = 100; // Change this to 10, 50, etc. to test
+      window.DAILY_GOAL = DAILY_GOAL;
       function getTodayKey() {
         const d = new Date();
         return window.getAppStorageKey(`verbDailyCount_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`);
@@ -1449,7 +1450,7 @@
     <script src="verb_frames.js?v=20260421a" onerror="window.verbFrames=[]"></script>
     <script src="js/preRenderedTts.js?v=20260411b"></script>
     <script src="js/frenchHomophoneGroups.js?v=20260420a" onerror="window.frenchHomophoneGroupByAnswer={};window.frenchHomophoneGroupMeta=null;"></script>
-    <script src="js/script.js?v=20260420a"></script>
+    <script src="js/script.js?v=20260422a"></script>
     <script>
 function getFrenchVoices() {
     if (!window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {

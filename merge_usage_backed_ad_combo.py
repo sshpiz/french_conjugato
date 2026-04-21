@@ -26,6 +26,7 @@ from core_patterns_lib import (
 ROLLOUT_TIERS = {"top20", "top50", "top100", "top500", "top1000"}
 LOCATION_MARKERS = ("location", "place", "lieu", "table", "côté", "sport/jeu", "authority/person")
 ALLOWED_USAGE_PATTERNS = {
+    "accuser|combo-de|accuser qqch de qqn",
     "affirmer|a-object|affirmer à qqn / qqch",
     "accorder|a-object|accorder à qqn / qqch",
     "accéder|a-object|accéder à qqn / qqch",
@@ -44,6 +45,7 @@ ALLOWED_USAGE_PATTERNS = {
     "enlever|a-object|enlever à qqn / qqch",
     "être|a-object|être à qqn / qqch",
     "fournir|a-object|fournir à qqn / qqch",
+    "informer|combo-de|informer qqch de qqn",
     "importer|a-object|importer à qqn / qqch",
     "imposer|a-object|imposer à qqn / qqch",
     "indiquer|a-object|indiquer à qqn / qqch",
@@ -51,6 +53,7 @@ ALLOWED_USAGE_PATTERNS = {
     "plaire|a-object|plaire à qqn / qqch",
     "présenter|a-object|présenter à qqn / qqch",
     "prendre|a-object|prendre à qqn / qqch",
+    "préciser|a-object|préciser à qqn / qqch",
     "qualifier|combo-de|qualifier qqch de qqn",
     "reparler|a-object|reparler à qqn / qqch",
     "remettre|a-object|remettre à qqn / qqch",
@@ -62,29 +65,41 @@ ALLOWED_USAGE_PATTERNS = {
     "sembler|a-object|sembler à qqn / qqch",
     "servir|de-object|servir de qqn / qqch",
     "signifier|a-object|signifier à qqn / qqch",
+    "souffler|a-object|souffler à qqn / qqch",
     "sourire|a-object|sourire à qqn / qqch",
     "téléphoner|a-object|téléphoner à qqn / qqch",
+    "verser|a-object|verser à qqn / qqch",
 }
 GLOSS_OVERRIDES = {
+    "accuser qqn de qqch": "accuse someone of something",
     "affirmer à qqn": "state to someone",
     "arracher à qqn": "take away from someone",
     "décrire qqch à qqn": "describe something to someone",
     "être à qqn": "belong to someone",
     "imposer à qqn": "impose on someone",
     "indiquer à qqn": "tell; indicate to someone",
+    "informer qqn de qqch": "inform someone about something",
     "prendre à qqn": "take from someone",
+    "préciser à qqn": "specify to someone",
     "qualifier qqn / qqch de + nom": "describe; label as",
     "se tromper de qqn / qqch": "be mistaken about; get wrong",
+    "souffler à qqn": "suggest to someone",
+    "verser à qqn": "pay to someone",
 }
 PATTERN_OVERRIDES = {
+    "accuser|combo-de|accuser qqch de qqn": "accuser qqn de qqch",
     "affirmer|a-object|affirmer à qqn / qqch": "affirmer à qqn",
     "arracher|a-object|arracher à qqn / qqch": "arracher à qqn",
     "décrire|combo-a|décrire qqch à qqn": "décrire qqch à qqn",
     "être|a-object|être à qqn / qqch": "être à qqn",
     "imposer|a-object|imposer à qqn / qqch": "imposer à qqn",
     "indiquer|a-object|indiquer à qqn / qqch": "indiquer à qqn",
+    "informer|combo-de|informer qqch de qqn": "informer qqn de qqch",
     "prendre|a-object|prendre à qqn / qqch": "prendre à qqn",
+    "préciser|a-object|préciser à qqn / qqch": "préciser à qqn",
     "qualifier|combo-de|qualifier qqch de qqn": "qualifier qqn / qqch de + nom",
+    "souffler|a-object|souffler à qqn / qqch": "souffler à qqn",
+    "verser|a-object|verser à qqn / qqch": "verser à qqn",
 }
 
 
@@ -106,6 +121,8 @@ def infer_candidate_from_usage(verb: str, usage_pattern: str) -> tuple[str, str]
     if "+ object + à + person/thing" in pattern:
         return (f"{verb} qqch à qqn", "combo-a")
 
+    if "+ quelqu’un + de +" in pattern or "[quelqu’un] de [quelque chose]" in pattern:
+        return (f"{verb} qqch de qqn", "combo-de")
     if "+ object + de +" in pattern or "+ cod + de +" in pattern:
         return (f"{verb} qqch de qqn", "combo-de")
     if "+ de + object" in pattern or "+ de + noun" in pattern:

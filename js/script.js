@@ -3686,6 +3686,40 @@ document.addEventListener('DOMContentLoaded', () => {
         return rawTranslation.trim();
     };
 
+    const VERB_REGISTER_GLOSS_LABELS = Object.freeze({
+        bachoter: 'slang',
+        bosser: 'slang',
+        bouffer: 'slang',
+        brancher: 'slang',
+        cuver: 'slang',
+        déconner: 'slang',
+        foirer: 'slang',
+        kiffer: 'slang',
+        mater: 'slang',
+        merder: 'vulgar',
+        picoler: 'slang',
+        trimballer: 'slang',
+        zoner: 'slang',
+    });
+
+    const getVerbRegisterGlossLabel = (verbOrInfinitive) => {
+        const infinitive = typeof verbOrInfinitive === 'string'
+            ? verbOrInfinitive
+            : String(verbOrInfinitive?.infinitive || '').trim();
+        return VERB_REGISTER_GLOSS_LABELS[infinitive] || '';
+    };
+
+    const formatVerbTranslationForDisplay = (verb) => {
+        const rawTranslation = cleanTranslation(verb?.infinitive, verb?.translation || '');
+        if (!rawTranslation) return '';
+        let translation = rawTranslation;
+        if (!/^to\s/i.test(translation)) {
+            translation = `to ${translation}`;
+        }
+        const registerLabel = getVerbRegisterGlossLabel(verb);
+        return registerLabel ? `${translation} (${registerLabel})` : translation;
+    };
+
     const infoBtn = document.getElementById('info-btn');
     const infoPanel = document.getElementById('info-panel');
 
@@ -4074,9 +4108,765 @@ document.addEventListener('DOMContentLoaded', () => {
     let isAnswerVisible = false;
     let recentCardKeys = []; // track last N card keys to avoid immediate repeats
     let sharedEntryTutorialPending = false;
+    let suppressFlashcardTapUntil = 0;
     const IDLE_HIDDEN_NUDGE_DELAY_MS = 7000;
     const IDLE_REVEALED_NUDGE_DELAY_MS = 6000;
     let idleGuidanceTimeout = null;
+    const ENABLE_DAILY_COUNTER_DEBUG_CELEBRATION = true;
+    const ENABLE_DAILY_GOAL_CELEBRATION = true;
+    const DAILY_GOAL_CELEBRATION_CONFIG = {
+        maxCards: 42,
+        deckSize: 24,
+        gravity: 760,
+        launchCadenceMs: 164,
+        celebrationDurationMs: 15000,
+        debugTapThreshold: 5,
+        debugTapWindowMs: 1400,
+        trailStampCount: 14,
+        trailSampleMs: 40,
+        bounceDamping: 0.84,
+    };
+    const recentCelebrationSnapshots = [];
+
+    const clampValue = (value, min, max) => Math.min(max, Math.max(min, value));
+    const randomBetween = (min, max) => min + (Math.random() * (max - min));
+    const shuffleArray = (items) => {
+        const clone = Array.isArray(items) ? [...items] : [];
+        for (let index = clone.length - 1; index > 0; index -= 1) {
+            const swapIndex = Math.floor(Math.random() * (index + 1));
+            [clone[index], clone[swapIndex]] = [clone[swapIndex], clone[index]];
+        }
+        return clone;
+    };
+    const getCurrentDailyCount = () => {
+        const now = new Date();
+        const key = getScopedStorageKey(`verbDailyCount_${now.getFullYear()}_${now.getMonth() + 1}_${now.getDate()}`);
+        const raw = parseInt(localStorage.getItem(key) || '0', 10);
+        return Number.isFinite(raw) ? raw : 0;
+    };
+    const getDailyGoalTarget = () => {
+        const rawGoal = Number(window.DAILY_GOAL);
+        return Number.isFinite(rawGoal) && rawGoal > 0 ? rawGoal : 100;
+    };
+    const getCelebrationTranslationText = (verbInfo) => {
+        if (!verbInfo || !verbInfo.infinitive) return '';
+        return cleanTranslation(verbInfo.infinitive, verbInfo.translation || '').replace(/^to\s+/i, '');
+    };
+    const createCelebrationSnapshotFromVerbInfo = (verbInfo, extras = {}) => {
+        if (!verbInfo || !verbInfo.infinitive) return null;
+        const translation = getCelebrationTranslationText(verbInfo);
+        return {
+            key: extras.key || `fallback|${verbInfo.infinitive}|${extras.mode || 'verb'}`,
+            mode: extras.mode || 'verb',
+            infinitive: verbInfo.infinitive,
+            translation,
+            pronoun: extras.pronoun || '',
+            tenseLabel: extras.tenseLabel || '',
+            answer: extras.answer || '',
+            accent: extras.accent || 'verb',
+            frequency: normalizeFrequencyKey(verbInfo.frequency) || String(verbInfo.frequency || '').trim(),
+        };
+    };
+    const buildCelebrationCardSnapshot = (card) => {
+        if (!card || !card.verb || !card.verb.infinitive) return null;
+        const isFrameCard = !!card.isFrameCard;
+        return createCelebrationSnapshotFromVerbInfo(card.verb, {
+            key: `${isFrameCard ? 'frame' : 'card'}|${cardKey(card)}|${card.conjugated || card.framePrompt || ''}`,
+            mode: isFrameCard ? 'frame' : 'verb',
+            pronoun: isFrameCard ? '' : String(card.pronoun || ''),
+            tenseLabel: isFrameCard ? 'carte a trou' : String(tenseKeyToLabel[card.tense] || card.tense || ''),
+            answer: isFrameCard
+                ? String(card.frameFullAnswer || card.framePrompt || '').trim()
+                : String(getCardAnswerText(card) || '').trim(),
+            accent: isFrameCard ? 'frame' : String(card.tense || 'verb'),
+        });
+    };
+    const rememberCelebrationCardSnapshot = (card) => {
+        const snapshot = buildCelebrationCardSnapshot(card);
+        if (!snapshot) return;
+        const existingIndex = recentCelebrationSnapshots.findIndex((entry) => entry.key === snapshot.key);
+        if (existingIndex >= 0) {
+            recentCelebrationSnapshots.splice(existingIndex, 1);
+        }
+        recentCelebrationSnapshots.push(snapshot);
+        if (recentCelebrationSnapshots.length > 24) {
+            recentCelebrationSnapshots.splice(0, recentCelebrationSnapshots.length - 24);
+        }
+    };
+    const buildCelebrationDeck = () => {
+        const limit = DAILY_GOAL_CELEBRATION_CONFIG.deckSize;
+        const deck = [];
+        const seenKeys = new Set();
+        const pushSnapshot = (snapshot) => {
+            if (!snapshot || !snapshot.key || seenKeys.has(snapshot.key)) return;
+            seenKeys.add(snapshot.key);
+            deck.push(snapshot);
+        };
+
+        recentCelebrationSnapshots.slice().reverse().forEach(pushSnapshot);
+
+        if (deck.length < limit) {
+            history.slice().reverse().forEach((card) => pushSnapshot(buildCelebrationCardSnapshot(card)));
+        }
+
+        if (deck.length < limit && currentCard) {
+            pushSnapshot(buildCelebrationCardSnapshot(currentCard));
+        }
+
+        if (deck.length < limit && Array.isArray(verbs)) {
+            const fallbackVerbPool = shuffleArray(
+                verbs.filter((verbInfo) => getCelebrationTranslationText(verbInfo))
+            );
+            fallbackVerbPool.forEach((verbInfo, index) => {
+                if (deck.length >= limit) return;
+                pushSnapshot(createCelebrationSnapshotFromVerbInfo(verbInfo, {
+                    key: `fallback|${verbInfo.infinitive}|${index}`,
+                    tenseLabel: index % 2 === 0 ? 'objectif' : 'serie',
+                    answer: index % 3 === 0 ? verbInfo.infinitive : '',
+                    accent: index % 4 === 0 ? 'frame' : 'verb',
+                }));
+            });
+        }
+
+        if (deck.length === 0) {
+            pushSnapshot({
+                key: 'fallback|les-verbes',
+                mode: 'verb',
+                infinitive: 'bravo',
+                translation: 'objectif atteint',
+                pronoun: '',
+                tenseLabel: 'du jour',
+                answer: 'continue',
+                accent: 'present',
+            });
+        }
+
+        return deck.slice(0, limit);
+    };
+    const isDarkCelebrationTheme = () => {
+        if (typeof window.isDarkThemeActive === 'function') {
+            return !!window.isDarkThemeActive();
+        }
+        const root = document.documentElement;
+        if (root.getAttribute('data-theme') === 'dark') return true;
+        return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    };
+    const getCelebrationPalette = () => {
+        if (isDarkCelebrationTheme()) {
+            return {
+                overlay: 'rgba(5, 24, 7, 0.16)',
+                tableTop: '#1f8b33',
+                tableBottom: '#0f5f1f',
+                tableLine: 'rgba(2, 36, 8, 0.58)',
+                glow: 'rgba(255, 255, 255, 0.08)',
+                stackGlow: 'rgba(255, 255, 255, 0.12)',
+                cardFillTop: '#1a2330',
+                cardFillBottom: '#0f1724',
+                cardBorder: 'rgba(83, 101, 125, 0.86)',
+                shadow: 'rgba(0, 0, 0, 0.3)',
+                title: '#f5f8fb',
+                titleShadow: 'rgba(0, 0, 0, 0.5)',
+                meta: 'rgba(161, 171, 184, 0.98)',
+                divider: 'rgba(83, 96, 112, 0.42)',
+                pillDarkBg: '#262e39',
+                pillDarkText: '#cfd7e2',
+                pillGreenBg: '#389164',
+                pillGreenText: '#d4e4da',
+                frequencyPillBg: '#262e39',
+                frequencyPillText: '#d3d9e2',
+                cardAccentOutline: 'rgba(87, 136, 201, 0.55)',
+                accentVerb: '#79b8ff',
+                accentFrame: '#ffd37f',
+                accentPresent: '#88d1ad',
+                accentPasseCompose: '#f6c56d',
+                accentImparfait: '#c4b6ff',
+                accentFuturSimple: '#8bd5ff',
+                accentSubjonctifPresent: '#e2b7ff',
+                accentConditionnelPresent: '#c9ea92',
+            };
+        }
+        return {
+            overlay: 'rgba(8, 52, 12, 0.08)',
+            tableTop: '#22a53b',
+            tableBottom: '#0f7a25',
+            tableLine: 'rgba(9, 71, 19, 0.42)',
+            glow: 'rgba(255, 255, 255, 0.1)',
+            stackGlow: 'rgba(255, 255, 255, 0.15)',
+            cardFillTop: '#f0f5fa',
+            cardFillBottom: '#e8eff6',
+            cardBorder: 'rgba(34, 40, 48, 0.78)',
+            shadow: 'rgba(0, 0, 0, 0.24)',
+            title: '#23384f',
+            titleShadow: 'rgba(255, 255, 255, 0.2)',
+            meta: 'rgba(82, 97, 116, 0.95)',
+            divider: 'rgba(123, 140, 160, 0.34)',
+            pillDarkBg: '#e3e8ef',
+            pillDarkText: '#4c5b6d',
+            pillGreenBg: '#63b382',
+            pillGreenText: '#f2fbf5',
+            frequencyPillBg: '#e6ebf1',
+            frequencyPillText: '#485667',
+            cardAccentOutline: 'rgba(87, 136, 201, 0.28)',
+            accentVerb: '#4ca5dd',
+            accentFrame: '#e2a93f',
+            accentPresent: '#6fc590',
+            accentPasseCompose: '#f0b453',
+            accentImparfait: '#aa98ea',
+            accentFuturSimple: '#6dbde7',
+            accentSubjonctifPresent: '#d19fe6',
+            accentConditionnelPresent: '#aac86a',
+        };
+    };
+
+    const createDailyGoalCelebrationController = () => {
+        let overlay = null;
+        let trailCanvas = null;
+        let canvas = null;
+        let hint = null;
+        let badge = null;
+        let trailContext = null;
+        let context = null;
+        let rafId = null;
+        let currentRun = null;
+        let resizeHandlerAttached = false;
+
+        const getAccentColorForSnapshot = (snapshot, palette) => {
+            const accentKey = String(snapshot?.accent || '').trim();
+            if (accentKey === 'frame') return palette.accentFrame;
+            if (accentKey === 'passeCompose') return palette.accentPasseCompose;
+            if (accentKey === 'imparfait') return palette.accentImparfait;
+            if (accentKey === 'futurSimple') return palette.accentFuturSimple;
+            if (accentKey === 'subjonctifPresent') return palette.accentSubjonctifPresent;
+            if (accentKey === 'conditionnelPresent') return palette.accentConditionnelPresent;
+            return palette.accentPresent || palette.accentVerb;
+        };
+        const roundedRect = (ctx, x, y, width, height, radius) => {
+            const r = Math.min(radius, width / 2, height / 2);
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + width, y, x + width, y + height, r);
+            ctx.arcTo(x + width, y + height, x, y + height, r);
+            ctx.arcTo(x, y + height, x, y, r);
+            ctx.arcTo(x, y, x + width, y, r);
+            ctx.closePath();
+        };
+        const fitCanvasToFlashcard = () => {
+            if (!overlay || !canvas || !trailCanvas || !flashcard) return null;
+            const rect = flashcard.getBoundingClientRect();
+            const width = Math.max(1, Math.round(rect.width));
+            const height = Math.max(1, Math.round(rect.height));
+            overlay.style.width = `${width}px`;
+            overlay.style.height = `${height}px`;
+            const dpr = clampValue(window.devicePixelRatio || 1, 1, 2);
+            const pixelWidth = Math.max(1, Math.round(width * dpr));
+            const pixelHeight = Math.max(1, Math.round(height * dpr));
+            [trailCanvas, canvas].forEach((targetCanvas) => {
+                if (targetCanvas.width !== pixelWidth || targetCanvas.height !== pixelHeight) {
+                    targetCanvas.width = pixelWidth;
+                    targetCanvas.height = pixelHeight;
+                    targetCanvas.style.width = `${width}px`;
+                    targetCanvas.style.height = `${height}px`;
+                }
+            });
+            if (trailContext) {
+                trailContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            if (context) {
+                context.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            return { width, height, dpr };
+        };
+        const ensureElements = () => {
+            if (overlay && trailCanvas && canvas && trailContext && context) return;
+            overlay = document.createElement('div');
+            overlay.className = 'daily-goal-celebration-overlay';
+            overlay.setAttribute('role', 'button');
+            overlay.setAttribute('tabindex', '0');
+            overlay.setAttribute('aria-label', "Touchez pour passer l'animation");
+
+            trailCanvas = document.createElement('canvas');
+            trailCanvas.className = 'daily-goal-celebration-canvas daily-goal-celebration-trail-canvas';
+            overlay.appendChild(trailCanvas);
+
+            canvas = document.createElement('canvas');
+            canvas.className = 'daily-goal-celebration-canvas daily-goal-celebration-live-canvas';
+            overlay.appendChild(canvas);
+
+            badge = document.createElement('div');
+            badge.className = 'daily-goal-celebration-badge';
+            badge.textContent = 'Objectif atteint';
+            overlay.appendChild(badge);
+
+            hint = document.createElement('div');
+            hint.className = 'daily-goal-celebration-hint';
+            hint.textContent = 'Touchez pour passer';
+            overlay.appendChild(hint);
+
+            flashcard.appendChild(overlay);
+            trailContext = trailCanvas.getContext('2d');
+            context = canvas.getContext('2d');
+
+            const skipRun = (event) => {
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                suppressFlashcardTapUntil = performance.now() + 450;
+                cleanup('skipped');
+            };
+
+            overlay.addEventListener('pointerdown', skipRun);
+            overlay.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+            });
+            overlay.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ' || event.key === 'Escape') {
+                    skipRun(event);
+                }
+            });
+
+            if (!resizeHandlerAttached) {
+                window.addEventListener('resize', fitCanvasToFlashcard);
+                resizeHandlerAttached = true;
+            }
+        };
+        const clearCanvas = () => {
+            const size = fitCanvasToFlashcard();
+            if (!context || !trailContext || !size) return;
+            trailContext.clearRect(0, 0, size.width, size.height);
+            context.clearRect(0, 0, size.width, size.height);
+        };
+        const cleanup = (reason = 'finished') => {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+            currentRun = null;
+            if (overlay) {
+                overlay.classList.remove('is-visible');
+            }
+            clearCanvas();
+            if (window.appLog) {
+                window.appLog(`daily-goal-celebration ${reason}`);
+            }
+        };
+        const buildSprites = (deck, width, height, palette) => {
+            const cardWidth = clampValue(width * 0.17, 54, 74);
+            const cardHeight = Math.round(cardWidth * 1.36);
+            const spawnX = 28;
+            const spawnY = 34;
+            const leftBound = 8;
+            const rightBound = Math.max(leftBound + 12, width - 8);
+            const topBound = 8;
+            const floorY = Math.max(topBound + 24, height - 12);
+            const totalCards = Math.min(DAILY_GOAL_CELEBRATION_CONFIG.maxCards, Math.max(deck.length * 2, 24));
+            const sprites = [];
+
+            for (let index = 0; index < totalCards; index += 1) {
+                const snapshot = deck[index % deck.length];
+                const burstBias = (index % 6) / 5;
+                const vx = randomBetween(width * 0.34, width * 0.52) + (burstBias * 10);
+                const vy = -randomBetween(height * 0.5, height * 0.72) - (burstBias * 12);
+                const cardAngle = randomBetween(-0.09, 0.06);
+                sprites.push({
+                    snapshot,
+                    x: spawnX + (index % 5) * 1.6 + randomBetween(-1, 2),
+                    y: spawnY + (index % 4) * 1.3 + randomBetween(-1, 1),
+                    vx,
+                    vy,
+                    angle: cardAngle,
+                    angularVelocity: randomBetween(-1.05, 1.05),
+                    width: cardWidth,
+                    height: cardHeight,
+                    delayMs: index * DAILY_GOAL_CELEBRATION_CONFIG.launchCadenceMs,
+                    launched: false,
+                    accentColor: getAccentColorForSnapshot(snapshot, palette),
+                    bounceCount: 0,
+                    settled: false,
+                    trailAccumulatorMs: 0,
+                    bounds: { leftBound, rightBound, topBound, floorY },
+                });
+            }
+
+            return sprites;
+        };
+        const drawBackground = (ctx, width, height, palette, elapsedMs) => {
+            const feltGradient = ctx.createLinearGradient(0, 0, 0, height);
+            feltGradient.addColorStop(0, palette.tableTop);
+            feltGradient.addColorStop(1, palette.tableBottom);
+            ctx.fillStyle = feltGradient;
+            ctx.fillRect(0, 0, width, height);
+
+            const glow = ctx.createRadialGradient(38, 34, 0, 38, 34, Math.max(width, height) * 0.72);
+            glow.addColorStop(0, palette.stackGlow);
+            glow.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, width, height);
+
+            const vignette = ctx.createRadialGradient(width * 0.48, height * 0.16, 0, width * 0.48, height * 0.46, width * 0.92);
+            vignette.addColorStop(0, palette.glow);
+            vignette.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = vignette;
+            ctx.globalAlpha = 0.72 + (Math.sin(elapsedMs / 420) * 0.05);
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.strokeStyle = palette.tableLine;
+            ctx.lineWidth = 1;
+            ctx.globalAlpha = 0.45;
+            ctx.beginPath();
+            ctx.moveTo(0, height - 10.5);
+            ctx.lineTo(width, height - 10.5);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+        };
+        const drawStackGhost = (ctx, palette) => {
+            for (let stackIndex = 0; stackIndex < 3; stackIndex += 1) {
+                const baseX = 18 + (stackIndex * 18);
+                const baseY = 12 + (stackIndex % 2) * 2;
+                for (let depth = 0; depth < 6; depth += 1) {
+                    roundedRect(ctx, baseX + depth * 1.35, baseY + depth * 0.95, 34, 47, 6);
+                    ctx.fillStyle = depth === 5 ? 'rgba(255,255,255,0.38)' : 'rgba(255,255,255,0.2)';
+                    ctx.fill();
+                    ctx.strokeStyle = palette.cardBorder;
+                    ctx.lineWidth = 0.8;
+                    ctx.globalAlpha = 0.42;
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+                }
+            }
+
+            for (let slotIndex = 0; slotIndex < 2; slotIndex += 1) {
+                const slotX = 122 + (slotIndex * 40);
+                roundedRect(ctx, slotX, 14, 32, 44, 6);
+                ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        };
+        const drawCardStamp = (ctx, sprite, palette, options = {}) => {
+            const {
+                snapshot,
+                accentColor,
+            } = sprite;
+            const {
+                x = sprite.x,
+                y = sprite.y,
+                width = sprite.width,
+                height = sprite.height,
+                angle = sprite.angle,
+                alpha = 1,
+                trail = false,
+            } = options;
+            const titleText = String(snapshot?.infinitive || '').trim();
+            const rawTranslation = String(snapshot?.translation || '').trim();
+            const metaText = rawTranslation ? (/^to\s/i.test(rawTranslation) ? rawTranslation : `to ${rawTranslation}`) : '';
+            const pronounKey = canonicalPronounKey(String(snapshot?.pronoun || '').trim());
+            const pronounEmoji = pronounEmojiMap[pronounKey] || '';
+            const pronounLabel = String(snapshot?.pronoun || '').trim();
+            const frequencyText = snapshot?.frequency ? formatFrequencyLabel(snapshot.frequency) : '';
+            const tenseText = String(snapshot?.tenseLabel || '').trim();
+            const answerText = String(snapshot?.answer || '').trim();
+            const pronounChipText = pronounLabel
+                ? `${pronounEmoji ? `${pronounEmoji} ` : ''}${pronounLabel}`
+                : '';
+
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.globalAlpha = alpha;
+
+            ctx.shadowColor = trail ? 'rgba(0,0,0,0)' : palette.shadow;
+            ctx.shadowBlur = trail ? 0 : 12;
+            ctx.shadowOffsetY = trail ? 0 : 6;
+            roundedRect(ctx, -width / 2, -height / 2, width, height, 12);
+            const fill = ctx.createLinearGradient(0, -height / 2, 0, height / 2);
+            fill.addColorStop(0, palette.cardFillTop);
+            fill.addColorStop(1, palette.cardFillBottom);
+            ctx.fillStyle = fill;
+            ctx.fill();
+            ctx.shadowColor = 'rgba(0,0,0,0)';
+
+            ctx.strokeStyle = palette.cardBorder;
+            ctx.lineWidth = trail ? 1 : 1.2;
+            ctx.stroke();
+
+            if (!trail) {
+                roundedRect(ctx, width / 2 - 22, -height / 2 + 7, 16, 16, 5);
+                ctx.fillStyle = 'rgba(17, 31, 49, 0.2)';
+                ctx.fill();
+                ctx.strokeStyle = palette.cardAccentOutline;
+                ctx.lineWidth = 0.9;
+                ctx.stroke();
+
+                ctx.strokeStyle = palette.cardAccentOutline;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(width / 2 - 18, -height / 2 + 11);
+                ctx.lineTo(width / 2 - 14, -height / 2 + 11);
+                ctx.lineTo(width / 2 - 14, -height / 2 + 16);
+                ctx.lineTo(width / 2 - 10, -height / 2 + 16);
+                ctx.lineTo(width / 2 - 10, -height / 2 + 10);
+                ctx.moveTo(width / 2 - 14, -height / 2 + 11);
+                ctx.quadraticCurveTo(width / 2 - 12, -height / 2 + 13, width / 2 - 10, -height / 2 + 10);
+                ctx.stroke();
+            }
+
+            if (trail) {
+                ctx.fillStyle = 'rgba(255,255,255,0.18)';
+                ctx.fillRect(-width / 2 + 9, -height / 2 + 11, width - 18, 1.8);
+                ctx.fillStyle = palette.title;
+                ctx.fillRect(-width / 2 + 10, -height / 2 + 22, width - 28, 5);
+                ctx.fillStyle = palette.meta;
+                ctx.fillRect(-width / 2 + 10, -height / 2 + 32, width - 24, 3);
+                ctx.fillRect(-width / 2 + 10, height / 2 - 23, width - 20, 10);
+                ctx.restore();
+                return;
+            }
+
+            if (frequencyText) {
+                const badgeWidth = Math.min(width - 18, Math.max(22, frequencyText.length * 3.6 + 10));
+                roundedRect(ctx, width / 2 - badgeWidth - 8, -height / 2 + 8, badgeWidth, 11, 5.5);
+                ctx.fillStyle = palette.frequencyPillBg;
+                ctx.fill();
+                ctx.fillStyle = palette.frequencyPillText;
+                ctx.font = `700 ${Math.max(5, Math.round(width * 0.085))}px Inter, sans-serif`;
+                ctx.textBaseline = 'top';
+                ctx.fillText(frequencyText, width / 2 - badgeWidth - 4, -height / 2 + 10, badgeWidth - 6);
+            }
+
+            ctx.fillStyle = palette.title;
+            ctx.shadowColor = palette.titleShadow;
+            ctx.shadowBlur = 4;
+            ctx.shadowOffsetY = 2;
+            ctx.font = `700 ${Math.max(10, Math.round(width * 0.18))}px Inter, sans-serif`;
+            ctx.textBaseline = 'top';
+            ctx.fillText(titleText.slice(0, 14), -width / 2 + 10, -height / 2 + 22, width - 20);
+            ctx.shadowColor = 'rgba(0,0,0,0)';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+
+            ctx.fillStyle = palette.meta;
+            ctx.font = `600 ${Math.max(6, Math.round(width * 0.105))}px Inter, sans-serif`;
+            ctx.fillText(metaText.slice(0, 20), -width / 2 + 12, -height / 2 + 35, width - 24);
+
+            const pronounWidth = pronounChipText
+                ? Math.min(width - 22, Math.max(28, pronounChipText.length * Math.max(3.2, width * 0.055) + 12))
+                : 0;
+            const tenseWidth = tenseText
+                ? Math.min(width - 22, Math.max(28, tenseText.length * Math.max(3.1, width * 0.052) + 12))
+                : 0;
+            const chipsY = height / 2 - 23;
+
+            if (pronounChipText) {
+                roundedRect(ctx, -width / 2 + 10, chipsY, pronounWidth, 13, 6.5);
+                ctx.fillStyle = palette.pillDarkBg;
+                ctx.fill();
+                ctx.fillStyle = palette.pillDarkText;
+                ctx.font = `700 ${Math.max(5, Math.round(width * 0.085))}px Inter, sans-serif`;
+                ctx.fillText(pronounChipText.slice(0, 14), -width / 2 + 14, chipsY + 2, pronounWidth - 8);
+            }
+
+            if (tenseText) {
+                const tenseX = width / 2 - tenseWidth - 10;
+                roundedRect(ctx, tenseX, chipsY, tenseWidth, 13, 6.5);
+                ctx.fillStyle = palette.pillGreenBg;
+                ctx.fill();
+                ctx.fillStyle = palette.pillGreenText;
+                ctx.font = `700 ${Math.max(5, Math.round(width * 0.085))}px Inter, sans-serif`;
+                ctx.fillText(tenseText.slice(0, 14), tenseX + 4, chipsY + 2, tenseWidth - 8);
+            }
+
+            ctx.strokeStyle = palette.divider;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(-width / 2 + 14, height / 2 - 7);
+            ctx.lineTo(width / 2 - 14, height / 2 - 7);
+            ctx.stroke();
+
+            if (answerText) {
+                ctx.fillStyle = accentColor;
+                ctx.globalAlpha = 0.95;
+                ctx.fillRect(-width / 2 + 12, height / 2 - 1.5, width - 24, 3.5);
+                ctx.globalAlpha = alpha;
+            }
+
+            ctx.restore();
+        };
+        const drawSprite = (ctx, sprite, palette) => {
+            drawCardStamp(ctx, sprite, palette, { alpha: 1, trail: false });
+        };
+        const stepSprite = (sprite, dtSeconds) => {
+            if (!sprite.launched || sprite.settled) return;
+            sprite.vx *= 0.9992;
+            sprite.angularVelocity *= 0.998;
+            sprite.vy += DAILY_GOAL_CELEBRATION_CONFIG.gravity * dtSeconds;
+            sprite.x += sprite.vx * dtSeconds;
+            sprite.y += sprite.vy * dtSeconds;
+            sprite.angle += sprite.angularVelocity * dtSeconds;
+            sprite.trailAccumulatorMs += dtSeconds * 1000;
+
+            const halfWidth = sprite.width / 2;
+            const halfHeight = sprite.height / 2;
+            const { leftBound, rightBound, topBound, floorY } = sprite.bounds;
+
+            if (sprite.trailAccumulatorMs >= DAILY_GOAL_CELEBRATION_CONFIG.trailSampleMs) {
+                sprite.trailAccumulatorMs = 0;
+                if (trailContext && currentRun?.palette) {
+                    drawCardStamp(trailContext, sprite, currentRun.palette, {
+                        alpha: 0.98,
+                        trail: false,
+                    });
+                }
+            }
+
+            if (sprite.x - halfWidth < leftBound) {
+                sprite.x = leftBound + halfWidth;
+                sprite.vx = Math.abs(sprite.vx) * 0.94;
+                sprite.angularVelocity *= -0.92;
+            } else if (sprite.x + halfWidth > rightBound) {
+                sprite.x = rightBound - halfWidth;
+                sprite.vx = -Math.abs(sprite.vx) * 0.94;
+                sprite.angularVelocity *= -0.92;
+            }
+
+            if (sprite.y - halfHeight < topBound) {
+                sprite.y = topBound + halfHeight;
+                sprite.vy = Math.abs(sprite.vy) * 0.82;
+            } else if (sprite.y + halfHeight > floorY) {
+                sprite.y = floorY - halfHeight;
+                sprite.bounceCount += 1;
+                const damping = clampValue(
+                    DAILY_GOAL_CELEBRATION_CONFIG.bounceDamping - (sprite.bounceCount * 0.028) + randomBetween(-0.015, 0.015),
+                    0.62,
+                    0.88
+                );
+                sprite.vy = -Math.abs(sprite.vy) * damping;
+                sprite.vx *= 0.9;
+                sprite.angularVelocity = clampValue((sprite.angularVelocity * -0.74) + randomBetween(-0.14, 0.14), -1.6, 1.6);
+
+                if (Math.abs(sprite.vy) < 42 && Math.abs(sprite.vx) < 34) {
+                    sprite.vy = 0;
+                    sprite.vx = 0;
+                    sprite.angularVelocity *= 0.35;
+                    sprite.settled = true;
+                    sprite.angle = clampValue(sprite.angle, -0.1, 0.1);
+                    sprite.y = floorY - halfHeight;
+                    if (trailContext && currentRun?.palette) {
+                        drawCardStamp(trailContext, sprite, currentRun.palette, {
+                            alpha: 1,
+                            trail: false,
+                        });
+                    }
+                }
+            }
+        };
+        const render = (frameTimeMs) => {
+            if (!currentRun || !context) return;
+            if (!currentRun.previousFrameTimeMs) {
+                currentRun.previousFrameTimeMs = frameTimeMs;
+            }
+            const elapsedMs = frameTimeMs - currentRun.startedAtMs;
+            const dtSeconds = Math.min(0.033, (frameTimeMs - currentRun.previousFrameTimeMs) / 1000);
+            currentRun.previousFrameTimeMs = frameTimeMs;
+
+            const size = fitCanvasToFlashcard();
+            if (!size) {
+                cleanup('missing-size');
+                return;
+            }
+            currentRun.size = size;
+
+            if (!currentRun.baseDrawn && trailContext) {
+                trailContext.clearRect(0, 0, size.width, size.height);
+                drawBackground(trailContext, size.width, size.height, currentRun.palette, 0);
+                drawStackGhost(trailContext, currentRun.palette);
+                currentRun.baseDrawn = true;
+            }
+
+            context.clearRect(0, 0, size.width, size.height);
+
+            currentRun.sprites.forEach((sprite) => {
+                if (!sprite.launched && elapsedMs >= sprite.delayMs) {
+                    sprite.launched = true;
+                }
+                if (!sprite.launched) return;
+                stepSprite(sprite, dtSeconds);
+                drawSprite(context, sprite, currentRun.palette);
+            });
+
+            if (elapsedMs >= DAILY_GOAL_CELEBRATION_CONFIG.celebrationDurationMs) {
+                cleanup('completed');
+                return;
+            }
+
+            rafId = requestAnimationFrame(render);
+        };
+
+        return {
+            trigger(options = {}) {
+                ensureElements();
+                cleanup('restart');
+
+                const palette = getCelebrationPalette();
+                const size = fitCanvasToFlashcard();
+                if (!size || !context) return;
+
+                const deck = buildCelebrationDeck();
+                currentRun = {
+                    reason: options.reason || 'manual',
+                    startedAtMs: performance.now(),
+                    previousFrameTimeMs: 0,
+                    baseDrawn: false,
+                    palette,
+                    size,
+                    sprites: buildSprites(deck, size.width, size.height, palette),
+                };
+
+                if (badge) {
+                    const label = options.reason === 'debug-counter'
+                        ? 'Test solitaire'
+                        : (options.milestoneIndex && options.milestoneIndex > 1
+                            ? `Objectif x${options.milestoneIndex}`
+                            : 'Objectif atteint');
+                    badge.textContent = label;
+                }
+                if (hint) {
+                    hint.textContent = 'Touchez pour passer';
+                }
+                if (overlay) {
+                    overlay.classList.add('is-visible');
+                }
+                rafId = requestAnimationFrame(render);
+            },
+            isActive() {
+                return !!currentRun;
+            },
+            skip() {
+                cleanup('skipped');
+            },
+        };
+    };
+    const dailyGoalCelebration = createDailyGoalCelebrationController();
+    const maybeTriggerDailyGoalCelebration = (previousCount, nextCount) => {
+        if (!ENABLE_DAILY_GOAL_CELEBRATION || dailyGoalCelebration.isActive()) return;
+        const goal = getDailyGoalTarget();
+        if (goal <= 0) return;
+        const previousMilestoneIndex = Math.floor(previousCount / goal);
+        const nextMilestoneIndex = Math.floor(nextCount / goal);
+        if (nextMilestoneIndex > previousMilestoneIndex) {
+            dailyGoalCelebration.trigger({
+                reason: 'daily-goal',
+                milestoneIndex: nextMilestoneIndex,
+            });
+        }
+    };
+    window.triggerFrenchGoalCelebration = (options = {}) => {
+        dailyGoalCelebration.trigger({
+            reason: options.reason || 'manual',
+            milestoneIndex: Number(options.milestoneIndex) || 0,
+        });
+    };
 
     const loadTutorialState = () => {
         try {
@@ -5776,11 +6566,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (card.isFrameCard) {
             const verbFrequency = card.verb.frequency || 'common';
-            const rawTranslation = cleanTranslation(card.verb.infinitive, card.verb.translation || '');
-            let translation = rawTranslation;
-            if (translation && !/^to\s/i.test(translation)) {
-                translation = 'to ' + translation;
-            }
+            const translation = formatVerbTranslationForDisplay(card.verb);
             verbInfinitiveEl.textContent = card.verb.infinitive;
             verbInfinitiveEl.classList.add('tappable-audio');
             verbInfinitiveEl.dataset.audioId = lemmaAudioId(card.verb.infinitive);
@@ -5850,11 +6636,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // --- VERB CARD LOGIC ---
         const verbFrequency = card.verb.frequency || 'common'; 
-        const rawTranslation = cleanTranslation(card.verb.infinitive, card.verb.translation || '');
-        let translation = rawTranslation;
-        if (translation && !/^to\s/i.test(translation)) {
-            translation = 'to ' + translation;
-        }
+        const translation = formatVerbTranslationForDisplay(card.verb);
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
         verbInfinitiveEl.dataset.audioId = lemmaAudioId(card.verb.infinitive);
@@ -5946,11 +6728,14 @@ document.addEventListener('DOMContentLoaded', () => {
             stopActiveDictation({ abort: true, silent: true });
             if (currentCard && currentCard.verb) {
                 recordSlowRevealHintIfNeeded(currentCard, performance.now() - currentCardShownAtMs);
+                rememberCelebrationCardSnapshot(currentCard);
             }
             dismissReopenMessage();
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
+            const previousDailyCount = getCurrentDailyCount();
             if (window.incrementDailyCount) window.incrementDailyCount();
+            maybeTriggerDailyGoalCelebration(previousDailyCount, getCurrentDailyCount());
             if (currentCard?.isFrameCard) {
                 updateFrameCardInlineState(currentCard, true);
             }
@@ -6573,7 +7358,7 @@ document.addEventListener('DOMContentLoaded', () => {
         shareMenu.appendChild(copyButton);
         shareShell.appendChild(shareMenu);
         header.appendChild(shareShell);
-        const detailTranslation = cleanTranslation(verb.infinitive, verb.translation);
+        const detailTranslation = formatVerbTranslationForDisplay(verb);
         const infinitiveSpan = document.createElement('span');
         infinitiveSpan.className = 'infinitive tappable-audio';
         infinitiveSpan.dataset.speak = verb.infinitive;
@@ -7317,6 +8102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Event Listeners ---
     flashcard.addEventListener('click', (event) => {
+        if (performance.now() < suppressFlashcardTapUntil) return;
         if (isInteractiveFlashcardTarget(event.target)) return;
         if (isAnswerVisible) {
             handleNext();
@@ -7404,6 +8190,34 @@ document.addEventListener('DOMContentLoaded', () => {
             showVerbDetail(currentCard.verb.infinitive, currentCard.tense, { card: currentCard });
         }
     });
+
+    const dailyProgressContainer = document.getElementById('daily-progress-container');
+    if (dailyProgressContainer) {
+        let debugTapCount = 0;
+        let debugTapResetTimer = null;
+        const resetDailyGoalDebugCounter = () => {
+            debugTapCount = 0;
+            if (debugTapResetTimer) {
+                clearTimeout(debugTapResetTimer);
+                debugTapResetTimer = null;
+            }
+        };
+
+        dailyProgressContainer.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            if (!ENABLE_DAILY_COUNTER_DEBUG_CELEBRATION) return;
+
+            debugTapCount += 1;
+            if (debugTapResetTimer) clearTimeout(debugTapResetTimer);
+            debugTapResetTimer = window.setTimeout(resetDailyGoalDebugCounter, DAILY_GOAL_CELEBRATION_CONFIG.debugTapWindowMs);
+
+            if (debugTapCount >= DAILY_GOAL_CELEBRATION_CONFIG.debugTapThreshold) {
+                resetDailyGoalDebugCounter();
+                dailyGoalCelebration.trigger({ reason: 'debug-counter' });
+            }
+        });
+    }
 
     if (packagedTtsEnabledToggle) {
         packagedTtsEnabledToggle.addEventListener('change', async () => {

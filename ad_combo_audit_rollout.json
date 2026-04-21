@@ -1813,7 +1813,9 @@
   },
   {
     "verb": "accuser",
-    "core_families": [],
+    "core_families": [
+      "combo-de"
+    ],
     "usage_families": [
       "de-object"
     ],
@@ -1824,7 +1826,7 @@
       "de-object"
     ],
     "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "rationale": "Verb has some a/de/combo coverage already, but evidence suggests another missing row.",
     "usage_signals": [
       {
         "family": "de-object",
@@ -1950,16 +1952,16 @@
   },
   {
     "verb": "apparaître",
-    "core_families": [],
+    "core_families": [
+      "a-object"
+    ],
     "usage_families": [],
     "lefff_families": [
       "a-object"
     ],
-    "missing_families": [
-      "a-object"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "apparaître à qqn / qqch"
@@ -2076,16 +2078,16 @@
   },
   {
     "verb": "associer",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "associer qqch à qqn"
@@ -2480,7 +2482,8 @@
   {
     "verb": "commander",
     "core_families": [
-      "a-object"
+      "a-object",
+      "combo-a"
     ],
     "usage_families": [
       "a-object"
@@ -2488,11 +2491,9 @@
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Verb has some a/de/combo coverage already, but evidence suggests another missing row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [
       {
         "family": "a-object",
@@ -2599,16 +2600,16 @@
   },
   {
     "verb": "confirmer",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "confirmer qqch à qqn"
@@ -2953,18 +2954,19 @@
   },
   {
     "verb": "découvrir",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a",
       "de-object"
     ],
     "missing_families": [
-      "combo-a",
       "de-object"
     ],
     "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "rationale": "Verb has some a/de/combo coverage already, but evidence suggests another missing row.",
     "usage_signals": [],
     "lefff_patterns": [
       "découvrir qqch à qqn",
@@ -2973,16 +2975,16 @@
   },
   {
     "verb": "défendre",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "défendre qqch à qqn"
@@ -3634,7 +3636,9 @@
   },
   {
     "verb": "informer",
-    "core_families": [],
+    "core_families": [
+      "combo-de"
+    ],
     "usage_families": [],
     "lefff_families": [
       "de-object"
@@ -3643,7 +3647,7 @@
       "de-object"
     ],
     "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "rationale": "Verb has some a/de/combo coverage already, but evidence suggests another missing row.",
     "usage_signals": [],
     "lefff_patterns": [
       "informer de qqn / qqch"
@@ -4695,16 +4699,16 @@
   },
   {
     "verb": "rapporter",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "rapporter qqch à qqn"
@@ -4756,16 +4760,16 @@
   },
   {
     "verb": "reconnaître",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "reconnaître qqch à qqn"
@@ -5294,16 +5298,16 @@
   },
   {
     "verb": "répéter",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "répéter qqch à qqn"
@@ -5600,16 +5604,16 @@
   },
   {
     "verb": "souhaiter",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "souhaiter qqch à qqn"
@@ -5911,16 +5915,16 @@
   },
   {
     "verb": "vendre",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "vendre qqch à qqn"
@@ -5966,16 +5970,16 @@
   },
   {
     "verb": "voler",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "voler qqch à qqn"
@@ -7884,16 +7888,16 @@
   },
   {
     "verb": "exiger",
-    "core_families": [],
+    "core_families": [
+      "de-object"
+    ],
     "usage_families": [],
     "lefff_families": [
       "de-object"
     ],
-    "missing_families": [
-      "de-object"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "exiger de qqn / qqch"
@@ -8673,16 +8677,16 @@
   },
   {
     "verb": "opposer",
-    "core_families": [],
+    "core_families": [
+      "combo-a"
+    ],
     "usage_families": [],
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "combo-a"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Usage and/or LEFFF evidence suggests a missing a/de/combo row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [],
     "lefff_patterns": [
       "opposer qqch à qqn"
@@ -9069,6 +9073,7 @@
   {
     "verb": "préciser",
     "core_families": [
+      "a-object",
       "combo-a"
     ],
     "usage_families": [
@@ -9077,11 +9082,9 @@
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "a-object"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Verb has some a/de/combo coverage already, but evidence suggests another missing row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [
       {
         "family": "a-object",
@@ -9797,6 +9800,7 @@
   {
     "verb": "souffler",
     "core_families": [
+      "a-object",
       "combo-a"
     ],
     "usage_families": [
@@ -9805,11 +9809,9 @@
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "a-object"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Verb has some a/de/combo coverage already, but evidence suggests another missing row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [
       {
         "family": "a-object",
@@ -10169,6 +10171,7 @@
   {
     "verb": "verser",
     "core_families": [
+      "a-object",
       "combo-a"
     ],
     "usage_families": [
@@ -10177,11 +10180,9 @@
     "lefff_families": [
       "combo-a"
     ],
-    "missing_families": [
-      "a-object"
-    ],
-    "verdict": "candidate_add",
-    "rationale": "Verb has some a/de/combo coverage already, but evidence suggests another missing row.",
+    "missing_families": [],
+    "verdict": "covered",
+    "rationale": "Verb already has the a/de/combo rows currently supported by nuggets and LEFFF.",
     "usage_signals": [
       {
         "family": "a-object",

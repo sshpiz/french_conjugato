@@ -23,8 +23,12 @@ try:
     from verbecc.conjugator import Conjugator
     VERBECC_AVAILABLE = True
 except ImportError:
-    VERBECC_AVAILABLE = False
-    print("Warning: verbecc not available. Install with: pip install verbecc")
+    try:
+        from verbecc import CompleteConjugator as Conjugator
+        VERBECC_AVAILABLE = True
+    except ImportError:
+        VERBECC_AVAILABLE = False
+        print("Warning: verbecc not available. Install with: pip install verbecc")
 
 # Comprehensive tense mapping from linguistic features to app tenses
 TENSE_MAPPING = {
@@ -133,6 +137,15 @@ MORPH_TENSE_TO_VALIDATION = {
     'Fut': 'futur simple', 
     'Past': 'passé composé',  # This might need refinement
 }
+
+
+def normalize_verbecc_output(conjugation_result):
+    """Support both older dict-like verbecc output and newer object output."""
+    if isinstance(conjugation_result, dict):
+        return conjugation_result
+    if hasattr(conjugation_result, "to_json"):
+        return json.loads(conjugation_result.to_json())
+    raise TypeError(f"Unsupported verbecc conjugation result type: {type(conjugation_result)!r}")
 
 # Verbecc pronoun to app pronoun mapping
 VERBECC_PRONOUN_MAPPING = {
@@ -311,7 +324,7 @@ def generate_conjugation_data(cache_file="conjugation_cache.json"):
             print(f"Processing conjugations: {processed}/{len(all_verbs)}")
         
         try:
-            conj = conjugator.conjugate(infinitive)
+            conj = normalize_verbecc_output(conjugator.conjugate(infinitive, conjugate_pronouns=False))
             moods = conj['moods']
             
             # Extract English translation from verbecc

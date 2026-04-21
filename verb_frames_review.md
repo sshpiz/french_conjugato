@@ -1,49 +1,73 @@
 # French Frame E2E Run
 
-- Verbs attempted: `12`
-- Accepted cards: `21`
-- App deck total after integration: `385`
+- Verbs attempted: `500`
+- Accepted cards: `435`
+- App deck total after integration: `718`
 
 ## Status Counts
 
-- `accepted`: `21`
-- `not_legal`: `8`
-- `rejected_deterministic`: `1`
-- `rejected_judge`: `2`
-- `rejected_stanza`: `4`
+- `accepted`: `469`
+- `not_legal`: `923`
+- `rejected_deterministic`: `66`
+- `rejected_judge`: `14`
+- `rejected_stanza`: `28`
+
+## Cleanup Rejections
+
+- `direct_object_adverbial_or_clause_extension`: `22`
+- `direct_object_infinitive_or_verb_extension`: `2`
+- `direct_object_multiword_hidden_chunk`: `33`
+- `direct_object_no_main_finite_verb`: `1`
+- `direct_object_prepositional_extension`: `10`
+- `drop_duplicate_combo_a`: `2`
+- `drop_duplicate_intransitive`: `1`
+- `prefer_a_object_or_better_source`: `10`
+- `prefer_de_object_or_better_source`: `1`
+- `prefer_de_object_over_de_object`: `1`
+- `prefer_direct_object_or_better_source`: `30`
 
 ## Accepted by Frame Type
 
-- `a_object`: `5`
-- `de_object`: `8`
-- `direct_object`: `8`
+- `a_object`: `70`
+- `de_object`: `29`
+- `direct_object`: `336`
 
 ## Judge Labels
 
-- `location_adjunct`: `1`
-- `selected_complement`: `13`
-- `uncertain`: `1`
+- `location_adjunct`: `5`
+- `selected_complement`: `100`
+- `time_adjunct`: `1`
+- `uncertain`: `8`
 
 ## Sample Accepted
 
-- `apprendre` `direct_object`: `J'____ le français` -> `apprends`
-- `apprendre` `de_object`: `J'____ ____ mes erreurs` -> `apprends de`
-- `arrêter` `direct_object`: `Je ____` -> `l'arrête`
-- `arrêter` `de_object`: `Il ____ ____ fumer` -> `arrête de`
-- `commencer` `direct_object`: `Je ____ le roman` -> `commence`
-- `continuer` `direct_object`: `Je ____ cette lecture` -> `continue`
-- `continuer` `de_object`: `Ils ____ ____ parler` -> `continuent de`
-- `dépendre` `de_object`: `Cela ____ ____ Marie` -> `dépend de`
-- `parler` `direct_object`: `Elle ____ ____` -> `parle espagnol`
-- `parler` `a_object`: `Je ____ ____ Paul` -> `parle à`
-- `parler` `de_object`: `Nous ____ ____ ce problème` -> `parlons de`
-- `penser` `a_object`: `Je ____ ____ Marie` -> `pense à`
-- `permettre` `direct_object`: `Elle ____ ce changement` -> `permet`
-- `répondre` `a_object`: `Je ____ ____ Marie` -> `réponds à`
-- `répondre` `de_object`: `Nous ____ ____ nos actes` -> `répondons de`
-- `ressembler` `a_object`: `Elle ____ ____ sa mère` -> `ressemble à`
-- `servir` `direct_object`: `Je ____ le dîner` -> `sers`
-- `servir` `de_object`: `Il ____ ____ modèle` -> `sert de`
-- `tenir` `direct_object`: `Je ____ cette tasse` -> `tiens`
-- `tenir` `a_object`: `Elle ____ ____ son travail` -> `tient à`
-- `tenir` `de_object`: `Ce garçon ____ ____ sa mère` -> `tient de`
+- `abandonner` `direct_object`: `Il ____ son projet` -> `abandonne`
+- `abattre` `direct_object`: `Le vent ____ l'arbre` -> `abat`
+- `abrutir` `direct_object`: `Ce bruit ____ les élèves` -> `abrutit`
+- `accepter` `direct_object`: `J'____ ce cadeau` -> `accepte`
+- `accompagner` `direct_object`: `J'____ ma sœur` -> `accompagne`
+- `accomplir` `direct_object`: `Elle ____ sa mission` -> `accomplit`
+- `accorder` `a_object`: `Elle ____ ____ ____ ____ ____ ____` -> `accorde du temps à son ami`
+- `accrocher` `direct_object`: `Il ____ le tableau` -> `accroche`
+- `accueillir` `direct_object`: `Nous ____ les invités` -> `accueillons`
+- `accéder` `a_object`: `J'____ ____ ce fichier` -> `accède à`
+- `acheter` `a_object`: `Il ____ ____ ____ ____ son frère` -> `achète ce livre à`
+- `acheter` `direct_object`: `J'____ une voiture` -> `achète`
+- `achever` `direct_object`: `Il ____ le projet` -> `achève`
+- `acquérir` `direct_object`: `Elle ____ une nouvelle voiture` -> `acquiert`
+- `activer` `direct_object`: `J'____ l'alarme` -> `active`
+- `adapter` `a_object`: `J'____ ____ ____ ____ ____ ____` -> `adapte le texte à mon public`
+- `admettre` `direct_object`: `J'____ mon erreur` -> `admets`
+- `adopter` `direct_object`: `Ils ____ un chien` -> `adoptent`
+- `adresser` `direct_object`: `Il ____ une lettre` -> `adresse`
+- `affamer` `direct_object`: `La guerre ____ la population` -> `affame`
+- `affirmer` `a_object`: `Il ____ ____ sa sœur la vérité` -> `affirme à`
+- `affirmer` `direct_object`: `J'____ mon innocence` -> `affirme`
+- `affronter` `direct_object`: `Il ____ ses peurs` -> `affronte`
+- `agresser` `direct_object`: `Il ____ un passant` -> `agresse`
+- `ajouter` `direct_object`: `J'____ du sel` -> `ajoute`
+- `allumer` `direct_object`: `J'____ la lampe` -> `allume`
+- `amener` `direct_object`: `J'____ mon frère` -> `amène`
+- `amuser` `direct_object`: `Ce jeu ____ les enfants` -> `amuse`
+- `améliorer` `direct_object`: `Nous ____ le service` -> `améliorons`
+- `annoncer` `direct_object`: `J'____ les résultats` -> `annonce`

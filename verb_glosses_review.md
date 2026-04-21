@@ -1,0 +1,1617 @@
+# French Verb Gloss Review
+
+- done: 7046
+- errors: 0
+- everyday: 1
+- common: 795
+- uncommon: 1124
+- niche: 2135
+- rare_usable: 2882
+- archaic: 104
+- obsolete_or_unintelligible: 5
+
+## Needs Review
+
+- `tomer` → `to tomer` | Very rare; meaning may be regional or unclear | register=rare_usable | confidence=0.1
+- `caluger` → `to drag` | Rare verb; likely regional or older in modern French | register=rare_usable | confidence=0.12
+- `cônir` → `to cônir` | Obscure or unattested; modern usage is unclear | register=obsolete_or_unintelligible | confidence=0.13
+- `chanstiquer` → `to chant` | Used for chant-like singing or reciting, often in religious or ritual settings | register=rare_usable | confidence=0.18
+- `espouliner` → `to brush out` | Rare archaic verb; likely used in a specialized or regional sense | register=archaic | confidence=0.18
+- `renverger` → `to bend back` | Rare verb for something bending or turning back | register=rare_usable | confidence=0.18
+- `dévolter` → `to unwind` | Technical or regional: used for undoing a turn, coil, or winding | register=niche | confidence=0.19
+- `dégravoyer` → `to go off the road` | Rare verb for moving away from a road or path; sometimes used figuratively for straying from the expected way | register=rare_usable | confidence=0.21
+- `bourder` → `to blunder` | Rare, mostly literary/dialectal: used for making a blunder | register=niche | confidence=0.22
+- `surjaler` → `to overheat` | Used when something becomes excessively hot | register=rare_usable | confidence=0.22
+- `vener` → `to hunt with hounds` | Old hunting term, used for hunting with hounds | register=archaic | confidence=0.22
+- `vioquir` → `to get old` | Very rare slang for becoming old or looking old | register=niche | confidence=0.22
+- `chauvir` → `to nod` | Old-fashioned: to make a slight movement of the head, especially in greeting or assent | register=archaic | confidence=0.23
+- `embrever` → `to shorten` | Old or rare verb meaning to make something briefer | register=archaic | confidence=0.23
+- `retercer` → `to repeat terce` | Obsolete or extremely rare; found only in old religious texts | register=obsolete_or_unintelligible | confidence=0.23
+- `revercher` → `to go back` | Rare; usually in older or specialized usage for going back to a previous state or position | register=rare_usable | confidence=0.24
+- `youtser` → `to YouTube` | Informally, it usually means to put something on YouTube or use YouTube | register=rare_usable | confidence=0.24
+- `écuisser` → `to split open` | Old/rare verb for splitting or cracking something open | register=archaic | confidence=0.24
+- `tercer` → `to do a third ploughing` | Agriculture: used for the third working of a field | register=niche | confidence=0.25
+- `baronner` → `to act like a baron` | Used for behaving in a pompous, high-status way | register=rare_usable | confidence=0.27
+- `encharner` → `to flesh over` | Old or specialized use for taking on flesh or being covered with flesh | register=archaic | confidence=0.27
+- `essanger` → `to soak` | Old or technical: to soak something in liquid | register=rare_usable | confidence=0.27
+- `ixer` → `to mark with X` | Rare; used mainly for marking something with an X, often in technical or playful contexts | register=niche | confidence=0.27
+- `mouetter` → `to cry like a seagull` | Rare verb for making a seagull-like cry | register=rare_usable | confidence=0.27
+- `palancrer` → `to support with stakes` | Used mainly for supporting something with stakes or poles | register=niche | confidence=0.27
+- `saietter` → `to make sayette cloth` | Used in textile work for making sayette, a fine wool cloth | register=niche | confidence=0.27
+- `vendiquer` → `to claim` | Older form; used for formally claiming something as one's own, now mostly replaced by revendiquer | register=archaic | confidence=0.27
+- `démurger` → `to leave` | Rare; used for leaving or moving away, often in fixed expressions | register=rare_usable | confidence=0.28
+- `dénébuler` → `to clear up` | Used for something becoming less cloudy, vague, or obscure | register=niche | confidence=0.28
+- `jabouiner` → `to chat idly` | Regional word for talking idly or fussing around | register=niche | confidence=0.28
+- `éhahir` → `to astonish` | Old/literary: to strike someone with surprise or amazement | register=archaic | confidence=0.28
+- `biloquer` → `to jam` | Rare, regional-looking form: to block or jam something so it won’t move | register=rare_usable | confidence=0.29
+- `colloquer` → `to place together` | Rare formal verb; usually means to place or set things together, often in a technical or older context | register=niche | confidence=0.29
+- `conobrer` → `to know; to recognize` | Old/rare form used for knowing or recognizing something | register=archaic | confidence=0.29
+- `jinguer` → `to prance` | Old/rare verb for moving or dancing in a lively, jerky way | register=archaic | confidence=0.29
+- `querner` → `to corner` | Used for putting something in a corner or tight angle | register=rare_usable | confidence=0.29
+- `riffauder` → `to mess around` | Used for spending time idly or behaving in a playful, aimless way | register=rare_usable | confidence=0.29
+- `rénetter` → `to re-net` | Used for doing netting again, usually in a limited or technical context | register=rare_usable | confidence=0.29
+- `sorguer` → `to stay up` | Rare regional verb, often for staying awake or keeping watch at night | register=niche | confidence=0.29
+- `ziber` → `to screw` | Vulgar slang; used in sexual or insulting speech | register=niche | confidence=0.29
+- `détonneler` → `to strip a cask` | Rare; used for taking apart a cask or barrel | register=niche | confidence=0.3
+- `amordancer` → `to prime` | Rare technical verb: to prime or set something in motion | register=niche | confidence=0.31
+- `copermuter` → `to co-permute` | Rare technical use, mainly in mathematics, for things that act together by permutation or commuting | register=niche | confidence=0.31
+- `décapeler` → `to take off one's hat/cap` | Rare; mainly for taking off a hat or cap | register=rare_usable | confidence=0.31
+- `détroncher` → `to dethrone` | Used for removing someone from power or a top position | register=rare_usable | confidence=0.31
+- `fouger` → `to grow ferns` | Rare, mostly literary or regional; used for land becoming covered with ferns | register=rare_usable | confidence=0.31
+- `muloter` → `to nibble like a mouse` | Rare; used of mice nibbling or gnawing on food or material | register=rare_usable | confidence=0.31
+- `paillassonner` → `to cover with straw matting` | Rare, mainly for covering or lining something with straw matting | register=rare_usable | confidence=0.31
+- `primariser` → `to make primary` | Rare, domain-specific verb based on primaire; often used in education or policy contexts | register=niche | confidence=0.31
+- `ribouler` → `to laugh` | Rare colloquial verb for laughing | register=rare_usable | confidence=0.31
+- `cambuter` → `to limp` | Used of walking with a limp or bowed legs | register=niche | confidence=0.32
+- `engamer` → `to fit into` | Used in technical contexts for fitting one part into another | register=niche | confidence=0.32
+- `escoffier` → `to kill` | Rare slang: used for killing or cutting someone down | register=rare_usable | confidence=0.32
+- `affurer` → `to secure` | Rare verb; in older or regional usage, to secure or fix something in place | register=rare_usable | confidence=0.33
+- `bourriquer` → `to stuff` | Rare verb for stuffing or cramming something into a space | register=rare_usable | confidence=0.33
+- `boyauter` → `to fit with tubing` | Rare technical verb; usually about fitting something with tubing or gut | register=rare_usable | confidence=0.33
+- `margoter` → `to chatter` | Rare; used for repetitive or bird-like talking or noises | register=rare_usable | confidence=0.33
+- `organsiner` → `to organize` | Rare variant of organiser, used for putting things in order or planning something | register=rare_usable | confidence=0.33
+- `rengrener` → `to reengage` | Used mainly for gears or similar parts: to mesh again | register=niche | confidence=0.33
+- `soucheter` → `to cut to a stump` | Used for pruning or cutting a tree back to a stump | register=niche | confidence=0.33
+- `yasser` → `to yass` | Slang: to express enthusiastic approval or hype | register=niche | confidence=0.33
+- `biller` → `to make into logs` | Used in a specialized sense, often for preparing wood in log-sized pieces | register=rare_usable | confidence=0.34
+- `chevrer` → `to mark with chevrons` | Used in design or crafts for adding a chevron pattern | register=niche | confidence=0.34
+- `chienner` → `to act like a dog` | Rare slang; used for acting in a dog-like, rude, or nasty way | register=rare_usable | confidence=0.34
+- `claper` → `to gobble up` | Rare/regional: often used for eating noisily or greedily | register=niche | confidence=0.34
+- `décauser` → `to stop talking` | Colloquial/rare: used for stopping speech or making someone stop talking | register=rare_usable | confidence=0.34
+- `dégîter` → `to leave one’s shelter` | Intransitive: used for leaving a shelter, den, or lodging | register=rare_usable | confidence=0.34
+- `déhotter` → `to remove from a hood/basket` | Rare; used for taking something out of or off a hotte (basket/hood) | register=rare_usable | confidence=0.34
+- `détroquer` → `to trade away` | Rare: to get rid of something by informal trade or barter | register=rare_usable | confidence=0.34
+- `embidonner` → `to fool` | Rare slang: to mislead or fool someone | register=rare_usable | confidence=0.34
+- `embreler` → `to tangle up` | Old, rare verb for making something tangled or fastened awkwardly | register=archaic | confidence=0.34
+- `embroncher` → `to skewer` | Rare verb for piercing or roasting something on a spit | register=rare_usable | confidence=0.34
+- `emmailler` → `to mesh` | Used for fitting things together in a mesh or chain-mail pattern | register=niche | confidence=0.34
+- `enfieller` → `to embitter` | Usually figurative: to make someone bitter or full of spite | register=niche | confidence=0.34
+- `ensaboter` → `to fit with clogs` | Used for fitting someone with clogs or clog-like shoes; rare today | register=rare_usable | confidence=0.34
+- `flauper` → `to flaunt` | Used for ostentatiously showing off oneself or something | register=rare_usable | confidence=0.34
+- `forlancer` → `to hunt down` | Rare, mainly for hunting or for figurative pursuit/harrying | register=niche | confidence=0.34
+- `formoler` → `to formalize` | Rare verb; used for making something official or more formal | register=rare_usable | confidence=0.34
+- `harder` → `to herd` | Used mainly for animals: to drive them together into a herd | register=rare_usable | confidence=0.34
+- `hotter` → `to carry in a back basket` | Used for carrying loads in a hotte, a basket worn on the back | register=niche | confidence=0.34
+- `houpper` → `to fluff up` | Rare; used of hair, feathers, or similar things that stand up in a tuft | register=rare_usable | confidence=0.34
+- `locher` → `to wobble` | Used of something loose or unsteady, often moving slightly from side to side | register=rare_usable | confidence=0.34
+- `oringuer` → `to rig with a hauling rope` | Rare nautical term: used for attaching an oringue, a rope for hauling | register=niche | confidence=0.34
+- `quimper` → `to stoop` | Rare verb for bending low or hunching over | register=rare_usable | confidence=0.34
+- `renquiller` → `to go back` | Rare colloquial use: to go back to a place, often home | register=rare_usable | confidence=0.34
+- `renvier` → `to raise again` | Used in old card-game language for raising the stake again | register=niche | confidence=0.34
+- `ribler` → `to deburr` | Used in technical contexts for removing rough edges or excess material | register=niche | confidence=0.34
+- `rocher` → `to make rocky` | Rare: used for making something rocky or stony | register=niche | confidence=0.34
+- `sciotter` → `to saw` | Rare; used for cutting with a saw | register=rare_usable | confidence=0.34
+- `spathifier` → `to convert into spar` | Technical term: to turn something into spar or a spar-like form | register=niche | confidence=0.34
+- `surlier` → `to bind with a whipping` | Technical: to fasten or finish a rope, cord, or similar object with a whipping | register=niche | confidence=0.34
+- `taveller` → `to fasten with pegs` | Used mainly in craft contexts for fastening something with pegs or wedges | register=rare_usable | confidence=0.34
+- `ventrouiller` → `to wind up` | Used for winding or rolling something into a tight bundle | register=niche | confidence=0.34
+- `écatir` → `to hammer flat` | Mainly technical: used for making something flat or smooth by pressure or blows | register=niche | confidence=0.34
+- `époutier` → `to wallow` | Old or regional verb for rolling or wallowing about, often in dirt or mud | register=archaic | confidence=0.34
+- `affricher` → `to clear land` | Old/archaic: used for clearing uncultivated land for farming | register=archaic | confidence=0.35
+- `boubouler` → `to bubble` | Used for making a bubbling or gurgling sound | register=rare_usable | confidence=0.35
+- `chinder` → `to tease` | Regional verb: to tease or bother someone | register=niche | confidence=0.35
+- `cousiner` → `to fraternize` | Used for mixing socially or being on friendly terms, often with people outside one’s own circle | register=rare_usable | confidence=0.35
+- `démascler` → `to unmask` | Used for removing a mask or figuratively revealing someone’s identity or true nature | register=rare_usable | confidence=0.35
+- `désencarter` → `to remove an insert` | Used mainly in publishing or filing for taking something that was inserted back out | register=niche | confidence=0.36
+- `hercher` → `to harrow` | Used in farming for working the soil with a harrow | register=niche | confidence=0.36
+- `jarreter` → `to hamstring` | Used for injuring or cutting an animal’s hock/hamstring area | register=niche | confidence=0.36
+- `loufer` → `to mess up` | Informal: used when something goes wrong or is done badly | register=rare_usable | confidence=0.36
+- `palmer` → `to palm` | Used mainly in card magic: to hide something in the hand | register=uncommon | confidence=0.36
+- `velter` → `to ladle out` | Used for drawing off liquid with a velte or similar measure | register=niche | confidence=0.36
+- `véroter` → `to be worm-eaten` | Used of wood, fruit, or similar things damaged by worms | register=rare_usable | confidence=0.36
+- `épinceler` → `to fasten with pins` | Rare; mainly for securing fabric or paper with pins | register=rare_usable | confidence=0.36
+- `enjoncer` → `to heap up` | Old verb for putting things in a heap or pile | register=archaic | confidence=0.37
+- `palanquer` → `to hoist` | Used for lifting or hauling with a pulley or tackle | register=niche | confidence=0.37
+- `piéter` → `to trample` | Rare verb: to tread or stamp with the feet, close to piétiner | register=rare_usable | confidence=0.37
+- `tortorer` → `to torture` | Rare/dated: to subject someone to torture or severe suffering | register=archaic | confidence=0.37
+- `arçonner` → `to fit on a saddle tree` | Very specialized: used for mounting or shaping something on an arçon (saddle tree) | register=niche | confidence=0.38
+- `cacaber` → `to cackle` | Used for a harsh repeated cry, especially by birds | register=archaic | confidence=0.38
+- `débenzoler` → `to remove benzol from` | Used in chemistry or industry for removing benzol (benzene) from a mixture or gas | register=niche | confidence=0.38
+- `dénickeler` → `to remove nickel from` | Used in technical contexts for removing nickel or a nickel coating | register=niche | confidence=0.38
+- `esquicher` → `to squash` | Mainly regional/colloquial; used for pressing or crushing something flat | register=niche | confidence=0.38
+- `gringuer` → `to climb up` | Regional or rare; used for moving upward by climbing | register=niche | confidence=0.38
+- `noper` → `to raise a nap` | Textiles: to raise a nap or pile on fabric | register=niche | confidence=0.38
+- `scheider` → `to separate` | Regional or limited-use verb for separating things or people | register=niche | confidence=0.38
+- `énieller` → `to clean grain of cockleweed` | Agricultural term for removing nielle or cockleweed from grain | register=niche | confidence=0.38
+- `breller` → `to dangle` | Used when something hangs or moves loosely | register=rare_usable | confidence=0.39
+- `bretteler` → `to roughen` | Used especially in crafts or building for making a surface rough or grooved | register=niche | confidence=0.39
+- `buser` → `to cram` | In some regional French, used for studying intensely, especially for a test | register=rare_usable | confidence=0.39
+- `carter` → `to box up` | Used for putting something into a box or a protective casing | register=uncommon | confidence=0.39
+- `claver` → `to key` | Technical: to join or hold parts with a key or wedge | register=niche | confidence=0.39
+- `dessoler` → `to desolate` | Used for ruining or stripping a place; often literary or historical | register=niche | confidence=0.39
+- `débecqueter` → `to feed by regurgitating` | Used of birds: to pass food from the beak to their young | register=niche | confidence=0.39
+- `déchaper` → `to strip off a covering` | Used for removing a chape, cover, or outer coating; rare and often technical | register=niche | confidence=0.39
+- `espoliner` → `to plunder` | Old verb for taking goods or stripping something of value | register=archaic | confidence=0.39
+- `hannetonner` → `to be infested with cockchafers` | Used of plants or places affected by cockchafers | register=niche | confidence=0.39
+- `motter` → `to form into clods` | Used in farming or gardening for soil that clumps into clods | register=niche | confidence=0.39
+- `pituiter` → `to be phlegmy` | Rare, medical/literary: used for a body producing or being full of phlegm/mucus | register=niche | confidence=0.39
+- `pontiller` → `to stipple` | Used for making or shading with small dots, especially in art or printing | register=niche | confidence=0.39
+- `pâter` → `to make into a paste` | Used for turning a material into paste, or coating something with paste | register=niche | confidence=0.39
+- `vacher` → `to herd cows` | Rare verb for looking after cows or cattle | register=rare_usable | confidence=0.39
+- `viroler` → `to fit with a ferrule` | Used in technical contexts for adding a ferrule or ring to something | register=niche | confidence=0.39
+- `ébraiser` → `to chip off` | Mainly technical: to chip or break the edge of something, especially a rim | register=niche | confidence=0.39
+- `bouéler` → `to bawl` | Regional/dialectal use for crying or shouting loudly | register=niche | confidence=0.41
+- `bringuer` → `to party hard` | Usually informal: to go out and enjoy oneself noisily, often with drinking | register=rare_usable | confidence=0.41
+- `carcailler` → `to chatter` | Used for a harsh clicking or rattling sound, often from cold or movement | register=niche | confidence=0.41
+- `crampser` → `to crouch` | Used in some regional French for being or staying in a crouched, squatting position | register=rare_usable | confidence=0.41
+- `désaffectionner` → `to turn away from` | Rare transitive verb: to make someone lose interest in or loyalty to something | register=rare_usable | confidence=0.41
+- `emmouscailler` → `to confuse` | Rare colloquial verb for making something unclear, messy, or complicated | register=rare_usable | confidence=0.41
+- `engommer` → `to gum` | Used for coating something with gum or making it sticky | register=niche | confidence=0.41
+- `entabler` → `to place on a table` | Used in technical or historical contexts for placing something on a flat support or base | register=niche | confidence=0.41
+- `grisoller` → `to chirp` | Rare; mainly of birds or a thin, wavering sound | register=rare_usable | confidence=0.41
+- `juponner` → `to put on a petticoat` | Usually means to put a petticoat or petticoat-like layer on something | register=niche | confidence=0.41
+- `liter` → `to line with straw` | Used for covering a stall or shelter with straw or other bedding | register=niche | confidence=0.41
+- `madéfier` → `to be wary of` | Standard modern French uses the reflexive se méfier de + noun/person | register=rare_usable | confidence=0.41
+- `mécher` → `to fit with a wick` | Used for putting a wick in a lamp, tool, or similar object | register=niche | confidence=0.41
+- `rader` → `to crash` | Colloquial: used of a machine or program that stops working properly | register=rare_usable | confidence=0.41
+- `similiser` → `to make similar` | Rare verb: to make one thing resemble another more closely | register=rare_usable | confidence=0.41
+- `verduniser` → `to devastate` | Used mainly for heavy wartime destruction, or figuratively for severe damage | register=rare_usable | confidence=0.41
+- `épaler` → `to bring abeam` | Nautical: to position something so it lies on the beam | register=niche | confidence=0.41
+- `baraquer` → `to live in a shack` | Used for living or staying in a barracks, hut, or makeshift shelter | register=rare_usable | confidence=0.42
+- `barbifier` → `to shave` | Rare verb, usually about shaving or trimming a beard | register=rare_usable | confidence=0.42
+- `bastillonner` → `to fortify with bastions` | Used in military or historical contexts for adding bastions to a fortification | register=niche | confidence=0.42
+- `brillanter` → `to make shine` | Rare verb for making something shiny or more brilliant | register=rare_usable | confidence=0.42
+- `carmer` → `to calm` | Rare verb meaning to make someone or something calmer | register=rare_usable | confidence=0.42
+- `congréer` → `to gather together` | Rare, old-fashioned: people or things gather into one group | register=archaic | confidence=0.42
+- `contre-plaquer` → `to add a backing plate` | Used in technical contexts for adding a plate or backing layer behind something | register=niche | confidence=0.42
+- `drayer` → `to haul` | Used for moving heavy loads, often timber, along a track or with a dray | register=niche | confidence=0.42
+- `débillarder` → `to riot` | Used for people or a crowd behaving violently or chaotically | register=rare_usable | confidence=0.42
+- `décaver` → `to clean out (at gambling)` | Used in slang for losing or taking away all of someone's money, especially by gambling | register=niche | confidence=0.42
+- `déclinquer` → `to fall apart` | Used for something worn out, failing, or coming apart | register=rare_usable | confidence=0.42
+- `déflaquer` → `to deflate` | Rare verb for making something lose air or become flat | register=rare_usable | confidence=0.42
+- `dévirer` → `to veer off` | Rare; used for moving off a course or direction, sometimes in technical contexts | register=rare_usable | confidence=0.42
+- `embotteler` → `to bundle up` | Rarely used; usually means to tie or arrange things into bundles | register=rare_usable | confidence=0.42
+- `fluxer` → `to stream` | Rare technical use: to move or send something in a flow/flux | register=rare_usable | confidence=0.42
+- `grisoler` → `to turn gray` | Used for something becoming grayish, often hair or a surface | register=rare_usable | confidence=0.42
+- `jouailler` → `to play around` | Rare; used for playing or acting playfully, not seriously | register=rare_usable | confidence=0.42
+- `liarder` → `to pay in small coins` | Rare; usually about very small sums or petty money matters | register=rare_usable | confidence=0.42
+- `paumoyer` → `to handle with the palm` | Used for touching or working something with the palm; rare and often literary | register=rare_usable | confidence=0.42
+- `pistacher` → `to add pistachios` | Rarely used, mainly in cooking for adding pistachios or pistachio flavor | register=niche | confidence=0.42
+- `rebiquer` → `to stick up again` | Used for something that stands up or turns up again, like hair, a corner, or fabric | register=rare_usable | confidence=0.42
+- `recercler` → `to circle again` | Used for making or drawing something circular again | register=rare_usable | confidence=0.42
+- `reloqueter` → `to latch again` | Used for fastening something again with a latch or catch | register=rare_usable | confidence=0.42
+- `rembucher` → `to retreat into cover` | Used of game or someone going back into cover or hiding | register=niche | confidence=0.42
+- `trévirer` → `to veer round` | Rare; used for something changing direction, often in nautical or literary contexts | register=rare_usable | confidence=0.42
+- `électroniser` → `to convert to electronic form` | Used in technical or administrative contexts for turning something into electronic form | register=niche | confidence=0.42
+- `érayer` → `to scratch` | Used for making light scratches or lines on a surface | register=rare_usable | confidence=0.42
+- `étronçonner` → `to cut into sections` | Rare; used for cutting something into short sections, often with a tool | register=rare_usable | confidence=0.42
+- `appondre` → `to sew on` | Rare/old-fashioned: used for attaching something by sewing or stitching | register=archaic | confidence=0.43
+- `bavocher` → `to babble` | Used for speech or writing that comes out messy or blurred | register=rare_usable | confidence=0.43
+- `blinquer` → `to blind` | Rare: usually used for making someone unable to see, or figuratively dazzling them | register=rare_usable | confidence=0.43
+- `bourasser` → `to rough up` | Regional use: to handle, move, or treat someone/something roughly | register=niche | confidence=0.43
+- `cantiner` → `to use the canteen` | Usually refers to using a canteen/cafeteria, especially in prison or the military | register=niche | confidence=0.43
+- `catastropher` → `to turn into a disaster` | Rare verb for something that goes badly wrong or becomes disastrous | register=rare_usable | confidence=0.43
+- `cocoler` → `to pamper` | Rare verb; often means to treat someone with excessive care or affection | register=rare_usable | confidence=0.43
+- `coquiller` → `to misprint` | Mostly used in publishing for introducing an error in text | register=rare_usable | confidence=0.43
+- `décartonner` → `to unpack` | Used for taking something out of a cardboard box or carton | register=niche | confidence=0.43
+- `gobeter` → `to roughcast` | In construction, to apply a rough first coat of mortar or plaster | register=niche | confidence=0.43
+- `godailler` → `to carouse` | Rare slang for drinking and making merry, often noisily | register=niche | confidence=0.43
+- `gâtifier` → `to spoil` | Rare; used for something becoming spoiled, ruined, or no longer good | register=rare_usable | confidence=0.43
+- `langueter` → `to tongue` | Rare verb; often used in a specialized or literary sense, usually involving the tongue or a tongue-like piece | register=niche | confidence=0.43
+- `moiter` → `to become damp` | Rare: used for something becoming slightly damp or clammy | register=rare_usable | confidence=0.43
+- `râbler` → `to grumble` | Old-fashioned: to complain or grumble | register=archaic | confidence=0.43
+- `varloper` → `to rough-plane` | Mainly a woodworking term; can also be used figuratively for rough treatment | register=niche | confidence=0.43
+- `ébouer` → `to muck out` | Used for removing muck or manure, especially in stables or farm settings | register=niche | confidence=0.43
+- `affriter` → `to whet` | Rare; used for making something sharper or more eager, especially appetite or desire | register=rare_usable | confidence=0.44
+- `anneler` → `to ring with bands` | Used in technical contexts for marking or forming something into rings | register=niche | confidence=0.44
+- `apiquer` → `to tilt down` | Mainly a rare nautical or technical verb for making something point downward or at a steep angle | register=niche | confidence=0.44
+- `aposter` → `to station` | Used for putting someone or something in position, often strategically or secretly | register=niche | confidence=0.44
+- `cadancher` → `to padlock` | Used for fastening a door, gate, or object with a padlock; rare/regional | register=niche | confidence=0.44
+- `chabler` → `to fell` | Used in forestry for bringing down trees, often by wind or storm damage | register=niche | confidence=0.44
+- `chouriner` → `to stab` | Slang: usually means to stab someone with a knife | register=rare_usable | confidence=0.44
+- `cramser` → `to burn up` | Slangy verb, usually for something burning or being burned; sometimes used figuratively for dying | register=rare_usable | confidence=0.44
+- `driver` → `to drive` | Mostly niche: used in golf for hitting with a driver | register=niche | confidence=0.44
+- `droper` → `to drop` | Rare informal borrowing; usually means to drop or let something fall | register=rare_usable | confidence=0.44
+- `estrapasser` → `to torture` | Old verb for violently mistreating someone; mostly historical or literary now | register=archaic | confidence=0.44
+- `jerker` → `to jerk` | Used for a sudden, jerky movement | register=rare_usable | confidence=0.44
+- `miter` → `to wear a mitre` | Used mainly in religious contexts for a bishop or cleric wearing a mitre | register=niche | confidence=0.44
+- `paillonner` → `to decorate with foil` | In crafts, especially ceramics or metalwork, to add thin foil pieces for decoration | register=niche | confidence=0.44
+- `pierrer` → `to pave with stones` | Used for laying or covering a surface with stones | register=niche | confidence=0.44
+- `pitonner` → `to fasten with pitons` | Used for fixing something with pitons or pegs, especially in technical or climbing contexts | register=niche | confidence=0.44
+- `poudroyer` → `to powder` | Usually means to coat something with a fine powder | register=rare_usable | confidence=0.44
+- `striquer` → `to streak` | Used for making streaks or striations on a surface | register=niche | confidence=0.44
+- `transfiler` → `to thread through` | Used for passing a thread, cord, wire, or similar object through something; mostly technical | register=niche | confidence=0.44
+- `valouser` → `to value` | Rare; used for treating someone or something as valuable or important | register=rare_usable | confidence=0.44
+- `vaser` → `to put in a vase` | Mainly used for placing flowers or similar items into a vase | register=niche | confidence=0.44
+- `vinculer` → `to link` | Used in formal or specialized writing for linking or binding one thing to another | register=niche | confidence=0.44
+- `émoucheter` → `to blunt` | Usually said of a blade, point, or edge; rare in modern use | register=rare_usable | confidence=0.44
+- `défringuer` → `to undress` | Colloquial: used for taking clothes off | register=niche | confidence=0.45
+- `recoquiller` → `to curl up` | Usually reflexive: se recoquiller = to curl up or draw in on oneself | register=rare_usable | confidence=0.45
+- `santonner` → `to set up nativity figurines` | Usually refers to arranging Provençal santons for a nativity scene | register=niche | confidence=0.45
+- `sarmenter` → `to send out shoots` | Used in botany/viticulture for a plant producing vine-like shoots | register=niche | confidence=0.45
+- `vergeter` → `to brush` | Used for cleaning something with a small brush or whisk | register=niche | confidence=0.45
+- `écaffer` → `to evade` | Rare; used for avoiding or slipping out of something | register=rare_usable | confidence=0.45
+- `affairer` → `to busy oneself` | Usually only in the pronominal form s’affairer: to keep busy or bustle around | register=rare_usable | confidence=0.46
+- `ariser` → `to bevel` | Mainly in technical contexts: to shape a sharp edge or corner | register=niche | confidence=0.46
+- `boumer` → `to boom` | Used for a loud boom or bang; mostly a sound-effect or playful use | register=rare_usable | confidence=0.46
+- `brêler` → `to burn` | Rare; mostly in fire or heating contexts, like standard brûler | register=rare_usable | confidence=0.46
+- `clamecer` → `to die` | Very rare slang/argot for dying | register=rare_usable | confidence=0.46
+- `déparler` → `to talk nonsense` | Rare and regional; used for confused or pointless speech | register=rare_usable | confidence=0.46
+- `endauber` → `to beat up` | Regional/slang: used for hitting someone hard or roughing them up | register=niche | confidence=0.46
+- `entrevoûter` → `to glimpse` | Rare/literary: to see something only briefly or indistinctly | register=rare_usable | confidence=0.46
+- `hourdir` → `to fill with mortar` | Used in masonry, especially for filling joints or building with mortar | register=niche | confidence=0.46
+- `layer` → `to layer` | In gardening, to propagate a plant by bending a stem into soil so it roots | register=niche | confidence=0.46
+- `margauder` → `to haggle` | Rare verb for bargaining insistently or fussing over details | register=rare_usable | confidence=0.46
+- `maronner` → `to grumble` | Used for quietly complaining or showing annoyance | register=rare_usable | confidence=0.46
+- `pajoter` → `to chatter` | Used for informal, often excessive talking | register=niche | confidence=0.46
+- `posticher` → `to fake up` | Usually of hair, beard, or similar additions: to put on or add a postiche | register=rare_usable | confidence=0.46
+- `rapointir` → `to sharpen again` | Used for making something pointed or sharp again | register=rare_usable | confidence=0.46
+- `remoucher` → `to retouch` | Rare verb; usually means to retouch or touch up something again | register=rare_usable | confidence=0.46
+- `tartir` → `to tarry` | Old/rare: to delay or linger | register=archaic | confidence=0.46
+- `tiercer` → `to divide into thirds` | Used in specialized contexts for making something into three parts | register=niche | confidence=0.46
+- `assibiler` → `to assibilate` | Technical linguistics: used when a sound becomes s-like or sibilant | register=niche | confidence=0.47
+- `enfleurer` → `to bloom` | Rare, literary use for a plant or thing coming into flower | register=rare_usable | confidence=0.47
+- `frouer` → `to ruffle` | Usually for making something lightly stir, flutter, or rustle | register=rare_usable | confidence=0.47
+- `triquer` → `to beat with a stick` | Usually means to hit someone with a stick or cudgel | register=rare_usable | confidence=0.47
+- `valeter` → `to act as a valet` | Often literary or old-fashioned: to serve someone in a valet-like way | register=rare_usable | confidence=0.47
+- `attiger` → `to attract` | To draw someone or something toward oneself; likely rare or regional | register=rare_usable | confidence=0.48
+- `azorer` → `to tint blue` | Rare: used for colouring something blue or azure | register=rare_usable | confidence=0.48
+- `chirographier` → `to sign by hand` | Used for signing or drafting a document in one's own hand, especially in legal language | register=niche | confidence=0.48
+- `coupailler` → `to cut up` | Rare variant of *couper*; usually means to cut or chop | register=rare_usable | confidence=0.48
+- `encartoucher` → `to load into cartridges` | Rare, technical: put something into a cartridge or cartridge case | register=niche | confidence=0.48
+- `enverger` → `to plant as an orchard` | Usually in agricultural or regional use: to convert land into an orchard or plant it with fruit trees | register=niche | confidence=0.48
+- `houssiner` → `to whip with a switch` | Used for hitting someone or an animal with a switch or rod | register=rare_usable | confidence=0.48
+- `octavier` → `to play in octaves` | In music, especially for instruments or writing, it means to use notes an octave apart | register=niche | confidence=0.48
+- `recorder` → `to remember` | Old-fashioned; often reflexive (se recorder), meaning to remember or call to mind | register=archaic | confidence=0.48
+- `retouper` → `to retouch` | Rare verb; used for making small corrections or finishing touches, often in a technical or craft context | register=rare_usable | confidence=0.48
+- `ringarder` → `to seem dated` | Informal: used for something or someone that seems outdated, tacky, or uncool | register=rare_usable | confidence=0.48
+- `sacagner` → `to sack, to plunder` | Used for damaging or plundering a place, usually in a violent or destructive way | register=rare_usable | confidence=0.48
+- `troussequiner` → `to fit a saddle cantle` | Rare saddlery term: to fit or work on the rear part of a saddle | register=niche | confidence=0.48
+- `vermiller` → `to redden` | Rare and often literary: to make or become bright red | register=rare_usable | confidence=0.48
+- `épinceter` → `to tweeze` | Used for removing small bits or hairs with tweezers or pincers | register=niche | confidence=0.48
+- `étaliser` → `to spread out` | Used for placing or spreading something out evenly; rare and context-dependent | register=rare_usable | confidence=0.48
+- `bouler` → `to ball up` | Usually means to shape or gather something into a ball | register=rare_usable | confidence=0.49
+- `caleter` → `to wedge` | Used for forcing something firmly into place | register=rare_usable | confidence=0.49
+- `capeyer` → `to heave to` | Nautical: to keep a vessel almost stationary under sail | register=niche | confidence=0.49
+- `chevaler` → `to knight` | Historical: to confer knighthood on someone | register=archaic | confidence=0.49
+- `crapaüter` → `to crawl` | Rare verb for moving low to the ground, often on hands and knees | register=rare_usable | confidence=0.49
+- `encabaner` → `to shut in` | Often reflexive in modern French: to stay indoors / keep oneself in | register=niche | confidence=0.49
+- `ischémier` → `to cause ischemia` | Medical use: causes tissue to become ischemic | register=niche | confidence=0.49
+- `quiller` → `to set up pins` | Used mainly for putting pins or skittles upright | register=niche | confidence=0.49
+- `ramander` → `to call back` | Rare; used in older or literary language for calling someone back or repeating a request | register=rare_usable | confidence=0.49
+- `baleiner` → `to hunt whales` | Rare; used mainly in whaling contexts | register=niche | confidence=0.5
+- `merdoyer` → `to go wrong` | Rare slang use for something that fails or goes badly | register=rare_usable | confidence=0.5
+- `épeuler` → `to chip` | For a bottle, glass, or pot: to chip the shoulder or rim | register=niche | confidence=0.5
+- `fenêtrer` → `to window` | Often technical: to display or handle something in windows | register=niche | confidence=0.51
+- `parfiler` → `to fray` | Used for fabric or material that starts to split into loose threads | register=rare_usable | confidence=0.51
+- `ronsardiser` → `to write in Ronsard’s style` | Literary: used for writing or speaking in a style like Pierre de Ronsard’s | register=niche | confidence=0.51
+- `abloquer` → `to clamp` | Used in technical contexts for holding something firmly in place | register=rare_usable | confidence=0.52
+- `bauger` → `to wallow` | Used mainly of animals: to wallow or lie in a muddy place | register=rare_usable | confidence=0.52
+- `cabaner` → `to capsize` | Usually of a boat or craft: to tip over | register=niche | confidence=0.52
+- `délurer` → `to make worldly-wise` | Used for making someone more shrewd, bold, or worldly | register=rare_usable | confidence=0.52
+- `démoucheter` → `to remove moss` | Used for cleaning surfaces by removing moss | register=niche | confidence=0.52
+- `galipoter` → `to frolic around` | Used for moving about playfully or loosely, often with a sense of romping | register=rare_usable | confidence=0.52
+- `jumper` → `to jump` | Used mainly in horse-riding/sports jargon for taking a jump or obstacle | register=niche | confidence=0.52
+- `surdouer` → `to be highly gifted` | Used mainly for exceptional intellectual ability, often about children | register=rare_usable | confidence=0.52
+- `terser` → `to make concise` | Used mainly for text or speech: to make it shorter and more concise | register=rare_usable | confidence=0.52
+- `ténoriser` → `to sing tenor` | Rarely used; mainly in music or as a joking way to mean “make/assign the tenor part.” | register=rare_usable | confidence=0.52
+- `virevousser` → `to twirl` | Used for turning or twisting repeatedly, often lightly or playfully | register=rare_usable | confidence=0.52
+- `épanner` → `to rough-dress` | Used in stoneworking for shaping a block roughly | register=niche | confidence=0.52
+- `concréter` → `to solidify` | Rare; mainly technical or abstract: to become solid, or to make something concrete | register=niche | confidence=0.53
+- `délaiter` → `to wean` | Mainly of a child or animal, in the sense of weaning off milk | register=rare_usable | confidence=0.53
+- `enchemiser` → `to put in a shirt` | Rare verb meaning to put someone or something into a shirt | register=rare_usable | confidence=0.53
+- `jargauder` → `to chatter` | Used for talking in a low, casual, or indistinct way; often regional or dialectal | register=niche | confidence=0.53
+- `manoquer` → `to miss` | Used for not hitting or catching something | register=rare_usable | confidence=0.53
+- `mouronner` → `to moan` | Rare verb for making a low moaning sound or muttering complaints | register=rare_usable | confidence=0.53
+- `pastiller` → `to make into tablets` | Used mainly for making something into small round tablets or dots | register=niche | confidence=0.53
+- `patafioler` → `to flounder` | Used for moving or acting awkwardly, in a clumsy muddle | register=rare_usable | confidence=0.53
+- `apponter` → `to berth` | For a boat or ship, to move alongside a pier, jetty, or dock | register=niche | confidence=0.54
+- `bistourner` → `to castrate` | Rare slang for castrating a person or animal | register=rare_usable | confidence=0.54
+- `bléser` → `to injure` | Rare old variant of blesser; used for physical or emotional injury | register=obsolete_or_unintelligible | confidence=0.54
+- `cadmier` → `to cadmium-plate` | Used in metallurgy for coating something with cadmium | register=niche | confidence=0.54
+- `caquer` → `to cackle` | Old-fashioned; usually said of a hen's cackling | register=archaic | confidence=0.54
+- `chaumer` → `to stubble-plough` | Used in farming for the first working of a field after harvest | register=niche | confidence=0.54
+- `chelinguer` → `to stink` | Colloquial; used for a bad smell or something that stinks | register=rare_usable | confidence=0.54
+- `clapir` → `to squeal` | Said of a rabbit or hare: to make a shrill cry; sometimes figuratively of a person whimpering | register=rare_usable | confidence=0.54
+- `clapser` → `to collapse` | Colloquial slang, often meaning to collapse or die | register=rare_usable | confidence=0.54
+- `dodiner` → `to rock gently` | Used for a gentle back-and-forth motion, often with a baby or chair | register=rare_usable | confidence=0.54
+- `déplomber` → `to cheer up` | Colloquially, to make someone feel less down | register=rare_usable | confidence=0.54
+- `dérager` → `to flush out` | Mainly used for forcing an animal out of cover or a den | register=niche | confidence=0.54
+- `gourmer` → `to bridle` | Mainly for horses; figuratively, to restrain or hold back | register=niche | confidence=0.54
+- `grincher` → `to grumble` | Used for complaining or grumbling, often in informal or regional speech | register=rare_usable | confidence=0.54
+- `herber` → `to grass` | Used in farming or landscaping for covering a surface with grass | register=niche | confidence=0.54
+- `paisseler` → `to cover with straw` | Used for covering something with straw, especially in farming or building contexts | register=niche | confidence=0.54
+- `patter` → `to recite mechanically` | Used for repeating prayers or words automatically, without much thought | register=niche | confidence=0.54
+- `ruiler` → `to ruin` | Rare verb for ruining or badly damaging something | register=rare_usable | confidence=0.54
+- `récliner` → `to recline` | Rare; used for something leaning or moving backward | register=rare_usable | confidence=0.54
+- `taler` → `to bruise` | Used of fruit or other soft things that get bruised by impact | register=niche | confidence=0.54
+- `tuberculiner` → `to test with tuberculin` | Usually in veterinary or medical contexts: to apply tuberculin for testing | register=niche | confidence=0.54
+- `valiser` → `to loot` | Used for taking goods by force or stealing from a place; fairly rare in modern French | register=rare_usable | confidence=0.54
+- `yoyotter` → `to wobble` | Used for something moving or varying up and down; often figurative | register=rare_usable | confidence=0.54
+- `ajointer` → `to join` | Usually for joining or fitting parts together, often in technical contexts | register=niche | confidence=0.55
+- `aviner` → `to season with wine` | Used for adding wine to something, especially in cooking or wine-related contexts | register=niche | confidence=0.55
+- `cocoter` → `to cluck` | Used of a hen making a clucking sound | register=rare_usable | confidence=0.55
+- `contrebattre` → `to counteract` | Usually a rare, specialized verb: to act against or neutralize something | register=niche | confidence=0.55
+- `dessuiter` → `to follow after` | Old/rare: used for following after someone or something | register=archaic | confidence=0.55
+- `goupiller` → `to secure with a pin` | Usually for fastening something with a pin; also figuratively for improvising or arranging something | register=rare_usable | confidence=0.55
+- `grener` → `to go to seed` | Used for a plant or substance becoming grain-like or granular | register=niche | confidence=0.55
+- `lantiponner` → `to dawdle` | Used for lingering or delaying instead of getting on with something | register=rare_usable | confidence=0.55
+- `machicoter` → `to fiddle with` | Used for handling or adjusting something in a clumsy, improvised way | register=rare_usable | confidence=0.55
+- `quotter` → `to quote` | Used for repeating someone’s words, mainly in informal or online use; standard French usually prefers citer | register=niche | confidence=0.55
+- `sourdiner` → `to muffle` | Mainly technical or musical: to make a sound less loud or clear | register=niche | confidence=0.55
+- `sérancer` → `to heckle flax/hemp` | Textile term: to separate and straighten flax or hemp fibers with a heckle | register=niche | confidence=0.55
+- `warranter` → `to warrant` | Legal/formal: to guarantee a right, title, or debt | register=niche | confidence=0.55
+- `accouer` → `to hitch in tandem` | Old or literary; used of horses or draft animals tied one behind another | register=archaic | confidence=0.56
+- `affruiter` → `to make bear fruit` | Used in horticulture for making a plant produce fruit | register=niche | confidence=0.56
+- `attriquer` → `to dress up` | Usually means to dress or outfit someone, often in a slightly old-fashioned or regional way | register=rare_usable | confidence=0.56
+- `bretailler` → `to chatter` | Used for noisy, quick, often pointless talking | register=rare_usable | confidence=0.56
+- `bâtonner` → `to stir with a stick` | Mainly in cooking or winemaking: to stir a liquid or sauce with a stick or spoon | register=niche | confidence=0.56
+- `bêcheveter` → `to interlace` | Used of things that cross or are woven together; rare and somewhat technical | register=rare_usable | confidence=0.56
+- `camer` → `to drug` | Slang; often reflexive, meaning to take drugs or get high | register=rare_usable | confidence=0.56
+- `champagniser` → `to make champagne-like` | Usually means to give a drink champagne-like sparkle or character | register=niche | confidence=0.56
+- `chatonner` → `to put out catkins` | Botany: said of a plant when it puts out catkins | register=niche | confidence=0.56
+- `cherrer` → `to make more expensive` | Rare verb for pricing/cost, usually meaning to make something more expensive | register=rare_usable | confidence=0.56
+- `cordonner` → `to lace` | Usually of shoes or garments: to put laces or cords through | register=niche | confidence=0.56
+- `décorder` → `to uncord` | Used for taking off or loosening a cord or rope; rare and fairly literal | register=rare_usable | confidence=0.56
+- `dégrouiller` → `to untangle` | Used for separating something tangled or mixed up | register=rare_usable | confidence=0.56
+- `délisser` → `to roughen` | Used for making a surface or material less smooth | register=niche | confidence=0.56
+- `dérader` → `to leave the roadstead` | Usually of a ship leaving a roadstead or anchorage | register=niche | confidence=0.56
+- `détrancher` → `to cut off` | Rare, mostly literal use for cutting a section or edge off something | register=rare_usable | confidence=0.56
+- `déviroler` → `to unroll` | Used for something that is rolled or twisted up, especially a rope or cable | register=rare_usable | confidence=0.56
+- `flaquer` → `to puddle` | Mainly of water or mud: to form puddles | register=rare_usable | confidence=0.56
+- `flibuster` → `to act as a pirate` | Usually historical: to behave like a pirate or buccaneer | register=niche | confidence=0.56
+- `gazer` → `to gas` | Used for treating or filling something with gas | register=niche | confidence=0.56
+- `gironner` → `to divide into wedge-shaped sections` | Mainly in heraldry: to divide a shield into radiating wedge-shaped sections | register=niche | confidence=0.56
+- `haver` → `to make gaunt` | Usually literary: to make someone or something look gaunt or hollowed out | register=rare_usable | confidence=0.56
+- `hérissonner` → `to roughen` | Usually technical: to make a surface rough or spiky | register=niche | confidence=0.56
+- `introbvertir` → `to turn inward` | Rare verb used for moving or turning something inward; usually replaced by more common wording | register=rare_usable | confidence=0.56
+- `iouler` → `to howl` | Used for making a long, loud howl; now very rare or historical in standard French | register=obsolete_or_unintelligible | confidence=0.56
+- `jaffer` → `to bark` | Usually of a dog: to bark or yap | register=niche | confidence=0.56
+- `japonner` → `to lacquer in the Japanese style` | Used mainly for applying a Japanese-style lacquer or finish, especially in craft or decorative contexts | register=niche | confidence=0.56
+- `louveter` → `to zigzag` | Used mainly for moving in a zigzag course, especially in sailing | register=rare_usable | confidence=0.56
+- `pétouiller` → `to sputter` | Used for weak popping or sputtering sounds, or for something working badly | register=rare_usable | confidence=0.56
+- `remmancher` → `to put back on a handle` | Literally, about putting something back onto its handle; rare today, with some figurative uses | register=rare_usable | confidence=0.56
+- `ressuer` → `to sweat again` | Used of something giving off sweat or moisture again, often in technical or literary French | register=niche | confidence=0.56
+- `rocouer` → `to coo` | Used for the soft sound of pigeons; sometimes figuratively for sweet-talking | register=rare_usable | confidence=0.56
+- `taponner` → `to wad up` | Used for making something into a small wad or bunch, especially paper or cloth | register=rare_usable | confidence=0.56
+- `terrir` → `to make landfall` | Used mainly of ships or boats; rare in modern French | register=niche | confidence=0.56
+- `tracaner` → `to stalk` | To follow someone closely, often in a secretive or hostile way | register=rare_usable | confidence=0.56
+- `tranchefiler` → `to sew endbands` | In bookbinding, to sew the decorative endbands on a book spine | register=niche | confidence=0.56
+- `videler` → `to empty` | Used for emptying a container or space, often in a limited or technical way | register=rare_usable | confidence=0.56
+- `vobuler` → `to wobble` | Used when something moves unsteadily from side to side | register=rare_usable | confidence=0.56
+- `ébosser` → `to dent` | Used for making a dent or bump in a surface | register=rare_usable | confidence=0.56
+- `écanguer` → `to scutch` | Used in textile work for removing the woody parts from flax or hemp | register=niche | confidence=0.56
+- `égravillonner` → `to clear away gravel` | In roadwork or landscaping, it means to remove gravel or small stone chips | register=niche | confidence=0.56
+- `émier` → `to crumble` | Used when something breaks into small crumbs, especially bread or pastry | register=rare_usable | confidence=0.56
+- `énouer` → `to knot` | Rare; usually means to tie something into a knot or loop | register=rare_usable | confidence=0.56
+- `étoiler` → `to decorate with stars` | Used for making something covered or marked with star shapes; sometimes for a star-like crack or pattern | register=rare_usable | confidence=0.56
+- `agender` → `to make agender` | Used in gender/identity contexts for making something agender or non-gendered | register=niche | confidence=0.57
+- `batoiller` → `to frolic` | Used for playful or aimless activity; rare in modern standard French | register=rare_usable | confidence=0.57
+- `bigorner` → `to crumple` | Used for bending or deforming the edges or corners of something, often paper or a page | register=rare_usable | confidence=0.57
+- `bégueter` → `to stammer` | Rare synonym of bégayer; used for speech with repeated sounds or blocks | register=rare_usable | confidence=0.57
+- `coter` → `to quote (a price)` | Used for stating a price or market value; also in technical drawing, to dimension a plan | register=uncommon | confidence=0.57
+- `débrocher` → `to unplug` | Regional or technical use for unplugging a device; in standard French, it can also mean taking food off a skewer or spit | register=niche | confidence=0.57
+- `déconjuguer` → `to deconjugate` | Used in technical or grammar contexts for undoing conjugation | register=niche | confidence=0.57
+- `déhouiller` → `to remove coal from` | Used in mining or geology for taking coal away from a place or surface | register=niche | confidence=0.57
+- `embouquer` → `to put a bit in (a horse's mouth)` | Mainly used in horse handling; also for forcing something into a narrow opening or passage | register=niche | confidence=0.57
+- `grainer` → `to become grainy` | Often of a sauce or mixture that separates into grains; also of plants, to go to seed | register=niche | confidence=0.57
+- `macquer` → `to pimp` | Argot: to act as a pimp for someone, especially a prostitute | register=niche | confidence=0.57
+- `mignoter` → `to pamper` | Often means to treat someone with excessive affection or care | register=rare_usable | confidence=0.57
+- `nuer` → `to cloud` | Mainly in heraldry or decorative descriptions: to make something look clouded or mottled | register=niche | confidence=0.57
+- `piper` → `to utter` | Mostly in fixed phrases like ne pas piper mot (“not to say a word”) | register=rare_usable | confidence=0.57
+- `ploquer` → `to block` | Rare, mainly regional: to block or obstruct something | register=rare_usable | confidence=0.57
+- `quarderonner` → `to quarter` | Rare; divide something into four parts | register=rare_usable | confidence=0.57
+- `remastiquer` → `to chew again` | Used for chewing again, especially after something has already been chewed once | register=rare_usable | confidence=0.57
+
+## Tail / Removal Candidates
+
+- `abrévier` → `to abbreviate` | Old-fashioned for shortening a word or text | register=archaic
+- `accouer` → `to hitch in tandem` | Old or literary; used of horses or draft animals tied one behind another | register=archaic
+- `aciseler` → `to sharpen` | Old word for sharpening a blade or edge | register=archaic
+- `affricher` → `to clear land` | Old/archaic: used for clearing uncultivated land for farming | register=archaic
+- `allégir` → `to lighten` | Old or literary verb for making something lighter; mostly replaced by alléger | register=archaic
+- `apparoir` → `to be apparent` | Very old/rare; mostly survives in the impersonal legal/formal phrase il appert (“it is clear”) | register=archaic
+- `appendre` → `to hang up` | Old-fashioned/literary: to hang something up or suspend it | register=archaic
+- `appondre` → `to sew on` | Rare/old-fashioned: used for attaching something by sewing or stitching | register=archaic
+- `bailler` → `to give` | Old-fashioned verb; mainly in set or legal phrases, not the same as bâiller (“to yawn”) | register=archaic
+- `baller` → `to dance` | Old-fashioned or literary for dancing | register=archaic
+- `baster` → `to suffice` | Old-fashioned: used for “to be enough” or “to suffice.” | register=archaic
+- `bigophoner` → `to phone` | Old-fashioned slang for calling someone on the phone | register=archaic
+- `bouter` → `to drive out` | Old-fashioned: used for pushing or driving someone/something away, often in set phrases | register=archaic
+- `cacaber` → `to cackle` | Used for a harsh repeated cry, especially by birds | register=archaic
+- `caquer` → `to cackle` | Old-fashioned; usually said of a hen's cackling | register=archaic
+- `chaloir` → `to matter` | Archaic impersonal verb, now mostly in fixed literary phrases like “il ne m’en chaut” (“I do not care”) | register=archaic
+- `chauvir` → `to nod` | Old-fashioned: to make a slight movement of the head, especially in greeting or assent | register=archaic
+- `chevaler` → `to knight` | Historical: to confer knighthood on someone | register=archaic
+- `choir` → `to fall` | Old-fashioned; mainly in literary style and set phrases like laisser choir | register=archaic
+- `chérer` → `to cherish` | Old/literary verb meaning to hold someone or something dear | register=archaic
+- `computer` → `to count` | Old-fashioned/literary: used for counting or tallying numbers | register=archaic
+- `congréer` → `to gather together` | Rare, old-fashioned: people or things gather into one group | register=archaic
+- `conobrer` → `to know; to recognize` | Old/rare form used for knowing or recognizing something | register=archaic
+- `controuver` → `to make up` | Old-fashioned: to invent or make up something, especially a story or falsehood | register=archaic
+- `courailler` → `to gallivant` | Often old-fashioned: to go about aimlessly or in pursuit of someone | register=archaic
+- `courtauder` → `to cut short` | Used for cutting something down to a shorter length, especially hair or plants | register=archaic
+- `dessuiter` → `to follow after` | Old/rare: used for following after someone or something | register=archaic
+- `difformer` → `to deform` | Old form of déformer; used for changing shape or making something look warped | register=archaic
+- `efflanquer` → `to make gaunt` | Old-fashioned: used of making someone or something very thin or gaunt | register=archaic
+- `embastiller` → `to imprison` | Old verb for putting someone in prison; now mainly historical | register=archaic
+- `embattre` → `to beat in` | Old/rare verb for beating or hammering something into shape | register=archaic
+- `embreler` → `to tangle up` | Old, rare verb for making something tangled or fastened awkwardly | register=archaic
+- `embrever` → `to shorten` | Old or rare verb meaning to make something briefer | register=archaic
+- `empercher` → `to prevent` | Old spelling; used for stopping something from happening | register=archaic
+- `emplir` → `to fill` | Dated or literary verb; modern French usually uses remplir | register=archaic
+- `encharner` → `to flesh over` | Old or specialized use for taking on flesh or being covered with flesh | register=archaic
+- `enchausser` → `to shoe` | Old-fashioned: to put shoes on someone or something | register=archaic
+- `endêver` → `to vex` | Old-fashioned; used to mean “to vex” or “to anger” someone | register=archaic
+- `enforcir` → `to strengthen` | Old-fashioned; used for making something stronger, or for becoming stronger | register=archaic
+- `enjoncer` → `to heap up` | Old verb for putting things in a heap or pile | register=archaic
+- `enjuiver` → `to Judaize` | Old-fashioned, often pejorative: to make someone or something Jewish | register=archaic
+- `enlier` → `to bind together` | Old/literary: to join or bind things together | register=archaic
+- `ensaisiner` → `to put in legal possession` | Old legal term: to place someone in possession of property or rights | register=archaic
+- `espoliner` → `to plunder` | Old verb for taking goods or stripping something of value | register=archaic
+- `espouliner` → `to brush out` | Rare archaic verb; likely used in a specialized or regional sense | register=archaic
+- `estrapasser` → `to torture` | Old verb for violently mistreating someone; mostly historical or literary now | register=archaic
+- `failler` → `to fail` | Old-fashioned verb; mostly found in older or literary French | register=archaic
+- `fieffer` → `to grant as a fief` | Historical/feudal: to give land or rights as a fief | register=archaic
+- `fier` → `to trust` | Mostly used today as se fier à: to trust or rely on someone or something | register=archaic
+- `forfaire` → `to transgress` | Usually in forfaire à + noun: to act against, or fail in, a duty, promise, or honor | register=archaic
+- `forjeter` → `to reject` | Old-fashioned: to reject or throw away something | register=archaic
+- `forligner` → `to be unlike one's family` | Archaic/literary; used when someone does not resemble their family line or ancestry | register=archaic
+- `forlonger` → `to linger too long` | Old or rare: used for staying away or lingering beyond the expected time | register=archaic
+- `giboyer` → `to hunt game` | Used of hunting game; now old-fashioned or literary | register=archaic
+- `gueuser` → `to beg` | Dated; used for living by begging or acting like a beggar | register=archaic
+- `herscher` → `to harrow` | Old form of *herser*; used for working a field with a harrow | register=archaic
+- `honnir` → `to disgrace` | Literary: to bring shame or disgrace on someone or something | register=archaic
+- `improuver` → `to disapprove of` | Old-fashioned: to express disapproval of something | register=archaic
+- `jinguer` → `to prance` | Old/rare verb for moving or dancing in a lively, jerky way | register=archaic
+- `larronner` → `to pilfer` | Dated/literary: used for stealing, often in a petty or sneaky way | register=archaic
+- `limander` → `to file` | Old-fashioned synonym of limer: to shape or smooth something with a file | register=archaic
+- `linger` → `to launder` | Old-fashioned: to wash laundry | register=archaic
+- `lourer` → `to rent out` | Old/rare variant of louer; used for renting something out | register=archaic
+- `malfaire` → `to do wrong` | Old-fashioned or literary: to act wrongly or commit a wrong | register=archaic
+- `messeoir` → `to be unbecoming` | Usually in formal or literary style, for something that does not suit a person or situation | register=archaic
+- `mouver` → `to move` | Old or literary verb for moving something; not normal modern standard French | register=archaic
+- `mucher` → `to hide` | Old-fashioned or regional; often reflexive in the sense “to hide oneself.” | register=archaic
+- `musser` → `to hide` | Older verb meaning to hide or conceal; often appears as se musser | register=archaic
+- `nover` → `to wed` | Old-fashioned verb for getting married | register=archaic
+- `obvenir` → `to happen` | Rare, old-fashioned verb for something happening or arising | register=archaic
+- `ouvrer` → `to work` | Old-fashioned verb for working or making something by hand | register=archaic
+- `ouïr` → `to hear` | Archaic/literary verb meaning “to hear”; modern French usually uses entendre | register=archaic
+- `parfondre` → `to melt away` | Old/literary verb for something melting or dissolving completely | register=archaic
+- `pétuner` → `to smoke (tobacco)` | Old-fashioned verb for smoking tobacco | register=archaic
+- `quarrer` → `to make square` | Mostly old or technical: to make something square or square-shaped | register=archaic
+- `quérir` → `to fetch` | Mostly archaic; still seen in fixed phrases like aller quérir, meaning to go fetch something | register=archaic
+- `raller` → `to go back` | Old, rare verb meaning to go back or return | register=archaic
+- `rassoir` → `to sit back down` | Usually reflexive: se rassoir means to sit back down again | register=archaic
+- `ratiner` → `to ratify` | Old/rare form used for formally approving a treaty, decision, or agreement | register=archaic
+- `recorder` → `to remember` | Old-fashioned; often reflexive (se recorder), meaning to remember or call to mind | register=archaic
+- `redonder` → `to abound` | Literary and dated, usually with de + noun: something redonde de X = it abounds in X | register=archaic
+- `remembrer` → `to remember` | Old/literary verb meaning “to remember”; modern French usually uses se souvenir or se rappeler | register=archaic
+- `rengracier` → `to thank again` | Old or literary use: to thank someone again | register=archaic
+- `renter` → `to return` | Old form for returning or going back inside | register=archaic
+- `repairer` → `to return` | Old-fashioned: to go back to a place, often home or a usual spot | register=archaic
+- `rependre` → `to hang again` | Rare/literary: hang something again, especially after it has been taken down | register=archaic
+- `roidir` → `to stiffen` | Old/rare form of *raidir*; used for making or becoming stiff | register=archaic
+- `ronéotyper` → `to mimeograph` | Use for duplicating text on a mimeograph, mostly in older or historical contexts | register=archaic
+- `rupiner` → `to ruin` | Old-fashioned: to ruin something or someone | register=archaic
+- `râbler` → `to grumble` | Old-fashioned: to complain or grumble | register=archaic
+- `réer` → `to dream` | Old/literary verb for dreaming or imagining, now very rare | register=archaic
+- `serfouir` → `to dig` | Old-fashioned verb for digging or burrowing in the ground | register=archaic
+- `sursoir` → `to defer, stay` | Old/rare form of surseoir; mainly used in formal or legal language | register=archaic
+- `tartir` → `to tarry` | Old/rare: to delay or linger | register=archaic
+- `tortorer` → `to torture` | Rare/dated: to subject someone to torture or severe suffering | register=archaic
+- `vendiquer` → `to claim` | Older form; used for formally claiming something as one's own, now mostly replaced by revendiquer | register=archaic
+- `vener` → `to hunt with hounds` | Old hunting term, used for hunting with hounds | register=archaic
+- `vertir` → `to turn green` | Old/literary: used for something becoming green or being made green | register=archaic
+- `écacher` → `to hide` | Old-fashioned; used for hiding or concealing something | register=archaic
+- `échampir` → `to escape` | Old or literary; often reflexive in the sense “to get away, escape.” | register=archaic
+- `écuisser` → `to split open` | Old/rare verb for splitting or cracking something open | register=archaic
+- `éhahir` → `to astonish` | Old/literary: to strike someone with surprise or amazement | register=archaic
+- `éployer` → `to unfold` | Literary or old-fashioned: to unfold or spread out something | register=archaic
+- `époutier` → `to wallow` | Old or regional verb for rolling or wallowing about, often in dirt or mud | register=archaic
+- `abcéder` → `to form an abscess` | Used in medicine for tissue or a wound that develops an abscess | register=niche
+- `ablater` → `to ablate` | Used in technical contexts for removing material, especially in medicine or physics | register=niche
+- `abraser` → `to abrade` | Used in technical contexts for wearing down or smoothing a surface by abrasion | register=niche
+- `abricoter` → `to glaze with apricot jam` | Used in cooking and pastry for coating with a thin layer of apricot preserve | register=niche
+- `abrier` → `to cover` | Regional: to cover someone or something, often with a blanket | register=niche
+- `abroger` → `to repeal` | Used mainly for laws, decrees, or formal rules | register=niche
+- `absoudre` → `to absolve` | Used mainly in formal, religious, or legal contexts for pardoning or excusing guilt | register=niche
+- `accastiller` → `to fit out (a boat)` | Used in boating: to equip a vessel with deck fittings or other hardware | register=niche
+- `accorer` → `to shore up` | Used for propping or bracing something, especially in technical or nautical contexts | register=niche
+- `accréter` → `to accrete` | Used mainly in technical contexts for something increasing by gradual addition | register=niche
+- `acculturer` → `to acculturate` | Used for adapting a person or group to another culture | register=niche
+- `achaler` → `to bother` | In Quebec French, informal: to bother or pester someone | register=niche
+- `achromatiser` → `to achromatize` | Used in technical contexts for making something achromatic or colorless | register=niche
+- `acidifier` → `to acidify` | Usually in chemistry, food, or biology: to make something acidic | register=niche
+- `aciduler` → `to acidulate` | Used in cooking or chemistry for making something slightly acidic | register=niche
+- `aciérer` → `to steel` | Used in technical or metallurgical contexts for treating something with steel | register=niche
+- `acquiescer` → `to acquiesce` | Formal: to agree or accept something, often without enthusiasm | register=niche
+- `acquitter` → `to clear` | Often used for paying off a debt, bill, or charge; in law, to acquit someone | register=niche
+- `acter` → `to record officially` | Used in formal contexts for making a fact or decision official or noted | register=niche
+- `acérer` → `to sharpen (a blade)` | Usually for a blade or edge: to make it sharper or harder with steel | register=niche
+- `acétifier` → `to acetify` | Technical: to turn something into vinegar or make it acetous | register=niche
+- `acétyler` → `to acetylate` | In chemistry, to add an acetyl group to a compound | register=niche
+- `adjectiver` → `to turn into an adjective` | Grammar: to convert a word into an adjective or use it adjectivally | register=niche
+- `adjectiviser` → `to turn into an adjective` | Used in linguistics for forming or treating a word as an adjective | register=niche
+- `adjoindre` → `to add to; to appoint` | Formal: used for adding someone/something to a group or appointing someone to a role | register=niche
+- `adjuger` → `to award officially` | Used for a judge or official giving something to someone, especially in legal or auction contexts | register=niche
+- `administrer` → `to administer` | Used mainly for medicine, tests, or official duties | register=niche
+- `adouber` → `to dub` | Ceremonial: confer knighthood; in chess, say j'adoube to adjust a piece without moving it | register=niche
+- `adsorber` → `to adsorb` | Used in chemistry for a substance sticking to a surface without being absorbed into it | register=niche
+- `adultérer` → `to adulterate` | To make something impure by adding a lower-quality substance | register=niche
+- `affaler` → `to haul down` | Used for lowering something with ropes, especially sails or equipment | register=niche
+- `affilier` → `to affiliate` | Used for formally linking a person or organization to a larger group | register=niche
+- `affleurer` → `to outcrop` | Used especially of rock or material showing at the surface | register=niche
+- `afflouer` → `to refloat` | Mainly nautical: to make a ship float again after grounding | register=niche
+- `affouager` → `to supply with firewood` | Used in municipal or forestry contexts for affouage, the allocation of firewood | register=niche
+- `affouiller` → `to scour` | Used in engineering or river contexts for water eroding soil or foundations | register=niche
+- `affourager` → `to feed (livestock)` | Used for feeding animals, especially with fodder or forage | register=niche
+- `affourcher` → `to moor with two anchors` | Used in sailing for securing a vessel with two anchors | register=niche
+- `affourrager` → `to feed (animals)` | Usually for livestock or horses; not general 'feed' | register=niche
+- `affranchir` → `to frank` | Mainly for adding postage to a letter or parcel | register=niche
+- `affruiter` → `to make bear fruit` | Used in horticulture for making a plant produce fruit | register=niche
+- `affréter` → `to charter` | Used for hiring a ship, plane, or other transport for a journey | register=niche
+- `afféager` → `to lease out long-term` | Used mainly for land or property, in legal or historical contexts | register=niche
+- `africaniser` → `to Africanize` | Used for making something seem more African or influenced by African culture | register=niche
+- `agender` → `to make agender` | Used in gender/identity contexts for making something agender or non-gendered | register=niche
+- `agglomérer` → `to agglomerate` | Used for things or particles coming together into a mass; also in technical or figurative contexts | register=niche
+- `agglutiner` → `to stick together` | Used for things, cells, or particles that form a mass by sticking together | register=niche
+- `agioter` → `to speculate` | Mainly financial speculation, especially on the stock market | register=niche
+- `agneler` → `to lamb` | Used for a ewe giving birth to lambs | register=niche
+- `agrainer` → `to bait with grain` | Used in hunting or animal management: scatter grain to feed or attract animals | register=niche
+- `agréer` → `to accept` | Formal: used for approving or accepting something, often in official or polite formulas | register=niche
+- `agréger` → `to aggregate` | Used in technical contexts for combining things into a whole | register=niche
+- `aiguiller` → `to switch` | Mainly used for routing or switching a train, signal, or person to the right place | register=niche
+- `aiguilleter` → `to cut into thin strips` | Mainly in cooking: to cut meat or other food into narrow strips | register=niche
+- `ailler` → `to season with garlic` | Mainly in cooking: to add garlic to a dish | register=niche
+- `aimanter` → `to magnetize` | Used for making something magnetic or giving it magnetic properties | register=niche
+- `airer` → `to nest` | Used mainly of birds of prey: to build or occupy a nest | register=niche
+- `ajointer` → `to join` | Usually for joining or fitting parts together, often in technical contexts | register=niche
+- `ajourer` → `to make openwork` | Used for making patterned openings in a material, often for decoration | register=niche
+- `alcaliniser` → `to alkalize` | Used in technical contexts for making a substance more alkaline | register=niche
+- `alcaliser` → `to alkalize` | Used in chemistry or industry for making something alkaline | register=niche
+- `alcooliser` → `to add alcohol to` | Used for adding alcohol to a substance, product, or mixture | register=niche
+- `aleviner` → `to stock with fry` | Used in fish farming or fishing to put young fish into a pond, lake, or enclosure | register=niche
+- `aliter` → `to confine to bed` | Used mainly in medical contexts: to keep someone in bed for recovery | register=niche
+- `aliéner` → `to alienate` | Mainly legal: to transfer ownership or rights away | register=niche
+- `allotir` → `to split into lots` | Mainly for land, contracts, or projects divided into lots | register=niche
+- `allouer` → `to allocate` | Used for assigning funds, resources, or duties | register=niche
+- `alluvionner` → `to silt up` | Used of rivers or watercourses depositing alluvial sediment | register=niche
+- `allégoriser` → `to allegorize` | Used in literature or criticism for giving something allegorical form | register=niche
+- `alphabétiser` → `to teach to read and write` | Used for giving someone basic reading and writing skills | register=niche
+- `aluminer` → `to aluminize` | Used in industry for coating a surface with aluminum | register=niche
+- `aluner` → `to treat with alum` | Used for treating cloth, paper, or similar materials with alum | register=niche
+- `alunir` → `to land on the moon` | Used for a spacecraft or mission landing on the Moon | register=niche
+- `aléser` → `to ream` | In machining, to enlarge a hole with a reamer | register=niche
+- `amancher` → `to fit a handle to` | Mainly for tools or knives: to put a handle on something | register=niche
+- `amariner` → `to accustom to sea life` | Nautical: to make someone used to life at sea | register=niche
+- `amatir` → `to dull` | Used for making a surface, color, or shine less bright | register=niche
+- `ambiancer` → `to set the mood` | Informal: used for making a place, party, or event feel lively or cool | register=niche
+- `ambrer` → `to tint amber` | Used for giving something an amber colour, or sometimes an amber scent | register=niche
+- `amerrir` → `to land on water` | Used of aircraft or spacecraft landing on the water | register=niche
+- `ameublir` → `to loosen` | Mainly for soil: to loosen and break up the earth | register=niche
+- `amidonner` → `to starch` | Use for treating fabric or laundry with starch | register=niche
+- `amnistier` → `to grant amnesty` | Used for formally pardoning a group, often after a political conflict | register=niche
+- `amodier` → `to lease out` | Used for leasing land, property, or rights to someone under a lease | register=niche
+- `amordancer` → `to prime` | Rare technical verb: to prime or set something in motion | register=niche
+- `amurer` → `to secure` | Nautical: to fasten a sail, line, or load firmly | register=niche
+- `analgésier` → `to relieve pain` | Usually medical: to reduce or remove pain | register=niche
+- `anastomoser` → `to anastomose` | Used in medicine for joining two vessels or tubular structures | register=niche
+- `anatomiser` → `to anatomize` | Used for breaking something down carefully, especially in analysis or writing | register=niche
+- `anesthésier` → `to anesthetize` | Used in medicine for making someone lose feeling or consciousness with an anesthetic | register=niche
+- `animaliser` → `to animalize` | Used for making something seem animal-like, or for treating someone as less than human | register=niche
+- `ankyloser` → `to ankylose` | Medical: for a joint or tissue to become stiff or fused | register=niche
+- `anneler` → `to ring with bands` | Used in technical contexts for marking or forming something into rings | register=niche
+- `annoter` → `to annotate` | Used for adding notes or comments to a text, image, or file | register=niche
+- `annualiser` → `to annualize` | Used for converting a figure to a yearly basis, especially in finance and statistics | register=niche
+- `anodiser` → `to anodize` | Used in metal treatment: to form a protective oxide layer on aluminum or similar metal | register=niche
+- `anordir` → `to move northward` | Used for movement or orientation toward the north, often in technical or literary contexts | register=niche
+- `anticommuter` → `to anticommute` | In math or physics, for operators or matrices whose order reversal changes the sign | register=niche
+- `antidater` → `to backdate` | Used for giving a document or event an earlier date than it really has | register=niche
+- `antiparasiter` → `to remove interference from` | Used for signals or devices: to reduce unwanted electrical or audio noise | register=niche
+- `antéposer` → `to put before` | Rare; mainly technical or formal, for placing one item before another | register=niche
+- `aoûter` → `to harden` | Used of fruit, wood, or plants becoming firm or ripe in late summer | register=niche
+- `apanager` → `to grant as an apanage` | Mainly historical or formal: to give land, income, or a privilege to someone as an apanage | register=niche
+- `apiquer` → `to tilt down` | Mainly a rare nautical or technical verb for making something point downward or at a steep angle | register=niche
+- `apostasier` → `to apostatize` | Used for formally abandoning a religion or faith | register=niche
+- `aposter` → `to station` | Used for putting someone or something in position, often strategically or secretly | register=niche
+- `apostiller` → `to apostille` | Used for adding an apostille to an official document for international use | register=niche
+- `appairer` → `to pair` | Used for making two things correspond or work together, often devices | register=niche
+- `apponter` → `to berth` | For a boat or ship, to move alongside a pier, jetty, or dock | register=niche
+- `apurer` → `to settle, clear (accounts)` | Used mainly for settling or reconciling accounts, debts, or administrative files | register=niche
+- `arabiser` → `to Arabize` | To make something Arabic in form, language, or character | register=niche
+- `araser` → `to level off` | Used in building or carpentry for cutting something flush with a surface | register=niche
+- `arboriser` → `to branch like a tree` | Used mainly for tree-like branching patterns, especially in botany or medicine | register=niche
+- `archaïser` → `to archaize` | Used in writing or style to make language sound old-fashioned | register=niche
+- `architecturer` → `to structure` | Used for planning or structuring a system, project, or strategy | register=niche
+- `ardoiser` → `to cover with slate` | Used mainly for putting slate onto roofs or surfaces; also for writing on a slate board | register=niche
+- `argenter` → `to silver-plate` | Used for coating an object with a layer of silver | register=niche
+- `ariser` → `to bevel` | Mainly in technical contexts: to shape a sharp edge or corner | register=niche
+- `armorier` → `to emblazon with a coat of arms` | Mostly in heraldry: to decorate or identify something with a coat of arms | register=niche
+- `aromatiser` → `to flavor` | Most often used for adding flavor or aroma to food or products | register=niche
+- `arpéger` → `to arpeggiate` | In music, to play the notes of a chord one after another | register=niche
+- `arraisonner` → `to stop and board` | Used mainly when police or naval forces stop and board a ship | register=niche
+- `arrenter` → `to lease out` | Usually legal or rural: to let land or property for rent | register=niche
+- `arrimer` → `to stow` | Mainly for cargo or loads: to stow and secure them in place | register=niche
+- `arriser` → `to reef` | Nautical: to reduce a sail by tying in a reef | register=niche
+- `arrérager` → `to fall into arrears` | Used of debts, rent, or payments that become overdue | register=niche
+- `arçonner` → `to fit on a saddle tree` | Very specialized: used for mounting or shaping something on an arçon (saddle tree) | register=niche
+- `aseptiser` → `to sanitize` | Used for making a surface, instrument, or place aseptic or hygienic | register=niche
+- `aspecter` → `to be in aspect` | Rare; mainly in astrology, for two heavenly bodies to form an aspect | register=niche
+- `asphalter` → `to asphalt` | Used for roads, paths, or surfaces covered with asphalt | register=niche
+- `asphyxier` → `to suffocate` | Used for depriving someone or something of air; also figuratively, to stifle | register=niche
+- `assaillir` → `to assail` | Formal/literary: to attack or overwhelm someone or something, often suddenly | register=niche
+- `assarmenter` → `to swear in` | Used for formally making someone take an oath, especially in official or legal settings | register=niche
+- `assermenter` → `to swear in` | Used for formally making someone take an oath, especially in legal or official settings | register=niche
+- `assibiler` → `to assibilate` | Technical linguistics: used when a sound becomes s-like or sibilant | register=niche
+- `assoler` → `to orient to the sun` | Mainly technical: to set the orientation of a building or site toward the sun | register=niche
+- `assoner` → `to use assonance` | In poetry or rhetoric, to repeat vowel sounds | register=niche
+- `assujettir` → `to subject` | Mainly formal/legal: to place someone or something under authority, control, or an obligation | register=niche
+- `atomiser` → `to atomize` | In technical use, to break something into tiny particles or spray it as a fine mist | register=niche
+- `atteler` → `to harness` | Used for putting a horse or other animal in harness, or attaching it to a cart or vehicle | register=niche
+- `attester` → `to attest` | Used in formal, legal, or written contexts to state that something is true | register=niche
+- `attraire` → `to summon` | Mainly legal: to bring someone into a case or before a court | register=niche
+- `auditer` → `to audit` | Used for a formal audit or official examination, often in business or finance | register=niche
+- `aurifier` → `to turn into gold` | Mainly alchemical or figurative: to make something gold or gold-like | register=niche
+- `auréoler` → `to halo` | Often used figuratively, especially with de: auréoler de gloire | register=niche
+- `ausculter` → `to examine with a stethoscope` | Mainly medical: to listen to the heart, lungs, or body with a stethoscope | register=niche
+- `autodissoudre` → `to self-dissolve` | Used of a substance or material that dissolves on its own, especially in chemistry | register=niche
+- `autodétruire` → `to self-destruct` | Used when something destroys itself, often in technical or figurative contexts | register=niche
+- `autofinancer` → `to self-finance` | Used for a person, project, or company covering its own costs without outside money | register=niche
+- `aviner` → `to season with wine` | Used for adding wine to something, especially in cooking or wine-related contexts | register=niche
+- `avitailler` → `to refuel` | Mainly for supplying a vehicle, aircraft, or base with fuel or provisions | register=niche
+- `axiomatiser` → `to axiomatize` | Used in mathematics or logic for expressing a theory as a set of axioms | register=niche
+- `bader` → `to stress out` | Very colloquial: to feel bad, anxious, or uneasy about something | register=niche
+- `baguer` → `to ring/band (a bird)` | Most often: to put a numbered ring on a bird for identification | register=niche
+- `baleiner` → `to hunt whales` | Rare; used mainly in whaling contexts | register=niche
+- `baliser` → `to mark out` | Used for marking a route, area, or hazard with signs or beacons | register=niche
+- `balkaniser` → `to balkanize` | Used for dividing a country, group, or system into smaller rival parts | register=niche
+- `ballaster` → `to ballast` | To add ballast in order to stabilize or balance something, especially a ship | register=niche
+- `bancher` → `to lay formwork` | In construction, especially with concrete, to install the formwork | register=niche
+- `banner` → `to cover with a tarp` | Used for covering an object, load, or vehicle with a tarpaulin or canvas | register=niche
+- `baptiser` → `to baptize` | Used for a religious baptism or formal naming | register=niche
+- `baratter` → `to churn` | Used mainly for stirring cream or milk to make butter | register=niche
+- `barjaquer` → `to chatter` | Regional colloquial verb for talking a lot, often casually or noisily | register=niche
+- `barrir` → `to trumpet` | Used especially of elephants making a loud trumpet-like call | register=niche
+- `baréter` → `to trumpet like an elephant` | Used for an elephant-like cry; sometimes figuratively for groaning | register=niche
+- `bastillonner` → `to fortify with bastions` | Used in military or historical contexts for adding bastions to a fortification | register=niche
+- `bastionner` → `to fortify with bastions` | Used for fortifications or defensive works | register=niche
+- `billonner` → `to ridge up` | Usually in farming: to heap soil into ridges or rows | register=niche
+- `biner` → `to hoe` | Used for working the soil between plants with a hoe | register=niche
+- `biscuiter` → `to bisque-fire` | In ceramics, to do the first firing before glazing | register=niche
+- `biseauter` → `to bevel` | Used for cutting an edge at an angle | register=niche
+- `bisegmenter` → `to split into two segments` | Used in technical contexts for dividing something into two segments | register=niche
+- `bisser` → `to call for an encore` | In performances, to ask for a piece to be repeated | register=niche
+- `bistrer` → `to stain brown` | Used for coloring or darkening something to a brown, sooty tone | register=niche
+- `bitter` → `to secure to a bitt` | Nautical: attach a rope or cable to a bitt | register=niche
+- `bitumer` → `to pave with asphalt` | Used for roads or surfaces: to cover them with asphalt | register=niche
+- `bituminer` → `to coat with bitumen` | Used in construction for covering a surface with bitumen | register=niche
+- `bizuter` → `to haze` | To subject newcomers to pranks or humiliating initiation rituals | register=niche
+- `blasonner` → `to blazon` | In heraldry, to describe a coat of arms in formal terms | register=niche
+- `bluter` → `to sift (flour)` | Mainly used for sifting flour through a bolting cloth | register=niche
+- `bobiner` → `to wind onto a bobbin` | Used for thread, wire, or similar material wound on a bobbin | register=niche
+- `bocarder` → `to crush ore in a stamp mill` | Mining: used for crushing ore with a stamp mill | register=niche
+- `boetter` → `to bait` | Fishing: to put bait on a hook or trap | register=niche
+- `boiser` → `to panel with wood` | Used for covering a surface, wall, or room with wood | register=niche
+- `bolchéviser` → `to bolshevize` | Used in politics for making something follow Bolshevik or communist ideas | register=niche
+- `bondonner` → `to bung` | Used for casks, barrels, or other openings that are sealed with a bung | register=niche
+- `bondériser` → `to bonderize` | For metal, to give it a protective phosphate coating | register=niche
+- `bornoyer` → `to sight by eye` | Used mainly in surveying or carpentry: to line up or judge something by eye, without instruments | register=niche
+- `bostonner` → `to dance the Boston` | Used for dancing the Boston, a specific ballroom dance term | register=niche
+- `boucaner` → `to smoke-cure` | Usually for meat or fish, in the food-preservation sense | register=niche
+- `boucharder` → `to bush-hammer` | Used in masonry or stonework for roughening a surface with a bush hammer | register=niche
+- `bouchonner` → `to rub down` | Used mainly for rubbing down or grooming a horse or other animal | register=niche
+- `boulanger` → `to knead dough` | Used for working dough in bread-making; now rare and fairly specialized | register=niche
+- `boulocher` → `to pill` | Used for fabric or knitwear when small fuzz balls appear | register=niche
+- `boulonner` → `to bolt` | Used for fastening something with bolts, especially in technical contexts | register=niche
+- `bouléguer` → `to move` | Regional French, especially in the south: used for moving or stirring something, or telling someone to move | register=niche
+- `bourasser` → `to rough up` | Regional use: to handle, move, or treat someone/something roughly | register=niche
+- `bourder` → `to blunder` | Rare, mostly literary/dialectal: used for making a blunder | register=niche
+- `bourgeonner` → `to bud` | Used of plants or trees when buds appear, especially in spring | register=niche
+- `bourreler` → `to torment` | Mainly literary: to torment or trouble intensely, especially with remorse | register=niche
+- `boursicoter` → `to speculate in stocks` | Used for informal stock-market trading or speculation | register=niche
+- `bouturer` → `to take cuttings` | Used in gardening for propagating a plant from cuttings | register=niche
+- `bouéler` → `to bawl` | Regional/dialectal use for crying or shouting loudly | register=niche
+- `braconner` → `to poach` | Used for taking game or fish illegally, especially in protected areas | register=niche
+- `braiser` → `to braise` | Used in cooking for slowly cooking food in a covered pan with a little liquid | register=niche
+- `brancarder` → `to carry on a stretcher` | Used for moving an injured person on a stretcher | register=niche
+- `braser` → `to braze` | Technical: join metal parts with a filler metal at high heat | register=niche
+- `bretteler` → `to roughen` | Used especially in crafts or building for making a surface rough or grooved | register=niche
+- `bridger` → `to bridge` | Usually in tech or vehicle jargon: to put something in bridge mode or remove a limiter | register=niche
+- `brigander` → `to act like a brigand` | Used of someone living by banditry; literary or historical | register=niche
+- `brillantiner` → `to apply brilliantine to` | Usually of hair: to smooth and shine it with brilliantine | register=niche
+- `briqueter` → `to face with bricks` | Used for covering or building a surface with bricks | register=niche
+- `brocanter` → `to deal in second-hand goods` | Used for trading used goods, especially at flea markets or antique markets | register=niche
+- `brocher` → `to stitch` | Mainly a technical verb for stitching or binding pages together, especially in bookbinding | register=niche
+- `broder` → `to embroider` | Mainly used for sewing with thread; also figuratively, to embellish a story | register=niche
+- `brouter` → `to graze` | Used for animals eating grass or leaves | register=niche
+- `bruir` → `to rustle` | Literary intransitive verb for a soft, indistinct sound | register=niche
+- `bruisser` → `to rustle` | Used for leaves, paper, fabric, or similar things making a soft rustling noise | register=niche
+- `budgétiser` → `to budget` | Used for planning or allocating a budget, especially in business or public finance | register=niche
+- `buriner` → `to chisel` | Used for shaping or marking material with a chisel, especially in wood or stone | register=niche
+- `busquer` → `to arch` | Mainly in technical or literary use: to make something curved or arched | register=niche
+- `butiner` → `to forage` | Usually for bees or insects collecting nectar or pollen | register=niche
+- `butter` → `to earth up` | In gardening or farming, to mound soil around a plant or row | register=niche
+- `bâter` → `to put a pack saddle on` | Used for fitting a bât onto a mule, donkey, or horse | register=niche
+- `bâtonner` → `to stir with a stick` | Mainly in cooking or winemaking: to stir a liquid or sauce with a stick or spoon | register=niche
+- `béatifier` → `to beatify` | In Catholic usage: to formally declare someone beatified | register=niche
+- `bémoliser` → `to flatten` | In music, to lower a note by a semitone | register=niche
+- `bétonner` → `to pour concrete` | Usually in construction: to cover or reinforce something with concrete | register=niche
+- `bêcher` → `to dig` | Used mainly for digging or turning soil with a spade, especially in gardening | register=niche
+- `bêler` → `to bleat` | Used for sheep, goats, or a similar animal sound | register=niche
+- `cabaler` → `to plot` | Usually means to secretly plot against someone, especially in politics or group rivalries | register=niche
+- `cabaner` → `to capsize` | Usually of a boat or craft: to tip over | register=niche
+- `caboter` → `to sail from port to port` | Used mainly of boats moving along a coastline, stopping at different ports | register=niche
+- `cabrer` → `to rear up` | Used mainly of a horse rearing up; figuratively, to resist or balk | register=niche
+- `cachetonner` → `to do gigs for money` | Often for small, short-term paid jobs, especially in acting or show business | register=niche
+- `cadancher` → `to padlock` | Used for fastening a door, gate, or object with a padlock; rare/regional | register=niche
+- `cadastrer` → `to register in the cadastre` | Used for officially recording land or property in the cadastral register | register=niche
+- `cadencer` → `to set to a rhythm` | Used for making actions, sounds, or events follow a regular beat or timing | register=niche
+- `cadmier` → `to cadmium-plate` | Used in metallurgy for coating something with cadmium | register=niche
+- `cagner` → `to laze around` | Colloquial/slang: to spend time doing nothing, lounging about | register=niche
+- `cailleter` → `to curdle` | Used mainly of milk, blood, or similar liquids becoming thick and lumpy | register=niche
+- `caillouter` → `to cover with pebbles` | Used for covering a surface with small stones or pebbles | register=niche
+- `calaminer` → `to foul with carbon deposits` | Most often for engines, plugs, or pipes that become coated with soot or carbon | register=niche
+- `calandrer` → `to calender` | Used in industry for finishing paper, fabric, or metal with rollers | register=niche
+- `calciner` → `to calcine` | Used in chemistry/mineral processing for heating a substance strongly, often until it changes or becomes ash | register=niche
+- `calfater` → `to caulk` | Used for filling seams or gaps with caulking, especially on boats or woodwork | register=niche
+- `calfeutrer` → `to seal up` | Usually means to seal cracks or gaps tightly, often in a building | register=niche
+- `calibrer` → `to calibrate` | Used for adjusting or checking something against a standard, especially a device or instrument | register=niche
+- `calligraphier` → `to calligraph` | To write letters in a decorative calligraphic style | register=niche
+- `calorifuger` → `to insulate` | Usually for pipes, walls, or buildings: to add thermal insulation | register=niche
+- `cambuter` → `to limp` | Used of walking with a limp or bowed legs | register=niche
+- `camionner` → `to transport by truck` | Often used for moving goods in freight or logistics | register=niche
+- `canarder` → `to shoot at` | Used for shooting at someone or something, often repeatedly | register=niche
+- `cancériser` → `to make cancerous` | Mainly medical: to cause tissue or cells to become cancerous; often used in the reflexive form se cancériser | register=niche
+- `candir` → `to candy` | Usually of sugar, honey, or fruit: to crystallize or take on a candied coating | register=niche
+- `canneler` → `to groove` | Used in craftsmanship or design for cutting decorative grooves or flutes | register=niche
+- `canner` → `to cane` | Used for covering furniture, especially chairs, with cane or cane webbing | register=niche
+- `cannibaliser` → `to cannibalize` | Used for taking parts from one thing to repair or make another; also figuratively for competing with your own products | register=niche
+- `cannoner` → `to cannonade` | Mainly military: to fire cannon at a target | register=niche
+- `canoniser` → `to canonize` | Used mainly for officially declaring someone a saint in the Catholic Church | register=niche
+- `canonner` → `to cannonade` | Military: to fire cannon or shells at a target | register=niche
+- `canoter` → `to go boating` | Used for boating in a small boat or canoe | register=niche
+- `cantiner` → `to use the canteen` | Usually refers to using a canteen/cafeteria, especially in prison or the military | register=niche
+- `caoutchouter` → `to rubberize` | Used for coating fabric or material with rubber | register=niche
+- `caparaçonner` → `to caparison` | Usually for dressing a horse with ornamental gear or covering | register=niche
+- `capeler` → `to hitch` | Nautical: to fasten a rope or cable by passing it over or around something | register=niche
+- `capeyer` → `to heave to` | Nautical: to keep a vessel almost stationary under sail | register=niche
+- `capitaliser` → `to capitalize` | Mainly in finance/business; often capitaliser sur = to capitalize on | register=niche
+- `capitonner` → `to pad` | Used for lining or stuffing something with padding, especially in upholstery | register=niche
+- `capsuler` → `to cap` | Usually used for bottling: to fit a cap or capsule onto a container | register=niche
+- `capuchonner` → `to hood` | Used for putting a hood or cap on something, especially in technical contexts | register=niche
+- `capéer` → `to heave to` | Nautical: to keep a ship nearly stopped with the bow into the wind or sea | register=niche
+- `caraméliser` → `to caramelize` | Used for heating sugar or food until it becomes brown and caramel-flavored | register=niche
+- `carboniser` → `to char` | Used when something is burned until black or partly turned to charcoal | register=niche
+- `carcailler` → `to chatter` | Used for a harsh clicking or rattling sound, often from cold or movement | register=niche
+- `carder` → `to card` | Usually about combing wool or other fibers with cards before spinning | register=niche
+- `carguer` → `to furl` | In sailing, to gather a sail up toward the yard or boom | register=niche
+- `carier` → `to decay` | Mainly about teeth, wood, or tissue decaying | register=niche
+- `carillonner` → `to peal` | Used of bells sounding in a series, especially clearly or musically | register=niche
+- `carminer` → `to tint with carmine` | Used for coloring something with carmine red, often in specialized contexts | register=niche
+- `carnifier` → `to become flesh-like` | Technical/medical: used for tissue or an organ becoming flesh-like | register=niche
+- `carreler` → `to tile` | Used for floors or walls: to cover them with tiles | register=niche
+- `carrer` → `to square` | Mostly technical: to make something square or square-shaped | register=niche
+- `carrosser` → `to coachbuild` | Used for making or fitting the body of a vehicle | register=niche
+- `carroyer` → `to grid` | Used for dividing or marking something into squares, especially in technical or design contexts | register=niche
+- `cartelliser` → `to cartelize` | Used in economics or politics for companies or groups joining together as a cartel | register=niche
+- `cartographier` → `to map` | Used mainly for making maps or mapping a territory, system, or data set | register=niche
+- `caréner` → `to haul out and clean the hull` | Used for boats: to haul out a vessel and clean or repair its hull | register=niche
+- `casemater` → `to put in a casemate` | Used mainly in military contexts for placing guns or structures in a fortified shelter | register=niche
+- `caserner` → `to house in barracks` | Used mainly for placing soldiers in barracks | register=niche
+- `castrer` → `to castrate` | Usually used for neutering a male animal or for castration in medicine | register=niche
+- `caséfier` → `to become caseous` | Used in medicine for tissue or matter turning cheese-like | register=niche
+- `catalyser` → `to catalyze` | In chemistry, to speed up a reaction without being used up | register=niche
+- `catcher` → `to wrestle` | Used for catch-style wrestling, especially in sports contexts | register=niche
+- `catir` → `to burnish` | Used for making a surface smooth and shiny, often in technical contexts | register=niche
+- `catéchiser` → `to catechize` | Mainly religious: to teach someone the catechism or Christian doctrine | register=niche
+- `cautériser` → `to cauterize` | Used in medicine for burning tissue to stop bleeding or close a wound | register=niche
+- `caviarder` → `to redact` | To censor text by blacking out parts | register=niche
+- `cendrer` → `to cover with ash` | Used for covering something with ash or reducing it to ash | register=niche
+- `centrifuger` → `to centrifuge` | Used for separating substances by spinning them in a centrifuge | register=niche
+- `centupler` → `to increase a hundredfold` | Used in formal or technical contexts for making something 100 times greater | register=niche
+- `cercler` → `to hoop` | Used for fitting a hoop or ring around something, especially barrels | register=niche
+- `chabler` → `to fell` | Used in forestry for bringing down trees, often by wind or storm damage | register=niche
+- `challenger` → `to challenge` | Used mainly in sports or business for challenging an opponent or rival | register=niche
+- `chambrer` → `to bring to room temperature` | Usually used of wine: let it reach room temperature | register=niche
+- `chamoiser` → `to taw leather` | Used in leatherworking for preparing hides in the chamois style | register=niche
+- `champagniser` → `to make champagne-like` | Usually means to give a drink champagne-like sparkle or character | register=niche
+- `champlever` → `to lift a seizure` | Used in law for removing a seizure, lien, or similar restraint | register=niche
+- `chanfreiner` → `to chamfer` | Used in machining, carpentry, and engineering for cutting a beveled edge | register=niche
+- `chansonner` → `to sing about` | Often used for singing about someone or something, sometimes in a teasing or satirical way | register=niche
+- `chantourner` → `to scroll-saw` | Used in woodworking or craft work for cutting intricate shapes in wood, metal, or similar materials | register=niche
+- `chapeauter` → `to oversee` | Used when one person or team is in charge of several units, projects, or people | register=niche
+- `chapeler` → `to make breadcrumbs` | Used mainly in cooking, for bread or food prepared with breadcrumbs | register=niche
+- `chaponner` → `to caponize` | Used in poultry farming: to castrate a rooster to fatten it as a capon | register=niche
+- `chaptaliser` → `to chaptalize` | Used in winemaking: to add sugar to grape must before fermentation | register=niche
+- `charpenter` → `to frame` | Used for building the wooden frame or roof structure of a building | register=niche
+- `chatonner` → `to put out catkins` | Botany: said of a plant when it puts out catkins | register=niche
+- `chauler` → `to lime` | Used mainly in agriculture or building: to apply lime to soil, surfaces, or materials | register=niche
+- `chaumer` → `to stubble-plough` | Used in farming for the first working of a field after harvest | register=niche
+- `chemiser` → `to line` | Used for lining a mold, garment, or other surface with a cover or lining | register=niche
+- `cheviller` → `to dowel` | Used in carpentry/DIY for fastening with a dowel or peg | register=niche
+- `chevrer` → `to mark with chevrons` | Used in design or crafts for adding a chevron pattern | register=niche
+- `chevronner` → `to fit with rafters` | Carpentry: to add or fit rafters to a roof or frame | register=niche
+- `chicoter` → `to annoy` | Mostly in Quebec French; used for annoying or pestering someone | register=niche
+- `chiffrer` → `to encrypt` | Used for encrypting a message or data | register=niche
+- `chinder` → `to tease` | Regional verb: to tease or bother someone | register=niche
+- `chirographier` → `to sign by hand` | Used for signing or drafting a document in one's own hand, especially in legal language | register=niche
+- `chlorer` → `to chlorinate` | Used mainly for treating water or pools with chlorine | register=niche
+- `chlorurer` → `to chlorinate` | Used for adding chlorine to water or a substance | register=niche
+- `chorégraphier` → `to choreograph` | Used for creating or arranging the steps and movement of a dance or performance | register=niche
+- `chosifier` → `to reify` | Used mainly in philosophy and social theory: to treat an abstract idea or person as a thing | register=niche
+- `chourer` → `to steal` | Slang: to steal something | register=niche
+- `christianiser` → `to Christianize` | Used for making a person, group, or culture Christian | register=niche
+- `chromer` → `to chrome-plate` | Used for coating metal with a layer of chromium | register=niche
+- `chromiser` → `to chromize` | Used in industry for coating a metal surface with chromium | register=niche
+- `chroniquer` → `to chronicle` | Mainly journalistic or literary: to report events in chronicle form | register=niche
+- `chronométrer` → `to time` | Used for measuring how long something takes, often with a stopwatch | register=niche
+- `châtrer` → `to castrate` | Used for removing the sexual organs; also figuratively, to cut down or censor a text | register=niche
+- `cicatriser` → `to scar over; to heal` | Used for a wound that heals and closes, often leaving a scar | register=niche
+- `cintrer` → `to curve` | Often used for shaping wood, metal, or clothing into a curved form | register=niche
+- `circoncire` → `to circumcise` | Usually used in medical or religious contexts | register=niche
+- `ciseler` → `to chisel` | Used for cutting or shaping with a chisel; also for finely chopping food | register=niche
+- `clamper` → `to clamp` | In technical use, to fasten or hold something with a clamp | register=niche
+- `claper` → `to gobble up` | Rare/regional: often used for eating noisily or greedily | register=niche
+- `clapper` → `to clack` | Of teeth, jaws, beaks, or hard objects: to make a sharp clicking sound | register=niche
+- `clavarder` → `to chat online` | Used mainly in Quebec French for chatting by computer or phone | register=niche
+- `claver` → `to key` | Technical: to join or hold parts with a key or wedge | register=niche
+- `claveter` → `to secure with a key or pin` | Used in engineering for fixing parts with a clavette, key, or pin | register=niche
+- `clavetter` → `to key` | In mechanics, to fasten parts with a key or pin | register=niche
+- `clayonner` → `to wattle` | Used for weaving branches or strips to make a fence, hurdle, or wall | register=niche
+- `cliquer` → `to click` | Press a mouse button or tap an on-screen item | register=niche
+- `clisser` → `to shove` | Québécois slang: to put or throw something somewhere, often forcefully | register=niche
+- `cliver` → `to split` | Usually of crystals, rocks, or materials: split along a natural plane | register=niche
+- `cloisonner` → `to partition` | Used for dividing a space or system into separate sections | register=niche
+- `cloner` → `to clone` | Used for making an exact copy of a living thing, object, or data | register=niche
+- `coacher` → `to coach` | To help someone improve skills or performance, especially in sports or coaching contexts | register=niche
+- `coalescer` → `to coalesce` | Used when separate parts or groups join into one | register=niche
+- `coaliser` → `to form a coalition` | Used for groups or parties joining together, often in politics | register=niche
+- `codifier` → `to codify` | Used for putting rules, laws, or practices into a formal code | register=niche
+- `cofinancer` → `to co-finance` | Used for funding a project together with another party | register=niche
+- `cokéfier` → `to coke` | In industry, to turn coal or heavy oil residue into coke | register=niche
+- `collationner` → `to collate` | Used for comparing a text or document with the original | register=niche
+- `collectiviser` → `to collectivize` | Used for putting land, property, or production under collective ownership or control | register=niche
+- `colliger` → `to collate` | Used mainly for gathering and comparing texts or materials, especially in scholarly work | register=niche
+- `colloquer` → `to place together` | Rare formal verb; usually means to place or set things together, often in a technical or older context | register=niche
+- `colmater` → `to plug up` | Used for sealing a hole, crack, or leak | register=niche
+- `coloriser` → `to colorize` | Mainly for adding color to black-and-white images or footage | register=niche
+- `commercialiser` → `to market` | Used for launching or selling a product on the market | register=niche
+- `commuer` → `to commute` | In law, to reduce or change a sentence or penalty | register=niche
+- `communaliser` → `to put under communal ownership` | Used for transferring something to communal/public ownership or administration | register=niche
+- `communautariser` → `to move to the EU level` | Used in politics/EU contexts for shifting a matter from national control to the European Community or EU framework | register=niche
+- `communier` → `to receive communion` | Mainly in religious contexts: to receive the Eucharist | register=niche
+- `compacter` → `to compact` | Used for making something denser or more tightly packed, often in technical contexts | register=niche
+- `compasser` → `to measure with a compass` | Used for drawing or measuring something with a drafting compass | register=niche
+- `complanter` → `to replant` | Used mainly in viticulture or gardening: to plant new stock in spaces left empty | register=niche
+- `composter` → `to stamp (a ticket)` | Most often: to validate a ticket by stamping it | register=niche
+- `compoter` → `to cook down into compote` | Used in cooking for fruit or vegetables slowly cooked until soft, like compote | register=niche
+- `compresser` → `to compress` | Used for making something smaller by pressure or in computing, for files/data | register=niche
+- `comprimer` → `to compress` | Used for making something smaller by pressure or for technical compression | register=niche
+- `comptabiliser` → `to tally` | Used for counting results or entering amounts in accounts | register=niche
+- `compulser` → `to consult` | Formal and rare: used for consulting a document, file, or reference work | register=niche
+- `concasser` → `to crush` | Mainly in cooking: to crush or break food into coarse pieces | register=niche
+- `concaténer` → `to concatenate` | Used in computing and formal writing for joining items into one sequence or string | register=niche
+- `concréter` → `to solidify` | Rare; mainly technical or abstract: to become solid, or to make something concrete | register=niche
+- `concélébrer` → `to concelebrate` | Used mainly in a religious context: several clergy celebrate a Mass or rite together | register=niche
+- `conditionner` → `to package` | Most often means to package or prepare goods for sale | register=niche
+- `confesser` → `to confess` | Used for confessing sins or admitting a fault; the reflexive form se confesser is more common | register=niche
+- `configurer` → `to configure` | Used mainly for setting up or specifying the settings of software, devices, or systems | register=niche
+- `confire` → `to preserve (food)` | Used mainly for preserving fruit, meat, or other food in sugar, fat, or salt | register=niche
+- `confluer` → `to converge` | Used mainly for rivers, streams, or currents joining together | register=niche
+- `confédérer` → `to confederate` | Used for groups or states joining together in a confederation or alliance | register=niche
+- `conglomérer` → `to conglomerate` | Used mainly in formal or technical contexts for things joining into a compact mass | register=niche
+- `conglutiner` → `to conglutinate` | Used in technical or medical contexts for things joining into a single mass | register=niche
+- `conjoindre` → `to join together` | Rare formal verb, often in legal or literary language, for joining things or cases together | register=niche
+- `conjuguer` → `to conjugate` | Mainly in grammar: to give a verb its forms | register=niche
+- `constitutionnaliser` → `to constitutionalize` | Used in law and politics for giving something constitutional status | register=niche
+- `containeriser` → `to containerize` | Used for putting goods into shipping containers | register=niche
+- `containériser` → `to containerize` | Used for putting goods into standardized containers, especially in shipping and logistics | register=niche
+- `conteneuriser` → `to containerize` | Used mainly in shipping and logistics for putting goods into containers | register=niche
+- `conter` → `to tell stories` | Often literary: used for telling a story or recounting events | register=niche
+- `contextualiser` → `to contextualize` | Used for putting an event, idea, or text in its wider context | register=niche
+- `contingenter` → `to impose quotas on` | Used for limiting amounts or shares by quota | register=niche
+- `contractualiser` → `to formalize by contract` | Used in business or law: to make an arrangement contractual | register=niche
+- `contracturer` → `to contract` | Mainly used in medicine or anatomy, especially for a muscle or tissue | register=niche
+- `contraposer` → `to contrapose` | Used mainly in logic or formal argumentation | register=niche
+- `contre-attaquer` → `to counterattack` | Used when attacking in response to an earlier attack | register=niche
+- `contre-bouter` → `to buttress` | Mainly in construction: to support something from the side against pressure | register=niche
+- `contre-braquer` → `to countersteer` | Used for turning the steering wheel opposite a skid or slide to regain control | register=niche
+- `contre-buter` → `to buttress` | In building or mechanics, to support something against thrust or pressure | register=niche
+- `contre-indiquer` → `to contraindicate` | Medical: to show that a treatment or drug should not be used | register=niche
+- `contre-manifester` → `to counter-protest` | Used for protesting against another protest or demonstration | register=niche
+- `contre-miner` → `to countermine` | Used in military or engineering contexts for digging a counter-mine against enemy tunnels or mines | register=niche
+- `contre-passer` → `to reverse` | Used mainly in accounting/finance for reversing an entry or operation | register=niche
+- `contre-plaquer` → `to add a backing plate` | Used in technical contexts for adding a plate or backing layer behind something | register=niche
+- `contre-sceller` → `to counterseal` | Used mainly for formally sealing something again or with a counterseal for authentication | register=niche
+- `contre-tirer` → `to make a counterproof` | Used in printing/engraving for taking a reverse proof from an existing print | register=niche
+- `contrebattre` → `to counteract` | Usually a rare, specialized verb: to act against or neutralize something | register=niche
+- `contrebouter` → `to buttress` | Used in architecture for supporting a structure with opposing pressure | register=niche
+- `contrebuter` → `to buttress` | In construction, to support a structure against outward thrust | register=niche
+- `contremarquer` → `to countermark` | Used for adding a countermark or second mark, often in technical or official contexts | register=niche
+- `contreplaquer` → `to veneer with plywood` | Used in carpentry for covering something with a plywood layer | register=niche
+- `contresigner` → `to countersign` | Sign a document as the second signatory to confirm it | register=niche
+- `contretyper` → `to make a duplicate copy` | Mainly in photography/printing: to make a duplicate negative or copy | register=niche
+- `contreventer` → `to brace` | Used in construction for adding diagonal bracing to a structure | register=niche
+- `contusionner` → `to bruise` | Medical or formal: to cause a bruise or bruising | register=niche
+- `conventionner` → `to make a formal agreement` | Used mainly for formal, administrative, or contractual agreements | register=niche
+- `convoquer` → `to summon` | Used for formally summoning someone or convening a meeting/body | register=niche
+- `convoyer` → `to convoy` | Used for moving people or goods in a convoy, often under escort | register=niche
+- `convulser` → `to convulse` | Used for violent involuntary spasms, especially in medical or literary contexts | register=niche
+- `copermuter` → `to co-permute` | Rare technical use, mainly in mathematics, for things that act together by permutation or commuting | register=niche
+- `coproduire` → `to coproduce` | Used for producing something together with another party, often in film or business | register=niche
+- `copuler` → `to copulate` | Used mainly in formal or biological contexts for sexual intercourse | register=niche
+- `coquer` → `to hull` | Used for removing the hull from grain or seeds | register=niche
+- `cordeler` → `to twist into a cord` | Usually used for twisting material into a cord or rope | register=niche
+- `corder` → `to stack in cords` | Mostly for wood: to stack logs neatly in cords | register=niche
+- `cordonner` → `to lace` | Usually of shoes or garments: to put laces or cords through | register=niche
+- `correctionnaliser` → `to downgrade to a lesser charge` | Mainly legal: to reclassify a serious offense as a lesser one for trial | register=niche
+- `corroborer` → `to corroborate` | Used for evidence or facts that support a statement or claim | register=niche
+- `corroyer` → `to curry leather` | In leatherworking, to treat and finish leather | register=niche
+- `corréler` → `to correlate` | Used mostly in academic or statistical contexts for showing a relationship between two things | register=niche
+- `cosigner` → `to co-sign` | Used when two or more people sign the same document | register=niche
+- `cosmétiquer` → `to make cosmetic changes to` | Usually means changing something only on the surface, especially a reform, plan, or text | register=niche
+- `cosser` → `to butt` | Used mainly of animals with horns; by extension, to bump or ram into something | register=niche
+- `costumer` → `to dress in costume` | Used for dressing someone in costume, especially for theatre, film, or events | register=niche
+- `cotonner` → `to pad with cotton` | Used mainly in textile or craft contexts for padding or lining something with cotton | register=niche
+- `couder` → `to put a bend in` | Used for making something bent or elbow-shaped, especially in technical contexts | register=niche
+- `coupeller` → `to cupel` | Used in metallurgy for refining metals by cupellation | register=niche
+- `coupler` → `to couple` | Used for connecting or pairing two things, often in technical contexts | register=niche
+- `coéditer` → `to co-edit` | Used for editing or publishing something together with another person or organization | register=niche
+- `coïter` → `to have sex` | Formal or technical verb for sexual intercourse | register=niche
+- `craboter` → `to dog-clutch` | Mainly in mechanics: to engage a gearbox with dog clutches | register=niche
+- `cranter` → `to notch` | Used for making small notches, especially in sewing or cooking | register=niche
+- `crapuler` → `to act like a scoundrel` | Rare, literary verb for behaving in a rough, disreputable, or dissolute way | register=niche
+- `crawler` → `to crawl` | In computing, for a program to move through pages or data automatically | register=niche
+- `crayonner` → `to sketch` | Usually means to draw or outline roughly in pencil | register=niche
+- `criminaliser` → `to criminalize` | Used for making an act or behavior a crime in law or public debate | register=niche
+- `crinquer` → `to fire up` | Colloquial Quebec French: to make someone excited, agitated, or motivated; often reflexive | register=niche
+- `croustiller` → `to be crunchy` | Used for food that has a crisp, crunchy texture | register=niche
+- `crucifier` → `to crucify` | Used mainly for the historic execution method or strong figurative criticism | register=niche
+- `crypter` → `to encrypt` | Used for protecting data with encryption | register=niche
+- `créditer` → `to credit` | Mainly for adding money to an account or crediting someone with something | register=niche
+- `créneler` → `to crenellate` | Used for cutting regular notches or battlements along an edge | register=niche
+- `créner` → `to notch` | Used for cutting notches or a serrated edge | register=niche
+- `créoliser` → `to creolize` | Used mainly in language or culture contexts: to make something creole, or to become creole | register=niche
+- `créosoter` → `to treat with creosote` | Usually for treating wood or sleepers with creosote | register=niche
+- `crépir` → `to roughcast` | Used for applying a rough plaster finish to a wall or façade | register=niche
+- `crêper` → `to backcomb` | Usually about hair: to backcomb it to make it fuller | register=niche
+- `cuber` → `to repeat a prep year` | Used in French slang for a student who repeats a year in classes préparatoires | register=niche
+- `cuirasser` → `to armor` | Used for fitting a person or thing with armor | register=niche
+- `cuivrer` → `to copper-plate` | Mainly for giving a surface a copper coating or copper-like finish | register=niche
+- `culotter` → `to season` | Used for a pan, pipe, or similar object that develops a coating through use | register=niche
+- `cureter` → `to curette` | In medicine, to scrape out tissue with a curette | register=niche
+- `cuveler` → `to waterproof` | Used in construction for making a cellar, basement, or other underground structure watertight | register=niche
+- `cyanoser` → `to turn blue` | Medical: to turn blue, usually from lack of oxygen | register=niche
+- `cyanurer` → `to cyanide` | Mainly technical: to treat something with cyanide, or poison it with cyanide | register=niche
+- `cycliser` → `to cyclize` | Chemistry: to convert a molecule into a ring structure | register=niche
+- `cylindrer` → `to roll/compact with a roller` | Mainly of roads or surfaces: to compact or smooth them with a roller or steamroller | register=niche
+- `câbler` → `to wire` | Mainly for installing or connecting electrical or telecom cables | register=niche
+- `cémenter` → `to cement` | Used mainly in technical senses: to apply cement or to harden metal by cementation | register=niche
+- `césariser` → `to deliver by C-section` | Medical verb: to deliver a baby by caesarean section | register=niche
+- `dactylographier` → `to type` | Used for putting text into a keyboard, especially in formal or older contexts | register=niche
+- `daguer` → `to stab with a dagger` | Usually literary or historical: to stab someone with a dagger | register=niche
+- `daller` → `to pave with slabs` | Used for covering a surface with paving slabs or flagstones | register=niche
+- `damasquiner` → `to damascene` | Used for decorating metal with inlaid designs, often in gold or silver | register=niche
+- `damasser` → `to damask` | Used in textiles for putting a damask pattern on cloth | register=niche
+- `damer` → `to tamp down` | Used for pressing soil, snow, or another material tightly into place | register=niche
+- `denteler` → `to pink` | Used for cutting or shaping an edge into small teeth or zigzags, especially in sewing | register=niche
+- `desquamer` → `to flake off` | Usually said of skin or tissue shedding in flakes | register=niche
+- `dessabler` → `to remove sand from` | Usually transitive: removing sand from a place or object | register=niche
+- `dessaisir` → `to divest (of)` | Formal/legal: to take away someone’s possession or authority; reflexive se dessaisir de = to give up / relinquish | register=niche
+- `dessaler` → `to desalinate` | Used for removing salt from water, food, or another substance | register=niche
+- `dessertir` → `to unset` | Used for taking a stone or object out of a setting or mount | register=niche
+- `dessoler` → `to desolate` | Used for ruining or stripping a place; often literary or historical | register=niche
+- `dessouder` → `to desolder` | Used in electronics and metalwork for removing solder to separate parts | register=niche
+- `dessuinter` → `to scour (wool)` | Used in textiles: to remove suint or grease from wool | register=niche
+- `destructurer` → `to de-structure` | Used for breaking down or reducing structure, often in technical or social contexts | register=niche
+- `diagnostiquer` → `to diagnose` | Used mainly for identifying a disease, fault, or problem | register=niche
+- `diagonaliser` → `to diagonalize` | Used mainly in mathematics: to transform a matrix or operator into diagonal form | register=niche
+- `dialectaliser` → `to dialectalize` | Used for making language, text, or speech more dialect-like | register=niche
+- `dialectiser` → `to make dialectical` | Used mainly in philosophy: to frame something in dialectical terms | register=niche
+- `dialyser` → `to dialyze` | Used in medicine or chemistry for separating substances through a membrane; reflexive se dialyser means to undergo dialysis | register=niche
+- `diamanter` → `to set with diamonds` | Usually for jewelry or decorative work | register=niche
+- `diaphragmer` → `to stop down` | In photography, to reduce a lens’s aperture | register=niche
+- `diaprer` → `to variegate` | Used of a surface or fabric made mottled or varied in color | register=niche
+- `diffracter` → `to diffract` | Used in physics for light, waves, or signals spreading after passing an edge or opening | register=niche
+- `dilater` → `to dilate` | Usually for pupils, blood vessels, or tissues becoming wider; often medical or scientific | register=niche
+- `diligenter` → `to expedite` | Often formal: diligenter une enquête = order or expedite an inquiry | register=niche
+- `dimensionner` → `to size` | Used in engineering/design for determining the right dimensions or capacity | register=niche
+- `diphtonguer` → `to diphthongize` | In phonetics, to change a vowel into a diphthong | register=niche
+- `diplômer` → `to award a diploma to` | Used in formal education for giving someone a diploma | register=niche
+- `discrétiser` → `to discretize` | In math/computing, to turn a continuous model or signal into discrete units | register=niche
+- `dissoner` → `to sound dissonant` | Used for sounds, harmonies, or ideas that clash rather than fit together | register=niche
+- `disséquer` → `to dissect` | Used for cutting open a body or for examining something in great detail | register=niche
+- `distiller` → `to distill` | Used for separating or making a liquid by distillation; also for a scent or feeling to come out slowly | register=niche
+- `diéser` → `to sharpen (a note)` | In music, to raise a note by a semitone or add a sharp sign | register=niche
+- `doigter` → `to finger` | Mainly in music: to indicate the fingering for an instrument | register=niche
+- `doler` → `to hew` | Used for shaping wood by cutting or planing off the surface, especially with an adze | register=niche
+- `domicilier` → `to register as resident` | Used in formal/legal contexts for giving someone or something an official residence or address | register=niche
+- `double-cliquer` → `to double-click` | Use with a mouse or touchpad to open or select by clicking twice quickly | register=niche
+- `drageonner` → `to send out suckers` | Used of plants when they produce suckers or offshoots from the base or roots | register=niche
+- `dragéifier` → `to sugar-coat` | Often used for coating something in sugar; also figuratively, to make something sound nicer | register=niche
+- `drayer` → `to haul` | Used for moving heavy loads, often timber, along a track or with a dray | register=niche
+- `dribbler` → `to dribble` | In sport, to advance while keeping control of the ball | register=niche
+- `driller` → `to drill` | Usually technical: to make a hole with a drill | register=niche
+- `driver` → `to drive` | Mostly niche: used in golf for hitting with a driver | register=niche
+- `dropper` → `to drop` | Borrowed English verb, used in slang or gaming/tech contexts for dropping or abandoning something | register=niche
+- `drosser` → `to drive ashore` | Mostly nautical: of wind or current, to drive a vessel onto shore or off course | register=niche
+- `duplexer` → `to duplex` | Used in broadcasting or telecom for a live two-way link | register=niche
+- `dynamiter` → `to dynamite` | Usually means to blow up with dynamite; can also be used figuratively | register=niche
+- `débanaliser` → `to make less banal` | Used for making something seem less ordinary or cliché, often in criticism or marketing | register=niche
+- `débarder` → `to skid logs` | Mainly for moving cut timber out of a forest; by extension, to unload goods | register=niche
+- `débecqueter` → `to feed by regurgitating` | Used of birds: to pass food from the beak to their young | register=niche
+- `débenzoler` → `to remove benzol from` | Used in chemistry or industry for removing benzol (benzene) from a mixture or gas | register=niche
+- `débiliter` → `to debilitate` | Used in formal or medical contexts for making someone or something weak | register=niche
+- `débleuir` → `to remove the blue tint` | Used for taking blue color out of something or reducing a blue tint | register=niche
+- `débobiner` → `to unspool` | Used for thread, wire, film, etc.: to take it off a spool or bobbin | register=niche
+- `déboguer` → `to debug` | Used in computing for finding and fixing errors in software | register=niche
+- `déboiser` → `to deforest` | Used for removing forest cover from land | register=niche
+- `débosseler` → `to remove dents from` | Used for repairing a dented surface, especially metal or a car body | register=niche
+- `débourber` → `to remove silt from` | Usually technical: to remove mud or sediment from water, a pipe, or a container | register=niche
+- `débouter` → `to dismiss` | Mainly in law: to reject a claim or request | register=niche
+- `débraser` → `to unbraze` | Used in metalwork for separating parts joined by brazing | register=niche
+- `débrider` → `to loosen` | Often figurative or technical: to make something less restricted | register=niche
+- `débriefer` → `to debrief` | Used after an event, meeting, or mission to discuss and review what happened | register=niche
+- `débrocher` → `to unplug` | Regional or technical use for unplugging a device; in standard French, it can also mean taking food off a skewer or spit | register=niche
+- `débroussailler` → `to clear brush` | Used for clearing brush, undergrowth, or overgrown land | register=niche
+- `débudgétiser` → `to remove from the budget` | Used in finance or administration for taking an expense or activity out of budgetary planning | register=niche
+- `débuller` → `to remove bubbles from` | Used for getting air bubbles out of a liquid or material | register=niche
+- `débâter` → `to remove a packsaddle` | Used for taking the packsaddle off a mule, horse, or other pack animal | register=niche
+- `débâtir` → `to dismantle` | Used for taking a building or structure apart, often piece by piece | register=niche
+- `décaisser` → `to pay out` | Mainly in finance/accounting: to pay money out | register=niche
+- `décalaminer` → `to decarbonize` | Mainly for engines or parts: to remove soot and carbon deposits | register=niche
+- `décalcifier` → `to decalcify` | Used for removing calcium deposits or limescale from something | register=niche
+- `décalotter` → `to retract the foreskin` | Used mainly for pulling back the foreskin to expose the glans | register=niche
+- `décalquer` → `to trace` | Used for copying a drawing or pattern by tracing it | register=niche
+- `décanter` → `to decant` | Used for letting a liquid settle and then pouring off the clearer part; also figuratively, to let things settle | register=niche
+- `décapitaliser` → `to reduce capital` | Used mainly in finance or economics for lowering a company’s or sector’s capital | register=niche
+- `décapiter` → `to decapitate` | Used for cutting off a head, literally | register=niche
+- `décapsuler` → `to uncap` | Used for removing a cap from a bottle, often with a bottle opener | register=niche
+- `décarbonater` → `to remove carbonates from` | Used in chemistry/geology for removing carbonate compounds from a substance | register=niche
+- `décarburer` → `to decarburize` | In metallurgy: to remove carbon from steel or iron | register=niche
+- `décarreler` → `to remove tiles` | Used for removing floor or wall tiles | register=niche
+- `décartonner` → `to unpack` | Used for taking something out of a cardboard box or carton | register=niche
+- `décatir` → `to pre-shrink fabric` | Used in textiles for treating cloth so it won’t shrink later | register=niche
+- `décavaillonner` → `to remove the soil ridges` | In viticulture, to remove the soil ridges around vines | register=niche
+- `décaver` → `to clean out (at gambling)` | Used in slang for losing or taking away all of someone's money, especially by gambling | register=niche
+- `décentraliser` → `to decentralize` | Used mainly in politics or organization: to move power or control away from a central authority | register=niche
+- `décentrer` → `to decenter` | Used for moving something away from the center, literally or in technical contexts | register=niche
+- `décercler` → `to remove the hoops from` | Used for taking the metal hoops off a barrel or cask | register=niche
+- `déchaper` → `to strip off a covering` | Used for removing a chape, cover, or outer coating; rare and often technical | register=niche
+- `déchaperonner` → `to remove the hood from` | Used mainly for taking a hood off a bird of prey or similar object | register=niche
+- `déchaumer` → `to remove stubble` | Used in farming for working the field after harvest to remove or loosen the stubble | register=niche
+- `décheviller` → `to unpeg` | Used for removing a peg or dowel from a joint or fitting | register=niche
+- `déchlorurer` → `to dechlorinate` | Used in chemistry or water treatment for removing chlorine from a substance | register=niche
+- `déchristianiser` → `to dechristianize` | Used for reducing Christian influence in a society, institution, or culture | register=niche
+- `déchromer` → `to strip chrome` | Usually technical: remove chrome or chromium from a surface or material | register=niche
+- `décimaliser` → `to decimalize` | Used for converting something into a decimal system or decimal form | register=niche
+- `décintrer` → `to remove the centering` | In construction, to take away the temporary supports from an arch or vault after it sets | register=niche
+- `déclamer` → `to declaim` | Used for reciting or speaking lines in a formal, theatrical style | register=niche
+- `déclassifier` → `to declassify` | Used for making secret or classified information officially public | register=niche
+- `déclaveter` → `to remove a key/pin` | In mechanics, to take out the key or pin that secures a part | register=niche
+- `décliqueter` → `to disengage` | Used for a ratchet, catch, or locking mechanism: to release it with a click | register=niche
+- `décloisonner` → `to break down barriers` | Often figurative: to make groups, departments, or fields less closed off | register=niche
+- `décoffrer` → `to strip the formwork` | Used in construction for removing formwork after concrete has set | register=niche
+- `décollectiviser` → `to decollectivize` | Used for reversing collectivization in agriculture or industry | register=niche
+- `décolleter` → `to make low-cut` | Used for clothing: to cut or wear a neckline lower than usual | register=niche
+- `décoloniser` → `to decolonize` | Used for ending colonial control or colonial influence | register=niche
+- `décompenser` → `to decompensate` | Used mainly in medicine for a condition or organ no longer maintaining balance | register=niche
+- `décompresser` → `to decompress` | Most often used for files; also colloquially, to relax after stress | register=niche
+- `décomprimer` → `to decompress` | Used for taking pressure off something, or in computing for uncompressing data | register=niche
+- `déconcrisser` → `to wreck` | Québec slang, vulgar: to break or ruin something completely | register=niche
+- `déconditionner` → `to remove from packaging` | Mainly used for taking a product out of its original packaging or conditionnement | register=niche
+- `déconjuguer` → `to deconjugate` | Used in technical or grammar contexts for undoing conjugation | register=niche
+- `déconsigner` → `to release (from confinement)` | Used for ending a formal confinement or restriction, often in military or disciplinary contexts | register=niche
+- `déconstiper` → `to relieve constipation` | Usually used in medical or self-care contexts for easing constipation | register=niche
+- `décontaminer` → `to decontaminate` | Used for removing contamination from a person, object, or area | register=niche
+- `déconventionner` → `to remove from a scheme` | Used in administration or healthcare for taking someone off a contracted/approved scheme | register=niche
+- `décorner` → `to dehorn` | Used for removing an animal’s horns, especially in farming or veterinary contexts | register=niche
+- `décruer` → `to anneal` | Used in metallurgy/textiles for making a material less hard or removing its coating | register=niche
+- `décruser` → `to degum` | Used mainly in textiles for removing gum or dressing from silk or similar fibers | register=niche
+- `décrémenter` → `to decrement` | Mainly in computing: to reduce a value by 1 | register=niche
+- `décrépir` → `to strip plaster off` | Used in building for removing old plaster or render from a wall | register=niche
+- `décrépiter` → `to crackle` | Technical: said of a substance that crackles or pops when heated | register=niche
+- `décréter` → `to decree` | Used when an authority formally declares or orders something | register=niche
+- `décuivrer` → `to remove copper from` | Used in metallurgy or chemistry for removing a copper layer from metal | register=niche
+- `déculasser` → `to remove the cylinder head` | Used in mechanics for removing an engine’s cylinder head | register=niche
+- `décérébrer` → `to decerebrate` | Mainly medical: to remove or damage the cerebrum | register=niche
+- `dédicacer` → `to sign and dedicate` | Usually a book: to sign it with a personal message for someone | register=niche
+- `dédifférencier` → `to dedifferentiate` | Usually used in biology or medicine for making cells less specialized | register=niche
+- `dédorer` → `to remove gilding` | Used for taking gold leaf or gilding off an object or surface | register=niche
+- `défarder` → `to remove makeup` | Mainly used for removing makeup, often in the reflexive form se défarder | register=niche
+- `défaufiler` → `to unpick basting stitches` | Used in sewing for removing temporary stitches | register=niche
+- `défausser` → `to discard` | Mainly in card games: to discard a card; in se défausser de, to shirk responsibility | register=niche
+- `déferrer` → `to unshoe` | Mainly for horses: to remove a shoe; sometimes figuratively, to unsettle someone | register=niche
+- `déferriser` → `to remove iron` | Used in technical contexts for taking iron out of a material or solution | register=niche
+- `défeuiller` → `to shed leaves` | Often of trees: to lose leaves; also used for removing leaves from a plant or branch | register=niche
+- `défeutrer` → `to remove felt from` | Used for taking a felt layer off cloth, a surface, or a lawn | register=niche
+- `défibrer` → `to defibre` | Used in textiles and paper-making for separating fibres from a material | register=niche
+- `déflagrer` → `to deflagrate` | In chemistry or physics, used for a substance that burns very rapidly with a subsonic flame front | register=niche
+- `défleurir` → `to stop blooming` | Used of a plant or flower: it stops blooming and loses its blossoms | register=niche
+- `défléchir` → `to deflect` | Used mainly for something being bent or turned off its course, often in technical contexts | register=niche
+- `défolier` → `to defoliate` | Used for removing leaves from a plant, tree, or crop, often by pests, chemicals, or pruning | register=niche
+- `défourailler` → `to draw (a sword)` | Used for taking a sword or weapon out of its sheath, often abruptly | register=niche
+- `défourrer` → `to unsheathe` | Usually for drawing a weapon or tool out of its sheath or case | register=niche
+- `défranciser` → `to make less French` | Used of language, culture, or institutions: to remove French character or influence | register=niche
+- `défretter` → `to unhoop` | Used for removing the metal hoops or bands from a barrel or similar object | register=niche
+- `défringuer` → `to undress` | Colloquial: used for taking clothes off | register=niche
+- `défroquer` → `to defrock` | Used for removing a priest or monk from clerical status | register=niche
+- `dégalonner` → `to remove the braid from` | Mainly for uniforms: to remove galloons or rank braid | register=niche
+- `dégasoliner` → `to remove gasoline from` | Used in technical or industrial contexts, especially for removing gasoline from a mixture or material | register=niche
+- `dégauchir` → `to true up` | Mainly carpentry: to make a surface flat and straight before finishing | register=niche
+- `dégazer` → `to degas` | Used for removing dissolved or trapped gas from a liquid or material | register=niche
+- `dégazoliner` → `to remove gasoline from` | Technical: in gas processing, to remove gasoline/condensate from natural gas | register=niche
+- `dégazonner` → `to remove turf` | Used for removing a layer of grass and soil, especially in gardening or landscaping | register=niche
+- `dégermer` → `to remove the sprout from` | Usually in cooking: to remove the germ/sprout from garlic or similar bulbs | register=niche
+- `déglacer` → `to deglaze` | In cooking, add liquid to a pan to loosen the browned bits | register=niche
+- `déglutir` → `to swallow` | Used for the act of swallowing, often in medical or technical contexts | register=niche
+- `dégorger` → `to drain off` | Often used for food or liquids: to let liquid run off, or to soak something to remove bitterness | register=niche
+- `dégoudronner` → `to remove tar from` | Used for removing tar or bitumen from a surface | register=niche
+- `dégoupiller` → `to remove a pin` | Usually refers to removing a securing pin, especially from a grenade or clip | register=niche
+- `dégraisser` → `to degrease` | Used for removing grease or fat from a surface, dish, or food | register=niche
+- `dégrever` → `to grant tax relief` | Used in administration or law, especially for taxes or official charges | register=niche
+- `dégrosser` → `to rough out` | Used in technical work for shaping something roughly before finishing | register=niche
+- `dégréer` → `to unrig` | Usually nautical: to remove a boat’s rigging or gear | register=niche
+- `déhaler` → `to haul off` | Nautical: to move a boat away from a shore or berth by hauling | register=niche
+- `déharder` → `to unharness` | Mainly used for removing harnesses from a horse or other working animal | register=niche
+- `déharnacher` → `to unharness` | Used for removing a harness from a horse or other draft animal | register=niche
+- `déhouiller` → `to remove coal from` | Used in mining or geology for taking coal away from a place or surface | register=niche
+- `déjanter` → `to come off the rim` | Of a tire, to slip off the wheel rim | register=niche
+- `déjauger` → `to get on plane` | For a boat or hull: to rise partly out of the water and skim along the surface | register=niche
+- `délabialiser` → `to unround` | In phonetics, to make a sound unrounded by removing lip rounding | register=niche
+- `délainer` → `to remove the wool from` | Used in leatherworking for sheepskins or hides | register=niche
+- `délarder` → `to trim away` | Mainly used for removing fat/sinew from meat or bevelling an edge | register=niche
+- `délatter` → `to remove the laths from` | Used in construction or roofing: to take laths/battens off a surface | register=niche
+- `délayer` → `to dilute` | Used for mixing a powder or paste with liquid to make it thinner | register=niche
+- `délibérer` → `to deliberate` | Used for formal group discussion before a decision, as in a council, court, or jury | register=niche
+- `délignifier` → `to delignify` | Used in papermaking/chemistry for removing lignin from wood or pulp | register=niche
+- `délinéamenter` → `to outline` | Used for tracing or defining an outline or boundary | register=niche
+- `délisser` → `to roughen` | Used for making a surface or material less smooth | register=niche
+- `déliter` → `to split into layers` | Used for a material or rock that separates along its layers; also in the pronominal form | register=niche
+- `délover` → `to uncoil` | Used mainly of ropes, cable, or thread: to uncoil or pay out | register=niche
+- `déluter` → `to unseal` | Technical: to remove a seal or luting from a joint or stopper | register=niche
+- `démagnétiser` → `to demagnetize` | Used for removing magnetic properties from an object or material | register=niche
+- `démailler` → `to unravel` | Used for a knit or stocking that starts to come undone | register=niche
+- `démailloter` → `to unswaddle` | Used especially for taking a baby out of swaddling | register=niche
+- `démastiquer` → `to remove putty` | Used for taking off mastic/putty from windows, joints, or similar surfaces | register=niche
+- `dématérialiser` → `to dematerialize` | Used for making something non-physical, especially documents or procedures | register=niche
+- `démazouter` → `to remove oil from` | Used for cleaning mazout or oil contamination off something | register=niche
+- `démaçonner` → `to dismantle masonry` | Used for taking apart or removing a masonry wall or structure | register=niche
+- `démieller` → `to remove honey from` | Used in beekeeping: to take honey out of combs or a hive | register=niche
+- `démilitariser` → `to demilitarize` | Used for removing military forces or military status from an area or organization | register=niche
+- `déminer` → `to clear mines` | Used for removing landmines or other explosive mines from an area | register=niche
+- `déminéraliser` → `to demineralize` | Used for removing mineral content from water or other materials | register=niche
+- `démoduler` → `to demodulate` | In electronics/telecom, to extract the signal from a modulated carrier | register=niche
+- `démonétiser` → `to demonetize` | Used mainly in finance or law for making a currency no longer legal tender | register=niche
+- `démoucheter` → `to remove moss` | Used for cleaning surfaces by removing moss | register=niche
+- `démouler` → `to unmold` | Used for removing something from a mold, especially in cooking or casting | register=niche
+- `démâter` → `to dismast` | Used of a ship when its mast is broken or removed | register=niche
+- `déméthaniser` → `to demethanize` | Technical: to remove methane from a substance or gas stream | register=niche
+- `dénasaliser` → `to denasalize` | In phonetics, to remove nasalization from a sound | register=niche
+- `dénationaliser` → `to denationalize` | Used in politics or economics for removing national status or state control | register=niche
+- `dénaturaliser` → `to denaturalize` | Law: to strip someone of nationality; also used for chemical denaturing | register=niche
+- `dénazifier` → `to denazify` | Used for removing Nazi influence from a person, group, or institution | register=niche
+- `dénerver` → `to remove the nerves/sinews from` | Usually used for meat; also in medicine for cutting nerve supply | register=niche
+- `dénickeler` → `to remove nickel from` | Used in technical contexts for removing nickel or a nickel coating | register=niche
+- `dénicotiniser` → `to remove nicotine from` | Used for removing nicotine from tobacco or another product | register=niche
+- `dénitrer` → `to denitrate` | In chemistry, to remove nitrate from a substance | register=niche
+- `dénitrifier` → `to denitrify` | Used mainly in chemistry, water treatment, and soil biology for removing nitrate compounds | register=niche
+- `déniveler` → `to make uneven` | Used mainly for terrain or construction: to create a height difference or uneven surface | register=niche
+- `dénoyauter` → `to pit` | Used for removing the pit or stone from fruit | register=niche
+- `dénoyer` → `to dewater` | Used mainly for removing water from a mine, site, or area so it can be worked on or exposed | register=niche
+- `dénucléariser` → `to denuclearize` | Used mainly in politics and disarmament: to remove nuclear weapons from a country or area | register=niche
+- `dénébuler` → `to clear up` | Used for something becoming less cloudy, vague, or obscure | register=niche
+- `dépailler` → `to remove the straw from` | Used for taking straw out of grain, bedding, or similar material | register=niche
+- `dépaisseler` → `to thin out` | Used for reducing the density of plants, hair, or similar | register=niche
+- `dépalisser` → `to remove from supports` | Used in horticulture/viticulture for taking plants down from stakes or a trellis | register=niche
+- `déparaffiner` → `to dewax` | Used mainly in industry for removing paraffin or wax from oils or materials | register=niche
+- `dépelotonner` → `to unwind` | Mainly textiles: to take yarn or thread out of a ball or skein | register=niche
+- `déphaser` → `to shift out of phase` | Usually technical: to make signals, waves, or systems out of phase | register=niche
+- `déphosphorer` → `to dephosphorize` | Used in chemistry or metallurgy for removing phosphorus from a substance | register=niche
+- `dépiler` → `to remove hair from` | Usually refers to removing hair from skin or an animal | register=niche
+- `dépiquer` → `to thresh` | Traditional agricultural use: to separate grain from the ears | register=niche
+- `dépister` → `to screen for` | Most often used for medical screening or finding a disease early | register=niche
+- `déplafonner` → `to lift the cap` | Often used for rules, pay, or budgets: to remove a limit or ceiling | register=niche
+- `déplanter` → `to uproot` | Mainly for plants: to take them out of the ground | register=niche
+- `déplâtrer` → `to remove plaster` | Used for taking plaster off a wall or surface | register=niche
+- `dépointer` → `to remove a spot weld` | Mainly technical: used for removing or undoing a spot weld | register=niche
+- `dépolariser` → `to depolarize` | Mainly technical: to make something less polarized, especially in science or electronics | register=niche
+- `dépolir` → `to dull` | Used for making a surface less shiny or opaque, especially glass | register=niche
+- `dépolluer` → `to decontaminate` | Used for removing pollution or contaminants from air, water, or land | register=niche
+- `dépolymériser` → `to depolymerize` | Used in chemistry for breaking a polymer into smaller molecules or monomers | register=niche
+- `dépontiller` → `to detach from the pontil` | Used in glassmaking: to separate a glass piece from its pontil | register=niche
+- `dépoter` → `to unpot` | Used mainly for taking a plant out of its pot before repotting or inspection | register=niche
+- `dépressuriser` → `to depressurize` | Used mainly for lowering pressure in a system, tank, or cabin | register=niche
+- `déprolétariser` → `to deproletarianize` | Used in political or sociological writing for making something less proletarian | register=niche
+- `dépropaniser` → `to depropanize` | In petrochemistry, to remove propane from a gas or liquid mixture | register=niche
+- `déprécier` → `to depreciate` | Used for money, assets, or goods becoming less valuable, especially in finance | register=niche
+- `dépulper` → `to remove the pulp from` | Used for removing pulp from fruit or in food-processing contexts | register=niche
+- `dépurer` → `to purify` | Used for removing impurities or making something cleaner/simpler | register=niche
+- `dérader` → `to leave the roadstead` | Usually of a ship leaving a roadstead or anchorage | register=niche
+- `dérager` → `to flush out` | Mainly used for forcing an animal out of cover or a den | register=niche
+- `déraser` → `to level off` | Mainly technical: to cut a surface or top down to an even level | register=niche
+- `dératiser` → `to deratize` | Used for treating a place to remove rats or make it rat-free | register=niche
+- `dérocher` → `to pickle (metal)` | In jewelry/metalwork, to clean metal in acid after soldering | register=niche
+- `déroger` → `to derogate from` | Used mainly in formal or legal language, especially déroger à une règle | register=niche
+- `déréaliser` → `to derealize` | In psychology or philosophy, to make something feel unreal or detached from reality | register=niche
+- `déréguler` → `to deregulate` | Mainly about reducing or removing government control or rules | register=niche
+- `désabonner` → `to unsubscribe` | Usually reflexive: se désabonner de quelque chose | register=niche
+- `désacclimater` → `to deacclimatize` | Used for people or animals losing acclimatization to heat, altitude, or another environment | register=niche
+- `désaccorder` → `to put out of tune` | Usually means making a musical instrument sound out of tune | register=niche
+- `désacraliser` → `to make less sacred` | Used for taking the sacred or religious character away from something | register=niche
+- `désaffecter` → `to decommission` | Used for a building, vehicle, or facility that is officially taken out of use | register=niche
+- `désaimanter` → `to demagnetize` | Used for removing magnetism from a metal object or material | register=niche
+- `désaligner` → `to misalign` | Used for making two things no longer line up correctly, often in technical contexts | register=niche
+- `désalper` → `to come down from the Alps` | Often used for people or livestock leaving summer alpine pastures | register=niche
+- `désamarrer` → `to unmoor` | Used for a boat or ship leaving its mooring | register=niche
+- `désambiguïser` → `to disambiguate` | Used in linguistics, NLP, or editing to make a meaning unambiguous | register=niche
+- `désamidonner` → `to remove starch from` | Used mainly in laundry or textiles for removing starch from fabric | register=niche
+- `désannexer` → `to unannex` | Used for removing a territory or area from an annexation | register=niche
+- `désapprovisionner` → `to reduce stock` | Used in business and logistics for lowering inventory levels | register=niche
+- `désargenter` → `to desilver` | Used for removing silver from a surface or coating | register=niche
+- `désarrimer` → `to unload (cargo)` | Used for taking cargo out of a ship, vehicle, or container after it has been secured | register=niche
+- `désarticuler` → `to dislocate` | Mainly used for a joint or connected parts being forced apart; also figuratively for breaking a structure apart | register=niche
+- `désassimiler` → `to disassimilate` | Used mainly in sociology or linguistics for the reverse of assimilation | register=niche
+- `désatomiser` → `to deatomize` | In science or fiction, to remove or destroy atomic structure | register=niche
+- `désaérer` → `to deaerate` | Used for removing air from a liquid, container, or system | register=niche
+- `désceller` → `to unseal` | Used for removing a seal from a document, container, or package | register=niche
+- `désembrayer` → `to disengage the clutch` | In a vehicle, to disconnect the engine from the wheels | register=niche
+- `désembuer` → `to defog` | Usually for glass, mirrors, or a windshield: remove condensation or mist | register=niche
+- `désemmancher` → `to remove the handle from` | Used for tools, knives, or similar objects with a handle; sometimes figuratively, to come apart | register=niche
+- `désemparer` → `to disable` | Mainly used of ships, machines, or forces: to put them out of action | register=niche
+- `désencarter` → `to remove an insert` | Used mainly in publishing or filing for taking something that was inserted back out | register=niche
+- `désenclaver` → `to open up` | Used for opening up an isolated place by improving access or connections | register=niche
+- `désencoller` → `to unglue` | Used for taking something off by removing the glue, especially wallpaper or paper | register=niche
+- `désenfiler` → `to unthread` | For removing something from a thread, string, or needle | register=niche
+- `désenflammer` → `to reduce inflammation` | Mainly medical: to lessen inflammation | register=niche
+- `désenfumer` → `to clear smoke from` | Used for removing smoke from a room, tunnel, or other enclosed space | register=niche
+- `désengrener` → `to disengage (gears)` | Used in mechanics when gears are no longer meshing | register=niche
+- `désensabler` → `to clear of sand` | Used for removing sand from something, or freeing a vehicle/boat stuck in sand | register=niche
+- `désensibiliser` → `to desensitize` | Used mainly in medicine and psychology for making someone or something less sensitive to a stimulus or allergen | register=niche
+- `désensorceler` → `to break a spell` | Used for removing a curse or magical spell, often in a fantasy or folk context | register=niche
+- `désentoiler` → `to remove the canvas lining` | Used mainly in restoration: to remove a canvas layer or lining from an object or painting | register=niche
+- `désenvaser` → `to de-silt` | Used for removing silt or mud from a river, canal, harbor, or similar place | register=niche
+- `désenverguer` → `to unbend (a sail)` | Nautical: to take a sail off the yard it is attached to | register=niche
+- `désherber` → `to weed` | Used for removing weeds from a garden, field, or path | register=niche
+- `déshuiler` → `to remove oil from` | Used for removing oil from a surface or material | register=niche
+- `déshumidifier` → `to dehumidify` | Used for removing excess moisture from air or a room | register=niche
+- `déshydrater` → `to dehydrate` | Used for removing water from food, substances, or the body | register=niche
+- `déshériter` → `to disinherit` | Used for legally or formally excluding someone from inheritance | register=niche
+- `désincarner` → `to disembody` | Used for leaving or lacking a bodily form, often in spiritual or literary contexts | register=niche
+- `désincorporer` → `to disincorporate` | Rare, technical use: to take something out of an incorporated body or legal structure | register=niche
+- `désincruster` → `to remove encrusted dirt` | Used for cleaning off something stuck-on or crusted over | register=niche
+- `désinculper` → `to clear of charges` | Used in legal contexts for clearing someone of criminal charges or suspicion | register=niche
+- `désindexer` → `to deindex` | Used for removing a page or item from an index, especially in computing or SEO | register=niche
+- `désinfecter` → `to disinfect` | Used for cleaning something to remove germs or contamination | register=niche
+- `désinsectiser` → `to treat for insects` | Used for removing or killing insects in a place or object, often with spray or fumigation | register=niche
+- `désinstitutionnaliser` → `to deinstitutionalize` | Used for reducing reliance on institutions, especially in care or psychiatry | register=niche
+- `désintoxiquer` → `to detoxify` | Used for removing toxins medically; reflexive se désintoxiquer means to detox/get clean from an addiction | register=niche
+- `désinvestir` → `to divest` | Mainly finance: to remove investment from a company, sector, or asset | register=niche
+- `désodoriser` → `to deodorize` | Used for making something no longer smell bad, often with products or treatments | register=niche
+- `désoperculer` → `to uncap honeycomb` | In beekeeping, to remove the wax cappings from honeycomb cells | register=niche
+- `désorber` → `to desorb` | In chemistry, to release a substance from a surface or material | register=niche
+- `désorbiter` → `to deorbit` | Used for a spacecraft, satellite, or rocket stage leaving orbit | register=niche
+- `désosser` → `to bone (meat)` | Mainly for removing bones from meat; can also mean to strip something bare | register=niche
+- `désoxyder` → `to deoxidize` | Used in chemistry or metallurgy for removing oxygen from a substance | register=niche
+- `déstocker` → `to de-stock` | To reduce or clear inventory, especially in business or retail | register=niche
+- `désubjectiviser` → `to desubjectivize` | Used in theory or analysis for making something less tied to a subject's viewpoint | register=niche
+- `désulfiter` → `to remove sulfites` | Used in winemaking or food processing: to remove sulfites from a liquid or product | register=niche
+- `désulfurer` → `to desulfurize` | Used in chemistry and industry for removing sulfur from a substance | register=niche
+- `déséchouer` → `to refloat` | Used of a boat or ship that has run aground | register=niche
+- `désénerver` → `to remove the sinews from` | Used for removing nerves or sinews from meat or tissue; also in technical/anatomical contexts | register=niche
+- `désépaissir` → `to thin out` | Used when something becomes less thick or dense | register=niche
+- `désétablir` → `to disestablish` | Used for formally ending an established status, especially in legal or institutional contexts | register=niche
+- `désétamer` → `to remove tin from` | Used in metallurgy or restoration for removing a tin coating | register=niche
+- `désétatiser` → `to remove from state control` | Used in politics or economics for making an activity or sector less controlled by the state | register=niche
+- `détapisser` → `to strip wallpaper` | Used for taking wallpaper off a wall | register=niche
+- `détartrer` → `to descale` | Used for removing limescale from kettles, pipes, and other equipment | register=niche
+- `détaxer` → `to zero-rate` | Used in tax/commercial contexts for making a good or sale exempt from tax | register=niche
+- `dételer` → `to unhitch` | Used for taking horses or a vehicle off what is pulling it | register=niche
+- `déterger` → `to cleanse` | Used for cleaning a wound, skin, or tissue thoroughly | register=niche
+- `détonneler` → `to strip a cask` | Rare; used for taking apart a cask or barrel | register=niche
+- `détourer` → `to cut out` | In image editing or craft, to trace and cut around an object to isolate it | register=niche
+- `détransposer` → `to transpose back` | Used in music or technical contexts for reversing a transposition | register=niche
+- `dévalider` → `to invalidate` | Used for canceling a validation, approval, or checked choice | register=niche
+- `dévaser` → `to desilt` | Used for removing silt or mud from a river, canal, port, etc | register=niche
+- `déventer` → `to break the wind` | Usually about a wall, land, or structure that blocks the wind | register=niche
+- `déverdir` → `to remove the green tint` | Used for taking the green tint out of something, especially in dyeing or chemistry | register=niche
+- `déverguer` → `to unbend (a sail)` | Nautical: to remove or unbend a sail from its yard | register=niche
+- `dévernir` → `to remove varnish` | Used for taking varnish off a surface | register=niche
+- `dévitaliser` → `to devitalize` | Mainly dentistry: to remove the nerve from a tooth | register=niche
+- `dévitrifier` → `to devitrify` | Used in materials science for glass or a glassy material losing its vitreous structure | register=niche
+- `dévolter` → `to unwind` | Technical or regional: used for undoing a turn, coil, or winding | register=niche
+- `effarer` → `to alarm` | Often literary: to alarm or startle someone; s'effarer = to be startled | register=niche
+- `effluver` → `to give off a scent` | Used for something that gives off a smell, fragrance, or vapor | register=niche
+- `emballotter` → `to pack into bales` | Used for putting goods into bales or bundles | register=niche
+- `embarrer` → `to bar; to lock` | Regional or old-fashioned: of a door or opening, to secure or block it | register=niche
+- `embastionner` → `to fortify with bastions` | Used for a fort or town: to strengthen it with bastions | register=niche
+- `embecquer` → `to feed by beak` | Used for a bird feeding its young, or by extension feeding someone by hand | register=niche
+- `emblaver` → `to sow grain` | Used for sowing a field with grain, especially as a crop | register=niche
+- `embosser` → `to emboss` | Used for making a surface or material raised in relief, especially paper, leather, or metal | register=niche
+- `emboucher` → `to fit a bit or mouthpiece` | Used mainly for horses and brass instruments | register=niche
+- `embouquer` → `to put a bit in (a horse's mouth)` | Mainly used in horse handling; also for forcing something into a narrow opening or passage | register=niche
+- `emboutir` → `to stamp (metal)` | Mainly for forming metal; also colloquially, to hit and damage a vehicle | register=niche
+- `embrancher` → `to branch off` | Used for roads, rail lines, or other routes that split from a main line | register=niche
+- `embrayer` → `to engage (a gear)` | Mainly in mechanics: to engage the clutch or put a vehicle into gear; also figuratively, to start off | register=niche
+- `embroussailler` → `to overgrow with brush` | Used for land or paths being covered with brush or thickets | register=niche
+- `embusquer` → `to ambush` | Usually used in military or hunting contexts; can also mean to place someone in a cushy posting | register=niche
+- `emmailler` → `to mesh` | Used for fitting things together in a mesh or chain-mail pattern | register=niche
+- `emmancher` → `to fit onto a handle` | Used for putting a tool, blade, or similar object onto a handle | register=niche
+- `emmortaiser` → `to mortise` | In woodworking, to cut or shape a mortise for a joint | register=niche
+- `empailler` → `to stuff with straw` | Mainly used for taxidermy or old-style stuffing with straw | register=niche
+- `empanner` → `to jibe` | In sailing, to turn the stern through the wind | register=niche
+- `emparquer` → `to take aboard` | Mainly maritime: to put people or goods onto a ship | register=niche
+- `empatter` → `to serif` | Typography: to add serifs to a letter or typeface | register=niche
+- `empeigner` → `to vamp` | In shoemaking, to add or fit the upper part of a shoe | register=niche
+- `empenner` → `to fletch` | In archery, to attach feathers to an arrow shaft | register=niche
+- `empeser` → `to starch` | Used for treating cloth or laundry with starch to make it stiff | register=niche
+- `empierrer` → `to gravel` | Usually for a road or path: to cover it with stones or gravel | register=niche
+- `empoisser` → `to coat with pitch` | Used for coating something with pitch, tar, or a sticky black substance | register=niche
+- `empoissonner` → `to stock with fish` | Used for putting fish into a pond, lake, or other water body | register=niche
+- `empoter` → `to pot up` | Mainly horticulture: to put a plant into a pot | register=niche
+- `emprésurer` → `to curdle with rennet` | Used in cheesemaking for milk curdled by adding rennet | register=niche
+- `empuantir` → `to stink up` | Literary/rare: to make something smell foul, or to smell foul oneself | register=niche
+- `empêner` → `to fletch` | Mainly technical: to add feathers/fins to an arrow or similar object | register=niche
+- `encabaner` → `to shut in` | Often reflexive in modern French: to stay indoors / keep oneself in | register=niche
+- `encaquer` → `to pack into barrels` | Used mainly for putting fish or similar goods into barrels | register=niche
+- `encarter` → `to insert` | Usually in publishing: to add an insert or leaflet to printed material | register=niche
+- `encartoucher` → `to load into cartridges` | Rare, technical: put something into a cartridge or cartridge case | register=niche
+- `encaserner` → `to quarter in barracks` | Used for putting soldiers or troops in barracks | register=niche
+- `encasteler` → `to embed` | Rare technical verb: to place or fix something in a frame, housing, or recess | register=niche
+- `encastrer` → `to embed` | Used for fitting something flush into a surface or structure | register=niche
+- `encaver` → `to store in a cellar` | Often used for putting wine or other goods into a cellar for storage | register=niche
+- `enchaperonner` → `to cap (a wall)` | In architecture, to cover a wall with a coping or capstone | register=niche
+- `enchatonner` → `to set (a gem)` | Used for fixing a gemstone in a ring or other setting | register=niche
+- `enchâsser` → `to set in` | Used for placing something firmly in a setting or surrounding material, especially a jewel or object | register=niche
+- `encirer` → `to wax` | Used for coating a surface with wax | register=niche
+- `enclaver` → `to enclose` | Used for land or areas cut off from access or surrounded by other territory | register=niche
+- `encliqueter` → `to snap into place` | Used for parts that lock together with a click | register=niche
+- `enclouer` → `to spike` | Used for driving a nail in to disable or damage something, often a cannon or a horse's hoof | register=niche
+- `encoder` → `to encode` | Often in computing or data work: to encode information into a code or format | register=niche
+- `encoller` → `to glue` | Used for applying glue or paste to a surface or material | register=niche
+- `encorder` → `to rope up` | Mainly in mountaineering: to attach climbers together with a rope | register=niche
+- `encrer` → `to ink` | Used for applying ink, especially in printing or drawing | register=niche
+- `encuver` → `to put into a vat` | In winemaking, to put grapes or wine into a vat | register=niche
+- `endauber` → `to beat up` | Regional/slang: used for hitting someone hard or roughing them up | register=niche
+- `endenter` → `to notch` | Mainly in carpentry or technical contexts: to cut notches or teeth into something | register=niche
+- `endivisionner` → `to divide into divisions` | Used for putting people, units, or groups into divisions | register=niche
+- `enduire` → `to coat` | Used for putting a layer of something on a surface | register=niche
+- `enfaîter` → `to fit ridge tiles` | In roofing, to place the tiles or cap along the ridge of a roof | register=niche
+- `enferrer` → `to run through` | Literary; used for stabbing someone with a blade or sword | register=niche
+- `enfieller` → `to embitter` | Usually figurative: to make someone bitter or full of spite | register=niche
+- `enfourner` → `to put in the oven` | Used mainly for putting food or dough into an oven to bake | register=niche
+- `enfutailler` → `to cask` | Used for wine or spirits: to put them into casks or barrels | register=niche
+- `enfûter` → `to put into a barrel` | Used for putting liquid, especially wine, into a barrel or cask | register=niche
+- `engamer` → `to fit into` | Used in technical contexts for fitting one part into another | register=niche
+- `engargousser` → `to load with a cartridge bag` | Used in artillery: to put powder or a charge into a cartridge bag | register=niche
+- `engaver` → `to force-feed` | Used mainly for feeding animals, especially geese, by force | register=niche
+- `engazonner` → `to sod` | Used for covering ground with grass or turf, especially in landscaping | register=niche
+- `engerber` → `to sheaf` | Used in farming for binding cut grain into sheaves | register=niche
+- `engober` → `to coat with slip` | Used mainly in ceramics: to cover an object with a thin clay slip (engobe) | register=niche
+- `engommer` → `to gum` | Used for coating something with gum or making it sticky | register=niche
+- `engrener` → `to mesh` | Used mainly for gears or teeth fitting together | register=niche
+- `enherber` → `to sow with grass` | Used in agriculture/viticulture for covering soil with grass | register=niche
+- `enjaveler` → `to bind into sheaves` | Used in farming for putting cut grain into sheaves or swaths | register=niche
+- `enjuguer` → `to yoke` | Used for fastening draft animals to a yoke | register=niche
+- `enkyster` → `to encyst` | Medical/biological: to become enclosed in a cyst, or to enclose something in a cyst | register=niche
+- `enrailler` → `to derail` | Usually of a train or vehicle: to come off the rails | register=niche
+- `enrober` → `to coat` | Used for putting a layer of something over an object, often in cooking or industry | register=niche
+- `enrocher` → `to riprap` | Used for protecting a bank or slope with rocks | register=niche
+- `enrêner` → `to rein` | Mainly in horse training: to fit a horse with reins or training reins | register=niche
+- `ensabler` → `to cover with sand` | Often used for a boat, road, or riverbed becoming blocked by sand; the reflexive form is common | register=niche
+- `ensacher` → `to bag` | Used for putting goods into bags or sacks, often in packaging or industry | register=niche
+- `ensemencer` → `to sow` | Used for putting seeds in the ground; also in technical medicine or lab contexts, for inoculating | register=niche
+- `ensiler` → `to ensile` | Used in farming for storing green fodder as silage in a silo or similar container | register=niche
+- `ensoufrer` → `to treat with sulfur` | Used in technical contexts for applying sulfur, especially in winemaking or agriculture | register=niche
+- `ensoutaner` → `to dress in a cassock` | Used mainly for dressing someone in clerical clothes; sometimes figurative | register=niche
+- `entabler` → `to place on a table` | Used in technical or historical contexts for placing something on a flat support or base | register=niche
+- `entartrer` → `to get limescale buildup` | Used for pipes, kettles, and other surfaces that get limescale deposits | register=niche
+- `enter` → `to graft` | Used in horticulture for joining a scion to a stock | register=niche
+- `entoiler` → `to line with canvas` | Used for putting fabric, paper, or a painting onto canvas | register=niche
+- `entonner` → `to intone` | Usually for a singer, choir, or group starting a song or hymn | register=niche
+- `entre-tisser` → `to interweave` | Used for things woven together or figuratively linked in an interlacing way | register=niche
+- `entretailler` → `to notch` | Used for making matching cuts or notches that fit together | register=niche
+- `entretoiser` → `to brace` | Used in construction or engineering for adding braces or struts for support | register=niche
+- `entériner` → `to ratify` | Used for formally approving a decision, agreement, or result | register=niche
+- `enucléer` → `to enucleate` | Used in medicine for surgically removing an eye or a tumour | register=niche
+- `envaser` → `to silt up` | Used for a river, channel, or basin becoming filled with mud or silt | register=niche
+- `enverger` → `to plant as an orchard` | Usually in agricultural or regional use: to convert land into an orchard or plant it with fruit trees | register=niche
+- `enverguer` → `to rig a sail` | In sailing, to attach a sail to its yard or spar | register=niche
+- `envider` → `to wind onto a bobbin` | Used for winding thread or yarn onto a bobbin or reel | register=niche
+- `environner` → `to surround` | Formal/literary: to be all around something or someone | register=niche
+- `escadronner` → `to form into squadrons` | Used mainly in military contexts for arranging troops or units into squadrons | register=niche
+- `escarrifier` → `to scarify` | Used in farming or horticulture for making shallow cuts in soil or turf | register=niche
+- `escher` → `to bait a hook` | Fishing term: to put bait on a hook or line | register=niche
+- `escompter` → `to discount` | Mainly in finance: to discount a bill or invoice | register=niche
+- `esquicher` → `to squash` | Mainly regional/colloquial; used for pressing or crushing something flat | register=niche
+- `essaimer` → `to swarm` | Used especially for bees leaving a hive; also for people or things spreading out | register=niche
+- `essarter` → `to clear land` | Used for clearing woodland or brush from land, especially for खेती/cultivation | register=niche
+- `essoriller` → `to crop the ears of` | Used for cutting or cropping an animal’s ears | register=niche
+- `essoucher` → `to grub up` | Used for clearing land by removing tree stumps or roots | register=niche
+- `estamper` → `to emboss` | Use for making a raised mark or design with a stamp or press | register=niche
+- `estampiller` → `to stamp` | Used for marking something with an official stamp or seal | register=niche
+- `esthétiser` → `to aestheticize` | Used in criticism or philosophy for making something more aesthetic in form or treatment | register=niche
+- `estrapader` → `to subject to the strappado` | Historical term for a rope torture/punishment | register=niche
+- `estérifier` → `to esterify` | In chemistry, to turn an acid or alcohol into an ester | register=niche
+- `euphoriser` → `to make euphoric` | Used for making someone feel euphoric or intensely upbeat, often in a technical or figurative context | register=niche
+- `euthanasier` → `to euthanize` | Used for ending a patient’s or animal’s life to relieve suffering, especially in medical or veterinary contexts | register=niche
+- `excaver` → `to excavate` | Used for digging out earth, often in archaeology, construction, or engineering | register=niche
+- `excentrer` → `to offset` | To move something away from the centre; often in technical or layout contexts | register=niche
+- `exciper` → `to invoke as a defence` | Used mainly in legal language: to invoke a rule, right, or excuse as a defence | register=niche
+- `exciser` → `to excise` | Used for cutting something out, especially in surgery or formal removal | register=niche
+- `excommunier` → `to excommunicate` | Used for formally excluding someone from church membership or communion | register=niche
+- `excorier` → `to excoriate` | Used in medicine or writing for stripping off the outer skin or surface | register=niche
+- `excréter` → `to excrete` | Used in biology and medicine for expelling bodily waste | register=niche
+- `exfolier` → `to exfoliate` | Used mainly for removing dead skin from the skin, especially in beauty care | register=niche
+- `exhiber` → `to produce (a document)` | Often used in formal or legal contexts for showing official papers or proof | register=niche
+- `exhéréder` → `to disinherit` | Used in legal or formal contexts for removing someone from an inheritance | register=niche
+- `exonérer` → `to exempt` | Usually used in legal or tax contexts: to exempt someone or something from an obligation | register=niche
+- `exorciser` → `to exorcise` | Used for removing a supposed evil spirit, or figuratively a fear or bad memory | register=niche
+- `expectorer` → `to expectorate` | Used in medicine for bringing up mucus or saliva from the throat or lungs | register=niche
+- `expertiser` → `to appraise` | Used for a formal expert assessment of value, quality, or damage | register=niche
+- `exporter` → `to export` | Used mainly for sending goods or data out of a country or system | register=niche
+- `exproprier` → `to expropriate` | Used mainly for a government or authority taking private property, usually with compensation | register=niche
+- `expurger` → `to expurgate` | Used for removing sensitive, offensive, or unneeded passages from a text | register=niche
+- `exsuder` → `to exude` | Used for a substance slowly giving off liquid, scent, or other material; often technical or formal | register=niche
+- `extorquer` → `to extort` | Usually used for getting money or information by threats or pressure | register=niche
+- `extrader` → `to extradite` | Used in legal contexts when one country hands a person over to another | register=niche
+- `extravaser` → `to extravasate` | Used in medicine for a fluid, especially blood, leaking out of a vessel | register=niche
+- `extruder` → `to extrude` | Used in technical contexts for forcing material through a shaped opening | register=niche
+- `facetter` → `to facet` | Mainly used for cutting facets into a stone or surface | register=niche
+- `factoriser` → `to factor` | In mathematics, to rewrite an expression as a product of factors | register=niche
+- `facturer` → `to invoice` | Used for charging a customer for goods or services | register=niche
+- `faisander` → `to hang game` | For game or meat, to leave it hanging so it ages before cooking | register=niche
+- `faluner` → `to marl` | Agriculture: to treat soil with marl or shell sand | register=niche
+- `farandoler` → `to dance the farandole` | Used for the traditional Provençal chain dance, or to move along in that dance style | register=niche
+- `farcir` → `to stuff` | Most often used for filling food with a stuffing | register=niche
+- `fariner` → `to flour` | Used in cooking for covering food or a surface with flour | register=niche
+- `farter` → `to wax` | Most often for skis or snowboards | register=niche
+- `fasciser` → `to fascistize` | Usually used in politics: to make a person, group, or system fascist or more fascist-like | register=niche
+- `faseiller` → `to flap loosely` | Used mainly of a sail or flag that flutters in the wind without filling properly | register=niche
+- `faseyer` → `to flap in the wind` | Of a sail, to flap loosely because it is not filled with wind | register=niche
+- `faucarder` → `to cut aquatic weeds` | Used for removing weeds or plants from canals, ponds, and other waterways | register=niche
+- `faucher` → `to mow` | Used for cutting grass or grain with a scythe or machine; also figuratively, to cut down | register=niche
+- `fauconner` → `to falcon` | Used for hunting with trained falcons | register=niche
+- `faufiler` → `to baste` | Mainly used in sewing for a temporary stitch; the reflexive se faufiler is more common in everyday French | register=niche
+- `fenestrer` → `to make openings in` | Used in technical or medical contexts for making “windows” or openings in a surface or tissue | register=niche
+- `fenêtrer` → `to window` | Often technical: to display or handle something in windows | register=niche
+- `ferler` → `to furl` | Used mainly for sails, flags, or other flexible things: to roll them up neatly | register=niche
+- `ferrer` → `to shoe` | Used mainly for horses: to put iron shoes on the hooves | register=niche
+- `ferrouter` → `to transport by rail` | Used mainly in logistics for goods or vehicles moved by train | register=niche
+- `fertiliser` → `to fertilize` | For soil or plants, to add fertilizer | register=niche
+- `feuiller` → `to leaf out` | Used of trees or plants when they produce leaves | register=niche
+- `fidéliser` → `to build loyalty` | Mainly used in business/marketing: to keep customers or users loyal | register=niche
+- `fileter` → `to thread` | Mainly used for making a screw thread on metal | register=niche
+- `filigraner` → `to watermark` | Used mainly for adding a visible or digital watermark to paper, images, or documents | register=niche
+- `finlandiser` → `to Finlandize` | Usually in politics: to push a country toward neutral alignment under outside pressure | register=niche
+- `fiscaliser` → `to tax` | Used in finance or politics for putting something under taxation or tax rules | register=niche
+- `fissionner` → `to undergo fission` | Used mainly in nuclear science for a nucleus or atom splitting into smaller parts | register=niche
+- `flageller` → `to whip` | Mainly for whipping or beating someone, often in historical or religious contexts | register=niche
+- `fleurer` → `to dust with flour` | In cooking, to lightly coat a surface or dough with flour | register=niche
+- `fleureter` → `to flirt with` | Old-fashioned; usually with avec + person, meaning to flirt lightly | register=niche
+- `flibuster` → `to act as a pirate` | Usually historical: to behave like a pirate or buccaneer | register=niche
+- `floculer` → `to flocculate` | Used in chemistry, water treatment, and related sciences for particles forming flocs or clumps | register=niche
+- `flouser` → `to swindle` | Informal: to cheat someone or take advantage of them | register=niche
+- `fluidifier` → `to fluidize` | Used mainly in technical or formal contexts for making a liquid or material flow more easily | register=niche
+- `fluidiser` → `to fluidize` | Technical: to make a material or mixture behave like a fluid | register=niche
+- `fluoriser` → `to fluorinate` | In chemistry, to add fluorine to a substance or treat it with fluorine/fluoride | register=niche
+- `flécher` → `to mark with arrows` | Used for indicating direction or marking something with arrows; also for earmarking funds | register=niche
+- `flûter` → `to play the flute` | Used for playing the flute, mainly in a musical context | register=niche
+- `folioter` → `to number the pages` | Used for books or manuscripts: to add page or folio numbers | register=niche
+- `fonctionnariser` → `to give civil-service status to` | Used for turning staff or jobs into civil-service positions | register=niche
+- `forclore` → `to preclude` | Used mainly in legal contexts: to make a claim or right lapse by missing a deadline | register=niche
+- `forer` → `to drill` | Used for making a hole with a drill or boring tool | register=niche
+- `forlancer` → `to hunt down` | Rare, mainly for hunting or for figurative pursuit/harrying | register=niche
+- `formater` → `to format` | Mainly for text, files, or data, especially in computing | register=niche
+- `fracturer` → `to fracture` | Usually used for bones or hard objects that break with a crack | register=niche
+- `fraiser` → `to mill` | Technical: to cut or shape material with a milling tool; often for holes or edges | register=niche
+- `framboiser` → `to flavor with raspberries` | Used for adding raspberry flavor, especially in food or drinks | register=niche
+- `franciser` → `to Frenchify` | Used for making something more French in form, language, or style | register=niche
+- `franger` → `to fringe` | Usually in textiles or decoration: to add a fringe to something | register=niche
+- `fretter` → `to hoop` | Mainly for fitting hoops or metal rings around something, especially barrels or wheels | register=niche
+- `fricasser` → `to fricassee` | Mainly a cooking term: to prepare food as a fricassee | register=niche
+- `fritter` → `to sinter` | Technical: to heat powder so it bonds into a solid mass | register=niche
+- `fréter` → `to charter` | Used for hiring a ship, plane, bus, or similar transport for a special trip | register=niche
+- `fumiger` → `to fumigate` | Used for treating a space or object with smoke or vapour, especially for disinfection or pest control | register=niche
+- `féconder` → `to fertilize` | Used when sperm or pollen fertilizes an egg or plant | register=niche
+- `féculer` → `to starch` | Mainly used for treating fabric or laundry with starch | register=niche
+- `fédéraliser` → `to federalize` | Used in politics for making a state or region part of a federal system | register=niche
+- `féminiser` → `to feminize` | Often used for making something feminine in form, style, or grammar | register=niche
+- `fétichiser` → `to fetishize` | Used for treating something as a fetish or giving it exaggerated importance | register=niche
+- `gabionner` → `to build with gabions` | Used in civil engineering or military contexts for protecting an area with gabion baskets | register=niche
+- `gainer` → `to sheath` | Used for covering or enclosing something in a sheath-like layer | register=niche
+- `galonner` → `to trim with braid` | Used for decorating clothing or fabric with braid or galloon | register=niche
+- `gangrener` → `to gangrene` | Usually of tissue: to develop gangrene; also used figuratively for gradual corruption | register=niche
+- `ganser` → `to trim with braid` | Usually for fabric or clothing: to finish an edge with braid or cord | register=niche
+- `garancer` → `to dye with madder` | In dyeing, used for coloring fabric with madder | register=niche
+- `gauchiser` → `to shift left` | Usually in politics: to make or become more left-wing | register=niche
+- `gaufrer` → `to emboss` | Used for making a raised pattern on paper, fabric, or metal | register=niche
+- `gauler` → `to knock down (fruit) with a pole` | Mainly used for removing fruit from a tree with a pole | register=niche
+- `gaver` → `to force-feed` | Mainly used for feeding birds or someone too much, especially with food | register=niche
+- `gazer` → `to gas` | Used for treating or filling something with gas | register=niche
+- `gazéifier` → `to gasify` | Mainly for making a liquid or material contain gas, especially in industry or drinks | register=niche
+- `gemmer` → `to tap resin` | Used in forestry for getting resin from a tree, especially a pine | register=niche
+- `gironner` → `to divide into wedge-shaped sections` | Mainly in heraldry: to divide a shield into radiating wedge-shaped sections | register=niche
+- `glairer` → `to brush with egg white` | Mainly in cooking: to coat something with egg white | register=niche
+- `glaiser` → `to glaze` | Usually used for coating food or a surface with a glaze | register=niche
+- `glaner` → `to glean` | Mainly: to gather leftover grain after harvesting; also figuratively, to pick up bits of information | register=niche
+- `globaliser` → `to globalize` | Used mainly in economics or politics: to make something global or worldwide | register=niche
+- `gloser` → `to comment on` | Used for commenting on something, often with a critical tone; can also mean to annotate a text | register=niche
+- `glycériner` → `to treat with glycerin` | Usually in cosmetics or chemistry: to add glycerin to something | register=niche
+- `gobeter` → `to roughcast` | In construction, to apply a rough first coat of mortar or plaster | register=niche
+- `godailler` → `to carouse` | Rare slang for drinking and making merry, often noisily | register=niche
+- `goder` → `to pucker` | Used of fabric or other surfaces when they form small folds or ripples | register=niche
+- `godiller` → `to row with a single oar` | Used for moving a boat by swinging one oar side to side | register=niche
+- `godronner` → `to gadroon` | Used in art, furniture, or architecture for adding gadrooned ridges or ornament | register=niche
+- `gominer` → `to slick back` | Usually refers to styling hair with pomade or grease | register=niche
+- `gonder` → `to hinge` | Used for attaching something with hinges, especially a door or shutter | register=niche
+- `gondoler` → `to warp` | Of wood, metal, or a surface: to bend or bulge out of shape | register=niche
+- `gosser` → `to fiddle with` | Quebec French: often means to fiddle with or work on something clumsily | register=niche
+- `gouacher` → `to paint with gouache` | In art, used for painting with gouache paint | register=niche
+- `goujonner` → `to dowel` | Used in carpentry or mechanics for joining or fixing with dowels/studs | register=niche
+- `gourmer` → `to bridle` | Mainly for horses; figuratively, to restrain or hold back | register=niche
+- `graduer` → `to mark with graduations` | Usually for instruments or containers: to add a scale or graduated markings | register=niche
+- `grainer` → `to become grainy` | Often of a sauce or mixture that separates into grains; also of plants, to go to seed | register=niche
+- `graniter` → `to become granite-like` | Used for something that takes on a hard, speckled granite appearance | register=niche
+- `granuler` → `to granulate` | Used in technical contexts for making something into small grains or granules | register=niche
+- `graphiter` → `to graphitize` | Used in materials science: to turn carbon into graphite | register=niche
+- `grasseyer` → `to pronounce r gutturally` | Used for pronouncing r in a throaty, uvular way | register=niche
+- `graticuler` → `to grid` | Used mainly in cartography or graphics for adding a grid or graticule | register=niche
+- `gratiner` → `to brown` | Used in cooking for cheese or a surface that turns browned and crusty under heat | register=niche
+- `gravillonner` → `to spread gravel` | Used for putting small stones on a surface, especially roads or paths | register=niche
+- `graviter` → `to gravitate` | Used literally in science, or figuratively with toward | register=niche
+- `grenailler` → `to shot-peen` | Used for treating a metal surface with tiny pellets | register=niche
+- `greneler` → `to granulate` | Used for making a surface or material small-grained or rough | register=niche
+- `grener` → `to go to seed` | Used for a plant or substance becoming grain-like or granular | register=niche
+- `grimer` → `to make up` | Often reflexive: se grimer = to disguise oneself with makeup, especially for a role | register=niche
+- `gringuer` → `to climb up` | Regional or rare; used for moving upward by climbing | register=niche
+- `gripper` → `to seize up` | Of a machine or part, to stop moving smoothly and seize | register=niche
+- `grossoyer` → `to engross` | Used in legal writing for preparing the formal final copy of a document | register=niche
+- `grumeler` → `to form lumps` | Used for a mixture, sauce, or liquid that becomes lumpy | register=niche
+- `gréer` → `to rig` | Mainly nautical: to fit a ship with its rigging or gear | register=niche
+- `guillemeter` → `to put in quotation marks` | Used in writing/typography for adding guillemets around a word, phrase, or passage | register=niche
+- `guillocher` → `to engrave with a guilloché pattern` | Used for adding fine repeated ornamental lines, especially on metal or decorative surfaces | register=niche
+- `guillotiner` → `to guillotine` | Usually means to execute by guillotine; also used figuratively for a harsh cutoff | register=niche
+- `guiper` → `to wrap` | Mainly in textiles: to wrap a thread or cord with another material | register=niche
+- `gélatiner` → `to gelatinize` | Used for turning a liquid into a gel or coating something with gelatin | register=niche
+- `gélatiniser` → `to gelatinize` | Used mainly in food science and cooking for making a liquid or mixture set with gelatin | register=niche
+- `gélifier` → `to gel` | Used when a liquid or mixture becomes a gel or sets | register=niche
+- `géminer` → `to geminate` | In linguistics, to make a sound or consonant double | register=niche
+- `géométriser` → `to geometrize` | Used in art or geometry for giving something a geometric form | register=niche
+- `gésir` → `to lie` | Formal/literary; often of a body or object lying in a place | register=niche
+- `gîter` → `to list` | Especially of a boat: to lean to one side | register=niche
+- `habiliter` → `to authorize` | Mostly formal/legal: to give someone the authority or right to do something | register=niche
+- `hachurer` → `to cross-hatch` | Used in drawing or print design: to shade with parallel lines | register=niche
+- `haler` → `to tow` | Used mainly for pulling something with a rope, cable, or vehicle, especially boats | register=niche
+- `hameçonner` → `to fish with a hook` | Mainly for catching fish with a hook; also used in IT for phishing | register=niche
+- `hancher` → `to hip (a roof)` | Used in architecture for turning a roof into a hipped roof | register=niche
+- `hannetonner` → `to be infested with cockchafers` | Used of plants or places affected by cockchafers | register=niche
+- `harnacher` → `to harness` | Mainly for putting a harness or tack on a horse or other animal | register=niche
+- `harponner` → `to harpoon` | Used for catching or striking something with a harpoon; also in a figurative sense, to hook or land someone | register=niche
+- `haubaner` → `to guy` | Used for securing a mast, pole, or similar support with guy lines | register=niche
+- `havir` → `to sear` | Used mainly for food or meat browned quickly by strong heat | register=niche
+- `helléniser` → `to Hellenize` | Used for making something Greek in style, language, or culture | register=niche
+- `herbager` → `to pasture` | Used mainly for livestock grazing on grassland or mountain pasture | register=niche
+- `herber` → `to grass` | Used in farming or landscaping for covering a surface with grass | register=niche
+- `hercher` → `to harrow` | Used in farming for working the soil with a harrow | register=niche
+- `herser` → `to harrow` | Used in farming for breaking up and leveling soil with a harrow | register=niche
+- `hiberner` → `to hibernate` | Used mainly of animals that become inactive during winter | register=niche
+- `historier` → `to narrate` | Literary: tells or recounts a story; sometimes adds invented details | register=niche
+- `homogénéifier` → `to homogenize` | Used mainly in technical or industrial contexts: to make a mixture more uniform | register=niche
+- `homogénéiser` → `to homogenize` | Used for making a mixture or system uniform, especially in technical contexts | register=niche
+- `homologuer` → `to approve officially` | Used when an authority formally approves or validates a document, deal, or decision | register=niche
+- `hongrer` → `to geld` | Used for castrating a male horse | register=niche
+- `hongroyer` → `to treat leather in the Hungarian style` | Used in leatherworking for a specific leather-finishing process | register=niche
+- `hormoner` → `to hormone` | Used mainly in medicine or biology for giving hormones or causing a hormonal effect | register=niche
+- `hospitaliser` → `to hospitalize` | Used for admitting a patient to hospital | register=niche
