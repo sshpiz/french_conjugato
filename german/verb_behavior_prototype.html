@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
+  <title>Die Verben · Behavior Drill Prototype</title>
+  <link rel="icon" href="favicon_big.png" type="image/png">
+  <style>
+    :root {
+      --bg: #081015;
+      --bg-soft: #0f1a22;
+      --panel: #121c26;
+      --panel-soft: #16222d;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #edf5fb;
+      --muted: #95a9b9;
+      --accent: #67c5ff;
+      --green: #6ae1a2;
+      --amber: #ffd57d;
+      --pink: #e6b3ff;
+      --red: #ff9985;
+      --chip: rgba(255, 255, 255, 0.07);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(103, 197, 255, 0.18), transparent 26%),
+        linear-gradient(180deg, #081015 0%, #060c10 100%);
+      color: var(--text);
+    }
+
+    body {
+      padding: 18px 14px 30px;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong,
+    .brand-copy span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-copy strong {
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-copy span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .counter {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .mode-strip,
+    .family-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .mode-strip::-webkit-scrollbar,
+    .family-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mode-strip {
+      margin-bottom: 14px;
+    }
+
+    .mode-btn,
+    .family-btn {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--chip);
+      color: var(--muted);
+      padding: 11px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+    }
+
+    .mode-btn.active,
+    .family-btn.active {
+      color: #061016;
+      background: var(--accent);
+      border-color: rgba(103, 197, 255, 0.88);
+      transform: translateY(-1px);
+    }
+
+    .card-shell {
+      background: linear-gradient(180deg, rgba(18, 28, 38, 0.98), rgba(10, 17, 23, 0.98));
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-height: 76vh;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      min-height: 32px;
+    }
+
+    .deck-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .flashcard {
+      flex: 1 1 auto;
+      min-height: 0;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(circle at top, rgba(103, 197, 255, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(18, 28, 38, 0.98), rgba(12, 19, 26, 0.98));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 20px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      border: 1px solid transparent;
+    }
+
+    .meta-pill.verb {
+      background: rgba(103, 197, 255, 0.14);
+      color: var(--accent);
+    }
+
+    .meta-pill.tense {
+      background: rgba(106, 225, 162, 0.14);
+      color: var(--green);
+    }
+
+    .meta-pill.family {
+      background: rgba(255, 213, 125, 0.14);
+      color: var(--amber);
+    }
+
+    .lemma {
+      margin: 10px 0 0;
+      font-size: clamp(3.1rem, 9vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      text-align: center;
+      max-width: 100%;
+      text-wrap: balance;
+    }
+
+    .gloss {
+      margin: 10px 0 22px;
+      font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .prompt-block {
+      width: 100%;
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+
+    .prompt-text,
+    .answer-text {
+      margin: 0;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.03;
+      text-wrap: balance;
+      max-width: 15ch;
+    }
+
+    .prompt-text {
+      font-size: clamp(2.4rem, 7vw, 4.3rem);
+    }
+
+    .answer-wrap {
+      display: none;
+      width: 100%;
+      margin-top: auto;
+      padding-top: 10px;
+    }
+
+    .answer-wrap.visible {
+      display: block;
+    }
+
+    .answer-text {
+      font-size: clamp(1.95rem, 5.8vw, 3.4rem);
+      margin-bottom: 10px;
+    }
+
+    .answer-note {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--muted);
+      text-align: center;
+      max-width: 44ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bottom-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .main-btn {
+      appearance: none;
+      border: none;
+      border-radius: 20px;
+      min-height: 62px;
+      padding: 14px 18px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: transform 120ms ease, opacity 120ms ease;
+    }
+
+    .main-btn:active {
+      transform: translateY(1px);
+    }
+
+    .main-btn.secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .main-btn.primary {
+      background: linear-gradient(180deg, #70cfff 0%, #57bcf5 100%);
+      color: #061016;
+      box-shadow: 0 14px 34px rgba(93, 190, 243, 0.24);
+    }
+
+    .main-btn[disabled] {
+      opacity: 0.45;
+      cursor: default;
+      transform: none;
+    }
+
+    .answer-wrap.visible + .bottom-controls #reveal-btn {
+      opacity: 0.45;
+    }
+
+    .mini-footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 2px;
+      min-height: 24px;
+    }
+
+    .mini-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px 10px 22px;
+      }
+
+      .card-shell {
+        min-height: calc(100vh - 36px);
+        border-radius: 26px;
+        padding: 14px;
+      }
+
+      .flashcard {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .bottom-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="brand">
+        <img src="favicon_big.png" alt="Die Verben icon">
+        <div class="brand-copy">
+          <strong>Die Verben</strong>
+          <span>German behavior drill prototype</span>
+        </div>
+      </div>
+      <div class="counter" id="deck-counter">1 / 1</div>
+    </div>
+
+    <div class="mode-strip" id="mode-strip"></div>
+
+    <div class="card-shell">
+      <div class="card-top">
+        <div class="deck-badge" id="deck-badge">Auxiliary</div>
+        <div id="mode-summary">All behavior cards</div>
+      </div>
+
+      <div class="flashcard">
+        <div class="meta-row">
+          <div class="meta-pill verb" id="card-verb"></div>
+          <div class="meta-pill tense" id="card-tense"></div>
+          <div class="meta-pill family" id="card-family"></div>
+        </div>
+
+        <h1 class="lemma" id="card-lemma"></h1>
+        <p class="gloss" id="card-gloss"></p>
+
+        <div class="prompt-block">
+          <p class="prompt-text" id="card-prompt"></p>
+        </div>
+
+        <div class="answer-wrap" id="answer-wrap">
+          <p class="answer-text" id="card-answer"></p>
+          <p class="answer-note" id="card-note"></p>
+        </div>
+      </div>
+
+      <div class="family-strip" id="family-strip"></div>
+
+      <div class="bottom-controls">
+        <button class="main-btn secondary" id="reveal-btn">Reveal</button>
+        <button class="main-btn primary" id="next-btn">Next</button>
+      </div>
+
+      <div class="mini-footer">
+        <span id="mini-footer-left">real card flow</span>
+        <span class="mini-dot"></span>
+        <span id="mini-footer-right">usage-first German drilling</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const deckModes = [
+      { id: 'all', label: 'All' },
+      { id: 'auxiliary', label: 'Auxiliary' },
+      { id: 'separable', label: 'Separable' },
+      { id: 'pattern', label: 'Pattern' },
+      { id: 'case', label: 'Case' },
+      { id: 'clause', label: 'Clause' }
+    ];
+
+    const cards = [
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'gehen',
+        tense: 'Perfekt',
+        gloss: 'to go',
+        prompt: 'ich ___ nach Hause',
+        answer: 'ich bin nach Hause gegangen',
+        note: 'Movement from A to B usually takes sein.',
+        footer: 'auxiliary choice'
+      },
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'kommen',
+        tense: 'Perfekt',
+        gloss: 'to come',
+        prompt: 'wir ___ spät',
+        answer: 'wir sind spät gekommen',
+        note: 'Coming and going verbs are classic sein verbs.',
+        footer: 'auxiliary choice'
+      },
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'bleiben',
+        tense: 'Perfekt',
+        gloss: 'to stay',
+        prompt: 'sie ___ zu Hause',
+        answer: 'sie ist zu Hause geblieben',
+        note: 'State-change and location-stay verbs often pattern with sein.',
+        footer: 'auxiliary choice'
+      },
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'passieren',
+        tense: 'Perfekt',
+        gloss: 'to happen',
+        prompt: 'was ___ hier?',
+        answer: 'was ist hier passiert?',
+        note: 'Some impersonal event verbs still take sein.',
+        footer: 'auxiliary choice'
+      },
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'machen',
+        tense: 'Perfekt',
+        gloss: 'to do / make',
+        prompt: 'er ___ die Hausaufgaben',
+        answer: 'er hat die Hausaufgaben gemacht',
+        note: 'Most transitive verbs take haben.',
+        footer: 'auxiliary choice'
+      },
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'lesen',
+        tense: 'Perfekt',
+        gloss: 'to read',
+        prompt: 'ich ___ das Buch',
+        answer: 'ich habe das Buch gelesen',
+        note: 'Standard object-taking action verb: haben.',
+        footer: 'auxiliary choice'
+      },
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'schlafen',
+        tense: 'Perfekt',
+        gloss: 'to sleep',
+        prompt: 'wir ___ gut',
+        answer: 'wir haben gut geschlafen',
+        note: 'Not every intransitive verb takes sein.',
+        footer: 'auxiliary choice'
+      },
+      {
+        family: 'auxiliary',
+        familyLabel: 'Auxiliary',
+        verb: 'fahren',
+        tense: 'Perfekt',
+        gloss: 'to drive / go',
+        prompt: 'sie ___ nach Berlin',
+        answer: 'sie ist nach Berlin gefahren',
+        note: 'Directional fahren normally takes sein.',
+        footer: 'auxiliary choice'
+      },
+
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'anrufen',
+        tense: 'Präsens',
+        gloss: 'to call',
+        prompt: 'ich ___ ihn heute ___',
+        answer: 'ich rufe ihn heute an',
+        note: 'Main clause: the prefix splits off and moves to the end.',
+        footer: 'prefix split'
+      },
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'aufstehen',
+        tense: 'Präsens',
+        gloss: 'to get up',
+        prompt: 'wir ___ früh ___',
+        answer: 'wir stehen früh auf',
+        note: 'Separable prefix at the end in simple main clauses.',
+        footer: 'prefix split'
+      },
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'einkaufen',
+        tense: 'Präsens',
+        gloss: 'to shop',
+        prompt: 'sie ___ nach der Arbeit ___',
+        answer: 'sie kauft nach der Arbeit ein',
+        note: 'The stem carries the conjugation, the prefix waits at the end.',
+        footer: 'prefix split'
+      },
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'mitbringen',
+        tense: 'Präsens',
+        gloss: 'to bring along',
+        prompt: 'du ___ den Wein ___',
+        answer: 'du bringst den Wein mit',
+        note: 'Same rule even with object in the middle.',
+        footer: 'prefix split'
+      },
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'fernsehen',
+        tense: 'Präsens',
+        gloss: 'to watch TV',
+        prompt: 'ihr ___ heute Abend ___',
+        answer: 'ihr seht heute Abend fern',
+        note: 'Separable verbs can still have irregular stems.',
+        footer: 'prefix split'
+      },
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'zurückkommen',
+        tense: 'Präsens',
+        gloss: 'to come back',
+        prompt: 'er ___ morgen ___',
+        answer: 'er kommt morgen zurück',
+        note: 'Prefix goes to the clause edge.',
+        footer: 'prefix split'
+      },
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'einladen',
+        tense: 'Präsens',
+        gloss: 'to invite',
+        prompt: 'wir ___ unsere Freunde ___',
+        answer: 'wir laden unsere Freunde ein',
+        note: 'Strong verbs still behave separably here.',
+        footer: 'prefix split'
+      },
+      {
+        family: 'separable',
+        familyLabel: 'Separable',
+        verb: 'abholen',
+        tense: 'Präsens',
+        gloss: 'to pick up',
+        prompt: 'ich ___ dich später ___',
+        answer: 'ich hole dich später ab',
+        note: 'Very drillable because the mistake is structural, not semantic.',
+        footer: 'prefix split'
+      },
+
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'warten',
+        tense: 'Frame',
+        gloss: 'to wait',
+        prompt: 'wait for the train',
+        answer: 'auf den Zug warten',
+        note: 'This verb wants auf + accusative.',
+        footer: 'verb frame'
+      },
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'denken',
+        tense: 'Frame',
+        gloss: 'to think',
+        prompt: 'think about the problem',
+        answer: 'an das Problem denken',
+        note: 'denken an is one of the classic fixed frames.',
+        footer: 'verb frame'
+      },
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'sprechen',
+        tense: 'Frame',
+        gloss: 'to speak',
+        prompt: 'speak with my teacher',
+        answer: 'mit meinem Lehrer sprechen',
+        note: 'mit + dative for the conversation partner.',
+        footer: 'verb frame'
+      },
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'sich interessieren',
+        tense: 'Frame',
+        gloss: 'to be interested',
+        prompt: 'be interested in music',
+        answer: 'sich für Musik interessieren',
+        note: 'Reflexive plus für is part of the entry, not decoration.',
+        footer: 'verb frame'
+      },
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'anfangen',
+        tense: 'Frame',
+        gloss: 'to begin',
+        prompt: 'begin to work',
+        answer: 'anfangen zu arbeiten',
+        note: 'Many common verbs need zu + infinitive patterns drilled directly.',
+        footer: 'verb frame'
+      },
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'bitten',
+        tense: 'Frame',
+        gloss: 'to ask / request',
+        prompt: 'ask him for help',
+        answer: 'ihn um Hilfe bitten',
+        note: 'This one is more than a translation; it has its own argument shape.',
+        footer: 'verb frame'
+      },
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'gehören',
+        tense: 'Frame',
+        gloss: 'to belong',
+        prompt: 'belong to my sister',
+        answer: 'meiner Schwester gehören',
+        note: 'German often flips the English intuition here.',
+        footer: 'verb frame'
+      },
+      {
+        family: 'pattern',
+        familyLabel: 'Pattern',
+        verb: 'sich erinnern',
+        tense: 'Frame',
+        gloss: 'to remember',
+        prompt: 'remember the trip',
+        answer: 'sich an die Reise erinnern',
+        note: 'Reflexive + an + accusative.',
+        footer: 'verb frame'
+      },
+
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'helfen',
+        tense: 'Case',
+        gloss: 'to help',
+        prompt: 'I help the child',
+        answer: 'ich helfe dem Kind',
+        note: 'The object is dative, not accusative.',
+        footer: 'case choice'
+      },
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'folgen',
+        tense: 'Case',
+        gloss: 'to follow',
+        prompt: 'she follows her brother',
+        answer: 'sie folgt ihrem Bruder',
+        note: 'German follow does not pattern like English here.',
+        footer: 'case choice'
+      },
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'danken',
+        tense: 'Case',
+        gloss: 'to thank',
+        prompt: 'we thank our teacher',
+        answer: 'wir danken unserem Lehrer',
+        note: 'Another frequent dative-governing verb.',
+        footer: 'case choice'
+      },
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'gefallen',
+        tense: 'Case',
+        gloss: 'to please',
+        prompt: 'the song pleases me',
+        answer: 'das Lied gefällt mir',
+        note: 'The experiencer is dative.',
+        footer: 'case choice'
+      },
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'fehlen',
+        tense: 'Case',
+        gloss: 'to be missing',
+        prompt: 'you are missing me',
+        answer: 'du fehlst mir',
+        note: 'Looks simple, but the German case logic is different.',
+        footer: 'case choice'
+      },
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'vertrauen',
+        tense: 'Case',
+        gloss: 'to trust',
+        prompt: 'I trust my friend',
+        answer: 'ich vertraue meinem Freund',
+        note: 'vertrauen takes dative.',
+        footer: 'case choice'
+      },
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'gratulieren',
+        tense: 'Case',
+        gloss: 'to congratulate',
+        prompt: 'we congratulate our parents',
+        answer: 'wir gratulieren unseren Eltern',
+        note: 'Common communicative verb with dative target.',
+        footer: 'case choice'
+      },
+      {
+        family: 'case',
+        familyLabel: 'Case',
+        verb: 'passen',
+        tense: 'Case',
+        gloss: 'to suit / fit',
+        prompt: 'the shirt suits you',
+        answer: 'das Hemd passt dir',
+        note: 'Another verb where the person takes dative.',
+        footer: 'case choice'
+      },
+
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'anrufen',
+        tense: 'Nebensatz',
+        gloss: 'to call',
+        prompt: 'because I call him',
+        answer: 'weil ich ihn anrufe',
+        note: 'Subordinate clause: the verb piece reunites at the end.',
+        footer: 'clause order'
+      },
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'aufstehen',
+        tense: 'Nebensatz',
+        gloss: 'to get up',
+        prompt: 'because we get up early',
+        answer: 'weil wir früh aufstehen',
+        note: 'Separable verb comes back together in the subordinate clause.',
+        footer: 'clause order'
+      },
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'mitbringen',
+        tense: 'Nebensatz',
+        gloss: 'to bring along',
+        prompt: 'because she brings the wine',
+        answer: 'weil sie den Wein mitbringt',
+        note: 'This is where German verb behavior really shows itself.',
+        footer: 'clause order'
+      },
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'anfangen',
+        tense: 'Nebensatz',
+        gloss: 'to begin',
+        prompt: 'because they begin today',
+        answer: 'weil sie heute anfangen',
+        note: 'Simple but very German: final verb slot matters.',
+        footer: 'clause order'
+      },
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'versuchen',
+        tense: 'Nebensatz',
+        gloss: 'to try',
+        prompt: 'because she tries to understand it',
+        answer: 'weil sie es zu verstehen versucht',
+        note: 'Verb clusters become drill-worthy very quickly.',
+        footer: 'clause order'
+      },
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'müssen',
+        tense: 'Nebensatz',
+        gloss: 'must',
+        prompt: 'because I have to leave',
+        answer: 'weil ich gehen muss',
+        note: 'Modal + infinitive is one of the highest-value German patterns.',
+        footer: 'clause order'
+      },
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'zurückkommen',
+        tense: 'Nebensatz',
+        gloss: 'to come back',
+        prompt: 'because he comes back tomorrow',
+        answer: 'weil er morgen zurückkommt',
+        note: 'The subordinate clause glues the separable verb back together.',
+        footer: 'clause order'
+      },
+      {
+        family: 'clause',
+        familyLabel: 'Clause',
+        verb: 'fernsehen',
+        tense: 'Nebensatz',
+        gloss: 'to watch TV',
+        prompt: 'because we are watching TV',
+        answer: 'weil wir fernsehen',
+        note: 'Even short clause-order cards already feel very German-specific.',
+        footer: 'clause order'
+      }
+    ];
+
+    const familyMeta = {
+      all: { label: 'All cards', summary: 'All behavior cards' },
+      auxiliary: { label: 'Auxiliary', summary: 'Perfekt helper choice' },
+      separable: { label: 'Separable', summary: 'Prefix position in main clauses' },
+      pattern: { label: 'Pattern', summary: 'Frames, prepositions, reflexives' },
+      case: { label: 'Case', summary: 'Verbs that force the right case' },
+      clause: { label: 'Clause', summary: 'Verb order in subordinate clauses' }
+    };
+
+    const state = {
+      mode: 'all',
+      family: 'all',
+      deck: [],
+      index: 0,
+      revealed: false
+    };
+
+    const els = {
+      modeStrip: document.getElementById('mode-strip'),
+      familyStrip: document.getElementById('family-strip'),
+      deckCounter: document.getElementById('deck-counter'),
+      deckBadge: document.getElementById('deck-badge'),
+      modeSummary: document.getElementById('mode-summary'),
+      cardVerb: document.getElementById('card-verb'),
+      cardTense: document.getElementById('card-tense'),
+      cardFamily: document.getElementById('card-family'),
+      cardLemma: document.getElementById('card-lemma'),
+      cardGloss: document.getElementById('card-gloss'),
+      cardPrompt: document.getElementById('card-prompt'),
+      cardAnswer: document.getElementById('card-answer'),
+      cardNote: document.getElementById('card-note'),
+      answerWrap: document.getElementById('answer-wrap'),
+      revealBtn: document.getElementById('reveal-btn'),
+      nextBtn: document.getElementById('next-btn'),
+      footerLeft: document.getElementById('mini-footer-left'),
+      footerRight: document.getElementById('mini-footer-right')
+    };
+
+    function shuffle(list) {
+      const copy = list.slice();
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildModeButtons() {
+      els.modeStrip.innerHTML = '';
+      deckModes.forEach((mode) => {
+        const btn = document.createElement('button');
+        btn.className = 'mode-btn';
+        btn.textContent = mode.label;
+        btn.dataset.mode = mode.id;
+        btn.addEventListener('click', () => {
+          state.mode = mode.id;
+          state.family = mode.id === 'all' ? 'all' : mode.id;
+          resetDeck(true);
+        });
+        els.modeStrip.appendChild(btn);
+      });
+    }
+
+    function buildFamilyButtons() {
+      els.familyStrip.innerHTML = '';
+      deckModes.forEach((mode) => {
+        const btn = document.createElement('button');
+        btn.className = 'family-btn';
+        btn.textContent = mode.label;
+        btn.dataset.family = mode.id;
+        btn.addEventListener('click', () => {
+          state.family = mode.id;
+          resetDeck(true);
+        });
+        els.familyStrip.appendChild(btn);
+      });
+    }
+
+    function getFilteredCards() {
+      let filtered = cards;
+      if (state.mode !== 'all') {
+        filtered = filtered.filter((card) => card.family === state.mode);
+      }
+      if (state.family !== 'all') {
+        filtered = filtered.filter((card) => card.family === state.family);
+      }
+      return shuffle(filtered);
+    }
+
+    function syncButtonStates() {
+      document.querySelectorAll('.mode-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.mode === state.mode);
+      });
+      document.querySelectorAll('.family-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.family === state.family);
+      });
+    }
+
+    function resetDeck(resetIndex = false) {
+      state.deck = getFilteredCards();
+      if (resetIndex || state.index >= state.deck.length) {
+        state.index = 0;
+      }
+      state.revealed = false;
+      syncButtonStates();
+      renderCard();
+    }
+
+    function currentCard() {
+      if (!state.deck.length) return null;
+      return state.deck[state.index % state.deck.length];
+    }
+
+    function renderCard() {
+      const card = currentCard();
+      if (!card) return;
+
+      els.cardVerb.textContent = card.verb;
+      els.cardTense.textContent = card.tense;
+      els.cardFamily.textContent = card.familyLabel;
+      els.cardLemma.textContent = card.verb;
+      els.cardGloss.textContent = card.gloss;
+      els.cardPrompt.textContent = card.prompt;
+      els.cardAnswer.textContent = card.answer;
+      els.cardNote.textContent = card.note;
+      els.answerWrap.classList.toggle('visible', state.revealed);
+      els.revealBtn.disabled = state.revealed;
+      els.deckCounter.textContent = `${state.index + 1} / ${state.deck.length}`;
+      els.deckBadge.textContent = familyMeta[state.family].label;
+      els.modeSummary.textContent = familyMeta[state.mode].summary;
+      els.footerLeft.textContent = card.footer;
+      els.footerRight.textContent = card.familyLabel.toLowerCase() + ' drill';
+    }
+
+    els.revealBtn.addEventListener('click', () => {
+      state.revealed = true;
+      renderCard();
+    });
+
+    els.nextBtn.addEventListener('click', () => {
+      if (!state.deck.length) return;
+      state.index = (state.index + 1) % state.deck.length;
+      if (state.index === 0) {
+        state.deck = shuffle(state.deck);
+      }
+      state.revealed = false;
+      renderCard();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        if (!state.revealed) {
+          state.revealed = true;
+          renderCard();
+        } else {
+          els.nextBtn.click();
+        }
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        els.nextBtn.click();
+      }
+    });
+
+    buildModeButtons();
+    buildFamilyButtons();
+    resetDeck(true);
+  </script>
+</body>
+</html>
