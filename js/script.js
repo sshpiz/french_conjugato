@@ -213,8 +213,129 @@ function enhanceGapSentence(text) {
 function prepareTextForSpeech(text) {
     if (!text) return '';
     let ret =  text.replace(/\[VERB\]/g, 'blanc').replace(/\[AUX\]/g, 'blanc').replace(/\[PRONOUN\]/g, 'blanc');
+    ret = ret.replace(/____/g, 'blanc');
     ret = ret.replace(/-/g, ' ');
     return ret;
+}
+
+const CARD_TYPE_VALUES = new Set(['conjugation', 'both', 'frame']);
+
+function normalizeCardTypeMode(value) {
+    return CARD_TYPE_VALUES.has(String(value || '').trim()) ? String(value || '').trim() : 'conjugation';
+}
+
+function normalizeVerbSetVerbCandidate(value) {
+    return String(value || '')
+        .replace(/[\u2018\u2019\u02BC]/g, "'")
+        .trim()
+        .toLowerCase()
+        .replace(/\s*'\s*/g, "'")
+        .replace(/\s+/g, ' ');
+}
+
+function parseVerbSetRawInput(rawText) {
+    const pieces = String(rawText || '').split(/[,\n\r;]+/);
+    const seen = new Set();
+    const candidates = [];
+    pieces.forEach((piece) => {
+        const normalized = normalizeVerbSetVerbCandidate(piece);
+        if (!normalized || seen.has(normalized)) return;
+        seen.add(normalized);
+        candidates.push(normalized);
+    });
+    return candidates;
+}
+
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function splitFrameQuestion(question) {
+    const text = String(question || '').trim();
+    if (!text) return { before: '', after: '' };
+
+    const gapMatch = text.match(/(?:\s*____\s*)+/);
+    if (!gapMatch || gapMatch.index == null) {
+        return { before: text, after: '' };
+    }
+
+    const start = gapMatch.index;
+    const end = start + gapMatch[0].length;
+    return {
+        before: text.slice(0, start).trimEnd(),
+        after: text.slice(end).trimStart(),
+    };
+}
+
+function highlightFrameSubject(text) {
+    const raw = String(text || '');
+    if (!raw) return '';
+    const subjectPattern = /(^|[\s,;:([{«"“”'’])((?:j'|je|tu|il|elle|on|nous|vous|ils|elles|ça|ce|c'))(?=$|[\s,;:)\]}»"“”'’])/i;
+    const match = subjectPattern.exec(raw);
+    if (!match || match.index == null) {
+        return escapeHtml(raw);
+    }
+    const boundary = match[1] || '';
+    const pronoun = match[2] || '';
+    const pronounStart = match.index + boundary.length;
+    const pronounEnd = pronounStart + pronoun.length;
+    const before = raw.slice(0, pronounStart);
+    const after = raw.slice(pronounEnd);
+    return `${escapeHtml(before)}<span class="frame-card-subject">${escapeHtml(pronoun)}</span>${escapeHtml(after)}`;
+}
+
+function renderFramePromptMarkup(question) {
+    const { before, after } = splitFrameQuestion(question);
+
+    const parts = [];
+    if (before) {
+        parts.push(`<span class="frame-card-prefix">${highlightFrameSubject(before)}</span>`);
+    }
+    parts.push('<span class="frame-card-gap" aria-hidden="true"></span>');
+    if (after) {
+        parts.push(`<span class="frame-card-tail">${escapeHtml(after)}</span>`);
+    }
+    return parts.join(' ');
+}
+
+function renderFrameSolvedMarkup(question, answer) {
+    const { before, after } = splitFrameQuestion(question);
+    const parts = [];
+    if (before) {
+        parts.push(`<span class="frame-card-prefix">${highlightFrameSubject(before)}</span>`);
+    }
+    parts.push(`<span class="frame-card-inserted">${escapeHtml(String(answer || '').trim())}</span>`);
+    if (after) {
+        parts.push(`<span class="frame-card-tail">${escapeHtml(after)}</span>`);
+    }
+    return parts.join(' ');
+}
+
+function normalizeVerbSetUsageEntry(rawEntry) {
+    if (!rawEntry || typeof rawEntry !== 'object') return null;
+    const pattern = String(rawEntry.pattern || '').trim();
+    const example_fr = String(rawEntry.example_fr || '').trim();
+    const example_en = String(rawEntry.example_en || '').trim();
+    if (!pattern && !example_fr && !example_en) return null;
+    return { pattern, example_fr, example_en };
+}
+
+function getCurrentVerbSetOptions() {
+    return window.cardGenerationOptions || null;
+}
+
+function getResolvedVerbSetSelectionBridge(options) {
+    const resolver = window.getResolvedVerbSetSelection;
+    return typeof resolver === 'function' ? resolver(options) : null;
+}
+
+function getBuiltInVerbUsageFallbacks() {
+    return window.builtinVerbUsageFallbacks || {};
 }
 
 // ── Theme management ─────────────────────────────────────────────────────────
@@ -487,10 +608,23 @@ function renderVerbUsages(container, infinitive, options = {}) {
 
     const usages = getVerbUsagesIndex()[infinitive];
     if (!usages || !usages.length) return 0;
+    return renderUsageEntries(container, usages, {
+        heading,
+        headingClass,
+    });
+}
+
+function renderUsageEntries(container, usages, options = {}) {
+    if (!container || !Array.isArray(usages) || !usages.length) return 0;
+
+    const {
+        heading = '',
+        headingClass = 'verb-usages-heading',
+    } = options;
 
     appendVerbSectionHeading(container, heading, headingClass);
 
-    usages.forEach(u => {
+    usages.forEach((u) => {
         const item = document.createElement('div');
         item.className = 'usage-item';
 
@@ -519,18 +653,52 @@ function renderVerbUsages(container, infinitive, options = {}) {
     return usages.length;
 }
 
+function getVerbSetUsageEntries(infinitive, options = {}) {
+    const activeSelection = getResolvedVerbSetSelectionBridge(options.verbSetOptions || getCurrentVerbSetOptions());
+    if (!activeSelection || !activeSelection.topicUsages) return [];
+    const entries = activeSelection.topicUsages[infinitive];
+    if (Array.isArray(entries) && entries.length) return entries;
+    const fallbackEntries = getBuiltInVerbUsageFallbacks()[infinitive];
+    return Array.isArray(fallbackEntries) ? fallbackEntries : [];
+}
+
+function renderVerbSetUsages(container, infinitive, options = {}) {
+    if (!container) return 0;
+
+    const {
+        sectionClass = '',
+        heading = '',
+        headingClass = 'verb-usages-heading',
+        verbSetOptions = getCurrentVerbSetOptions(),
+    } = options;
+
+    container.innerHTML = '';
+    if (sectionClass) container.className = sectionClass;
+
+    const usages = getVerbSetUsageEntries(infinitive, { verbSetOptions });
+    if (!usages.length) return 0;
+
+    return renderUsageEntries(container, usages, {
+        heading,
+        headingClass,
+    });
+}
+
 function renderVerbUsagePanel(container, infinitive, options = {}) {
     if (!container) return 0;
 
     const {
         sectionClass = '',
         coreHeading = 'Core patterns',
+        verbSetUsageHeading = 'Set-specific usages',
         usageHeading = 'Usages & examples',
         headingClass = 'verb-context-heading',
+        verbSetOptions = getCurrentVerbSetOptions(),
     } = options;
 
     container.innerHTML = '';
     if (sectionClass) container.className = sectionClass;
+    const activeVerbSet = getResolvedVerbSetSelectionBridge(verbSetOptions);
 
     const coreSection = document.createElement('section');
     const coreCount = renderVerbCorePatterns(coreSection, infinitive, {
@@ -542,17 +710,28 @@ function renderVerbUsagePanel(container, infinitive, options = {}) {
         container.appendChild(coreSection);
     }
 
+    const verbSetUsageSection = document.createElement('section');
+    const verbSetUsageCount = renderVerbSetUsages(verbSetUsageSection, infinitive, {
+        sectionClass: 'verb-context-subsection verb-set-usages-subsection',
+        heading: '',
+        headingClass,
+        verbSetOptions,
+    });
+    if (verbSetUsageCount > 0) {
+        container.appendChild(verbSetUsageSection);
+    }
+
     const usageSection = document.createElement('section');
     const usageCount = renderVerbUsages(usageSection, infinitive, {
         sectionClass: 'verb-context-subsection verb-usages-subsection',
-        heading: coreCount > 0 ? usageHeading : '',
+        heading: coreCount > 0 || verbSetUsageCount > 0 ? usageHeading : '',
         headingClass,
     });
     if (usageCount > 0) {
         container.appendChild(usageSection);
     }
 
-    return coreCount + usageCount;
+    return coreCount + verbSetUsageCount + usageCount;
 }
 
 function focusUsageExamplesInPanel(container, options = {}) {
@@ -657,6 +836,1182 @@ document.addEventListener('DOMContentLoaded', () => {
         // If frequency is the same, sort alphabetically by the infinitive.
         return a.infinitive.localeCompare(b.infinitive);
     });
+
+    const uniqueVerbByInfinitive = new Map(uniqueVerbs.map((verb) => [verb.infinitive, verb]));
+    const FRAME_CARD_QUARANTINED_VERBS = new Set(['approprier', 'carter', 'coter', 'crémer', 'douer', 'enculer', 'souvenir']);
+    const PREPOSITIONAL_FRAME_TYPES = new Set([
+        'a_object',
+        'de_object',
+        'avec_object',
+        'chez_person',
+        'locative_a',
+        'a_infinitive',
+        'de_infinitive',
+    ]);
+    const rawVerbFrames = Array.isArray(window.verbFrames) ? window.verbFrames : [];
+    const playableVerbFrames = rawVerbFrames
+        .filter((entry) => entry && typeof entry === 'object')
+        .filter((entry) => !entry.needs_review)
+        .filter((entry) => !FRAME_CARD_QUARANTINED_VERBS.has(String(entry.verb || '').trim()))
+        .filter((entry) => uniqueVerbByInfinitive.has(String(entry.verb || '').trim()));
+    const verbsWithPrepositionalFrames = new Set(
+        playableVerbFrames
+            .filter((entry) => PREPOSITIONAL_FRAME_TYPES.has(String(entry.frame_type || '').trim()))
+            .map((entry) => String(entry.verb || '').trim())
+            .filter(Boolean)
+    );
+    const verbSetLookupByNormalizedInfinitive = new Map();
+    uniqueVerbs.forEach((verb) => {
+        const normalized = normalizeVerbSetVerbCandidate(verb.infinitive);
+        if (normalized && !verbSetLookupByNormalizedInfinitive.has(normalized)) {
+            verbSetLookupByNormalizedInfinitive.set(normalized, verb.infinitive);
+        }
+    });
+
+    function inferFrameCardPronoun(text) {
+        const normalized = String(text || '').trim().toLowerCase().replace(/[\u2018\u2019\u02bc]/g, "'");
+        if (!normalized) return 'je';
+        if (normalized.startsWith("j'") || normalized.startsWith('je ')) return 'je';
+        if (normalized.startsWith('tu ')) return 'tu';
+        if (normalized.startsWith('nous ')) return 'nous';
+        if (normalized.startsWith('vous ')) return 'vous';
+        if (normalized.startsWith('ils ') || normalized.startsWith('elles ')) return 'ils';
+        if (normalized.startsWith('il ') || normalized.startsWith('elle ') || normalized.startsWith('on ')) return 'il';
+        if (normalized.startsWith('ça ') || normalized.startsWith("c'")) return 'il';
+        if (/^(le|la|les|un|une|ce|cet|cette)\b/.test(normalized)) return 'il';
+        return 'je';
+    }
+
+    function getFrameCardPronounKey(pronoun) {
+        const normalized = String(pronoun || '').trim();
+        if (['il', 'elle', 'on'].includes(normalized)) return 'il/elle/on';
+        if (['ils', 'elles'].includes(normalized)) return 'ils/elles';
+        return normalized || 'je';
+    }
+
+    function buildFramePracticeCard(entry) {
+        const verbInfo = uniqueVerbByInfinitive.get(entry.verb);
+        if (!verbInfo) return null;
+        const pronoun = inferFrameCardPronoun(entry.question || entry.full_answer || '');
+        const answer = String(entry.answer || '').trim();
+        return {
+            isFrameCard: true,
+            frameId: String(entry.frame_id || `${entry.verb}:frame`),
+            frameType: String(entry.frame_type || 'frame'),
+            frameQuestion: String(entry.question || '').trim(),
+            frameAnswer: answer,
+            frameFullAnswer: String(entry.full_answer || '').trim(),
+            verb: verbInfo,
+            tense: 'present',
+            pronoun,
+            pronounKey: getFrameCardPronounKey(pronoun),
+            conjugated: answer,
+            source: String(entry.source || '').trim(),
+        };
+    }
+    const BUILTIN_VERB_USAGE_FALLBACKS = {
+        assembler: [{ pattern: 'assembler les pièces', example_fr: 'J’assemble les pièces avant de fixer le cadre.', example_en: 'I am assembling the pieces before securing the frame.' }],
+        automatiser: [{ pattern: 'automatiser une tâche', example_fr: 'On automatise une tâche répétitive avec un script simple.', example_en: 'We are automating a repetitive task with a simple script.' }],
+        bidouiller: [{ pattern: 'bidouiller un montage', example_fr: 'Je bidouille un montage pour faire tenir la lampe.', example_en: 'I am tinkering with a setup to keep the lamp standing.' }],
+        bricoler: [{ pattern: 'bricoler un support', example_fr: 'On bricole un support avec des chutes de bois.', example_en: 'We are cobbling together a support out of scrap wood.' }],
+        calculer: [{ pattern: 'calculer un total', example_fr: 'Elle calcule le total avant de rendre sa copie.', example_en: 'She is calculating the total before handing in her work.' }],
+        camper: [{ pattern: 'camper en forêt', example_fr: 'Nous campons en forêt malgré le vent.', example_en: 'We are camping in the woods despite the wind.' }],
+        cliquer: [{ pattern: 'cliquer sur un lien', example_fr: 'Il clique sur un lien pour ouvrir la documentation.', example_en: 'He is clicking a link to open the documentation.' }],
+        clouer: [{ pattern: 'clouer un fond', example_fr: 'Il cloue le fond de la caisse avant de la renforcer.', example_en: 'He is nailing the bottom of the crate before reinforcing it.' }],
+        contrer: [{ pattern: 'contrer un tir', example_fr: 'Il contre un tir juste avant le buzzer.', example_en: 'He is blocking a shot right before the buzzer.' }],
+        coder: [{ pattern: 'coder une fonctionnalité', example_fr: 'Je code une fonctionnalité avant la réunion de démo.', example_en: 'I am coding a feature before the demo meeting.' }],
+        collectionner: [{ pattern: 'collectionner des affiches', example_fr: 'Elle collectionne des affiches anciennes de cinéma.', example_en: 'She collects vintage movie posters.' }],
+        configurer: [{ pattern: 'configurer un service', example_fr: 'Nous configurons un service pour la nouvelle équipe.', example_en: 'We are configuring a service for the new team.' }],
+        coudre: [{ pattern: 'coudre à la main', example_fr: 'Elle coud à la main pour finir l’ourlet.', example_en: 'She is sewing by hand to finish the hem.' }],
+        cuver: [{ pattern: 'cuver sur le canapé', example_fr: 'Il cuve sur le canapé après être rentré à l’aube.', example_en: 'He is sleeping it off on the couch after getting home at dawn.' }],
+        débattre: [{ pattern: 'débattre d’un sujet', example_fr: 'Ils débattent d’un sujet sensible pendant l’émission.', example_en: 'They are debating a sensitive issue during the program.' }],
+        déboguer: [{ pattern: 'déboguer une erreur', example_fr: 'Je débogue une erreur qui bloque la page d’accueil.', example_en: 'I am debugging an error that blocks the home page.' }],
+        déconner: [{ pattern: 'déconner entre potes', example_fr: 'On déconne un peu trop après minuit au bar.', example_en: 'We are messing around a bit too much at the bar after midnight.' }],
+        déployer: [{ pattern: 'déployer un correctif', example_fr: 'On déploie un correctif avant la pause déjeuner.', example_en: 'We are deploying a fix before lunch.' }],
+        diffuser: [{ pattern: 'diffuser un épisode', example_fr: 'La chaîne diffuse un épisode spécial ce soir.', example_en: 'The channel is broadcasting a special episode tonight.' }],
+        dribbler: [{ pattern: 'dribbler jusqu’au cercle', example_fr: 'Elle dribble jusqu’au cercle avant de finir main gauche.', example_en: 'She is dribbling to the rim before finishing left-handed.' }],
+        écouter: [{ pattern: 'écouter un morceau', example_fr: 'J’écoute un morceau pour vérifier le mixage.', example_en: 'I am listening to a track to check the mix.' }],
+        embarquer: [{ pattern: 'embarquer à l’heure', example_fr: 'Les passagers embarquent à l’heure malgré la pluie.', example_en: 'The passengers are boarding on time despite the rain.' }],
+        engueuler: [{ pattern: 'engueuler quelqu’un', example_fr: 'Elle engueule son ex en pleine rue après le mensonge de trop.', example_en: 'She is yelling at her ex in the middle of the street after one lie too many.' }],
+        escalader: [{ pattern: 'escalader une paroi', example_fr: 'Ils escaladent une paroi avant midi.', example_en: 'They are climbing a rock face before noon.' }],
+        explorer: [{ pattern: 'explorer un quartier', example_fr: 'Nous explorons un quartier calme derrière la gare.', example_en: 'We are exploring a quiet neighborhood behind the station.' }],
+        flirter: [{ pattern: 'flirter au bar', example_fr: 'Ils flirtent au bar sans se prendre au sérieux.', example_en: 'They are flirting at the bar without taking themselves too seriously.' }],
+        foirer: [{ pattern: 'foirer une découpe', example_fr: 'Je foire la découpe si je vais trop vite.', example_en: 'I mess up the cut if I go too fast.' }],
+        frapper: [{ pattern: 'frapper au marteau', example_fr: 'Il frappe au marteau pour faire rentrer l’assemblage sans fendre le bois.', example_en: 'He is striking with a hammer to seat the joint without splitting the wood.' }],
+        frire: [{ pattern: 'frire des légumes', example_fr: 'Elle fait frire des légumes avec un peu d’huile.', example_en: 'She is frying vegetables with a little oil.' }],
+        goûter: [{ pattern: 'goûter une sauce', example_fr: 'Je goûte une sauce avant de servir le plat.', example_en: 'I am tasting a sauce before serving the dish.' }],
+        gouverner: [{ pattern: 'gouverner un pays', example_fr: 'Il promet de gouverner le pays avec plus de transparence.', example_en: 'He promises to govern the country with more transparency.' }],
+        graver: [{ pattern: 'graver un motif', example_fr: 'Elle grave un motif simple sur le bois.', example_en: 'She is engraving a simple pattern into the wood.' }],
+        imprimer: [{ pattern: 'imprimer un dossier', example_fr: 'J’imprime un dossier pour la réunion de demain.', example_en: 'I am printing a file for tomorrow’s meeting.' }],
+        improviser: [{ pattern: 'improviser un solo', example_fr: 'Il improvise un solo pendant la balance.', example_en: 'He is improvising a solo during soundcheck.' }],
+        interpréter: [{ pattern: 'interpréter un rôle', example_fr: 'Elle interprète un rôle difficile dans la série.', example_en: 'She is playing a difficult role in the series.' }],
+        larguer: [{ pattern: 'larguer quelqu’un', example_fr: 'Il la largue par message après des semaines de tension.', example_en: 'He is dumping her by text after weeks of tension.' }],
+        manifester: [{ pattern: 'manifester dans la rue', example_fr: 'Des étudiants manifestent dans la rue cet après-midi.', example_en: 'Students are demonstrating in the street this afternoon.' }],
+        marcher: [{ pattern: 'marcher longtemps', example_fr: 'Nous marchons longtemps avant d’atteindre le sommet.', example_en: 'We are walking for a long time before reaching the summit.' }],
+        merder: [{ pattern: 'merder sur une finition', example_fr: 'On merde sur la finition dès qu’on se dépêche.', example_en: 'We mess up the finish as soon as we rush.' }],
+        mesurer: [{ pattern: 'mesurer une planche', example_fr: 'Il mesure une planche avant de la couper.', example_en: 'He is measuring a board before cutting it.' }],
+        modeler: [{ pattern: 'modeler une forme', example_fr: 'Elle modèle une forme souple dans l’atelier.', example_en: 'She is shaping a soft form in the studio.' }],
+        naviguer: [{ pattern: 'naviguer en kayak', example_fr: 'Ils naviguent en kayak sur une rivière calme.', example_en: 'They are paddling by kayak on a calm river.' }],
+        pagayer: [{ pattern: 'pagayer ensemble', example_fr: 'Nous pagayons ensemble pour garder le rythme.', example_en: 'We are paddling together to keep the rhythm.' }],
+        pêcher: [{ pattern: 'pêcher tôt le matin', example_fr: 'Il pêche tôt le matin près du ponton.', example_en: 'He is fishing early in the morning near the dock.' }],
+        percer: [{ pattern: 'percer un avant-trou', example_fr: 'Je perce un avant-trou pour éviter de fendre le bois.', example_en: 'I am drilling a pilot hole to keep the wood from splitting.' }],
+        picoler: [{ pattern: 'picoler toute la soirée', example_fr: 'Ils picolent toute la soirée avant de finir au kebab.', example_en: 'They are drinking all evening before ending up at the kebab shop.' }],
+        photographier: [{ pattern: 'photographier une scène', example_fr: 'Je photographie une scène de rue au coucher du soleil.', example_en: 'I am photographing a street scene at sunset.' }],
+        plaquer: [{ pattern: 'plaquer un adversaire', example_fr: 'Il plaque son adversaire près de la ligne.', example_en: 'He is tackling his opponent near the line.' }],
+        planifier: [{ pattern: 'planifier la semaine', example_fr: 'Nous planifions la semaine avant d’ouvrir le bureau.', example_en: 'We are planning the week before opening the office.' }],
+        planter: [{ pattern: 'se planter sur une mesure', example_fr: 'Je me plante sur une mesure et tout l’assemblage part de travers.', example_en: 'I mess up a measurement and the whole assembly goes crooked.' }],
+        poncer: [{ pattern: 'poncer une surface', example_fr: 'Il ponce une surface pour la rendre lisse.', example_en: 'He is sanding a surface to make it smooth.' }],
+        programmer: [{ pattern: 'programmer une solution', example_fr: 'Elle programme une solution plus robuste pour le service.', example_en: 'She is programming a more robust solution for the service.' }],
+        protester: [{ pattern: 'protester contre une décision', example_fr: 'Ils protestent contre une décision jugée injuste.', example_en: 'They are protesting against a decision seen as unfair.' }],
+        raboter: [{ pattern: 'raboter un chant', example_fr: 'Je rabote le chant pour rattraper le faux niveau.', example_en: 'I am planing the edge to fix the uneven level.' }],
+        rafistoler: [{ pattern: 'rafistoler un tabouret', example_fr: 'Il rafistole un vieux tabouret avec ce qu’il a sous la main.', example_en: 'He is patching up an old stool with whatever he has on hand.' }],
+        randonner: [{ pattern: 'randonner en montagne', example_fr: 'Nous randonnons en montagne pendant tout le week-end.', example_en: 'We are hiking in the mountains all weekend.' }],
+        rater: [{ pattern: 'rater l’alignement', example_fr: 'Elle rate l’alignement du tiroir de quelques millimètres.', example_en: 'She misses the drawer alignment by a few millimeters.' }],
+        réformer: [{ pattern: 'réformer un système', example_fr: 'Le gouvernement veut réformer un système devenu trop lent.', example_en: 'The government wants to reform a system that has become too slow.' }],
+        réviser: [{ pattern: 'réviser un chapitre', example_fr: 'Elle révise un chapitre avant le contrôle.', example_en: 'She is reviewing a chapter before the test.' }],
+        rôtir: [{ pattern: 'rôtir au four', example_fr: 'Le chef fait rôtir les légumes au four.', example_en: 'The chef is roasting the vegetables in the oven.' }],
+        sculpter: [{ pattern: 'sculpter une pièce', example_fr: 'Il sculpte une pièce plus fine pour l’exposition.', example_en: 'He is sculpting a more refined piece for the exhibition.' }],
+        séduire: [{ pattern: 'séduire quelqu’un', example_fr: 'Il essaie de séduire quelqu’un avec son humour.', example_en: 'He is trying to charm someone with his humor.' }],
+        séjourner: [{ pattern: 'séjourner quelques jours', example_fr: 'Nous séjournons quelques jours dans le vieux centre.', example_en: 'We are staying a few days in the old center.' }],
+        skier: [{ pattern: 'skier toute la journée', example_fr: 'Ils skient toute la journée malgré le froid.', example_en: 'They are skiing all day despite the cold.' }],
+        surfer: [{ pattern: 'surfer tôt', example_fr: 'Elle surfe tôt pour profiter des meilleures vagues.', example_en: 'She is surfing early to catch the best waves.' }],
+        sprinter: [{ pattern: 'sprinter vers la ligne', example_fr: 'Il sprinte vers la ligne pour sauver le ballon.', example_en: 'He is sprinting toward the line to save the ball.' }],
+        tailler: [{ pattern: 'tailler le bois', example_fr: 'Je taille le bois avec un petit couteau précis.', example_en: 'I am carving the wood with a small precise knife.' }],
+        tisser: [{ pattern: 'tisser un motif', example_fr: 'Elle tisse un motif régulier sur le métier.', example_en: 'She is weaving a regular pattern on the loom.' }],
+        traduire: [{ pattern: 'traduire un passage', example_fr: 'Ils traduisent un passage difficile en groupe.', example_en: 'They are translating a difficult passage together.' }],
+        travailler: [{ pattern: 'travailler tard', example_fr: 'Nous travaillons tard pour finir le dossier.', example_en: 'We are working late to finish the file.' }],
+        tricoter: [{ pattern: 'tricoter une écharpe', example_fr: 'Elle tricote une écharpe pour l’hiver.', example_en: 'She is knitting a scarf for winter.' }],
+        trinquer: [{ pattern: 'trinquer au succès', example_fr: 'On trinque au succès du projet après la présentation.', example_en: 'We are toasting the project’s success after the presentation.' }],
+        ajuster: [{ pattern: 'ajuster un panneau', example_fr: 'J’ajuste le panneau avant de fixer la dernière vis.', example_en: 'I am adjusting the panel before fastening the last screw.' }],
+        appeler: [{ pattern: 'appeler quelqu’un', example_fr: 'Je l’appelle en sortant du métro.', example_en: 'I am calling them as I leave the subway.' }],
+        archiver: [{ pattern: 'archiver un dossier', example_fr: 'Elle archive le dossier une fois le projet bouclé.', example_en: 'She is archiving the file once the project is wrapped up.' }],
+        bachoter: [{ pattern: 'bachoter toute la nuit', example_fr: 'Il bachote toute la nuit avant le partiel.', example_en: 'He is cramming all night before the exam.' }],
+        bosser: [{ pattern: 'bosser tard', example_fr: 'On bosse tard pour sortir la version avant vendredi.', example_en: 'We are working late to ship the release before Friday.' }],
+        bouffer: [{ pattern: 'bouffer sur le pouce', example_fr: 'On bouffe sur le pouce entre deux réunions.', example_en: 'We are grabbing a quick bite between two meetings.' }],
+        boycotter: [{ pattern: 'boycotter une marque', example_fr: 'Ils boycottent la marque après la dernière polémique.', example_en: 'They are boycotting the brand after the latest controversy.' }],
+        bouger: [{ pattern: 'bouger vite', example_fr: 'Il faut bouger vite si on veut avoir une table.', example_en: 'We need to move fast if we want to get a table.' }],
+        brancher: [{ pattern: 'brancher la sono', example_fr: 'Je branche la sono avant les balances.', example_en: 'I am hooking up the sound system before soundcheck.' }],
+        caler: [{ pattern: 'caler un créneau', example_fr: 'On cale un créneau demain matin pour en parler.', example_en: 'We are locking in a time slot tomorrow morning to talk about it.' }],
+        classer: [{ pattern: 'classer des archives', example_fr: 'Elle classe des archives dans la réserve du musée.', example_en: 'She is sorting archives in the museum storage room.' }],
+        conserver: [{ pattern: 'conserver une trace', example_fr: 'Le labo conserve une trace de chaque restauration.', example_en: 'The lab keeps a record of every restoration.' }],
+        crapahuter: [{ pattern: 'crapahuter sur le sentier', example_fr: 'On crapahute sur le sentier depuis le lever du jour.', example_en: 'We are scrambling along the trail since daybreak.' }],
+        croquer: [{ pattern: 'croquer un visage', example_fr: 'Elle croque un visage en quelques traits rapides.', example_en: 'She is sketching a face in a few quick strokes.' }],
+        cuire: [{ pattern: 'cuire à feu doux', example_fr: 'La sauce cuit à feu doux pendant qu’on dresse la table.', example_en: 'The sauce is cooking over low heat while we set the table.' }],
+        débarquer: [{ pattern: 'débarquer quelque part', example_fr: 'On débarque à Lisbonne avec juste deux sacs chacun.', example_en: 'We are arriving in Lisbon with just two bags each.' }],
+        démonter: [{ pattern: 'démonter une pièce', example_fr: 'Il démonte la pièce pour comprendre d’où vient le jeu.', example_en: 'He is taking the piece apart to understand where the slack comes from.' }],
+        dévorer: [{ pattern: 'dévorer son assiette', example_fr: 'Ils dévorent leur assiette après l’entraînement.', example_en: 'They are wolfing down their meal after practice.' }],
+        documenter: [{ pattern: 'documenter un process', example_fr: 'Je documente le process pour éviter de refaire les mêmes erreurs.', example_en: 'I am documenting the process to avoid repeating the same mistakes.' }],
+        dresser: [{ pattern: 'dresser une assiette', example_fr: 'Le chef dresse les assiettes juste avant le service.', example_en: 'The chef is plating the dishes right before service.' }],
+        embrouiller: [{ pattern: 'embrouiller quelqu’un', example_fr: 'Il l’embrouille avec des explications qui ne tiennent pas debout.', example_en: 'He is confusing her with explanations that do not hold up.' }],
+        envoyer: [{ pattern: 'envoyer un message', example_fr: 'Je t’envoie un message dès que j’arrive.', example_en: 'I am sending you a message as soon as I get there.' }],
+        errer: [{ pattern: 'errer dans une ville', example_fr: 'On erre dans les ruelles sans vrai plan pour l’après-midi.', example_en: 'We are wandering the alleys without a real plan for the afternoon.' }],
+        esquisser: [{ pattern: 'esquisser une idée', example_fr: 'Il esquisse une idée de décor sur un coin de carnet.', example_en: 'He is sketching out a set idea in the corner of a notebook.' }],
+        fermer: [{ pattern: 'fermer la porte', example_fr: 'Tu peux fermer la porte en sortant ?', example_en: 'Can you close the door on your way out?' }],
+        flâner: [{ pattern: 'flâner dans un quartier', example_fr: 'Nous flânons dans le vieux quartier sans regarder l’heure.', example_en: 'We are strolling around the old quarter without checking the time.' }],
+        fouiller: [{ pattern: 'fouiller les archives', example_fr: 'Elle fouille les archives pour retrouver une lettre perdue.', example_en: 'She is digging through the archives to find a lost letter.' }],
+        fusionner: [{ pattern: 'fusionner deux branches', example_fr: 'On fusionne deux branches avant la mise en prod.', example_en: 'We are merging two branches before production release.' }],
+        galoper: [{ pattern: 'galoper sur la plage', example_fr: 'Ils galopent sur la plage avant la tombée du jour.', example_en: 'They are galloping on the beach before nightfall.' }],
+        grignoter: [{ pattern: 'grignoter entre amis', example_fr: 'On grignote un peu avant de repartir danser.', example_en: 'We are snacking a bit before going back out dancing.' }],
+        kiffer: [{ pattern: 'kiffer l’ambiance', example_fr: 'Ils kiffent l’ambiance du bar dès les premières minutes.', example_en: 'They are really into the vibe of the bar from the first few minutes.' }],
+        mater: [{ pattern: 'mater une série', example_fr: 'On mate une série nulle juste pour débrancher.', example_en: 'We are watching a dumb series just to switch off.' }],
+        mijoter: [{ pattern: 'mijoter tranquillement', example_fr: 'Le plat mijote tranquillement pendant qu’on prépare le reste.', example_en: 'The dish is simmering away while we prepare the rest.' }],
+        militer: [{ pattern: 'militer pour une cause', example_fr: 'Elle milite pour une réforme du logement depuis des années.', example_en: 'She is campaigning for housing reform and has been for years.' }],
+        mixer: [{ pattern: 'mixer un morceau', example_fr: 'Il mixe le morceau une dernière fois avant l’envoi.', example_en: 'He is mixing the track one last time before sending it off.' }],
+        montrer: [{ pattern: 'montrer quelque chose', example_fr: 'Je te montre comment ça marche en deux minutes.', example_en: 'I am showing you how it works in two minutes.' }],
+        nettoyer: [{ pattern: 'nettoyer le plan de travail', example_fr: 'Elle nettoie le plan de travail pendant que l’eau bout.', example_en: 'She is cleaning the counter while the water boils.' }],
+        ouvrir: [{ pattern: 'ouvrir la fenêtre', example_fr: 'J’ouvre la fenêtre parce qu’il fait trop chaud.', example_en: 'I am opening the window because it is too hot.' }],
+        oublier: [{ pattern: 'oublier quelque chose', example_fr: 'J’oublie toujours un truc quand je pars trop vite.', example_en: 'I always forget something when I leave in too much of a rush.' }],
+        payer: [{ pattern: 'payer l’addition', example_fr: 'Je paie l’addition pendant que vous prenez vos vestes.', example_en: 'I am paying the bill while you grab your jackets.' }],
+        pointer: [{ pattern: 'pointer un problème', example_fr: 'Elle pointe un problème que personne n’avait vu.', example_en: 'She is pointing out a problem nobody had noticed.' }],
+        poser: [{ pattern: 'poser quelque chose', example_fr: 'Pose ça ici, on verra après.', example_en: 'Put that here and we will deal with it later.' }],
+        potasser: [{ pattern: 'potasser un chapitre', example_fr: 'Je potasse le chapitre depuis le début de l’après-midi.', example_en: 'I have been grinding through the chapter since early afternoon.' }],
+        ramener: [{ pattern: 'ramener quelqu’un', example_fr: 'Je le ramène en voiture après le dîner.', example_en: 'I am giving him a ride home after dinner.' }],
+        ranger: [{ pattern: 'ranger le bureau', example_fr: 'Elle range le bureau avant l’arrivée du client.', example_en: 'She is tidying the office before the client arrives.' }],
+        relancer: [{ pattern: 'relancer un contact', example_fr: 'Je relance le client parce qu’on n’a toujours pas de réponse.', example_en: 'I am following up with the client because we still do not have an answer.' }],
+        reprocher: [{ pattern: 'reprocher quelque chose à quelqu’un', example_fr: 'Elle lui reproche encore de ne jamais répondre franchement.', example_en: 'She is once again blaming him for never answering honestly.' }],
+        retoucher: [{ pattern: 'retoucher une image', example_fr: 'Il retouche l’image pour calmer un peu les contrastes.', example_en: 'He is touching up the image to soften the contrast a bit.' }],
+        régler: [{ pattern: 'régler un souci', example_fr: 'On règle le souci avant que ça remonte à tout le monde.', example_en: 'We are sorting out the issue before it blows up for everyone.' }],
+        ramer: [{ pattern: 'ramer contre le courant', example_fr: 'Ils rament contre le courant depuis plus d’une heure.', example_en: 'They are rowing against the current for more than an hour.' }],
+        saisir: [{ pattern: 'saisir la viande', example_fr: 'Je saisis la viande très fort avant de baisser le feu.', example_en: 'I am searing the meat hard before lowering the heat.' }],
+        sauvegarder: [{ pattern: 'sauvegarder son travail', example_fr: 'Pense à sauvegarder ton travail avant de fermer.', example_en: 'Remember to save your work before closing.' }],
+        souder: [{ pattern: 'souder une jonction', example_fr: 'Il soude la jonction avant de poncer les bords.', example_en: 'He is soldering the joint before sanding the edges.' }],
+        survoler: [{ pattern: 'survoler un cours', example_fr: 'Je survole le cours pour repérer les points à revoir.', example_en: 'I am skimming the course to spot what I need to review.' }],
+        tracer: [{ pattern: 'tracer une ligne', example_fr: 'Elle trace une ligne nette avant de couper.', example_en: 'She is marking a clean line before cutting.' }],
+        traîner: [{ pattern: 'traîner quelque part', example_fr: 'On traîne encore un peu dehors avant de rentrer.', example_en: 'We are hanging around outside a bit longer before heading home.' }],
+        trimballer: [{ pattern: 'trimballer sa valise', example_fr: 'Je trimballe ma valise dans tout le quartier depuis une heure.', example_en: 'I am lugging my suitcase all over the neighborhood for an hour.' }],
+        traiter: [{ pattern: 'traiter un sujet', example_fr: 'Le journal traite le sujet sous un angle très politique.', example_en: 'The paper is covering the issue from a very political angle.' }],
+        valider: [{ pattern: 'valider une version', example_fr: 'On valide la version finale après le dernier test.', example_en: 'We are validating the final version after the last test.' }],
+        verser: [{ pattern: 'verser une sauce', example_fr: 'Elle verse la sauce juste avant de servir.', example_en: 'She is pouring the sauce just before serving.' }],
+        vernir: [{ pattern: 'vernir la pièce', example_fr: 'Elle vernit la pièce après le dernier ponçage.', example_en: 'She is varnishing the piece after the final sanding.' }],
+        visser: [{ pattern: 'visser une charnière', example_fr: 'Elle visse la charnière avant d’ajuster la porte.', example_en: 'She is screwing on the hinge before adjusting the door.' }],
+        voter: [{ pattern: 'voter dimanche', example_fr: 'Ils votent dimanche dans leur quartier.', example_en: 'They are voting on Sunday in their neighborhood.' }],
+        voyager: [{ pattern: 'voyager léger', example_fr: 'Je voyage léger pour changer de ville plus facilement.', example_en: 'I am traveling light to move between cities more easily.' }],
+        zoner: [{ pattern: 'zoner en ville', example_fr: 'Ils zonent en ville sans savoir où finir la nuit.', example_en: 'They are drifting around town without knowing where they will end the night.' }],
+    };
+    const BUILTIN_VERB_SET_DEFINITIONS = [
+        {
+            id: 'builtin-super-everyday',
+            name: 'Super Everyday',
+            scope: 'core daily life, errands, movement, conversations',
+            verbs: ['être', 'avoir', 'faire', 'aller', 'venir', 'prendre', 'mettre', 'parler', 'aimer', 'donner', 'trouver', 'passer', 'laisser', 'demander', 'acheter', 'manger', 'boire', 'regarder', 'écouter', 'sortir', 'rentrer', 'arriver', 'partir', 'travailler', 'attendre', 'ouvrir', 'fermer', 'porter', 'poser', 'montrer', 'appeler', 'envoyer', 'payer', 'aider', 'oublier', 'ramener', 'ranger', 'bouger', 'traîner'],
+            topicUsages: {
+                attendre: [{ pattern: 'attendre quelqu’un', example_fr: 'J’attends quelqu’un devant la boulangerie.', example_en: 'I am waiting for someone in front of the bakery.' }],
+                payer: [{ pattern: 'payer l’addition', example_fr: 'Je paie l’addition pendant que vous mettez vos manteaux.', example_en: 'I am paying the bill while you put on your coats.' }],
+                traîner: [{ pattern: 'traîner dehors', example_fr: 'On traîne dehors après le dîner parce qu’il fait bon.', example_en: 'We are hanging around outside after dinner because the weather is nice.' }],
+            },
+        },
+        {
+            id: 'builtin-sports-fitness',
+            name: 'Sports & Fitness',
+            scope: 'training, competition, ball sports, defense, injuries',
+            verbs: ['jouer', 'courir', 'nager', 'sauter', 'skier', 'surfer', 'entraîner', 'gagner', 'perdre', 'marquer', 'tirer', 'passer', 'lancer', 'recevoir', 'attraper', 'dribbler', 'bloquer', 'défendre', 'contrer', 'sprinter', 'plaquer', 'frapper', 'centrer', 'changer', 'blesser', 'tomber', 'boiter', 'soigner', 'glacer', 'tordre', 'saigner', 'bander'],
+            topicUsages: {
+                courir: [
+                    {
+                        pattern: 'courir un 10 km',
+                        example_fr: 'Je cours un 10 km dimanche avec mon club.',
+                        example_en: 'I am running a 10K on Sunday with my club.',
+                    },
+                ],
+                tirer: [
+                    {
+                        pattern: 'tirer de loin',
+                        example_fr: 'Il tire de loin dès que la défense recule.',
+                        example_en: 'He is shooting from long range as soon as the defense drops back.',
+                    },
+                ],
+                passer: [
+                    {
+                        pattern: 'passer le ballon',
+                        example_fr: 'Elle passe le ballon au dernier moment pour créer le décalage.',
+                        example_en: 'She is passing the ball at the last moment to create space.',
+                    },
+                ],
+                dribbler: [
+                    {
+                        pattern: 'dribbler son défenseur',
+                        example_fr: 'Il dribble son défenseur avant d’attaquer le panier.',
+                        example_en: 'He is dribbling past his defender before attacking the basket.',
+                    },
+                ],
+                défendre: [
+                    {
+                        pattern: 'défendre fort',
+                        example_fr: 'On défend fort tout le quatrième quart-temps.',
+                        example_en: 'We are defending hard for the whole fourth quarter.',
+                    },
+                ],
+                contrer: [
+                    {
+                        pattern: 'contrer un tir',
+                        example_fr: 'Elle contre un tir près de la planche en fin de match.',
+                        example_en: 'She is blocking a shot near the backboard late in the game.',
+                    },
+                ],
+                bloquer: [
+                    {
+                        pattern: 'bloquer un adversaire',
+                        example_fr: 'Il bloque un adversaire pour libérer le rebond.',
+                        example_en: 'He is boxing out an opponent to free up the rebound.',
+                    },
+                ],
+                centrer: [
+                    {
+                        pattern: 'centrer en retrait',
+                        example_fr: 'Il centre en retrait pour un coéquipier lancé.',
+                        example_en: 'He is cutting the ball back for an onrushing teammate.',
+                    },
+                ],
+                plaquer: [
+                    {
+                        pattern: 'plaquer bas',
+                        example_fr: 'Il plaque bas pour arrêter l’action net.',
+                        example_en: 'He is tackling low to stop the play cleanly.',
+                    },
+                ],
+                blesser: [
+                    {
+                        pattern: 'se blesser à l’entraînement',
+                        example_fr: 'Elle se blesse à l’entraînement en retombant sur un pied.',
+                        example_en: 'She gets injured in training by landing on someone’s foot.',
+                    },
+                ],
+                boiter: [
+                    {
+                        pattern: 'boiter après le match',
+                        example_fr: 'Il boite encore après le choc au genou de la veille.',
+                        example_en: 'He is still limping after yesterday’s knock to the knee.',
+                    },
+                ],
+                glacer: [
+                    {
+                        pattern: 'glacer une cheville',
+                        example_fr: 'On glace sa cheville tout de suite après la torsion.',
+                        example_en: 'We are icing his ankle right after the twist.',
+                    },
+                ],
+                bander: [
+                    {
+                        pattern: 'bander un genou',
+                        example_fr: 'Le kiné lui bande le genou avant la reprise.',
+                        example_en: 'The physio is wrapping his knee before he gets back out there.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-cooking-food',
+            name: 'Cooking & Food',
+            scope: 'kitchen, meals, service, casual eating, cuts & burns',
+            verbs: ['cuisiner', 'couper', 'mélanger', 'préparer', 'manger', 'boire', 'servir', 'goûter', 'frire', 'rôtir', 'cuire', 'verser', 'dresser', 'nettoyer', 'éplucher', 'mijoter', 'bouffer', 'grignoter', 'dévorer', 'saisir', 'mixer', 'brûler', 'saigner'],
+            topicUsages: {
+                préparer: [
+                    {
+                        pattern: 'préparer le dîner',
+                        example_fr: 'Je prépare le dîner pendant que le four chauffe.',
+                        example_en: 'I am preparing dinner while the oven heats up.',
+                    },
+                ],
+                mijoter: [
+                    {
+                        pattern: 'mijoter tranquillement',
+                        example_fr: 'Le plat mijote depuis une heure et toute la cuisine sent bon.',
+                        example_en: 'The dish has been simmering for an hour and the whole kitchen smells amazing.',
+                    },
+                ],
+                saisir: [
+                    {
+                        pattern: 'saisir la viande',
+                        example_fr: 'Il saisit la viande très fort pour bien la colorer.',
+                        example_en: 'He is searing the meat hard to brown it well.',
+                    },
+                ],
+                bouffer: [
+                    {
+                        pattern: 'bouffer sur le pouce',
+                        example_fr: 'On bouffe sur le pouce avant de repartir bosser.',
+                        example_en: 'We are grabbing a quick bite before heading back to work.',
+                    },
+                ],
+                dresser: [
+                    {
+                        pattern: 'dresser une assiette',
+                        example_fr: 'Elle dresse les assiettes pendant que le chef goûte la sauce.',
+                        example_en: 'She is plating the dishes while the chef tastes the sauce.',
+                    },
+                ],
+                brûler: [
+                    {
+                        pattern: 'se brûler en cuisine',
+                        example_fr: 'Je me brûle en sortant la plaque du four trop vite.',
+                        example_en: 'I burn myself taking the tray out of the oven too quickly.',
+                    },
+                ],
+                couper: [
+                    {
+                        pattern: 'se couper en épluchant',
+                        example_fr: 'Il se coupe en épluchant les légumes à toute vitesse.',
+                        example_en: 'He cuts himself peeling vegetables too fast.',
+                    },
+                ],
+                saigner: [
+                    {
+                        pattern: 'saigner du doigt',
+                        example_fr: 'Elle saigne du doigt après avoir ripé avec le couteau.',
+                        example_en: 'Her finger is bleeding after the knife slipped.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-outdoors-nature',
+            name: 'Outdoors & Nature',
+            scope: 'hiking, camping, trails, water, exploration',
+            verbs: ['marcher', 'camper', 'randonner', 'explorer', 'grimper', 'pagayer', 'pêcher', 'observer', 'escalader', 'naviguer', 'ramer', 'crapahuter', 'tracer', 'galoper'],
+            topicUsages: {
+                camper: [
+                    {
+                        pattern: 'camper près du lac',
+                        example_fr: 'Nous campons près du lac pour voir le lever du soleil.',
+                        example_en: 'We are camping by the lake to watch the sunrise.',
+                    },
+                ],
+                crapahuter: [
+                    {
+                        pattern: 'crapahuter dans les rochers',
+                        example_fr: 'On crapahute dans les rochers depuis le matin avec les sacs sur le dos.',
+                        example_en: 'We have been scrambling over the rocks since morning with packs on our backs.',
+                    },
+                ],
+                ramer: [
+                    {
+                        pattern: 'ramer contre le vent',
+                        example_fr: 'Ils rament contre le vent pour rejoindre la rive avant l’orage.',
+                        example_en: 'They are rowing into the wind to reach the shore before the storm.',
+                    },
+                ],
+                tracer: [
+                    {
+                        pattern: 'tracer un itinéraire',
+                        example_fr: 'Je trace un itinéraire plus court avant qu’il fasse nuit.',
+                        example_en: 'I am mapping out a shorter route before it gets dark.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-woodworking',
+            name: 'Woodworking',
+            scope: 'cutting, sanding, shaping, fitting, assembly',
+            verbs: ['sculpter', 'tailler', 'poncer', 'mesurer', 'assembler', 'fabriquer', 'graver', 'coller', 'percer', 'visser', 'clouer', 'raboter', 'vernir', 'frapper', 'ajuster', 'monter', 'démonter', 'régler'],
+            topicUsages: {
+                poncer: [
+                    {
+                        pattern: 'poncer une planche',
+                        example_fr: 'Il ponce une planche avant de la vernir.',
+                        example_en: 'He is sanding a board before varnishing it.',
+                    },
+                ],
+                percer: [
+                    {
+                        pattern: 'percer un avant-trou',
+                        example_fr: 'Je perce un avant-trou pour éviter que la planche fende.',
+                        example_en: 'I am drilling a pilot hole so the board does not split.',
+                    },
+                ],
+                visser: [
+                    {
+                        pattern: 'visser une charnière',
+                        example_fr: 'Elle visse une charnière avant d’aligner la porte.',
+                        example_en: 'She is screwing on a hinge before aligning the door.',
+                    },
+                ],
+                raboter: [
+                    {
+                        pattern: 'raboter un bord',
+                        example_fr: 'Il rabote un bord pour que le tiroir coulisse mieux.',
+                        example_en: 'He is planing an edge so the drawer slides better.',
+                    },
+                ],
+                vernir: [
+                    {
+                        pattern: 'vernir une pièce',
+                        example_fr: 'Je vernis la pièce une fois la poussière retirée.',
+                        example_en: 'I am varnishing the piece once the dust is gone.',
+                    },
+                ],
+                frapper: [
+                    {
+                        pattern: 'frapper au maillet',
+                        example_fr: 'Il frappe au maillet pour ajuster le tenon sans marquer la surface.',
+                        example_en: 'He is striking with a mallet to fit the tenon without denting the surface.',
+                    },
+                ],
+                ajuster: [
+                    {
+                        pattern: 'ajuster un assemblage',
+                        example_fr: 'Je dois ajuster l’assemblage au millimètre pour que ça ferme bien.',
+                        example_en: 'I need to fine-tune the joint to the millimeter so it closes properly.',
+                    },
+                ],
+                démonter: [
+                    {
+                        pattern: 'démonter un gabarit',
+                        example_fr: 'Il démonte le gabarit pour corriger ce qui coinçait.',
+                        example_en: 'He is taking the jig apart to fix what was binding.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-art-design',
+            name: 'Art & Design',
+            scope: 'visual art, sketching, making, exhibiting',
+            verbs: ['dessiner', 'peindre', 'sculpter', 'exposer', 'créer', 'photographier', 'filmer', 'graver', 'modeler', 'esquisser', 'croquer', 'retoucher', 'tracer', 'restaurer'],
+            topicUsages: {
+                exposer: [
+                    {
+                        pattern: 'exposer ses oeuvres',
+                        example_fr: 'Elle expose ses oeuvres dans une petite galerie du centre.',
+                        example_en: 'She is exhibiting her work in a small downtown gallery.',
+                    },
+                ],
+                esquisser: [
+                    {
+                        pattern: 'esquisser une composition',
+                        example_fr: 'Il esquisse une composition avant de sortir les couleurs.',
+                        example_en: 'He is sketching out a composition before pulling out the colors.',
+                    },
+                ],
+                retoucher: [
+                    {
+                        pattern: 'retoucher une photo',
+                        example_fr: 'Elle retouche une photo jusqu’à ce que la lumière tienne vraiment.',
+                        example_en: 'She is touching up a photo until the lighting really works.',
+                    },
+                ],
+                croquer: [
+                    {
+                        pattern: 'croquer une scène',
+                        example_fr: 'Je croque la scène depuis le fond de la salle pendant les répétitions.',
+                        example_en: 'I am sketching the scene from the back of the room during rehearsals.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-nightlife-partying',
+            name: 'Nightlife & Partying',
+            scope: 'going out, bars, flirting, afters',
+            verbs: ['sortir', 'boire', 'danser', 'fêter', 'trinquer', 'inviter', 'dépenser', 'rentrer', 'draguer', 'dormir', 'picoler', 'cuver', 'déconner', 'flirter', 'brancher', 'kiffer', 'mater', 'zoner', 'bouffer'],
+            topicUsages: {
+                trinquer: [
+                    {
+                        pattern: 'trinquer à quelque chose',
+                        example_fr: 'On trinque à la fin de la semaine avec des amis.',
+                        example_en: 'We are toasting the end of the week with friends.',
+                    },
+                ],
+                picoler: [
+                    {
+                        pattern: 'picoler toute la soirée',
+                        example_fr: 'Ils picolent toute la soirée avant de changer de bar.',
+                        example_en: 'They are drinking all evening before changing bars.',
+                    },
+                ],
+                cuver: [
+                    {
+                        pattern: 'cuver le lendemain',
+                        example_fr: 'Il cuve tout le dimanche après avoir trop bu.',
+                        example_en: 'He is sleeping it off all Sunday after drinking too much.',
+                    },
+                ],
+                déconner: [
+                    {
+                        pattern: 'déconner avec des amis',
+                        example_fr: 'On déconne avec des amis en terrasse jusqu’à tard.',
+                        example_en: 'We are fooling around with friends on the terrace until late.',
+                    },
+                ],
+                brancher: [
+                    {
+                        pattern: 'brancher quelqu’un',
+                        example_fr: 'Il essaie de brancher quelqu’un au comptoir depuis dix minutes.',
+                        example_en: 'He has been trying to chat someone up at the bar for ten minutes.',
+                    },
+                ],
+                kiffer: [
+                    {
+                        pattern: 'kiffer l’ambiance',
+                        example_fr: 'On kiffe l’ambiance dès qu’on passe la porte.',
+                        example_en: 'We are loving the vibe as soon as we walk in.',
+                    },
+                ],
+                zoner: [
+                    {
+                        pattern: 'zoner après la fermeture',
+                        example_fr: 'Ils zonent encore dehors après la fermeture du bar.',
+                        example_en: 'They are still hanging around outside after the bar has closed.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-music',
+            name: 'Music',
+            scope: 'bands, rehearsal, performance, production',
+            verbs: ['chanter', 'écouter', 'composer', 'enregistrer', 'répéter', 'interpréter', 'danser', 'jouer', 'improviser', 'mixer', 'accorder', 'brancher', 'caler', 'assurer', 'accélérer', 'ralentir', 'chauffer', 'foirer', 'rater'],
+            topicUsages: {
+                répéter: [
+                    {
+                        pattern: 'répéter avec le groupe',
+                        example_fr: 'Nous répétons avec le groupe avant le concert de vendredi.',
+                        example_en: 'We are rehearsing with the band before Friday\'s concert.',
+                    },
+                ],
+                mixer: [
+                    {
+                        pattern: 'mixer un morceau',
+                        example_fr: 'Il mixe le morceau au casque pour régler les derniers détails.',
+                        example_en: 'He is mixing the track on headphones to fine-tune the last details.',
+                    },
+                ],
+                accorder: [
+                    {
+                        pattern: 'accorder sa guitare',
+                        example_fr: 'Elle accorde sa guitare juste avant de monter sur scène.',
+                        example_en: 'She is tuning her guitar right before going on stage.',
+                    },
+                ],
+                brancher: [
+                    {
+                        pattern: 'brancher la sono',
+                        example_fr: 'On branche la sono pendant que le batteur s’échauffe.',
+                        example_en: 'We are hooking up the sound system while the drummer warms up.',
+                    },
+                ],
+                accélérer: [
+                    {
+                        pattern: 'accélérer le tempo',
+                        example_fr: 'Vous accélérez le tempo à chaque refrain sans vous en rendre compte.',
+                        example_en: 'You are speeding up the tempo at every chorus without realizing it.',
+                    },
+                ],
+                ralentir: [
+                    {
+                        pattern: 'ralentir sur la fin',
+                        example_fr: 'Le groupe ralentit sur la fin alors que le clic reste stable.',
+                        example_en: 'The band is slowing down at the end while the click stays steady.',
+                    },
+                ],
+                chauffer: [
+                    {
+                        pattern: 'chauffer la salle',
+                        example_fr: 'Le DJ chauffe la salle avant l’arrivée de la tête d’affiche.',
+                        example_en: 'The DJ is warming up the crowd before the headliner comes on.',
+                    },
+                ],
+                foirer: [
+                    {
+                        pattern: 'foirer une entrée',
+                        example_fr: 'On foire l’entrée du couplet et tout le monde se regarde.',
+                        example_en: 'We mess up the verse entrance and everyone looks at each other.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-history-culture',
+            name: 'History & Culture',
+            scope: 'archives, heritage, storytelling, preservation',
+            verbs: ['lire', 'écrire', 'raconter', 'explorer', 'collectionner', 'restaurer', 'exposer', 'étudier', 'conserver', 'classer', 'fouiller', 'documenter', 'traduire'],
+            topicUsages: {
+                restaurer: [
+                    {
+                        pattern: 'restaurer un document ancien',
+                        example_fr: 'Le musée restaure un document ancien très fragile.',
+                        example_en: 'The museum is restoring a very fragile old document.',
+                    },
+                ],
+                fouiller: [
+                    {
+                        pattern: 'fouiller les archives',
+                        example_fr: 'Elle fouille les archives municipales pour recoller l’histoire du quartier.',
+                        example_en: 'She is digging through the city archives to piece together the neighborhood’s history.',
+                    },
+                ],
+                conserver: [
+                    {
+                        pattern: 'conserver une trace',
+                        example_fr: 'On conserve une trace de chaque intervention sur l’objet.',
+                        example_en: 'We are keeping a record of every intervention on the object.',
+                    },
+                ],
+                documenter: [
+                    {
+                        pattern: 'documenter une collection',
+                        example_fr: 'Ils documentent la collection avant le nouveau catalogue.',
+                        example_en: 'They are documenting the collection before the new catalog.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-politics-current-events',
+            name: 'Politics & Current Events',
+            scope: 'debate, protest, campaigns, media pressure',
+            verbs: ['voter', 'gouverner', 'manifester', 'débattre', 'négocier', 'protester', 'réformer', 'discuter', 'militer', 'boycotter', 'surveiller', 'traiter', 'relancer', 'pointer', 'gérer', 'accuser', 'démentir', 'promettre', 'imposer', 'soutenir', 'condamner', 'dénoncer'],
+            topicUsages: {
+                débattre: [
+                    {
+                        pattern: 'débattre d\'une réforme',
+                        example_fr: 'Les députés débattent d\'une réforme au parlement.',
+                        example_en: 'The deputies are debating a reform in parliament.',
+                    },
+                ],
+                militer: [
+                    {
+                        pattern: 'militer pour une cause',
+                        example_fr: 'Elle milite pour cette cause depuis ses années de fac.',
+                        example_en: 'She has been campaigning for this cause since college.',
+                    },
+                ],
+                boycotter: [
+                    {
+                        pattern: 'boycotter un vote',
+                        example_fr: 'L’opposition boycotte le vote pour dénoncer la procédure.',
+                        example_en: 'The opposition is boycotting the vote to denounce the procedure.',
+                    },
+                ],
+                pointer: [
+                    {
+                        pattern: 'pointer une contradiction',
+                        example_fr: 'Le journaliste pointe une contradiction dans le discours du ministre.',
+                        example_en: 'The journalist is pointing out a contradiction in the minister’s speech.',
+                    },
+                ],
+                accuser: [
+                    {
+                        pattern: 'accuser quelqu’un de quelque chose',
+                        example_fr: 'L’opposition accuse le ministre d’avoir menti sur les chiffres.',
+                        example_en: 'The opposition is accusing the minister of lying about the numbers.',
+                    },
+                ],
+                démentir: [
+                    {
+                        pattern: 'démentir une rumeur',
+                        example_fr: 'Le gouvernement dément la rumeur quelques heures après sa diffusion.',
+                        example_en: 'The government is denying the rumor a few hours after it spread.',
+                    },
+                ],
+                promettre: [
+                    {
+                        pattern: 'promettre une réforme',
+                        example_fr: 'Le candidat promet une réforme rapide s’il est élu.',
+                        example_en: 'The candidate is promising a quick reform if elected.',
+                    },
+                ],
+                dénoncer: [
+                    {
+                        pattern: 'dénoncer une décision',
+                        example_fr: 'Plusieurs associations dénoncent une décision jugée brutale.',
+                        example_en: 'Several groups are denouncing a decision seen as heavy-handed.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-cinema-series',
+            name: 'Cinema & Series',
+            scope: 'shooting, editing, acting, binge-watching',
+            verbs: ['regarder', 'filmer', 'tourner', 'diffuser', 'monter', 'interpréter', 'raconter', 'écouter', 'mater', 'zapper', 'documenter', 'enregistrer', 'enchaîner', 'couper'],
+            topicUsages: {
+                tourner: [
+                    {
+                        pattern: 'tourner une scène',
+                        example_fr: 'Ils tournent une scène de nuit dans une rue vide.',
+                        example_en: 'They are shooting a night scene on an empty street.',
+                    },
+                ],
+                mater: [
+                    {
+                        pattern: 'mater une série',
+                        example_fr: 'On mate une série entière pendant le week-end pluvieux.',
+                        example_en: 'We are binge-watching a whole series over the rainy weekend.',
+                    },
+                ],
+                zapper: [
+                    {
+                        pattern: 'zapper entre deux chaînes',
+                        example_fr: 'Il zappe entre deux chaînes en attendant le début du film.',
+                        example_en: 'He is channel-hopping while waiting for the film to start.',
+                    },
+                ],
+                monter: [
+                    {
+                        pattern: 'monter un épisode',
+                        example_fr: 'Elle monte l’épisode jusque tard dans la nuit.',
+                        example_en: 'She is editing the episode late into the night.',
+                    },
+                ],
+                enchaîner: [
+                    {
+                        pattern: 'enchaîner les épisodes',
+                        example_fr: 'On enchaîne les épisodes sans voir passer la soirée.',
+                        example_en: 'We are plowing through episodes without noticing the evening go by.',
+                    },
+                ],
+                couper: [
+                    {
+                        pattern: 'couper une scène',
+                        example_fr: 'Ils coupent une scène entière parce qu’elle casse le rythme.',
+                        example_en: 'They are cutting an entire scene because it breaks the pacing.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-relationship-drama',
+            name: 'Relationship Drama',
+            scope: 'dating, conflict, mixed signals, breakup',
+            verbs: ['aimer', 'embrasser', 'rompre', 'discuter', 'pardonner', 'mentir', 'séduire', 'draguer', 'sortir', 'larguer', 'engueuler', 'flirter', 'disputer', 'embrouiller', 'reprocher', 'appeler', 'quitter', 'tromper', 'trahir'],
+            topicUsages: {
+                rompre: [
+                    {
+                        pattern: 'rompre avec quelqu\'un',
+                        example_fr: 'Elle veut rompre après leur longue dispute.',
+                        example_en: 'She wants to break up after their long argument.',
+                    },
+                ],
+                larguer: [
+                    {
+                        pattern: 'larguer quelqu’un',
+                        example_fr: 'Il la largue juste après un week-end catastrophique.',
+                        example_en: 'He is dumping her right after a disastrous weekend.',
+                    },
+                ],
+                engueuler: [
+                    {
+                        pattern: 'engueuler son partenaire',
+                        example_fr: 'Elle l’engueule encore pour le même message suspect.',
+                        example_en: 'She is yelling at him again over the same suspicious message.',
+                    },
+                ],
+                flirter: [
+                    {
+                        pattern: 'flirter avec quelqu’un',
+                        example_fr: 'Il flirte avec quelqu’un d’autre juste devant elle.',
+                        example_en: 'He is flirting with someone else right in front of her.',
+                    },
+                ],
+                embrouiller: [
+                    {
+                        pattern: 'embrouiller quelqu’un',
+                        example_fr: 'Il l’embrouille avec des excuses différentes à chaque fois.',
+                        example_en: 'He is confusing her with a different excuse every time.',
+                    },
+                ],
+                reprocher: [
+                    {
+                        pattern: 'reprocher quelque chose à quelqu’un',
+                        example_fr: 'Elle lui reproche encore de disparaître dès que ça devient sérieux.',
+                        example_en: 'She is once again blaming him for disappearing as soon as things get serious.',
+                    },
+                ],
+                quitter: [
+                    {
+                        pattern: 'quitter quelqu’un',
+                        example_fr: 'Il la quitte sans vraie explication après des mois de flottement.',
+                        example_en: 'He is leaving her without a real explanation after months of uncertainty.',
+                    },
+                ],
+                tromper: [
+                    {
+                        pattern: 'tromper quelqu’un',
+                        example_fr: 'Elle le trompe avec un collègue et tout finit par se savoir.',
+                        example_en: 'She is cheating on him with a coworker and it all eventually comes out.',
+                    },
+                ],
+                trahir: [
+                    {
+                        pattern: 'trahir la confiance de quelqu’un',
+                        example_fr: 'Il trahit sa confiance en racontant leur histoire à tout le monde.',
+                        example_en: 'He is betraying her trust by telling everyone about their relationship.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-office-admin',
+            name: 'Office & Admin',
+            scope: 'planning, paperwork, meetings, day-to-day office grind',
+            verbs: ['travailler', 'gérer', 'planifier', 'organiser', 'présenter', 'imprimer', 'classer', 'signer', 'répondre', 'bosser', 'caler', 'relancer', 'archiver', 'traiter', 'ranger', 'pointer', 'valider', 'régler', 'assurer', 'envoyer', 'annuler', 'reporter', 'transférer', 'corriger', 'rappeler', 'boucler'],
+            topicUsages: {
+                planifier: [
+                    {
+                        pattern: 'planifier une réunion',
+                        example_fr: 'Je planifie une réunion pour lundi matin.',
+                        example_en: 'I am scheduling a meeting for Monday morning.',
+                    },
+                ],
+                bosser: [
+                    {
+                        pattern: 'bosser sur un dossier',
+                        example_fr: 'On bosse sur ce dossier depuis le début de la semaine.',
+                        example_en: 'We have been working on this file since the start of the week.',
+                    },
+                ],
+                relancer: [
+                    {
+                        pattern: 'relancer un client',
+                        example_fr: 'Je relance le client avant la fermeture pour avoir un accord clair.',
+                        example_en: 'I am following up with the client before close of business to get a clear answer.',
+                    },
+                ],
+                archiver: [
+                    {
+                        pattern: 'archiver un dossier',
+                        example_fr: 'Elle archive le dossier une fois la signature obtenue.',
+                        example_en: 'She is archiving the file once the signature is in.',
+                    },
+                ],
+                annuler: [
+                    {
+                        pattern: 'annuler une réunion',
+                        example_fr: 'On annule la réunion de 16 h parce que le client a décommandé.',
+                        example_en: 'We are canceling the 4 p.m. meeting because the client pulled out.',
+                    },
+                ],
+                reporter: [
+                    {
+                        pattern: 'reporter à demain',
+                        example_fr: 'Elle reporte ça à demain parce que tout le monde est déjà saturé.',
+                        example_en: 'She is pushing it to tomorrow because everyone is already overloaded.',
+                    },
+                ],
+                boucler: [
+                    {
+                        pattern: 'boucler un dossier',
+                        example_fr: 'On boucle le dossier avant midi si personne ne change encore d’avis.',
+                        example_en: 'We are wrapping up the file before noon if nobody changes their mind again.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-tech-digital-work',
+            name: 'Tech & Digital Work',
+            scope: 'shipping, debugging, automation, infrastructure',
+            verbs: ['coder', 'programmer', 'déployer', 'tester', 'déboguer', 'configurer', 'automatiser', 'cliquer', 'partager', 'analyser', 'fusionner', 'documenter', 'sauvegarder', 'valider', 'surveiller', 'planter', 'bidouiller', 'archiver', 'casser', 'redémarrer', 'récupérer', 'bloquer', 'corriger', 'boucler'],
+            topicUsages: {
+                déployer: [
+                    {
+                        pattern: 'déployer une nouvelle version',
+                        example_fr: 'On déploie une nouvelle version en production ce soir.',
+                        example_en: 'We are deploying a new version to production tonight.',
+                    },
+                ],
+                fusionner: [
+                    {
+                        pattern: 'fusionner une branche',
+                        example_fr: 'Je fusionne la branche après le dernier feu vert.',
+                        example_en: 'I am merging the branch after the final green light.',
+                    },
+                ],
+                planter: [
+                    {
+                        pattern: 'planter en prod',
+                        example_fr: 'Le service plante en prod dès qu’on pousse ce correctif.',
+                        example_en: 'The service crashes in production as soon as we push this fix.',
+                    },
+                ],
+                sauvegarder: [
+                    {
+                        pattern: 'sauvegarder la base',
+                        example_fr: 'On sauvegarde la base avant toute migration risquée.',
+                        example_en: 'We are backing up the database before any risky migration.',
+                    },
+                ],
+                casser: [
+                    {
+                        pattern: 'casser la build',
+                        example_fr: 'Tu casses la build dès qu’on active ce flag.',
+                        example_en: 'You break the build as soon as we enable this flag.',
+                    },
+                ],
+                redémarrer: [
+                    {
+                        pattern: 'redémarrer un service',
+                        example_fr: 'Je redémarre le service pour voir si le bug disparaît.',
+                        example_en: 'I am restarting the service to see whether the bug goes away.',
+                    },
+                ],
+                récupérer: [
+                    {
+                        pattern: 'récupérer les logs',
+                        example_fr: 'On récupère les logs avant que le conteneur reparte.',
+                        example_en: 'We are pulling the logs before the container comes back up.',
+                    },
+                ],
+                bloquer: [
+                    {
+                        pattern: 'bloquer une release',
+                        example_fr: 'Le bug de paiement bloque la release depuis ce matin.',
+                        example_en: 'The payment bug is blocking the release since this morning.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-travel-tourism',
+            name: 'Travel & Tourism',
+            scope: 'booking, transport, sightseeing, wandering around',
+            verbs: ['voyager', 'visiter', 'réserver', 'embarquer', 'décoller', 'atterrir', 'guider', 'partir', 'arriver', 'séjourner', 'louer', 'débarquer', 'flâner', 'errer', 'trimballer', 'crapahuter', 'payer', 'bouger', 'rater', 'louper', 'perdre', 'suivre', 'rejoindre', 'déposer', 'récupérer'],
+            topicUsages: {
+                réserver: [
+                    {
+                        pattern: 'réserver une chambre',
+                        example_fr: 'Nous réservons une chambre près de la gare.',
+                        example_en: 'We are booking a room near the station.',
+                    },
+                ],
+                flâner: [
+                    {
+                        pattern: 'flâner dans une ville',
+                        example_fr: 'On flâne dans le centre sans programme précis.',
+                        example_en: 'We are strolling through downtown with no fixed plan.',
+                    },
+                ],
+                trimballer: [
+                    {
+                        pattern: 'trimballer sa valise',
+                        example_fr: 'Je trimballe ma valise de station en station depuis ce matin.',
+                        example_en: 'I have been dragging my suitcase from station to station since this morning.',
+                    },
+                ],
+                débarquer: [
+                    {
+                        pattern: 'débarquer quelque part',
+                        example_fr: 'Ils débarquent en ville sans avoir réservé quoi que ce soit.',
+                        example_en: 'They are showing up in town without having booked anything.',
+                    },
+                ],
+                rater: [
+                    {
+                        pattern: 'rater son train',
+                        example_fr: 'On rate notre train de deux minutes et tout le planning saute.',
+                        example_en: 'We miss our train by two minutes and the whole plan falls apart.',
+                    },
+                ],
+                perdre: [
+                    {
+                        pattern: 'perdre ses bagages',
+                        example_fr: 'Elle perd ses bagages à l’escale et doit tout racheter.',
+                        example_en: 'She loses her luggage during the layover and has to buy everything again.',
+                    },
+                ],
+                rejoindre: [
+                    {
+                        pattern: 'rejoindre quelqu’un',
+                        example_fr: 'Je vous rejoins directement au musée après le check-in.',
+                        example_en: 'I am joining you directly at the museum after check-in.',
+                    },
+                ],
+                déposer: [
+                    {
+                        pattern: 'déposer quelqu’un à l’aéroport',
+                        example_fr: 'On le dépose à l’aéroport avant de reprendre la route.',
+                        example_en: 'We are dropping him at the airport before getting back on the road.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-crafts-making',
+            name: 'Crafts & Making',
+            scope: 'handmade, sewing, assembly, fixing, improvising',
+            verbs: ['fabriquer', 'assembler', 'mesurer', 'coller', 'coudre', 'tisser', 'tricoter', 'poncer', 'bricoler', 'bidouiller', 'rafistoler', 'rater', 'foirer', 'planter', 'merder', 'souder', 'monter', 'démonter', 'ajuster', 'régler'],
+            topicUsages: {
+                coudre: [
+                    {
+                        pattern: 'coudre une poche',
+                        example_fr: 'Elle coud une poche sur un sac en toile.',
+                        example_en: 'She is sewing a pocket onto a canvas bag.',
+                    },
+                ],
+                bricoler: [
+                    {
+                        pattern: 'bricoler une solution',
+                        example_fr: 'On bricole une solution provisoire avant le marché de demain.',
+                        example_en: 'We are improvising a temporary fix before tomorrow’s market.',
+                    },
+                ],
+                bidouiller: [
+                    {
+                        pattern: 'bidouiller un montage',
+                        example_fr: 'Je bidouille un montage pour sauver la pièce.',
+                        example_en: 'I am tinkering with a setup to save the piece.',
+                    },
+                ],
+                rafistoler: [
+                    {
+                        pattern: 'rafistoler un objet',
+                        example_fr: 'Il rafistole l’objet au lieu de tout recommencer.',
+                        example_en: 'He is patching up the object instead of starting over.',
+                    },
+                ],
+                foirer: [
+                    {
+                        pattern: 'foirer une finition',
+                        example_fr: 'Tu foires la finition si tu poses trop de vernis d’un coup.',
+                        example_en: 'You ruin the finish if you apply too much varnish at once.',
+                    },
+                ],
+                rater: [
+                    {
+                        pattern: 'rater un alignement',
+                        example_fr: 'Elle rate un alignement et la façade penche un peu.',
+                        example_en: 'She misses an alignment and the front panel tilts a bit.',
+                    },
+                ],
+                planter: [
+                    {
+                        pattern: 'se planter sur une mesure',
+                        example_fr: 'Je me plante sur une mesure et il faut tout recouper.',
+                        example_en: 'I mess up a measurement and have to recut everything.',
+                    },
+                ],
+                merder: [
+                    {
+                        pattern: 'merder sur un collage',
+                        example_fr: 'On merde sur un collage dès qu’on travaille trop vite.',
+                        example_en: 'We mess up a glue-up as soon as we work too fast.',
+                    },
+                ],
+                souder: [
+                    {
+                        pattern: 'souder une jonction',
+                        example_fr: 'Elle soude la jonction avant de reprendre la finition.',
+                        example_en: 'She is soldering the joint before returning to the finish.',
+                    },
+                ],
+                ajuster: [
+                    {
+                        pattern: 'ajuster une pièce',
+                        example_fr: 'Il ajuste la pièce à la lime pour qu’elle tienne enfin.',
+                        example_en: 'He is fine-tuning the piece with a file so it finally fits.',
+                    },
+                ],
+            },
+        },
+        {
+            id: 'builtin-education-learning',
+            name: 'Education & Learning',
+            scope: 'study, teaching, revision, cramming',
+            verbs: ['apprendre', 'enseigner', 'étudier', 'réviser', 'expliquer', 'analyser', 'calculer', 'traduire', 'lire', 'écrire', 'bachoter', 'potasser', 'survoler', 'présenter'],
+            topicUsages: {
+                réviser: [
+                    {
+                        pattern: 'réviser pour un examen',
+                        example_fr: 'Ils révisent pour un examen final très important.',
+                        example_en: 'They are reviewing for a very important final exam.',
+                    },
+                ],
+                bachoter: [
+                    {
+                        pattern: 'bachoter avant un partiel',
+                        example_fr: 'On bachote depuis le matin parce qu’on s’y est pris trop tard.',
+                        example_en: 'We have been cramming since morning because we started too late.',
+                    },
+                ],
+                potasser: [
+                    {
+                        pattern: 'potasser un chapitre',
+                        example_fr: 'Elle potasse le chapitre le plus dense avant le cours de demain.',
+                        example_en: 'She is grinding through the densest chapter before tomorrow’s class.',
+                    },
+                ],
+                survoler: [
+                    {
+                        pattern: 'survoler un cours',
+                        example_fr: 'Il survole le cours juste pour repérer les notions à reprendre.',
+                        example_en: 'He is skimming the lesson just to spot the concepts he needs to revisit.',
+                    },
+                ],
+            },
+        },
+    ];
+    const builtInVerbSets = BUILTIN_VERB_SET_DEFINITIONS
+        .map((set, index) => {
+            const normalized = normalizeStoredVerbSet({
+                ...set,
+                createdAt: index,
+                updatedAt: index,
+            });
+            return normalized ? { ...normalized, isBuiltIn: true } : null;
+        })
+        .filter(Boolean);
+    window.builtinVerbUsageFallbacks = BUILTIN_VERB_USAGE_FALLBACKS;
 
     // Calculate verb counts per frequency for display in options
     const frequencyCounts = uniqueVerbs.reduce((acc, verb) => {
@@ -921,6 +2276,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const appInstallModalSteps = document.getElementById('app-install-modal-steps');
     const appInstallModalNote = document.getElementById('app-install-modal-note');
     const appInstallModalCloseBtn = document.getElementById('app-install-modal-close-btn');
+    const verbSetModal = document.getElementById('verb-set-modal');
+    const verbSetModalTitle = document.getElementById('verb-set-modal-title');
+    const verbSetModalText = document.getElementById('verb-set-modal-text');
+    const verbSetModalCloseBtn = document.getElementById('verb-set-modal-close-btn');
+    const verbSetNameInput = document.getElementById('verb-set-name-input');
+    const verbSetVerbsInput = document.getElementById('verb-set-verbs-input');
+    const verbSetValidation = document.getElementById('verb-set-validation');
+    const verbSetModalDeleteBtn = document.getElementById('verb-set-modal-delete-btn');
+    const verbSetModalSaveBtn = document.getElementById('verb-set-modal-save-btn');
     
     const backBtn = document.getElementById('back-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -939,6 +2303,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dictateBtnLabelEl = document.querySelector('#dictate-btn-bottom .control-dock-label');
     const tutorialInlineHintEl = document.getElementById('tutorial-inline-hint');
     const tutorialInlineTextEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-text') : null;
+    const tutorialInlineSkipBtn = document.getElementById('tutorial-inline-skip-btn');
     const tutorialInlineHeadingEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-heading') : null;
     const tutorialInlineBodyEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-body') : null;
     const returnInlineMessageEl = document.getElementById('return-inline-message');
@@ -1892,12 +3257,36 @@ document.addEventListener('DOMContentLoaded', () => {
         return idsA.find((groupId) => idSetB.has(groupId)) || null;
     };
 
-    const getExpectedDictationText = (card = currentCard) => {
+    const getCardAnswerText = (card = currentCard) => {
         if (!card) return '';
         if (card.isPhraseMode || !card.verb) {
             return (card.phrase || '').trim();
         }
+        if (card.isFrameCard) {
+            return String(card.frameAnswer || card.conjugated || '').trim();
+        }
         return window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated).trim();
+    };
+
+    const getExpectedDictationText = (card = currentCard) => {
+        return getCardAnswerText(card);
+    };
+
+    const updateFrameCardInlineState = (card, revealed = false) => {
+        if (!card || !card.isFrameCard) return;
+        if (answerContainer) {
+            answerContainer.classList.add('frame-card-inline');
+            answerContainer.classList.toggle('frame-card-revealed', !!revealed);
+        }
+        conjugatedVerbEl.classList.add('frame-card-inline-text');
+        conjugatedVerbEl.classList.toggle('tappable-audio', !!revealed);
+        conjugatedVerbEl.dataset.audioId = '';
+        conjugatedVerbEl.dataset.speak = revealed ? (card.frameFullAnswer || '') : '';
+        conjugatedVerbEl.setAttribute('aria-label', revealed ? 'Hear solved phrase' : 'Reveal answer');
+        conjugatedVerbEl.title = revealed ? 'Tap to hear full phrase' : 'Tap to reveal';
+        conjugatedVerbEl.innerHTML = revealed
+            ? renderFrameSolvedMarkup(card.frameQuestion || '', card.frameAnswer || '')
+            : renderFramePromptMarkup(card.frameQuestion || '');
     };
 
     const FRENCH_HOMOPHONE_FALLBACK_TENSES = new Set(['present', 'imparfait', 'subjonctifPresent']);
@@ -2987,6 +4376,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!questionPhraseEl) return;
 
         const isPhraseMode = !!(currentCard && (currentCard.isPhraseMode || (!currentCard.verb && currentCard.phrase)));
+        const isFrameCard = !!(currentCard && currentCard.isFrameCard);
         const hasGapSentencePrompt = !!(
             ENABLE_GAP_SENTENCES
             && currentCard
@@ -2994,7 +4384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             && currentCard.chosenPhrase.gap_sentence
         );
 
-        if (isPhraseMode || hasGapSentencePrompt) {
+        if (isPhraseMode || isFrameCard || hasGapSentencePrompt) {
             questionPhraseEl.classList.remove('flashcard-task-prompt', 'idle-nudge-active');
             return false;
         }
@@ -3086,6 +4476,23 @@ document.addEventListener('DOMContentLoaded', () => {
         saveTutorialState();
     };
 
+    const skipTutorialFlow = () => {
+        if (!tutorialState.active) return;
+        stopActiveDictation({ abort: true, silent: true });
+        tutorialState.active = false;
+        tutorialState.completed = true;
+        tutorialState.stepIndex = TUTORIAL_STEPS.length;
+        saveTutorialState();
+        renderTutorialHint();
+        refreshTutorialAwareUi();
+        refreshContextAudioButton();
+        refreshAnswerFlowButton();
+        syncUsageNuggetVisibility();
+        refreshDictationButton();
+        syncTaskPromptVisibility();
+        refreshIdleGuidance();
+    };
+
     const restartTutorialFlow = (options = {}) => {
         const { confirmRestart = false } = options;
         if (confirmRestart && !window.confirm('Restart the tutorial from the beginning?')) {
@@ -3122,10 +4529,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.startTutorial = () => restartTutorialFlow({ confirmRestart: false });
+    window.skipTutorial = skipTutorialFlow;
+
+    if (tutorialInlineSkipBtn) {
+        tutorialInlineSkipBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            skipTutorialFlow();
+        });
+    }
 
     // --- Options UI Elements ---
     const tenseWeightsContainer = document.getElementById('tense-weights-container');
     const verbPoolBasicContainer = document.getElementById('verb-pool-basic-container');
+    const verbSetContainer = document.getElementById('verb-set-container');
     const advancedPracticeContainer = document.getElementById('advanced-practice-container');
     const currentDrillCard = document.getElementById('current-drill-card');
     const savedDrillsGroup = document.getElementById('saved-drills-group');
@@ -3159,7 +4576,9 @@ document.addEventListener('DOMContentLoaded', () => {
         balancedPronouns: false, // When true, all 9 pronouns get equal weight
         useMicToAnswer: false, // When true, the mic answers before reveal instead of practicing after reveal.
         showUsageNugget: false,
+        cardTypeMode: 'conjugation', // 'conjugation' | 'both' | 'frame'
         reflexiveMode: 'include', // 'include' = both, 'only' = reflexive only, 'exclude' = no reflexive
+        prepositionalVerbMode: 'all', // 'all' | 'only'
         tenseWeights,
         frequencyWeights,
         // New filters (objects: true = included)
@@ -3168,6 +4587,7 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryFilter: 'all',   // 'all' | one of classifyFrenchVerb categories
         // TODO(Filter): Consider allowing multiple categories (multi-select) and store as array.
     };
+    window.cardGenerationOptions = cardGenerationOptions;
 
     // --- Lightweight local review-priority model ---
     // This is intentionally not a classic spaced-repetition scheduler.
@@ -3502,11 +4922,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof savedOptions.showUsageNugget === 'boolean') {
                     cardGenerationOptions.showUsageNugget = savedOptions.showUsageNugget;
                 }
+                if (savedOptions.cardTypeMode) {
+                    cardGenerationOptions.cardTypeMode = normalizeCardTypeMode(savedOptions.cardTypeMode);
+                }
                 if (savedOptions.reflexiveMode) {
                     cardGenerationOptions.reflexiveMode = savedOptions.reflexiveMode;
                 } else if (typeof savedOptions.includeReflexive === 'boolean') {
                     // migrate old boolean
                     cardGenerationOptions.reflexiveMode = savedOptions.includeReflexive ? 'include' : 'exclude';
+                }
+                if (savedOptions.prepositionalVerbMode === 'only') {
+                    cardGenerationOptions.prepositionalVerbMode = 'only';
+                } else {
+                    cardGenerationOptions.prepositionalVerbMode = 'all';
                 }
 
                 // Update weights by merging into the existing objects
@@ -3541,6 +4969,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof savedOptions.categoryFilter === 'string') {
                     cardGenerationOptions.categoryFilter = savedOptions.categoryFilter;
                 }
+                if (Array.isArray(savedOptions.selectedVerbSetIds)) {
+                    cardGenerationOptions.selectedVerbSetIds = savedOptions.selectedVerbSetIds.map((id) => String(id)).filter(Boolean);
+                } else if (savedOptions.selectedVerbSetId) {
+                    cardGenerationOptions.selectedVerbSetIds = [String(savedOptions.selectedVerbSetId)];
+                } else {
+                    cardGenerationOptions.selectedVerbSetIds = [];
+                }
+                cardGenerationOptions.sharedVerbSet = normalizeEmbeddedVerbSet(savedOptions.sharedVerbSet);
             }
         } catch (e) {
             console.warn("Could not load options from localStorage:", e);
@@ -3724,11 +5160,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // and, if enabled, has practice sentences (gap_sentence) in at least one enabled tense.
     const computeActiveVerbPoolCount = () => {
         try {
+    const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
+    const candidateVerbs = getResolvedVerbUniverse(cardGenerationOptions);
             const {
                 frequencyWeights = {},
                 regularityFilter = { regular: true, irregular: true },
                 endingFilter = { er: true, ir: true, re: true, other: true },
                 categoryFilter = 'all',
+                prepositionalVerbMode = 'all',
                 verbsWithSentencesOnly = false,
                 tenseWeights = {}
             } = cardGenerationOptions || {};
@@ -3738,7 +5177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .filter(([, w]) => (w || 0) > 0)
                     .map(([f]) => f)
             );
-            if (activeFrequencies.size === 0) return 0;
+            if (!activeVerbSet && activeFrequencies.size === 0) return 0;
 
             const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
             const getEnding = (inf) => {
@@ -3759,6 +5198,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
                     if (cat !== categoryFilter) return false;
                 }
+                if (prepositionalVerbMode === 'only' && !verbsWithPrepositionalFrames.has(verbInfo.infinitive)) return false;
                 return true;
             };
             const hasPracticeSentences = (inf) => {
@@ -3778,13 +5218,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             let count = 0;
-            for (const v of uniqueVerbs) {
-                // In reflexive-only mode, bypass frequency filter — count all reflexive verbs
-                if (cardGenerationOptions.reflexiveMode !== 'only') {
+            for (const v of candidateVerbs) {
+                if (!activeVerbSet && cardGenerationOptions.reflexiveMode !== 'only') {
                     const freq = v.frequency || 'common';
                     if (!activeFrequencies.has(freq)) continue;
                 }
-                if (!passesFilters(v)) continue;
+                if (!activeVerbSet && !passesFilters(v)) continue;
                 if (!hasPracticeSentences(v.infinitive)) continue;
                 count++;
             }
@@ -3800,7 +5239,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById('verb-filters-count');
         if (!el) return;
         const n = computeActiveVerbPoolCount();
-        el.textContent = `In play: ${n} verbs`;
+        const activeVerbSet = getResolvedVerbSetSelection();
+        const categoryCount = activeVerbSet?.selectionCount || (activeVerbSet ? 1 : 0);
+        el.textContent = activeVerbSet
+            ? `In play: ${n} verbs from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'}`
+            : `In play: ${n} verbs`;
     };
     // --- Audio Synthesis ---
     // Use generic speechLang for speech synthesis, and allow user-selected voice
@@ -3872,7 +5315,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Flashcard Logic ---
     const removeAccents = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    const cardKey = (card) => `${card.verb?.infinitive}|${card.tense}|${card.pronoun}`;
+    const cardKey = (card) => card?.isFrameCard
+        ? `frame|${card.frameId || `${card.verb?.infinitive}|${card.pronoun}`}`
+        : `${card.verb?.infinitive}|${card.tense}|${card.pronoun}`;
 
     const performWeightedSelection = (weightedItems, options = {}) => {
         if (!weightedItems || weightedItems.length === 0) return null;
@@ -3902,8 +5347,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const generateNewCard = (options = {}) => {
-        const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { er: true, ir: true, re: true, other: true }, categoryFilter = 'all' } = options;
-    const sentenceFilterEnabled = ENABLE_LEGACY_SENTENCE_DATA && verbsWithSentencesOnly;
+        const activeVerbSet = getResolvedVerbSetSelection(options);
+        const baseVerbUniverse = getResolvedVerbUniverse(options);
+        const {
+            hierarchical = false,
+            tenseWeights = {},
+            frequencyWeights = {},
+            verbsWithSentencesOnly = false,
+            regularityFilter = { regular: true, irregular: true },
+            endingFilter = { er: true, ir: true, re: true, other: true },
+            categoryFilter = 'all',
+            cardTypeMode = 'conjugation',
+            reflexiveMode = 'include',
+            prepositionalVerbMode = 'all',
+        } = options;
+        const resolvedCardTypeMode = normalizeCardTypeMode(cardTypeMode);
+        const sentenceFilterEnabled = ENABLE_LEGACY_SENTENCE_DATA && verbsWithSentencesOnly;
 
         // Helpers for filters
         const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
@@ -3914,8 +5373,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return 'other';
         };
         const passesFilters = (verbInfo) => {
-            if (cardGenerationOptions.reflexiveMode === 'only' && !verbInfo.reflexive) return false;
-            if (cardGenerationOptions.reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
+            if (reflexiveMode === 'only' && !verbInfo.reflexive) return false;
+            if (reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
             // Regularity
             const irreg = isIrregular(verbInfo.infinitive);
             if (irreg && !regularityFilter.irregular) return false;
@@ -3928,6 +5387,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
                 if (cat !== categoryFilter) return false;
             }
+            if (prepositionalVerbMode === 'only' && !verbsWithPrepositionalFrames.has(verbInfo.infinitive)) return false;
             return true;
         };
 
@@ -3958,76 +5418,107 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        let newCard = null;
+        const buildFrameDeck = () => {
+            const candidateVerbIds = new Set(
+                baseVerbUniverse
+                    .filter((verbInfo) => activeVerbSet || passesFilters(verbInfo))
+                    .map((verbInfo) => verbInfo.infinitive)
+            );
 
-        if (hierarchical) {
+            return playableVerbFrames
+                .filter((entry) => candidateVerbIds.has(entry.verb))
+                .map((entry) => {
+                    const verbInfo = uniqueVerbByInfinitive.get(entry.verb);
+                    if (!verbInfo) return null;
+                    const score = activeVerbSet || reflexiveMode === 'only'
+                        ? 1
+                        : (frequencyWeights[verbInfo.frequency || 'common'] || 0);
+                    if (score <= 0) return null;
+                    const card = buildFramePracticeCard(entry);
+                    if (!card) return null;
+                    return { card, score };
+                })
+                .filter(Boolean);
+        };
+
+        let newCard = null;
+        let conjugationCard = null;
+        let frameCard = null;
+
+        if (resolvedCardTypeMode !== 'frame' && hierarchical) {
             // ...existing code...
-            // In reflexive-only mode, bypass frequency selection — use all reflexive verbs
+            // In reflexive-only mode or an active verb set, bypass frequency selection.
             let verbsInFrequency;
-            if (cardGenerationOptions.reflexiveMode === 'only') {
-                verbsInFrequency = uniqueVerbs.filter(passesFilters);
+            if (activeVerbSet) {
+                verbsInFrequency = [...baseVerbUniverse];
+            } else if (reflexiveMode === 'only') {
+                verbsInFrequency = baseVerbUniverse.filter(passesFilters);
             } else {
                 const weightedFrequencies = Object.entries(frequencyWeights)
                     .map(([freq, score]) => ({ card: freq, score: score }))
                     .filter(item => item.score > 0);
-                if (weightedFrequencies.length === 0) return null;
-                const selectedFrequency = performWeightedSelection(weightedFrequencies);
-                if (!selectedFrequency) return null;
-                verbsInFrequency = uniqueVerbs.filter(v => (v.frequency || 'common') === selectedFrequency);
+                if (weightedFrequencies.length === 0) {
+                    verbsInFrequency = [];
+                } else {
+                    const selectedFrequency = performWeightedSelection(weightedFrequencies);
+                    verbsInFrequency = selectedFrequency
+                        ? baseVerbUniverse.filter(v => (v.frequency || 'common') === selectedFrequency)
+                        : [];
+                }
             }
             // Exclude verbs with no real English translation
             verbsInFrequency = verbsInFrequency.filter(v => cleanTranslation(v.infinitive, v.translation || ''));
-            // Apply new filters
-            verbsInFrequency = verbsInFrequency.filter(passesFilters);
+            if (!activeVerbSet) {
+                verbsInFrequency = verbsInFrequency.filter(passesFilters);
+            }
             if (sentenceFilterEnabled) {
                 verbsInFrequency = verbsInFrequency.filter(v => verbHasSentences(v.infinitive));
             }
-            if (verbsInFrequency.length === 0) return null;
+            if (verbsInFrequency.length > 0) {
+                const weightedDeck = [];
+                for (const tenseName in tenses) {
+                    const tenseWeight = tenseWeights[tenseName] || 0;
+                    if (tenseWeight === 0) continue;
 
-            const weightedDeck = [];
-            for (const tenseName in tenses) {
-                const tenseWeight = tenseWeights[tenseName] || 0;
-                if (tenseWeight === 0) continue;
-
-                for (const verbInfo of verbsInFrequency) {
-                    const tenseData = tenses[tenseName];
-                    const conjugations = tenseData && tenseData[verbInfo.infinitive];
-                    if (conjugations) {
-                        const pronounEntries = buildFlashcardPronounEntries(verbInfo.infinitive, conjugations, {
-                            balancedPronouns: cardGenerationOptions.balancedPronouns,
-                        });
-                        for (const pronounEntry of pronounEntries) {
-                            weightedDeck.push({
-                                card: {
-                                    verb: verbInfo,
-                                    tense: tenseName,
-                                    pronoun: pronounEntry.pronoun,
-                                    pronounKey: pronounEntry.pronounKey,
-                                    conjugated: pronounEntry.conjugated,
-                                },
-                                score: tenseWeight
+                    for (const verbInfo of verbsInFrequency) {
+                        const tenseData = tenses[tenseName];
+                        const conjugations = tenseData && tenseData[verbInfo.infinitive];
+                        if (conjugations) {
+                            const pronounEntries = buildFlashcardPronounEntries(verbInfo.infinitive, conjugations, {
+                                balancedPronouns: cardGenerationOptions.balancedPronouns,
                             });
+                            for (const pronounEntry of pronounEntries) {
+                                weightedDeck.push({
+                                    card: {
+                                        verb: verbInfo,
+                                        tense: tenseName,
+                                        pronoun: pronounEntry.pronoun,
+                                        pronounKey: pronounEntry.pronounKey,
+                                        conjugated: pronounEntry.conjugated,
+                                    },
+                                    score: tenseWeight
+                                });
+                            }
                         }
                     }
                 }
+                conjugationCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
             }
-            newCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
 
-        } else {
+        } else if (resolvedCardTypeMode !== 'frame') {
             // ...existing code...
             const weightedDeck = [];
             for (const tenseName in tenses) {
                 const tenseWeight = tenseWeights[tenseName] || 0;
                 if (tenseWeight === 0) continue;
 
-                for (const verbInfo of uniqueVerbs) {
-                    // Apply new filters
-                    if (!passesFilters(verbInfo)) continue;
+                for (const verbInfo of baseVerbUniverse) {
+                    if (!activeVerbSet && !passesFilters(verbInfo)) continue;
                     if (sentenceFilterEnabled && !verbHasSentences(verbInfo.infinitive)) {
                         continue;
                     }
-                    // In reflexive-only mode, bypass frequency weights — use all reflexive verbs equally
-                    const freqWeight = cardGenerationOptions.reflexiveMode === 'only'
+                    // In reflexive-only mode or with an active verb set, use the exact pool equally.
+                    const freqWeight = activeVerbSet || reflexiveMode === 'only'
                         ? 1
                         : (frequencyWeights[verbInfo.frequency || 'common'] || 0);
                     const score = tenseWeight * freqWeight;
@@ -4054,7 +5545,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
-            newCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
+            conjugationCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
+        }
+
+        if (resolvedCardTypeMode !== 'conjugation') {
+            frameCard = performWeightedSelection(applyReviewModelToWeightedDeck(buildFrameDeck()), { allowRecentCardBlocking: true });
+        }
+
+        if (resolvedCardTypeMode === 'both') {
+            const familyDeck = [];
+            if (conjugationCard) familyDeck.push({ card: 'conjugation', score: 1 });
+            if (frameCard) familyDeck.push({ card: 'frame', score: 1 });
+            const selectedFamily = performWeightedSelection(familyDeck, { allowRecentCardBlocking: false });
+            if (selectedFamily === 'frame') {
+                newCard = frameCard;
+            } else if (selectedFamily === 'conjugation') {
+                newCard = conjugationCard;
+            }
+        } else if (resolvedCardTypeMode === 'frame') {
+            newCard = frameCard;
+        } else {
+            newCard = conjugationCard;
         }
 
         if (!newCard) {
@@ -4140,7 +5651,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const updateHashParams = (card) => {
-        if (card.verb) {
+        if (card?.isFrameCard) {
+            window.location.hash = '';
+        } else if (card.verb) {
             const params = new URLSearchParams();
             params.set('pronoun', card.pronoun);
             params.set('verb', card.verb.infinitive);
@@ -4173,6 +5686,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- PHRASE MODE ---
         const isPhraseMode = card.isPhraseMode || (!card.verb && card.phrase);
         const answerContainerConjugatedLine = document.querySelector("#answer-contsainer .conjugated-line");
+        if (answerContainer) {
+            answerContainer.classList.remove('frame-card-inline', 'frame-card-revealed', 'frame-card-transitioning');
+        }
+        if (conjugatedVerbEl) {
+            conjugatedVerbEl.classList.remove('frame-card-inline-text');
+            conjugatedVerbEl.title = 'Tap to hear';
+            conjugatedVerbEl.setAttribute('aria-label', 'Hear conjugation');
+        }
         
         if (isPhraseMode) {
             // Hide all verb-specific UI elements robustly
@@ -4252,6 +5773,81 @@ document.addEventListener('DOMContentLoaded', () => {
             if (verbIrregularEl) { verbIrregularEl.style.display = ''; }
             if (conjugatedVerbEl) { conjugatedVerbEl.style.display = ''; }
         }
+
+        if (card.isFrameCard) {
+            const verbFrequency = card.verb.frequency || 'common';
+            const rawTranslation = cleanTranslation(card.verb.infinitive, card.verb.translation || '');
+            let translation = rawTranslation;
+            if (translation && !/^to\s/i.test(translation)) {
+                translation = 'to ' + translation;
+            }
+            verbInfinitiveEl.textContent = card.verb.infinitive;
+            verbInfinitiveEl.classList.add('tappable-audio');
+            verbInfinitiveEl.dataset.audioId = lemmaAudioId(card.verb.infinitive);
+            verbInfinitiveEl.dataset.speak = card.verb.infinitive;
+            verbTranslationEl.textContent = translation || '';
+            if (verbHintEl) verbHintEl.textContent = card.verb.hint || '';
+            if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^[\(|\)]/g, '');
+            if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
+            if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = '';
+
+            const normalizedVerbFrequency = normalizeFrequencyKey(verbFrequency) || String(verbFrequency || '').trim();
+            const frequencyText = formatFrequencyLabel(normalizedVerbFrequency);
+            verbFrequencyEl.textContent = frequencyText;
+            verbFrequencyEl.className = 'meta-info frequency-tag';
+            verbFrequencyEl.classList.add((normalizedVerbFrequency || 'common').replace(/\s+/g, '-'));
+
+            if (verbCategoryEl) {
+                const category = (card.verb && card.verb.category) ? card.verb.category : classifyFrenchVerb(card.verb.infinitive);
+                verbCategoryEl.textContent = category;
+                verbCategoryEl.className = 'meta-info category-tag';
+            }
+            if (IRREGULAR_VERBS.has(card.verb.infinitive)) {
+                verbIrregularEl.style.display = 'block';
+            } else {
+                verbIrregularEl.style.display = 'none';
+            }
+
+            verbPronounEl.textContent = '';
+            verbPronounEl.style.display = 'none';
+            verbTenseEl.textContent = 'présent';
+            verbTenseEl.className = 'meta-info';
+
+            updateFrameCardInlineState(card, false);
+
+            questionPhraseEl.innerHTML = '';
+            questionPhraseEl.removeAttribute('aria-label');
+            questionPhraseEl.classList.remove('tappable-audio', 'flashcard-task-prompt', 'idle-nudge-active', 'frame-card-question');
+            questionPhraseEl.style.display = 'none';
+            questionPhraseEl.style.top = '';
+
+            verbPhraseEl.innerHTML = '';
+            verbPhraseEl.classList.remove('tappable-audio');
+            verbPhraseEl.dataset.audioId = '';
+            verbPhraseEl.dataset.speak = '';
+            verbPhraseEl.style.display = 'none';
+            currentCard.chosenPhrase = null;
+
+            const nuggetEl = document.getElementById('usage-nugget');
+            if (nuggetEl) {
+                nuggetEl.style.display = 'none';
+                currentCard._hasUsages = renderVerbUsagePanel(nuggetEl, card.verb.infinitive) > 0;
+            }
+            syncUsageNuggetVisibility();
+            refreshContextAudioButton();
+            refreshAnswerFlowButton();
+            refreshDictationButton();
+            renderTutorialHint();
+
+            const autosayOn = getScopedStorageItem('autosay-enabled') === 'true';
+            if (autosayOn) {
+                const prompt = getFrenchPrompt(card);
+                speak(prompt);
+            }
+            void ensureAutomaticPackagedTtsDownload();
+            syncAppInstallUi();
+            return;
+        }
         // --- VERB CARD LOGIC ---
         const verbFrequency = card.verb.frequency || 'common'; 
         const rawTranslation = cleanTranslation(card.verb.infinitive, card.verb.translation || '');
@@ -4309,7 +5905,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             verbIrregularEl.style.display = 'none';
         }
-        let answerText = window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated);
+        let answerText = getCardAnswerText(card);
         conjugatedVerbEl.textContent = answerText;
         conjugatedVerbEl.classList.add('tappable-audio');
         conjugatedVerbEl.dataset.audioId = conjugationAudioId(card.verb.infinitive, card.tense, card.pronounKey || card.pronoun);
@@ -4317,7 +5913,7 @@ document.addEventListener('DOMContentLoaded', () => {
         verbPhraseEl.innerHTML = '';
         questionPhraseEl.innerHTML = '';
         verbPhraseEl.classList.remove('tappable-audio');
-        questionPhraseEl.classList.remove('tappable-audio');
+        questionPhraseEl.classList.remove('tappable-audio', 'frame-card-question');
         questionPhraseEl.style.display = 'none';
         currentCard.chosenPhrase = null;
 
@@ -4355,6 +5951,9 @@ document.addEventListener('DOMContentLoaded', () => {
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
             if (window.incrementDailyCount) window.incrementDailyCount();
+            if (currentCard?.isFrameCard) {
+                updateFrameCardInlineState(currentCard, true);
+            }
             // In phrase mode, show the French sentence now
             if (currentCard && !currentCard.verb) {
                 const phraseSpan = document.getElementById('phrase-french-sentence');
@@ -4370,13 +5969,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const hideAnswer = () => {
+    const hideAnswer = (options = {}) => {
+        const { suppressFramePrompt = false } = options;
+        if (answerContainer) {
+            answerContainer.classList.toggle('frame-card-transitioning', !!(suppressFramePrompt && currentCard?.isFrameCard));
+        }
         answerContainer.classList.remove('is-visible');
         // Show question phrase again if it was visible before (now they are siblings)
         if (ENABLE_GAP_SENTENCES && currentCard && currentCard.chosenPhrase && currentCard.chosenPhrase.gap_sentence) {
             questionPhraseEl.style.display = 'block';
         }
         isAnswerVisible = false;
+        if (currentCard?.isFrameCard) {
+            updateFrameCardInlineState(currentCard, false);
+        }
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
         refreshAnswerFlowButton();
@@ -4429,8 +6035,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 backBtn.disabled = historyIndex === 0;
             } else {
                 // No card could be generated — show a hint on the card face
-                if (verbInfinitiveEl) verbInfinitiveEl.textContent = 'No verbs match current filters';
-                if (verbTranslationEl) { verbTranslationEl.textContent = 'Adjust settings to continue'; verbTranslationEl.style.display = 'block'; }
+                const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
+                if (verbInfinitiveEl) {
+                    verbInfinitiveEl.textContent = activeVerbSet
+                        ? `No verbs match "${activeVerbSet.name}"`
+                        : 'No verbs match current filters';
+                }
+                if (verbTranslationEl) {
+                    verbTranslationEl.textContent = activeVerbSet
+                        ? 'Try different tenses or switch verb sets'
+                        : 'Adjust settings to continue';
+                    verbTranslationEl.style.display = 'block';
+                }
                 console.warn('generateNewCard returned null — check frequency weights and filters');
             }
         }
@@ -4444,7 +6060,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tutorialState.active && !isTutorialDeferredForSharedEntry()) {
                 completeTutorialIfNeeded();
             }
-            hideAnswer();
+            hideAnswer({ suppressFramePrompt: true });
             setTimeout(() => {
                 nextCard();
             }, 300);
@@ -4455,7 +6071,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handlePrev = () => {
         if (isAnswerVisible) {
-            hideAnswer();
+            hideAnswer({ suppressFramePrompt: true });
             setTimeout(prevCard, 300);
         } else {
             prevCard();
@@ -5007,22 +6623,15 @@ document.addEventListener('DOMContentLoaded', () => {
             verbDetailContainer.appendChild(tenseBlock);
         });
 
-        const corePatternSection = document.createElement('section');
-        const corePatternCount = renderVerbCorePatterns(corePatternSection, verb.infinitive, {
-            sectionClass: 'verb-core-patterns-detail-section',
-            heading: 'Core patterns',
-        });
-        if (corePatternCount > 0) {
-            verbDetailContainer.appendChild(corePatternSection);
-        }
-
-        const usageSection = document.createElement('section');
-        const usageCount = renderVerbUsages(usageSection, verb.infinitive, {
+        const usagePanelSection = document.createElement('section');
+        const usagePanelCount = renderVerbUsagePanel(usagePanelSection, verb.infinitive, {
             sectionClass: 'verb-usages-detail-section',
-            heading: 'Usages & examples',
+            coreHeading: 'Core patterns',
+            verbSetUsageHeading: 'Set-specific usages',
+            usageHeading: 'Usages & examples',
         });
-        if (usageCount > 0) {
-            verbDetailContainer.appendChild(usageSection);
+        if (usagePanelCount > 0) {
+            verbDetailContainer.appendChild(usagePanelSection);
         }
 
         // After populating, scroll to the focused tense if provided
@@ -5247,6 +6856,40 @@ document.addEventListener('DOMContentLoaded', () => {
             card.appendChild(heading);
             return card;
         };
+        const createSegmentedPillRow = (labelText, helperText, options, activeValue, onSelect) => {
+            const row = document.createElement('div');
+            row.className = 'toggle-row';
+            row.style.marginTop = '0.4rem';
+
+            const pills = options.map(({ value, label }) => (
+                `<button class="reflexive-pill${activeValue === value ? ' active' : ''}" data-value="${escapeHtml(value)}">${escapeHtml(label)}</button>`
+            )).join('');
+
+            row.innerHTML = `
+                <div class="settings-row-copy">
+                    <label style="margin:0;">${escapeHtml(labelText)}</label>
+                    ${helperText ? `<p class="setting-helper-text">${escapeHtml(helperText)}</p>` : ''}
+                </div>
+                <div class="reflexive-mode-pills">
+                    ${pills}
+                </div>`;
+
+            row.querySelectorAll('.reflexive-pill').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const nextValue = btn.dataset.value || '';
+                    onSelect(nextValue);
+                    row.querySelectorAll('.reflexive-pill').forEach((pill) => pill.classList.toggle('active', pill === btn));
+                });
+            });
+            return row;
+        };
+        const activeVerbSetSelection = getResolvedVerbSetSelection();
+        const activeVerbSetSelections = getResolvedVerbSetSelections();
+        const activeVerbSetIds = new Set(activeVerbSetSelections.map((selection) => selection.id).filter(Boolean));
+        const verbSetGroup = document.getElementById('verb-set-group');
+        if (verbSetGroup instanceof HTMLDetailsElement && activeVerbSetSelection) {
+            verbSetGroup.open = true;
+        }
 
         tenseWeightsContainer.innerHTML = '';
         Object.keys(tenses).forEach((tense) => {
@@ -5286,12 +6929,122 @@ document.addEventListener('DOMContentLoaded', () => {
             verbPoolBasicContainer.appendChild(verbPoolPanel);
         }
 
+        if (verbSetContainer) {
+            verbSetContainer.innerHTML = '';
+            const panel = document.createElement('div');
+            panel.className = 'verb-set-panel';
+
+            const grid = document.createElement('div');
+            grid.className = 'verb-set-grid';
+
+            const allCard = document.createElement('button');
+            allCard.type = 'button';
+            allCard.className = `verb-set-card${activeVerbSetSelection ? '' : ' active'}`;
+            allCard.innerHTML = `
+                <span class="verb-set-card-title">All verbs</span>
+                <span class="verb-set-card-meta">Use the regular Top N pool.</span>
+            `;
+            allCard.addEventListener('click', () => clearVerbSetSelection());
+            grid.appendChild(allCard);
+
+            builtInVerbSets.forEach((set) => {
+                const isActive = activeVerbSetIds.has(set.id);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `verb-set-card${isActive ? ' active' : ''}`;
+                card.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
+                    <span class="verb-set-card-meta">${escapeHtml(set.scope || 'Built-in')} · ${set.verbs.length} verbs</span>
+                `;
+                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                grid.appendChild(card);
+            });
+
+            savedVerbSets.forEach((set) => {
+                const isActive = activeVerbSetIds.has(set.id);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `verb-set-card${isActive ? ' active' : ''}`;
+                card.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
+                    <span class="verb-set-card-meta">Saved · ${set.verbs.length} verbs</span>
+                    <span class="verb-set-card-actions">
+                        <span class="verb-set-card-action" data-action="edit">Edit</span>
+                        <span class="verb-set-card-action" data-action="delete">Delete</span>
+                    </span>
+                `;
+                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                card.querySelector('[data-action="edit"]')?.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    openVerbSetModal({ mode: 'edit', setId: set.id });
+                });
+                card.querySelector('[data-action="delete"]')?.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    deleteVerbSetById(set.id);
+                });
+                grid.appendChild(card);
+            });
+
+            if (activeVerbSetSelection?.source === 'shared') {
+                const sharedCard = document.createElement('button');
+                sharedCard.type = 'button';
+                sharedCard.className = 'verb-set-card active shared-set-card';
+                sharedCard.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(activeVerbSetSelection.name)}</span>
+                    <span class="verb-set-card-meta">Shared set · ${activeVerbSetSelection.count} verbs</span>
+                `;
+                grid.appendChild(sharedCard);
+            }
+
+            const newSetCard = document.createElement('button');
+            newSetCard.type = 'button';
+            newSetCard.className = 'verb-set-card new-set-card';
+            newSetCard.innerHTML = `
+                <span class="verb-set-card-title">New category</span>
+                <span class="verb-set-card-meta">Paste a list of infinitives.</span>
+            `;
+            newSetCard.addEventListener('click', () => openVerbSetModal({ mode: 'create' }));
+            grid.appendChild(newSetCard);
+
+            panel.appendChild(grid);
+
+            const summary = document.createElement('div');
+            summary.className = 'verb-set-summary';
+            const categoryCount = activeVerbSetSelection?.selectionCount || (activeVerbSetSelection ? 1 : 0);
+            summary.textContent = activeVerbSetSelection
+                ? `Exact pool active: ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} with ${activeVerbSetSelection.count} unique verbs. ${activeVerbSetSelection.scope ? `${activeVerbSetSelection.scope}. ` : ''}Tenses still apply.`
+                : 'When categories are active, their verbs are merged into one exact pool for drills and sharing.';
+            panel.appendChild(summary);
+
+            if (activeVerbSetSelection?.source === 'shared') {
+                const actionsRow = document.createElement('div');
+                actionsRow.className = 'verb-set-actions-row';
+                const saveSharedBtn = document.createElement('button');
+                saveSharedBtn.type = 'button';
+                saveSharedBtn.className = 'secondary-btn verb-set-secondary-btn';
+                saveSharedBtn.textContent = 'Save this verb set';
+                saveSharedBtn.addEventListener('click', () => {
+                    saveSharedVerbSetToLibrary(activeVerbSetSelection);
+                });
+                actionsRow.appendChild(saveSharedBtn);
+                panel.appendChild(actionsRow);
+            }
+
+            verbSetContainer.appendChild(panel);
+        }
+
         if (advancedPracticeContainer) {
             advancedPracticeContainer.innerHTML = '';
             const advancedSections = document.createElement('div');
             advancedSections.className = 'advanced-sections';
 
             const frequencyBehaviorCard = createAdvancedCard('Frequency behavior');
+            if (activeVerbSetSelection) {
+                const ignoredHelper = document.createElement('div');
+                ignoredHelper.className = 'advanced-action-helper';
+                ignoredHelper.textContent = `Verb set "${activeVerbSetSelection.name}" is active, so Top N settings below are currently ignored.`;
+                frequencyBehaviorCard.appendChild(ignoredHelper);
+            }
             frequencyBehaviorCard.appendChild(createToggleRow(
                 'Favor common verbs',
                 'When off, included verbs are practiced more evenly across the selected pool.',
@@ -5332,6 +7085,12 @@ document.addEventListener('DOMContentLoaded', () => {
             advancedSections.appendChild(freqCard);
 
             const practiceCard = createAdvancedCard('Practice filters');
+            if (activeVerbSetSelection) {
+                const filtersIgnoredHelper = document.createElement('div');
+                filtersIgnoredHelper.className = 'advanced-action-helper';
+                filtersIgnoredHelper.textContent = `Verb filters are ignored while "${activeVerbSetSelection.name}" is selected.`;
+                practiceCard.appendChild(filtersIgnoredHelper);
+            }
             practiceCard.appendChild(createToggleRow(
                 'Practice all pronouns evenly',
                 'Split grouped pronouns so they appear more evenly in the deck.',
@@ -5343,29 +7102,55 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             ));
 
-            const reflexiveRow = document.createElement('div');
-            reflexiveRow.className = 'toggle-row';
-            reflexiveRow.style.marginTop = '0.4rem';
-            const activeMode = cardGenerationOptions.reflexiveMode || 'include';
-            reflexiveRow.innerHTML = `
-                <div class="settings-row-copy">
-                    <label style="margin:0;">Reflexive verbs</label>
-                    <p class="setting-helper-text">Limit the drill to reflexives, exclude them, or mix both.</p>
-                </div>
-                <div class="reflexive-mode-pills" id="reflexive-mode-pills">
-                    <button class="reflexive-pill${activeMode==='exclude'?' active':''}" data-mode="exclude">Without</button>
-                    <button class="reflexive-pill${activeMode==='include'?' active':''}" data-mode="include">Both</button>
-                    <button class="reflexive-pill${activeMode==='only'?' active':''}" data-mode="only">Only</button>
-                </div>`;
-            reflexiveRow.querySelectorAll('.reflexive-pill').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    cardGenerationOptions.reflexiveMode = btn.dataset.mode;
-                    reflexiveRow.querySelectorAll('.reflexive-pill').forEach(b => b.classList.toggle('active', b === btn));
+            const cardFamilyRow = createSegmentedPillRow(
+                'Card family',
+                'Choose conjugation cards, frame cards, or both. Frame cards are present-only for now, and quarantined verbs stay excluded.',
+                [
+                    { value: 'conjugation', label: 'Conjugation' },
+                    { value: 'both', label: 'Both' },
+                    { value: 'frame', label: 'Frames' }
+                ],
+                normalizeCardTypeMode(cardGenerationOptions.cardTypeMode),
+                (value) => {
+                    cardGenerationOptions.cardTypeMode = normalizeCardTypeMode(value);
                     saveOptions();
                     updateVerbFiltersCountLabel();
-                });
-            });
+                }
+            );
+            practiceCard.appendChild(cardFamilyRow);
+
+            const reflexiveRow = createSegmentedPillRow(
+                'Reflexive verbs',
+                'Limit the drill to reflexives, exclude them, or mix both.',
+                [
+                    { value: 'exclude', label: 'Without' },
+                    { value: 'include', label: 'Both' },
+                    { value: 'only', label: 'Only' }
+                ],
+                cardGenerationOptions.reflexiveMode || 'include',
+                (value) => {
+                    cardGenerationOptions.reflexiveMode = value;
+                    saveOptions();
+                    updateVerbFiltersCountLabel();
+                }
+            );
             practiceCard.appendChild(reflexiveRow);
+
+            const prepositionRow = createSegmentedPillRow(
+                'Prepositional verbs',
+                'Keep all verbs, or only verbs that take a preposition in at least one playable frame.',
+                [
+                    { value: 'all', label: 'All' },
+                    { value: 'only', label: 'Only' }
+                ],
+                cardGenerationOptions.prepositionalVerbMode || 'all',
+                (value) => {
+                    cardGenerationOptions.prepositionalVerbMode = value === 'only' ? 'only' : 'all';
+                    saveOptions();
+                    updateVerbFiltersCountLabel();
+                }
+            );
+            practiceCard.appendChild(prepositionRow);
 
             const filtersSection = document.createElement('div');
             filtersSection.className = 'filters-section';
@@ -5544,14 +7329,27 @@ document.addEventListener('DOMContentLoaded', () => {
         playAudioTarget(lemmaAudioId(currentCard.verb.infinitive), currentCard.verb.infinitive);
     });
 
+    function playCurrentAnswerAudio() {
+        if (!currentCard || !currentCard.conjugated) return;
+        if (currentCard.isFrameCard) {
+            if (!isAnswerVisible) {
+                showAnswer();
+                return;
+            }
+            playAudioTarget(null, currentCard.frameFullAnswer || getCardAnswerText(currentCard));
+            return;
+        }
+        if (currentCard.pronoun) {
+            const audioText = getCardAnswerText(currentCard);
+            maybeWhisperHuhBefore(audioText, conjugationAudioId(currentCard.verb.infinitive, currentCard.tense, currentCard.pronounKey || currentCard.pronoun));
+            return;
+        }
+        playAudioTarget(null, currentCard.conjugated);
+    }
+
     conjugatedAudioBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (currentCard && currentCard.pronoun && currentCard.conjugated) {
-            let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
-            maybeWhisperHuhBefore(audioText, conjugationAudioId(currentCard.verb.infinitive, currentCard.tense, currentCard.pronounKey || currentCard.pronoun));
-        } else if (currentCard && currentCard.conjugated) {
-            playAudioTarget(null, currentCard.conjugated);
-        }
+        playCurrentAnswerAudio();
     });
 
     // Make infinitive tappable for audio (keyboard and click)
@@ -5575,13 +7373,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make conjugated verb tappable for audio (keyboard and click)
     function playConjugatedAudio() {
         if (shouldSuppressTapAudio()) return;
-        if (currentCard && currentCard.pronoun && currentCard.conjugated) {
-            let audioText = window.handleLanguageSpecificLastChange(currentCard.pronoun, currentCard.conjugated);
-            maybeWhisperHuhBefore(audioText, conjugationAudioId(currentCard.verb.infinitive, currentCard.tense, currentCard.pronounKey || currentCard.pronoun));
-            
-        } else if (currentCard && currentCard.conjugated) {
-            playAudioTarget(null, currentCard.conjugated);
-        }
+        playCurrentAnswerAudio();
     }
     conjugatedVerbEl.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -5802,9 +7594,51 @@ document.addEventListener('DOMContentLoaded', () => {
             closeInstallInstructionsModal();
         });
     }
+    if (verbSetModal) {
+        verbSetModal.addEventListener('click', (e) => {
+            if (e.target instanceof Element && e.target.closest('[data-close-verb-set-modal="true"]')) {
+                closeVerbSetModal();
+            }
+        });
+    }
+    if (verbSetModalCloseBtn) {
+        verbSetModalCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            closeVerbSetModal();
+        });
+    }
+    if (verbSetNameInput) {
+        verbSetNameInput.addEventListener('input', () => {
+            renderVerbSetValidation(verbSetVerbsInput?.value || '');
+        });
+    }
+    if (verbSetVerbsInput) {
+        verbSetVerbsInput.addEventListener('input', () => {
+            renderVerbSetValidation(verbSetVerbsInput.value);
+        });
+    }
+    if (verbSetModalSaveBtn) {
+        verbSetModalSaveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            saveVerbSetFromModal();
+        });
+    }
+    if (verbSetModalDeleteBtn) {
+        verbSetModalDeleteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!verbSetModalState.editingSetId) return;
+            const deletingId = verbSetModalState.editingSetId;
+            closeVerbSetModal();
+            deleteVerbSetById(deletingId);
+        });
+    }
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && appInstallModal && !appInstallModal.classList.contains('hidden')) {
             closeInstallInstructionsModal();
+        }
+        if (e.key === 'Escape' && verbSetModal && !verbSetModal.classList.contains('hidden')) {
+            closeVerbSetModal();
         }
         if (e.key === 'Escape') {
             closeAllVerbDetailShareMenus();
@@ -6459,6 +8293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ---------- DRILL SYSTEM ----------
 const DRILL_STORAGE_KEY = 'savedDrills';
+const VERB_SET_STORAGE_KEY = 'savedVerbSets';
 const LAST_DRILL_STORAGE_KEY = 'lastDrill';
 const STARTER_DRILL_ID = 'most-common';
 const DRILL_SHARE_VERSION = 1;
@@ -6468,14 +8303,282 @@ const DRILL_OPTION_KEYS = [
     'hierarchical',
     'balancedPronouns',
     'useMicToAnswer',
+    'cardTypeMode',
     'reflexiveMode',
+    'prepositionalVerbMode',
     'regularityFilter',
     'endingFilter',
     'categoryFilter',
+    'selectedVerbSetIds',
+    'sharedVerbSet',
 ];
 
 function deepClone(value) {
     return JSON.parse(JSON.stringify(value));
+}
+
+function makeVerbSetId() {
+    return `set_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function normalizeEmbeddedVerbSet(rawVerbSet) {
+    if (!rawVerbSet || typeof rawVerbSet !== 'object') return null;
+    const name = String(rawVerbSet.name || '').trim();
+    const scope = String(rawVerbSet.scope || '').trim();
+    const candidates = Array.isArray(rawVerbSet.verbs)
+        ? rawVerbSet.verbs.map((verb) => normalizeVerbSetVerbCandidate(verb)).filter(Boolean)
+        : [];
+    const seen = new Set();
+    const verbs = [];
+    candidates.forEach((candidate) => {
+        const canonical = verbSetLookupByNormalizedInfinitive.get(candidate);
+        if (!canonical || seen.has(canonical)) return;
+        seen.add(canonical);
+        verbs.push(canonical);
+    });
+    if (!name || verbs.length === 0) return null;
+    const topicUsages = {};
+    if (rawVerbSet.topicUsages && typeof rawVerbSet.topicUsages === 'object') {
+        Object.entries(rawVerbSet.topicUsages).forEach(([verbKey, rawEntries]) => {
+            const canonicalVerb = verbSetLookupByNormalizedInfinitive.get(normalizeVerbSetVerbCandidate(verbKey));
+            if (!canonicalVerb || !Array.isArray(rawEntries)) return;
+            const entries = rawEntries
+                .map((entry) => normalizeVerbSetUsageEntry(entry))
+                .filter(Boolean);
+            if (entries.length) {
+                topicUsages[canonicalVerb] = entries;
+            }
+        });
+    }
+    return { name, verbs, scope, topicUsages };
+}
+
+function getVerbSetValidationSummary(rawText) {
+    const candidates = parseVerbSetRawInput(rawText);
+    const validVerbs = [];
+    const notFound = [];
+    const seenValid = new Set();
+    candidates.forEach((candidate) => {
+        const canonical = verbSetLookupByNormalizedInfinitive.get(candidate);
+        if (!canonical) {
+            notFound.push(candidate);
+            return;
+        }
+        if (seenValid.has(canonical)) return;
+        seenValid.add(canonical);
+        validVerbs.push(canonical);
+    });
+    return {
+        candidates,
+        validVerbs,
+        notFound,
+        recognizedCount: validVerbs.length,
+        notFoundCount: notFound.length,
+    };
+}
+
+function formatVerbSetPreviewList(items, emptyText, limit = 24) {
+    if (!Array.isArray(items) || items.length === 0) return emptyText;
+    const shown = items.slice(0, limit).join(', ');
+    const remaining = items.length - Math.min(items.length, limit);
+    return remaining > 0 ? `${shown} + ${remaining} more` : shown;
+}
+
+function normalizeStoredVerbSet(rawSet) {
+    if (!rawSet || typeof rawSet !== 'object') return null;
+    const embedded = normalizeEmbeddedVerbSet(rawSet);
+    if (!embedded) return null;
+    const now = Date.now();
+    return {
+        id: String(rawSet.id || makeVerbSetId()),
+        name: embedded.name,
+        verbs: embedded.verbs,
+        scope: embedded.scope || '',
+        topicUsages: embedded.topicUsages || {},
+        createdAt: Number(rawSet.createdAt) || now,
+        updatedAt: Number(rawSet.updatedAt) || now,
+    };
+}
+
+function loadSavedVerbSets() {
+    try {
+        const raw = getScopedStorageItem(VERB_SET_STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        const sets = Array.isArray(parsed)
+            ? parsed
+            : Array.isArray(parsed?.sets)
+                ? parsed.sets
+                : [];
+        return sets
+            .map((set) => normalizeStoredVerbSet(set))
+            .filter(Boolean)
+            .sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    } catch (error) {
+        console.warn('Could not load saved verb sets:', error);
+        return [];
+    }
+}
+
+function persistSavedVerbSets() {
+    try {
+        setScopedStorageItem(VERB_SET_STORAGE_KEY, JSON.stringify({
+            version: 1,
+            sets: savedVerbSets,
+        }));
+    } catch (error) {
+        console.warn('Could not save verb sets:', error);
+    }
+}
+
+function getBuiltInVerbSetById(id) {
+    if (!id) return null;
+    return builtInVerbSets.find((set) => set.id === id) || null;
+}
+
+function getSavedVerbSetById(id) {
+    if (!id) return null;
+    return savedVerbSets.find((set) => set.id === id) || null;
+}
+
+function getAvailableVerbSetById(id) {
+    return getBuiltInVerbSetById(id) || getSavedVerbSetById(id);
+}
+
+function mergeVerbSetTopicUsages(selections) {
+    const merged = {};
+    (Array.isArray(selections) ? selections : []).forEach((selection) => {
+        if (!selection || !selection.topicUsages || typeof selection.topicUsages !== 'object') return;
+        Object.entries(selection.topicUsages).forEach(([verb, entries]) => {
+            if (!Array.isArray(entries) || !entries.length) return;
+            if (!merged[verb]) merged[verb] = [];
+            merged[verb].push(...entries);
+        });
+    });
+    return merged;
+}
+
+function getResolvedVerbSetSelections(options = cardGenerationOptions) {
+    if (!options || typeof options !== 'object') return null;
+    const selectedIds = Array.isArray(options.selectedVerbSetIds)
+        ? options.selectedVerbSetIds.map((id) => String(id)).filter(Boolean)
+        : options.selectedVerbSetId
+            ? [String(options.selectedVerbSetId)]
+            : [];
+    const selections = selectedIds
+        .map((id) => getAvailableVerbSetById(id))
+        .filter(Boolean)
+        .map((selectedSet) => ({
+            source: selectedSet.isBuiltIn ? 'builtin' : 'saved',
+            id: selectedSet.id,
+            name: selectedSet.name,
+            verbs: [...selectedSet.verbs],
+            scope: selectedSet.scope || '',
+            topicUsages: deepClone(selectedSet.topicUsages || {}),
+            count: selectedSet.verbs.length,
+        }));
+    if (selections.length) return selections;
+    const sharedSet = normalizeEmbeddedVerbSet(options.sharedVerbSet);
+    if (sharedSet) {
+        return [{
+            source: 'shared',
+            id: null,
+            name: sharedSet.name,
+            verbs: [...sharedSet.verbs],
+            scope: sharedSet.scope || '',
+            topicUsages: deepClone(sharedSet.topicUsages || {}),
+            count: sharedSet.verbs.length,
+        }];
+    }
+    return [];
+}
+
+function getResolvedVerbSetSelection(options = cardGenerationOptions) {
+    const selections = getResolvedVerbSetSelections(options);
+    if (!selections.length) return null;
+    if (selections.length === 1) return selections[0];
+    const uniqueVerbs = [...new Set(selections.flatMap((selection) => selection.verbs))];
+    const first = selections[0];
+    return {
+        source: 'multiple',
+        id: null,
+        name: `${first.name} + ${selections.length - 1} more`,
+        verbs: uniqueVerbs,
+        scope: `${selections.length} categories selected`,
+        topicUsages: mergeVerbSetTopicUsages(selections),
+        count: uniqueVerbs.length,
+        selectionCount: selections.length,
+        selections,
+    };
+}
+window.getResolvedVerbSetSelection = getResolvedVerbSetSelection;
+
+function getResolvedVerbUniverse(options = cardGenerationOptions) {
+    const selection = getResolvedVerbSetSelection(options);
+    if (!selection) return uniqueVerbs;
+    return selection.verbs
+        .map((verb) => uniqueVerbByInfinitive.get(verb))
+        .filter(Boolean);
+}
+
+function buildSharedVerbSetPayloadFromOptions(options = cardGenerationOptions) {
+    const selection = getResolvedVerbSetSelection(options);
+    return selection ? {
+        name: selection.name,
+        verbs: [...selection.verbs],
+        scope: selection.scope || '',
+        topicUsages: deepClone(selection.topicUsages || {}),
+    } : null;
+}
+
+function clearVerbSetSelection(options = {}) {
+    cardGenerationOptions.selectedVerbSetIds = [];
+    cardGenerationOptions.sharedVerbSet = null;
+    saveOptions(options);
+    populateOptions();
+}
+
+function toggleVerbSetSelection(setId) {
+    const target = getAvailableVerbSetById(setId);
+    if (!target) {
+        clearVerbSetSelection();
+        return;
+    }
+    const currentIds = Array.isArray(cardGenerationOptions.selectedVerbSetIds)
+        ? [...cardGenerationOptions.selectedVerbSetIds]
+        : [];
+    const alreadySelected = currentIds.includes(target.id);
+    cardGenerationOptions.selectedVerbSetIds = alreadySelected
+        ? currentIds.filter((id) => id !== target.id)
+        : [...currentIds, target.id];
+    cardGenerationOptions.sharedVerbSet = null;
+    saveOptions();
+    populateOptions();
+}
+
+function applySharedVerbSet(verbSet, options = {}) {
+    const normalized = normalizeEmbeddedVerbSet(verbSet);
+    if (!normalized) {
+        clearVerbSetSelection(options);
+        return;
+    }
+    cardGenerationOptions.selectedVerbSetIds = [];
+    cardGenerationOptions.sharedVerbSet = normalized;
+    saveOptions(options);
+    populateOptions();
+}
+
+function syncVerbSetSelectionAfterLibraryChange(options = {}) {
+    const selectedIds = Array.isArray(cardGenerationOptions.selectedVerbSetIds)
+        ? cardGenerationOptions.selectedVerbSetIds
+        : [];
+    const validIds = selectedIds.filter((id) => getAvailableVerbSetById(id));
+    if (validIds.length !== selectedIds.length) {
+        cardGenerationOptions.selectedVerbSetIds = validIds;
+        if (!options.skipSave) {
+            saveOptions({ preserveActiveDrill: true });
+        }
+    }
 }
 
 function normalizeFrequencyKey(value) {
@@ -6581,17 +8684,29 @@ function buildDrillCardOptions(overrides = {}) {
     const baseTenseWeights = buildEmptyTenseWeights();
     const baseFrequencyWeights = buildRangeFrequencyWeights('top50');
     const normalizedFrequencyWeights = normalizeFrequencyWeightsConfig(overrides.frequencyWeights || {});
+    const normalizedSharedVerbSet = normalizeEmbeddedVerbSet(overrides.sharedVerbSet);
+    const normalizedCardTypeMode = normalizeCardTypeMode(overrides.cardTypeMode);
     return {
         hierarchical: true,
         balancedPronouns: false,
         useMicToAnswer: false,
+        cardTypeMode: normalizedCardTypeMode,
         reflexiveMode: 'include',
+        prepositionalVerbMode: 'all',
         categoryFilter: 'all',
+        selectedVerbSetIds: [],
+        sharedVerbSet: null,
         ...overrides,
         tenseWeights: { ...baseTenseWeights, ...(overrides.tenseWeights || {}) },
         frequencyWeights: { ...baseFrequencyWeights, ...normalizedFrequencyWeights },
         regularityFilter: { regular: true, irregular: true, ...(overrides.regularityFilter || {}) },
         endingFilter: { er: true, ir: true, re: true, other: true, ...(overrides.endingFilter || {}) },
+        selectedVerbSetIds: Array.isArray(overrides.selectedVerbSetIds)
+            ? overrides.selectedVerbSetIds.map((id) => String(id)).filter(Boolean)
+            : overrides.selectedVerbSetId
+                ? [String(overrides.selectedVerbSetId)]
+                : [],
+        sharedVerbSet: normalizedSharedVerbSet,
     };
 }
 
@@ -6739,6 +8854,13 @@ let activePreset = "Custom";
 let activePresetKey = "builtin:custom";
 let presets = defaultPresets;
 let savedDrills = [];
+let savedVerbSets = [];
+let verbSetModalState = {
+    mode: 'create',
+    editingSetId: null,
+    scope: '',
+    topicUsages: {},
+};
 
 function getPresetKey(preset, source = 'builtin') {
     return `${source}:${preset.id || preset.name}`;
@@ -6752,9 +8874,12 @@ function loadSavedDrills() {
         return Array.isArray(parsed)
             ? parsed.map((drill) => {
                 const normalizedConfig = deepClone(drill.config || {});
-                const target = normalizedConfig.cardGenerationOptions || normalizedConfig;
-                if (target && typeof target === 'object' && target.frequencyWeights) {
-                    target.frequencyWeights = normalizeFrequencyWeightsConfig(target.frequencyWeights);
+                const target = normalizedConfig.cardGenerationOptions || normalizedConfig || {};
+                const normalizedOptions = buildDrillCardOptions(target);
+                if (normalizedConfig.cardGenerationOptions) {
+                    normalizedConfig.cardGenerationOptions = normalizedOptions;
+                } else {
+                    Object.assign(normalizedConfig, normalizedOptions);
                 }
                 return { ...drill, config: normalizedConfig };
             })
@@ -6771,6 +8896,135 @@ function persistSavedDrills() {
     } catch (error) {
         console.warn('Could not save drills:', error);
     }
+}
+
+function renderVerbSetValidation(rawText) {
+    if (!verbSetValidation) return null;
+    const summary = getVerbSetValidationSummary(rawText);
+    const validPreview = formatVerbSetPreviewList(summary.validVerbs, 'None yet');
+    const invalidPreview = formatVerbSetPreviewList(summary.notFound, 'Everything pasted is recognized so far.');
+    verbSetValidation.innerHTML = `
+        <div class="verb-set-validation-summary">
+            Recognized: <strong>${summary.recognizedCount}</strong> · Not found: <strong>${summary.notFoundCount}</strong>
+        </div>
+        <div class="verb-set-validation-groups">
+            <div class="verb-set-validation-group">
+                <div class="verb-set-validation-heading">Valid verbs</div>
+                <div class="verb-set-validation-list${summary.validVerbs.length ? '' : ' verb-set-validation-empty'}">${escapeHtml(validPreview)}</div>
+            </div>
+            <div class="verb-set-validation-group invalid">
+                <div class="verb-set-validation-heading">Not found</div>
+                <div class="verb-set-validation-list${summary.notFound.length ? '' : ' verb-set-validation-empty'}">${escapeHtml(invalidPreview)}</div>
+            </div>
+        </div>
+    `;
+    if (verbSetModalSaveBtn) {
+        verbSetModalSaveBtn.disabled = summary.recognizedCount === 0;
+    }
+    return summary;
+}
+
+function closeVerbSetModal() {
+    if (!verbSetModal) return;
+    verbSetModal.classList.add('hidden');
+    verbSetModalState = { mode: 'create', editingSetId: null, scope: '', topicUsages: {} };
+}
+
+function openVerbSetModal(options = {}) {
+    if (!verbSetModal || !verbSetNameInput || !verbSetVerbsInput) return;
+    const { mode = 'create', setId = null, initialVerbSet = null } = options;
+    const existingSet = setId ? getSavedVerbSetById(setId) : null;
+    const sourceSet = existingSet || normalizeEmbeddedVerbSet(initialVerbSet);
+    verbSetModalState = {
+        mode,
+        editingSetId: existingSet?.id || null,
+        scope: sourceSet?.scope || '',
+        topicUsages: deepClone(sourceSet?.topicUsages || {}),
+    };
+    verbSetModalTitle.textContent = existingSet ? 'Edit category' : 'New category';
+    verbSetModalText.textContent = 'Paste infinitives, comma-, semicolon-, or newline-separated to add your own category.';
+    verbSetNameInput.value = sourceSet?.name || '';
+    verbSetVerbsInput.value = sourceSet?.verbs?.join('\n') || '';
+    verbSetModalDeleteBtn?.classList.toggle('hidden', !existingSet);
+    renderVerbSetValidation(verbSetVerbsInput.value);
+    verbSetModal.classList.remove('hidden');
+    window.requestAnimationFrame(() => {
+        try {
+            verbSetNameInput.focus({ preventScroll: true });
+        } catch (error) {
+            verbSetNameInput.focus();
+        }
+        if (!verbSetNameInput.value && sourceSet?.name) {
+            verbSetNameInput.setSelectionRange(0, sourceSet.name.length);
+        }
+    });
+}
+
+function saveVerbSetFromModal() {
+    const validation = renderVerbSetValidation(verbSetVerbsInput?.value || '');
+    if (!validation || validation.recognizedCount === 0) {
+        window.alert('Add at least one recognized verb before saving.');
+        return;
+    }
+
+    const trimmedName = String(verbSetNameInput?.value || '').trim();
+    if (!trimmedName) {
+        window.alert('Give this category a name.');
+        return;
+    }
+
+    const existingSet = verbSetModalState.editingSetId
+        ? getSavedVerbSetById(verbSetModalState.editingSetId)
+        : null;
+    const now = Date.now();
+    const nextSet = {
+        id: existingSet?.id || makeVerbSetId(),
+        name: trimmedName,
+        verbs: validation.validVerbs,
+        scope: verbSetModalState.scope || existingSet?.scope || '',
+        topicUsages: deepClone(verbSetModalState.topicUsages || existingSet?.topicUsages || {}),
+        createdAt: existingSet?.createdAt || now,
+        updatedAt: now,
+    };
+
+    if (existingSet) {
+        savedVerbSets = savedVerbSets.map((set) => set.id === existingSet.id ? nextSet : set);
+    } else {
+        savedVerbSets = [nextSet, ...savedVerbSets];
+    }
+    savedVerbSets.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    persistSavedVerbSets();
+    cardGenerationOptions.selectedVerbSetIds = [nextSet.id];
+    cardGenerationOptions.sharedVerbSet = null;
+    saveOptions();
+    populateOptions();
+    closeVerbSetModal();
+}
+
+function deleteVerbSetById(setId) {
+    const target = getSavedVerbSetById(setId);
+    if (!target) return;
+    if (!window.confirm(`Delete category "${target.name}"?`)) return;
+    savedVerbSets = savedVerbSets.filter((set) => set.id !== setId);
+    persistSavedVerbSets();
+    if ((cardGenerationOptions.selectedVerbSetIds || []).includes(setId)) {
+        clearVerbSetSelection();
+    } else {
+        populateOptions();
+    }
+}
+
+function saveSharedVerbSetToLibrary(sharedSelection = getResolvedVerbSetSelection()) {
+    if (!sharedSelection || sharedSelection.source !== 'shared') return;
+    openVerbSetModal({
+        mode: 'create',
+        initialVerbSet: {
+            name: sharedSelection.name,
+            verbs: sharedSelection.verbs,
+            scope: sharedSelection.scope || '',
+            topicUsages: sharedSelection.topicUsages || {},
+        },
+    });
 }
 
 function getCustomPreset() {
@@ -6790,12 +9044,18 @@ function getCurrentDrillDisplayName() {
     return getActiveDrill()?.preset?.name || 'Custom';
 }
 
-function snapshotCurrentDrillConfig() {
+function snapshotCurrentDrillConfig(options = {}) {
+    const { forShare = false } = options;
     const snapshot = {};
     DRILL_OPTION_KEYS.forEach((key) => {
         if (cardGenerationOptions[key] === undefined) return;
         snapshot[key] = deepClone(cardGenerationOptions[key]);
     });
+    if (forShare) {
+        const sharedVerbSet = buildSharedVerbSetPayloadFromOptions(cardGenerationOptions);
+        snapshot.selectedVerbSetIds = [];
+        snapshot.sharedVerbSet = sharedVerbSet;
+    }
     return { cardGenerationOptions: snapshot };
 }
 
@@ -6815,7 +9075,7 @@ function summarizeFrequencyWeights(frequencyWeights = {}) {
 }
 
 function describeDrillConfig(config = {}) {
-    const options = config.cardGenerationOptions || config;
+    const options = buildDrillCardOptions(config.cardGenerationOptions || config);
     const tenseLabels = Object.entries(options.tenseWeights || {})
         .filter(([, value]) => value > 0)
         .map(([key]) => window.frenchTenseKeyToLabel?.[key] || key);
@@ -6825,12 +9085,30 @@ function describeDrillConfig(config = {}) {
             ? tenseLabels[0]
             : tenseLabels.slice(0, 2).join(' + ');
 
-    const parts = [tenseSummary || 'mixed tenses', summarizeFrequencyWeights(options.frequencyWeights || {})];
-    if (options.regularityFilter && options.regularityFilter.regular === false && options.regularityFilter.irregular !== false) {
+    const activeVerbSet = getResolvedVerbSetSelection(options);
+    const parts = [tenseSummary || 'mixed tenses'];
+    if (activeVerbSet) {
+        parts.push(
+            activeVerbSet.selectionCount && activeVerbSet.selectionCount > 1
+                ? `${activeVerbSet.selectionCount} categories · ${activeVerbSet.count} verbs`
+                : `${activeVerbSet.name} · ${activeVerbSet.count} verbs`
+        );
+    } else {
+        parts.push(summarizeFrequencyWeights(options.frequencyWeights || {}));
+    }
+    if (!activeVerbSet && options.regularityFilter && options.regularityFilter.regular === false && options.regularityFilter.irregular !== false) {
         parts.push('irregular focus');
     }
-    if (options.reflexiveMode === 'only') {
+    if (!activeVerbSet && options.reflexiveMode === 'only') {
         parts.push('reflexive only');
+    }
+    if (!activeVerbSet && options.prepositionalVerbMode === 'only') {
+        parts.push('prepositional verbs only');
+    }
+    if (options.cardTypeMode === 'frame') {
+        parts.push('frame cards only');
+    } else if (options.cardTypeMode === 'both') {
+        parts.push('includes frame cards');
     }
     return parts.join(' · ');
 }
@@ -6861,6 +9139,11 @@ function getSelectedVerbPoolRangeKey(frequencyWeights = cardGenerationOptions.fr
 }
 
 function getVerbPoolSummary() {
+    const activeVerbSet = getResolvedVerbSetSelection();
+    if (activeVerbSet) {
+        const categoryCount = activeVerbSet.selectionCount || 1;
+        return `Exact pool from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} · ${activeVerbSet.count} verbs · Top N and other verb filters are ignored`;
+    }
     const selectedRange = getSelectedVerbPoolRangeKey();
     const parts = [];
     parts.push(selectedRange ? `Including verbs through ${formatFrequencyLabel(selectedRange)}` : 'Using a custom frequency mix');
@@ -6877,10 +9160,15 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.hierarchical = resolved.hierarchical;
     cardGenerationOptions.balancedPronouns = resolved.balancedPronouns;
     cardGenerationOptions.useMicToAnswer = resolved.useMicToAnswer;
+    cardGenerationOptions.cardTypeMode = normalizeCardTypeMode(resolved.cardTypeMode);
     cardGenerationOptions.reflexiveMode = resolved.reflexiveMode;
+    cardGenerationOptions.prepositionalVerbMode = resolved.prepositionalVerbMode === 'only' ? 'only' : 'all';
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
     cardGenerationOptions.endingFilter = deepClone(resolved.endingFilter);
     cardGenerationOptions.categoryFilter = resolved.categoryFilter;
+    cardGenerationOptions.selectedVerbSetIds = [...(resolved.selectedVerbSetIds || [])];
+    cardGenerationOptions.sharedVerbSet = deepClone(resolved.sharedVerbSet);
+    syncVerbSetSelectionAfterLibraryChange({ skipSave: true });
 }
 
 function applyPreset(preset, options = {}) {
@@ -6913,10 +9201,14 @@ function resetTutorialPracticeBaseline() {
   cardGenerationOptions.balancedPronouns = false;
   cardGenerationOptions.useMicToAnswer = false;
   cardGenerationOptions.showUsageNugget = false;
+  cardGenerationOptions.cardTypeMode = 'conjugation';
   cardGenerationOptions.reflexiveMode = 'include';
+  cardGenerationOptions.prepositionalVerbMode = 'all';
   cardGenerationOptions.regularityFilter = { regular: true, irregular: true };
   cardGenerationOptions.endingFilter = { er: true, ir: true, re: true, other: true };
   cardGenerationOptions.categoryFilter = 'all';
+  cardGenerationOptions.selectedVerbSetIds = [];
+  cardGenerationOptions.sharedVerbSet = null;
 
   try {
     localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
@@ -7059,7 +9351,7 @@ function buildCurrentDrillPayload(options = {}) {
         name: options.name || currentPreset?.name || 'Custom',
         desc: options.desc ?? currentPreset?.desc ?? '',
         seed: options.seed || currentPreset?.seed || '',
-        config: snapshotCurrentDrillConfig(),
+        config: snapshotCurrentDrillConfig({ forShare: !!options.forShare }),
     };
 }
 
@@ -7076,7 +9368,7 @@ function shareCurrentDrill() {
         metadata = prompted;
     }
 
-    const payload = buildCurrentDrillPayload(metadata);
+    const payload = buildCurrentDrillPayload({ ...metadata, forShare: true });
     const encoded = encodeDrillPayload(payload);
     const url = `${window.location.origin}${window.location.pathname}#drill=${encoded}`;
     copyTextToClipboard(url)
@@ -7126,9 +9418,7 @@ function importSharedDrillFromHash() {
             return null;
         }
         const normalizedConfig = deepClone(payload.config);
-        if (normalizedConfig.cardGenerationOptions?.frequencyWeights) {
-            normalizedConfig.cardGenerationOptions.frequencyWeights = normalizeFrequencyWeightsConfig(normalizedConfig.cardGenerationOptions.frequencyWeights);
-        }
+        normalizedConfig.cardGenerationOptions = buildDrillCardOptions(normalizedConfig.cardGenerationOptions || {});
         const signature = hashString(JSON.stringify(normalizedConfig));
         const existing = savedDrills.find((drill) => hashString(JSON.stringify(drill.config)) === signature);
         if (existing) {
@@ -7205,6 +9495,8 @@ function updateCustomPresetFromUI() {
 // }
 
 savedDrills = loadSavedDrills();
+savedVerbSets = loadSavedVerbSets();
+syncVerbSetSelectionAfterLibraryChange({ skipSave: true });
 
 // On load, fill Custom from localStorage cardGenerationOptions
 const storedOptions = JSON.parse(localStorage.getItem(localStorageKey) || 'null');
