@@ -103,6 +103,33 @@ A_SURFACE_RE = re.compile(r"\b(?:à|au|aux)\b|à la\b|à l'", re.IGNORECASE)
 INITIAL_JE_VOWEL_RE = re.compile(r"^Je ([AEIOUÀÂÄÆÉÈÊËÎÏÔŒÖÙÛÜaeiouàâäæéèêëîïôœöùûü])")
 INITIAL_JE_MUTE_H_RE = re.compile(r"^Je (habill\w*)", re.IGNORECASE)
 SOURCE_PRIORITY = {"manual:": 5, "usage:": 4, "ai:": 3, "fallback:": 2}
+DIRECT_OBJECT_CONTEXT_RE = re.compile(
+    r"\b(?:demain|aujourd'hui|chaque|souvent|toujours|ici|là|partout|clairement|rapidement|doucement|beaucoup)\b"
+    r"|ce soir|ce matin|cette nuit",
+    re.IGNORECASE,
+)
+DIRECT_OBJECT_EXTRA_SURFACE_RE = re.compile(
+    r"\b(?:à|au|aux|de|du|des|avec|pour|sur|sous|dans|contre|chez|par|après|avant)\b|à l'|à la|de l'|de la|d'",
+    re.IGNORECASE,
+)
+RUTHLESS_BAD_SENTENCES = {
+    "elle apprend à ses élèves",
+    "elle bat son frère au tennis",
+    "il me casse les oreilles avec sa musique",
+    "il demande à marie",
+    "je dis du voisin qu'il est gentil",
+    "elle découvre un secret à paul",
+    "le professeur défend ce livre à ses élèves",
+    "il enseigne à ses élèves",
+    "il s'en fout de ton avis",
+    "elle frappe à la porte de marie",
+    "elle paie à marie",
+    "elle renvoie à son collègue",
+    "ils se parlent à marie",
+    "ce stylo sert à marie",
+    "elle témoigne à sa sœur",
+    "cette idée vient à marie",
+}
 
 
 class PairGenerationRow(BaseModel):
@@ -909,6 +936,14 @@ def cleanup_accepted_candidates(verb_results: list[dict], present_tenses: dict[s
 
 def direct_object_structure_reasons(card: dict, nlp) -> list[str]:
     reasons: list[str] = []
+    sentence = normalize_sentence(card.get("full_answer", ""))
+    if DIRECT_OBJECT_CONTEXT_RE.search(sentence):
+        reasons.append("direct_object_context_marker")
+    if len(sentence.split()) > 4 and DIRECT_OBJECT_EXTRA_SURFACE_RE.search(sentence):
+        reasons.append("direct_object_extra_surface")
+    if len(sentence.split()) > 6:
+        reasons.append("direct_object_too_long")
+
     words = parse_sentence(nlp, card.get("full_answer", ""))
     main_verb = find_main_finite_verb(words)
     if not words or not main_verb:
@@ -940,6 +975,9 @@ def cleanup_merged_cards(cards: list[dict], nlp) -> tuple[list[dict], Counter[st
 
         candidate = dict(card)
         candidate["full_answer"] = fix_initial_elision(candidate.get("full_answer", ""))
+        if normalize_sentence(candidate["full_answer"]).lower() in RUTHLESS_BAD_SENTENCES:
+            cleanup_rejected["ruthless_manual_sentence_prune"] += 1
+            continue
         key = (candidate.get("verb", ""), normalize_sentence(candidate.get("full_answer", "")))
         existing = best_by_sentence.get(key)
         if not existing:

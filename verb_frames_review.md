@@ -2,7 +2,7 @@
 
 - Verbs attempted: `500`
 - Accepted cards: `435`
-- App deck total after integration: `718`
+- App deck total after integration: `622`
 
 ## Status Counts
 
@@ -14,17 +14,18 @@
 
 ## Cleanup Rejections
 
-- `direct_object_adverbial_or_clause_extension`: `22`
-- `direct_object_infinitive_or_verb_extension`: `2`
+- `direct_object_adverbial_or_clause_extension`: `4`
+- `direct_object_context_marker`: `2`
+- `direct_object_extra_surface`: `22`
 - `direct_object_multiword_hidden_chunk`: `33`
 - `direct_object_no_main_finite_verb`: `1`
-- `direct_object_prepositional_extension`: `10`
-- `drop_duplicate_combo_a`: `2`
-- `drop_duplicate_intransitive`: `1`
+- `direct_object_prepositional_extension`: `1`
+- `direct_object_too_long`: `1`
 - `prefer_a_object_or_better_source`: `10`
 - `prefer_de_object_or_better_source`: `1`
 - `prefer_de_object_over_de_object`: `1`
-- `prefer_direct_object_or_better_source`: `30`
+- `prefer_direct_object_or_better_source`: `25`
+- `ruthless_manual_sentence_prune`: `16`
 
 ## Accepted by Frame Type
 
