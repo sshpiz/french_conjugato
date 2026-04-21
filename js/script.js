@@ -6060,6 +6060,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tutorialState.active && !isTutorialDeferredForSharedEntry()) {
                 completeTutorialIfNeeded();
             }
+            if (currentCard?.isFrameCard) {
+                answerContainer.classList.remove('is-visible', 'frame-card-revealed', 'frame-card-transitioning');
+                isAnswerVisible = false;
+                nextCard();
+                return;
+            }
             hideAnswer({ suppressFramePrompt: true });
             setTimeout(() => {
                 nextCard();
@@ -6071,6 +6077,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handlePrev = () => {
         if (isAnswerVisible) {
+            if (currentCard?.isFrameCard) {
+                answerContainer.classList.remove('is-visible', 'frame-card-revealed', 'frame-card-transitioning');
+                isAnswerVisible = false;
+                prevCard();
+                return;
+            }
             hideAnswer({ suppressFramePrompt: true });
             setTimeout(prevCard, 300);
         } else {

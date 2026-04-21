@@ -363,6 +363,28 @@
     "source": "usage:apporter_01"
   },
   {
+    "frame_id": "apprendre_e2e_de_object",
+    "verb": "apprendre",
+    "type": "frame",
+    "tense": "present",
+    "question": "J'____ ____ mes erreurs",
+    "answer": "apprends de",
+    "full_answer": "J'apprends de mes erreurs",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
+  },
+  {
+    "frame_id": "apprendre_e2e_direct_object",
+    "verb": "apprendre",
+    "type": "frame",
+    "tense": "present",
+    "question": "J'____ le français",
+    "answer": "apprends",
+    "full_answer": "J'apprends le français",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
+  },
+  {
     "frame_id": "apprendre_frame_01",
     "verb": "apprendre",
     "type": "frame",
@@ -451,6 +473,28 @@
     "full_answer": "nous arrivons à répondre",
     "frame_type": "a_infinitive",
     "source": "manual:arriver_a_inf"
+  },
+  {
+    "frame_id": "arreter_e2e_de_object",
+    "verb": "arrêter",
+    "type": "frame",
+    "tense": "present",
+    "question": "Il ____ ____ fumer",
+    "answer": "arrête de",
+    "full_answer": "Il arrête de fumer",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
+  },
+  {
+    "frame_id": "arreter_e2e_direct_object",
+    "verb": "arrêter",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____",
+    "answer": "l'arrête",
+    "full_answer": "Je l'arrête",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
     "frame_id": "arreter_frame_01",
@@ -794,6 +838,17 @@
     "source": "usage:commander_02"
   },
   {
+    "frame_id": "commencer_e2e_direct_object",
+    "verb": "commencer",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____ le roman",
+    "answer": "commence",
+    "full_answer": "Je commence le roman",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
+  },
+  {
     "frame_id": "commencer_frame_01",
     "verb": "commencer",
     "type": "frame",
@@ -990,6 +1045,28 @@
     "full_answer": "La boîte contient des chocolats",
     "frame_type": "direct_object",
     "source": "usage:contenir_01"
+  },
+  {
+    "frame_id": "continuer_e2e_de_object",
+    "verb": "continuer",
+    "type": "frame",
+    "tense": "present",
+    "question": "Ils ____ ____ parler",
+    "answer": "continuent de",
+    "full_answer": "Ils continuent de parler",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
+  },
+  {
+    "frame_id": "continuer_e2e_direct_object",
+    "verb": "continuer",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____ cette lecture",
+    "answer": "continue",
+    "full_answer": "Je continue cette lecture",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
     "frame_id": "contrarier_frame_01",
@@ -1331,6 +1408,17 @@
     "full_answer": "Il défend sa famille avec courage",
     "frame_type": "direct_object",
     "source": "usage:défendre_01"
+  },
+  {
+    "frame_id": "dependre_e2e_de_object",
+    "verb": "dépendre",
+    "type": "frame",
+    "tense": "present",
+    "question": "Cela ____ ____ Marie",
+    "answer": "dépend de",
+    "full_answer": "Cela dépend de Marie",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
     "frame_id": "deposer_frame_01",
@@ -2268,6 +2356,39 @@
     "source": "usage:paraître_01"
   },
   {
+    "frame_id": "parler_e2e_a_object",
+    "verb": "parler",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____ ____ Paul",
+    "answer": "parle à",
+    "full_answer": "Je parle à Paul",
+    "frame_type": "a_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
+  },
+  {
+    "frame_id": "parler_e2e_de_object",
+    "verb": "parler",
+    "type": "frame",
+    "tense": "present",
+    "question": "Nous ____ ____ ce problème",
+    "answer": "parlons de",
+    "full_answer": "Nous parlons de ce problème",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
+  },
+  {
+    "frame_id": "parler_e2e_direct_object",
+    "verb": "parler",
+    "type": "frame",
+    "tense": "present",
+    "question": "Elle ____ ____",
+    "answer": "parle espagnol",
+    "full_answer": "Elle parle espagnol",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
+  },
+  {
     "frame_id": "parler_frame_01",
     "verb": "parler",
     "type": "frame",
@@ -2356,6 +2477,17 @@
     "source": "usage:peindre_01"
   },
   {
+    "frame_id": "penser_e2e_a_object",
+    "verb": "penser",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____ ____ Marie",
+    "answer": "pense à",
+    "full_answer": "Je pense à Marie",
+    "frame_type": "a_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
+  },
+  {
     "frame_id": "penser_frame_01",
     "verb": "penser",
     "type": "frame",
@@ -2387,6 +2519,17 @@
     "full_answer": "Je pense que c'est une bonne idée",
     "frame_type": "que_clause",
     "source": "usage:penser_03"
+  },
+  {
+    "frame_id": "permettre_e2e_direct_object",
+    "verb": "permettre",
+    "type": "frame",
+    "tense": "present",
+    "question": "Elle ____ ce changement",
+    "answer": "permet",
+    "full_answer": "Elle permet ce changement",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
     "frame_id": "permettre_frame_01",
@@ -2873,6 +3016,17 @@
     "source": "usage:respirer_01"
   },
   {
+    "frame_id": "ressembler_e2e_a_object",
+    "verb": "ressembler",
+    "type": "frame",
+    "tense": "present",
+    "question": "Elle ____ ____ sa mère",
+    "answer": "ressemble à",
+    "full_answer": "Elle ressemble à sa mère",
+    "frame_type": "a_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
+  },
+  {
     "frame_id": "ressembler_frame_01",
     "verb": "ressembler",
     "type": "frame",
@@ -2981,6 +3135,28 @@
     "full_answer": "Ne risque pas ta santé pour ça",
     "frame_type": "direct_object",
     "source": "usage:risquer_02"
+  },
+  {
+    "frame_id": "repondre_e2e_a_object",
+    "verb": "répondre",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____ ____ Marie",
+    "answer": "réponds à",
+    "full_answer": "Je réponds à Marie",
+    "frame_type": "a_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
+  },
+  {
+    "frame_id": "repondre_e2e_de_object",
+    "verb": "répondre",
+    "type": "frame",
+    "tense": "present",
+    "question": "Nous ____ ____ nos actes",
+    "answer": "répondons de",
+    "full_answer": "Nous répondons de nos actes",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
     "frame_id": "repondre_frame_01",
@@ -3478,6 +3654,28 @@
     "source": "usage:sentir_02"
   },
   {
+    "frame_id": "servir_e2e_de_object",
+    "verb": "servir",
+    "type": "frame",
+    "tense": "present",
+    "question": "Il ____ ____ modèle",
+    "answer": "sert de",
+    "full_answer": "Il sert de modèle",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
+  },
+  {
+    "frame_id": "servir_e2e_direct_object",
+    "verb": "servir",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____ le dîner",
+    "answer": "sers",
+    "full_answer": "Je sers le dîner",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
+  },
+  {
     "frame_id": "servir_frame_01",
     "verb": "servir",
     "type": "frame",
@@ -3676,6 +3874,39 @@
     "full_answer": "Je suppose qu'il viendra demain",
     "frame_type": "que_clause",
     "source": "usage:supposer_02"
+  },
+  {
+    "frame_id": "tenir_e2e_a_object",
+    "verb": "tenir",
+    "type": "frame",
+    "tense": "present",
+    "question": "Elle ____ ____ son travail",
+    "answer": "tient à",
+    "full_answer": "Elle tient à son travail",
+    "frame_type": "a_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
+  },
+  {
+    "frame_id": "tenir_e2e_de_object",
+    "verb": "tenir",
+    "type": "frame",
+    "tense": "present",
+    "question": "Ce garçon ____ ____ sa mère",
+    "answer": "tient de",
+    "full_answer": "Ce garçon tient de sa mère",
+    "frame_type": "de_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
+  },
+  {
+    "frame_id": "tenir_e2e_direct_object",
+    "verb": "tenir",
+    "type": "frame",
+    "tense": "present",
+    "question": "Je ____ cette tasse",
+    "answer": "tiens",
+    "full_answer": "Je tiens cette tasse",
+    "frame_type": "direct_object",
+    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
     "frame_id": "tenir_frame_01",
