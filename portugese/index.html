@@ -15971,7 +15971,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260422_221526";
+      window.APP_BUILD_VERSION = "20260422_224142";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -27976,7 +27976,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260422_221526') ? 'dev' : raw;
+    return !raw || raw.includes('20260422_224142') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -30146,6 +30146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gravity: 760,
         launchCadenceMs: 164,
         celebrationDurationMs: 15000,
+        skipUnlockDelayMs: 1000,
         debugTapThreshold: 5,
         debugTapWindowMs: 1400,
         trailSampleMs: 40,
@@ -30314,6 +30315,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let rafId = null;
         let currentRun = null;
         let cachedCanvasSize = null;
+        let skipUnlockTimer = null;
+        let skipEnabled = false;
 
         const getAccentColorForSnapshot = (snapshot, palette) => {
             const accentKey = String(snapshot?.accent || '').trim();
@@ -30368,13 +30371,29 @@ document.addEventListener('DOMContentLoaded', () => {
             trailContext.clearRect(0, 0, size.width, size.height);
             context.clearRect(0, 0, size.width, size.height);
         };
+        const setSkipEnabled = (enabled) => {
+            skipEnabled = !!enabled;
+            if (overlay) {
+                overlay.style.cursor = skipEnabled ? 'pointer' : 'default';
+                overlay.setAttribute('aria-disabled', skipEnabled ? 'false' : 'true');
+            }
+            if (hint) {
+                hint.style.display = skipEnabled ? 'inline-flex' : 'none';
+            }
+        };
         const cleanup = () => {
             if (rafId) {
                 cancelAnimationFrame(rafId);
                 rafId = null;
             }
+            if (skipUnlockTimer) {
+                clearTimeout(skipUnlockTimer);
+                skipUnlockTimer = null;
+            }
+            setSkipEnabled(false);
             currentRun = null;
             overlay?.classList.remove('is-visible');
+            if (badge) badge.style.display = 'none';
             clearCanvas();
         };
         const drawStackGhost = (ctx, palette) => {
@@ -30616,6 +30635,7 @@ document.addEventListener('DOMContentLoaded', () => {
             trailContext = trailCanvas.getContext('2d');
             context = canvas.getContext('2d');
             const skipRun = (event) => {
+                if (!skipEnabled) return;
                 event?.preventDefault();
                 event?.stopPropagation();
                 cleanup();
@@ -30719,6 +30739,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     hint.textContent = 'Toque para passar';
                 }
                 overlay?.classList.add('is-visible');
+                if (badge) {
+                    badge.style.display = 'inline-flex';
+                }
+                setSkipEnabled(false);
+                skipUnlockTimer = window.setTimeout(() => {
+                    skipUnlockTimer = null;
+                    if (currentRun) setSkipEnabled(true);
+                }, DAILY_GOAL_CELEBRATION_CONFIG.skipUnlockDelayMs);
                 rafId = requestAnimationFrame(render);
             },
             isActive() {
