@@ -4329,6 +4329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let rafId = null;
         let currentRun = null;
         let resizeHandlerAttached = false;
+        let cachedCanvasSize = null;
 
         const getAccentColorForSnapshot = (snapshot, palette) => {
             const accentKey = String(snapshot?.accent || '').trim();
@@ -4350,8 +4351,27 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.arcTo(x, y, x + width, y, r);
             ctx.closePath();
         };
-        const fitCanvasToFlashcard = () => {
+        const getCelebrationBounds = (width, height) => {
+            const leftBound = 8;
+            const rightBound = Math.max(leftBound + 12, width - 8);
+            const topBound = 8;
+            const floorY = Math.max(topBound + 24, height - 12);
+            return { leftBound, rightBound, topBound, floorY };
+        };
+        const clampSpriteToBounds = (sprite, bounds) => {
+            const halfWidth = sprite.width / 2;
+            const halfHeight = sprite.height / 2;
+            sprite.bounds = bounds;
+            sprite.x = clampValue(sprite.x, bounds.leftBound + halfWidth, bounds.rightBound - halfWidth);
+            if (sprite.settled) {
+                sprite.y = bounds.floorY - halfHeight;
+                return;
+            }
+            sprite.y = clampValue(sprite.y, bounds.topBound + halfHeight, bounds.floorY - halfHeight);
+        };
+        const fitCanvasToFlashcard = (force = false) => {
             if (!overlay || !canvas || !trailCanvas || !flashcard) return null;
+            if (!force && cachedCanvasSize) return cachedCanvasSize;
             const rect = flashcard.getBoundingClientRect();
             const width = Math.max(1, Math.round(rect.width));
             const height = Math.max(1, Math.round(rect.height));
@@ -4374,7 +4394,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (context) {
                 context.setTransform(dpr, 0, 0, dpr, 0, 0);
             }
-            return { width, height, dpr };
+            cachedCanvasSize = { width, height, dpr };
+            return cachedCanvasSize;
         };
         const ensureElements = () => {
             if (overlay && trailCanvas && canvas && trailContext && context) return;
@@ -4405,6 +4426,14 @@ document.addEventListener('DOMContentLoaded', () => {
             flashcard.appendChild(overlay);
             trailContext = trailCanvas.getContext('2d');
             context = canvas.getContext('2d');
+            if (trailContext) {
+                trailContext.imageSmoothingEnabled = true;
+                trailContext.imageSmoothingQuality = 'high';
+            }
+            if (context) {
+                context.imageSmoothingEnabled = true;
+                context.imageSmoothingQuality = 'high';
+            }
 
             const skipRun = (event) => {
                 if (event) {
@@ -4427,7 +4456,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!resizeHandlerAttached) {
-                window.addEventListener('resize', fitCanvasToFlashcard);
+                window.addEventListener('resize', () => {
+                    const size = fitCanvasToFlashcard(true);
+                    if (!size || !currentRun) return;
+                    const bounds = getCelebrationBounds(size.width, size.height);
+                    currentRun.size = size;
+                    currentRun.sprites.forEach((sprite) => {
+                        clampSpriteToBounds(sprite, bounds);
+                    });
+                    assignRenderedAssets(currentRun.sprites, currentRun.palette, size.dpr);
+                    clearCanvas();
+                    currentRun.sprites.forEach((sprite) => {
+                        if (sprite.settled) {
+                            drawRenderedSprite(trailContext, sprite, 1);
+                        }
+                    });
+                });
                 resizeHandlerAttached = true;
             }
         };
@@ -4456,10 +4500,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardHeight = Math.round(cardWidth * 1.36);
             const spawnX = 28;
             const spawnY = 34;
-            const leftBound = 8;
-            const rightBound = Math.max(leftBound + 12, width - 8);
-            const topBound = 8;
-            const floorY = Math.max(topBound + 24, height - 12);
+            const bounds = getCelebrationBounds(width, height);
             const totalCards = Math.min(DAILY_GOAL_CELEBRATION_CONFIG.maxCards, Math.max(deck.length * 2, 24));
             const sprites = [];
 
@@ -4486,8 +4527,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     accentColor: getAccentColorForSnapshot(snapshot, palette),
                     bounceCount: 0,
                     settled: false,
+                    liveVisible: true,
                     trailAccumulatorMs: 0,
-                    bounds: { leftBound, rightBound, topBound, floorY },
+                    renderAsset: null,
+                    bounds,
                 });
             }
 
@@ -4666,8 +4709,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ctx.restore();
         };
-        const drawSprite = (ctx, sprite, palette) => {
-            drawCardStamp(ctx, sprite, palette, { alpha: 1, trail: false });
+        const buildRenderedCardAsset = (sprite, palette, dpr) => {
+            const shadowPadX = 18;
+            const shadowPadTop = 18;
+            const shadowPadBottom = 24;
+            const drawWidth = Math.ceil(sprite.width + (shadowPadX * 2));
+            const drawHeight = Math.ceil(sprite.height + shadowPadTop + shadowPadBottom);
+            const anchorX = shadowPadX + (sprite.width / 2);
+            const anchorY = shadowPadTop + (sprite.height / 2);
+            const assetCanvas = document.createElement('canvas');
+            assetCanvas.width = Math.max(1, Math.round(drawWidth * dpr));
+            assetCanvas.height = Math.max(1, Math.round(drawHeight * dpr));
+            const assetContext = assetCanvas.getContext('2d');
+            if (!assetContext) return null;
+            assetContext.imageSmoothingEnabled = true;
+            assetContext.imageSmoothingQuality = 'high';
+            assetContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+            drawCardStamp(assetContext, sprite, palette, {
+                x: anchorX,
+                y: anchorY,
+                width: sprite.width,
+                height: sprite.height,
+                angle: 0,
+                alpha: 1,
+                trail: false,
+            });
+            return {
+                canvas: assetCanvas,
+                width: drawWidth,
+                height: drawHeight,
+                anchorX,
+                anchorY,
+            };
+        };
+        const assignRenderedAssets = (sprites, palette, dpr) => {
+            const assetCache = new Map();
+            sprites.forEach((sprite) => {
+                const assetKey = [
+                    sprite.snapshot?.key || 'fallback',
+                    sprite.accentColor,
+                    sprite.width,
+                    sprite.height,
+                    dpr,
+                    palette.cardFillTop,
+                    palette.cardFillBottom,
+                ].join('|');
+                let asset = assetCache.get(assetKey);
+                if (!asset) {
+                    asset = buildRenderedCardAsset(sprite, palette, dpr);
+                    assetCache.set(assetKey, asset);
+                }
+                sprite.renderAsset = asset;
+            });
+        };
+        const drawRenderedSprite = (ctx, sprite, alpha = 1) => {
+            const asset = sprite.renderAsset;
+            if (!ctx || !asset) return;
+            ctx.save();
+            ctx.translate(sprite.x, sprite.y);
+            ctx.rotate(sprite.angle);
+            ctx.globalAlpha = alpha;
+            ctx.drawImage(asset.canvas, -asset.anchorX, -asset.anchorY, asset.width, asset.height);
+            ctx.restore();
         };
         const stepSprite = (sprite, dtSeconds) => {
             if (!sprite.launched || sprite.settled) return;
@@ -4686,10 +4789,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sprite.trailAccumulatorMs >= DAILY_GOAL_CELEBRATION_CONFIG.trailSampleMs) {
                 sprite.trailAccumulatorMs = 0;
                 if (trailContext && currentRun?.palette) {
-                    drawCardStamp(trailContext, sprite, currentRun.palette, {
-                        alpha: 0.98,
-                        trail: false,
-                    });
+                    drawRenderedSprite(trailContext, sprite, 0.98);
                 }
             }
 
@@ -4723,13 +4823,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     sprite.vx = 0;
                     sprite.angularVelocity *= 0.35;
                     sprite.settled = true;
+                    sprite.liveVisible = false;
                     sprite.angle = clampValue(sprite.angle, -0.1, 0.1);
                     sprite.y = floorY - halfHeight;
                     if (trailContext && currentRun?.palette) {
-                        drawCardStamp(trailContext, sprite, currentRun.palette, {
-                            alpha: 1,
-                            trail: false,
-                        });
+                        drawRenderedSprite(trailContext, sprite, 1);
                     }
                 }
             }
@@ -4743,14 +4841,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const dtSeconds = Math.min(0.033, (frameTimeMs - currentRun.previousFrameTimeMs) / 1000);
             currentRun.previousFrameTimeMs = frameTimeMs;
 
-            const size = fitCanvasToFlashcard();
-            if (!size) {
-                cleanup('missing-size');
-                return;
-            }
-            currentRun.size = size;
-
-            context.clearRect(0, 0, size.width, size.height);
+            context.clearRect(0, 0, currentRun.size.width, currentRun.size.height);
             drawStackGhost(context, currentRun.palette);
 
             currentRun.sprites.forEach((sprite) => {
@@ -4759,7 +4850,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (!sprite.launched) return;
                 stepSprite(sprite, dtSeconds);
-                drawSprite(context, sprite, currentRun.palette);
+                if (!sprite.liveVisible) return;
+                drawRenderedSprite(context, sprite, 1);
             });
 
             if (elapsedMs >= DAILY_GOAL_CELEBRATION_CONFIG.celebrationDurationMs) {
@@ -4776,17 +4868,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 cleanup('restart');
 
                 const palette = getCelebrationPalette();
-                const size = fitCanvasToFlashcard();
+                const size = fitCanvasToFlashcard(true);
                 if (!size || !context) return;
 
                 const deck = buildCelebrationDeck();
+                const sprites = buildSprites(deck, size.width, size.height, palette);
+                assignRenderedAssets(sprites, palette, size.dpr);
                 currentRun = {
                     reason: options.reason || 'manual',
                     startedAtMs: performance.now(),
                     previousFrameTimeMs: 0,
                     palette,
                     size,
-                    sprites: buildSprites(deck, size.width, size.height, palette),
+                    sprites,
                 };
 
                 if (badge) {
