@@ -15971,7 +15971,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260422_224142";
+      window.APP_BUILD_VERSION = "20260422_233258";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -27976,7 +27976,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260422_224142') ? 'dev' : raw;
+    return !raw || raw.includes('20260422_233258') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -31584,7 +31584,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getFilteredVerbUniverse = (options = cardGenerationOptions) => {
-        const activeFrequencyWeights = normalizeFrequencyWeightsConfig(options.frequencyWeights || {});
+        const activeFrequencyWeights = {
+            ...buildRangeFrequencyWeights(getSelectedVerbPoolRangeKey(options.frequencyWeights || {}) || 'top50', {
+                includeRare: !!(options.frequencyWeights || {}).rare,
+            }),
+            ...(options.frequencyWeights || {}),
+        };
         const activeFrequencies = new Set(
             Object.entries(activeFrequencyWeights)
                 .filter(([, score]) => score > 0)
