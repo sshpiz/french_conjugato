@@ -15971,7 +15971,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260422_234416";
+      window.APP_BUILD_VERSION = "20260423_001353";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -27976,7 +27976,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260422_234416') ? 'dev' : raw;
+    return !raw || raw.includes('20260423_001353') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -31596,7 +31596,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .map(([freq]) => freq)
         );
         return uniqueVerbs.filter((verbInfo) => {
-            if (!cleanTranslation(verbInfo.infinitive, verbInfo.translation || '')) return false;
             if (!verbPassesCurrentFilters(verbInfo, options)) return false;
             if (!verbHasUsableSentencesForOptions(verbInfo.infinitive, options)) return false;
             if (options.reflexiveMode === 'only') return true;
@@ -31689,62 +31688,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ...existing verb card logic...
-    const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { ar: true, er: true, ir: true, other: true }, categoryFilter = 'all' } = options;
-    const sentenceFilterEnabled = ENABLE_LEGACY_SENTENCE_DATA && verbsWithSentencesOnly;
-    // pronouns is declared at DOMContentLoaded scope — accessible here
-
-        // Helpers for filters
-        const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
-        const getEnding = (inf) => {
-            if (inf.endsWith('ar')) return 'ar';
-            if (inf.endsWith('er')) return 'er';
-            if (inf.endsWith('ir')) return 'ir';
-            return 'other';
-        };
-        const passesFilters = (verbInfo) => {
-            if (cardGenerationOptions.reflexiveMode === 'only' && !verbInfo.reflexive) return false;
-            if (cardGenerationOptions.reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
-            // Regularity
-            const irreg = isIrregular(verbInfo.infinitive);
-            if (irreg && !regularityFilter.irregular) return false;
-            if (!irreg && !regularityFilter.regular) return false;
-            // Ending
-            const end = getEnding(verbInfo.infinitive);
-            if (!endingFilter[end]) return false;
-            // Category
-            if (categoryFilter !== 'all') {
-                const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
-                if (cat !== categoryFilter) return false;
-            }
-            return true;
-        };
-
-        // Helper function to check if a verb has sentences with gap sentences for actual practice
-        const verbHasSentences = (verbInfinitive) => {
-            if (!ENABLE_LEGACY_SENTENCE_DATA) return true;
-            const verbPhrases = phrasebook[verbInfinitive];
-            if (!verbPhrases) return false;
-            
-            // If verbsWithSentencesOnly is enabled, we want verbs that have gap sentences for interactive practice
-            if (sentenceFilterEnabled) {
-                // Check if this verb has gap sentences for any tense/pronoun combination we might actually use
-                for (const tenseName in tenseWeights) {
-                    if (tenseWeights[tenseName] <= 0) continue; // Skip disabled tenses
-                    
-                    const phraseKey = tenseKeyToPhraseKey[tenseName];
-                    const tenseArr = verbPhrases[phraseKey];
-                    if (!Array.isArray(tenseArr)) continue;
-                    
-                    // Check if any sentence in this tense has a gap_sentence
-                    const hasGapSentence = tenseArr.some(phrase => phrase.gap_sentence);
-                    if (hasGapSentence) return true;
-                }
-                return false;
-            } else {
-                // Just check if there are any sentences at all
-                return Object.keys(verbPhrases).length > 0;
-            }
-        };
+    const {
+        hierarchical = false,
+        tenseWeights = {},
+        frequencyWeights = {},
+        reflexiveMode = cardGenerationOptions.reflexiveMode,
+    } = options;
+    const filteredUniverse = getFilteredVerbUniverse({
+        ...options,
+        reflexiveMode,
+    });
 
         const activeFilteredPoolSelection = buildCurrentFilteredPoolSelection({
             ...options,
@@ -31757,41 +31710,26 @@ document.addEventListener('DOMContentLoaded', () => {
         let newCard = null;
 
         if (hierarchical) {
-            // ...existing code...
-            // In reflexive-only mode, bypass frequency selection — use all reflexive verbs
             let verbsInFrequency;
-            if (cardGenerationOptions.reflexiveMode === 'only') {
-                verbsInFrequency = uniqueVerbs.filter(passesFilters);
+            if (reflexiveMode === 'only') {
+                verbsInFrequency = filteredUniverse;
             } else {
                 const weightedFrequencies = Object.entries(frequencyWeights)
                     .map(([freq, score]) => ({ card: freq, score: score }))
                     .filter(item => item.score > 0);
                 if (weightedFrequencies.length === 0) return null;
 
-                // Try the weighted-random pick first; if it yields no valid verbs,
-                // fall back through remaining frequency groups so a single empty tier
-                // doesn't cause a spurious "no cards" error.
-                const applyVerbFilters = (verbs) => {
-                    let filtered = verbs.filter(v => cleanTranslation(v.infinitive, v.translation || ''));
-                    filtered = filtered.filter(passesFilters);
-                    if (sentenceFilterEnabled) filtered = filtered.filter(v => verbHasSentences(v.infinitive));
-                    return filtered;
-                };
-
                 const selectedFrequency = performWeightedSelection(weightedFrequencies);
                 const tierRaw = uniqueVerbs.filter(v => (v.frequency || 'common') === selectedFrequency);
-                verbsInFrequency = applyVerbFilters(tierRaw);
+                verbsInFrequency = filteredUniverse.filter(v => (v.frequency || 'common') === selectedFrequency);
                 if (window.appLog) window.appLog(
                     `card-select tier=${selectedFrequency} raw=${tierRaw.length} after-filters=${verbsInFrequency.length} ` +
-                    `ef=${JSON.stringify(endingFilter)} rf=${JSON.stringify(regularityFilter)}`
+                    `rflex=${reflexiveMode}`
                 );
 
                 if (verbsInFrequency.length === 0) {
-                    // Fallback: try all active frequency groups combined
                     const activeFreqs = new Set(weightedFrequencies.map(f => f.card));
-                    verbsInFrequency = applyVerbFilters(
-                        uniqueVerbs.filter(v => activeFreqs.has(v.frequency || 'common'))
-                    );
+                    verbsInFrequency = filteredUniverse.filter(v => activeFreqs.has(v.frequency || 'common'));
                     if (window.appLog) window.appLog(
                         `card-select fallback all-tiers after-filters=${verbsInFrequency.length}`
                     );
@@ -31837,20 +31775,13 @@ document.addEventListener('DOMContentLoaded', () => {
             newCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
 
         } else {
-            // ...existing code...
             const weightedDeck = [];
             for (const tenseName in tenses) {
                 const tenseWeight = tenseWeights[tenseName] || 0;
                 if (tenseWeight === 0) continue;
 
-                for (const verbInfo of uniqueVerbs) {
-                    // Apply new filters
-                    if (!passesFilters(verbInfo)) continue;
-                    if (sentenceFilterEnabled && !verbHasSentences(verbInfo.infinitive)) {
-                        continue;
-                    }
-                    // In reflexive-only mode, bypass frequency weights — use all reflexive verbs equally
-                    const freqWeight = cardGenerationOptions.reflexiveMode === 'only'
+                for (const verbInfo of filteredUniverse) {
+                    const freqWeight = reflexiveMode === 'only'
                         ? 1
                         : (frequencyWeights[verbInfo.frequency || 'common'] || 0);
                     const score = tenseWeight * freqWeight;
@@ -32229,9 +32160,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayCard(newCard);
                 backBtn.disabled = historyIndex === 0;
             } else {
-                // No card could be generated — show a hint on the card face
-                if (verbInfinitiveEl) verbInfinitiveEl.textContent = 'No verbs match current filters';
-                if (verbTranslationEl) { verbTranslationEl.textContent = 'Adjust settings to continue'; verbTranslationEl.style.display = 'block'; }
+                // No card could be generated. If a valid card is already visible
+                // (for example from a tutorial intro or direct hash load), keep it
+                // on screen instead of overwriting it with the empty-state text.
+                if (!currentCard) {
+                    if (verbInfinitiveEl) verbInfinitiveEl.textContent = 'No verbs match current filters';
+                    if (verbTranslationEl) {
+                        verbTranslationEl.textContent = 'Adjust settings to continue';
+                        verbTranslationEl.style.display = 'block';
+                    }
+                }
                 console.warn('generateNewCard returned null — check frequency weights and filters');
             }
         }
@@ -34735,8 +34673,6 @@ if (loader) {
     setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 380);
 }
 if (window.appLog) window.appLog('app-ready');
-// Load card from URL hash on initial load
-loadCardFromHash();
 
 
 });
