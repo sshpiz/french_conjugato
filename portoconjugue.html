@@ -15971,7 +15971,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260423_002401";
+      window.APP_BUILD_VERSION = "20260423_004626";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -27976,7 +27976,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260423_002401') ? 'dev' : raw;
+    return !raw || raw.includes('20260423_004626') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -30153,6 +30153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bounceDamping: 0.84,
     };
     const recentCelebrationSnapshots = [];
+    let suppressFlashcardTapUntil = 0;
     const clampValue = (value, min, max) => Math.min(max, Math.max(min, value));
     const randomBetween = (min, max) => min + (Math.random() * (max - min));
     const shuffleArray = (items) => {
@@ -30425,7 +30426,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const titleText = String(snapshot?.infinitive || '').trim();
             const rawTranslation = String(snapshot?.translation || '').trim();
             const metaText = rawTranslation ? (/^to\s/i.test(rawTranslation) ? rawTranslation : `to ${rawTranslation}`) : '';
-            const pronounKey = canonicalPronounKey(String(snapshot?.pronoun || '').trim());
+            const pronounKey = toCanonicalPronounKey(String(snapshot?.pronoun || '').trim());
             const pronounEmoji = pronounEmojiMap[pronounKey] || '';
             const pronounLabel = String(snapshot?.pronoun || '').trim();
             const frequencyText = snapshot?.frequency ? formatFrequencyLabel(snapshot.frequency) : '';
@@ -30634,10 +30635,19 @@ document.addEventListener('DOMContentLoaded', () => {
             flashcard.appendChild(overlay);
             trailContext = trailCanvas.getContext('2d');
             context = canvas.getContext('2d');
+            if (trailContext) {
+                trailContext.imageSmoothingEnabled = true;
+                trailContext.imageSmoothingQuality = 'high';
+            }
+            if (context) {
+                context.imageSmoothingEnabled = true;
+                context.imageSmoothingQuality = 'high';
+            }
             const skipRun = (event) => {
                 if (!skipEnabled) return;
                 event?.preventDefault();
                 event?.stopPropagation();
+                suppressFlashcardTapUntil = performance.now() + 450;
                 cleanup();
             };
             overlay.addEventListener('pointerdown', skipRun);
@@ -30732,16 +30742,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     size,
                     sprites,
                 };
-                if (badge) {
-                    badge.textContent = options.reason === 'debug-counter' ? 'Teste solitaire' : 'Objetivo atingido';
-                }
+                if (badge) badge.textContent = 'Objetivo atingido';
                 if (hint) {
                     hint.textContent = 'Toque para passar';
                 }
                 overlay?.classList.add('is-visible');
-                if (badge) {
-                    badge.style.display = 'inline-flex';
-                }
+                if (badge) badge.style.display = options.reason === 'debug-counter' ? 'none' : 'inline-flex';
                 setSkipEnabled(false);
                 skipUnlockTimer = window.setTimeout(() => {
                     skipUnlockTimer = null;
@@ -32885,6 +32891,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Event Listeners ---
     flashcard.addEventListener('click', (event) => {
+        if (performance.now() < suppressFlashcardTapUntil) return;
         if (isInteractiveFlashcardTarget(event.target)) return;
         if (isAnswerVisible) {
             handleNext();
@@ -34004,6 +34011,20 @@ function getStandardFrequencyKeys() {
 
 function hasRareFrequencyBucket() {
     return allFrequencies.includes('rare');
+}
+
+function formatFrequencyLabel(key, options = {}) {
+    const { long = false } = options;
+    const normalized = String(key || '').trim();
+    if (!normalized) return '';
+    if (normalized === 'rare') {
+        return long ? 'Rare / outlier verbs' : 'Rare / outlier';
+    }
+    const topMatch = normalized.match(/^top(\d+)$/);
+    if (topMatch) {
+        return `Top ${Number(topMatch[1]).toLocaleString('en-US')}`;
+    }
+    return normalized.replace(/-/g, ' ');
 }
 
 function buildEmptyTenseWeights() {
