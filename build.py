@@ -183,6 +183,23 @@ def copy_file(src_path, dest_path):
         dest_file.write(src_file.read())
 
 
+def write_versioned_app_manifest(app_version):
+    with open(os.path.join(ROOT_DIR, "manifest.json"), "r", encoding="utf-8") as f:
+        manifest = json.load(f)
+
+    for icon in manifest.get("icons", []):
+        src = icon.get("src")
+        if not isinstance(src, str) or not src:
+            continue
+        separator = "&" if "?" in src else "?"
+        icon["src"] = f"{src}{separator}v={app_version}"
+
+    write_text(
+        os.path.join(APP_DIST_DIR, "manifest.json"),
+        json.dumps(manifest, ensure_ascii=False, indent=2),
+    )
+
+
 def remove_tree(path, attempts=3, delay=0.12):
     if not os.path.exists(path):
         return
@@ -374,8 +391,11 @@ def build_french_app(force_jpeg=False):
         "version": app_version,
         "app": "french",
     }, ensure_ascii=False, indent=2))
+    write_versioned_app_manifest(app_version)
 
     for name in APP_FILES_TO_COPY:
+        if name == "manifest.json":
+            continue
         src_path = os.path.join(ROOT_DIR, name)
         dest_path = os.path.join(APP_DIST_DIR, name)
         if os.path.exists(src_path):
