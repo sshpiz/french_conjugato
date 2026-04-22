@@ -66,17 +66,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "accompagner_frame_01",
-    "verb": "accompagner",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ sa sœur à son rendez-vous",
-    "answer": "accompagne",
-    "full_answer": "Il accompagne sa sœur à son rendez-vous",
-    "frame_type": "locative_a",
-    "source": "usage:accompagner_02"
-  },
-  {
     "frame_id": "accomplir_e2e_direct_object",
     "verb": "accomplir",
     "type": "frame",
@@ -231,17 +220,6 @@
     "source": "usage:admettre_01"
   },
   {
-    "frame_id": "admettre_frame_02",
-    "verb": "admettre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ c'était difficile",
-    "answer": "admet que",
-    "full_answer": "Il admet que c'était difficile",
-    "frame_type": "que_clause",
-    "source": "usage:admettre_04"
-  },
-  {
     "frame_id": "adopter_e2e_direct_object",
     "verb": "adopter",
     "type": "frame",
@@ -262,17 +240,6 @@
     "full_answer": "J'adore le chocolat",
     "frame_type": "direct_object",
     "source": "usage:adorer_01"
-  },
-  {
-    "frame_id": "adorer_frame_02",
-    "verb": "adorer",
-    "type": "frame",
-    "tense": "present",
-    "question": "J'____ ____ tu sois ici",
-    "answer": "adore que",
-    "full_answer": "J'adore que tu sois ici",
-    "frame_type": "que_clause",
-    "source": "usage:adorer_03"
   },
   {
     "frame_id": "adresser_e2e_direct_object",
@@ -330,28 +297,6 @@
     "source": "usage:affirmer_01"
   },
   {
-    "frame_id": "affirmer_frame_02",
-    "verb": "affirmer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ son ami qu'elle viendra",
-    "answer": "affirme à",
-    "full_answer": "Elle affirme à son ami qu'elle viendra",
-    "frame_type": "a_object",
-    "source": "usage:affirmer_02"
-  },
-  {
-    "frame_id": "affirmer_frame_03",
-    "verb": "affirmer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ c'est vrai",
-    "answer": "affirment que",
-    "full_answer": "Ils affirment que c'est vrai",
-    "frame_type": "que_clause",
-    "source": "usage:affirmer_03"
-  },
-  {
     "frame_id": "affronter_e2e_direct_object",
     "verb": "affronter",
     "type": "frame",
@@ -374,17 +319,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "aider_frame_02",
-    "verb": "aider",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle m'____ ____ réviser le français",
-    "answer": "aide à",
-    "full_answer": "Elle m'aide à réviser le français",
-    "frame_type": "a_infinitive",
-    "source": "usage:aider_02"
-  },
-  {
     "frame_id": "aimer_frame_01",
     "verb": "aimer",
     "type": "frame",
@@ -396,17 +330,6 @@
     "source": "usage:aimer_01"
   },
   {
-    "frame_id": "aimer_frame_02",
-    "verb": "aimer",
-    "type": "frame",
-    "tense": "present",
-    "question": "J'____ ____ tu sois ici",
-    "answer": "aime que",
-    "full_answer": "J'aime que tu sois ici",
-    "frame_type": "que_clause",
-    "source": "usage:aimer_03"
-  },
-  {
     "frame_id": "ajouter_e2e_direct_object",
     "verb": "ajouter",
     "type": "frame",
@@ -416,39 +339,6 @@
     "full_answer": "J'ajoute du sel",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "aller_frame_01",
-    "verb": "aller",
-    "type": "frame",
-    "tense": "present",
-    "question": "Demain, je ____ ____ Paris",
-    "answer": "vais à",
-    "full_answer": "Demain, je vais à Paris",
-    "frame_type": "locative_a",
-    "source": "usage:aller_01"
-  },
-  {
-    "frame_id": "aller_frame_02",
-    "verb": "aller",
-    "type": "frame",
-    "tense": "present",
-    "question": "On ____ ____ Léa ce soir",
-    "answer": "va chez",
-    "full_answer": "On va chez Léa ce soir",
-    "frame_type": "chez_person",
-    "source": "usage:aller_02"
-  },
-  {
-    "frame_id": "aller_frame_03",
-    "verb": "aller",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ très bien, merci",
-    "answer": "vais",
-    "full_answer": "Je vais très bien, merci",
-    "frame_type": "intransitive",
-    "source": "usage:aller_05"
   },
   {
     "frame_id": "allumer_e2e_direct_object",
@@ -537,28 +427,6 @@
     "full_answer": "J'annule la réunion",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "apparaitre_frame_01",
-    "verb": "apparaître",
-    "type": "frame",
-    "tense": "present",
-    "question": "Le bateau ____ à l'horizon",
-    "answer": "apparaît",
-    "full_answer": "Le bateau apparaît à l'horizon",
-    "frame_type": "intransitive",
-    "source": "usage:apparaître_01"
-  },
-  {
-    "frame_id": "apparaitre_frame_02",
-    "verb": "apparaître",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ tu as raison",
-    "answer": "apparaît que",
-    "full_answer": "Il apparaît que tu as raison",
-    "frame_type": "que_clause",
-    "source": "usage:apparaître_03"
   },
   {
     "frame_id": "appartenir_frame_01",
@@ -660,17 +528,6 @@
     "source": "usage:apprendre_01"
   },
   {
-    "frame_id": "apprendre_frame_02",
-    "verb": "apprendre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ conduire",
-    "answer": "apprend à",
-    "full_answer": "Elle apprend à conduire",
-    "frame_type": "a_infinitive",
-    "source": "usage:apprendre_03"
-  },
-  {
     "frame_id": "approcher_e2e_de_object",
     "verb": "approcher",
     "type": "frame",
@@ -757,28 +614,6 @@
     "full_answer": "Elle arrache le jouet à l'enfant",
     "frame_type": "a_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
-  },
-  {
-    "frame_id": "arriver_frame_01",
-    "verb": "arriver",
-    "type": "frame",
-    "tense": "present",
-    "question": "j'____ ici",
-    "answer": "arrive",
-    "full_answer": "j'arrive ici",
-    "frame_type": "intransitive",
-    "source": "manual:arriver_intransitive"
-  },
-  {
-    "frame_id": "arriver_frame_02",
-    "verb": "arriver",
-    "type": "frame",
-    "tense": "present",
-    "question": "nous ____ ____ répondre",
-    "answer": "arrivons à",
-    "full_answer": "nous arrivons à répondre",
-    "frame_type": "a_infinitive",
-    "source": "manual:arriver_a_inf"
   },
   {
     "frame_id": "arreter_frame_01",
@@ -880,17 +715,6 @@
     "source": "usage:attendre_01"
   },
   {
-    "frame_id": "attendre_frame_02",
-    "verb": "attendre",
-    "type": "frame",
-    "tense": "present",
-    "question": "J'____ ____ mon café refroidisse",
-    "answer": "attends que",
-    "full_answer": "J'attends que mon café refroidisse",
-    "frame_type": "que_clause",
-    "source": "usage:attendre_02"
-  },
-  {
     "frame_id": "attirer_e2e_direct_object",
     "verb": "attirer",
     "type": "frame",
@@ -900,17 +724,6 @@
     "full_answer": "La lumière attire les insectes",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "attirer_frame_02",
-    "verb": "attirer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ce chanteur ____ beaucoup de fans à ses concerts",
-    "answer": "attire",
-    "full_answer": "Ce chanteur attire beaucoup de fans à ses concerts",
-    "frame_type": "locative_a",
-    "source": "usage:attirer_02"
   },
   {
     "frame_id": "attraper_e2e_direct_object",
@@ -957,17 +770,6 @@
     "source": "usage:avancer_01"
   },
   {
-    "frame_id": "avancer_frame_02",
-    "verb": "avancer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ il est innocent",
-    "answer": "avance qu'",
-    "full_answer": "Elle avance qu'il est innocent",
-    "frame_type": "que_clause",
-    "source": "usage:avancer_03"
-  },
-  {
     "frame_id": "avertir_e2e_direct_object",
     "verb": "avertir",
     "type": "frame",
@@ -990,28 +792,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "avoir_frame_01",
-    "verb": "avoir",
-    "type": "frame",
-    "tense": "present",
-    "question": "j'____ besoin de dormir",
-    "answer": "ai",
-    "full_answer": "j'ai besoin de dormir",
-    "frame_type": "de_infinitive",
-    "source": "manual:avoir_besoin"
-  },
-  {
-    "frame_id": "avoir_frame_02",
-    "verb": "avoir",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ ____ ____ pain sur la table",
-    "answer": "y a du",
-    "full_answer": "il y a du pain sur la table",
-    "frame_type": "il_y_a",
-    "source": "manual:il_y_a"
-  },
-  {
     "frame_id": "avouer_e2e_direct_object",
     "verb": "avouer",
     "type": "frame",
@@ -1019,17 +799,6 @@
     "question": "J'____ mon erreur",
     "answer": "avoue",
     "full_answer": "J'avoue mon erreur",
-    "frame_type": "direct_object",
-    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "baiser_e2e_direct_object",
-    "verb": "baiser",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ Marie",
-    "answer": "baise",
-    "full_answer": "Il baise Marie",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
@@ -1155,17 +924,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "bruler_frame_01",
-    "verb": "brûler",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ partir en voyage",
-    "answer": "brûle de",
-    "full_answer": "Elle brûle de partir en voyage",
-    "frame_type": "de_infinitive",
-    "source": "usage:brûler_02"
-  },
-  {
     "frame_id": "cacher_frame_02",
     "verb": "cacher",
     "type": "frame",
@@ -1221,17 +979,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "changer_frame_02",
-    "verb": "changer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Qu'est-ce que ça ____ ____ je parte",
-    "answer": "change que",
-    "full_answer": "Qu'est-ce que ça change que je parte",
-    "frame_type": "que_clause",
-    "source": "usage:changer_03"
-  },
-  {
     "frame_id": "chanter_frame_01",
     "verb": "chanter",
     "type": "frame",
@@ -1274,17 +1021,6 @@
     "full_answer": "Je cherche mes clés",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "chercher_frame_02",
-    "verb": "chercher",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ comprendre la situation",
-    "answer": "cherche à",
-    "full_answer": "Il cherche à comprendre la situation",
-    "frame_type": "a_infinitive",
-    "source": "usage:chercher_04"
   },
   {
     "frame_id": "choisir_e2e_direct_object",
@@ -1340,17 +1076,6 @@
     "full_answer": "Le vent cingle le visage",
     "frame_type": "direct_object",
     "source": "usage:cingler_01"
-  },
-  {
-    "frame_id": "circuler_frame_01",
-    "verb": "circuler",
-    "type": "frame",
-    "tense": "present",
-    "question": "Les voitures ____ sur la route",
-    "answer": "circulent",
-    "full_answer": "Les voitures circulent sur la route",
-    "frame_type": "intransitive",
-    "source": "usage:circuler_01"
   },
   {
     "frame_id": "citer_e2e_direct_object",
@@ -1417,17 +1142,6 @@
     "full_answer": "Le chef commande aux soldats",
     "frame_type": "a_object",
     "source": "usage:commander_02"
-  },
-  {
-    "frame_id": "commencer_frame_02",
-    "verb": "commencer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ça ____ ____ me fatiguer sérieusement",
-    "answer": "commence à",
-    "full_answer": "Ça commence à me fatiguer sérieusement",
-    "frame_type": "a_infinitive",
-    "source": "usage:commencer_02"
   },
   {
     "frame_id": "communiquer_e2e_a_object",
@@ -1527,17 +1241,6 @@
     "full_answer": "Je comprends ta décision",
     "frame_type": "direct_object",
     "source": "usage:comprendre_01"
-  },
-  {
-    "frame_id": "comprendre_frame_02",
-    "verb": "comprendre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ c'est sérieux",
-    "answer": "comprend que",
-    "full_answer": "Il comprend que c'est sérieux",
-    "frame_type": "que_clause",
-    "source": "usage:comprendre_04"
   },
   {
     "frame_id": "compromettre_e2e_direct_object",
@@ -1670,17 +1373,6 @@
     "full_answer": "Je considère cette idée",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "considerer_frame_01",
-    "verb": "considérer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ c'est une bonne idée",
-    "answer": "considère que",
-    "full_answer": "Elle considère que c'est une bonne idée",
-    "frame_type": "que_clause",
-    "source": "usage:considérer_02"
   },
   {
     "frame_id": "construire_e2e_direct_object",
@@ -1914,28 +1606,6 @@
     "source": "usage:craindre_01"
   },
   {
-    "frame_id": "craindre_frame_02",
-    "verb": "craindre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ parler en public",
-    "answer": "craint de",
-    "full_answer": "Il craint de parler en public",
-    "frame_type": "de_infinitive",
-    "source": "usage:craindre_02"
-  },
-  {
-    "frame_id": "craindre_frame_03",
-    "verb": "craindre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ il soit trop tard",
-    "answer": "crains qu'",
-    "full_answer": "Je crains qu'il soit trop tard",
-    "frame_type": "que_clause",
-    "source": "usage:craindre_03"
-  },
-  {
     "frame_id": "creuser_e2e_direct_object",
     "verb": "creuser",
     "type": "frame",
@@ -1958,17 +1628,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "crier_frame_02",
-    "verb": "crier",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ le concert commence",
-    "answer": "crient que",
-    "full_answer": "Ils crient que le concert commence",
-    "frame_type": "que_clause",
-    "source": "usage:crier_02"
-  },
-  {
     "frame_id": "croire_frame_01",
     "verb": "croire",
     "type": "frame",
@@ -1978,17 +1637,6 @@
     "full_answer": "Je crois son histoire",
     "frame_type": "direct_object",
     "source": "usage:croire_01"
-  },
-  {
-    "frame_id": "croire_frame_02",
-    "verb": "croire",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ tu as raison",
-    "answer": "crois que",
-    "full_answer": "Je crois que tu as raison",
-    "frame_type": "que_clause",
-    "source": "usage:croire_04"
   },
   {
     "frame_id": "croiser_e2e_direct_object",
@@ -2112,17 +1760,6 @@
     "source": "usage:descendre_01"
   },
   {
-    "frame_id": "descendre_frame_02",
-    "verb": "descendre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ la réception",
-    "answer": "descends à",
-    "full_answer": "Je descends à la réception",
-    "frame_type": "locative_a",
-    "source": "usage:descendre_02"
-  },
-  {
     "frame_id": "deviner_e2e_direct_object",
     "verb": "deviner",
     "type": "frame",
@@ -2189,28 +1826,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "dire_frame_01",
-    "verb": "dire",
-    "type": "frame",
-    "tense": "present",
-    "question": "je ____ la vérité à Marie",
-    "answer": "dis",
-    "full_answer": "je dis la vérité à Marie",
-    "frame_type": "combo_a",
-    "source": "manual:dire_combo"
-  },
-  {
-    "frame_id": "dire_frame_02",
-    "verb": "dire",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ que Paul arrive",
-    "answer": "dit",
-    "full_answer": "il dit que Paul arrive",
-    "frame_type": "que_clause",
-    "source": "manual:dire_que"
-  },
-  {
     "frame_id": "diriger_frame_01",
     "verb": "diriger",
     "type": "frame",
@@ -2233,17 +1848,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
-    "frame_id": "discuter_frame_01",
-    "verb": "discuter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ partir en vacances",
-    "answer": "discutent de",
-    "full_answer": "Ils discutent de partir en vacances",
-    "frame_type": "de_infinitive",
-    "source": "usage:discuter_02"
-  },
-  {
     "frame_id": "donner_e2e_direct_object",
     "verb": "donner",
     "type": "frame",
@@ -2264,17 +1868,6 @@
     "full_answer": "Il donne un jouet à sa nièce",
     "frame_type": "a_object",
     "source": "usage:donner_02"
-  },
-  {
-    "frame_id": "donner_frame_02",
-    "verb": "donner",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ce film ____ ____ réfléchir",
-    "answer": "donne à",
-    "full_answer": "Ce film donne à réfléchir",
-    "frame_type": "a_infinitive",
-    "source": "usage:donner_03"
   },
   {
     "frame_id": "debarrasser_e2e_direct_object",
@@ -2365,17 +1958,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "deposer_frame_02",
-    "verb": "déposer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je te ____ ____ la gare",
-    "answer": "dépose à",
-    "full_answer": "Je te dépose à la gare",
-    "frame_type": "locative_a",
-    "source": "usage:déposer_02"
-  },
-  {
     "frame_id": "deranger_e2e_direct_object",
     "verb": "déranger",
     "type": "frame",
@@ -2387,17 +1969,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "deranger_frame_01",
-    "verb": "déranger",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ça me ____ ____ tu sois en retard",
-    "answer": "dérange que",
-    "full_answer": "Ça me dérange que tu sois en retard",
-    "frame_type": "que_clause",
-    "source": "usage:déranger_03"
-  },
-  {
     "frame_id": "desoler_e2e_direct_object",
     "verb": "désoler",
     "type": "frame",
@@ -2407,17 +1978,6 @@
     "full_answer": "Cette erreur désole Paul",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "desoler_frame_02",
-    "verb": "désoler",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ça me ____ ____ partir si tôt",
-    "answer": "désole de",
-    "full_answer": "Ça me désole de partir si tôt",
-    "frame_type": "de_infinitive",
-    "source": "usage:désoler_02"
   },
   {
     "frame_id": "detruire_e2e_direct_object",
@@ -2462,17 +2022,6 @@
     "full_answer": "Elle empêche la fuite",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "empecher_frame_01",
-    "verb": "empêcher",
-    "type": "frame",
-    "tense": "present",
-    "question": "ça ____ Paul de dormir",
-    "answer": "empêche",
-    "full_answer": "ça empêche Paul de dormir",
-    "frame_type": "de_infinitive",
-    "source": "manual:empecher_de_inf"
   },
   {
     "frame_id": "enfermer_e2e_direct_object",
@@ -2552,17 +2101,6 @@
     "source": "usage:enseigner_01"
   },
   {
-    "frame_id": "enseigner_frame_02",
-    "verb": "enseigner",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ l'honnêteté est importante",
-    "answer": "enseigne que",
-    "full_answer": "Il enseigne que l'honnêteté est importante",
-    "frame_type": "que_clause",
-    "source": "usage:enseigner_03"
-  },
-  {
     "frame_id": "entendre_frame_01",
     "verb": "entendre",
     "type": "frame",
@@ -2618,17 +2156,6 @@
     "source": "usage:espérer_01"
   },
   {
-    "frame_id": "esperer_frame_02",
-    "verb": "espérer",
-    "type": "frame",
-    "tense": "present",
-    "question": "J'____ ____ tu viendras",
-    "answer": "espère que",
-    "full_answer": "J'espère que tu viendras",
-    "frame_type": "que_clause",
-    "source": "usage:espérer_02"
-  },
-  {
     "frame_id": "essayer_frame_01",
     "verb": "essayer",
     "type": "frame",
@@ -2638,17 +2165,6 @@
     "full_answer": "J'essaie cette veste",
     "frame_type": "direct_object",
     "source": "usage:essayer_01"
-  },
-  {
-    "frame_id": "essayer_frame_02",
-    "verb": "essayer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Nous ____ ____ rester calmes",
-    "answer": "essayons de",
-    "full_answer": "Nous essayons de rester calmes",
-    "frame_type": "de_infinitive",
-    "source": "usage:essayer_02"
   },
   {
     "frame_id": "examiner_e2e_direct_object",
@@ -2673,17 +2189,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
-    "frame_id": "exister_frame_01",
-    "verb": "exister",
-    "type": "frame",
-    "tense": "present",
-    "question": "Les fantômes n'____ pas",
-    "answer": "existent",
-    "full_answer": "Les fantômes n'existent pas",
-    "frame_type": "intransitive",
-    "source": "usage:exister_01"
-  },
-  {
     "frame_id": "expliquer_e2e_a_object",
     "verb": "expliquer",
     "type": "frame",
@@ -2704,17 +2209,6 @@
     "full_answer": "Le professeur explique la leçon",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "expliquer_frame_01",
-    "verb": "expliquer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ c'est important",
-    "answer": "expliquent que",
-    "full_answer": "Ils expliquent que c'est important",
-    "frame_type": "que_clause",
-    "source": "usage:expliquer_03"
   },
   {
     "frame_id": "exprimer_e2e_direct_object",
@@ -2761,39 +2255,6 @@
     "source": "manual:faire_direct"
   },
   {
-    "frame_id": "faire_frame_02",
-    "verb": "faire",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ réparer la voiture",
-    "answer": "fait",
-    "full_answer": "il fait réparer la voiture",
-    "frame_type": "bare_infinitive",
-    "source": "manual:faire_inf"
-  },
-  {
-    "frame_id": "falloir_frame_01",
-    "verb": "falloir",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ partir",
-    "answer": "faut",
-    "full_answer": "il faut partir",
-    "frame_type": "bare_infinitive",
-    "source": "manual:falloir_inf"
-  },
-  {
-    "frame_id": "falloir_frame_02",
-    "verb": "falloir",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ que Paul arrive",
-    "answer": "faut",
-    "full_answer": "il faut que Paul arrive",
-    "frame_type": "que_clause",
-    "source": "manual:falloir_que"
-  },
-  {
     "frame_id": "fermer_e2e_direct_object",
     "verb": "fermer",
     "type": "frame",
@@ -2836,17 +2297,6 @@
     "full_answer": "Elle finit le projet",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "fonctionner_frame_01",
-    "verb": "fonctionner",
-    "type": "frame",
-    "tense": "present",
-    "question": "La machine ____ bien",
-    "answer": "fonctionne",
-    "full_answer": "La machine fonctionne bien",
-    "frame_type": "intransitive",
-    "source": "usage:fonctionner_01"
   },
   {
     "frame_id": "forcer_e2e_direct_object",
@@ -2926,17 +2376,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "gagner_frame_01",
-    "verb": "gagner",
-    "type": "frame",
-    "tense": "present",
-    "question": "Tu ____ ____ écouter ses conseils",
-    "answer": "gagnes à",
-    "full_answer": "Tu gagnes à écouter ses conseils",
-    "frame_type": "a_infinitive",
-    "source": "usage:gagner_02"
-  },
-  {
     "frame_id": "garder_e2e_direct_object",
     "verb": "garder",
     "type": "frame",
@@ -2981,17 +2420,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "gener_frame_01",
-    "verb": "gêner",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ça me ____ ____ il soit en retard",
-    "answer": "gêne qu'",
-    "full_answer": "Ça me gêne qu'il soit en retard",
-    "frame_type": "que_clause",
-    "source": "usage:gêner_04"
-  },
-  {
     "frame_id": "habiller_e2e_direct_object",
     "verb": "habiller",
     "type": "frame",
@@ -3012,17 +2440,6 @@
     "full_answer": "J'habite une maison en Bretagne",
     "frame_type": "direct_object",
     "source": "usage:habiter_01"
-  },
-  {
-    "frame_id": "habituer_frame_01",
-    "verb": "habituer",
-    "type": "frame",
-    "tense": "present",
-    "question": "j'____ Paul à ce bruit",
-    "answer": "habitue",
-    "full_answer": "j'habitue Paul à ce bruit",
-    "frame_type": "a_object",
-    "source": "manual:habituer_a"
   },
   {
     "frame_id": "hater_e2e_direct_object",
@@ -3069,17 +2486,6 @@
     "source": "usage:ignorer_01"
   },
   {
-    "frame_id": "ignorer_frame_02",
-    "verb": "ignorer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ tu viens",
-    "answer": "ignore que",
-    "full_answer": "Il ignore que tu viens",
-    "frame_type": "que_clause",
-    "source": "usage:ignorer_02"
-  },
-  {
     "frame_id": "imaginer_frame_01",
     "verb": "imaginer",
     "type": "frame",
@@ -3089,17 +2495,6 @@
     "full_answer": "J'imagine un monde sans guerre",
     "frame_type": "direct_object",
     "source": "usage:imaginer_01"
-  },
-  {
-    "frame_id": "impliquer_frame_02",
-    "verb": "impliquer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Cela ____ ____ nous devons partir tôt",
-    "answer": "implique que",
-    "full_answer": "Cela implique que nous devons partir tôt",
-    "frame_type": "que_clause",
-    "source": "usage:impliquer_02"
   },
   {
     "frame_id": "importer_e2e_a_object",
@@ -3122,17 +2517,6 @@
     "full_answer": "Ce détail importe aux investisseurs",
     "frame_type": "a_object",
     "source": "usage:importer_02"
-  },
-  {
-    "frame_id": "importer_frame_03",
-    "verb": "importer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ finir à l'heure",
-    "answer": "importe de",
-    "full_answer": "Il importe de finir à l'heure",
-    "frame_type": "de_infinitive",
-    "source": "usage:importer_03"
   },
   {
     "frame_id": "impressionner_e2e_direct_object",
@@ -3179,17 +2563,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "insister_frame_02",
-    "verb": "insister",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ pour venir avec nous",
-    "answer": "insiste",
-    "full_answer": "Elle insiste pour venir avec nous",
-    "frame_type": "bare_infinitive",
-    "source": "usage:insister_02"
-  },
-  {
     "frame_id": "installer_e2e_direct_object",
     "verb": "installer",
     "type": "frame",
@@ -3221,17 +2594,6 @@
     "full_answer": "Ils ont interdit le film",
     "frame_type": "direct_object",
     "source": "usage:interdire_01"
-  },
-  {
-    "frame_id": "interdire_frame_02",
-    "verb": "interdire",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ tu partes seul",
-    "answer": "interdit que",
-    "full_answer": "Il interdit que tu partes seul",
-    "frame_type": "que_clause",
-    "source": "usage:interdire_02"
   },
   {
     "frame_id": "inventer_e2e_direct_object",
@@ -3276,28 +2638,6 @@
     "full_answer": "Elle juge le projet intéressant",
     "frame_type": "direct_object",
     "source": "usage:juger_01"
-  },
-  {
-    "frame_id": "juger_frame_02",
-    "verb": "juger",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ c'est nécessaire",
-    "answer": "juge que",
-    "full_answer": "Il juge que c'est nécessaire",
-    "frame_type": "que_clause",
-    "source": "usage:juger_02"
-  },
-  {
-    "frame_id": "jurer_frame_01",
-    "verb": "jurer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ je ne savais pas",
-    "answer": "jure que",
-    "full_answer": "Je jure que je ne savais pas",
-    "frame_type": "que_clause",
-    "source": "usage:jurer_04"
   },
   {
     "frame_id": "lancer_e2e_a_object",
@@ -3353,17 +2693,6 @@
     "full_answer": "Je lève la boîte",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "lever_frame_02",
-    "verb": "lever",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ la chaise pour nettoyer en dessous",
-    "answer": "lève",
-    "full_answer": "Elle lève la chaise pour nettoyer en dessous",
-    "frame_type": "bare_infinitive",
-    "source": "usage:lever_02"
   },
   {
     "frame_id": "liberer_e2e_direct_object",
@@ -3509,17 +2838,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "menacer_frame_01",
-    "verb": "menacer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ partir",
-    "answer": "menace de",
-    "full_answer": "Elle menace de partir",
-    "frame_type": "de_infinitive",
-    "source": "usage:menacer_02"
-  },
-  {
     "frame_id": "mener_e2e_direct_object",
     "verb": "mener",
     "type": "frame",
@@ -3586,28 +2904,6 @@
     "source": "usage:montrer_01"
   },
   {
-    "frame_id": "montrer_frame_02",
-    "verb": "montrer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Cette étude ____ ____ c'est efficace",
-    "answer": "montre que",
-    "full_answer": "Cette étude montre que c'est efficace",
-    "frame_type": "que_clause",
-    "source": "usage:montrer_03"
-  },
-  {
-    "frame_id": "naitre_frame_01",
-    "verb": "naître",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ en mai",
-    "answer": "naît",
-    "full_answer": "il naît en mai",
-    "frame_type": "intransitive",
-    "source": "manual:naitre"
-  },
-  {
     "frame_id": "nettoyer_e2e_direct_object",
     "verb": "nettoyer",
     "type": "frame",
@@ -3639,17 +2935,6 @@
     "full_answer": "Je nourris le chat",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "obliger_frame_01",
-    "verb": "obliger",
-    "type": "frame",
-    "tense": "present",
-    "question": "j'____ Paul à venir",
-    "answer": "oblige",
-    "full_answer": "j'oblige Paul à venir",
-    "frame_type": "a_infinitive",
-    "source": "manual:obliger_a_inf"
   },
   {
     "frame_id": "observer_e2e_direct_object",
@@ -3729,17 +3014,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "ordonner_frame_02",
-    "verb": "ordonner",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ tout soit prêt pour demain",
-    "answer": "ordonne que",
-    "full_answer": "Il ordonne que tout soit prêt pour demain",
-    "frame_type": "que_clause",
-    "source": "usage:ordonner_04"
-  },
-  {
     "frame_id": "organiser_e2e_direct_object",
     "verb": "organiser",
     "type": "frame",
@@ -3751,28 +3025,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "oublier_frame_01",
-    "verb": "oublier",
-    "type": "frame",
-    "tense": "present",
-    "question": "N'____ pas de fermer la porte",
-    "answer": "oublie",
-    "full_answer": "N'oublie pas de fermer la porte",
-    "frame_type": "de_infinitive",
-    "source": "usage:oublier_02"
-  },
-  {
-    "frame_id": "oublier_frame_02",
-    "verb": "oublier",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ souvent que j'habite loin",
-    "answer": "oublie",
-    "full_answer": "Il oublie souvent que j'habite loin",
-    "frame_type": "que_clause",
-    "source": "usage:oublier_03"
-  },
-  {
     "frame_id": "ouvrir_frame_01",
     "verb": "ouvrir",
     "type": "frame",
@@ -3782,17 +3034,6 @@
     "full_answer": "J'ouvre la fenêtre",
     "frame_type": "direct_object",
     "source": "usage:ouvrir_01"
-  },
-  {
-    "frame_id": "paraitre_frame_01",
-    "verb": "paraître",
-    "type": "frame",
-    "tense": "present",
-    "question": "Le livre ____ demain",
-    "answer": "paraît",
-    "full_answer": "Le livre paraît demain",
-    "frame_type": "intransitive",
-    "source": "usage:paraître_01"
   },
   {
     "frame_id": "pardonner_e2e_a_object",
@@ -3883,17 +3124,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
-    "frame_id": "partir_frame_01",
-    "verb": "partir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ demain matin",
-    "answer": "pars",
-    "full_answer": "Je pars demain matin",
-    "frame_type": "intransitive",
-    "source": "usage:partir_01"
-  },
-  {
     "frame_id": "passer_e2e_de_object",
     "verb": "passer",
     "type": "frame",
@@ -3914,28 +3144,6 @@
     "full_answer": "Je passe le café",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "passer_frame_01",
-    "verb": "passer",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ ____ Marie",
-    "answer": "passe chez",
-    "full_answer": "il passe chez Marie",
-    "frame_type": "chez_person",
-    "source": "manual:passer_chez"
-  },
-  {
-    "frame_id": "passer_frame_02",
-    "verb": "passer",
-    "type": "frame",
-    "tense": "present",
-    "question": "nous ____ ici",
-    "answer": "passons",
-    "full_answer": "nous passons ici",
-    "frame_type": "intransitive",
-    "source": "manual:passer_intransitive"
   },
   {
     "frame_id": "peindre_e2e_direct_object",
@@ -3982,28 +3190,6 @@
     "source": "usage:penser_01"
   },
   {
-    "frame_id": "penser_frame_02",
-    "verb": "penser",
-    "type": "frame",
-    "tense": "present",
-    "question": "je ____ ____ sauvegarder ton fichier",
-    "answer": "pense à",
-    "full_answer": "je pense à sauvegarder ton fichier",
-    "frame_type": "a_infinitive",
-    "source": "usage:penser_02"
-  },
-  {
-    "frame_id": "penser_frame_03",
-    "verb": "penser",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ c'est une bonne idée",
-    "answer": "pense que",
-    "full_answer": "Je pense que c'est une bonne idée",
-    "frame_type": "que_clause",
-    "source": "usage:penser_03"
-  },
-  {
     "frame_id": "perdre_e2e_direct_object",
     "verb": "perdre",
     "type": "frame",
@@ -4024,17 +3210,6 @@
     "full_answer": "Le règlement permet cette exception",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "permettre_frame_01",
-    "verb": "permettre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ce logiciel ____ ____ créer des vidéos",
-    "answer": "permet de",
-    "full_answer": "Ce logiciel permet de créer des vidéos",
-    "frame_type": "de_infinitive",
-    "source": "usage:permettre_02"
   },
   {
     "frame_id": "plaire_frame_01",
@@ -4079,17 +3254,6 @@
     "full_answer": "Elle porte une robe rouge",
     "frame_type": "direct_object",
     "source": "usage:porter_01"
-  },
-  {
-    "frame_id": "porter_frame_02",
-    "verb": "porter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ce film ____ ____ réfléchir",
-    "answer": "porte à",
-    "full_answer": "Ce film porte à réfléchir",
-    "frame_type": "a_infinitive",
-    "source": "usage:porter_04"
   },
   {
     "frame_id": "poser_e2e_direct_object",
@@ -4191,17 +3355,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
-    "frame_id": "profiter_frame_01",
-    "verb": "profiter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ de son expérience professionnelle",
-    "answer": "profite",
-    "full_answer": "Elle profite de son expérience professionnelle",
-    "frame_type": "intransitive",
-    "source": "usage:profiter_03"
-  },
-  {
     "frame_id": "proposer_e2e_direct_object",
     "verb": "proposer",
     "type": "frame",
@@ -4224,17 +3377,6 @@
     "source": "usage:proposer_01"
   },
   {
-    "frame_id": "proposer_frame_02",
-    "verb": "proposer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ nous y allions ensemble",
-    "answer": "propose que",
-    "full_answer": "Je propose que nous y allions ensemble",
-    "frame_type": "que_clause",
-    "source": "usage:proposer_03"
-  },
-  {
     "frame_id": "proteger_e2e_direct_object",
     "verb": "protéger",
     "type": "frame",
@@ -4244,28 +3386,6 @@
     "full_answer": "Je protège mes enfants",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "prouver_e2e_a_object",
-    "verb": "prouver",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ Marie que j'ai raison",
-    "answer": "prouve à",
-    "full_answer": "Je prouve à Marie que j'ai raison",
-    "frame_type": "a_object",
-    "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
-  },
-  {
-    "frame_id": "prouver_frame_01",
-    "verb": "prouver",
-    "type": "frame",
-    "tense": "present",
-    "question": "ça ____ que Paul ment",
-    "answer": "prouve",
-    "full_answer": "ça prouve que Paul ment",
-    "frame_type": "que_clause",
-    "source": "manual:prouver_que"
   },
   {
     "frame_id": "provoquer_e2e_direct_object",
@@ -4301,17 +3421,6 @@
     "source": "usage:préférer_02"
   },
   {
-    "frame_id": "preferer_frame_02",
-    "verb": "préférer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ tu viennes demain",
-    "answer": "préfère que",
-    "full_answer": "Je préfère que tu viennes demain",
-    "frame_type": "que_clause",
-    "source": "usage:préférer_03"
-  },
-  {
     "frame_id": "preparer_e2e_direct_object",
     "verb": "préparer",
     "type": "frame",
@@ -4334,17 +3443,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "pretendre_frame_01",
-    "verb": "prétendre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ c'est vrai",
-    "answer": "prétend que",
-    "full_answer": "Il prétend que c'est vrai",
-    "frame_type": "que_clause",
-    "source": "usage:prétendre_01"
-  },
-  {
     "frame_id": "prevenir_e2e_direct_object",
     "verb": "prévenir",
     "type": "frame",
@@ -4354,17 +3452,6 @@
     "full_answer": "Je préviens le voisin",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "prevoir_frame_01",
-    "verb": "prévoir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ partir demain matin",
-    "answer": "prévoit de",
-    "full_answer": "Elle prévoit de partir demain matin",
-    "frame_type": "de_infinitive",
-    "source": "usage:prévoir_02"
   },
   {
     "frame_id": "quitter_e2e_direct_object",
@@ -4455,17 +3542,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "rapporter_frame_01",
-    "verb": "rapporter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ la réunion est annulée",
-    "answer": "rapportent que",
-    "full_answer": "Ils rapportent que la réunion est annulée",
-    "frame_type": "que_clause",
-    "source": "usage:rapporter_03"
-  },
-  {
     "frame_id": "rassembler_e2e_direct_object",
     "verb": "rassembler",
     "type": "frame",
@@ -4554,28 +3630,6 @@
     "source": "usage:refuser_01"
   },
   {
-    "frame_id": "refuser_frame_02",
-    "verb": "refuser",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ partir",
-    "answer": "refuse de",
-    "full_answer": "Je refuse de partir",
-    "frame_type": "de_infinitive",
-    "source": "usage:refuser_03"
-  },
-  {
-    "frame_id": "refuser_frame_03",
-    "verb": "refuser",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ tu viennes",
-    "answer": "refuse que",
-    "full_answer": "Il refuse que tu viennes",
-    "frame_type": "que_clause",
-    "source": "usage:refuser_04"
-  },
-  {
     "frame_id": "regarder_e2e_direct_object",
     "verb": "regarder",
     "type": "frame",
@@ -4596,17 +3650,6 @@
     "full_answer": "Je regrette mon erreur",
     "frame_type": "direct_object",
     "source": "usage:regretter_01"
-  },
-  {
-    "frame_id": "regretter_frame_02",
-    "verb": "regretter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ partir si tôt",
-    "answer": "regrette de",
-    "full_answer": "Elle regrette de partir si tôt",
-    "frame_type": "de_infinitive",
-    "source": "usage:regretter_02"
   },
   {
     "frame_id": "rejeter_e2e_direct_object",
@@ -4895,28 +3938,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "rester_frame_01",
-    "verb": "rester",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ne me ____ que cinq minutes",
-    "answer": "reste",
-    "full_answer": "Il ne me reste que cinq minutes",
-    "frame_type": "a_object",
-    "source": "usage:rester_02"
-  },
-  {
-    "frame_id": "rester_frame_02",
-    "verb": "rester",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ ranger la cuisine",
-    "answer": "reste à",
-    "full_answer": "Il reste à ranger la cuisine",
-    "frame_type": "a_infinitive",
-    "source": "usage:rester_03"
-  },
-  {
     "frame_id": "retenir_e2e_direct_object",
     "verb": "retenir",
     "type": "frame",
@@ -4926,17 +3947,6 @@
     "full_answer": "Je retiens son nom",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "retenir_frame_01",
-    "verb": "retenir",
-    "type": "frame",
-    "tense": "present",
-    "question": "vous ____ ____ le magasin ferme à 18h",
-    "answer": "retenez que",
-    "full_answer": "vous retenez que le magasin ferme à 18h",
-    "frame_type": "que_clause",
-    "source": "usage:retenir_03"
   },
   {
     "frame_id": "retirer_e2e_direct_object",
@@ -4983,28 +3993,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "revenir_frame_01",
-    "verb": "revenir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ courir",
-    "answer": "reviens de",
-    "full_answer": "Je reviens de courir",
-    "frame_type": "de_infinitive",
-    "source": "usage:revenir_01"
-  },
-  {
-    "frame_id": "revenir_frame_02",
-    "verb": "revenir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ton plan ____ ____ payer plus",
-    "answer": "revient à",
-    "full_answer": "Ton plan revient à payer plus",
-    "frame_type": "a_infinitive",
-    "source": "usage:revenir_03"
-  },
-  {
     "frame_id": "risquer_e2e_direct_object",
     "verb": "risquer",
     "type": "frame",
@@ -5014,17 +4002,6 @@
     "full_answer": "Il risque son poste",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "risquer_frame_01",
-    "verb": "risquer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ pleuvoir demain",
-    "answer": "risque de",
-    "full_answer": "Il risque de pleuvoir demain",
-    "frame_type": "de_infinitive",
-    "source": "usage:risquer_01"
   },
   {
     "frame_id": "rouler_e2e_direct_object",
@@ -5137,17 +4114,6 @@
     "source": "usage:répondre_01"
   },
   {
-    "frame_id": "repondre_frame_02",
-    "verb": "répondre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ il est fatigué",
-    "answer": "répond qu'",
-    "full_answer": "Il répond qu'il est fatigué",
-    "frame_type": "que_clause",
-    "source": "usage:répondre_03"
-  },
-  {
     "frame_id": "repeter_e2e_direct_object",
     "verb": "répéter",
     "type": "frame",
@@ -5157,17 +4123,6 @@
     "full_answer": "Elle répète la phrase",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "repeter_frame_01",
-    "verb": "répéter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ c'est important",
-    "answer": "répète que",
-    "full_answer": "Elle répète que c'est important",
-    "frame_type": "que_clause",
-    "source": "usage:répéter_03"
   },
   {
     "frame_id": "reserver_e2e_direct_object",
@@ -5236,17 +4191,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "s_amuser_frame_01",
-    "verb": "s'amuser",
-    "type": "frame",
-    "tense": "present",
-    "question": "On ____ ____ cuisiner ensemble",
-    "answer": "s'amuse à",
-    "full_answer": "On s'amuse à cuisiner ensemble",
-    "frame_type": "a_infinitive",
-    "source": "usage:s_amuser_01"
-  },
-  {
     "frame_id": "s_asseoir_frame_01",
     "verb": "s'asseoir",
     "type": "frame",
@@ -5256,17 +4200,6 @@
     "full_answer": "Je m'assieds à côté de toi",
     "frame_type": "de_object",
     "source": "usage:s_asseoir_02"
-  },
-  {
-    "frame_id": "s_ennuyer_frame_01",
-    "verb": "s'ennuyer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ lire ce livre",
-    "answer": "s'ennuie à",
-    "full_answer": "Elle s'ennuie à lire ce livre",
-    "frame_type": "a_infinitive",
-    "source": "usage:s_ennuyer_01"
   },
   {
     "frame_id": "s_interesser_e2e_a_object",
@@ -5300,17 +4233,6 @@
     "full_answer": "Je m'occupe de mon frère",
     "frame_type": "de_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
-  },
-  {
-    "frame_id": "s_occuper_frame_01",
-    "verb": "s'occuper",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ envoyer le dossier",
-    "answer": "m'occupe d'",
-    "full_answer": "Je m'occupe d'envoyer le dossier",
-    "frame_type": "de_infinitive",
-    "source": "usage:s_occuper_03"
   },
   {
     "frame_id": "saisir_e2e_direct_object",
@@ -5357,17 +4279,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "sauver_frame_01",
-    "verb": "sauver",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ton aide me ____ ____ refaire tout le travail",
-    "answer": "sauve de",
-    "full_answer": "Ton aide me sauve de refaire tout le travail",
-    "frame_type": "de_infinitive",
-    "source": "usage:sauver_03"
-  },
-  {
     "frame_id": "savoir_e2e_direct_object",
     "verb": "savoir",
     "type": "frame",
@@ -5377,17 +4288,6 @@
     "full_answer": "Je sais la réponse",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "savoir_frame_01",
-    "verb": "savoir",
-    "type": "frame",
-    "tense": "present",
-    "question": "je ____ nager",
-    "answer": "sais",
-    "full_answer": "je sais nager",
-    "frame_type": "bare_infinitive",
-    "source": "manual:savoir_inf"
   },
   {
     "frame_id": "savoir_frame_02",
@@ -5401,72 +4301,6 @@
     "source": "manual:savoir_direct"
   },
   {
-    "frame_id": "savoir_frame_03",
-    "verb": "savoir",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ que Marie est là",
-    "answer": "sait",
-    "full_answer": "il sait que Marie est là",
-    "frame_type": "que_clause",
-    "source": "manual:savoir_que"
-  },
-  {
-    "frame_id": "se_battre_frame_01",
-    "verb": "se battre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ devant l'école",
-    "answer": "se battent",
-    "full_answer": "Ils se battent devant l'école",
-    "frame_type": "reflexive",
-    "source": "usage:se_battre_01"
-  },
-  {
-    "frame_id": "se_battre_frame_02",
-    "verb": "se battre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ pour rester calme",
-    "answer": "me bats",
-    "full_answer": "Je me bats pour rester calme",
-    "frame_type": "bare_infinitive",
-    "source": "usage:se_battre_04"
-  },
-  {
-    "frame_id": "se_coucher_frame_01",
-    "verb": "se coucher",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ toujours tôt",
-    "answer": "me couche",
-    "full_answer": "Je me couche toujours tôt",
-    "frame_type": "reflexive",
-    "source": "usage:se_coucher_01"
-  },
-  {
-    "frame_id": "se_demander_frame_01",
-    "verb": "se demander",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ plein de trucs",
-    "answer": "se demandent",
-    "full_answer": "Ils se demandent plein de trucs",
-    "frame_type": "reflexive",
-    "source": "usage:se_demander_01"
-  },
-  {
-    "frame_id": "se_depecher_frame_01",
-    "verb": "se dépêcher",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ ____ finir son travail",
-    "answer": "se dépêche de",
-    "full_answer": "Elle se dépêche de finir son travail",
-    "frame_type": "de_infinitive",
-    "source": "usage:se_dépêcher_01"
-  },
-  {
     "frame_id": "se_faire_e2e_a_object",
     "verb": "se faire",
     "type": "frame",
@@ -5476,17 +4310,6 @@
     "full_answer": "Elle se fait à son nouveau travail",
     "frame_type": "a_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
-  },
-  {
-    "frame_id": "se_faire_frame_01",
-    "verb": "se faire",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ des amis partout",
-    "answer": "se fait",
-    "full_answer": "Il se fait des amis partout",
-    "frame_type": "reflexive",
-    "source": "usage:se_faire_01"
   },
   {
     "frame_id": "se_faire_frame_02",
@@ -5500,39 +4323,6 @@
     "source": "usage:se_faire_02"
   },
   {
-    "frame_id": "se_faire_frame_03",
-    "verb": "se faire",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ ____ je connais ta sœur",
-    "answer": "se fait que",
-    "full_answer": "Il se fait que je connais ta sœur",
-    "frame_type": "que_clause",
-    "source": "usage:se_faire_04"
-  },
-  {
-    "frame_id": "se_facher_frame_01",
-    "verb": "se fâcher",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ contre lui souvent",
-    "answer": "se fâche",
-    "full_answer": "Elle se fâche contre lui souvent",
-    "frame_type": "reflexive",
-    "source": "usage:se_fâcher_01"
-  },
-  {
-    "frame_id": "se_lever_frame_01",
-    "verb": "se lever",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ à sept heures",
-    "answer": "me lève",
-    "full_answer": "Je me lève à sept heures",
-    "frame_type": "reflexive",
-    "source": "usage:se_lever_01"
-  },
-  {
     "frame_id": "se_mettre_e2e_a_object",
     "verb": "se mettre",
     "type": "frame",
@@ -5544,28 +4334,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
   },
   {
-    "frame_id": "se_mettre_frame_01",
-    "verb": "se mettre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ ____ chanter doucement",
-    "answer": "se met à",
-    "full_answer": "Elle se met à chanter doucement",
-    "frame_type": "a_infinitive",
-    "source": "usage:se_mettre_01"
-  },
-  {
-    "frame_id": "se_mettre_frame_02",
-    "verb": "se mettre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ un pull chaud",
-    "answer": "se met",
-    "full_answer": "Il se met un pull chaud",
-    "frame_type": "reflexive",
-    "source": "usage:se_mettre_02"
-  },
-  {
     "frame_id": "se_moquer_frame_01",
     "verb": "se moquer",
     "type": "frame",
@@ -5575,17 +4343,6 @@
     "full_answer": "Ils se moquent de son accent",
     "frame_type": "de_object",
     "source": "usage:se_moquer_01"
-  },
-  {
-    "frame_id": "se_parler_frame_01",
-    "verb": "se parler",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ils ____ ____ chaque matin",
-    "answer": "se parlent",
-    "full_answer": "Ils se parlent chaque matin",
-    "frame_type": "reflexive",
-    "source": "usage:se_parler_01"
   },
   {
     "frame_id": "se_plaindre_e2e_a_object",
@@ -5621,39 +4378,6 @@
     "source": "usage:se_plaindre_01"
   },
   {
-    "frame_id": "se_promener_frame_01",
-    "verb": "se promener",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ au parc chaque matin",
-    "answer": "me promène",
-    "full_answer": "Je me promène au parc chaque matin",
-    "frame_type": "reflexive",
-    "source": "usage:se_promener_01"
-  },
-  {
-    "frame_id": "se_rappeler_frame_01",
-    "verb": "se rappeler",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ ton numéro",
-    "answer": "me rappelle",
-    "full_answer": "Je me rappelle ton numéro",
-    "frame_type": "reflexive",
-    "source": "usage:se_rappeler_01"
-  },
-  {
-    "frame_id": "se_rappeler_frame_02",
-    "verb": "se rappeler",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ ____ le train part tôt",
-    "answer": "se rappelle que",
-    "full_answer": "Il se rappelle que le train part tôt",
-    "frame_type": "que_clause",
-    "source": "usage:se_rappeler_02"
-  },
-  {
     "frame_id": "se_rendre_e2e_de_object",
     "verb": "se rendre",
     "type": "frame",
@@ -5663,28 +4387,6 @@
     "full_answer": "Elle se rend compte de son erreur",
     "frame_type": "de_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
-  },
-  {
-    "frame_id": "se_rendre_frame_01",
-    "verb": "se rendre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Nous ____ ____ ____ musée demain",
-    "answer": "nous rendons au",
-    "full_answer": "Nous nous rendons au musée demain",
-    "frame_type": "locative_a",
-    "source": "usage:se_rendre_01"
-  },
-  {
-    "frame_id": "se_rendre_frame_02",
-    "verb": "se rendre",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ compte qu'il pleut",
-    "answer": "se rend",
-    "full_answer": "Elle se rend compte qu'il pleut",
-    "frame_type": "que_clause",
-    "source": "usage:se_rendre_04"
   },
   {
     "frame_id": "se_reposer_e2e_de_object",
@@ -5698,39 +4400,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
-    "frame_id": "se_reposer_frame_01",
-    "verb": "se reposer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Après le travail, je ____ ____ sur le canapé",
-    "answer": "me repose",
-    "full_answer": "Après le travail, je me repose sur le canapé",
-    "frame_type": "reflexive",
-    "source": "usage:se_reposer_01"
-  },
-  {
-    "frame_id": "se_reposer_frame_02",
-    "verb": "se reposer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ ____ avoir marché toute la journée",
-    "answer": "se repose d'",
-    "full_answer": "Elle se repose d'avoir marché toute la journée",
-    "frame_type": "de_infinitive",
-    "source": "usage:se_reposer_03"
-  },
-  {
-    "frame_id": "se_sentir_frame_01",
-    "verb": "se sentir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ne ____ ____ pas d'affronter la foule",
-    "answer": "se sent",
-    "full_answer": "Elle ne se sent pas d'affronter la foule",
-    "frame_type": "de_infinitive",
-    "source": "usage:se_sentir_02"
-  },
-  {
     "frame_id": "se_souvenir_e2e_de_object",
     "verb": "se souvenir",
     "type": "frame",
@@ -5742,28 +4411,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
-    "frame_id": "se_souvenir_frame_01",
-    "verb": "se souvenir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elles ____ ____ ____ avoir visité Paris enfant",
-    "answer": "se souviennent d'",
-    "full_answer": "Elles se souviennent d'avoir visité Paris enfant",
-    "frame_type": "de_infinitive",
-    "source": "usage:se_souvenir_02"
-  },
-  {
-    "frame_id": "se_souvenir_frame_02",
-    "verb": "se souvenir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Nous ____ ____ ____ tu détestes le café",
-    "answer": "nous souvenons que",
-    "full_answer": "Nous nous souvenons que tu détestes le café",
-    "frame_type": "que_clause",
-    "source": "usage:se_souvenir_03"
-  },
-  {
     "frame_id": "se_tromper_e2e_de_object",
     "verb": "se tromper",
     "type": "frame",
@@ -5773,28 +4420,6 @@
     "full_answer": "Il se trompe de dossier",
     "frame_type": "de_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
-  },
-  {
-    "frame_id": "se_trouver_frame_01",
-    "verb": "se trouver",
-    "type": "frame",
-    "tense": "present",
-    "question": "La bibliothèque ____ ____ rue de Rivoli",
-    "answer": "se trouve",
-    "full_answer": "La bibliothèque se trouve rue de Rivoli",
-    "frame_type": "reflexive",
-    "source": "usage:se_trouver_01"
-  },
-  {
-    "frame_id": "se_trouver_frame_02",
-    "verb": "se trouver",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ ____ il parle espagnol",
-    "answer": "se trouve qu'",
-    "full_answer": "Il se trouve qu'il parle espagnol",
-    "frame_type": "que_clause",
-    "source": "usage:se_trouver_03"
   },
   {
     "frame_id": "sembler_frame_01",
@@ -5819,17 +4444,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "sentir_frame_02",
-    "verb": "sentir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ il va pleuvoir",
-    "answer": "sens qu'",
-    "full_answer": "Je sens qu'il va pleuvoir",
-    "frame_type": "que_clause",
-    "source": "usage:sentir_02"
-  },
-  {
     "frame_id": "servir_e2e_de_object",
     "verb": "servir",
     "type": "frame",
@@ -5850,28 +4464,6 @@
     "full_answer": "Elle sert le thé",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "servir_frame_01",
-    "verb": "servir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Cette clé ____ ____ ouvrir la porte",
-    "answer": "sert à",
-    "full_answer": "Cette clé sert à ouvrir la porte",
-    "frame_type": "a_infinitive",
-    "source": "usage:servir_02"
-  },
-  {
-    "frame_id": "servir_frame_02",
-    "verb": "servir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ce livre me ____ de référence",
-    "answer": "sert",
-    "full_answer": "Ce livre me sert de référence",
-    "frame_type": "intransitive",
-    "source": "usage:servir_03"
   },
   {
     "frame_id": "signer_e2e_direct_object",
@@ -5929,17 +4521,6 @@
     "source": "usage:signifier_01"
   },
   {
-    "frame_id": "signifier_frame_02",
-    "verb": "signifier",
-    "type": "frame",
-    "tense": "present",
-    "question": "Cela ____ ____ nous devons partir",
-    "answer": "signifie que",
-    "full_answer": "Cela signifie que nous devons partir",
-    "frame_type": "que_clause",
-    "source": "usage:signifier_03"
-  },
-  {
     "frame_id": "soigner_e2e_direct_object",
     "verb": "soigner",
     "type": "frame",
@@ -5984,17 +4565,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object"
   },
   {
-    "frame_id": "souffrir_frame_01",
-    "verb": "souffrir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ de migraines fréquentes",
-    "answer": "souffre",
-    "full_answer": "Il souffre de migraines fréquentes",
-    "frame_type": "intransitive",
-    "source": "usage:souffrir_01"
-  },
-  {
     "frame_id": "souhaiter_e2e_a_object",
     "verb": "souhaiter",
     "type": "frame",
@@ -6006,17 +4576,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
   },
   {
-    "frame_id": "souhaiter_frame_01",
-    "verb": "souhaiter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ tu réussisses",
-    "answer": "souhaite que",
-    "full_answer": "Je souhaite que tu réussisses",
-    "frame_type": "que_clause",
-    "source": "usage:souhaiter_03"
-  },
-  {
     "frame_id": "sourire_frame_01",
     "verb": "sourire",
     "type": "frame",
@@ -6026,17 +4585,6 @@
     "full_answer": "Elle sourit à son ami",
     "frame_type": "a_object",
     "source": "usage:sourire_01"
-  },
-  {
-    "frame_id": "sourire_frame_02",
-    "verb": "sourire",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ voir ses enfants jouer",
-    "answer": "sourit de",
-    "full_answer": "Il sourit de voir ses enfants jouer",
-    "frame_type": "de_infinitive",
-    "source": "usage:sourire_02"
   },
   {
     "frame_id": "soutenir_e2e_direct_object",
@@ -6061,17 +4609,6 @@
     "source": "usage:soutenir_01"
   },
   {
-    "frame_id": "soutenir_frame_02",
-    "verb": "soutenir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Elle ____ ____ ce projet est viable",
-    "answer": "soutient que",
-    "full_answer": "Elle soutient que ce projet est viable",
-    "frame_type": "que_clause",
-    "source": "usage:soutenir_02"
-  },
-  {
     "frame_id": "suffire_e2e_a_object",
     "verb": "suffire",
     "type": "frame",
@@ -6081,17 +4618,6 @@
     "full_answer": "Cette somme suffit à Marie",
     "frame_type": "a_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
-  },
-  {
-    "frame_id": "suffire_frame_01",
-    "verb": "suffire",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ demander",
-    "answer": "suffit de",
-    "full_answer": "Il suffit de demander",
-    "frame_type": "de_infinitive",
-    "source": "usage:suffire_02"
   },
   {
     "frame_id": "suivre_e2e_direct_object",
@@ -6116,17 +4642,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "supporter_frame_01",
-    "verb": "supporter",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ne ____ pas de perdre",
-    "answer": "supporte",
-    "full_answer": "Il ne supporte pas de perdre",
-    "frame_type": "de_infinitive",
-    "source": "usage:supporter_02"
-  },
-  {
     "frame_id": "supposer_e2e_direct_object",
     "verb": "supposer",
     "type": "frame",
@@ -6136,17 +4651,6 @@
     "full_answer": "Je suppose cette explication",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "supposer_frame_01",
-    "verb": "supposer",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ il viendra demain",
-    "answer": "suppose qu'",
-    "full_answer": "Je suppose qu'il viendra demain",
-    "frame_type": "que_clause",
-    "source": "usage:supposer_02"
   },
   {
     "frame_id": "surveiller_e2e_direct_object",
@@ -6213,17 +4717,6 @@
     "full_answer": "Je tiens un livre",
     "frame_type": "direct_object",
     "source": "usage:tenir_01"
-  },
-  {
-    "frame_id": "tenir_frame_02",
-    "verb": "tenir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ partir tôt",
-    "answer": "tient à",
-    "full_answer": "Il tient à partir tôt",
-    "frame_type": "a_infinitive",
-    "source": "usage:tenir_03"
   },
   {
     "frame_id": "tenter_e2e_direct_object",
@@ -6369,17 +4862,6 @@
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
   },
   {
-    "frame_id": "trouver_frame_01",
-    "verb": "trouver",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ tu as raison",
-    "answer": "trouve que",
-    "full_answer": "Je trouve que tu as raison",
-    "frame_type": "que_clause",
-    "source": "usage:trouver_02"
-  },
-  {
     "frame_id": "tuer_e2e_direct_object",
     "verb": "tuer",
     "type": "frame",
@@ -6479,28 +4961,6 @@
     "source": "usage:vendre_01"
   },
   {
-    "frame_id": "venir_frame_01",
-    "verb": "venir",
-    "type": "frame",
-    "tense": "present",
-    "question": "je ____ ici",
-    "answer": "viens",
-    "full_answer": "je viens ici",
-    "frame_type": "intransitive",
-    "source": "manual:venir_intransitive"
-  },
-  {
-    "frame_id": "venir_frame_02",
-    "verb": "venir",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ ____ venir",
-    "answer": "vient de",
-    "full_answer": "il vient de venir",
-    "frame_type": "de_infinitive",
-    "source": "manual:venir_de_inf"
-  },
-  {
     "frame_id": "violer_e2e_direct_object",
     "verb": "violer",
     "type": "frame",
@@ -6567,17 +5027,6 @@
     "source": "manual:voir_direct"
   },
   {
-    "frame_id": "voir_frame_02",
-    "verb": "voir",
-    "type": "frame",
-    "tense": "present",
-    "question": "il ____ que Marie arrive",
-    "answer": "voit",
-    "full_answer": "il voit que Marie arrive",
-    "frame_type": "que_clause",
-    "source": "manual:voir_que"
-  },
-  {
     "frame_id": "voler_e2e_a_object",
     "verb": "voler",
     "type": "frame",
@@ -6620,17 +5069,6 @@
     "full_answer": "Je veux un café",
     "frame_type": "direct_object",
     "source": "usage:vouloir_01"
-  },
-  {
-    "frame_id": "vouloir_frame_02",
-    "verb": "vouloir",
-    "type": "frame",
-    "tense": "present",
-    "question": "Je ____ ____ tu viennes",
-    "answer": "veux que",
-    "full_answer": "Je veux que tu viennes",
-    "frame_type": "que_clause",
-    "source": "usage:vouloir_02"
   },
   {
     "frame_id": "verifier_e2e_direct_object",
@@ -6710,17 +5148,6 @@
     "source": "usage:écrire_01"
   },
   {
-    "frame_id": "ecrire_frame_02",
-    "verb": "écrire",
-    "type": "frame",
-    "tense": "present",
-    "question": "Il ____ ____ tout va bien",
-    "answer": "écrit que",
-    "full_answer": "Il écrit que tout va bien",
-    "frame_type": "que_clause",
-    "source": "usage:écrire_02"
-  },
-  {
     "frame_id": "elever_e2e_direct_object",
     "verb": "élever",
     "type": "frame",
@@ -6752,17 +5179,6 @@
     "full_answer": "Tu énerves mon frère",
     "frame_type": "direct_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object"
-  },
-  {
-    "frame_id": "enerver_frame_02",
-    "verb": "énerver",
-    "type": "frame",
-    "tense": "present",
-    "question": "Ça m'____ ____ il soit en retard",
-    "answer": "énerve qu'",
-    "full_answer": "Ça m'énerve qu'il soit en retard",
-    "frame_type": "que_clause",
-    "source": "usage:énerver_03"
   },
   {
     "frame_id": "epouser_e2e_direct_object",
@@ -6818,17 +5234,6 @@
     "full_answer": "Cette voiture est à mon frère",
     "frame_type": "a_object",
     "source": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object"
-  },
-  {
-    "frame_id": "etre_frame_01",
-    "verb": "être",
-    "type": "frame",
-    "tense": "present",
-    "question": "je ____ prêt",
-    "answer": "suis",
-    "full_answer": "je suis prêt",
-    "frame_type": "predicate",
-    "source": "manual:etre_predicate"
   },
   {
     "frame_id": "etre_frame_02",

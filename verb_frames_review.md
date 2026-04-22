@@ -1,8 +1,8 @@
 # French Frame E2E Run
 
 - Verbs attempted: `500`
-- Accepted cards: `435`
-- App deck total after integration: `622`
+- Accepted cards: `434`
+- App deck total after integration: `477`
 
 ## Status Counts
 
@@ -14,6 +14,7 @@
 
 ## Cleanup Rejections
 
+- `contains_que_surface`: `1`
 - `direct_object_adverbial_or_clause_extension`: `4`
 - `direct_object_context_marker`: `2`
 - `direct_object_extra_surface`: `22`
@@ -25,13 +26,14 @@
 - `prefer_de_object_or_better_source`: `1`
 - `prefer_de_object_over_de_object`: `1`
 - `prefer_direct_object_or_better_source`: `25`
-- `ruthless_manual_sentence_prune`: `16`
+- `quarantined_verb`: `1`
+- `ruthless_manual_sentence_prune`: `14`
 
 ## Accepted by Frame Type
 
 - `a_object`: `70`
 - `de_object`: `29`
-- `direct_object`: `336`
+- `direct_object`: `335`
 
 ## Judge Labels
 

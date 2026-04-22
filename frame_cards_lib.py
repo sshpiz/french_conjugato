@@ -398,15 +398,6 @@ MANUAL_CARDS = {
             "source": "manual:exprimer_direct_2",
         },
     ],
-    "habituer": [
-        {
-            "question": "j'____ Paul à ce bruit",
-            "answer": "habitue",
-            "full_answer": "j'habitue Paul à ce bruit",
-            "frame_type": "a_object",
-            "source": "manual:habituer_a",
-        },
-    ],
 }
 
 

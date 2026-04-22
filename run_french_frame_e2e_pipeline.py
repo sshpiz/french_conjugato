@@ -97,7 +97,7 @@ CHALLENGING_VERBS = (
     "oublier",
     "souvenir",
 )
-QUARANTINED_VERBS = {"approprier", "carter", "coter", "crémer", "douer", "enculer", "souvenir"}
+QUARANTINED_VERBS = {"approprier", "baiser", "carter", "coter", "crémer", "douer", "enculer", "souvenir"}
 FRAME_PRIORITY = {"a_object": 3, "de_object": 3, "direct_object": 1}
 A_SURFACE_RE = re.compile(r"\b(?:à|au|aux)\b|à la\b|à l'", re.IGNORECASE)
 INITIAL_JE_VOWEL_RE = re.compile(r"^Je ([AEIOUÀÂÄÆÉÈÊËÎÏÔŒÖÙÛÜaeiouàâäæéèêëîïôœöùûü])")
@@ -112,7 +112,9 @@ DIRECT_OBJECT_EXTRA_SURFACE_RE = re.compile(
     r"\b(?:à|au|aux|de|du|des|avec|pour|sur|sous|dans|contre|chez|par|après|avant)\b|à l'|à la|de l'|de la|d'",
     re.IGNORECASE,
 )
+STANDALONE_QUE_RE = re.compile(r"\bque\b|qu'", re.IGNORECASE)
 RUTHLESS_BAD_SENTENCES = {
+    "j'habitue paul à ce bruit",
     "elle apprend à ses élèves",
     "elle bat son frère au tennis",
     "il me casse les oreilles avec sa musique",
@@ -969,6 +971,9 @@ def cleanup_merged_cards(cards: list[dict], nlp) -> tuple[list[dict], Counter[st
     best_by_sentence: dict[tuple[str, str], dict] = {}
 
     for card in cards:
+        if str(card.get("frame_type", "")) not in TARGET_FAMILIES:
+            cleanup_rejected["non_target_frame_type"] += 1
+            continue
         if str(card.get("verb", "")) in QUARANTINED_VERBS:
             cleanup_rejected["quarantined_verb_in_merged_deck"] += 1
             continue
@@ -977,6 +982,9 @@ def cleanup_merged_cards(cards: list[dict], nlp) -> tuple[list[dict], Counter[st
         candidate["full_answer"] = fix_initial_elision(candidate.get("full_answer", ""))
         if normalize_sentence(candidate["full_answer"]).lower() in RUTHLESS_BAD_SENTENCES:
             cleanup_rejected["ruthless_manual_sentence_prune"] += 1
+            continue
+        if STANDALONE_QUE_RE.search(candidate["full_answer"]):
+            cleanup_rejected["contains_que_surface"] += 1
             continue
         key = (candidate.get("verb", ""), normalize_sentence(candidate.get("full_answer", "")))
         existing = best_by_sentence.get(key)
