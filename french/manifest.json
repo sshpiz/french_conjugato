@@ -1,6 +1,6 @@
 {
   "name": "Les Verbes",
-  "short_name": "Les Verbes", 
+  "short_name": "Les Verbes",
   "id": "./",
   "start_url": "./",
   "scope": "./",
@@ -11,7 +11,7 @@
   "description": "Master French verb conjugations",
   "icons": [
     {
-      "src": "favicon_big.png",
+      "src": "favicon_big.png?v=20260422_204107",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
