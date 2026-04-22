@@ -15971,7 +15971,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260422_233258";
+      window.APP_BUILD_VERSION = "20260422_234416";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -27976,7 +27976,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260422_233258') ? 'dev' : raw;
+    return !raw || raw.includes('20260422_234416') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -31320,7 +31320,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const {
                 frequencyWeights = {},
                 regularityFilter = { regular: true, irregular: true },
-                endingFilter = { er: true, ir: true, re: true, other: true },
+                endingFilter = { ar: true, er: true, ir: true, other: true },
                 categoryFilter = 'all',
                 verbsWithSentencesOnly = false,
                 tenseWeights = {}
@@ -31689,16 +31689,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ...existing verb card logic...
-    const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { er: true, ir: true, re: true, other: true }, categoryFilter = 'all' } = options;
+    const { hierarchical = false, tenseWeights = {}, frequencyWeights = {}, verbsWithSentencesOnly = false, regularityFilter = { regular: true, irregular: true }, endingFilter = { ar: true, er: true, ir: true, other: true }, categoryFilter = 'all' } = options;
     const sentenceFilterEnabled = ENABLE_LEGACY_SENTENCE_DATA && verbsWithSentencesOnly;
     // pronouns is declared at DOMContentLoaded scope — accessible here
 
         // Helpers for filters
         const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
         const getEnding = (inf) => {
+            if (inf.endsWith('ar')) return 'ar';
             if (inf.endsWith('er')) return 'er';
             if (inf.endsWith('ir')) return 'ir';
-            if (inf.endsWith('re')) return 're';
             return 'other';
         };
         const passesFilters = (verbInfo) => {
