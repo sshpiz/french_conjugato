@@ -739,6 +739,28 @@ body {
     margin-bottom: 1rem;
 }
 
+.explorer-scope-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin: 0 0 0.85rem;
+}
+
+.explorer-scope-toggle {
+    display: inline-flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.explorer-scope-summary {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.92rem;
+    line-height: 1.3;
+    text-align: right;
+}
+
 #search-bar {
     width: 100%;
     padding: 0.75rem;
@@ -1487,6 +1509,76 @@ body {
   flex-shrink: 0;
   order: 0;
   margin-bottom: 0.4rem;
+}
+
+.daily-goal-celebration-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 48;
+  display: none;
+  border-radius: inherit;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.daily-goal-celebration-overlay.is-visible {
+  display: block;
+}
+
+.daily-goal-celebration-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.daily-goal-celebration-badge {
+  display: none;
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 251, 235, 0.82);
+  color: #7a4a00;
+  border: 1px solid rgba(214, 163, 65, 0.36);
+  box-shadow: 0 10px 24px rgba(92, 71, 12, 0.12);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+.daily-goal-celebration-hint {
+  display: none;
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.8rem;
+  padding: 0.26rem 0.56rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(43, 67, 90, 0.92);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-overlay {
+  background: transparent;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-badge {
+  background: rgba(42, 33, 15, 0.82);
+  color: #ffd786;
+  border-color: rgba(255, 206, 102, 0.3);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .daily-goal-celebration-hint {
+  background: rgba(14, 24, 36, 0.66);
+  color: rgba(230, 241, 252, 0.9);
 }
 
 /* Verb/translation: compact — doesn't flex-grow, just wraps content */
@@ -4632,6 +4724,28 @@ body {
     margin-bottom: 1rem;
 }
 
+.explorer-scope-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin: 0 0 0.85rem;
+}
+
+.explorer-scope-toggle {
+    display: inline-flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.explorer-scope-summary {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.92rem;
+    line-height: 1.3;
+    text-align: right;
+}
+
 #search-bar {
     width: 100%;
     padding: 0.75rem;
@@ -5380,6 +5494,76 @@ body {
   flex-shrink: 0;
   order: 0;
   margin-bottom: 0.4rem;
+}
+
+.daily-goal-celebration-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 48;
+  display: none;
+  border-radius: inherit;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.daily-goal-celebration-overlay.is-visible {
+  display: block;
+}
+
+.daily-goal-celebration-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.daily-goal-celebration-badge {
+  display: none;
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 251, 235, 0.82);
+  color: #7a4a00;
+  border: 1px solid rgba(214, 163, 65, 0.36);
+  box-shadow: 0 10px 24px rgba(92, 71, 12, 0.12);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+.daily-goal-celebration-hint {
+  display: none;
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.8rem;
+  padding: 0.26rem 0.56rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(43, 67, 90, 0.92);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-overlay {
+  background: transparent;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-badge {
+  background: rgba(42, 33, 15, 0.82);
+  color: #ffd786;
+  border-color: rgba(255, 206, 102, 0.3);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .daily-goal-celebration-hint {
+  background: rgba(14, 24, 36, 0.66);
+  color: rgba(230, 241, 252, 0.9);
 }
 
 /* Verb/translation: compact — doesn't flex-grow, just wraps content */
@@ -8529,6 +8713,28 @@ body {
     margin-bottom: 1rem;
 }
 
+.explorer-scope-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin: 0 0 0.85rem;
+}
+
+.explorer-scope-toggle {
+    display: inline-flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.explorer-scope-summary {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.92rem;
+    line-height: 1.3;
+    text-align: right;
+}
+
 #search-bar {
     width: 100%;
     padding: 0.75rem;
@@ -9277,6 +9483,76 @@ body {
   flex-shrink: 0;
   order: 0;
   margin-bottom: 0.4rem;
+}
+
+.daily-goal-celebration-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 48;
+  display: none;
+  border-radius: inherit;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.daily-goal-celebration-overlay.is-visible {
+  display: block;
+}
+
+.daily-goal-celebration-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.daily-goal-celebration-badge {
+  display: none;
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 251, 235, 0.82);
+  color: #7a4a00;
+  border: 1px solid rgba(214, 163, 65, 0.36);
+  box-shadow: 0 10px 24px rgba(92, 71, 12, 0.12);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+.daily-goal-celebration-hint {
+  display: none;
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.8rem;
+  padding: 0.26rem 0.56rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(43, 67, 90, 0.92);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-overlay {
+  background: transparent;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-badge {
+  background: rgba(42, 33, 15, 0.82);
+  color: #ffd786;
+  border-color: rgba(255, 206, 102, 0.3);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .daily-goal-celebration-hint {
+  background: rgba(14, 24, 36, 0.66);
+  color: rgba(230, 241, 252, 0.9);
 }
 
 /* Verb/translation: compact — doesn't flex-grow, just wraps content */
@@ -12422,6 +12698,28 @@ body {
     margin-bottom: 1rem;
 }
 
+.explorer-scope-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin: 0 0 0.85rem;
+}
+
+.explorer-scope-toggle {
+    display: inline-flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.explorer-scope-summary {
+    margin: 0;
+    color: var(--muted-text);
+    font-size: 0.92rem;
+    line-height: 1.3;
+    text-align: right;
+}
+
 #search-bar {
     width: 100%;
     padding: 0.75rem;
@@ -13170,6 +13468,76 @@ body {
   flex-shrink: 0;
   order: 0;
   margin-bottom: 0.4rem;
+}
+
+.daily-goal-celebration-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 48;
+  display: none;
+  border-radius: inherit;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.daily-goal-celebration-overlay.is-visible {
+  display: block;
+}
+
+.daily-goal-celebration-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.daily-goal-celebration-badge {
+  display: none;
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 251, 235, 0.82);
+  color: #7a4a00;
+  border: 1px solid rgba(214, 163, 65, 0.36);
+  box-shadow: 0 10px 24px rgba(92, 71, 12, 0.12);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+.daily-goal-celebration-hint {
+  display: none;
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.8rem;
+  padding: 0.26rem 0.56rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(43, 67, 90, 0.92);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-overlay {
+  background: transparent;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-badge {
+  background: rgba(42, 33, 15, 0.82);
+  color: #ffd786;
+  border-color: rgba(255, 206, 102, 0.3);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .daily-goal-celebration-hint {
+  background: rgba(14, 24, 36, 0.66);
+  color: rgba(230, 241, 252, 0.9);
 }
 
 /* Verb/translation: compact — doesn't flex-grow, just wraps content */
@@ -15603,7 +15971,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260422_214736";
+      window.APP_BUILD_VERSION = "20260422_221526";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -16209,6 +16577,13 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                 <button id="back-to-flashcard-btn" class="back-link-btn">← Back to Flashcards</button>
                 <input type="text" id="search-bar" placeholder="Search for a verb (e.g. etre)...">
             </div>
+            <div id="explorer-scope-row" class="explorer-scope-row hidden">
+                <div id="explorer-scope-toggle" class="explorer-scope-toggle">
+                    <button id="explorer-scope-filtered" type="button" class="mode-toggle-btn">Filtered</button>
+                    <button id="explorer-scope-all" type="button" class="mode-toggle-btn">All</button>
+                </div>
+                <p id="explorer-scope-summary" class="explorer-scope-summary"></p>
+            </div>
             <div style="position:relative;">
                 <div id="verb-list-mode-toggle" style="position:absolute;top:0.2em;left:0.2em;z-index:11;visibility: hidden;">
                   <button id="mode-alpha" class="mode-toggle-btn" aria-label="Alphabetical">A-Z</button>
@@ -16631,10 +17006,17 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
       }
       // Increment on each new card (answer shown)
       function incrementDailyCount() {
-        setDailyCount(getDailyCount() + 1);
+        const previousCount = getDailyCount();
+        const nextCount = previousCount + 1;
+        setDailyCount(nextCount);
         updateDailyProgressBar();
+        if (typeof window.handleDailyCountIncrement === 'function') {
+          window.handleDailyCountIncrement(previousCount, nextCount);
+        }
       }
       // Expose for script.js
+      window.getDailyCount = getDailyCount;
+      window.getDailyGoal = () => DAILY_GOAL;
       window.incrementDailyCount = incrementDailyCount;
       window.updateDailyProgressBar = updateDailyProgressBar;
       document.addEventListener('DOMContentLoaded', updateDailyProgressBar);
@@ -27594,7 +27976,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260422_214736') ? 'dev' : raw;
+    return !raw || raw.includes('20260422_221526') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -28257,6 +28639,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const correctDictationHelperEl = document.getElementById('correct-dictation-helper');
 
     const searchBar = document.getElementById('search-bar');
+    const explorerScopeRow = document.getElementById('explorer-scope-row');
+    const explorerScopeFilteredBtn = document.getElementById('explorer-scope-filtered');
+    const explorerScopeAllBtn = document.getElementById('explorer-scope-all');
+    const explorerScopeSummary = document.getElementById('explorer-scope-summary');
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
 
@@ -29752,6 +30138,612 @@ document.addEventListener('DOMContentLoaded', () => {
     const IDLE_HIDDEN_NUDGE_DELAY_MS = 7000;
     const IDLE_REVEALED_NUDGE_DELAY_MS = 6000;
     let idleGuidanceTimeout = null;
+    const ENABLE_DAILY_COUNTER_DEBUG_CELEBRATION = true;
+    const ENABLE_DAILY_GOAL_CELEBRATION = true;
+    const DAILY_GOAL_CELEBRATION_CONFIG = {
+        maxCards: 42,
+        deckSize: 24,
+        gravity: 760,
+        launchCadenceMs: 164,
+        celebrationDurationMs: 15000,
+        debugTapThreshold: 5,
+        debugTapWindowMs: 1400,
+        trailSampleMs: 40,
+        bounceDamping: 0.84,
+    };
+    const recentCelebrationSnapshots = [];
+    const clampValue = (value, min, max) => Math.min(max, Math.max(min, value));
+    const randomBetween = (min, max) => min + (Math.random() * (max - min));
+    const shuffleArray = (items) => {
+        const clone = Array.isArray(items) ? [...items] : [];
+        for (let index = clone.length - 1; index > 0; index -= 1) {
+            const swapIndex = Math.floor(Math.random() * (index + 1));
+            [clone[index], clone[swapIndex]] = [clone[swapIndex], clone[index]];
+        }
+        return clone;
+    };
+    const getCurrentDailyCount = () => {
+        if (typeof window.getDailyCount === 'function') {
+            const raw = Number(window.getDailyCount());
+            return Number.isFinite(raw) ? raw : 0;
+        }
+        return 0;
+    };
+    const getDailyGoalTarget = () => {
+        if (typeof window.getDailyGoal === 'function') {
+            const raw = Number(window.getDailyGoal());
+            return Number.isFinite(raw) && raw > 0 ? raw : 100;
+        }
+        return 100;
+    };
+    const getCelebrationTranslationText = (verbInfo) => {
+        if (!verbInfo || !verbInfo.infinitive) return '';
+        return cleanTranslation(verbInfo.infinitive, verbInfo.translation || '').replace(/^to\s+/i, '');
+    };
+    const createCelebrationSnapshot = (card) => {
+        if (!card || !card.verb || !card.verb.infinitive) return null;
+        return {
+            key: `${cardKey(card)}|${card.conjugated || ''}`,
+            infinitive: card.verb.infinitive,
+            translation: getCelebrationTranslationText(card.verb),
+            pronoun: String(card.pronoun || ''),
+            tenseLabel: String((window.portugueseTenseKeyToLabel && window.portugueseTenseKeyToLabel[card.tense]) || card.tense || ''),
+            answer: String(card.conjugated || '').trim(),
+            accent: String(card.tense || 'present'),
+            frequency: String(card.verb.frequency || '').trim(),
+        };
+    };
+    const rememberCelebrationCardSnapshot = (card) => {
+        const snapshot = createCelebrationSnapshot(card);
+        if (!snapshot) return;
+        const existingIndex = recentCelebrationSnapshots.findIndex((entry) => entry.key === snapshot.key);
+        if (existingIndex >= 0) recentCelebrationSnapshots.splice(existingIndex, 1);
+        recentCelebrationSnapshots.push(snapshot);
+        if (recentCelebrationSnapshots.length > 24) {
+            recentCelebrationSnapshots.splice(0, recentCelebrationSnapshots.length - 24);
+        }
+    };
+    const buildCelebrationDeck = () => {
+        const deck = [];
+        const seenKeys = new Set();
+        const pushSnapshot = (snapshot) => {
+            if (!snapshot || !snapshot.key || seenKeys.has(snapshot.key)) return;
+            seenKeys.add(snapshot.key);
+            deck.push(snapshot);
+        };
+        recentCelebrationSnapshots.slice().reverse().forEach(pushSnapshot);
+        history.slice().reverse().forEach((card) => pushSnapshot(createCelebrationSnapshot(card)));
+        if (currentCard) pushSnapshot(createCelebrationSnapshot(currentCard));
+        if (deck.length < DAILY_GOAL_CELEBRATION_CONFIG.deckSize && Array.isArray(verbs)) {
+            shuffleArray(verbs.filter((verbInfo) => getCelebrationTranslationText(verbInfo))).forEach((verbInfo, index) => {
+                if (deck.length >= DAILY_GOAL_CELEBRATION_CONFIG.deckSize) return;
+                pushSnapshot({
+                    key: `fallback|${verbInfo.infinitive}|${index}`,
+                    infinitive: verbInfo.infinitive,
+                    translation: getCelebrationTranslationText(verbInfo),
+                    pronoun: '',
+                    tenseLabel: index % 2 === 0 ? 'objetivo' : 'série',
+                    answer: index % 3 === 0 ? verbInfo.infinitive : '',
+                    accent: 'present',
+                    frequency: String(verbInfo.frequency || '').trim(),
+                });
+            });
+        }
+        if (deck.length === 0) {
+            pushSnapshot({
+                key: 'fallback|portugues',
+                infinitive: 'bravo',
+                translation: 'objetivo atingido',
+                pronoun: '',
+                tenseLabel: 'do dia',
+                answer: 'continua',
+                accent: 'present',
+                frequency: '',
+            });
+        }
+        return deck.slice(0, DAILY_GOAL_CELEBRATION_CONFIG.deckSize);
+    };
+    const isDarkCelebrationTheme = () => {
+        const root = document.documentElement;
+        if (root.getAttribute('data-theme') === 'dark') return true;
+        return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    };
+    const getCelebrationPalette = () => (
+        isDarkCelebrationTheme()
+            ? {
+                tableTop: '#1f8b33',
+                tableBottom: '#0f5f1f',
+                cardFillTop: '#1a2330',
+                cardFillBottom: '#0f1724',
+                cardBorder: 'rgba(83, 101, 125, 0.86)',
+                shadow: 'rgba(0, 0, 0, 0.3)',
+                title: '#f5f8fb',
+                titleShadow: 'rgba(0, 0, 0, 0.5)',
+                meta: 'rgba(161, 171, 184, 0.98)',
+                divider: 'rgba(83, 96, 112, 0.42)',
+                pillDarkBg: '#262e39',
+                pillDarkText: '#cfd7e2',
+                pillGreenBg: '#389164',
+                pillGreenText: '#d4e4da',
+                frequencyPillBg: '#262e39',
+                frequencyPillText: '#d3d9e2',
+                cardAccentOutline: 'rgba(87, 136, 201, 0.55)',
+                accentVerb: '#79b8ff',
+                accentPresent: '#88d1ad',
+                accentPreterite: '#f6c56d',
+                accentImperfect: '#c4b6ff',
+                accentFuture: '#8bd5ff',
+                accentPresentSubjunctive: '#e2b7ff',
+                accentConditional: '#c9ea92',
+            }
+            : {
+                tableTop: '#22a53b',
+                tableBottom: '#0f7a25',
+                cardFillTop: '#f0f5fa',
+                cardFillBottom: '#e8eff6',
+                cardBorder: 'rgba(34, 40, 48, 0.78)',
+                shadow: 'rgba(0, 0, 0, 0.24)',
+                title: '#23384f',
+                titleShadow: 'rgba(255, 255, 255, 0.2)',
+                meta: 'rgba(82, 97, 116, 0.95)',
+                divider: 'rgba(123, 140, 160, 0.34)',
+                pillDarkBg: '#e3e8ef',
+                pillDarkText: '#4c5b6d',
+                pillGreenBg: '#63b382',
+                pillGreenText: '#f2fbf5',
+                frequencyPillBg: '#e6ebf1',
+                frequencyPillText: '#485667',
+                cardAccentOutline: 'rgba(87, 136, 201, 0.28)',
+                accentVerb: '#4ca5dd',
+                accentPresent: '#6fc590',
+                accentPreterite: '#f0b453',
+                accentImperfect: '#aa98ea',
+                accentFuture: '#6dbde7',
+                accentPresentSubjunctive: '#d19fe6',
+                accentConditional: '#aac86a',
+            }
+    );
+    const createDailyGoalCelebrationController = () => {
+        let overlay = null;
+        let trailCanvas = null;
+        let canvas = null;
+        let hint = null;
+        let badge = null;
+        let trailContext = null;
+        let context = null;
+        let rafId = null;
+        let currentRun = null;
+        let cachedCanvasSize = null;
+
+        const getAccentColorForSnapshot = (snapshot, palette) => {
+            const accentKey = String(snapshot?.accent || '').trim();
+            if (accentKey === 'preterite') return palette.accentPreterite;
+            if (accentKey === 'imperfect') return palette.accentImperfect;
+            if (accentKey === 'future') return palette.accentFuture;
+            if (accentKey === 'presentSubjunctive') return palette.accentPresentSubjunctive;
+            if (accentKey === 'conditional') return palette.accentConditional;
+            return palette.accentPresent || palette.accentVerb;
+        };
+        const roundedRect = (ctx, x, y, width, height, radius) => {
+            const r = Math.min(radius, width / 2, height / 2);
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + width, y, x + width, y + height, r);
+            ctx.arcTo(x + width, y + height, x, y + height, r);
+            ctx.arcTo(x, y + height, x, y, r);
+            ctx.arcTo(x, y, x + width, y, r);
+            ctx.closePath();
+        };
+        const getCelebrationBounds = (width, height) => ({
+            leftBound: 8,
+            rightBound: Math.max(20, width - 8),
+            topBound: 8,
+            floorY: Math.max(40, height - 12),
+        });
+        const fitCanvasToFlashcard = (force = false) => {
+            if (!overlay || !canvas || !trailCanvas || !flashcard) return null;
+            if (!force && cachedCanvasSize) return cachedCanvasSize;
+            const rect = flashcard.getBoundingClientRect();
+            const width = Math.max(1, Math.round(rect.width));
+            const height = Math.max(1, Math.round(rect.height));
+            overlay.style.width = `${width}px`;
+            overlay.style.height = `${height}px`;
+            const dpr = clampValue(window.devicePixelRatio || 1, 1, 2);
+            const pixelWidth = Math.max(1, Math.round(width * dpr));
+            const pixelHeight = Math.max(1, Math.round(height * dpr));
+            [trailCanvas, canvas].forEach((targetCanvas) => {
+                targetCanvas.width = pixelWidth;
+                targetCanvas.height = pixelHeight;
+                targetCanvas.style.width = `${width}px`;
+                targetCanvas.style.height = `${height}px`;
+            });
+            trailContext?.setTransform(dpr, 0, 0, dpr, 0, 0);
+            context?.setTransform(dpr, 0, 0, dpr, 0, 0);
+            cachedCanvasSize = { width, height, dpr };
+            return cachedCanvasSize;
+        };
+        const clearCanvas = () => {
+            const size = fitCanvasToFlashcard();
+            if (!size || !trailContext || !context) return;
+            trailContext.clearRect(0, 0, size.width, size.height);
+            context.clearRect(0, 0, size.width, size.height);
+        };
+        const cleanup = () => {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+            currentRun = null;
+            overlay?.classList.remove('is-visible');
+            clearCanvas();
+        };
+        const drawStackGhost = (ctx, palette) => {
+            for (let stackIndex = 0; stackIndex < 3; stackIndex += 1) {
+                const baseX = 18 + (stackIndex * 18);
+                const baseY = 12 + (stackIndex % 2) * 2;
+                for (let depth = 0; depth < 6; depth += 1) {
+                    roundedRect(ctx, baseX + depth * 1.35, baseY + depth * 0.95, 34, 47, 6);
+                    ctx.fillStyle = depth === 5 ? 'rgba(255,255,255,0.38)' : 'rgba(255,255,255,0.2)';
+                    ctx.fill();
+                    ctx.strokeStyle = palette.cardBorder;
+                    ctx.lineWidth = 0.8;
+                    ctx.globalAlpha = 0.42;
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+                }
+            }
+        };
+        const drawCardStamp = (ctx, sprite, palette, options = {}) => {
+            const snapshot = sprite.snapshot;
+            const accentColor = sprite.accentColor;
+            const x = options.x ?? sprite.x;
+            const y = options.y ?? sprite.y;
+            const width = options.width ?? sprite.width;
+            const height = options.height ?? sprite.height;
+            const angle = options.angle ?? sprite.angle;
+            const alpha = options.alpha ?? 1;
+            const trail = !!options.trail;
+            const titleText = String(snapshot?.infinitive || '').trim();
+            const rawTranslation = String(snapshot?.translation || '').trim();
+            const metaText = rawTranslation ? (/^to\s/i.test(rawTranslation) ? rawTranslation : `to ${rawTranslation}`) : '';
+            const pronounKey = canonicalPronounKey(String(snapshot?.pronoun || '').trim());
+            const pronounEmoji = pronounEmojiMap[pronounKey] || '';
+            const pronounLabel = String(snapshot?.pronoun || '').trim();
+            const frequencyText = snapshot?.frequency ? formatFrequencyLabel(snapshot.frequency) : '';
+            const tenseText = String(snapshot?.tenseLabel || '').trim();
+            const answerText = String(snapshot?.answer || '').trim();
+            const pronounChipText = pronounLabel ? `${pronounEmoji ? `${pronounEmoji} ` : ''}${pronounLabel}` : '';
+
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.globalAlpha = alpha;
+            ctx.shadowColor = trail ? 'rgba(0,0,0,0)' : palette.shadow;
+            ctx.shadowBlur = trail ? 0 : 12;
+            ctx.shadowOffsetY = trail ? 0 : 6;
+            roundedRect(ctx, -width / 2, -height / 2, width, height, 12);
+            const fill = ctx.createLinearGradient(0, -height / 2, 0, height / 2);
+            fill.addColorStop(0, palette.cardFillTop);
+            fill.addColorStop(1, palette.cardFillBottom);
+            ctx.fillStyle = fill;
+            ctx.fill();
+            ctx.shadowColor = 'rgba(0,0,0,0)';
+            ctx.strokeStyle = palette.cardBorder;
+            ctx.lineWidth = trail ? 1 : 1.2;
+            ctx.stroke();
+
+            if (trail) {
+                ctx.fillStyle = 'rgba(255,255,255,0.18)';
+                ctx.fillRect(-width / 2 + 9, -height / 2 + 11, width - 18, 1.8);
+                ctx.fillStyle = palette.title;
+                ctx.fillRect(-width / 2 + 10, -height / 2 + 22, width - 28, 5);
+                ctx.fillStyle = palette.meta;
+                ctx.fillRect(-width / 2 + 10, -height / 2 + 32, width - 24, 3);
+                ctx.fillRect(-width / 2 + 10, height / 2 - 23, width - 20, 10);
+                ctx.restore();
+                return;
+            }
+
+            ctx.fillStyle = palette.title;
+            ctx.shadowColor = palette.titleShadow;
+            ctx.shadowBlur = 4;
+            ctx.shadowOffsetY = 2;
+            ctx.font = `700 ${Math.max(10, Math.round(width * 0.18))}px Inter, sans-serif`;
+            ctx.textBaseline = 'top';
+            ctx.fillText(titleText.slice(0, 14), -width / 2 + 10, -height / 2 + 22, width - 20);
+            ctx.shadowColor = 'rgba(0,0,0,0)';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+
+            ctx.fillStyle = palette.meta;
+            ctx.font = `600 ${Math.max(6, Math.round(width * 0.105))}px Inter, sans-serif`;
+            ctx.fillText(metaText.slice(0, 20), -width / 2 + 12, -height / 2 + 35, width - 24);
+
+            if (frequencyText) {
+                const badgeWidth = Math.min(width - 18, Math.max(22, frequencyText.length * 3.6 + 10));
+                roundedRect(ctx, width / 2 - badgeWidth - 8, -height / 2 + 8, badgeWidth, 11, 5.5);
+                ctx.fillStyle = palette.frequencyPillBg;
+                ctx.fill();
+                ctx.fillStyle = palette.frequencyPillText;
+                ctx.font = `700 ${Math.max(5, Math.round(width * 0.085))}px Inter, sans-serif`;
+                ctx.fillText(frequencyText, width / 2 - badgeWidth - 4, -height / 2 + 10, badgeWidth - 6);
+            }
+
+            const chipsY = height / 2 - 23;
+            if (pronounChipText) {
+                const pronounWidth = Math.min(width - 22, Math.max(28, pronounChipText.length * Math.max(3.2, width * 0.055) + 12));
+                roundedRect(ctx, -width / 2 + 10, chipsY, pronounWidth, 13, 6.5);
+                ctx.fillStyle = palette.pillDarkBg;
+                ctx.fill();
+                ctx.fillStyle = palette.pillDarkText;
+                ctx.font = `700 ${Math.max(5, Math.round(width * 0.085))}px Inter, sans-serif`;
+                ctx.fillText(pronounChipText.slice(0, 14), -width / 2 + 14, chipsY + 2, pronounWidth - 8);
+            }
+            if (tenseText) {
+                const tenseWidth = Math.min(width - 22, Math.max(28, tenseText.length * Math.max(3.1, width * 0.052) + 12));
+                const tenseX = width / 2 - tenseWidth - 10;
+                roundedRect(ctx, tenseX, chipsY, tenseWidth, 13, 6.5);
+                ctx.fillStyle = palette.pillGreenBg;
+                ctx.fill();
+                ctx.fillStyle = palette.pillGreenText;
+                ctx.font = `700 ${Math.max(5, Math.round(width * 0.085))}px Inter, sans-serif`;
+                ctx.fillText(tenseText.slice(0, 14), tenseX + 4, chipsY + 2, tenseWidth - 8);
+            }
+
+            ctx.strokeStyle = palette.divider;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(-width / 2 + 14, height / 2 - 7);
+            ctx.lineTo(width / 2 - 14, height / 2 - 7);
+            ctx.stroke();
+
+            if (answerText) {
+                ctx.fillStyle = accentColor;
+                ctx.globalAlpha = 0.95;
+                ctx.fillRect(-width / 2 + 12, height / 2 - 1.5, width - 24, 3.5);
+                ctx.globalAlpha = alpha;
+            }
+            ctx.restore();
+        };
+        const buildRenderedCardAsset = (sprite, palette, dpr) => {
+            const shadowPadX = 18;
+            const shadowPadTop = 18;
+            const shadowPadBottom = 24;
+            const drawWidth = Math.ceil(sprite.width + (shadowPadX * 2));
+            const drawHeight = Math.ceil(sprite.height + shadowPadTop + shadowPadBottom);
+            const anchorX = shadowPadX + (sprite.width / 2);
+            const anchorY = shadowPadTop + (sprite.height / 2);
+            const assetCanvas = document.createElement('canvas');
+            assetCanvas.width = Math.max(1, Math.round(drawWidth * dpr));
+            assetCanvas.height = Math.max(1, Math.round(drawHeight * dpr));
+            const assetContext = assetCanvas.getContext('2d');
+            if (!assetContext) return null;
+            assetContext.imageSmoothingEnabled = true;
+            assetContext.imageSmoothingQuality = 'high';
+            assetContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+            drawCardStamp(assetContext, sprite, palette, { x: anchorX, y: anchorY, width: sprite.width, height: sprite.height, angle: 0, alpha: 1, trail: false });
+            return { canvas: assetCanvas, width: drawWidth, height: drawHeight, anchorX, anchorY };
+        };
+        const drawRenderedSprite = (ctx, sprite, alpha = 1) => {
+            const asset = sprite.renderAsset;
+            if (!ctx || !asset) return;
+            ctx.save();
+            ctx.translate(sprite.x, sprite.y);
+            ctx.rotate(sprite.angle);
+            ctx.globalAlpha = alpha;
+            ctx.drawImage(asset.canvas, -asset.anchorX, -asset.anchorY, asset.width, asset.height);
+            ctx.restore();
+        };
+        const assignRenderedAssets = (sprites, palette, dpr) => {
+            const assetCache = new Map();
+            sprites.forEach((sprite) => {
+                const assetKey = [sprite.snapshot?.key || 'fallback', sprite.accentColor, sprite.width, sprite.height, dpr, palette.cardFillTop, palette.cardFillBottom].join('|');
+                let asset = assetCache.get(assetKey);
+                if (!asset) {
+                    asset = buildRenderedCardAsset(sprite, palette, dpr);
+                    assetCache.set(assetKey, asset);
+                }
+                sprite.renderAsset = asset;
+            });
+        };
+        const stepSprite = (sprite, dtSeconds) => {
+            if (!sprite.launched || sprite.settled) return;
+            sprite.vx *= 0.9992;
+            sprite.angularVelocity *= 0.998;
+            sprite.vy += DAILY_GOAL_CELEBRATION_CONFIG.gravity * dtSeconds;
+            sprite.x += sprite.vx * dtSeconds;
+            sprite.y += sprite.vy * dtSeconds;
+            sprite.angle += sprite.angularVelocity * dtSeconds;
+            sprite.trailAccumulatorMs += dtSeconds * 1000;
+            const halfWidth = sprite.width / 2;
+            const halfHeight = sprite.height / 2;
+            const { leftBound, rightBound, topBound, floorY } = sprite.bounds;
+            if (sprite.trailAccumulatorMs >= DAILY_GOAL_CELEBRATION_CONFIG.trailSampleMs) {
+                sprite.trailAccumulatorMs = 0;
+                drawRenderedSprite(trailContext, sprite, 0.98);
+            }
+            if (sprite.x - halfWidth < leftBound) {
+                sprite.x = leftBound + halfWidth;
+                sprite.vx = Math.abs(sprite.vx) * 0.94;
+                sprite.angularVelocity *= -0.92;
+            } else if (sprite.x + halfWidth > rightBound) {
+                sprite.x = rightBound - halfWidth;
+                sprite.vx = -Math.abs(sprite.vx) * 0.94;
+                sprite.angularVelocity *= -0.92;
+            }
+            if (sprite.y - halfHeight < topBound) {
+                sprite.y = topBound + halfHeight;
+                sprite.vy = Math.abs(sprite.vy) * 0.82;
+            } else if (sprite.y + halfHeight > floorY) {
+                sprite.y = floorY - halfHeight;
+                sprite.bounceCount += 1;
+                const damping = clampValue(DAILY_GOAL_CELEBRATION_CONFIG.bounceDamping - (sprite.bounceCount * 0.028) + randomBetween(-0.015, 0.015), 0.62, 0.88);
+                sprite.vy = -Math.abs(sprite.vy) * damping;
+                sprite.vx *= 0.9;
+                sprite.angularVelocity = clampValue((sprite.angularVelocity * -0.74) + randomBetween(-0.14, 0.14), -1.6, 1.6);
+                if (Math.abs(sprite.vy) < 42 && Math.abs(sprite.vx) < 34) {
+                    sprite.vy = 0;
+                    sprite.vx = 0;
+                    sprite.angularVelocity *= 0.35;
+                    sprite.settled = true;
+                    sprite.liveVisible = false;
+                    sprite.angle = clampValue(sprite.angle, -0.1, 0.1);
+                    sprite.y = floorY - halfHeight;
+                    drawRenderedSprite(trailContext, sprite, 1);
+                }
+            }
+        };
+        const ensureElements = () => {
+            if (overlay && trailCanvas && canvas && trailContext && context) return;
+            overlay = document.createElement('div');
+            overlay.className = 'daily-goal-celebration-overlay';
+            overlay.setAttribute('role', 'button');
+            overlay.setAttribute('tabindex', '0');
+            overlay.setAttribute('aria-label', 'Toque para passar a animação');
+            trailCanvas = document.createElement('canvas');
+            trailCanvas.className = 'daily-goal-celebration-canvas';
+            overlay.appendChild(trailCanvas);
+            canvas = document.createElement('canvas');
+            canvas.className = 'daily-goal-celebration-canvas';
+            overlay.appendChild(canvas);
+            badge = document.createElement('div');
+            badge.className = 'daily-goal-celebration-badge';
+            overlay.appendChild(badge);
+            hint = document.createElement('div');
+            hint.className = 'daily-goal-celebration-hint';
+            overlay.appendChild(hint);
+            flashcard.appendChild(overlay);
+            trailContext = trailCanvas.getContext('2d');
+            context = canvas.getContext('2d');
+            const skipRun = (event) => {
+                event?.preventDefault();
+                event?.stopPropagation();
+                cleanup();
+            };
+            overlay.addEventListener('pointerdown', skipRun);
+            overlay.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+            });
+            overlay.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ' || event.key === 'Escape') skipRun(event);
+            });
+            window.addEventListener('resize', () => {
+                const size = fitCanvasToFlashcard(true);
+                if (!size || !currentRun) return;
+                currentRun.size = size;
+                const bounds = getCelebrationBounds(size.width, size.height);
+                currentRun.sprites.forEach((sprite) => {
+                    sprite.bounds = bounds;
+                    const halfWidth = sprite.width / 2;
+                    const halfHeight = sprite.height / 2;
+                    sprite.x = clampValue(sprite.x, bounds.leftBound + halfWidth, bounds.rightBound - halfWidth);
+                    sprite.y = clampValue(sprite.y, bounds.topBound + halfHeight, bounds.floorY - halfHeight);
+                });
+                assignRenderedAssets(currentRun.sprites, currentRun.palette, size.dpr);
+            });
+        };
+        const render = (frameTimeMs) => {
+            if (!currentRun || !context) return;
+            if (!currentRun.previousFrameTimeMs) currentRun.previousFrameTimeMs = frameTimeMs;
+            const elapsedMs = frameTimeMs - currentRun.startedAtMs;
+            const dtSeconds = Math.min(0.033, (frameTimeMs - currentRun.previousFrameTimeMs) / 1000);
+            currentRun.previousFrameTimeMs = frameTimeMs;
+            context.clearRect(0, 0, currentRun.size.width, currentRun.size.height);
+            drawStackGhost(context, currentRun.palette);
+            currentRun.sprites.forEach((sprite) => {
+                if (!sprite.launched && elapsedMs >= sprite.delayMs) sprite.launched = true;
+                if (!sprite.launched) return;
+                stepSprite(sprite, dtSeconds);
+                if (!sprite.liveVisible) return;
+                drawRenderedSprite(context, sprite, 1);
+            });
+            if (elapsedMs >= DAILY_GOAL_CELEBRATION_CONFIG.celebrationDurationMs) {
+                cleanup();
+                return;
+            }
+            rafId = requestAnimationFrame(render);
+        };
+        return {
+            trigger(options = {}) {
+                ensureElements();
+                cleanup();
+                const palette = getCelebrationPalette();
+                const size = fitCanvasToFlashcard(true);
+                if (!size) return;
+                const deck = buildCelebrationDeck();
+                const bounds = getCelebrationBounds(size.width, size.height);
+                const cardWidth = clampValue(size.width * 0.145, 46, 64);
+                const cardHeight = Math.round(cardWidth * 1.36);
+                const spawnX = 28;
+                const spawnY = 34;
+                const totalCards = Math.min(DAILY_GOAL_CELEBRATION_CONFIG.maxCards, Math.max(deck.length * 2, 24));
+                const sprites = [];
+                for (let index = 0; index < totalCards; index += 1) {
+                    const snapshot = deck[index % deck.length];
+                    const launchSpeed = randomBetween(size.height * 0.54, size.height * 0.9);
+                    const launchAngle = randomBetween(-2.38, -0.72);
+                    sprites.push({
+                        snapshot,
+                        x: spawnX + (index % 5) * 1.6 + randomBetween(-1, 2),
+                        y: spawnY + (index % 4) * 1.3 + randomBetween(-1, 1),
+                        vx: Math.cos(launchAngle) * launchSpeed,
+                        vy: Math.sin(launchAngle) * launchSpeed,
+                        angle: randomBetween(-0.14, 0.1),
+                        angularVelocity: randomBetween(-1.25, 1.25),
+                        width: cardWidth,
+                        height: cardHeight,
+                        delayMs: index * DAILY_GOAL_CELEBRATION_CONFIG.launchCadenceMs,
+                        launched: false,
+                        accentColor: getAccentColorForSnapshot(snapshot, palette),
+                        bounceCount: 0,
+                        settled: false,
+                        liveVisible: true,
+                        trailAccumulatorMs: 0,
+                        renderAsset: null,
+                        bounds,
+                    });
+                }
+                assignRenderedAssets(sprites, palette, size.dpr);
+                currentRun = {
+                    startedAtMs: performance.now(),
+                    previousFrameTimeMs: 0,
+                    palette,
+                    size,
+                    sprites,
+                };
+                if (badge) {
+                    badge.textContent = options.reason === 'debug-counter' ? 'Teste solitaire' : 'Objetivo atingido';
+                }
+                if (hint) {
+                    hint.textContent = 'Toque para passar';
+                }
+                overlay?.classList.add('is-visible');
+                rafId = requestAnimationFrame(render);
+            },
+            isActive() {
+                return !!currentRun;
+            },
+            skip() {
+                cleanup();
+            },
+        };
+    };
+    const dailyGoalCelebration = createDailyGoalCelebrationController();
+    const maybeTriggerDailyGoalCelebration = (previousCount, nextCount) => {
+        if (!ENABLE_DAILY_GOAL_CELEBRATION || dailyGoalCelebration.isActive()) return;
+        const goal = getDailyGoalTarget();
+        if (goal <= 0) return;
+        if (Math.floor(nextCount / goal) > Math.floor(previousCount / goal)) {
+            dailyGoalCelebration.trigger({ reason: 'daily-goal' });
+        }
+    };
+    window.handleDailyCountIncrement = (previousCount, nextCount) => {
+        maybeTriggerDailyGoalCelebration(previousCount, nextCount);
+    };
+    window.triggerPortugueseGoalCelebration = (options = {}) => {
+        dailyGoalCelebration.trigger({ reason: options.reason || 'manual' });
+    };
 
     // --- Options UI Elements ---
     const hierarchicalToggle = document.getElementById('hierarchical-toggle');
@@ -29955,6 +30947,12 @@ document.addEventListener('DOMContentLoaded', () => {
         verbMeta.seenCount = (verbMeta.seenCount || 0) + 1;
         verbMeta.lastSeenTurn = currentTurn;
         persistReviewModelState();
+        if (card.filteredPoolProgressKey) {
+            const progressEntry = getFilteredPoolProgressEntry(card.filteredPoolProgressKey, true);
+            progressEntry.seenVerbs[card.verb.infinitive] = currentTurn;
+            progressEntry.lastSeenTurn = currentTurn;
+            persistFilteredPoolProgressState();
+        }
     };
 
     const recordVerbDetailOpen = (verbInfinitive) => {
@@ -30083,7 +31081,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }))
     );
 
+    const FILTERED_POOL_PROGRESS_STORAGE_KEY = 'filteredVerbPoolProgressV1';
+
+    function buildEmptyFilteredPoolProgressState() {
+        return { selections: {} };
+    }
+
+    function loadFilteredPoolProgressState() {
+        try {
+            const raw = getScopedStorageItem(FILTERED_POOL_PROGRESS_STORAGE_KEY);
+            if (!raw) return buildEmptyFilteredPoolProgressState();
+            const parsed = JSON.parse(raw);
+            return {
+                ...buildEmptyFilteredPoolProgressState(),
+                ...parsed,
+                selections: parsed && typeof parsed.selections === 'object' && parsed.selections ? parsed.selections : {},
+            };
+        } catch (error) {
+            console.warn('Could not load filtered pool progress state:', error);
+            return buildEmptyFilteredPoolProgressState();
+        }
+    }
+
+    function pruneFilteredPoolProgressState(state, maxEntries = 60) {
+        const keys = Object.keys(state.selections || {});
+        if (keys.length <= maxEntries) return;
+        keys
+            .sort((a, b) => ((state.selections[b]?.lastSeenTurn || 0) - (state.selections[a]?.lastSeenTurn || 0)))
+            .slice(maxEntries)
+            .forEach((key) => {
+                delete state.selections[key];
+            });
+    }
+
+    function persistFilteredPoolProgressState() {
+        try {
+            pruneFilteredPoolProgressState(filteredPoolProgressState);
+            setScopedStorageItem(FILTERED_POOL_PROGRESS_STORAGE_KEY, JSON.stringify(filteredPoolProgressState));
+        } catch (error) {
+            console.warn('Could not save filtered pool progress state:', error);
+        }
+    }
+
+    function getFilteredPoolProgressEntry(selectionKey, create = false) {
+        if (!selectionKey) return null;
+        if (!filteredPoolProgressState.selections[selectionKey] && create) {
+            filteredPoolProgressState.selections[selectionKey] = { seenVerbs: {}, lastSeenTurn: 0 };
+        }
+        return filteredPoolProgressState.selections[selectionKey] || null;
+    }
+
     let reviewModelState = loadReviewModelState();
+    let filteredPoolProgressState = loadFilteredPoolProgressState();
     let currentCardShownAtMs = 0;
 
     // --- Local Storage for Options ---
@@ -30463,6 +31512,121 @@ document.addEventListener('DOMContentLoaded', () => {
         return weightedPool[weightedPool.length - 1].card;
     };
 
+    const getVerbEnding = (infinitive) => {
+        if (infinitive.endsWith('ar')) return 'ar';
+        if (infinitive.endsWith('er')) return 'er';
+        if (infinitive.endsWith('ir')) return 'ir';
+        return 'other';
+    };
+
+    const verbPassesCurrentFilters = (verbInfo, options = cardGenerationOptions) => {
+        if (!verbInfo) return false;
+        const {
+            regularityFilter = { regular: true, irregular: true },
+            endingFilter = { ar: true, er: true, ir: true, other: true },
+            categoryFilter = 'all',
+            reflexiveMode = cardGenerationOptions.reflexiveMode,
+        } = options;
+        if (reflexiveMode === 'only' && !verbInfo.reflexive) return false;
+        if (reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
+        const irregular = IRREGULAR_VERBS.has(verbInfo.infinitive);
+        if (irregular && !regularityFilter.irregular) return false;
+        if (!irregular && !regularityFilter.regular) return false;
+        if (!endingFilter[getVerbEnding(verbInfo.infinitive)]) return false;
+        if (categoryFilter !== 'all') {
+            const category = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
+            if (category !== categoryFilter) return false;
+        }
+        return true;
+    };
+
+    const verbHasUsableSentencesForOptions = (verbInfinitive, options = cardGenerationOptions) => {
+        if (!ENABLE_LEGACY_SENTENCE_DATA || !options.verbsWithSentencesOnly) return true;
+        const verbPhrases = phrasebook[verbInfinitive];
+        if (!verbPhrases) return false;
+        const tenseWeightsForOptions = options.tenseWeights || {};
+        for (const tenseName in tenseWeightsForOptions) {
+            if ((tenseWeightsForOptions[tenseName] || 0) <= 0) continue;
+            const phraseKey = tenseKeyToPhraseKey[tenseName];
+            const tenseArr = verbPhrases[phraseKey];
+            if (!Array.isArray(tenseArr)) continue;
+            if (tenseArr.some((phrase) => phrase.gap_sentence)) return true;
+        }
+        return false;
+    };
+
+    const getFilteredVerbUniverse = (options = cardGenerationOptions) => {
+        const activeFrequencyWeights = normalizeFrequencyWeightsConfig(options.frequencyWeights || {});
+        const activeFrequencies = new Set(
+            Object.entries(activeFrequencyWeights)
+                .filter(([, score]) => score > 0)
+                .map(([freq]) => freq)
+        );
+        return uniqueVerbs.filter((verbInfo) => {
+            if (!cleanTranslation(verbInfo.infinitive, verbInfo.translation || '')) return false;
+            if (!verbPassesCurrentFilters(verbInfo, options)) return false;
+            if (!verbHasUsableSentencesForOptions(verbInfo.infinitive, options)) return false;
+            if (options.reflexiveMode === 'only') return true;
+            return activeFrequencies.has(verbInfo.frequency || 'common');
+        });
+    };
+
+    const buildCurrentFilteredPoolSelection = (options = cardGenerationOptions) => {
+        const filteredUniverse = getFilteredVerbUniverse(options);
+        if (filteredUniverse.length === 0 || filteredUniverse.length >= uniqueVerbs.length) return null;
+        const verbs = filteredUniverse.map((verbInfo) => verbInfo.infinitive).sort();
+        return {
+            key: `filtered::${verbs.join('|')}`,
+            verbs,
+            count: verbs.length,
+            label: options.categoryFilter && options.categoryFilter !== 'all' ? options.categoryFilter : 'current filters',
+        };
+    };
+
+    const buildActiveFilteredPoolCoverageMultiplierMap = (selection) => {
+        if (!selection || !Array.isArray(selection.verbs) || !selection.verbs.length) return null;
+        const progressEntry = getFilteredPoolProgressEntry(selection.key);
+        const seenVerbs = progressEntry?.seenVerbs || {};
+        const unseenVerbs = selection.verbs.filter((verb) => !seenVerbs[verb]);
+        if (!unseenVerbs.length) return { progressKey: selection.key, multipliers: null };
+        const multipliers = new Map();
+        selection.verbs.forEach((verb) => {
+            multipliers.set(verb, seenVerbs[verb] ? 0.16 : 14);
+        });
+        return { progressKey: selection.key, multipliers };
+    };
+
+    let explorerVerbScopeMode = 'filtered';
+
+    const getCurrentVerbSelectionSummary = (filteredCount, totalCount) => {
+        if (cardGenerationOptions.categoryFilter && cardGenerationOptions.categoryFilter !== 'all') {
+            return `Showing ${filteredCount} verbs from ${cardGenerationOptions.categoryFilter}`;
+        }
+        if (filteredCount >= totalCount) {
+            return `Showing all ${totalCount} verbs`;
+        }
+        return `Showing ${filteredCount} verbs from the current drill filters`;
+    };
+
+    const refreshExplorerScopeUi = () => {
+        if (!explorerScopeRow || !explorerScopeFilteredBtn || !explorerScopeAllBtn || !explorerScopeSummary) return;
+        const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
+        const hasNarrowedPool = filteredUniverse.length > 0 && filteredUniverse.length < uniqueVerbs.length;
+        explorerScopeRow.classList.toggle('hidden', !hasNarrowedPool);
+        if (!hasNarrowedPool) {
+            explorerScopeSummary.textContent = '';
+            explorerScopeFilteredBtn.classList.remove('active');
+            explorerScopeAllBtn.classList.remove('active');
+            return;
+        }
+        const effectiveMode = explorerVerbScopeMode === 'all' ? 'all' : 'filtered';
+        explorerScopeFilteredBtn.classList.toggle('active', effectiveMode === 'filtered');
+        explorerScopeAllBtn.classList.toggle('active', effectiveMode === 'all');
+        explorerScopeSummary.textContent = effectiveMode === 'filtered'
+            ? getCurrentVerbSelectionSummary(filteredUniverse.length, uniqueVerbs.length)
+            : `Showing all ${uniqueVerbs.length} verbs`;
+    };
+
     const generateNewCard = (options = {}) => {
         // --- PRACTICE MODE LOGIC ---
         const practiceMode = getScopedStorageItem('practiceMode') || 'verbs';
@@ -30549,6 +31713,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        const activeFilteredPoolSelection = buildCurrentFilteredPoolSelection({
+            ...options,
+            reflexiveMode: cardGenerationOptions.reflexiveMode,
+        });
+        const activeFilteredPoolCoverage = buildActiveFilteredPoolCoverageMultiplierMap(activeFilteredPoolSelection);
+        const progressKey = activeFilteredPoolCoverage?.progressKey || '';
+        const coverageMultipliers = activeFilteredPoolCoverage?.multipliers || null;
+
         let newCard = null;
 
         if (hierarchical) {
@@ -30609,19 +31781,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
                         for (const pronounKey of availablePronouns) {
                             const pronounVariants = getPronounVariantsForCard(pronounKey);
+                            const verbCoverageMultiplier = coverageMultipliers?.get(verbInfo.infinitive) || 1;
                             if (cardGenerationOptions.balancedPronouns && pronounVariants.length > 1) {
-                                const perVariantScore = tenseWeight / pronounVariants.length;
+                                const perVariantScore = (tenseWeight * verbCoverageMultiplier) / pronounVariants.length;
                                 for (const pronoun of pronounVariants) {
                                     weightedDeck.push({
-                                        card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey] },
+                                        card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey], ...(progressKey ? { filteredPoolProgressKey: progressKey } : {}) },
                                         score: perVariantScore
                                     });
                                 }
                             } else {
                                 const pronoun = pronounVariants[Math.floor(Math.random() * pronounVariants.length)];
                                 weightedDeck.push({
-                                    card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey] },
-                                    score: tenseWeight
+                                    card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey], ...(progressKey ? { filteredPoolProgressKey: progressKey } : {}) },
+                                    score: tenseWeight * verbCoverageMultiplier
                                 });
                             }
                         }
@@ -30656,19 +31829,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         const availablePronouns = pronouns.filter(p => conjugations[p]);
                         for (const pronounKey of availablePronouns) {
                             const pronounVariants = getPronounVariantsForCard(pronounKey);
+                            const verbCoverageMultiplier = coverageMultipliers?.get(verbInfo.infinitive) || 1;
                             if (cardGenerationOptions.balancedPronouns && pronounVariants.length > 1) {
-                                const perVariantScore = score / pronounVariants.length;
+                                const perVariantScore = (score * verbCoverageMultiplier) / pronounVariants.length;
                                 for (const pronoun of pronounVariants) {
                                     weightedDeck.push({
-                                        card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey] },
+                                        card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey], ...(progressKey ? { filteredPoolProgressKey: progressKey } : {}) },
                                         score: perVariantScore
                                     });
                                 }
                             } else {
                                 const pronoun = pronounVariants[Math.floor(Math.random() * pronounVariants.length)];
                                 weightedDeck.push({
-                                    card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey] },
-                                    score: score
+                                    card: { verb: verbInfo, tense: tenseName, pronoun, pronounKey, conjugated: conjugations[pronounKey], ...(progressKey ? { filteredPoolProgressKey: progressKey } : {}) },
+                                    score: score * verbCoverageMultiplier
                                 });
                             }
                         }
@@ -30967,6 +32141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isAnswerVisible) {
             if (currentCard && currentCard.verb) {
                 recordSlowRevealHintIfNeeded(currentCard, performance.now() - currentCardShownAtMs);
+                rememberCelebrationCardSnapshot(currentCard);
             }
             dismissReopenMessage();
             answerContainer.classList.add('is-visible');
@@ -31173,8 +32348,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateExplorerList(filter = '') {
         verbListContainer.innerHTML = '';
+        refreshExplorerScopeUi();
         const normalizedFilter = removeAccents(filter.toLowerCase().trim());
-        const filteredVerbs = uniqueVerbs.filter(v => {
+        const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
+        const useFilteredScope = filteredUniverse.length > 0
+            && filteredUniverse.length < uniqueVerbs.length
+            && explorerVerbScopeMode !== 'all';
+        const sourceVerbs = useFilteredScope ? filteredUniverse : uniqueVerbs;
+        const filteredVerbs = sourceVerbs.filter(v => {
             if (!normalizedFilter) return true;
             // Match French infinitive
             if (removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter)) return true;
@@ -31813,6 +32994,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const dailyProgressContainer = document.getElementById('daily-progress-container');
+    if (dailyProgressContainer) {
+        let debugTapCount = 0;
+        let debugTapResetTimer = null;
+        const resetDailyGoalDebugCounter = () => {
+            debugTapCount = 0;
+            if (debugTapResetTimer) {
+                clearTimeout(debugTapResetTimer);
+                debugTapResetTimer = null;
+            }
+        };
+
+        dailyProgressContainer.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            if (!ENABLE_DAILY_COUNTER_DEBUG_CELEBRATION) return;
+            debugTapCount += 1;
+            if (debugTapResetTimer) clearTimeout(debugTapResetTimer);
+            debugTapResetTimer = window.setTimeout(resetDailyGoalDebugCounter, DAILY_GOAL_CELEBRATION_CONFIG.debugTapWindowMs);
+            if (debugTapCount >= DAILY_GOAL_CELEBRATION_CONFIG.debugTapThreshold) {
+                resetDailyGoalDebugCounter();
+                dailyGoalCelebration.trigger({ reason: 'debug-counter' });
+            }
+        });
+    }
+
     verbPhraseEl.addEventListener('click', (e) => {
         // e.stopPropagation();
         // e.preventDefault();
@@ -32060,6 +33267,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Explorer Search and Audio
     searchBar.addEventListener('input', (e) => populateExplorerList(e.target.value));
+    if (explorerScopeFilteredBtn) {
+        explorerScopeFilteredBtn.addEventListener('click', () => {
+            explorerVerbScopeMode = 'filtered';
+            populateExplorerList(searchBar.value || '');
+        });
+    }
+    if (explorerScopeAllBtn) {
+        explorerScopeAllBtn.addEventListener('click', () => {
+            explorerVerbScopeMode = 'all';
+            populateExplorerList(searchBar.value || '');
+        });
+    }
     
     verbListContainer.addEventListener('click', (e) => {
         const targetItem = e.target.closest('.verb-list-item');
