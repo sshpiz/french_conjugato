@@ -4452,7 +4452,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         const buildSprites = (deck, width, height, palette) => {
-            const cardWidth = clampValue(width * 0.17, 54, 74);
+            const cardWidth = clampValue(width * 0.145, 46, 64);
             const cardHeight = Math.round(cardWidth * 1.36);
             const spawnX = 28;
             const spawnY = 34;
@@ -4466,9 +4466,11 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let index = 0; index < totalCards; index += 1) {
                 const snapshot = deck[index % deck.length];
                 const burstBias = (index % 6) / 5;
-                const vx = randomBetween(width * 0.34, width * 0.52) + (burstBias * 10);
-                const vy = -randomBetween(height * 0.5, height * 0.72) - (burstBias * 12);
-                const cardAngle = randomBetween(-0.09, 0.06);
+                const launchSpeed = randomBetween(height * 0.54, height * 0.9) + (burstBias * 10);
+                const launchAngle = randomBetween(-2.38, -0.72);
+                const vx = Math.cos(launchAngle) * launchSpeed;
+                const vy = Math.sin(launchAngle) * launchSpeed;
+                const cardAngle = randomBetween(-0.14, 0.1);
                 sprites.push({
                     snapshot,
                     x: spawnX + (index % 5) * 1.6 + randomBetween(-1, 2),
@@ -4476,7 +4478,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     vx,
                     vy,
                     angle: cardAngle,
-                    angularVelocity: randomBetween(-1.05, 1.05),
+                    angularVelocity: randomBetween(-1.25, 1.25),
                     width: cardWidth,
                     height: cardHeight,
                     delayMs: index * DAILY_GOAL_CELEBRATION_CONFIG.launchCadenceMs,
@@ -4490,35 +4492,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             return sprites;
-        };
-        const drawBackground = (ctx, width, height, palette, elapsedMs) => {
-            const feltGradient = ctx.createLinearGradient(0, 0, 0, height);
-            feltGradient.addColorStop(0, palette.tableTop);
-            feltGradient.addColorStop(1, palette.tableBottom);
-            ctx.fillStyle = feltGradient;
-            ctx.fillRect(0, 0, width, height);
-
-            const glow = ctx.createRadialGradient(38, 34, 0, 38, 34, Math.max(width, height) * 0.72);
-            glow.addColorStop(0, palette.stackGlow);
-            glow.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.fillStyle = glow;
-            ctx.fillRect(0, 0, width, height);
-
-            const vignette = ctx.createRadialGradient(width * 0.48, height * 0.16, 0, width * 0.48, height * 0.46, width * 0.92);
-            vignette.addColorStop(0, palette.glow);
-            vignette.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.fillStyle = vignette;
-            ctx.globalAlpha = 0.72 + (Math.sin(elapsedMs / 420) * 0.05);
-            ctx.fillRect(0, 0, width, height);
-
-            ctx.strokeStyle = palette.tableLine;
-            ctx.lineWidth = 1;
-            ctx.globalAlpha = 0.45;
-            ctx.beginPath();
-            ctx.moveTo(0, height - 10.5);
-            ctx.lineTo(width, height - 10.5);
-            ctx.stroke();
-            ctx.globalAlpha = 1;
         };
         const drawStackGhost = (ctx, palette) => {
             for (let stackIndex = 0; stackIndex < 3; stackIndex += 1) {
@@ -4777,14 +4750,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             currentRun.size = size;
 
-            if (!currentRun.baseDrawn && trailContext) {
-                trailContext.clearRect(0, 0, size.width, size.height);
-                drawBackground(trailContext, size.width, size.height, currentRun.palette, 0);
-                drawStackGhost(trailContext, currentRun.palette);
-                currentRun.baseDrawn = true;
-            }
-
             context.clearRect(0, 0, size.width, size.height);
+            drawStackGhost(context, currentRun.palette);
 
             currentRun.sprites.forEach((sprite) => {
                 if (!sprite.launched && elapsedMs >= sprite.delayMs) {
@@ -4817,7 +4784,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     reason: options.reason || 'manual',
                     startedAtMs: performance.now(),
                     previousFrameTimeMs: 0,
-                    baseDrawn: false,
                     palette,
                     size,
                     sprites: buildSprites(deck, size.width, size.height, palette),
