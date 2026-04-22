@@ -2313,6 +2313,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const pressToDictateHelperEl = document.getElementById('press-to-dictate-helper');
 
     const searchBar = document.getElementById('search-bar');
+    const explorerScopeRow = document.getElementById('explorer-scope-row');
+    const explorerScopeFilteredBtn = document.getElementById('explorer-scope-filtered');
+    const explorerScopeAllBtn = document.getElementById('explorer-scope-all');
+    const explorerScopeSummary = document.getElementById('explorer-scope-summary');
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
     let packagedTtsBusy = false;
@@ -3686,6 +3690,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return rawTranslation.trim();
     };
 
+    // NOTE(registers): This is an intentionally small curated layer for now.
+    // Category richness and register labeling are "good enough to ship" but not exhaustive;
+    // revisit periodically as we expand built-in sets and confirm which verbs deserve
+    // verb-level labels versus more precise usage-level labels.
     const VERB_REGISTER_GLOSS_LABELS = Object.freeze({
         bachoter: 'slang',
         bosser: 'slang',
@@ -4120,6 +4128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gravity: 760,
         launchCadenceMs: 164,
         celebrationDurationMs: 15000,
+        skipUnlockDelayMs: 1000,
         debugTapThreshold: 5,
         debugTapWindowMs: 1400,
         trailStampCount: 14,
@@ -4330,6 +4339,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentRun = null;
         let resizeHandlerAttached = false;
         let cachedCanvasSize = null;
+        let skipUnlockTimer = null;
+        let skipEnabled = false;
 
         const getAccentColorForSnapshot = (snapshot, palette) => {
             const accentKey = String(snapshot?.accent || '').trim();
@@ -4436,6 +4447,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const skipRun = (event) => {
+                if (!skipEnabled) return;
                 if (event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -4481,15 +4493,31 @@ document.addEventListener('DOMContentLoaded', () => {
             trailContext.clearRect(0, 0, size.width, size.height);
             context.clearRect(0, 0, size.width, size.height);
         };
+        const setSkipEnabled = (enabled) => {
+            skipEnabled = !!enabled;
+            if (overlay) {
+                overlay.style.cursor = skipEnabled ? 'pointer' : 'default';
+                overlay.setAttribute('aria-disabled', skipEnabled ? 'false' : 'true');
+            }
+            if (hint) {
+                hint.style.display = skipEnabled ? 'inline-flex' : 'none';
+            }
+        };
         const cleanup = (reason = 'finished') => {
             if (rafId) {
                 cancelAnimationFrame(rafId);
                 rafId = null;
             }
+            if (skipUnlockTimer) {
+                clearTimeout(skipUnlockTimer);
+                skipUnlockTimer = null;
+            }
+            setSkipEnabled(false);
             currentRun = null;
             if (overlay) {
                 overlay.classList.remove('is-visible');
             }
+            if (badge) badge.style.display = 'none';
             clearCanvas();
             if (window.appLog) {
                 window.appLog(`daily-goal-celebration ${reason}`);
@@ -4897,6 +4925,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (overlay) {
                     overlay.classList.add('is-visible');
                 }
+                if (badge) {
+                    badge.style.display = 'inline-flex';
+                }
+                setSkipEnabled(false);
+                skipUnlockTimer = window.setTimeout(() => {
+                    skipUnlockTimer = null;
+                    if (currentRun) setSkipEnabled(true);
+                }, DAILY_GOAL_CELEBRATION_CONFIG.skipUnlockDelayMs);
                 rafId = requestAnimationFrame(render);
             },
             isActive() {
@@ -5599,6 +5635,12 @@ document.addEventListener('DOMContentLoaded', () => {
         verbMeta.seenCount = (verbMeta.seenCount || 0) + 1;
         verbMeta.lastSeenTurn = currentTurn;
         persistReviewModelState();
+        if (card.verbSetProgressKey) {
+            const progressEntry = getVerbSetProgressEntry(card.verbSetProgressKey, true);
+            progressEntry.seenVerbs[card.verb.infinitive] = true;
+            progressEntry.lastSeenTurn = currentTurn;
+            persistVerbSetProgressState();
+        }
     };
 
     const recordVerbDetailOpen = (verbInfinitive) => {
@@ -5728,6 +5770,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     let reviewModelState = loadReviewModelState();
+    let verbSetProgressState = loadVerbSetProgressState();
     let currentCardShownAtMs = 0;
 
     // --- Local Storage for Options ---
@@ -6010,74 +6053,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // and, if enabled, has practice sentences (gap_sentence) in at least one enabled tense.
     const computeActiveVerbPoolCount = () => {
         try {
-    const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
-    const candidateVerbs = getResolvedVerbUniverse(cardGenerationOptions);
-            const {
-                frequencyWeights = {},
-                regularityFilter = { regular: true, irregular: true },
-                endingFilter = { er: true, ir: true, re: true, other: true },
-                categoryFilter = 'all',
-                prepositionalVerbMode = 'all',
-                verbsWithSentencesOnly = false,
-                tenseWeights = {}
-            } = cardGenerationOptions || {};
-
-            const activeFrequencies = new Set(
-                Object.entries(frequencyWeights)
-                    .filter(([, w]) => (w || 0) > 0)
-                    .map(([f]) => f)
-            );
-            if (!activeVerbSet && activeFrequencies.size === 0) return 0;
-
-            const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
-            const getEnding = (inf) => {
-                if (inf.endsWith('er')) return 'er';
-                if (inf.endsWith('ir')) return 'ir';
-                if (inf.endsWith('re')) return 're';
-                return 'other';
-            };
-            const passesFilters = (verbInfo) => {
-                if (cardGenerationOptions.reflexiveMode === 'only' && !verbInfo.reflexive) return false;
-                if (cardGenerationOptions.reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
-                const irreg = isIrregular(verbInfo.infinitive);
-                if (irreg && !regularityFilter.irregular) return false;
-                if (!irreg && !regularityFilter.regular) return false;
-                const end = getEnding(verbInfo.infinitive);
-                if (!endingFilter[end]) return false;
-                if (categoryFilter !== 'all') {
-                    const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
-                    if (cat !== categoryFilter) return false;
-                }
-                if (prepositionalVerbMode === 'only' && !verbsWithPrepositionalFrames.has(verbInfo.infinitive)) return false;
-                return true;
-            };
-            const hasPracticeSentences = (inf) => {
-                if (!ENABLE_LEGACY_SENTENCE_DATA) return true;
-                // If the sentences-only filter is OFF, don't exclude any verbs based on sentences
-                if (!verbsWithSentencesOnly) return true;
-                const verbPhrases = phrasebook[inf];
-                if (!verbPhrases) return false;
-                for (const tenseName in tenseWeights) {
-                    if ((tenseWeights[tenseName] || 0) <= 0) continue;
-                    const phraseKey = tenseKeyToPhraseKey[tenseName];
-                    const tenseArr = verbPhrases && verbPhrases[phraseKey];
-                    if (!Array.isArray(tenseArr)) continue;
-                    if (tenseArr.some(p => p && p.gap_sentence)) return true;
-                }
-                return false;
-            };
-
-            let count = 0;
-            for (const v of candidateVerbs) {
-                if (!activeVerbSet && cardGenerationOptions.reflexiveMode !== 'only') {
-                    const freq = v.frequency || 'common';
-                    if (!activeFrequencies.has(freq)) continue;
-                }
-                if (!activeVerbSet && !passesFilters(v)) continue;
-                if (!hasPracticeSentences(v.infinitive)) continue;
-                count++;
-            }
-            return count;
+            return getFilteredVerbUniverse(cardGenerationOptions).length;
         } catch (err) {
             console.warn('computeActiveVerbPoolCount error:', err);
             return 0;
@@ -6094,6 +6070,38 @@ document.addEventListener('DOMContentLoaded', () => {
         el.textContent = activeVerbSet
             ? `In play: ${n} verbs from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'}`
             : `In play: ${n} verbs`;
+    };
+    let explorerVerbScopeMode = 'filtered';
+
+    const getCurrentVerbSelectionSummary = (filteredCount, totalCount) => {
+        const activeVerbSet = getResolvedVerbSetSelection();
+        if (activeVerbSet) {
+            const categoryCount = activeVerbSet.selectionCount || 1;
+            return `Showing ${filteredCount} verbs from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'}`;
+        }
+        if (filteredCount >= totalCount) {
+            return `Showing all ${totalCount} verbs`;
+        }
+        return `Showing ${filteredCount} verbs from the current drill filters`;
+    };
+
+    const refreshExplorerScopeUi = () => {
+        if (!explorerScopeRow || !explorerScopeFilteredBtn || !explorerScopeAllBtn || !explorerScopeSummary) return;
+        const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
+        const hasNarrowedPool = filteredUniverse.length > 0 && filteredUniverse.length < uniqueVerbs.length;
+        explorerScopeRow.classList.toggle('hidden', !hasNarrowedPool);
+        if (!hasNarrowedPool) {
+            explorerScopeSummary.textContent = '';
+            explorerScopeFilteredBtn.classList.remove('active');
+            explorerScopeAllBtn.classList.remove('active');
+            return;
+        }
+        const effectiveMode = explorerVerbScopeMode === 'all' ? 'all' : 'filtered';
+        explorerScopeFilteredBtn.classList.toggle('active', effectiveMode === 'filtered');
+        explorerScopeAllBtn.classList.toggle('active', effectiveMode === 'all');
+        explorerScopeSummary.textContent = effectiveMode === 'filtered'
+            ? getCurrentVerbSelectionSummary(filteredUniverse.length, uniqueVerbs.length)
+            : `Showing all ${uniqueVerbs.length} verbs`;
     };
     // --- Audio Synthesis ---
     // Use generic speechLang for speech synthesis, and allow user-selected voice
@@ -6274,22 +6282,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     .filter((verbInfo) => activeVerbSet || passesFilters(verbInfo))
                     .map((verbInfo) => verbInfo.infinitive)
             );
+            const activeVerbSetCoverage = buildActiveVerbSetCoverageMultiplierMap(activeVerbSet, candidateVerbIds);
+            const coverageMultipliers = activeVerbSetCoverage?.multipliers || null;
+            const progressKey = activeVerbSetCoverage?.progressKey || '';
 
             return playableVerbFrames
                 .filter((entry) => candidateVerbIds.has(entry.verb))
                 .map((entry) => {
                     const verbInfo = uniqueVerbByInfinitive.get(entry.verb);
                     if (!verbInfo) return null;
-                    const score = activeVerbSet || reflexiveMode === 'only'
+                    const score = ((activeVerbSet || reflexiveMode === 'only')
                         ? 1
-                        : (frequencyWeights[verbInfo.frequency || 'common'] || 0);
+                        : (frequencyWeights[verbInfo.frequency || 'common'] || 0))
+                        * (coverageMultipliers?.get(entry.verb) || 1);
                     if (score <= 0) return null;
                     const card = buildFramePracticeCard(entry);
                     if (!card) return null;
+                    if (progressKey) {
+                        card.verbSetProgressKey = progressKey;
+                    }
                     return { card, score };
                 })
                 .filter(Boolean);
         };
+
+        const activeVerbSetCoverage = buildActiveVerbSetCoverageMultiplierMap(
+            activeVerbSet,
+            new Set(baseVerbUniverse.map((verbInfo) => verbInfo.infinitive))
+        );
+        const coverageMultipliers = activeVerbSetCoverage?.multipliers || null;
+        const progressKey = activeVerbSetCoverage?.progressKey || '';
 
         let newCard = null;
         let conjugationCard = null;
@@ -6345,8 +6367,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                         pronoun: pronounEntry.pronoun,
                                         pronounKey: pronounEntry.pronounKey,
                                         conjugated: pronounEntry.conjugated,
+                                        ...(progressKey ? { verbSetProgressKey: progressKey } : {}),
                                     },
-                                    score: tenseWeight
+                                    score: tenseWeight * (coverageMultipliers?.get(verbInfo.infinitive) || 1)
                                 });
                             }
                         }
@@ -6381,19 +6404,20 @@ document.addEventListener('DOMContentLoaded', () => {
                             balancedPronouns: cardGenerationOptions.balancedPronouns,
                         });
                         for (const pronounEntry of pronounEntries) {
-                            weightedDeck.push({
-                                card: {
-                                    verb: verbInfo,
-                                    tense: tenseName,
-                                    pronoun: pronounEntry.pronoun,
-                                    pronounKey: pronounEntry.pronounKey,
-                                    conjugated: pronounEntry.conjugated,
-                                },
-                                score: score
-                            });
+                                weightedDeck.push({
+                                    card: {
+                                        verb: verbInfo,
+                                        tense: tenseName,
+                                        pronoun: pronounEntry.pronoun,
+                                        pronounKey: pronounEntry.pronounKey,
+                                        conjugated: pronounEntry.conjugated,
+                                        ...(progressKey ? { verbSetProgressKey: progressKey } : {}),
+                                    },
+                                    score: score * (coverageMultipliers?.get(verbInfo.infinitive) || 1)
+                                });
+                            }
                         }
                     }
-                }
             }
             conjugationCard = performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
         }
@@ -7257,8 +7281,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateExplorerList(filter = '') {
         verbListContainer.innerHTML = '';
+        refreshExplorerScopeUi();
         const normalizedFilter = removeAccents(filter.toLowerCase().trim());
-        const filteredVerbs = uniqueVerbs.filter(v => {
+        const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
+        const useFilteredScope = filteredUniverse.length > 0
+            && filteredUniverse.length < uniqueVerbs.length
+            && explorerVerbScopeMode !== 'all';
+        const sourceVerbs = useFilteredScope ? filteredUniverse : uniqueVerbs;
+        const filteredVerbs = sourceVerbs.filter(v => {
             if (!normalizedFilter) return true;
             // Match French infinitive
             if (removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter)) return true;
@@ -8655,6 +8685,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Explorer Search and Audio
     searchBar.addEventListener('input', (e) => populateExplorerList(e.target.value));
+    if (explorerScopeFilteredBtn) {
+        explorerScopeFilteredBtn.addEventListener('click', () => {
+            explorerVerbScopeMode = 'filtered';
+            populateExplorerList(searchBar.value);
+        });
+    }
+    if (explorerScopeAllBtn) {
+        explorerScopeAllBtn.addEventListener('click', () => {
+            explorerVerbScopeMode = 'all';
+            populateExplorerList(searchBar.value);
+        });
+    }
     
     verbListContainer.addEventListener('click', (e) => {
         const targetItem = e.target.closest('.verb-list-item');
@@ -9407,6 +9449,71 @@ function getResolvedVerbUniverse(options = cardGenerationOptions) {
         .filter(Boolean);
 }
 
+function getFilteredVerbUniverse(options = cardGenerationOptions) {
+    const activeVerbSet = getResolvedVerbSetSelection(options);
+    const candidateVerbs = getResolvedVerbUniverse(options);
+    const {
+        frequencyWeights = {},
+        regularityFilter = { regular: true, irregular: true },
+        endingFilter = { er: true, ir: true, re: true, other: true },
+        categoryFilter = 'all',
+        prepositionalVerbMode = 'all',
+        verbsWithSentencesOnly = false,
+        tenseWeights = {},
+        reflexiveMode = 'include',
+    } = options || {};
+
+    const activeFrequencies = new Set(
+        Object.entries(frequencyWeights)
+            .filter(([, w]) => (w || 0) > 0)
+            .map(([f]) => f)
+    );
+    if (!activeVerbSet && activeFrequencies.size === 0 && reflexiveMode !== 'only') return [];
+
+    const getEnding = (inf) => {
+        if (inf.endsWith('er')) return 'er';
+        if (inf.endsWith('ir')) return 'ir';
+        if (inf.endsWith('re')) return 're';
+        return 'other';
+    };
+
+    const hasPracticeSentences = (inf) => {
+        if (!ENABLE_LEGACY_SENTENCE_DATA) return true;
+        if (!verbsWithSentencesOnly) return true;
+        const verbPhrases = phrasebook[inf];
+        if (!verbPhrases) return false;
+        for (const tenseName in tenseWeights) {
+            if ((tenseWeights[tenseName] || 0) <= 0) continue;
+            const phraseKey = tenseKeyToPhraseKey[tenseName];
+            const tenseArr = verbPhrases && verbPhrases[phraseKey];
+            if (!Array.isArray(tenseArr)) continue;
+            if (tenseArr.some((phrase) => phrase && phrase.gap_sentence)) return true;
+        }
+        return false;
+    };
+
+    return candidateVerbs.filter((verbInfo) => {
+        if (!activeVerbSet && reflexiveMode !== 'only') {
+            const freq = verbInfo.frequency || 'common';
+            if (!activeFrequencies.has(freq)) return false;
+        }
+        if (!activeVerbSet) {
+            if (reflexiveMode === 'only' && !verbInfo.reflexive) return false;
+            if (reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
+            const isIrregular = IRREGULAR_VERBS.has(verbInfo.infinitive);
+            if (isIrregular && !regularityFilter.irregular) return false;
+            if (!isIrregular && !regularityFilter.regular) return false;
+            if (!endingFilter[getEnding(verbInfo.infinitive)]) return false;
+            if (categoryFilter !== 'all') {
+                const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
+                if (cat !== categoryFilter) return false;
+            }
+            if (prepositionalVerbMode === 'only' && !verbsWithPrepositionalFrames.has(verbInfo.infinitive)) return false;
+        }
+        return hasPracticeSentences(verbInfo.infinitive);
+    });
+}
+
 function buildSharedVerbSetPayloadFromOptions(options = cardGenerationOptions) {
     const selection = getResolvedVerbSetSelection(options);
     return selection ? {
@@ -9945,6 +10052,84 @@ function snapshotCurrentDrillConfig(options = {}) {
     return { cardGenerationOptions: snapshot };
 }
 
+const VERB_SET_PROGRESS_STORAGE_KEY = 'verbSetProgressV1';
+
+function buildEmptyVerbSetProgressState() {
+    return { selections: {} };
+}
+
+function loadVerbSetProgressState() {
+    try {
+        const raw = getScopedStorageItem(VERB_SET_PROGRESS_STORAGE_KEY);
+        if (!raw) return buildEmptyVerbSetProgressState();
+        const parsed = JSON.parse(raw);
+        return {
+            ...buildEmptyVerbSetProgressState(),
+            ...parsed,
+            selections: parsed && typeof parsed.selections === 'object' && parsed.selections ? parsed.selections : {},
+        };
+    } catch (error) {
+        console.warn('Could not load verb set progress state:', error);
+        return buildEmptyVerbSetProgressState();
+    }
+}
+
+function pruneVerbSetProgressState(state, maxEntries = 60) {
+    const keys = Object.keys(state.selections || {});
+    if (keys.length <= maxEntries) return;
+    keys
+        .sort((a, b) => ((state.selections[b]?.lastSeenTurn || 0) - (state.selections[a]?.lastSeenTurn || 0)))
+        .slice(maxEntries)
+        .forEach((key) => {
+            delete state.selections[key];
+        });
+}
+
+function persistVerbSetProgressState() {
+    try {
+        pruneVerbSetProgressState(verbSetProgressState);
+        setScopedStorageItem(VERB_SET_PROGRESS_STORAGE_KEY, JSON.stringify(verbSetProgressState));
+    } catch (error) {
+        console.warn('Could not save verb set progress state:', error);
+    }
+}
+
+function buildVerbSetProgressKey(selection) {
+    if (!selection || !Array.isArray(selection.verbs) || !selection.verbs.length) return '';
+    const scopeId = selection.id ? `${selection.source}:${selection.id}` : `${selection.source}:${selection.name || 'shared'}`;
+    return `${scopeId}::${[...selection.verbs].sort().join('|')}`;
+}
+
+function getVerbSetProgressEntry(selectionOrKey, create = false) {
+    const key = typeof selectionOrKey === 'string' ? selectionOrKey : buildVerbSetProgressKey(selectionOrKey);
+    if (!key) return null;
+    if (!verbSetProgressState.selections[key] && create) {
+        verbSetProgressState.selections[key] = { seenVerbs: {}, lastSeenTurn: 0 };
+    }
+    return verbSetProgressState.selections[key] || null;
+}
+
+function buildActiveVerbSetCoverageMultiplierMap(activeVerbSet, eligibleVerbIds = null) {
+    if (!activeVerbSet || !Array.isArray(activeVerbSet.verbs) || !activeVerbSet.verbs.length) return null;
+    const progressKey = buildVerbSetProgressKey(activeVerbSet);
+    if (!progressKey) return null;
+    const relevantVerbs = Array.isArray(eligibleVerbIds) || eligibleVerbIds instanceof Set
+        ? activeVerbSet.verbs.filter((verb) => eligibleVerbIds.has(verb))
+        : activeVerbSet.verbs;
+    if (!relevantVerbs.length) return { progressKey, multipliers: null };
+    const progressEntry = getVerbSetProgressEntry(progressKey);
+    const seenVerbs = progressEntry?.seenVerbs || {};
+    const unseenVerbs = relevantVerbs.filter((verb) => !seenVerbs[verb]);
+    if (!unseenVerbs.length) {
+        return { progressKey, multipliers: null };
+    }
+    const multipliers = new Map();
+    relevantVerbs.forEach((verb) => {
+        multipliers.set(verb, seenVerbs[verb] ? 0.16 : 14);
+    });
+    return { progressKey, multipliers };
+}
+
 function summarizeFrequencyWeights(frequencyWeights = {}) {
     const normalizedFrequencyWeights = normalizeFrequencyWeightsConfig(frequencyWeights);
     const selectedRange = getSelectedVerbPoolRangeKey(normalizedFrequencyWeights);
@@ -10206,14 +10391,31 @@ function highlightActivePreset() {
   }
 }
 
-function promptForDrillMetadata(defaultName, defaultDescription = '') {
+function normalizeDrillEmojiInput(rawEmoji, fallback = '💾') {
+    const trimmed = typeof rawEmoji === 'string' ? rawEmoji.trim() : '';
+    if (!trimmed) return fallback;
+    if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
+        const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+        const firstSegment = segmenter.segment(trimmed)[Symbol.iterator]().next();
+        return firstSegment?.value?.segment || fallback;
+    }
+    return trimmed;
+}
+
+function promptForDrillMetadata(defaultName, defaultDescription = '', defaultEmoji = '💾') {
     const name = window.prompt('Drill name', defaultName || '');
     if (name === null) return null;
     const trimmedName = name.trim();
     if (!trimmedName) return null;
     const description = window.prompt('Short description (optional)', defaultDescription || '');
     if (description === null) return null;
-    return { name: trimmedName, desc: description.trim() };
+    const emoji = window.prompt('Emoji', defaultEmoji || '💾');
+    if (emoji === null) return null;
+    return {
+        name: trimmedName,
+        desc: description.trim(),
+        emoji: normalizeDrillEmojiInput(emoji, defaultEmoji || '💾'),
+    };
 }
 
 function encodeDrillPayload(payload) {
@@ -10234,6 +10436,7 @@ function buildCurrentDrillPayload(options = {}) {
     const currentPreset = active?.preset;
     return {
         version: DRILL_SHARE_VERSION,
+        emoji: options.emoji || currentPreset?.emoji || '💾',
         name: options.name || currentPreset?.name || 'Custom',
         desc: options.desc ?? currentPreset?.desc ?? '',
         seed: options.seed || currentPreset?.seed || '',
@@ -10245,11 +10448,12 @@ function shareCurrentDrill() {
     const active = getActiveDrill();
     const currentPreset = active?.preset;
     let metadata = {
+        emoji: currentPreset?.emoji || '💾',
         name: currentPreset?.name || 'Custom',
         desc: currentPreset?.desc || '',
     };
     if (!currentPreset || currentPreset.isCustom) {
-        const prompted = promptForDrillMetadata(metadata.name, metadata.desc);
+        const prompted = promptForDrillMetadata(metadata.name, metadata.desc, metadata.emoji);
         if (!prompted) return;
         metadata = prompted;
     }
@@ -10273,14 +10477,15 @@ function saveCurrentDrillPrompt() {
     const currentPreset = active?.preset;
     const prompted = promptForDrillMetadata(
         currentPreset?.isCustom ? '' : `${currentPreset?.name || 'Custom'} copy`,
-        currentPreset?.isCustom ? '' : (currentPreset?.desc || '')
+        currentPreset?.isCustom ? '' : (currentPreset?.desc || ''),
+        currentPreset?.isCustom ? '💾' : (currentPreset?.emoji || '💾')
     );
     if (!prompted) return;
 
     const payload = buildCurrentDrillPayload(prompted);
     const savedDrill = {
         id: `saved-${Date.now().toString(36)}`,
-        emoji: '💾',
+        emoji: payload.emoji || '💾',
         name: payload.name,
         desc: payload.desc,
         seed: payload.seed,
@@ -10308,12 +10513,31 @@ function importSharedDrillFromHash() {
         const signature = hashString(JSON.stringify(normalizedConfig));
         const existing = savedDrills.find((drill) => hashString(JSON.stringify(drill.config)) === signature);
         if (existing) {
+            let updated = false;
+            const normalizedEmoji = normalizeDrillEmojiInput(payload.emoji, existing.emoji || '🔗');
+            if (normalizedEmoji && normalizedEmoji !== existing.emoji) {
+                existing.emoji = normalizedEmoji;
+                updated = true;
+            }
+            if (payload.name && payload.name !== existing.name) {
+                existing.name = payload.name;
+                updated = true;
+            }
+            if (typeof payload.desc === 'string' && payload.desc !== existing.desc) {
+                existing.desc = payload.desc;
+                updated = true;
+            }
+            if (typeof payload.seed === 'string' && payload.seed !== existing.seed) {
+                existing.seed = payload.seed;
+                updated = true;
+            }
+            if (updated) persistSavedDrills();
             window.history.replaceState(null, '', window.location.pathname + window.location.search);
             return existing;
         }
         const imported = {
             id: `shared-${Date.now().toString(36)}`,
-            emoji: '🔗',
+            emoji: payload.emoji || '🔗',
             name: payload.name || 'Shared drill',
             desc: payload.desc || describeDrillConfig(normalizedConfig),
             seed: payload.seed || '',
