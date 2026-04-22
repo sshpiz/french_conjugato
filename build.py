@@ -54,6 +54,10 @@ ROOT_EXTERNAL_FILES_TO_COPY = [
         "src": os.path.join(DESKTOP_DIR, "german-verbs", "screenshot_german.png"),
         "dest_name": "landing-german.png",
     },
+    {
+        "src": os.path.join(DESKTOP_DIR, "screenshot_italian.png"),
+        "dest_name": "landing-italian.png",
+    },
 ]
 
 SIBLING_APPS = [
@@ -104,6 +108,12 @@ SIBLING_APPS = [
         "source_dist": os.path.join(DESKTOP_DIR, "german-verbs", "dist"),
         "target_dir": os.path.join(DIST_DIR, "german"),
         "standalone": "dieverben.html",
+    },
+    {
+        "name": "italian",
+        "source_dist": os.path.join(DESKTOP_DIR, "italian-verbs", "dist"),
+        "target_dir": os.path.join(DIST_DIR, "italian"),
+        "standalone": "iverbi.html",
     },
 ]
 
