@@ -3344,9 +3344,9 @@ html[data-theme="dark"] {
   gap: 0.2rem;
   padding: 0.95rem 1rem;
   border-radius: 16px;
-  border: 1px solid rgba(162, 178, 194, 0.32);
-  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(246,249,252,0.96));
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  border: 1px solid var(--settings-elevated-border);
+  background: var(--settings-elevated-bg);
+  box-shadow: var(--settings-elevated-shadow);
   margin-bottom: 0.85rem;
 }
 
@@ -3390,16 +3390,16 @@ html[data-theme="dark"] {
   width: 100%;
   margin: 0;
   padding: 0.95rem 1rem;
-  border: 1.5px solid rgba(191, 204, 216, 0.82);
+  border: 1.5px solid var(--settings-card-border);
   border-radius: 16px;
-  background: rgba(255,255,255,0.9);
+  background: var(--settings-card-bg);
   color: var(--text-color);
   cursor: pointer;
   transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  box-shadow: var(--settings-card-shadow);
   text-align: left;
 }
 
@@ -3415,14 +3415,14 @@ html[data-theme="dark"] {
 .preset-btn:hover,
 .preset-btn:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(116, 172, 223, 0.7);
-  box-shadow: 0 12px 26px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-hover-border);
+  box-shadow: var(--settings-card-hover-shadow);
 }
 
 .preset-btn.active {
-  border-color: rgba(92, 166, 227, 0.9);
-  background: linear-gradient(180deg, rgba(229,244,255,0.96), rgba(240,248,255,0.98));
-  box-shadow: 0 16px 30px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-active-border);
+  background: var(--settings-card-active-bg);
+  box-shadow: var(--settings-card-active-shadow);
 }
 
 .preset-icon {
@@ -3486,9 +3486,9 @@ html[data-theme="dark"] {
 
 .drill-card-action-btn,
 .advanced-action-btn {
-  border: 1px solid rgba(166, 182, 198, 0.5);
-  background: rgba(255,255,255,0.72);
-  color: var(--text-color);
+  border: 1px solid var(--settings-action-border);
+  background: var(--settings-action-bg);
+  color: var(--settings-action-color);
   border-radius: 999px;
   padding: 0.34rem 0.65rem;
   font: inherit;
@@ -3506,8 +3506,8 @@ html[data-theme="dark"] {
 .drill-card-action-btn:focus-visible,
 .advanced-action-btn:hover,
 .advanced-action-btn:focus-visible {
-  background: rgba(233, 242, 250, 0.96);
-  border-color: rgba(116, 172, 223, 0.7);
+  background: var(--settings-action-hover-bg);
+  border-color: var(--settings-card-hover-border);
 }
 
 .drill-card-action-btn.danger {
@@ -3569,10 +3569,10 @@ html[data-theme="dark"] {
 }
 
 .advanced-card {
-  border: 1px solid rgba(191, 204, 216, 0.82);
+  border: 1px solid var(--settings-card-border);
   border-radius: 14px;
   padding: 0.9rem 1rem;
-  background: rgba(250,252,255,0.9);
+  background: var(--settings-subtle-bg);
 }
 
 .advanced-card-title {
@@ -3777,6 +3777,217 @@ html[data-theme="dark"] .install-modal-note {
   color: #9eb1c6;
 }
 
+.verb-set-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.verb-set-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.8rem, 1fr));
+  gap: 0.5rem;
+}
+
+.verb-set-card {
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-color);
+  padding: 0.58rem 0.72rem;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.verb-set-card:hover,
+.verb-set-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
+}
+
+.verb-set-card.active {
+  background: var(--settings-chip-active-bg);
+  border-color: var(--settings-chip-active-bg);
+  color: var(--settings-chip-active-text);
+  box-shadow: 0 12px 24px rgba(37, 79, 125, 0.12);
+}
+
+.verb-set-card.new-set-card {
+  border-style: dashed;
+}
+
+.verb-set-card.shared-set-card {
+  border-color: rgba(77, 120, 168, 0.38);
+}
+
+.verb-set-card-title {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.verb-set-card-meta {
+  display: block;
+  margin-top: 0.22rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: inherit;
+  opacity: 0.78;
+}
+
+.verb-set-card-actions {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.verb-set-card.active .verb-set-card-actions {
+  display: flex;
+}
+
+.verb-set-card-action {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 0.26rem 0.65rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0.92;
+}
+
+.verb-set-summary {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.verb-set-secondary-btn {
+  border-radius: 999px;
+}
+
+.verb-set-modal-panel {
+  width: min(100%, 34rem);
+}
+
+.verb-set-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.verb-set-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.verb-set-field-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.verb-set-text-input,
+.verb-set-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+  box-sizing: border-box;
+}
+
+.verb-set-textarea {
+  min-height: 10.5rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.verb-set-text-input:focus,
+.verb-set-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.14);
+}
+
+.verb-set-validation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 2.4rem;
+}
+
+.verb-set-validation-summary {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.65rem;
+}
+
+.verb-set-validation-group {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  background: var(--settings-subtle-bg);
+}
+
+.verb-set-validation-group.invalid {
+  border-color: rgba(184, 82, 82, 0.28);
+}
+
+.verb-set-validation-heading {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-list {
+  margin-top: 0.42rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.verb-set-validation-empty {
+  color: var(--meta-color);
+}
+
+.verb-set-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.verb-set-delete-btn {
+  border-radius: 999px;
+}
+
 html[data-theme="light"] #app-install-pill {
   border-color: rgba(75, 166, 132, 0.34) !important;
   background: linear-gradient(180deg, rgba(241, 251, 246, 0.98), rgba(225, 245, 234, 0.97)) !important;
@@ -3817,82 +4028,6 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.12) !important;
   color: rgba(150, 161, 175, 0.78) !important;
   filter: saturate(0.7) !important;
-}
-
-/* Settings drill parity with French */
-#options-container .current-drill-card {
-  border: 1px solid rgba(135, 168, 197, 0.22);
-  background: linear-gradient(180deg, rgba(244,248,252,0.94), rgba(236,242,248,0.98));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
-}
-
-#options-container .preset-btn {
-  border: 1.5px solid var(--border-color);
-  background: var(--card-bg);
-  box-shadow: 0 10px 22px rgba(16,32,49,0.04);
-}
-
-#options-container .preset-btn:hover,
-#options-container .preset-btn:focus-visible {
-  border-color: rgba(96, 152, 202, 0.42);
-  box-shadow: 0 12px 24px rgba(16,32,49,0.08);
-}
-
-#options-container .preset-btn.active {
-  border-color: rgba(92, 166, 232, 0.78);
-  background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
-  box-shadow: 0 14px 28px rgba(35,104,156,0.16);
-}
-
-html[data-theme="dark"] #options-container .current-drill-card {
-  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-  border-color: rgba(96, 152, 202, 0.28);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-}
-
-html[data-theme="dark"] #options-container .preset-btn {
-  background: rgba(20,29,40,0.94);
-  border-color: rgba(255,255,255,0.12);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-}
-
-html[data-theme="dark"] #options-container .preset-btn.active {
-  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-  border-color: rgba(109,180,245,0.72);
-  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-}
-
-#options-container .advanced-card {
-  border: 1px solid var(--border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) #options-container .current-drill-card,
-  html[data-theme="system"] #options-container .current-drill-card {
-    background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-    border-color: rgba(96, 152, 202, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn,
-  html[data-theme="system"] #options-container .preset-btn {
-    background: rgba(20,29,40,0.94);
-    border-color: rgba(255,255,255,0.12);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn.active,
-  html[data-theme="system"] #options-container .preset-btn.active {
-    background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-    border-color: rgba(109,180,245,0.72);
-    box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-  }
-
-  html:not([data-theme]) #options-container .advanced-card,
-  html[data-theme="system"] #options-container .advanced-card {
-    background: rgba(13,22,31,0.55);
-    border-color: rgba(255,255,255,0.1);
-  }
 }
 
 /* ── Big dictate mic button (inside phrase-container) ── */
@@ -7329,9 +7464,9 @@ html[data-theme="dark"] {
   gap: 0.2rem;
   padding: 0.95rem 1rem;
   border-radius: 16px;
-  border: 1px solid rgba(162, 178, 194, 0.32);
-  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(246,249,252,0.96));
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  border: 1px solid var(--settings-elevated-border);
+  background: var(--settings-elevated-bg);
+  box-shadow: var(--settings-elevated-shadow);
   margin-bottom: 0.85rem;
 }
 
@@ -7375,16 +7510,16 @@ html[data-theme="dark"] {
   width: 100%;
   margin: 0;
   padding: 0.95rem 1rem;
-  border: 1.5px solid rgba(191, 204, 216, 0.82);
+  border: 1.5px solid var(--settings-card-border);
   border-radius: 16px;
-  background: rgba(255,255,255,0.9);
+  background: var(--settings-card-bg);
   color: var(--text-color);
   cursor: pointer;
   transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  box-shadow: var(--settings-card-shadow);
   text-align: left;
 }
 
@@ -7400,14 +7535,14 @@ html[data-theme="dark"] {
 .preset-btn:hover,
 .preset-btn:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(116, 172, 223, 0.7);
-  box-shadow: 0 12px 26px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-hover-border);
+  box-shadow: var(--settings-card-hover-shadow);
 }
 
 .preset-btn.active {
-  border-color: rgba(92, 166, 227, 0.9);
-  background: linear-gradient(180deg, rgba(229,244,255,0.96), rgba(240,248,255,0.98));
-  box-shadow: 0 16px 30px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-active-border);
+  background: var(--settings-card-active-bg);
+  box-shadow: var(--settings-card-active-shadow);
 }
 
 .preset-icon {
@@ -7471,9 +7606,9 @@ html[data-theme="dark"] {
 
 .drill-card-action-btn,
 .advanced-action-btn {
-  border: 1px solid rgba(166, 182, 198, 0.5);
-  background: rgba(255,255,255,0.72);
-  color: var(--text-color);
+  border: 1px solid var(--settings-action-border);
+  background: var(--settings-action-bg);
+  color: var(--settings-action-color);
   border-radius: 999px;
   padding: 0.34rem 0.65rem;
   font: inherit;
@@ -7491,8 +7626,8 @@ html[data-theme="dark"] {
 .drill-card-action-btn:focus-visible,
 .advanced-action-btn:hover,
 .advanced-action-btn:focus-visible {
-  background: rgba(233, 242, 250, 0.96);
-  border-color: rgba(116, 172, 223, 0.7);
+  background: var(--settings-action-hover-bg);
+  border-color: var(--settings-card-hover-border);
 }
 
 .drill-card-action-btn.danger {
@@ -7554,10 +7689,10 @@ html[data-theme="dark"] {
 }
 
 .advanced-card {
-  border: 1px solid rgba(191, 204, 216, 0.82);
+  border: 1px solid var(--settings-card-border);
   border-radius: 14px;
   padding: 0.9rem 1rem;
-  background: rgba(250,252,255,0.9);
+  background: var(--settings-subtle-bg);
 }
 
 .advanced-card-title {
@@ -7762,6 +7897,217 @@ html[data-theme="dark"] .install-modal-note {
   color: #9eb1c6;
 }
 
+.verb-set-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.verb-set-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.8rem, 1fr));
+  gap: 0.5rem;
+}
+
+.verb-set-card {
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-color);
+  padding: 0.58rem 0.72rem;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.verb-set-card:hover,
+.verb-set-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
+}
+
+.verb-set-card.active {
+  background: var(--settings-chip-active-bg);
+  border-color: var(--settings-chip-active-bg);
+  color: var(--settings-chip-active-text);
+  box-shadow: 0 12px 24px rgba(37, 79, 125, 0.12);
+}
+
+.verb-set-card.new-set-card {
+  border-style: dashed;
+}
+
+.verb-set-card.shared-set-card {
+  border-color: rgba(77, 120, 168, 0.38);
+}
+
+.verb-set-card-title {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.verb-set-card-meta {
+  display: block;
+  margin-top: 0.22rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: inherit;
+  opacity: 0.78;
+}
+
+.verb-set-card-actions {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.verb-set-card.active .verb-set-card-actions {
+  display: flex;
+}
+
+.verb-set-card-action {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 0.26rem 0.65rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0.92;
+}
+
+.verb-set-summary {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.verb-set-secondary-btn {
+  border-radius: 999px;
+}
+
+.verb-set-modal-panel {
+  width: min(100%, 34rem);
+}
+
+.verb-set-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.verb-set-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.verb-set-field-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.verb-set-text-input,
+.verb-set-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+  box-sizing: border-box;
+}
+
+.verb-set-textarea {
+  min-height: 10.5rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.verb-set-text-input:focus,
+.verb-set-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.14);
+}
+
+.verb-set-validation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 2.4rem;
+}
+
+.verb-set-validation-summary {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.65rem;
+}
+
+.verb-set-validation-group {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  background: var(--settings-subtle-bg);
+}
+
+.verb-set-validation-group.invalid {
+  border-color: rgba(184, 82, 82, 0.28);
+}
+
+.verb-set-validation-heading {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-list {
+  margin-top: 0.42rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.verb-set-validation-empty {
+  color: var(--meta-color);
+}
+
+.verb-set-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.verb-set-delete-btn {
+  border-radius: 999px;
+}
+
 html[data-theme="light"] #app-install-pill {
   border-color: rgba(75, 166, 132, 0.34) !important;
   background: linear-gradient(180deg, rgba(241, 251, 246, 0.98), rgba(225, 245, 234, 0.97)) !important;
@@ -7802,82 +8148,6 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.12) !important;
   color: rgba(150, 161, 175, 0.78) !important;
   filter: saturate(0.7) !important;
-}
-
-/* Settings drill parity with French */
-#options-container .current-drill-card {
-  border: 1px solid rgba(135, 168, 197, 0.22);
-  background: linear-gradient(180deg, rgba(244,248,252,0.94), rgba(236,242,248,0.98));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
-}
-
-#options-container .preset-btn {
-  border: 1.5px solid var(--border-color);
-  background: var(--card-bg);
-  box-shadow: 0 10px 22px rgba(16,32,49,0.04);
-}
-
-#options-container .preset-btn:hover,
-#options-container .preset-btn:focus-visible {
-  border-color: rgba(96, 152, 202, 0.42);
-  box-shadow: 0 12px 24px rgba(16,32,49,0.08);
-}
-
-#options-container .preset-btn.active {
-  border-color: rgba(92, 166, 232, 0.78);
-  background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
-  box-shadow: 0 14px 28px rgba(35,104,156,0.16);
-}
-
-html[data-theme="dark"] #options-container .current-drill-card {
-  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-  border-color: rgba(96, 152, 202, 0.28);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-}
-
-html[data-theme="dark"] #options-container .preset-btn {
-  background: rgba(20,29,40,0.94);
-  border-color: rgba(255,255,255,0.12);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-}
-
-html[data-theme="dark"] #options-container .preset-btn.active {
-  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-  border-color: rgba(109,180,245,0.72);
-  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-}
-
-#options-container .advanced-card {
-  border: 1px solid var(--border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) #options-container .current-drill-card,
-  html[data-theme="system"] #options-container .current-drill-card {
-    background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-    border-color: rgba(96, 152, 202, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn,
-  html[data-theme="system"] #options-container .preset-btn {
-    background: rgba(20,29,40,0.94);
-    border-color: rgba(255,255,255,0.12);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn.active,
-  html[data-theme="system"] #options-container .preset-btn.active {
-    background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-    border-color: rgba(109,180,245,0.72);
-    box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-  }
-
-  html:not([data-theme]) #options-container .advanced-card,
-  html[data-theme="system"] #options-container .advanced-card {
-    background: rgba(13,22,31,0.55);
-    border-color: rgba(255,255,255,0.1);
-  }
 }
 
 /* ── Big dictate mic button (inside phrase-container) ── */
@@ -11318,9 +11588,9 @@ html[data-theme="dark"] {
   gap: 0.2rem;
   padding: 0.95rem 1rem;
   border-radius: 16px;
-  border: 1px solid rgba(162, 178, 194, 0.32);
-  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(246,249,252,0.96));
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  border: 1px solid var(--settings-elevated-border);
+  background: var(--settings-elevated-bg);
+  box-shadow: var(--settings-elevated-shadow);
   margin-bottom: 0.85rem;
 }
 
@@ -11364,16 +11634,16 @@ html[data-theme="dark"] {
   width: 100%;
   margin: 0;
   padding: 0.95rem 1rem;
-  border: 1.5px solid rgba(191, 204, 216, 0.82);
+  border: 1.5px solid var(--settings-card-border);
   border-radius: 16px;
-  background: rgba(255,255,255,0.9);
+  background: var(--settings-card-bg);
   color: var(--text-color);
   cursor: pointer;
   transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  box-shadow: var(--settings-card-shadow);
   text-align: left;
 }
 
@@ -11389,14 +11659,14 @@ html[data-theme="dark"] {
 .preset-btn:hover,
 .preset-btn:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(116, 172, 223, 0.7);
-  box-shadow: 0 12px 26px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-hover-border);
+  box-shadow: var(--settings-card-hover-shadow);
 }
 
 .preset-btn.active {
-  border-color: rgba(92, 166, 227, 0.9);
-  background: linear-gradient(180deg, rgba(229,244,255,0.96), rgba(240,248,255,0.98));
-  box-shadow: 0 16px 30px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-active-border);
+  background: var(--settings-card-active-bg);
+  box-shadow: var(--settings-card-active-shadow);
 }
 
 .preset-icon {
@@ -11460,9 +11730,9 @@ html[data-theme="dark"] {
 
 .drill-card-action-btn,
 .advanced-action-btn {
-  border: 1px solid rgba(166, 182, 198, 0.5);
-  background: rgba(255,255,255,0.72);
-  color: var(--text-color);
+  border: 1px solid var(--settings-action-border);
+  background: var(--settings-action-bg);
+  color: var(--settings-action-color);
   border-radius: 999px;
   padding: 0.34rem 0.65rem;
   font: inherit;
@@ -11480,8 +11750,8 @@ html[data-theme="dark"] {
 .drill-card-action-btn:focus-visible,
 .advanced-action-btn:hover,
 .advanced-action-btn:focus-visible {
-  background: rgba(233, 242, 250, 0.96);
-  border-color: rgba(116, 172, 223, 0.7);
+  background: var(--settings-action-hover-bg);
+  border-color: var(--settings-card-hover-border);
 }
 
 .drill-card-action-btn.danger {
@@ -11543,10 +11813,10 @@ html[data-theme="dark"] {
 }
 
 .advanced-card {
-  border: 1px solid rgba(191, 204, 216, 0.82);
+  border: 1px solid var(--settings-card-border);
   border-radius: 14px;
   padding: 0.9rem 1rem;
-  background: rgba(250,252,255,0.9);
+  background: var(--settings-subtle-bg);
 }
 
 .advanced-card-title {
@@ -11751,6 +12021,217 @@ html[data-theme="dark"] .install-modal-note {
   color: #9eb1c6;
 }
 
+.verb-set-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.verb-set-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.8rem, 1fr));
+  gap: 0.5rem;
+}
+
+.verb-set-card {
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-color);
+  padding: 0.58rem 0.72rem;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.verb-set-card:hover,
+.verb-set-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
+}
+
+.verb-set-card.active {
+  background: var(--settings-chip-active-bg);
+  border-color: var(--settings-chip-active-bg);
+  color: var(--settings-chip-active-text);
+  box-shadow: 0 12px 24px rgba(37, 79, 125, 0.12);
+}
+
+.verb-set-card.new-set-card {
+  border-style: dashed;
+}
+
+.verb-set-card.shared-set-card {
+  border-color: rgba(77, 120, 168, 0.38);
+}
+
+.verb-set-card-title {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.verb-set-card-meta {
+  display: block;
+  margin-top: 0.22rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: inherit;
+  opacity: 0.78;
+}
+
+.verb-set-card-actions {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.verb-set-card.active .verb-set-card-actions {
+  display: flex;
+}
+
+.verb-set-card-action {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 0.26rem 0.65rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0.92;
+}
+
+.verb-set-summary {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.verb-set-secondary-btn {
+  border-radius: 999px;
+}
+
+.verb-set-modal-panel {
+  width: min(100%, 34rem);
+}
+
+.verb-set-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.verb-set-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.verb-set-field-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.verb-set-text-input,
+.verb-set-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+  box-sizing: border-box;
+}
+
+.verb-set-textarea {
+  min-height: 10.5rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.verb-set-text-input:focus,
+.verb-set-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.14);
+}
+
+.verb-set-validation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 2.4rem;
+}
+
+.verb-set-validation-summary {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.65rem;
+}
+
+.verb-set-validation-group {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  background: var(--settings-subtle-bg);
+}
+
+.verb-set-validation-group.invalid {
+  border-color: rgba(184, 82, 82, 0.28);
+}
+
+.verb-set-validation-heading {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-list {
+  margin-top: 0.42rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.verb-set-validation-empty {
+  color: var(--meta-color);
+}
+
+.verb-set-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.verb-set-delete-btn {
+  border-radius: 999px;
+}
+
 html[data-theme="light"] #app-install-pill {
   border-color: rgba(75, 166, 132, 0.34) !important;
   background: linear-gradient(180deg, rgba(241, 251, 246, 0.98), rgba(225, 245, 234, 0.97)) !important;
@@ -11791,82 +12272,6 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.12) !important;
   color: rgba(150, 161, 175, 0.78) !important;
   filter: saturate(0.7) !important;
-}
-
-/* Settings drill parity with French */
-#options-container .current-drill-card {
-  border: 1px solid rgba(135, 168, 197, 0.22);
-  background: linear-gradient(180deg, rgba(244,248,252,0.94), rgba(236,242,248,0.98));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
-}
-
-#options-container .preset-btn {
-  border: 1.5px solid var(--border-color);
-  background: var(--card-bg);
-  box-shadow: 0 10px 22px rgba(16,32,49,0.04);
-}
-
-#options-container .preset-btn:hover,
-#options-container .preset-btn:focus-visible {
-  border-color: rgba(96, 152, 202, 0.42);
-  box-shadow: 0 12px 24px rgba(16,32,49,0.08);
-}
-
-#options-container .preset-btn.active {
-  border-color: rgba(92, 166, 232, 0.78);
-  background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
-  box-shadow: 0 14px 28px rgba(35,104,156,0.16);
-}
-
-html[data-theme="dark"] #options-container .current-drill-card {
-  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-  border-color: rgba(96, 152, 202, 0.28);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-}
-
-html[data-theme="dark"] #options-container .preset-btn {
-  background: rgba(20,29,40,0.94);
-  border-color: rgba(255,255,255,0.12);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-}
-
-html[data-theme="dark"] #options-container .preset-btn.active {
-  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-  border-color: rgba(109,180,245,0.72);
-  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-}
-
-#options-container .advanced-card {
-  border: 1px solid var(--border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) #options-container .current-drill-card,
-  html[data-theme="system"] #options-container .current-drill-card {
-    background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-    border-color: rgba(96, 152, 202, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn,
-  html[data-theme="system"] #options-container .preset-btn {
-    background: rgba(20,29,40,0.94);
-    border-color: rgba(255,255,255,0.12);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn.active,
-  html[data-theme="system"] #options-container .preset-btn.active {
-    background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-    border-color: rgba(109,180,245,0.72);
-    box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-  }
-
-  html:not([data-theme]) #options-container .advanced-card,
-  html[data-theme="system"] #options-container .advanced-card {
-    background: rgba(13,22,31,0.55);
-    border-color: rgba(255,255,255,0.1);
-  }
 }
 
 /* ── Big dictate mic button (inside phrase-container) ── */
@@ -15303,9 +15708,9 @@ html[data-theme="dark"] {
   gap: 0.2rem;
   padding: 0.95rem 1rem;
   border-radius: 16px;
-  border: 1px solid rgba(162, 178, 194, 0.32);
-  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(246,249,252,0.96));
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  border: 1px solid var(--settings-elevated-border);
+  background: var(--settings-elevated-bg);
+  box-shadow: var(--settings-elevated-shadow);
   margin-bottom: 0.85rem;
 }
 
@@ -15349,16 +15754,16 @@ html[data-theme="dark"] {
   width: 100%;
   margin: 0;
   padding: 0.95rem 1rem;
-  border: 1.5px solid rgba(191, 204, 216, 0.82);
+  border: 1.5px solid var(--settings-card-border);
   border-radius: 16px;
-  background: rgba(255,255,255,0.9);
+  background: var(--settings-card-bg);
   color: var(--text-color);
   cursor: pointer;
   transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
-  box-shadow: 0 10px 24px rgba(44,62,80,0.08);
+  box-shadow: var(--settings-card-shadow);
   text-align: left;
 }
 
@@ -15374,14 +15779,14 @@ html[data-theme="dark"] {
 .preset-btn:hover,
 .preset-btn:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(116, 172, 223, 0.7);
-  box-shadow: 0 12px 26px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-hover-border);
+  box-shadow: var(--settings-card-hover-shadow);
 }
 
 .preset-btn.active {
-  border-color: rgba(92, 166, 227, 0.9);
-  background: linear-gradient(180deg, rgba(229,244,255,0.96), rgba(240,248,255,0.98));
-  box-shadow: 0 16px 30px rgba(44,62,80,0.12);
+  border-color: var(--settings-card-active-border);
+  background: var(--settings-card-active-bg);
+  box-shadow: var(--settings-card-active-shadow);
 }
 
 .preset-icon {
@@ -15445,9 +15850,9 @@ html[data-theme="dark"] {
 
 .drill-card-action-btn,
 .advanced-action-btn {
-  border: 1px solid rgba(166, 182, 198, 0.5);
-  background: rgba(255,255,255,0.72);
-  color: var(--text-color);
+  border: 1px solid var(--settings-action-border);
+  background: var(--settings-action-bg);
+  color: var(--settings-action-color);
   border-radius: 999px;
   padding: 0.34rem 0.65rem;
   font: inherit;
@@ -15465,8 +15870,8 @@ html[data-theme="dark"] {
 .drill-card-action-btn:focus-visible,
 .advanced-action-btn:hover,
 .advanced-action-btn:focus-visible {
-  background: rgba(233, 242, 250, 0.96);
-  border-color: rgba(116, 172, 223, 0.7);
+  background: var(--settings-action-hover-bg);
+  border-color: var(--settings-card-hover-border);
 }
 
 .drill-card-action-btn.danger {
@@ -15528,10 +15933,10 @@ html[data-theme="dark"] {
 }
 
 .advanced-card {
-  border: 1px solid rgba(191, 204, 216, 0.82);
+  border: 1px solid var(--settings-card-border);
   border-radius: 14px;
   padding: 0.9rem 1rem;
-  background: rgba(250,252,255,0.9);
+  background: var(--settings-subtle-bg);
 }
 
 .advanced-card-title {
@@ -15736,6 +16141,217 @@ html[data-theme="dark"] .install-modal-note {
   color: #9eb1c6;
 }
 
+.verb-set-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.verb-set-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.8rem, 1fr));
+  gap: 0.5rem;
+}
+
+.verb-set-card {
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-color);
+  padding: 0.58rem 0.72rem;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.verb-set-card:hover,
+.verb-set-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
+}
+
+.verb-set-card.active {
+  background: var(--settings-chip-active-bg);
+  border-color: var(--settings-chip-active-bg);
+  color: var(--settings-chip-active-text);
+  box-shadow: 0 12px 24px rgba(37, 79, 125, 0.12);
+}
+
+.verb-set-card.new-set-card {
+  border-style: dashed;
+}
+
+.verb-set-card.shared-set-card {
+  border-color: rgba(77, 120, 168, 0.38);
+}
+
+.verb-set-card-title {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.verb-set-card-meta {
+  display: block;
+  margin-top: 0.22rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: inherit;
+  opacity: 0.78;
+}
+
+.verb-set-card-actions {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.verb-set-card.active .verb-set-card-actions {
+  display: flex;
+}
+
+.verb-set-card-action {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 0.26rem 0.65rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0.92;
+}
+
+.verb-set-summary {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.verb-set-secondary-btn {
+  border-radius: 999px;
+}
+
+.verb-set-modal-panel {
+  width: min(100%, 34rem);
+}
+
+.verb-set-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.verb-set-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.verb-set-field-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.verb-set-text-input,
+.verb-set-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+  box-sizing: border-box;
+}
+
+.verb-set-textarea {
+  min-height: 10.5rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.verb-set-text-input:focus,
+.verb-set-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.14);
+}
+
+.verb-set-validation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 2.4rem;
+}
+
+.verb-set-validation-summary {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.65rem;
+}
+
+.verb-set-validation-group {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  background: var(--settings-subtle-bg);
+}
+
+.verb-set-validation-group.invalid {
+  border-color: rgba(184, 82, 82, 0.28);
+}
+
+.verb-set-validation-heading {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-list {
+  margin-top: 0.42rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.verb-set-validation-empty {
+  color: var(--meta-color);
+}
+
+.verb-set-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.verb-set-delete-btn {
+  border-radius: 999px;
+}
+
 html[data-theme="light"] #app-install-pill {
   border-color: rgba(75, 166, 132, 0.34) !important;
   background: linear-gradient(180deg, rgba(241, 251, 246, 0.98), rgba(225, 245, 234, 0.97)) !important;
@@ -15776,82 +16392,6 @@ html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locke
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.12) !important;
   color: rgba(150, 161, 175, 0.78) !important;
   filter: saturate(0.7) !important;
-}
-
-/* Settings drill parity with French */
-#options-container .current-drill-card {
-  border: 1px solid rgba(135, 168, 197, 0.22);
-  background: linear-gradient(180deg, rgba(244,248,252,0.94), rgba(236,242,248,0.98));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
-}
-
-#options-container .preset-btn {
-  border: 1.5px solid var(--border-color);
-  background: var(--card-bg);
-  box-shadow: 0 10px 22px rgba(16,32,49,0.04);
-}
-
-#options-container .preset-btn:hover,
-#options-container .preset-btn:focus-visible {
-  border-color: rgba(96, 152, 202, 0.42);
-  box-shadow: 0 12px 24px rgba(16,32,49,0.08);
-}
-
-#options-container .preset-btn.active {
-  border-color: rgba(92, 166, 232, 0.78);
-  background: linear-gradient(180deg, rgba(237,246,255,0.98), rgba(227,241,252,0.98));
-  box-shadow: 0 14px 28px rgba(35,104,156,0.16);
-}
-
-html[data-theme="dark"] #options-container .current-drill-card {
-  background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-  border-color: rgba(96, 152, 202, 0.28);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-}
-
-html[data-theme="dark"] #options-container .preset-btn {
-  background: rgba(20,29,40,0.94);
-  border-color: rgba(255,255,255,0.12);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-}
-
-html[data-theme="dark"] #options-container .preset-btn.active {
-  background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-  border-color: rgba(109,180,245,0.72);
-  box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-}
-
-#options-container .advanced-card {
-  border: 1px solid var(--border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) #options-container .current-drill-card,
-  html[data-theme="system"] #options-container .current-drill-card {
-    background: linear-gradient(180deg, rgba(26,39,52,0.94), rgba(18,31,44,0.98));
-    border-color: rgba(96, 152, 202, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn,
-  html[data-theme="system"] #options-container .preset-btn {
-    background: rgba(20,29,40,0.94);
-    border-color: rgba(255,255,255,0.12);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.16);
-  }
-
-  html:not([data-theme]) #options-container .preset-btn.active,
-  html[data-theme="system"] #options-container .preset-btn.active {
-    background: linear-gradient(180deg, rgba(27,47,67,0.98), rgba(20,37,54,0.98));
-    border-color: rgba(109,180,245,0.72);
-    box-shadow: 0 14px 28px rgba(3,12,20,0.34);
-  }
-
-  html:not([data-theme]) #options-container .advanced-card,
-  html[data-theme="system"] #options-container .advanced-card {
-    background: rgba(13,22,31,0.55);
-    border-color: rgba(255,255,255,0.1);
-  }
 }
 
 /* ── Big dictate mic button (inside phrase-container) ── */
@@ -15971,7 +16511,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260423_004626";
+      window.APP_BUILD_VERSION = "20260423_090209";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -16644,6 +17184,13 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                     <p class="option-desc">Pick how deep into the verb list to go.</p>
                     <div id="verb-pool-basic-container"></div>
                 </div>
+                <details class="option-group settings-collapsible" id="verb-set-group">
+                    <summary>Categories</summary>
+                    <div class="collapsible-body">
+                        <p class="option-desc">Use all verbs, mix built-in categories, or add your own.</p>
+                        <div id="verb-set-container"></div>
+                    </div>
+                </details>
                 <div class="option-group">
                     <h3>Drills</h3>
                     <p class="option-desc">Choose a drill, then adjust anything you want.</p>
@@ -16877,6 +17424,29 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                 <p id="app-install-modal-text" class="install-modal-text">Add the app to your Home Screen for a cleaner, app-like experience.</p>
                 <ol id="app-install-modal-steps" class="install-modal-steps"></ol>
                 <p id="app-install-modal-note" class="install-modal-note"></p>
+            </div>
+        </div>
+        <div id="verb-set-modal" class="install-modal hidden" role="dialog" aria-modal="true" aria-labelledby="verb-set-modal-title">
+            <div class="install-modal-backdrop" data-close-verb-set-modal="true"></div>
+            <div class="install-modal-panel verb-set-modal-panel">
+                <button id="verb-set-modal-close-btn" type="button" class="install-modal-close-btn" aria-label="Close category editor">✕</button>
+                <div id="verb-set-modal-title" class="install-modal-title">New category</div>
+                <p id="verb-set-modal-text" class="install-modal-text">Paste infinitives, comma-, semicolon-, or newline-separated.</p>
+                <div class="verb-set-modal-body">
+                    <label class="verb-set-field">
+                        <span class="verb-set-field-label">Category name</span>
+                        <input id="verb-set-name-input" class="verb-set-text-input" type="text" maxlength="80" autocomplete="off" placeholder="Travel verbs">
+                    </label>
+                    <label class="verb-set-field">
+                        <span class="verb-set-field-label">Verbs</span>
+                        <textarea id="verb-set-verbs-input" class="verb-set-textarea" rows="8" spellcheck="false" placeholder="falar, chegar, partir"></textarea>
+                    </label>
+                    <div id="verb-set-validation" class="verb-set-validation" aria-live="polite"></div>
+                </div>
+                <div class="verb-set-modal-actions">
+                    <button id="verb-set-modal-delete-btn" type="button" class="secondary-btn verb-set-delete-btn hidden">Delete category</button>
+                    <button id="verb-set-modal-save-btn" type="button" class="advanced-action-btn">Save category</button>
+                </div>
             </div>
         </div>
 
@@ -27976,7 +28546,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260423_004626') ? 'dev' : raw;
+    return !raw || raw.includes('20260423_090209') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -28218,6 +28788,30 @@ function enhanceGapSentence(text) {
         .replace(/\[VERB\]/g, '<span class="gap-placeholder gap-verb">______</span>')
         .replace(/\[AUX\]/g, '<span class="gap-placeholder gap-aux">____</span>')
         .replace(/\[PRONOUN\]/g, '<span class="gap-placeholder gap-pronoun">____</span>');
+}
+
+function normalizeVerbSetVerbCandidate(value) {
+    return String(value || '')
+        .replace(/[\u2018\u2019\u02BC]/g, "'")
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s*'\s*/g, "'")
+        .replace(/\s+/g, ' ');
+}
+
+function parseVerbSetRawInput(rawText) {
+    const pieces = String(rawText || '').split(/[,\n\r;]+/);
+    const seen = new Set();
+    const candidates = [];
+    pieces.forEach((piece) => {
+        const normalized = normalizeVerbSetVerbCandidate(piece);
+        if (!normalized || seen.has(normalized)) return;
+        seen.add(normalized);
+        candidates.push(normalized);
+    });
+    return candidates;
 }
 
 // Simple function to prepare text for speech (replace placeholders with "blanc")
@@ -28481,6 +29075,80 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // All discovered categories for UI filters
     const allVerbCategories = [...new Set(uniqueVerbs.map(v => v.category))].sort();
+    const uniqueVerbByInfinitive = new Map(uniqueVerbs.map((verb) => [verb.infinitive, verb]));
+    const verbSetLookupByNormalizedInfinitive = new Map();
+    uniqueVerbs.forEach((verb) => {
+        const normalized = normalizeVerbSetVerbCandidate(verb.infinitive);
+        if (normalized && !verbSetLookupByNormalizedInfinitive.has(normalized)) {
+            verbSetLookupByNormalizedInfinitive.set(normalized, verb.infinitive);
+        }
+    });
+    const PORTUGUESE_BUILTIN_CATEGORY_META = {
+        ar: { name: '-ar verbs', scope: 'Built-in category' },
+        er: { name: '-er verbs', scope: 'Built-in category' },
+        ir: { name: '-ir verbs', scope: 'Built-in category' },
+        or: { name: '-or family', scope: 'Built-in category' },
+        'er/ter': { name: '-ter family', scope: 'Built-in category' },
+        'er/fazer': { name: '-fazer family', scope: 'Built-in category' },
+        'er/dizer': { name: '-dizer family', scope: 'Built-in category' },
+        'er/trazer': { name: '-trazer family', scope: 'Built-in category' },
+        'er/irregular': { name: 'Core irregular -er', scope: 'Built-in category' },
+        'ir/vir': { name: '-vir family', scope: 'Built-in category' },
+        'ir/duzir': { name: '-duzir family', scope: 'Built-in category' },
+        'other/ser': { name: 'ser', scope: 'Built-in category' },
+        'other/estar': { name: 'estar', scope: 'Built-in category' },
+        'other/ir': { name: 'ir', scope: 'Built-in category' },
+        'other/por': { name: 'pôr', scope: 'Built-in category' },
+        unknown: { name: 'Other / uncategorized', scope: 'Built-in category' },
+    };
+    const PORTUGUESE_BUILTIN_CATEGORY_ORDER = [
+        'ar',
+        'er',
+        'ir',
+        'or',
+        'er/ter',
+        'er/fazer',
+        'er/dizer',
+        'er/trazer',
+        'er/irregular',
+        'ir/vir',
+        'ir/duzir',
+        'other/ser',
+        'other/estar',
+        'other/ir',
+        'other/por',
+        'unknown',
+    ];
+    const getBuiltinVerbSetIdFromLegacyCategory = (category) => {
+        const normalized = String(category || '').trim();
+        if (!normalized) return '';
+        return `builtin-category-${normalized.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').toLowerCase()}`;
+    };
+    const builtInVerbSets = [...allVerbCategories]
+        .sort((a, b) => {
+            const indexA = PORTUGUESE_BUILTIN_CATEGORY_ORDER.indexOf(a);
+            const indexB = PORTUGUESE_BUILTIN_CATEGORY_ORDER.indexOf(b);
+            const sortA = indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA;
+            const sortB = indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB;
+            if (sortA !== sortB) return sortA - sortB;
+            return a.localeCompare(b);
+        })
+        .map((category) => {
+            const meta = PORTUGUESE_BUILTIN_CATEGORY_META[category] || {
+                name: category.replace(/[/-]+/g, ' '),
+                scope: 'Built-in category',
+            };
+            return {
+                id: getBuiltinVerbSetIdFromLegacyCategory(category),
+                name: meta.name,
+                scope: meta.scope,
+                verbs: uniqueVerbs
+                    .filter((verb) => verb.category === category)
+                    .map((verb) => verb.infinitive),
+                isBuiltIn: true,
+                category,
+            };
+        });
 
     // Dynamically determine frequency categories and their order from the data
     const allFrequencies = [...new Set(uniqueVerbs.map(v => v.frequency || 'common'))];
@@ -28620,6 +29288,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const appInstallModalSteps = document.getElementById('app-install-modal-steps');
     const appInstallModalNote = document.getElementById('app-install-modal-note');
     const appInstallModalCloseBtn = document.getElementById('app-install-modal-close-btn');
+    const verbSetModal = document.getElementById('verb-set-modal');
+    const verbSetModalTitle = document.getElementById('verb-set-modal-title');
+    const verbSetModalText = document.getElementById('verb-set-modal-text');
+    const verbSetModalCloseBtn = document.getElementById('verb-set-modal-close-btn');
+    const verbSetNameInput = document.getElementById('verb-set-name-input');
+    const verbSetVerbsInput = document.getElementById('verb-set-verbs-input');
+    const verbSetValidation = document.getElementById('verb-set-validation');
+    const verbSetModalDeleteBtn = document.getElementById('verb-set-modal-delete-btn');
+    const verbSetModalSaveBtn = document.getElementById('verb-set-modal-save-btn');
     const answerFlowBtn = document.getElementById('answer-flow-btn');
     const contextAudioBtn = document.getElementById('context-audio-btn');
     const backToFlashcardBtn = document.getElementById('back-to-flashcard-btn');
@@ -30786,6 +31463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tenseWeightsContainer = document.getElementById('tense-weights-container');
     const verbPoolBasicContainer = document.getElementById('verb-pool-basic-container');
     const frequencyWeightsContainer = document.getElementById('frequency-weights-container');
+    const verbSetContainer = document.getElementById('verb-set-container');
     const advancedPracticeContainer = document.getElementById('advanced-practice-container') || frequencyWeightsContainer;
     const currentDrillCard = document.getElementById('current-drill-card');
     const savedDrillsGroup = document.getElementById('saved-drills-group');
@@ -30825,8 +31503,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // New filters (objects: true = included)
         regularityFilter: { regular: true, irregular: true },
         endingFilter: { ar: true, er: true, ir: true, other: true },
-        categoryFilter: 'all',   // 'all' | one of classifyFrenchVerb categories
-        // TODO(Filter): Consider allowing multiple categories (multi-select) and store as array.
+        categoryFilter: 'all',
+        selectedVerbSetIds: [],
+        sharedVerbSet: null,
     };
 
     const REVIEW_MODEL_STORAGE_KEY = 'reviewModelStateV1';
@@ -31218,44 +31897,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     cardGenerationOptions.reflexiveMode = savedOptions.includeReflexive ? 'include' : 'exclude';
                 }
 
-                // Update weights by merging into the existing objects
-                if (savedOptions.tenseWeights) { Object.assign(tenseWeights, savedOptions.tenseWeights); }
-                if (savedOptions.frequencyWeights) {
-                    // Normalize any old hyphenated keys before merging
-                    const savedFW = savedOptions.frequencyWeights;
-                    const fwNorm = { 'top-20':'top20','top-50':'top50','top-100':'top100','top-500':'top500','top-1000':'top1000' };
-                    Object.keys(fwNorm).forEach(old => {
-                        if (old in savedFW) { savedFW[fwNorm[old]] = savedFW[old]; delete savedFW[old]; }
-                    });
-                    Object.assign(frequencyWeights, savedFW);
-                }
-
-                // Load new filters if present (with backward-compat for old string format)
-                if (savedOptions.regularityFilter) {
-                    if (typeof savedOptions.regularityFilter === 'string') {
-                        const r = { regular: true, irregular: true };
-                        if (savedOptions.regularityFilter === 'regular') r.irregular = false;
-                        if (savedOptions.regularityFilter === 'irregular') r.regular = false;
-                        cardGenerationOptions.regularityFilter = r;
-                    } else if (typeof savedOptions.regularityFilter === 'object') {
-                        Object.assign(cardGenerationOptions.regularityFilter, savedOptions.regularityFilter);
-                    }
-                }
-                if (savedOptions.endingFilter) {
-                    if (typeof savedOptions.endingFilter === 'string') {
-                        const e = { ar: true, er: true, ir: true, other: true };
-                        if (savedOptions.endingFilter !== 'all') {
-                            e.er = false; e.ir = false; e.re = false; e.other = false;
-                            e[savedOptions.endingFilter] = true;
-                        }
-                        cardGenerationOptions.endingFilter = e;
-                    } else if (typeof savedOptions.endingFilter === 'object') {
-                        Object.assign(cardGenerationOptions.endingFilter, savedOptions.endingFilter);
-                    }
-                }
-                if (typeof savedOptions.categoryFilter === 'string') {
-                    cardGenerationOptions.categoryFilter = savedOptions.categoryFilter;
-                }
+                const normalizedDrillOptions = buildDrillCardOptions(savedOptions);
+                Object.assign(tenseWeights, normalizedDrillOptions.tenseWeights);
+                Object.assign(frequencyWeights, normalizedDrillOptions.frequencyWeights);
+                cardGenerationOptions.hierarchical = normalizedDrillOptions.hierarchical;
+                cardGenerationOptions.balancedPronouns = normalizedDrillOptions.balancedPronouns;
+                cardGenerationOptions.useMicToAnswer = normalizedDrillOptions.useMicToAnswer;
+                cardGenerationOptions.reflexiveMode = normalizedDrillOptions.reflexiveMode;
+                cardGenerationOptions.regularityFilter = deepClone(normalizedDrillOptions.regularityFilter);
+                cardGenerationOptions.endingFilter = deepClone(normalizedDrillOptions.endingFilter);
+                cardGenerationOptions.categoryFilter = normalizedDrillOptions.categoryFilter;
+                cardGenerationOptions.selectedVerbSetIds = [...(normalizedDrillOptions.selectedVerbSetIds || [])];
+                cardGenerationOptions.sharedVerbSet = deepClone(normalizedDrillOptions.sharedVerbSet);
             }
         } catch (e) {
             console.warn("Could not load options from localStorage:", e);
@@ -31318,88 +31971,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Alias for any remaining references
     const classifyFrenchVerb = classifyPortugueseVerb;
 
-    // --- Helper: Compute how many verbs are currently "in play" ---
-    // Criteria: verb belongs to a frequency group with non-zero weight AND passes regularity/ending filters
-    // and, if enabled, has practice sentences (gap_sentence) in at least one enabled tense.
     const computeActiveVerbPoolCount = () => {
         try {
-            const {
-                frequencyWeights = {},
-                regularityFilter = { regular: true, irregular: true },
-                endingFilter = { ar: true, er: true, ir: true, other: true },
-                categoryFilter = 'all',
-                verbsWithSentencesOnly = false,
-                tenseWeights = {}
-            } = cardGenerationOptions || {};
-
-            const activeFrequencies = new Set(
-                Object.entries(frequencyWeights)
-                    .filter(([, w]) => (w || 0) > 0)
-                    .map(([f]) => f)
-            );
-            if (activeFrequencies.size === 0) return 0;
-
-            const isIrregular = (inf) => IRREGULAR_VERBS.has(inf);
-            const getEnding = (inf) => {
-                if (inf.endsWith('ar')) return 'ar';
-                if (inf.endsWith('er')) return 'er';
-                if (inf.endsWith('ir')) return 'ir';
-                return 'other';
-            };
-            const passesFilters = (verbInfo) => {
-                if (cardGenerationOptions.reflexiveMode === 'only' && !verbInfo.reflexive) return false;
-                if (cardGenerationOptions.reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
-                const irreg = isIrregular(verbInfo.infinitive);
-                if (irreg && !regularityFilter.irregular) return false;
-                if (!irreg && !regularityFilter.regular) return false;
-                const end = getEnding(verbInfo.infinitive);
-                if (!endingFilter[end]) return false;
-                if (categoryFilter !== 'all') {
-                    const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
-                    if (cat !== categoryFilter) return false;
-                }
-                return true;
-            };
-            const hasPracticeSentences = (inf) => {
-                if (!ENABLE_LEGACY_SENTENCE_DATA) return true;
-                // If the sentences-only filter is OFF, don't exclude any verbs based on sentences
-                if (!verbsWithSentencesOnly) return true;
-                const verbPhrases = phrasebook[inf];
-                if (!verbPhrases) return false;
-                for (const tenseName in tenseWeights) {
-                    if ((tenseWeights[tenseName] || 0) <= 0) continue;
-                    const phraseKey = tenseKeyToPhraseKey[tenseName];
-                    const tenseArr = verbPhrases && verbPhrases[phraseKey];
-                    if (!Array.isArray(tenseArr)) continue;
-                    if (tenseArr.some(p => p && p.gap_sentence)) return true;
-                }
-                return false;
-            };
-
-            let count = 0;
-            for (const v of uniqueVerbs) {
-                // In reflexive-only mode, bypass frequency filter — count all reflexive verbs
-                if (cardGenerationOptions.reflexiveMode !== 'only') {
-                    const freq = v.frequency || 'common';
-                    if (!activeFrequencies.has(freq)) continue;
-                }
-                if (!passesFilters(v)) continue;
-                if (!hasPracticeSentences(v.infinitive)) continue;
-                count++;
-            }
-            return count;
+            return getFilteredVerbUniverse(cardGenerationOptions).length;
         } catch (err) {
             console.warn('computeActiveVerbPoolCount error:', err);
             return 0;
         }
     };
 
-    // Update the count label in the Options -> Verb filters section if present
     const updateVerbFiltersCountLabel = () => {
         const el = document.getElementById('verb-filters-count');
         if (!el) return;
-        const n = computeActiveVerbPoolCount();
-        el.textContent = `In play: ${n} verbs`;
+        const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
+        const count = computeActiveVerbPoolCount();
+        if (activeVerbSet) {
+            const categoryCount = activeVerbSet.selectionCount || 1;
+            el.textContent = `In play: ${count} verbs from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'}`;
+            return;
+        }
+        el.textContent = `In play: ${count} verbs`;
     };
     // --- Packaged TTS runtime ---
     const PACKAGED_TTS = window.preRenderedPortugueseTts || null;
@@ -31558,7 +32149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const {
             regularityFilter = { regular: true, irregular: true },
             endingFilter = { ar: true, er: true, ir: true, other: true },
-            categoryFilter = 'all',
             reflexiveMode = cardGenerationOptions.reflexiveMode,
         } = options;
         if (reflexiveMode === 'only' && !verbInfo.reflexive) return false;
@@ -31567,10 +32157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (irregular && !regularityFilter.irregular) return false;
         if (!irregular && !regularityFilter.regular) return false;
         if (!endingFilter[getVerbEnding(verbInfo.infinitive)]) return false;
-        if (categoryFilter !== 'all') {
-            const category = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
-            if (category !== categoryFilter) return false;
-        }
         return true;
     };
 
@@ -31590,6 +32176,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getFilteredVerbUniverse = (options = cardGenerationOptions) => {
+        const activeVerbSet = getResolvedVerbSetSelection(options);
+        const candidateVerbs = getResolvedVerbUniverse(options);
         const activeFrequencyWeights = {
             ...buildRangeFrequencyWeights(getSelectedVerbPoolRangeKey(options.frequencyWeights || {}) || 'top50', {
                 includeRare: !!(options.frequencyWeights || {}).rare,
@@ -31601,23 +32189,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 .filter(([, score]) => score > 0)
                 .map(([freq]) => freq)
         );
-        return uniqueVerbs.filter((verbInfo) => {
-            if (!verbPassesCurrentFilters(verbInfo, options)) return false;
+        if (!activeVerbSet && activeFrequencies.size === 0 && options.reflexiveMode !== 'only') return [];
+
+        return candidateVerbs.filter((verbInfo) => {
             if (!verbHasUsableSentencesForOptions(verbInfo.infinitive, options)) return false;
+            if (activeVerbSet) return true;
+            if (!verbPassesCurrentFilters(verbInfo, options)) return false;
             if (options.reflexiveMode === 'only') return true;
             return activeFrequencies.has(verbInfo.frequency || 'common');
         });
     };
 
     const buildCurrentFilteredPoolSelection = (options = cardGenerationOptions) => {
+        const activeVerbSet = getResolvedVerbSetSelection(options);
         const filteredUniverse = getFilteredVerbUniverse(options);
+        if (activeVerbSet) {
+            const verbs = [...activeVerbSet.verbs].sort();
+            return {
+                key: `exact::${verbs.join('|')}`,
+                verbs,
+                count: verbs.length,
+                label: activeVerbSet.name,
+            };
+        }
         if (filteredUniverse.length === 0 || filteredUniverse.length >= uniqueVerbs.length) return null;
         const verbs = filteredUniverse.map((verbInfo) => verbInfo.infinitive).sort();
         return {
             key: `filtered::${verbs.join('|')}`,
             verbs,
             count: verbs.length,
-            label: options.categoryFilter && options.categoryFilter !== 'all' ? options.categoryFilter : 'current filters',
+            label: 'current filters',
         };
     };
 
@@ -31637,8 +32238,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let explorerVerbScopeMode = 'filtered';
 
     const getCurrentVerbSelectionSummary = (filteredCount, totalCount) => {
-        if (cardGenerationOptions.categoryFilter && cardGenerationOptions.categoryFilter !== 'all') {
-            return `Showing ${filteredCount} verbs from ${cardGenerationOptions.categoryFilter}`;
+        const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
+        if (activeVerbSet) {
+            const categoryCount = activeVerbSet.selectionCount || 1;
+            return `Showing ${filteredCount} verbs from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'}`;
         }
         if (filteredCount >= totalCount) {
             return `Showing all ${totalCount} verbs`;
@@ -31649,7 +32252,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshExplorerScopeUi = () => {
         if (!explorerScopeRow || !explorerScopeFilteredBtn || !explorerScopeAllBtn || !explorerScopeSummary) return;
         const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
-        const hasNarrowedPool = filteredUniverse.length > 0 && filteredUniverse.length < uniqueVerbs.length;
+        const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
+        const hasNarrowedPool = !!activeVerbSet || (filteredUniverse.length > 0 && filteredUniverse.length < uniqueVerbs.length);
         explorerScopeRow.classList.toggle('hidden', !hasNarrowedPool);
         if (!hasNarrowedPool) {
             explorerScopeSummary.textContent = '';
@@ -31700,6 +32304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         frequencyWeights = {},
         reflexiveMode = cardGenerationOptions.reflexiveMode,
     } = options;
+    const activeVerbSet = getResolvedVerbSetSelection(options);
     const filteredUniverse = getFilteredVerbUniverse({
         ...options,
         reflexiveMode,
@@ -31717,7 +32322,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hierarchical) {
             let verbsInFrequency;
-            if (reflexiveMode === 'only') {
+            if (activeVerbSet || reflexiveMode === 'only') {
                 verbsInFrequency = filteredUniverse;
             } else {
                 const weightedFrequencies = Object.entries(frequencyWeights)
@@ -31787,7 +32392,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (tenseWeight === 0) continue;
 
                 for (const verbInfo of filteredUniverse) {
-                    const freqWeight = reflexiveMode === 'only'
+                    const freqWeight = activeVerbSet || reflexiveMode === 'only'
                         ? 1
                         : (frequencyWeights[verbInfo.frequency || 'common'] || 0);
                     const score = tenseWeight * freqWeight;
@@ -32684,6 +33289,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return group;
         };
 
+        const activeVerbSetSelection = getResolvedVerbSetSelection();
+        const activeVerbSetSelections = getResolvedVerbSetSelections();
+        const activeVerbSetIds = new Set(activeVerbSetSelections.map((selection) => selection.id).filter(Boolean));
+        const verbSetGroup = document.getElementById('verb-set-group');
+        if (verbSetGroup instanceof HTMLDetailsElement && activeVerbSetSelection) {
+            verbSetGroup.open = true;
+        }
+
         tenseWeightsContainer.innerHTML = '';
         Object.keys(tenses).forEach((tense) => {
             const weight = cardGenerationOptions.tenseWeights[tense] || 0;
@@ -32722,12 +33335,122 @@ document.addEventListener('DOMContentLoaded', () => {
             verbPoolBasicContainer.appendChild(verbPoolPanel);
         }
 
+        if (verbSetContainer) {
+            verbSetContainer.innerHTML = '';
+            const panel = document.createElement('div');
+            panel.className = 'verb-set-panel';
+
+            const grid = document.createElement('div');
+            grid.className = 'verb-set-grid';
+
+            const allCard = document.createElement('button');
+            allCard.type = 'button';
+            allCard.className = `verb-set-card${activeVerbSetSelection ? '' : ' active'}`;
+            allCard.innerHTML = `
+                <span class="verb-set-card-title">All verbs</span>
+                <span class="verb-set-card-meta">Use the regular Top N pool.</span>
+            `;
+            allCard.addEventListener('click', () => clearVerbSetSelection());
+            grid.appendChild(allCard);
+
+            builtInVerbSets.forEach((set) => {
+                const isActive = activeVerbSetIds.has(set.id);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `verb-set-card${isActive ? ' active' : ''}`;
+                card.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
+                    <span class="verb-set-card-meta">${escapeHtml(set.scope || 'Built-in')} · ${set.verbs.length} verbs</span>
+                `;
+                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                grid.appendChild(card);
+            });
+
+            savedVerbSets.forEach((set) => {
+                const isActive = activeVerbSetIds.has(set.id);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `verb-set-card${isActive ? ' active' : ''}`;
+                card.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
+                    <span class="verb-set-card-meta">Saved · ${set.verbs.length} verbs</span>
+                    <span class="verb-set-card-actions">
+                        <span class="verb-set-card-action" data-action="edit">Edit</span>
+                        <span class="verb-set-card-action" data-action="delete">Delete</span>
+                    </span>
+                `;
+                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                card.querySelector('[data-action="edit"]')?.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    openVerbSetModal({ mode: 'edit', setId: set.id });
+                });
+                card.querySelector('[data-action="delete"]')?.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    deleteVerbSetById(set.id);
+                });
+                grid.appendChild(card);
+            });
+
+            if (activeVerbSetSelection?.source === 'shared') {
+                const sharedCard = document.createElement('button');
+                sharedCard.type = 'button';
+                sharedCard.className = 'verb-set-card active shared-set-card';
+                sharedCard.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(activeVerbSetSelection.name)}</span>
+                    <span class="verb-set-card-meta">Shared set · ${activeVerbSetSelection.count} verbs</span>
+                `;
+                grid.appendChild(sharedCard);
+            }
+
+            const newSetCard = document.createElement('button');
+            newSetCard.type = 'button';
+            newSetCard.className = 'verb-set-card new-set-card';
+            newSetCard.innerHTML = `
+                <span class="verb-set-card-title">New category</span>
+                <span class="verb-set-card-meta">Paste a list of infinitives.</span>
+            `;
+            newSetCard.addEventListener('click', () => openVerbSetModal({ mode: 'create' }));
+            grid.appendChild(newSetCard);
+
+            panel.appendChild(grid);
+
+            const summary = document.createElement('div');
+            summary.className = 'verb-set-summary';
+            const categoryCount = activeVerbSetSelection?.selectionCount || (activeVerbSetSelection ? 1 : 0);
+            summary.textContent = activeVerbSetSelection
+                ? `Exact pool active: ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} with ${activeVerbSetSelection.count} unique verbs. ${activeVerbSetSelection.scope ? `${activeVerbSetSelection.scope}. ` : ''}Tenses still apply.`
+                : 'When categories are active, their verbs are merged into one exact pool for drills and sharing.';
+            panel.appendChild(summary);
+
+            if (activeVerbSetSelection?.source === 'shared') {
+                const actionsRow = document.createElement('div');
+                actionsRow.className = 'verb-set-actions-row';
+                const saveSharedBtn = document.createElement('button');
+                saveSharedBtn.type = 'button';
+                saveSharedBtn.className = 'secondary-btn verb-set-secondary-btn';
+                saveSharedBtn.textContent = 'Save this category';
+                saveSharedBtn.addEventListener('click', () => {
+                    saveSharedVerbSetToLibrary(activeVerbSetSelection);
+                });
+                actionsRow.appendChild(saveSharedBtn);
+                panel.appendChild(actionsRow);
+            }
+
+            verbSetContainer.appendChild(panel);
+        }
+
         if (advancedPracticeContainer) {
             advancedPracticeContainer.innerHTML = '';
             const advancedSections = document.createElement('div');
             advancedSections.className = 'advanced-sections';
 
             const frequencyBehaviorCard = createAdvancedCard('Frequency behavior');
+            if (activeVerbSetSelection) {
+                const ignoredHelper = document.createElement('div');
+                ignoredHelper.className = 'advanced-action-helper';
+                ignoredHelper.textContent = `Category pool "${activeVerbSetSelection.name}" is active, so Top N settings below are currently ignored.`;
+                frequencyBehaviorCard.appendChild(ignoredHelper);
+            }
             frequencyBehaviorCard.appendChild(createToggleRow(
                 'Favor common verbs',
                 'When off, included verbs are practiced more evenly across the selected pool.',
@@ -32756,7 +33479,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const freqCard = createAdvancedCard('Detailed frequency');
             const freqHelper = document.createElement('div');
             freqHelper.className = 'advanced-action-helper';
-            freqHelper.textContent = 'Fine-tune the exact weights when the simple Verb Pool controls are not enough.';
+            freqHelper.textContent = activeVerbSetSelection
+                ? 'An exact category pool is active, so these weights will apply again when you switch back to All verbs.'
+                : 'Fine-tune the exact weights when the simple Verb Pool controls are not enough.';
             const detailedFrequencyContainer = document.createElement('div');
             const freqOrder = ['top20', 'top50', 'top100', 'top500', 'top1000', 'rare'];
             const freqEntries = Object.entries(cardGenerationOptions.frequencyWeights);
@@ -32771,6 +33496,12 @@ document.addEventListener('DOMContentLoaded', () => {
             advancedSections.appendChild(freqCard);
 
             const practiceCard = createAdvancedCard('Practice filters');
+            if (activeVerbSetSelection) {
+                const ignoredFiltersHelper = document.createElement('div');
+                ignoredFiltersHelper.className = 'advanced-action-helper';
+                ignoredFiltersHelper.textContent = 'Regularity, ending, reflexive, and legacy category filters are ignored while categories are active.';
+                practiceCard.appendChild(ignoredFiltersHelper);
+            }
             practiceCard.appendChild(createToggleRow(
                 'Practice all pronouns evenly',
                 'Split grouped pronouns so they appear more evenly in the deck.',
@@ -33229,9 +33960,51 @@ document.addEventListener('DOMContentLoaded', () => {
             closeInstallInstructionsModal();
         });
     }
+    if (verbSetModal) {
+        verbSetModal.addEventListener('click', (e) => {
+            if (e.target instanceof Element && e.target.closest('[data-close-verb-set-modal="true"]')) {
+                closeVerbSetModal();
+            }
+        });
+    }
+    if (verbSetModalCloseBtn) {
+        verbSetModalCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            closeVerbSetModal();
+        });
+    }
+    if (verbSetNameInput) {
+        verbSetNameInput.addEventListener('input', () => {
+            renderVerbSetValidation(verbSetVerbsInput?.value || '');
+        });
+    }
+    if (verbSetVerbsInput) {
+        verbSetVerbsInput.addEventListener('input', () => {
+            renderVerbSetValidation(verbSetVerbsInput.value);
+        });
+    }
+    if (verbSetModalSaveBtn) {
+        verbSetModalSaveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            saveVerbSetFromModal();
+        });
+    }
+    if (verbSetModalDeleteBtn) {
+        verbSetModalDeleteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!verbSetModalState.editingSetId) return;
+            const deletingId = verbSetModalState.editingSetId;
+            closeVerbSetModal();
+            deleteVerbSetById(deletingId);
+        });
+    }
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && appInstallModal && !appInstallModal.classList.contains('hidden')) {
             closeInstallInstructionsModal();
+        }
+        if (e.key === 'Escape' && verbSetModal && !verbSetModal.classList.contains('hidden')) {
+            closeVerbSetModal();
         }
     });
     document.addEventListener('pointerdown', () => {
@@ -33984,6 +34757,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 // ---------- PRESET SYSTEM ----------
+const VERB_SET_STORAGE_KEY = 'savedVerbSets';
 const DRILL_STORAGE_KEY = 'savedDrills';
 const LAST_DRILL_STORAGE_KEY = 'lastDrill';
 const STARTER_DRILL_ID = 'most-common';
@@ -33998,10 +34772,244 @@ const DRILL_OPTION_KEYS = [
     'regularityFilter',
     'endingFilter',
     'categoryFilter',
+    'selectedVerbSetIds',
+    'sharedVerbSet',
 ];
 
 function deepClone(value) {
     return JSON.parse(JSON.stringify(value));
+}
+
+function makeVerbSetId() {
+    return `set_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function normalizeEmbeddedVerbSet(rawVerbSet) {
+    if (!rawVerbSet || typeof rawVerbSet !== 'object') return null;
+    const name = String(rawVerbSet.name || '').trim();
+    const scope = String(rawVerbSet.scope || '').trim();
+    const candidates = Array.isArray(rawVerbSet.verbs)
+        ? rawVerbSet.verbs.map((verb) => normalizeVerbSetVerbCandidate(verb)).filter(Boolean)
+        : [];
+    const seen = new Set();
+    const verbs = [];
+    candidates.forEach((candidate) => {
+        const canonical = verbSetLookupByNormalizedInfinitive.get(candidate);
+        if (!canonical || seen.has(canonical)) return;
+        seen.add(canonical);
+        verbs.push(canonical);
+    });
+    if (!name || verbs.length === 0) return null;
+    return { name, verbs, scope };
+}
+
+function getVerbSetValidationSummary(rawText) {
+    const candidates = parseVerbSetRawInput(rawText);
+    const validVerbs = [];
+    const notFound = [];
+    const seenValid = new Set();
+    candidates.forEach((candidate) => {
+        const canonical = verbSetLookupByNormalizedInfinitive.get(candidate);
+        if (!canonical) {
+            notFound.push(candidate);
+            return;
+        }
+        if (seenValid.has(canonical)) return;
+        seenValid.add(canonical);
+        validVerbs.push(canonical);
+    });
+    return {
+        candidates,
+        validVerbs,
+        notFound,
+        recognizedCount: validVerbs.length,
+        notFoundCount: notFound.length,
+    };
+}
+
+function formatVerbSetPreviewList(items, emptyText, limit = 24) {
+    if (!Array.isArray(items) || items.length === 0) return emptyText;
+    const shown = items.slice(0, limit).join(', ');
+    const remaining = items.length - Math.min(items.length, limit);
+    return remaining > 0 ? `${shown} + ${remaining} more` : shown;
+}
+
+function normalizeStoredVerbSet(rawSet) {
+    if (!rawSet || typeof rawSet !== 'object') return null;
+    const embedded = normalizeEmbeddedVerbSet(rawSet);
+    if (!embedded) return null;
+    const now = Date.now();
+    return {
+        id: String(rawSet.id || makeVerbSetId()),
+        name: embedded.name,
+        verbs: embedded.verbs,
+        scope: embedded.scope || '',
+        createdAt: Number(rawSet.createdAt) || now,
+        updatedAt: Number(rawSet.updatedAt) || now,
+    };
+}
+
+function loadSavedVerbSets() {
+    try {
+        const raw = getScopedStorageItem(VERB_SET_STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        const sets = Array.isArray(parsed)
+            ? parsed
+            : Array.isArray(parsed?.sets)
+                ? parsed.sets
+                : [];
+        return sets
+            .map((set) => normalizeStoredVerbSet(set))
+            .filter(Boolean)
+            .sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    } catch (error) {
+        console.warn('Could not load saved verb sets:', error);
+        return [];
+    }
+}
+
+function persistSavedVerbSets() {
+    try {
+        setScopedStorageItem(VERB_SET_STORAGE_KEY, JSON.stringify({
+            version: 1,
+            sets: savedVerbSets,
+        }));
+    } catch (error) {
+        console.warn('Could not save verb sets:', error);
+    }
+}
+
+function getBuiltInVerbSetById(id) {
+    if (!id) return null;
+    return builtInVerbSets.find((set) => set.id === id) || null;
+}
+
+function getSavedVerbSetById(id) {
+    if (!id) return null;
+    return savedVerbSets.find((set) => set.id === id) || null;
+}
+
+function getAvailableVerbSetById(id) {
+    return getBuiltInVerbSetById(id) || getSavedVerbSetById(id);
+}
+
+function getResolvedVerbSetSelections(options = cardGenerationOptions) {
+    if (!options || typeof options !== 'object') return [];
+    const selectedIds = Array.isArray(options.selectedVerbSetIds)
+        ? [...new Set(options.selectedVerbSetIds.map((id) => String(id)).filter(Boolean))]
+        : options.selectedVerbSetId
+            ? [String(options.selectedVerbSetId)]
+            : [];
+    const selections = selectedIds
+        .map((id) => getAvailableVerbSetById(id))
+        .filter(Boolean)
+        .map((selectedSet) => ({
+            source: selectedSet.isBuiltIn ? 'builtin' : 'saved',
+            id: selectedSet.id,
+            name: selectedSet.name,
+            verbs: [...selectedSet.verbs],
+            scope: selectedSet.scope || '',
+            count: selectedSet.verbs.length,
+        }));
+    if (selections.length) return selections;
+    const sharedSet = normalizeEmbeddedVerbSet(options.sharedVerbSet);
+    if (sharedSet) {
+        return [{
+            source: 'shared',
+            id: null,
+            name: sharedSet.name,
+            verbs: [...sharedSet.verbs],
+            scope: sharedSet.scope || '',
+            count: sharedSet.verbs.length,
+        }];
+    }
+    return [];
+}
+
+function getResolvedVerbSetSelection(options = cardGenerationOptions) {
+    const selections = getResolvedVerbSetSelections(options);
+    if (!selections.length) return null;
+    if (selections.length === 1) return selections[0];
+    const uniqueSelectionVerbs = [...new Set(selections.flatMap((selection) => selection.verbs))];
+    const first = selections[0];
+    return {
+        source: 'multiple',
+        id: null,
+        name: `${first.name} + ${selections.length - 1} more`,
+        verbs: uniqueSelectionVerbs,
+        scope: `${selections.length} categories selected`,
+        count: uniqueSelectionVerbs.length,
+        selectionCount: selections.length,
+        selections,
+    };
+}
+
+function getResolvedVerbUniverse(options = cardGenerationOptions) {
+    const selection = getResolvedVerbSetSelection(options);
+    if (!selection) return uniqueVerbs;
+    return selection.verbs
+        .map((verb) => uniqueVerbByInfinitive.get(verb))
+        .filter(Boolean);
+}
+
+function buildSharedVerbSetPayloadFromOptions(options = cardGenerationOptions) {
+    const selection = getResolvedVerbSetSelection(options);
+    return selection ? {
+        name: selection.name,
+        verbs: [...selection.verbs],
+        scope: selection.scope || '',
+    } : null;
+}
+
+function clearVerbSetSelection(options = {}) {
+    cardGenerationOptions.selectedVerbSetIds = [];
+    cardGenerationOptions.sharedVerbSet = null;
+    saveOptions(options);
+    populateOptions();
+}
+
+function toggleVerbSetSelection(setId) {
+    const target = getAvailableVerbSetById(setId);
+    if (!target) {
+        clearVerbSetSelection();
+        return;
+    }
+    const currentIds = Array.isArray(cardGenerationOptions.selectedVerbSetIds)
+        ? [...cardGenerationOptions.selectedVerbSetIds]
+        : [];
+    const alreadySelected = currentIds.includes(target.id);
+    cardGenerationOptions.selectedVerbSetIds = alreadySelected
+        ? currentIds.filter((id) => id !== target.id)
+        : [...currentIds, target.id];
+    cardGenerationOptions.sharedVerbSet = null;
+    saveOptions();
+    populateOptions();
+}
+
+function applySharedVerbSet(verbSet, options = {}) {
+    const normalized = normalizeEmbeddedVerbSet(verbSet);
+    if (!normalized) {
+        clearVerbSetSelection(options);
+        return;
+    }
+    cardGenerationOptions.selectedVerbSetIds = [];
+    cardGenerationOptions.sharedVerbSet = normalized;
+    saveOptions(options);
+    populateOptions();
+}
+
+function syncVerbSetSelectionAfterLibraryChange(options = {}) {
+    const selectedIds = Array.isArray(cardGenerationOptions.selectedVerbSetIds)
+        ? cardGenerationOptions.selectedVerbSetIds
+        : [];
+    const validIds = selectedIds.filter((id) => getAvailableVerbSetById(id));
+    if (validIds.length !== selectedIds.length) {
+        cardGenerationOptions.selectedVerbSetIds = validIds;
+        if (!options.skipSave) {
+            saveOptions({ preserveActiveDrill: true });
+        }
+    }
 }
 
 function getStandardFrequencyKeys() {
@@ -34057,19 +35065,65 @@ function buildRangeFrequencyWeights(maxKey, options = {}) {
 function buildDrillCardOptions(overrides = {}) {
     const baseTenseWeights = buildEmptyTenseWeights();
     const baseFrequencyWeights = buildRangeFrequencyWeights('top50');
+    const normalizedFrequencyWeights = { ...(overrides.frequencyWeights || {}) };
+    const frequencyKeyMap = { 'top-20': 'top20', 'top-50': 'top50', 'top-100': 'top100', 'top-500': 'top500', 'top-1000': 'top1000' };
+    Object.entries(frequencyKeyMap).forEach(([legacyKey, nextKey]) => {
+        if (legacyKey in normalizedFrequencyWeights) {
+            normalizedFrequencyWeights[nextKey] = normalizedFrequencyWeights[legacyKey];
+            delete normalizedFrequencyWeights[legacyKey];
+        }
+    });
+    const normalizedRegularityFilter = (() => {
+        if (typeof overrides.regularityFilter === 'string') {
+            const filter = { regular: true, irregular: true };
+            if (overrides.regularityFilter === 'regular') filter.irregular = false;
+            if (overrides.regularityFilter === 'irregular') filter.regular = false;
+            return filter;
+        }
+        return { regular: true, irregular: true, ...(overrides.regularityFilter || {}) };
+    })();
+    const normalizedEndingFilter = (() => {
+        if (typeof overrides.endingFilter === 'string') {
+            const filter = { ar: true, er: true, ir: true, other: true };
+            if (overrides.endingFilter !== 'all') {
+                filter.ar = false;
+                filter.er = false;
+                filter.ir = false;
+                filter.other = false;
+                if (Object.prototype.hasOwnProperty.call(filter, overrides.endingFilter)) {
+                    filter[overrides.endingFilter] = true;
+                }
+            }
+            return filter;
+        }
+        return { ar: true, er: true, ir: true, other: true, ...(overrides.endingFilter || {}) };
+    })();
+    const normalizedSharedVerbSet = normalizeEmbeddedVerbSet(overrides.sharedVerbSet);
+    const migratedSelectedVerbSetIds = Array.isArray(overrides.selectedVerbSetIds)
+        ? overrides.selectedVerbSetIds.map((id) => String(id)).filter(Boolean)
+        : overrides.selectedVerbSetId
+            ? [String(overrides.selectedVerbSetId)]
+            : [];
+    if (!migratedSelectedVerbSetIds.length && typeof overrides.categoryFilter === 'string' && overrides.categoryFilter !== 'all') {
+        const legacyVerbSetId = getBuiltinVerbSetIdFromLegacyCategory(overrides.categoryFilter);
+        if (legacyVerbSetId) migratedSelectedVerbSetIds.push(legacyVerbSetId);
+    }
     return {
         hierarchical: true,
         balancedPronouns: false,
         useMicToAnswer: false,
         reflexiveMode: 'include',
-        regularityFilter: { regular: true, irregular: true },
-        endingFilter: { ar: true, er: true, ir: true, other: true },
         categoryFilter: 'all',
+        selectedVerbSetIds: [],
+        sharedVerbSet: null,
         tenseWeights: { ...baseTenseWeights, ...(overrides.tenseWeights || {}) },
-        frequencyWeights: { ...baseFrequencyWeights, ...(overrides.frequencyWeights || {}) },
+        frequencyWeights: { ...baseFrequencyWeights, ...normalizedFrequencyWeights },
         ...overrides,
-        regularityFilter: { regular: true, irregular: true, ...(overrides.regularityFilter || {}) },
-        endingFilter: { ar: true, er: true, ir: true, other: true, ...(overrides.endingFilter || {}) },
+        categoryFilter: 'all',
+        regularityFilter: normalizedRegularityFilter,
+        endingFilter: normalizedEndingFilter,
+        selectedVerbSetIds: [...new Set(migratedSelectedVerbSetIds)],
+        sharedVerbSet: normalizedSharedVerbSet,
     };
 }
 
@@ -34217,6 +35271,12 @@ let activePreset = 'Custom';
 let activePresetKey = 'builtin:custom';
 let presets = defaultPresets;
 let savedDrills = [];
+let savedVerbSets = [];
+let verbSetModalState = {
+    mode: 'create',
+    editingSetId: null,
+    scope: '',
+};
 
 function getPresetKey(preset, source = 'builtin') {
     return `${source}:${preset.id || preset.name}`;
@@ -34227,7 +35287,15 @@ function loadSavedDrills() {
         const raw = getScopedStorageItem(DRILL_STORAGE_KEY);
         if (!raw) return [];
         const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
+        return Array.isArray(parsed)
+            ? parsed.map((drill) => {
+                const normalizedConfig = deepClone(drill.config || {});
+                const target = normalizedConfig.cardGenerationOptions || normalizedConfig || {};
+                const normalizedOptions = buildDrillCardOptions(target);
+                normalizedConfig.cardGenerationOptions = normalizedOptions;
+                return { ...drill, config: normalizedConfig };
+            })
+            : [];
     } catch (error) {
         console.warn('Could not load saved drills:', error);
         return [];
@@ -34240,6 +35308,129 @@ function persistSavedDrills() {
     } catch (error) {
         console.warn('Could not save drills:', error);
     }
+}
+
+function renderVerbSetValidation(rawText) {
+    if (!verbSetValidation) return null;
+    const summary = getVerbSetValidationSummary(rawText);
+    const validPreview = formatVerbSetPreviewList(summary.validVerbs, 'None yet');
+    const invalidPreview = formatVerbSetPreviewList(summary.notFound, 'Everything pasted is recognized so far.');
+    verbSetValidation.innerHTML = `
+        <div class="verb-set-validation-summary">
+            Recognized: <strong>${summary.recognizedCount}</strong> · Not found: <strong>${summary.notFoundCount}</strong>
+        </div>
+        <div class="verb-set-validation-groups">
+            <div class="verb-set-validation-group">
+                <div class="verb-set-validation-heading">Valid verbs</div>
+                <div class="verb-set-validation-list${summary.validVerbs.length ? '' : ' verb-set-validation-empty'}">${escapeHtml(validPreview)}</div>
+            </div>
+            <div class="verb-set-validation-group invalid">
+                <div class="verb-set-validation-heading">Not found</div>
+                <div class="verb-set-validation-list${summary.notFound.length ? '' : ' verb-set-validation-empty'}">${escapeHtml(invalidPreview)}</div>
+            </div>
+        </div>
+    `;
+    if (verbSetModalSaveBtn) {
+        verbSetModalSaveBtn.disabled = summary.recognizedCount === 0;
+    }
+    return summary;
+}
+
+function closeVerbSetModal() {
+    if (!verbSetModal) return;
+    verbSetModal.classList.add('hidden');
+    verbSetModalState = { mode: 'create', editingSetId: null, scope: '' };
+}
+
+function openVerbSetModal(options = {}) {
+    if (!verbSetModal || !verbSetNameInput || !verbSetVerbsInput) return;
+    const { mode = 'create', setId = null, initialVerbSet = null } = options;
+    const existingSet = setId ? getSavedVerbSetById(setId) : null;
+    const sourceSet = existingSet || normalizeEmbeddedVerbSet(initialVerbSet);
+    verbSetModalState = {
+        mode,
+        editingSetId: existingSet?.id || null,
+        scope: sourceSet?.scope || '',
+    };
+    verbSetModalTitle.textContent = existingSet ? 'Edit category' : 'New category';
+    verbSetModalText.textContent = 'Paste infinitives, comma-, semicolon-, or newline-separated to add your own category.';
+    verbSetNameInput.value = sourceSet?.name || '';
+    verbSetVerbsInput.value = sourceSet?.verbs?.join('\n') || '';
+    verbSetModalDeleteBtn?.classList.toggle('hidden', !existingSet);
+    renderVerbSetValidation(verbSetVerbsInput.value);
+    verbSetModal.classList.remove('hidden');
+    window.requestAnimationFrame(() => {
+        try {
+            verbSetNameInput.focus({ preventScroll: true });
+        } catch (error) {
+            verbSetNameInput.focus();
+        }
+    });
+}
+
+function saveVerbSetFromModal() {
+    const validation = renderVerbSetValidation(verbSetVerbsInput?.value || '');
+    if (!validation || validation.recognizedCount === 0) {
+        window.alert('Add at least one recognized verb before saving.');
+        return;
+    }
+
+    const trimmedName = String(verbSetNameInput?.value || '').trim();
+    if (!trimmedName) {
+        window.alert('Give this category a name.');
+        return;
+    }
+
+    const existingSet = verbSetModalState.editingSetId
+        ? getSavedVerbSetById(verbSetModalState.editingSetId)
+        : null;
+    const now = Date.now();
+    const nextSet = {
+        id: existingSet?.id || makeVerbSetId(),
+        name: trimmedName,
+        verbs: validation.validVerbs,
+        scope: verbSetModalState.scope || existingSet?.scope || '',
+        createdAt: existingSet?.createdAt || now,
+        updatedAt: now,
+    };
+
+    if (existingSet) {
+        savedVerbSets = savedVerbSets.map((set) => set.id === existingSet.id ? nextSet : set);
+    } else {
+        savedVerbSets = [nextSet, ...savedVerbSets];
+    }
+    savedVerbSets.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    persistSavedVerbSets();
+    cardGenerationOptions.selectedVerbSetIds = [nextSet.id];
+    cardGenerationOptions.sharedVerbSet = null;
+    saveOptions();
+    populateOptions();
+    closeVerbSetModal();
+}
+
+function deleteVerbSetById(setId) {
+    const target = getSavedVerbSetById(setId);
+    if (!target) return;
+    if (!window.confirm(`Delete category "${target.name}"?`)) return;
+    savedVerbSets = savedVerbSets.filter((set) => set.id !== setId);
+    persistSavedVerbSets();
+    if (Array.isArray(cardGenerationOptions.selectedVerbSetIds) && cardGenerationOptions.selectedVerbSetIds.includes(setId)) {
+        cardGenerationOptions.selectedVerbSetIds = cardGenerationOptions.selectedVerbSetIds.filter((id) => id !== setId);
+        saveOptions();
+    }
+    populateOptions();
+}
+
+function saveSharedVerbSetToLibrary(sharedSelection = getResolvedVerbSetSelection()) {
+    if (!sharedSelection || sharedSelection.source !== 'shared') return;
+    openVerbSetModal({
+        mode: 'create',
+        initialVerbSet: {
+            name: sharedSelection.name,
+            verbs: sharedSelection.verbs,
+            scope: sharedSelection.scope || '',
+        },
+    });
 }
 
 function getCustomPreset() {
@@ -34259,12 +35450,17 @@ function getCurrentDrillDisplayName() {
     return getActiveDrill()?.preset?.name || 'Custom';
 }
 
-function snapshotCurrentDrillConfig() {
+function snapshotCurrentDrillConfig(options = {}) {
+    const { forShare = false } = options;
     const snapshot = {};
     DRILL_OPTION_KEYS.forEach((key) => {
         if (cardGenerationOptions[key] === undefined) return;
         snapshot[key] = deepClone(cardGenerationOptions[key]);
     });
+    if (forShare) {
+        snapshot.selectedVerbSetIds = [];
+        snapshot.sharedVerbSet = buildSharedVerbSetPayloadFromOptions(cardGenerationOptions);
+    }
     return { cardGenerationOptions: snapshot };
 }
 
@@ -34283,7 +35479,7 @@ function summarizeFrequencyWeights(frequencyWeights = {}) {
 }
 
 function describeDrillConfig(config = {}) {
-    const options = config.cardGenerationOptions || config;
+    const options = buildDrillCardOptions(config.cardGenerationOptions || config);
     const tenseLabels = Object.entries(options.tenseWeights || {})
         .filter(([, value]) => value > 0)
         .map(([key]) => window.portugueseTenseKeyToLabel?.[key] || key);
@@ -34293,11 +35489,21 @@ function describeDrillConfig(config = {}) {
             ? tenseLabels[0]
             : tenseLabels.slice(0, 2).join(' + ');
 
-    const parts = [tenseSummary || 'mixed tenses', summarizeFrequencyWeights(options.frequencyWeights || {})];
-    if (options.regularityFilter && options.regularityFilter.regular === false && options.regularityFilter.irregular !== false) {
+    const activeVerbSet = getResolvedVerbSetSelection(options);
+    const parts = [tenseSummary || 'mixed tenses'];
+    if (activeVerbSet) {
+        parts.push(
+            activeVerbSet.selectionCount && activeVerbSet.selectionCount > 1
+                ? `${activeVerbSet.selectionCount} categories · ${activeVerbSet.count} verbs`
+                : `${activeVerbSet.name} · ${activeVerbSet.count} verbs`
+        );
+    } else {
+        parts.push(summarizeFrequencyWeights(options.frequencyWeights || {}));
+    }
+    if (!activeVerbSet && options.regularityFilter && options.regularityFilter.regular === false && options.regularityFilter.irregular !== false) {
         parts.push('irregular focus');
     }
-    if (options.reflexiveMode === 'only') {
+    if (!activeVerbSet && options.reflexiveMode === 'only') {
         parts.push('reflexive only');
     }
     return parts.join(' · ');
@@ -34328,6 +35534,11 @@ function getSelectedVerbPoolRangeKey(frequencyWeights = cardGenerationOptions.fr
 }
 
 function getVerbPoolSummary() {
+    const activeVerbSet = getResolvedVerbSetSelection();
+    if (activeVerbSet) {
+        const categoryCount = activeVerbSet.selectionCount || 1;
+        return `Exact pool from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} · ${activeVerbSet.count} verbs · Top N and other verb filters are ignored`;
+    }
     const selectedRange = getSelectedVerbPoolRangeKey();
     const parts = [];
     parts.push(selectedRange ? `Including verbs through ${selectedRange.replace('top', 'Top ')}` : 'Using a custom frequency mix');
@@ -34348,6 +35559,9 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
     cardGenerationOptions.endingFilter = deepClone(resolved.endingFilter);
     cardGenerationOptions.categoryFilter = resolved.categoryFilter;
+    cardGenerationOptions.selectedVerbSetIds = [...(resolved.selectedVerbSetIds || [])];
+    cardGenerationOptions.sharedVerbSet = deepClone(resolved.sharedVerbSet);
+    syncVerbSetSelectionAfterLibraryChange({ skipSave: true });
 }
 
 function applyPreset(preset, options = {}) {
@@ -34384,6 +35598,8 @@ function resetTutorialPracticeBaseline() {
     cardGenerationOptions.regularityFilter = { regular: true, irregular: true };
     cardGenerationOptions.endingFilter = { ar: true, er: true, ir: true, other: true };
     cardGenerationOptions.categoryFilter = 'all';
+    cardGenerationOptions.selectedVerbSetIds = [];
+    cardGenerationOptions.sharedVerbSet = null;
 
     try {
         localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
@@ -34526,7 +35742,7 @@ function buildCurrentDrillPayload(options = {}) {
         name: options.name || currentPreset?.name || 'Custom',
         desc: options.desc ?? currentPreset?.desc ?? '',
         seed: options.seed || currentPreset?.seed || '',
-        config: snapshotCurrentDrillConfig(),
+        config: snapshotCurrentDrillConfig({ forShare: !!options.forShare }),
     };
 }
 
@@ -34543,7 +35759,7 @@ function shareCurrentDrill() {
         metadata = prompted;
     }
 
-    const payload = buildCurrentDrillPayload(metadata);
+    const payload = buildCurrentDrillPayload({ ...metadata, forShare: true });
     const encoded = encodeDrillPayload(payload);
     const url = `${window.location.origin}${window.location.pathname}#drill=${encoded}`;
     copyTextToClipboard(url)
@@ -34592,7 +35808,10 @@ function importSharedDrillFromHash() {
         if (!payload || payload.version !== DRILL_SHARE_VERSION || !payload.config?.cardGenerationOptions) {
             return null;
         }
-        const signature = hashString(JSON.stringify(payload.config));
+        const normalizedConfig = {
+            cardGenerationOptions: buildDrillCardOptions(payload.config.cardGenerationOptions || payload.config),
+        };
+        const signature = hashString(JSON.stringify(normalizedConfig));
         const existing = savedDrills.find((drill) => hashString(JSON.stringify(drill.config)) === signature);
         if (existing) {
             window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -34602,9 +35821,9 @@ function importSharedDrillFromHash() {
             id: `shared-${Date.now().toString(36)}`,
             emoji: '🔗',
             name: payload.name || 'Shared drill',
-            desc: payload.desc || describeDrillConfig(payload.config),
+            desc: payload.desc || describeDrillConfig(normalizedConfig),
             seed: payload.seed || '',
-            config: payload.config,
+            config: normalizedConfig,
         };
         savedDrills.unshift(imported);
         persistSavedDrills();
@@ -34631,6 +35850,8 @@ function updateCustomPresetFromUI() {
 }
 
 savedDrills = loadSavedDrills();
+savedVerbSets = loadSavedVerbSets();
+syncVerbSetSelectionAfterLibraryChange({ skipSave: true });
 
 const storedOptions = JSON.parse(localStorage.getItem(localStorageKey) || 'null');
 if (storedOptions) {
