@@ -1759,6 +1759,84 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         },
         {
+            id: 'builtin-bureaucracy-delivery',
+            name: 'Bureaucracy & Delivery',
+            scope: 'forms, signatures, intercoms, drop-offs, pickup windows',
+            verbs: ['signer', 'remplir', 'envoyer', 'recevoir', 'déposer', 'livrer', 'laisser', 'appeler', 'répondre', 'attendre', 'ouvrir', 'fermer', 'confirmer', 'indiquer', 'joindre', 'imprimer', 'récupérer', 'renvoyer', 'sonner', 'venir', 'passer'],
+            topicUsages: {
+                signer: [
+                    {
+                        pattern: 'signer un reçu',
+                        example_fr: 'Je signe le reçu pendant que le livreur cherche son scanner.',
+                        example_en: 'I am signing the receipt while the delivery driver looks for the scanner.',
+                    },
+                ],
+                remplir: [
+                    {
+                        pattern: 'remplir un formulaire',
+                        example_fr: 'Elle remplit le formulaire avant d’envoyer la demande.',
+                        example_en: 'She is filling out the form before sending the request.',
+                    },
+                ],
+                déposer: [
+                    {
+                        pattern: 'déposer le colis devant la porte',
+                        example_fr: 'Vous pouvez déposer le colis devant la porte si je ne suis pas encore là.',
+                        example_en: 'You can leave the parcel by the door if I am not home yet.',
+                    },
+                ],
+                livrer: [
+                    {
+                        pattern: 'livrer un colis',
+                        example_fr: 'Ils livrent le colis entre midi et quatorze heures aujourd’hui.',
+                        example_en: 'They are delivering the parcel between noon and two today.',
+                    },
+                ],
+                laisser: [
+                    {
+                        pattern: 'laisser le paquet près de l’entrée',
+                        example_fr: 'Laissez le paquet près de l’entrée, je descends dans deux minutes.',
+                        example_en: 'Leave the package by the entrance, I will come down in two minutes.',
+                    },
+                ],
+                joindre: [
+                    {
+                        pattern: 'joindre un document',
+                        example_fr: 'Je joins le justificatif avant de renvoyer le dossier.',
+                        example_en: 'I am attaching the supporting document before sending the file back.',
+                    },
+                ],
+                récupérer: [
+                    {
+                        pattern: 'récupérer un colis au point relais',
+                        example_fr: 'On récupère le colis au point relais après le travail.',
+                        example_en: 'We are picking up the parcel at the pickup point after work.',
+                    },
+                ],
+                sonner: [
+                    {
+                        pattern: 'sonner à l’interphone',
+                        example_fr: 'Sonnez à l’interphone si le portail reste fermé.',
+                        example_en: 'Ring the intercom if the gate stays closed.',
+                    },
+                ],
+                confirmer: [
+                    {
+                        pattern: 'confirmer un créneau de livraison',
+                        example_fr: 'Je confirme le créneau de livraison dès que je sors de réunion.',
+                        example_en: 'I am confirming the delivery window as soon as I get out of the meeting.',
+                    },
+                ],
+                renvoyer: [
+                    {
+                        pattern: 'renvoyer un dossier',
+                        example_fr: 'Elle renvoie le dossier signé avant la fermeture du guichet.',
+                        example_en: 'She is sending the signed file back before the desk closes.',
+                    },
+                ],
+            },
+        },
+        {
             id: 'builtin-tech-digital-work',
             name: 'Tech & Digital Work',
             scope: 'shipping, debugging, automation, infrastructure',
