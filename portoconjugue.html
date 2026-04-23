@@ -16511,7 +16511,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260423_090209";
+      window.APP_BUILD_VERSION = "20260423_093022";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -28546,7 +28546,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260423_090209') ? 'dev' : raw;
+    return !raw || raw.includes('20260423_093022') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -29083,72 +29083,123 @@ document.addEventListener('DOMContentLoaded', () => {
             verbSetLookupByNormalizedInfinitive.set(normalized, verb.infinitive);
         }
     });
-    const PORTUGUESE_BUILTIN_CATEGORY_META = {
-        ar: { name: '-ar verbs', scope: 'Built-in category' },
-        er: { name: '-er verbs', scope: 'Built-in category' },
-        ir: { name: '-ir verbs', scope: 'Built-in category' },
-        or: { name: '-or family', scope: 'Built-in category' },
-        'er/ter': { name: '-ter family', scope: 'Built-in category' },
-        'er/fazer': { name: '-fazer family', scope: 'Built-in category' },
-        'er/dizer': { name: '-dizer family', scope: 'Built-in category' },
-        'er/trazer': { name: '-trazer family', scope: 'Built-in category' },
-        'er/irregular': { name: 'Core irregular -er', scope: 'Built-in category' },
-        'ir/vir': { name: '-vir family', scope: 'Built-in category' },
-        'ir/duzir': { name: '-duzir family', scope: 'Built-in category' },
-        'other/ser': { name: 'ser', scope: 'Built-in category' },
-        'other/estar': { name: 'estar', scope: 'Built-in category' },
-        'other/ir': { name: 'ir', scope: 'Built-in category' },
-        'other/por': { name: 'pôr', scope: 'Built-in category' },
-        unknown: { name: 'Other / uncategorized', scope: 'Built-in category' },
-    };
-    const PORTUGUESE_BUILTIN_CATEGORY_ORDER = [
-        'ar',
-        'er',
-        'ir',
-        'or',
-        'er/ter',
-        'er/fazer',
-        'er/dizer',
-        'er/trazer',
-        'er/irregular',
-        'ir/vir',
-        'ir/duzir',
-        'other/ser',
-        'other/estar',
-        'other/ir',
-        'other/por',
-        'unknown',
+    const PORTUGUESE_BUILTIN_VERB_SET_DEFINITIONS = [
+        {
+            id: 'builtin-super-everyday',
+            name: 'Super Everyday',
+            scope: 'daily life, errands, movement, conversations',
+            verbs: ['ser', 'estar', 'ter', 'fazer', 'ir', 'vir', 'dar', 'dizer', 'ver', 'falar', 'chegar', 'passar', 'precisar', 'deixar', 'chamar', 'sentir', 'pedir', 'levar', 'gostar', 'entrar', 'ouvir', 'lembrar', 'comer', 'beber', 'abrir', 'fechar', 'andar', 'sair', 'pagar', 'enviar'],
+        },
+        {
+            id: 'builtin-sports-fitness',
+            name: 'Sports & Fitness',
+            scope: 'movement, matches, exertion, recovery',
+            verbs: ['correr', 'nadar', 'jogar', 'ganhar', 'perder', 'passar', 'tocar', 'cair', 'mudar', 'puxar', 'marcar', 'chutar', 'caminhar', 'subir', 'descer', 'cuidar', 'lutar', 'exercitar'],
+        },
+        {
+            id: 'builtin-cooking-food',
+            name: 'Cooking & Food',
+            scope: 'shopping, prep, serving, eating, cleanup',
+            verbs: ['comer', 'beber', 'cozinhar', 'comprar', 'lavar', 'limpar', 'misturar', 'provar', 'preparar', 'servir', 'abrir', 'fechar', 'guardar', 'oferecer', 'tomar', 'escolher', 'levar', 'pagar'],
+        },
+        {
+            id: 'builtin-outdoors-nature',
+            name: 'Outdoors & Nature',
+            scope: 'walking, climbing, camping, growing, living outdoors',
+            verbs: ['andar', 'caminhar', 'correr', 'subir', 'descer', 'cair', 'acampar', 'plantar', 'cuidar', 'viajar', 'visitar', 'morar', 'nascer', 'morrer', 'fugir', 'viver', 'voltar'],
+        },
+        {
+            id: 'builtin-woodworking',
+            name: 'Woodworking',
+            scope: 'building, finishing, handling, workshop routines',
+            verbs: ['construir', 'abrir', 'fechar', 'limpar', 'lavar', 'preparar', 'pintar', 'misturar', 'guardar', 'proteger', 'arrumar', 'cuidar', 'criar', 'produzir', 'carregar', 'mudar'],
+        },
+        {
+            id: 'builtin-art-design',
+            name: 'Art & Design',
+            scope: 'making, sketching, visual work, creative choices',
+            verbs: ['criar', 'desenhar', 'pintar', 'fotografar', 'imaginar', 'mostrar', 'escolher', 'mudar', 'construir', 'produzir', 'gravar', 'publicar', 'explicar', 'contar', 'descobrir', 'transformar'],
+        },
+        {
+            id: 'builtin-nightlife-partying',
+            name: 'Nightlife & Partying',
+            scope: 'going out, dancing, flirting, late-night plans',
+            verbs: ['beber', 'dançar', 'ouvir', 'cantar', 'rir', 'passar', 'chegar', 'sair', 'encontrar', 'chamar', 'mandar', 'beijar', 'namorar', 'brigar', 'voltar', 'pagar'],
+        },
+        {
+            id: 'builtin-music',
+            name: 'Music',
+            scope: 'listening, playing, recording, sharing tracks',
+            verbs: ['cantar', 'ouvir', 'tocar', 'gravar', 'repetir', 'publicar', 'mostrar', 'produzir', 'transmitir', 'ligar', 'desligar', 'baixar', 'carregar', 'mandar', 'receber', 'salvar'],
+        },
+        {
+            id: 'builtin-history-culture',
+            name: 'History & Culture',
+            scope: 'reading, memory, visits, interpretation, heritage',
+            verbs: ['ler', 'escrever', 'estudar', 'lembrar', 'conhecer', 'explicar', 'descobrir', 'visitar', 'morar', 'viver', 'morrer', 'cultivar', 'traduzir', 'publicar', 'comentar', 'mostrar'],
+        },
+        {
+            id: 'builtin-politics-current-events',
+            name: 'Politics & Current Events',
+            scope: 'governing, debate, policy, public response',
+            verbs: ['governar', 'debater', 'decidir', 'mudar', 'responder', 'explicar', 'julgar', 'definir', 'controlar', 'desenvolver', 'indicar', 'obrigar', 'permitir', 'proteger', 'publicar', 'comentar', 'transmitir'],
+        },
+        {
+            id: 'builtin-cinema-series',
+            name: 'Cinema & Series',
+            scope: 'watching, directing, appearing, scenes and stories',
+            verbs: ['ver', 'olhar', 'mostrar', 'ouvir', 'gravar', 'dirigir', 'transmitir', 'publicar', 'repetir', 'imaginar', 'aparecer', 'entrar', 'sair', 'morrer', 'viver', 'sentir'],
+        },
+        {
+            id: 'builtin-relationship-drama',
+            name: 'Relationship Drama',
+            scope: 'love, conflict, messaging, waiting, reconnecting',
+            verbs: ['amar', 'gostar', 'sentir', 'conhecer', 'namorar', 'beijar', 'brigar', 'confiar', 'mentir', 'lembrar', 'deixar', 'perder', 'encontrar', 'chamar', 'ligar', 'mandar', 'esperar', 'voltar', 'cuidar', 'responder'],
+        },
+        {
+            id: 'builtin-office-admin',
+            name: 'Office & Admin',
+            scope: 'writing, planning, coordination, files, responses',
+            verbs: ['trabalhar', 'escrever', 'ler', 'mandar', 'receber', 'responder', 'explicar', 'organizar', 'planejar', 'gerenciar', 'preparar', 'controlar', 'definir', 'pagar', 'abrir', 'fechar', 'guardar', 'enviar', 'mostrar', 'resolver'],
+        },
+        {
+            id: 'builtin-tech-digital-work',
+            name: 'Tech & Digital Work',
+            scope: 'files, settings, uploads, messaging, research',
+            verbs: ['abrir', 'fechar', 'ligar', 'desligar', 'carregar', 'baixar', 'salvar', 'gravar', 'publicar', 'mandar', 'receber', 'responder', 'mostrar', 'controlar', 'definir', 'desenvolver', 'gerenciar', 'transmitir', 'pesquisar', 'traduzir'],
+        },
+        {
+            id: 'builtin-travel-tourism',
+            name: 'Travel & Tourism',
+            scope: 'arrivals, departures, visits, getting around',
+            verbs: ['ir', 'vir', 'chegar', 'partir', 'entrar', 'sair', 'andar', 'viajar', 'visitar', 'voltar', 'passar', 'levar', 'morar', 'perder', 'encontrar', 'buscar', 'esperar', 'descobrir', 'ficar'],
+        },
+        {
+            id: 'builtin-crafts-making',
+            name: 'Crafts & Making',
+            scope: 'making, arranging, painting, care, practical creation',
+            verbs: ['criar', 'desenhar', 'pintar', 'construir', 'misturar', 'preparar', 'guardar', 'arrumar', 'cuidar', 'lavar', 'limpar', 'mostrar', 'mudar', 'produzir', 'publicar', 'fotografar'],
+        },
+        {
+            id: 'builtin-education-learning',
+            name: 'Education & Learning',
+            scope: 'study, teaching, review, practice, understanding',
+            verbs: ['aprender', 'ensinar', 'estudar', 'ler', 'escrever', 'explicar', 'responder', 'repetir', 'pesquisar', 'traduzir', 'revisar', 'lembrar', 'descobrir', 'entender', 'escolher', 'imaginar', 'seguir', 'praticar'],
+        },
     ];
+    const builtInVerbSets = PORTUGUESE_BUILTIN_VERB_SET_DEFINITIONS
+        .map((definition) => ({
+            ...definition,
+            verbs: definition.verbs.filter((verb) => uniqueVerbByInfinitive.has(verb)),
+            isBuiltIn: true,
+        }))
+        .filter((definition) => definition.verbs.length > 0);
     const getBuiltinVerbSetIdFromLegacyCategory = (category) => {
         const normalized = String(category || '').trim();
         if (!normalized) return '';
-        return `builtin-category-${normalized.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').toLowerCase()}`;
+        const candidateId = `builtin-category-${normalized.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').toLowerCase()}`;
+        return builtInVerbSets.some((set) => set.id === candidateId) ? candidateId : '';
     };
-    const builtInVerbSets = [...allVerbCategories]
-        .sort((a, b) => {
-            const indexA = PORTUGUESE_BUILTIN_CATEGORY_ORDER.indexOf(a);
-            const indexB = PORTUGUESE_BUILTIN_CATEGORY_ORDER.indexOf(b);
-            const sortA = indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA;
-            const sortB = indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB;
-            if (sortA !== sortB) return sortA - sortB;
-            return a.localeCompare(b);
-        })
-        .map((category) => {
-            const meta = PORTUGUESE_BUILTIN_CATEGORY_META[category] || {
-                name: category.replace(/[/-]+/g, ' '),
-                scope: 'Built-in category',
-            };
-            return {
-                id: getBuiltinVerbSetIdFromLegacyCategory(category),
-                name: meta.name,
-                scope: meta.scope,
-                verbs: uniqueVerbs
-                    .filter((verb) => verb.category === category)
-                    .map((verb) => verb.infinitive),
-                isBuiltIn: true,
-                category,
-            };
-        });
 
     // Dynamically determine frequency categories and their order from the data
     const allFrequencies = [...new Set(uniqueVerbs.map(v => v.frequency || 'common'))];
