@@ -9350,5 +9350,1231 @@ window.verbUsages = [
     "meaning_en": "the fact that",
     "example_fr": "Le problème est que personne n'écoute.",
     "example_en": "The problem is that nobody listens."
+  },
+  {
+    "verb": "écouter",
+    "sense_id": "ecouter_01",
+    "pattern": "écouter + nom",
+    "meaning_en": "to listen to",
+    "comment": "",
+    "example_fr": "J'écoute le message dans le bus.",
+    "example_en": "I'm listening to the message on the bus.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "daily-life",
+      "movement",
+      "conversation"
+    ]
+  },
+  {
+    "verb": "travailler",
+    "sense_id": "travailler_01",
+    "pattern": "travailler à + lieu",
+    "meaning_en": "to work at",
+    "comment": "",
+    "example_fr": "Je travaille au bureau aujourd'hui.",
+    "example_en": "I'm working at the office today.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "daily-life",
+      "errands",
+      "routine"
+    ]
+  },
+  {
+    "verb": "skier",
+    "sense_id": "skier_01",
+    "pattern": "skier + lieu",
+    "meaning_en": "to ski",
+    "comment": "",
+    "example_fr": "Je skie sur une piste noire pour m'entraîner avant la compétition.",
+    "example_en": "I ski on a black run to train before the competition.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "sports",
+      "training",
+      "competition",
+      "winter-sports"
+    ]
+  },
+  {
+    "verb": "surfer",
+    "sense_id": "surfer_01",
+    "pattern": "surfer + sur + vague",
+    "meaning_en": "to surf",
+    "comment": "",
+    "example_fr": "Elle surfe sur de grosses vagues pour préparer le championnat.",
+    "example_en": "She surfs big waves to prepare for the championship.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "sports",
+      "training",
+      "competition",
+      "water-sports"
+    ]
+  },
+  {
+    "verb": "sprinter",
+    "sense_id": "sprinter_01",
+    "pattern": "sprinter + distance",
+    "meaning_en": "to sprint",
+    "comment": "",
+    "example_fr": "Il sprinte sur 100 mètres malgré une légère douleur au mollet.",
+    "example_en": "He sprints 100 meters despite a slight calf pain.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "sports",
+      "fitness",
+      "running",
+      "injuries"
+    ]
+  },
+  {
+    "verb": "goûter",
+    "sense_id": "gouter_01",
+    "pattern": "goûter à + nom",
+    "meaning_en": "taste, try",
+    "comment": "",
+    "example_fr": "Je goûte à la sauce avant de servir.",
+    "example_en": "I taste the sauce before serving.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "cooking",
+      "food",
+      "kitchen",
+      "service"
+    ]
+  },
+  {
+    "verb": "frire",
+    "sense_id": "frire_01",
+    "pattern": "frire + nom",
+    "meaning_en": "fry",
+    "comment": "",
+    "example_fr": "Je fais frire des pommes de terre pour le dîner.",
+    "example_en": "I fry potatoes for dinner.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "cooking",
+      "food",
+      "kitchen",
+      "meals"
+    ]
+  },
+  {
+    "verb": "rôtir",
+    "sense_id": "rotir_01",
+    "pattern": "rôtir + nom",
+    "meaning_en": "roast",
+    "comment": "",
+    "example_fr": "On fait rôtir un poulet au four ce soir.",
+    "example_en": "We're roasting a chicken in the oven tonight.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "cooking",
+      "food",
+      "kitchen",
+      "meals"
+    ]
+  },
+  {
+    "verb": "cuire",
+    "sense_id": "cuire_01",
+    "pattern": "cuire + nom",
+    "meaning_en": "cook",
+    "comment": "",
+    "example_fr": "Je cuis le riz pendant que la soupe chauffe.",
+    "example_en": "I cook the rice while the soup heats up.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "cooking",
+      "food",
+      "kitchen",
+      "meals"
+    ]
+  },
+  {
+    "verb": "éplucher",
+    "sense_id": "eplucher_01",
+    "pattern": "éplucher + nom",
+    "meaning_en": "peel",
+    "comment": "",
+    "example_fr": "J'épluche les carottes avant de faire la soupe.",
+    "example_en": "I peel the carrots before making the soup.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "cooking",
+      "food",
+      "kitchen",
+      "prep"
+    ]
+  },
+  {
+    "verb": "grignoter",
+    "sense_id": "grignoter_01",
+    "pattern": "grignoter + nom",
+    "meaning_en": "snack on",
+    "comment": "",
+    "example_fr": "Je grignote des chips en attendant le repas.",
+    "example_en": "I snack on chips while waiting for the meal.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "food",
+      "casual-eating",
+      "snacks",
+      "meals"
+    ]
+  },
+  {
+    "verb": "dévorer",
+    "sense_id": "devorer_01",
+    "pattern": "dévorer + nom",
+    "meaning_en": "devour",
+    "comment": "",
+    "example_fr": "Après le service, il dévore son sandwich en cuisine.",
+    "example_en": "After service, he devours his sandwich in the kitchen.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "food",
+      "casual-eating",
+      "kitchen",
+      "service"
+    ]
+  },
+  {
+    "verb": "marcher",
+    "sense_id": "marcher_01",
+    "pattern": "marcher sur + lieu",
+    "meaning_en": "to walk on",
+    "comment": "",
+    "example_fr": "On marche sur le sentier au bord du lac.",
+    "example_en": "We walk on the trail by the lake.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "outdoors",
+      "hiking",
+      "trails"
+    ]
+  },
+  {
+    "verb": "randonner",
+    "sense_id": "randonner_01",
+    "pattern": "randonner dans + lieu",
+    "meaning_en": "to hike in",
+    "comment": "",
+    "example_fr": "Ils randonnent dans le parc national ce matin.",
+    "example_en": "They’re hiking in the national park this morning.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "outdoors",
+      "hiking",
+      "nature"
+    ]
+  },
+  {
+    "verb": "explorer",
+    "sense_id": "explorer_01",
+    "pattern": "explorer + lieu",
+    "meaning_en": "to explore",
+    "comment": "",
+    "example_fr": "Nous explorons une grotte près de la rivière.",
+    "example_en": "We’re exploring a cave near the river.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "exploration",
+      "nature",
+      "outdoors"
+    ]
+  },
+  {
+    "verb": "pagayer",
+    "sense_id": "pagayer_01",
+    "pattern": "pagayer sur + eau",
+    "meaning_en": "to paddle on",
+    "comment": "",
+    "example_fr": "Elle pagaie sur la rivière en canoë.",
+    "example_en": "She paddles on the river in a canoe.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "water",
+      "canoeing",
+      "outdoors"
+    ]
+  },
+  {
+    "verb": "pêcher",
+    "sense_id": "pecher_01",
+    "pattern": "pêcher dans + lieu",
+    "meaning_en": "to fish in",
+    "comment": "",
+    "example_fr": "Je pêche dans le lac au lever du soleil.",
+    "example_en": "I fish in the lake at sunrise.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "water",
+      "fishing",
+      "nature"
+    ]
+  },
+  {
+    "verb": "escalader",
+    "sense_id": "escalader_01",
+    "pattern": "escalader + relief",
+    "meaning_en": "to climb",
+    "comment": "",
+    "example_fr": "On escalade une paroi après la randonnée.",
+    "example_en": "We climb a rock face after the hike.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "climbing",
+      "mountains",
+      "outdoors"
+    ]
+  },
+  {
+    "verb": "naviguer",
+    "sense_id": "naviguer_01",
+    "pattern": "naviguer sur + eau",
+    "meaning_en": "to sail on",
+    "comment": "",
+    "example_fr": "Ils naviguent sur le lac malgré le vent.",
+    "example_en": "They’re sailing on the lake despite the wind.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "water",
+      "boating",
+      "outdoors"
+    ]
+  },
+  {
+    "verb": "galoper",
+    "sense_id": "galoper_01",
+    "pattern": "galoper dans + lieu",
+    "meaning_en": "to gallop in",
+    "comment": "",
+    "example_fr": "Le cheval galope dans la prairie près du camp.",
+    "example_en": "The horse gallops in the meadow near the campsite.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "nature",
+      "camping",
+      "animals"
+    ]
+  },
+  {
+    "verb": "sculpter",
+    "sense_id": "sculpter_01",
+    "pattern": "sculpter + nom",
+    "meaning_en": "to carve",
+    "comment": "",
+    "example_fr": "Je sculpte une poignée en bois pour le tiroir.",
+    "example_en": "I'm carving a wooden handle for the drawer.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "woodworking",
+      "shaping",
+      "hand-tools"
+    ]
+  },
+  {
+    "verb": "tailler",
+    "sense_id": "tailler_01",
+    "pattern": "tailler + nom",
+    "meaning_en": "to cut to shape",
+    "comment": "",
+    "example_fr": "Il taille une cale pour ajuster l'étagère.",
+    "example_en": "He's cutting a shim to fit the shelf.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "woodworking",
+      "cutting",
+      "fitting"
+    ]
+  },
+  {
+    "verb": "mesurer",
+    "sense_id": "mesurer_01",
+    "pattern": "mesurer + nom",
+    "meaning_en": "to measure",
+    "comment": "",
+    "example_fr": "Nous mesurons la planche avant la coupe.",
+    "example_en": "We're measuring the board before cutting.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "woodworking",
+      "measuring",
+      "cutting"
+    ]
+  },
+  {
+    "verb": "assembler",
+    "sense_id": "assembler_01",
+    "pattern": "assembler + nom",
+    "meaning_en": "to assemble",
+    "comment": "",
+    "example_fr": "J'assemble le cadre avec des tourillons.",
+    "example_en": "I'm assembling the frame with dowels.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "woodworking",
+      "assembly",
+      "joinery"
+    ]
+  },
+  {
+    "verb": "graver",
+    "sense_id": "graver_01",
+    "pattern": "graver + nom",
+    "meaning_en": "to engrave",
+    "comment": "",
+    "example_fr": "Elle grave un motif simple sur la boîte.",
+    "example_en": "She's engraving a simple pattern on the box.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "woodworking",
+      "shaping",
+      "detail-work"
+    ]
+  },
+  {
+    "verb": "clouer",
+    "sense_id": "clouer_01",
+    "pattern": "clouer + nom",
+    "meaning_en": "to nail",
+    "comment": "",
+    "example_fr": "On cloue le fond du meuble en place.",
+    "example_en": "We're nailing the back panel of the cabinet in place.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "woodworking",
+      "assembly",
+      "fastening"
+    ]
+  },
+  {
+    "verb": "photographier",
+    "sense_id": "photographier_01",
+    "pattern": "photographier + nom",
+    "meaning_en": "to photograph",
+    "comment": "",
+    "example_fr": "Je photographie mes croquis avant l’exposition.",
+    "example_en": "I photograph my sketches before the exhibition.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "art",
+      "visual-art",
+      "exhibition",
+      "studio"
+    ]
+  },
+  {
+    "verb": "modeler",
+    "sense_id": "modeler_01",
+    "pattern": "modeler + nom",
+    "meaning_en": "to shape",
+    "comment": "",
+    "example_fr": "Je modèle une petite tête en argile pour l’atelier.",
+    "example_en": "I shape a small clay head for the workshop.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "art",
+      "sculpture",
+      "making",
+      "studio"
+    ]
+  },
+  {
+    "verb": "interpréter",
+    "sense_id": "interpreter_01",
+    "pattern": "interpréter + chanson/œuvre",
+    "meaning_en": "to perform",
+    "comment": "",
+    "example_fr": "Le groupe interprète deux nouveaux morceaux en répétition.",
+    "example_en": "The band performs two new songs in rehearsal.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "music",
+      "band",
+      "rehearsal",
+      "performance"
+    ]
+  },
+  {
+    "verb": "improviser",
+    "sense_id": "improviser_01",
+    "pattern": "improviser sur + riff/thème",
+    "meaning_en": "to improvise",
+    "comment": "",
+    "example_fr": "Le guitariste improvise sur le riff pendant la balance.",
+    "example_en": "The guitarist improvises over the riff during soundcheck.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "music",
+      "band",
+      "performance",
+      "production"
+    ]
+  },
+  {
+    "verb": "collectionner",
+    "sense_id": "collectionner_01",
+    "pattern": "collectionner + nom",
+    "meaning_en": "to collect",
+    "comment": "",
+    "example_fr": "Elle collectionne des affiches anciennes du musée local.",
+    "example_en": "She collects old posters from the local museum.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "history",
+      "culture",
+      "heritage",
+      "archives"
+    ]
+  },
+  {
+    "verb": "traduire",
+    "sense_id": "traduire_01",
+    "pattern": "traduire + nom",
+    "meaning_en": "to translate",
+    "comment": "",
+    "example_fr": "Le chercheur traduit une lettre d'archive du XVIIIe siècle.",
+    "example_en": "The researcher translates an archival letter from the 18th century.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "history",
+      "culture",
+      "archives",
+      "storytelling"
+    ]
+  },
+  {
+    "verb": "voter",
+    "sense_id": "voter_01",
+    "pattern": "voter pour + candidat/mesure",
+    "meaning_en": "to vote for",
+    "comment": "",
+    "example_fr": "Je vote pour cette mesure aux élections locales.",
+    "example_en": "I’m voting for this measure in the local elections.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "politics",
+      "elections",
+      "campaigns"
+    ]
+  },
+  {
+    "verb": "gouverner",
+    "sense_id": "gouverner_01",
+    "pattern": "gouverner + pays/ville",
+    "meaning_en": "to govern",
+    "comment": "",
+    "example_fr": "Ce parti gouverne avec une majorité fragile.",
+    "example_en": "This party governs with a fragile majority.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "politics",
+      "government",
+      "current-events"
+    ]
+  },
+  {
+    "verb": "manifester",
+    "sense_id": "manifester_01",
+    "pattern": "manifester contre + nom",
+    "meaning_en": "to demonstrate against",
+    "comment": "",
+    "example_fr": "Des étudiants manifestent contre la réforme dans la rue.",
+    "example_en": "Students are demonstrating against the reform in the street.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "protest",
+      "politics",
+      "current-events"
+    ]
+  },
+  {
+    "verb": "protester",
+    "sense_id": "protester_01",
+    "pattern": "protester contre + nom",
+    "meaning_en": "to protest against",
+    "comment": "",
+    "example_fr": "Les riverains protestent contre le nouveau projet.",
+    "example_en": "Local residents are protesting against the new project.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "protest",
+      "debate",
+      "current-events"
+    ]
+  },
+  {
+    "verb": "réformer",
+    "sense_id": "reformer_01",
+    "pattern": "réformer + institution/système",
+    "meaning_en": "to reform",
+    "comment": "",
+    "example_fr": "Le gouvernement veut réformer le système électoral.",
+    "example_en": "The government wants to reform the electoral system.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "politics",
+      "reform",
+      "government"
+    ]
+  },
+  {
+    "verb": "diffuser",
+    "sense_id": "diffuser_01",
+    "pattern": "diffuser + nom",
+    "meaning_en": "to broadcast, air",
+    "comment": "",
+    "example_fr": "La chaîne diffuse le dernier épisode ce soir.",
+    "example_en": "The channel is airing the latest episode tonight.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "cinema",
+      "series",
+      "broadcasting",
+      "tv"
+    ]
+  },
+  {
+    "verb": "séduire",
+    "sense_id": "seduire_01",
+    "pattern": "séduire quelqu’un",
+    "meaning_en": "to charm someone",
+    "comment": "",
+    "example_fr": "Il essaie encore de la séduire après leur rupture.",
+    "example_en": "He’s still trying to charm her after their breakup.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "dating",
+      "mixed-signals",
+      "breakup",
+      "relationship-drama"
+    ]
+  },
+  {
+    "verb": "imprimer",
+    "sense_id": "imprimer_01",
+    "pattern": "imprimer + nom",
+    "meaning_en": "to print",
+    "comment": "",
+    "example_fr": "J’imprime l’ordre du jour avant la réunion.",
+    "example_en": "I print the agenda before the meeting.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "bureau",
+      "réunion",
+      "documents"
+    ]
+  },
+  {
+    "verb": "valider",
+    "sense_id": "valider_01",
+    "pattern": "valider + nom",
+    "meaning_en": "to approve",
+    "comment": "",
+    "example_fr": "La direction valide le budget ce matin.",
+    "example_en": "Management approves the budget this morning.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "bureau",
+      "validation",
+      "budget"
+    ]
+  },
+  {
+    "verb": "transférer",
+    "sense_id": "transferer_01",
+    "pattern": "transférer + nom à + personne",
+    "meaning_en": "to forward",
+    "comment": "",
+    "example_fr": "Je transfère le dossier à Camille après le point d’équipe.",
+    "example_en": "I forward the file to Camille after the team check-in.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "bureau",
+      "email",
+      "dossier"
+    ]
+  },
+  {
+    "verb": "corriger",
+    "sense_id": "corriger_01",
+    "pattern": "corriger + nom",
+    "meaning_en": "to correct",
+    "comment": "",
+    "example_fr": "Je corrige le compte rendu avant l’envoi.",
+    "example_en": "I correct the meeting notes before sending them.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "bureau",
+      "rédaction",
+      "réunion"
+    ]
+  },
+  {
+    "verb": "coder",
+    "sense_id": "coder_01",
+    "pattern": "coder + nom",
+    "meaning_en": "to code",
+    "comment": "",
+    "example_fr": "Je code une petite API pour livrer la fonctionnalité ce soir.",
+    "example_en": "I'm coding a small API to ship the feature tonight.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "tech",
+      "development",
+      "shipping"
+    ]
+  },
+  {
+    "verb": "programmer",
+    "sense_id": "programmer_01",
+    "pattern": "programmer + nom",
+    "meaning_en": "to program",
+    "comment": "",
+    "example_fr": "Je programme un script pour déployer le service automatiquement.",
+    "example_en": "I'm programming a script to deploy the service automatically.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "tech",
+      "automation",
+      "infrastructure"
+    ]
+  },
+  {
+    "verb": "déboguer",
+    "sense_id": "deboguer_01",
+    "pattern": "déboguer + nom",
+    "meaning_en": "to debug",
+    "comment": "",
+    "example_fr": "Je débogue le pipeline CI qui bloque la mise en production.",
+    "example_en": "I'm debugging the CI pipeline that's blocking production release.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "tech",
+      "debugging",
+      "shipping"
+    ]
+  },
+  {
+    "verb": "configurer",
+    "sense_id": "configurer_01",
+    "pattern": "configurer + nom",
+    "meaning_en": "to configure",
+    "comment": "",
+    "example_fr": "Je configure le serveur pour gérer plus de trafic.",
+    "example_en": "I'm configuring the server to handle more traffic.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "tech",
+      "infrastructure",
+      "operations"
+    ]
+  },
+  {
+    "verb": "automatiser",
+    "sense_id": "automatiser_01",
+    "pattern": "automatiser + nom",
+    "meaning_en": "to automate",
+    "comment": "",
+    "example_fr": "On automatise les tests pour éviter les régressions.",
+    "example_en": "We're automating the tests to avoid regressions.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "tech",
+      "automation",
+      "testing"
+    ]
+  },
+  {
+    "verb": "cliquer",
+    "sense_id": "cliquer_01",
+    "pattern": "cliquer sur + nom",
+    "meaning_en": "to click on",
+    "comment": "",
+    "example_fr": "Clique sur le bouton pour relancer le déploiement.",
+    "example_en": "Click the button to restart the deployment.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "tech",
+      "interface",
+      "deployment"
+    ]
+  },
+  {
+    "verb": "voyager",
+    "sense_id": "voyager_01",
+    "pattern": "voyager en + transport",
+    "meaning_en": "to travel by",
+    "comment": "",
+    "example_fr": "Je voyage en train pour visiter plusieurs villes.",
+    "example_en": "I travel by train to visit several cities.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "travel",
+      "transport",
+      "tourism"
+    ]
+  },
+  {
+    "verb": "embarquer",
+    "sense_id": "embarquer_01",
+    "pattern": "embarquer pour + destination",
+    "meaning_en": "to board for",
+    "comment": "",
+    "example_fr": "Les passagers embarquent pour Lisbonne à la porte 12.",
+    "example_en": "Passengers are boarding for Lisbon at gate 12.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "travel",
+      "airport",
+      "transport"
+    ]
+  },
+  {
+    "verb": "séjourner",
+    "sense_id": "sejourner_01",
+    "pattern": "séjourner à + lieu",
+    "meaning_en": "to stay",
+    "comment": "",
+    "example_fr": "Nous séjournons dans un petit hôtel au centre de Rome.",
+    "example_en": "We are staying in a small hotel in central Rome.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "travel",
+      "accommodation",
+      "booking"
+    ]
+  },
+  {
+    "verb": "errer",
+    "sense_id": "errer_01",
+    "pattern": "errer dans + lieu",
+    "meaning_en": "to wander around",
+    "comment": "",
+    "example_fr": "Le soir, j'erre dans les ruelles du vieux quartier.",
+    "example_en": "In the evening, I wander through the lanes of the old quarter.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "travel",
+      "sightseeing",
+      "wandering"
+    ]
+  },
+  {
+    "verb": "louper",
+    "sense_id": "louper_01",
+    "pattern": "louper + transport",
+    "meaning_en": "to miss",
+    "comment": "",
+    "example_fr": "On loupe le dernier bus après la visite du musée.",
+    "example_en": "We miss the last bus after visiting the museum.",
+    "register": "colloquial",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "travel",
+      "transport",
+      "colloquial"
+    ]
+  },
+  {
+    "verb": "rouler",
+    "sense_id": "rouler_01",
+    "pattern": "rouler à + vitesse",
+    "meaning_en": "to drive at",
+    "comment": "",
+    "example_fr": "En ville, je roule à 30 près de l’école.",
+    "example_en": "In town, I drive at 30 near the school.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "driving",
+      "city traffic",
+      "speed limits"
+    ]
+  },
+  {
+    "verb": "freiner",
+    "sense_id": "freiner_01",
+    "pattern": "freiner pour + infinitif",
+    "meaning_en": "to brake to",
+    "comment": "",
+    "example_fr": "Je freine pour laisser passer le piéton.",
+    "example_en": "I brake to let the pedestrian cross.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "driving",
+      "city traffic",
+      "road safety"
+    ]
+  },
+  {
+    "verb": "bifurquer",
+    "sense_id": "bifurquer_01",
+    "pattern": "bifurquer à droite",
+    "meaning_en": "to turn off",
+    "comment": "",
+    "example_fr": "Au prochain feu, tu bifurques à droite.",
+    "example_en": "At the next light, you turn right.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "driving school",
+      "directions",
+      "city traffic"
+    ]
+  },
+  {
+    "verb": "braquer",
+    "sense_id": "braquer_01",
+    "pattern": "braquer le volant",
+    "meaning_en": "to turn the wheel",
+    "comment": "",
+    "example_fr": "Pour te garer, braque le volant à fond.",
+    "example_en": "To park, turn the wheel fully.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "parking",
+      "driving school",
+      "maneuvers"
+    ]
+  },
+  {
+    "verb": "reculer",
+    "sense_id": "reculer_01",
+    "pattern": "reculer de + distance",
+    "meaning_en": "to reverse",
+    "comment": "",
+    "example_fr": "Recule de deux mètres pour sortir de la place.",
+    "example_en": "Reverse two meters to get out of the spot.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "parking",
+      "maneuvers",
+      "driving school"
+    ]
+  },
+  {
+    "verb": "doubler",
+    "sense_id": "doubler_01",
+    "pattern": "doubler un véhicule",
+    "meaning_en": "to overtake",
+    "comment": "",
+    "example_fr": "En ville, je ne double jamais un bus à l’arrêt.",
+    "example_en": "In town, I never overtake a bus at a stop.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "road code",
+      "city traffic",
+      "road safety"
+    ]
+  },
+  {
+    "verb": "rabattre",
+    "sense_id": "rabattre_01",
+    "pattern": "se rabattre sur + voie",
+    "meaning_en": "to move back into",
+    "comment": "",
+    "example_fr": "Après le dépassement, rabats-toi sur la voie de droite.",
+    "example_en": "After overtaking, move back into the right lane.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "road code",
+      "lane use",
+      "driving school"
+    ]
+  },
+  {
+    "verb": "contourner",
+    "sense_id": "contourner_01",
+    "pattern": "contourner + obstacle",
+    "meaning_en": "to go around",
+    "comment": "",
+    "example_fr": "Je contourne le camion mal garé sans quitter ma voie.",
+    "example_en": "I go around the badly parked truck without leaving my lane.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "city traffic",
+      "obstacles",
+      "daily driving"
+    ]
+  },
+  {
+    "verb": "piler",
+    "sense_id": "piler_01",
+    "pattern": "piler devant + nom",
+    "meaning_en": "slam on the brakes",
+    "comment": "",
+    "example_fr": "J'ai pilé devant le passage piéton en centre-ville.",
+    "example_en": "I slammed on the brakes in front of the crosswalk downtown.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "driving",
+      "city traffic",
+      "road safety"
+    ]
+  },
+  {
+    "verb": "déraper",
+    "sense_id": "deraper_01",
+    "pattern": "déraper dans + nom",
+    "meaning_en": "skid",
+    "comment": "",
+    "example_fr": "La voiture dérape dans le rond-point quand il pleut.",
+    "example_en": "The car skids in the roundabout when it rains.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "driving",
+      "road conditions",
+      "city traffic"
+    ]
+  },
+  {
+    "verb": "embouteiller",
+    "sense_id": "embouteiller_01",
+    "pattern": "embouteiller + nom",
+    "meaning_en": "clog up",
+    "comment": "",
+    "example_fr": "Les travaux embouteillent tout le boulevard ce matin.",
+    "example_en": "The roadworks are clogging up the whole boulevard this morning.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "traffic",
+      "city traffic",
+      "daily stress"
+    ]
+  },
+  {
+    "verb": "frôler",
+    "sense_id": "froler_01",
+    "pattern": "frôler + nom",
+    "meaning_en": "brush past",
+    "comment": "",
+    "example_fr": "Le scooter frôle ma portière dans la rue étroite.",
+    "example_en": "The scooter brushes past my car door in the narrow street.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "driving",
+      "city traffic",
+      "road safety"
+    ]
+  },
+  {
+    "verb": "heurter",
+    "sense_id": "heurter_01",
+    "pattern": "heurter + nom",
+    "meaning_en": "hit",
+    "comment": "",
+    "example_fr": "En me garant, je heurte le poteau derrière la voiture.",
+    "example_en": "While parking, I hit the post behind the car.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "parking",
+      "driving",
+      "daily stress"
+    ]
+  },
+  {
+    "verb": "percuter",
+    "sense_id": "percuter_01",
+    "pattern": "percuter + nom",
+    "meaning_en": "crash into",
+    "comment": "",
+    "example_fr": "Le conducteur distrait percute l'arrière du bus au feu rouge.",
+    "example_en": "The distracted driver crashes into the back of the bus at the red light.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "driving",
+      "city traffic",
+      "accidents"
+    ]
+  },
+  {
+    "verb": "tisser",
+    "sense_id": "tisser_01",
+    "pattern": "tisser + nom",
+    "meaning_en": "to weave",
+    "comment": "",
+    "example_fr": "Elle tisse une petite tapisserie à la main.",
+    "example_en": "She weaves a small tapestry by hand.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "crafts",
+      "handmade",
+      "textiles"
+    ]
+  },
+  {
+    "verb": "tricoter",
+    "sense_id": "tricoter_01",
+    "pattern": "tricoter + nom",
+    "meaning_en": "to knit",
+    "comment": "",
+    "example_fr": "Je tricote une écharpe pour l'hiver.",
+    "example_en": "I'm knitting a scarf for winter.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "crafts",
+      "handmade",
+      "sewing"
+    ]
+  },
+  {
+    "verb": "calculer",
+    "sense_id": "calculer_01",
+    "pattern": "calculer + nom",
+    "meaning_en": "to calculate",
+    "comment": "",
+    "example_fr": "En maths, je calcule vite les pourcentages.",
+    "example_en": "In math, I quickly calculate percentages.",
+    "register": "neutral",
+    "idiomatic": false,
+    "reflexive": false,
+    "tags": [
+      "education",
+      "learning",
+      "study",
+      "math"
+    ]
   }
 ];

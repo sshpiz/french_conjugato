@@ -6870,28 +6870,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const buildFrameDeck = () => {
             const candidateVerbIds = new Set(
-                baseVerbUniverse
+                uniqueVerbs
                     .filter((verbInfo) => verbsWithPlayableFrames.has(verbInfo.infinitive))
                     .filter((verbInfo) => prepositionalVerbMode !== 'only' || verbsWithPrepositionalFrames.has(verbInfo.infinitive))
                     .map((verbInfo) => verbInfo.infinitive)
             );
-            const activeVerbSetCoverage = buildActiveVerbSetCoverageMultiplierMap(activeVerbSet, candidateVerbIds);
-            const coverageMultipliers = activeVerbSetCoverage?.multipliers || null;
-            const progressKey = activeVerbSetCoverage?.progressKey || '';
 
             return playableVerbFrames
                 .filter((entry) => candidateVerbIds.has(entry.verb))
                 .map((entry) => {
-                    const verbInfo = uniqueVerbByInfinitive.get(entry.verb);
-                    if (!verbInfo) return null;
-                    const score = 1 * (coverageMultipliers?.get(entry.verb) || 1);
-                    if (score <= 0) return null;
                     const card = buildFramePracticeCard(entry);
                     if (!card) return null;
-                    if (progressKey) {
-                        card.verbSetProgressKey = progressKey;
-                    }
-                    return { card, score };
+                    return { card, score: 1 };
                 })
                 .filter(Boolean);
         };
@@ -7211,7 +7201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Set English phrase for English toggle
             if (englishVerbPhraseEl) {
                 englishVerbPhraseEl.textContent = card.translation || '';
-                englishVerbPhraseEl.style.display = 'none';
+                englishVerbPhraseEl.style.display = card.translation ? 'block' : 'none';
             }
             if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = '';
             if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
@@ -7465,7 +7455,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentCard?.isFrameCard) {
             updateFrameCardInlineState(currentCard, false);
             if (englishVerbPhraseEl) {
-                englishVerbPhraseEl.style.display = 'none';
+                englishVerbPhraseEl.style.display = currentCard.translation ? 'block' : 'none';
             }
         }
         syncUsageNuggetVisibility();
@@ -8680,7 +8670,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fillSetupSummary = document.getElementById('settings-v2-fill-setup-summary');
             const hasFillBlanks = hasFillBlankExerciseCapability();
             const currentExerciseMode = normalizeCardTypeModeForCapabilities(cardGenerationOptions.cardTypeMode);
-            const sourceMode = currentExerciseMode === 'frame' ? 'topic' : getEffectiveVerbSourceMode();
+            const sourceMode = getEffectiveVerbSourceMode();
             const activeVerbSet = getResolvedVerbSetSelection();
             const tenseCount = getSelectedTenseCount();
             const filterCount = getActiveVerbFilterCount();
@@ -8691,11 +8681,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? `${topicCount} topics enabled`
                     : activeVerbSet.name
                 : 'All verbs';
-            const fillTopicSummary = activeVerbSet
-                ? topicCount > 1
-                    ? `${topicCount} topics enabled`
-                    : activeVerbSet.name
-                : 'All topics';
+            const fillTopicSummary = (() => {
+                const fillVerbCount = getFilteredVerbUniverse({
+                    ...cardGenerationOptions,
+                    cardTypeMode: 'frame',
+                }).length;
+                if (cardGenerationOptions.prepositionalVerbMode === 'only') {
+                    return `Prepositional fill verbs only · ${fillVerbCount} verbs`;
+                }
+                return `All fill verbs · ${fillVerbCount} verbs`;
+            })();
             const conjugationSummary = (() => {
                 if (sourceMode === 'topic' && activeVerbSet) {
                     return `Custom · ${topicCount > 1 ? `${topicCount} topics` : activeVerbSet.name}`;
@@ -8986,16 +8981,15 @@ document.addEventListener('DOMContentLoaded', () => {
             cardGenerationOptions.cardTypeMode = currentExerciseMode;
             saveOptions({ preserveActiveDrill: true });
         }
-        const isPhraseExercise = currentExerciseMode === 'frame';
-        const useTopicOnlyForFill = currentExerciseMode === 'frame';
-        const effectiveVerbSourceMode = useTopicOnlyForFill ? 'topic' : activeVerbSourceMode;
+        const isFillOnlyExercise = currentExerciseMode === 'frame';
+        const effectiveVerbSourceMode = activeVerbSourceMode;
         const verbSetGroup = document.getElementById('verb-set-group');
         const topNGroup = document.getElementById('settings-topn-group');
         const tenseGroup = document.getElementById('settings-tenses-group');
         const conjugationSetupBody = document.getElementById('settings-v2-conjugation-setup-body');
         const fillSetupBody = document.getElementById('settings-v2-fill-setup-body');
         if (verbSetGroup instanceof HTMLDetailsElement) {
-            if (effectiveVerbSourceMode === 'topic' || useTopicOnlyForFill) {
+            if (effectiveVerbSourceMode === 'topic' && !isFillOnlyExercise) {
                 verbSetGroup.setAttribute('open', '');
             } else {
                 verbSetGroup.removeAttribute('open');
@@ -9004,8 +8998,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (settingsV2VerbSourceContainer) {
             settingsV2VerbSourceContainer.innerHTML = '';
-            settingsV2VerbSourceContainer.classList.toggle('hidden', useTopicOnlyForFill);
-            if (!useTopicOnlyForFill) {
+            settingsV2VerbSourceContainer.classList.toggle('hidden', isFillOnlyExercise);
+            if (!isFillOnlyExercise) {
                 const sourceRow = createSegmentedPillRow(
                     'Verb source',
                     '',
@@ -9035,22 +9029,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (topNGroup) {
-            topNGroup.classList.toggle('hidden', effectiveVerbSourceMode !== 'frequency');
+            topNGroup.classList.toggle('hidden', isFillOnlyExercise || effectiveVerbSourceMode !== 'frequency');
         }
         const drillsGroup = document.getElementById('settings-drills-group');
         if (drillsGroup) {
-            drillsGroup.classList.toggle('hidden', effectiveVerbSourceMode !== 'frequency');
+            drillsGroup.classList.toggle('hidden', isFillOnlyExercise || effectiveVerbSourceMode !== 'frequency');
         }
         if (verbSetGroup) {
-            verbSetGroup.classList.toggle('hidden', effectiveVerbSourceMode !== 'topic');
-            if (effectiveVerbSourceMode === 'topic') {
-                if (currentExerciseMode === 'conjugation') {
-                    const beforeNode = tenseGroup || settingsV2ConjugationAdvancedContainer || settingsV2DrillActionsContainer || null;
-                    if (conjugationSetupBody) conjugationSetupBody.insertBefore(verbSetGroup, beforeNode);
-                } else {
-                    const beforeNode = settingsV2FillAdvancedContainer || null;
-                    if (fillSetupBody) fillSetupBody.insertBefore(verbSetGroup, beforeNode);
-                }
+            verbSetGroup.classList.toggle('hidden', isFillOnlyExercise || effectiveVerbSourceMode !== 'topic');
+            if (!isFillOnlyExercise && effectiveVerbSourceMode === 'topic') {
+                const beforeNode = tenseGroup || settingsV2ConjugationAdvancedContainer || settingsV2DrillActionsContainer || null;
+                if (conjugationSetupBody) conjugationSetupBody.insertBefore(verbSetGroup, beforeNode);
             }
         }
         if (tenseGroup) {
@@ -9135,21 +9124,15 @@ document.addEventListener('DOMContentLoaded', () => {
             allCard.type = 'button';
             allCard.className = `verb-set-card${activeVerbSetSelection ? '' : ' active'}`;
             allCard.innerHTML = `
-                <span class="verb-set-card-title">${isPhraseExercise ? 'All topics' : 'All verbs'}</span>
-                <span class="verb-set-card-meta">${isPhraseExercise ? 'Use the full fill-blanks deck across every topic.' : 'Leave topic mode and go back to the frequency pool.'}</span>
+                <span class="verb-set-card-title">All verbs</span>
+                <span class="verb-set-card-meta">Leave topic mode and go back to the frequency pool.</span>
             `;
             allCard.addEventListener('click', () => {
                 clearVerbSetSelection({ preserveActiveDrill: true });
-                if (isPhraseExercise) {
-                    populateOptions();
-                    updateVerbFiltersCountLabel();
-                    updateSettingsV2LayoutState();
-                } else {
-                    setSettingsVerbSourceMode('frequency', {
-                        repopulate: true,
-                        repopulateOptions: { preserveAnchorId: 'verb-set-group' }
-                    });
-                }
+                setSettingsVerbSourceMode('frequency', {
+                    repopulate: true,
+                    repopulateOptions: { preserveAnchorId: 'verb-set-group' }
+                });
             });
             grid.appendChild(allCard);
 
@@ -9224,10 +9207,8 @@ document.addEventListener('DOMContentLoaded', () => {
             summary.className = 'verb-set-summary';
             const categoryCount = activeVerbSetSelection?.selectionCount || (activeVerbSetSelection ? 1 : 0);
             summary.textContent = activeVerbSetSelection
-                ? `${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'} · ${activeVerbSetSelection.count} verbs${isPhraseExercise ? '' : ' · tenses still apply'}`
-                : isPhraseExercise
-                    ? 'Choose one or more topics, or leave All topics.'
-                    : 'Choose one or more topics, or leave All verbs.';
+                ? `${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'} · ${activeVerbSetSelection.count} verbs · tenses still apply`
+                : 'Choose one or more topics, or leave All verbs.';
             panel.appendChild(summary);
 
             if (activeVerbSetSelection?.source === 'shared') {
@@ -9536,7 +9517,15 @@ document.addEventListener('DOMContentLoaded', () => {
             actionsHelper.className = 'advanced-action-helper';
             const setupParts = [];
             const currentVerbCount = computeActiveVerbPoolCount();
-            if (effectiveVerbSourceMode === 'topic') {
+            if (currentExerciseMode === 'frame') {
+                setupParts.push('Fill Blanks');
+                if (Number.isFinite(currentVerbCount) && currentVerbCount > 0) {
+                    setupParts.push(`${currentVerbCount} verbs`);
+                }
+                if (cardGenerationOptions.prepositionalVerbMode === 'only') {
+                    setupParts.push('prepositional only');
+                }
+            } else if (effectiveVerbSourceMode === 'topic') {
                 setupParts.push(
                     activeVerbSetSelection
                         ? `Custom · ${activeVerbSetSelection.selectionCount > 1 ? `${activeVerbSetSelection.selectionCount} topics` : activeVerbSetSelection.name}`
@@ -9545,7 +9534,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Number.isFinite(currentVerbCount) && currentVerbCount > 0) {
                     setupParts.push(`${currentVerbCount} verbs`);
                 }
-                if (!isPhraseExercise) {
+                if (currentExerciseMode !== 'frame') {
                     const tenseCount = getSelectedTenseCount();
                     setupParts.push(`${tenseCount} ${tenseCount === 1 ? 'tense' : 'tenses'}`);
                 }
@@ -9554,7 +9543,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Number.isFinite(currentVerbCount) && currentVerbCount > 0) {
                     setupParts.push(`${currentVerbCount} verbs`);
                 }
-                if (!isPhraseExercise) {
+                if (currentExerciseMode !== 'frame') {
                     const tenseCount = getSelectedTenseCount();
                     setupParts.push(`${tenseCount} ${tenseCount === 1 ? 'tense' : 'tenses'}`);
                 }
@@ -10879,7 +10868,7 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
         const eligibleFrameVerbSet = prepositionalVerbMode === 'only'
             ? verbsWithPrepositionalFrames
             : verbsWithPlayableFrames;
-        return candidateVerbs.filter((verbInfo) => eligibleFrameVerbSet.has(verbInfo.infinitive));
+        return uniqueVerbs.filter((verbInfo) => eligibleFrameVerbSet.has(verbInfo.infinitive));
     }
 
     const activeFrequencies = new Set(
