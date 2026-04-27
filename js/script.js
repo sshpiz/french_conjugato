@@ -8477,7 +8477,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (fillSetupBody) fillSetupBody.appendChild(fillAdvancedContainer);
         fillBlankSetupDetails.classList.toggle('hidden', !hasFillBlanks);
-        if (advancedGroup) advancedGroup.classList.add('hidden');
+        if (advancedGroup) {
+            advancedGroup.classList.add('hidden');
+            advancedGroup.removeAttribute('open');
+        }
         if (ttsGroup) {
             ttsGroup.classList.add('settings-v2-section');
             optionsContainerEl.appendChild(ttsGroup);
@@ -8554,7 +8557,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         decorateSummary(ttsGroup, 'Text to Speech', 'settings-v2-audio-summary');
         decorateSummary(appGroup, 'App', 'settings-v2-app-summary', 'settings-v2-app-summary-action');
-        decorateSummary(advancedGroup, 'Customize', 'settings-v2-advanced-summary');
         decorateSummary(verbSetGroup, 'Topics', 'settings-v2-categories-summary');
 
         const appToggleRows = appGroup?.querySelector('.toggle-rows');
@@ -8766,17 +8768,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     categoriesSummary.textContent = 'Choose one or more topics.';
                 }
             }
-            const advancedSummary = document.getElementById('settings-v2-advanced-summary');
-            if (advancedSummary) {
-                advancedSummary.textContent = sourceMode === 'topic'
-                    ? 'Sharing, reset, and phrase-specific filters'
-                    : 'Verb traits, frequency weights, reset, and sharing';
-            }
             const advancedGroup = document.getElementById('advanced-group');
             if (advancedGroup) {
-                const showAdvanced = sourceMode === 'frequency' && currentExerciseMode !== 'frame';
-                advancedGroup.classList.toggle('hidden', !showAdvanced);
-                if (!showAdvanced && advancedGroup instanceof HTMLDetailsElement) {
+                advancedGroup.classList.add('hidden');
+                if (advancedGroup instanceof HTMLDetailsElement) {
                     advancedGroup.removeAttribute('open');
                 }
             }
