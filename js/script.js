@@ -272,48 +272,224 @@ function splitFrameQuestion(question) {
     };
 }
 
-function highlightFrameSubject(text) {
-    const raw = String(text || '');
-    if (!raw) return '';
-    const subjectPattern = /(^|[\s,;:([{«"“”'’])((?:j'|je|tu|il|elle|on|nous|vous|ils|elles|ça|ce|c'))(?=$|[\s,;:)\]}»"“”'’])/i;
-    const match = subjectPattern.exec(raw);
-    if (!match || match.index == null) {
-        return escapeHtml(raw);
-    }
-    const boundary = match[1] || '';
-    const pronoun = match[2] || '';
-    const pronounStart = match.index + boundary.length;
-    const pronounEnd = pronounStart + pronoun.length;
-    const before = raw.slice(0, pronounStart);
-    const after = raw.slice(pronounEnd);
-    return `${escapeHtml(before)}<span class="frame-card-subject">${escapeHtml(pronoun)}</span>${escapeHtml(after)}`;
+function isFrameSubjectToken(text) {
+    const normalized = String(text || '')
+        .trim()
+        .toLowerCase()
+        .replace(/^[([{«"“”]+/, '')
+        .replace(/[)\]}»,.;:!?"]+$/, '');
+    return /^(?:j'|je|tu|il|elle|on|nous|vous|ils|elles|ça|ce|c')$/.test(normalized);
 }
 
-function renderFramePromptMarkup(question) {
-    const { before, after } = splitFrameQuestion(question);
+function splitFrameQuestionIntoTokens(question) {
+    const text = String(question || '').trim();
+    if (!text) return [];
+    const gapRegex = /____+/g;
+    const tokens = [];
+    let lastIndex = 0;
+    let gapCount = 0;
 
-    const parts = [];
-    if (before) {
-        parts.push(`<span class="frame-card-prefix">${highlightFrameSubject(before)}</span>`);
+    const pushTextTokens = (segment) => {
+        const raw = String(segment || '').trim();
+        if (!raw) return;
+        raw.split(/\s+/).filter(Boolean).forEach((word) => {
+            tokens.push({
+                type: 'text',
+                text: word,
+                isSubject: isFrameSubjectToken(word),
+            });
+        });
+    };
+
+    let match;
+    while ((match = gapRegex.exec(text))) {
+        pushTextTokens(text.slice(lastIndex, match.index));
+        tokens.push({ type: 'gap', slotIndex: gapCount });
+        gapCount += 1;
+        lastIndex = match.index + match[0].length;
     }
-    parts.push('<span class="frame-card-gap" aria-hidden="true"></span>');
-    if (after) {
-        parts.push(`<span class="frame-card-tail">${escapeHtml(after)}</span>`);
+
+    pushTextTokens(text.slice(lastIndex));
+    return tokens;
+}
+
+function splitFrameAnswerIntoSlots(answer, slotCount) {
+    const rawTokens = String(answer || '').trim().split(/\s+/).filter(Boolean);
+    if (slotCount <= 0) return rawTokens;
+    if (rawTokens.length === 0) return Array.from({ length: slotCount }, () => '');
+    if (rawTokens.length > slotCount) {
+        return [
+            ...rawTokens.slice(0, slotCount - 1),
+            rawTokens.slice(slotCount - 1).join(' '),
+        ];
     }
-    return parts.join(' ');
+    while (rawTokens.length < slotCount) rawTokens.push('');
+    return rawTokens;
+}
+
+const FRENCH_FRAME_LEADING_CLITICS = new Set([
+    'en',
+    'y',
+    'me',
+    "m'",
+    'm’',
+    'te',
+    "t'",
+    't’',
+    'se',
+    "s'",
+    's’',
+    'nous',
+    'vous',
+    'le',
+    'la',
+    'les',
+    "l'",
+    'l’',
+]);
+
+function normalizeFrameAnswerToken(token) {
+    return String(token || '')
+        .trim()
+        .toLowerCase()
+        .replace(/^[([{«"“”]+/, '')
+        .replace(/[)\]}»,.;:!?"]+$/, '');
+}
+
+function getFrameVerbSlotIndex(slotAnswers) {
+    if (!Array.isArray(slotAnswers) || slotAnswers.length <= 1) return 0;
+    const firstToken = normalizeFrameAnswerToken(slotAnswers[0]);
+    if (FRENCH_FRAME_LEADING_CLITICS.has(firstToken)) {
+        return 1;
+    }
+    return 0;
+}
+
+function getFrameSlotWidthCh(answer, type) {
+    const length = Math.max(String(answer || '').trim().length, type === 'verb' ? 5 : 1);
+    if (type === 'verb') {
+        return Math.max(4.8, Math.min(10.8, length + 0.85));
+    }
+    return Math.max(3.2, Math.min(5.6, length + 0.45));
+}
+
+function absorbFrenchArticleIntoParticleSlot(tokens) {
+    const result = [];
+    for (let index = 0; index < tokens.length; index += 1) {
+        const token = tokens[index];
+        if (token?.type !== 'particle') {
+            result.push(token);
+            continue;
+        }
+
+        const nextToken = tokens[index + 1];
+        const normalizedAnswer = normalizeFrameAnswerToken(token.answer);
+        if (!['à', 'de'].includes(normalizedAnswer) || !nextToken || nextToken.type !== 'text') {
+            result.push(token);
+            continue;
+        }
+
+        const nextText = String(nextToken.text || '');
+        if (/^la$/i.test(nextText)) {
+            const mergedAnswer = `${String(token.answer || '').trim()} la`.trim();
+            result.push({
+                ...token,
+                answer: mergedAnswer,
+                widthCh: getFrameSlotWidthCh(mergedAnswer, 'particle'),
+            });
+            index += 1;
+            continue;
+        }
+
+        const apostropheMatch = nextText.match(/^(l['’])(.*)$/i);
+        if (apostropheMatch) {
+            const articleSurface = apostropheMatch[1];
+            const remainder = apostropheMatch[2];
+            const mergedAnswer = `${String(token.answer || '').trim()} ${articleSurface}`.trim();
+            result.push({
+                ...token,
+                answer: mergedAnswer,
+                widthCh: getFrameSlotWidthCh(mergedAnswer, 'particle'),
+            });
+            if (remainder) {
+                result.push({
+                    ...nextToken,
+                    text: remainder,
+                    isSubject: isFrameSubjectToken(remainder),
+                });
+            }
+            index += 1;
+            continue;
+        }
+
+        result.push(token);
+    }
+    return result;
+}
+
+function buildFrameSentenceTokens(question, answer) {
+    const baseTokens = splitFrameQuestionIntoTokens(question);
+    const slotCount = baseTokens.filter((token) => token.type === 'gap').length;
+    if (!slotCount) return baseTokens;
+    const slotAnswers = splitFrameAnswerIntoSlots(answer, slotCount);
+    const verbSlotIndex = getFrameVerbSlotIndex(slotAnswers);
+    let seenSlots = 0;
+    const tokensWithSlots = baseTokens.map((token) => {
+        if (token.type !== 'gap') return token;
+        const type = seenSlots === verbSlotIndex ? 'verb' : 'particle';
+        const slotToken = {
+            type,
+            answer: slotAnswers[seenSlots] || '',
+            widthCh: getFrameSlotWidthCh(slotAnswers[seenSlots] || '', type),
+        };
+        seenSlots += 1;
+        return slotToken;
+    });
+    return absorbFrenchArticleIntoParticleSlot(tokensWithSlots);
+}
+
+function needsFrameTokenSpacer(previousToken, nextToken) {
+    if (!previousToken || !nextToken) return false;
+    if (previousToken.type === 'text' && /['’]$/.test(previousToken.text || '')) {
+        return false;
+    }
+    if (nextToken.type === 'text' && /^[,.;:!?)]/.test(nextToken.text || '')) {
+        return false;
+    }
+    return true;
+}
+
+function renderFrameSentenceMarkup(question, answer, revealed = false) {
+    const tokens = buildFrameSentenceTokens(question, answer);
+    if (!tokens.length) return escapeHtml(String(question || '').trim());
+
+    const htmlParts = ['<span class="frame-sentence">'];
+    tokens.forEach((token, index) => {
+        if (needsFrameTokenSpacer(tokens[index - 1], token)) {
+            htmlParts.push('<span class="frame-space" aria-hidden="true"></span>');
+        }
+        if (token.type === 'text') {
+            htmlParts.push(
+                `<span class="frame-sentence-word${token.isSubject ? ' frame-card-subject' : ''}">${escapeHtml(token.text)}</span>`
+            );
+            return;
+        }
+
+        const stateClass = revealed ? 'slot-revealed' : 'slot-hidden';
+        const answerText = escapeHtml(String(token.answer || '').trim()) || '&nbsp;';
+        const markerText = token.type === 'particle' ? '?' : '&nbsp;';
+        htmlParts.push(`<span class="frame-slot ${token.type}-slot ${stateClass}" style="min-width:${token.widthCh}ch"><span class="ghost" aria-hidden="true">${answerText}</span><span class="marker" aria-hidden="true">${markerText}</span><span class="answer">${answerText}</span></span>`);
+    });
+    htmlParts.push('</span>');
+    return htmlParts.join('');
+}
+
+function renderFramePromptMarkup(question, answer) {
+    return renderFrameSentenceMarkup(question, answer, false);
 }
 
 function renderFrameSolvedMarkup(question, answer) {
-    const { before, after } = splitFrameQuestion(question);
-    const parts = [];
-    if (before) {
-        parts.push(`<span class="frame-card-prefix">${highlightFrameSubject(before)}</span>`);
-    }
-    parts.push(`<span class="frame-card-inserted">${escapeHtml(String(answer || '').trim())}</span>`);
-    if (after) {
-        parts.push(`<span class="frame-card-tail">${escapeHtml(after)}</span>`);
-    }
-    return parts.join(' ');
+    return renderFrameSentenceMarkup(question, answer, true);
 }
 
 function normalizeVerbSetUsageEntry(rawEntry) {
@@ -358,6 +534,9 @@ function getBuiltInVerbUsageFallbacks() {
                 isDark: isDarkThemeActive(),
             }
         }));
+        if (typeof window._updateSettingsV2LayoutState === 'function') {
+            window._updateSettingsV2LayoutState();
+        }
     }
 
     function applyTheme(mode) {
@@ -414,6 +593,9 @@ function getBuiltInVerbUsageFallbacks() {
         const slider = document.getElementById('font-size-slider');
         if (slider) slider.value = scale;
         localStorage.setItem(KEY, scale);
+        if (typeof window._updateSettingsV2LayoutState === 'function') {
+            window._updateSettingsV2LayoutState();
+        }
     }
 
     function bindSlider() {
@@ -854,9 +1036,22 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter((entry) => !entry.needs_review)
         .filter((entry) => !FRAME_CARD_QUARANTINED_VERBS.has(String(entry.verb || '').trim()))
         .filter((entry) => uniqueVerbByInfinitive.has(String(entry.verb || '').trim()));
+    const hasFillBlankExerciseCapability = () => !debugDisableFillBlanks && playableVerbFrames.length > 0;
+    const getAvailableExerciseModes = () => hasFillBlankExerciseCapability()
+        ? ['conjugation', 'both', 'frame']
+        : ['conjugation'];
+    const normalizeCardTypeModeForCapabilities = (value) => {
+        const normalized = normalizeCardTypeMode(value);
+        return getAvailableExerciseModes().includes(normalized) ? normalized : 'conjugation';
+    };
     const verbsWithPrepositionalFrames = new Set(
         playableVerbFrames
             .filter((entry) => PREPOSITIONAL_FRAME_TYPES.has(String(entry.frame_type || '').trim()))
+            .map((entry) => String(entry.verb || '').trim())
+            .filter(Boolean)
+    );
+    const verbsWithPlayableFrames = new Set(
+        playableVerbFrames
             .map((entry) => String(entry.verb || '').trim())
             .filter(Boolean)
     );
@@ -889,11 +1084,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return normalized || 'je';
     }
 
+    function getTopicLabelForVerbFromSelection(verbInfinitive, activeSelection) {
+        if (!activeSelection) return '';
+        if (!activeSelection.selectionCount || !Array.isArray(activeSelection.selections)) {
+            return activeSelection.name || '';
+        }
+        const matchingSelections = activeSelection.selections.filter((selection) =>
+            Array.isArray(selection.verbs) && selection.verbs.includes(verbInfinitive)
+        );
+        if (matchingSelections.length === 1) return matchingSelections[0].name || '';
+        return `${activeSelection.selectionCount} topics`;
+    }
+
     function buildFramePracticeCard(entry) {
         const verbInfo = uniqueVerbByInfinitive.get(entry.verb);
         if (!verbInfo) return null;
         const pronoun = inferFrameCardPronoun(entry.question || entry.full_answer || '');
         const answer = String(entry.answer || '').trim();
+        const tense = String(entry.tense || 'present').trim() || 'present';
         return {
             isFrameCard: true,
             frameId: String(entry.frame_id || `${entry.verb}:frame`),
@@ -902,11 +1110,13 @@ document.addEventListener('DOMContentLoaded', () => {
             frameAnswer: answer,
             frameFullAnswer: String(entry.full_answer || '').trim(),
             verb: verbInfo,
-            tense: 'present',
+            tense,
             pronoun,
             pronounKey: getFrameCardPronounKey(pronoun),
             conjugated: answer,
             source: String(entry.source || '').trim(),
+            translation: String(entry.meaning_en || entry.translation || '').trim(),
+            topicName: String(entry.category_name || '').trim(),
         };
     }
     const BUILTIN_VERB_USAGE_FALLBACKS = {
@@ -1965,6 +2175,168 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         },
         {
+            id: 'builtin-driving-road-code',
+            name: 'Driving & Road Code',
+            scope: 'driving school, code exam, city traffic, parking, daily road stress',
+            verbs: ['conduire', 'rouler', 'circuler', 'démarrer', 'redémarrer', 'repartir', 'caler', 'freiner', 'ralentir', 'accélérer', 'tourner', 'bifurquer', 'braquer', 'reculer', 'stationner', 'garer', 'ranger', 'dépasser', 'doubler', 'déboîter', 'rabattre', 'croiser', 'suivre', 'contourner', 'céder', 'respecter', 'signaler', 'contrôler', 'vérifier', 'klaxonner', 'piler', 'déraper', 'embouteiller', 'boucher', 'griller', 'brûler', 'frôler', 'accrocher', 'tamponner', 'heurter', 'percuter', 'cartonner', 'arrêter', 'intercepter', 'flasher', 'verbaliser', 'amender', 'immobiliser', 'payer', 'contester'],
+            topicUsages: {
+                conduire: [
+                    {
+                        pattern: 'conduire en ville',
+                        example_fr: 'Elle conduit en ville pendant l’heure de pointe pour s’habituer au trafic.',
+                        example_en: 'She is driving in the city during rush hour to get used to the traffic.',
+                    },
+                ],
+                démarrer: [
+                    {
+                        pattern: 'démarrer en côte',
+                        example_fr: 'Il démarre en côte sans reculer d’un centimètre devant le moniteur.',
+                        example_en: 'He is pulling away on a hill without rolling back an inch in front of the instructor.',
+                    },
+                ],
+                caler: [
+                    {
+                        pattern: 'caler au feu',
+                        example_fr: 'Je cale au feu rouge et toute la file derrière moi soupire.',
+                        example_en: 'I stall at the red light and the whole line behind me sighs.',
+                    },
+                ],
+                céder: [
+                    {
+                        pattern: 'céder le passage',
+                        example_fr: 'Tu cèdes le passage au rond-point avant de t’engager.',
+                        example_en: 'You yield at the roundabout before pulling in.',
+                    },
+                ],
+                stationner: [
+                    {
+                        pattern: 'stationner en créneau',
+                        example_fr: 'Elle stationne en créneau entre deux voitures sans toucher le trottoir.',
+                        example_en: 'She is parallel parking between two cars without touching the curb.',
+                    },
+                ],
+                ranger: [
+                    {
+                        pattern: 'ranger sur le bas-côté',
+                        example_fr: 'L’examinateur lui demande de se ranger sur le bas-côté dès que possible.',
+                        example_en: 'The examiner asks her to pull over to the side as soon as possible.',
+                    },
+                ],
+                dépasser: [
+                    {
+                        pattern: 'dépasser un camion',
+                        example_fr: 'On dépasse le camion seulement quand la ligne et la visibilité le permettent.',
+                        example_en: 'We overtake the truck only when the line and visibility allow it.',
+                    },
+                ],
+                déboîter: [
+                    {
+                        pattern: 'déboîter sans prévenir',
+                        example_fr: 'Il déboîte sans prévenir et tout le monde pile derrière lui.',
+                        example_en: 'He pulls out without warning and everyone slams on the brakes behind him.',
+                    },
+                ],
+                contrôler: [
+                    {
+                        pattern: 'contrôler ses angles morts',
+                        example_fr: 'Le moniteur lui rappelle de contrôler ses angles morts avant de changer de voie.',
+                        example_en: 'The instructor reminds her to check her blind spots before changing lanes.',
+                    },
+                ],
+                klaxonner: [
+                    {
+                        pattern: 'klaxonner derrière quelqu’un',
+                        example_fr: 'Le conducteur derrière nous klaxonne dès que le feu passe au vert.',
+                        example_en: 'The driver behind us honks as soon as the light turns green.',
+                    },
+                ],
+                griller: [
+                    {
+                        pattern: 'griller un feu rouge',
+                        example_fr: 'Il grille un feu rouge en pensant avoir encore le temps de passer.',
+                        example_en: 'He runs a red light thinking he still has time to make it through.',
+                    },
+                ],
+                brûler: [
+                    {
+                        pattern: 'brûler un stop',
+                        example_fr: 'Elle brûle le stop et l’inspecteur note tout de suite la faute.',
+                        example_en: 'She blows the stop sign and the examiner marks the mistake immediately.',
+                    },
+                ],
+                accrocher: [
+                    {
+                        pattern: 'accrocher une voiture',
+                        example_fr: 'Je recule mal et j’accroche la voiture garée derrière moi.',
+                        example_en: 'I reverse badly and scrape the car parked behind me.',
+                    },
+                ],
+                tamponner: [
+                    {
+                        pattern: 'tamponner quelqu’un par derrière',
+                        example_fr: 'Il freine trop tard et tamponne la voiture devant au rond-point.',
+                        example_en: 'He brakes too late and rear-ends the car in front at the roundabout.',
+                    },
+                ],
+                intercepter: [
+                    {
+                        pattern: 'intercepter pour un contrôle',
+                        example_fr: 'Les gendarmes l’interceptent pour un contrôle après la sortie du péage.',
+                        example_en: 'The police pull him over for a check after the toll exit.',
+                    },
+                ],
+                flasher: [
+                    {
+                        pattern: 'se faire flasher',
+                        example_fr: 'Il se fait flasher sur la rocade en rentrant du boulot.',
+                        example_en: 'He gets flashed by a speed camera on the ring road coming back from work.',
+                    },
+                ],
+                verbaliser: [
+                    {
+                        pattern: 'verbaliser pour stationnement gênant',
+                        example_fr: 'Les agents verbalisent les voitures garées sur le passage piéton.',
+                        example_en: 'Officers are issuing tickets to cars parked on the crosswalk.',
+                    },
+                ],
+                amender: [
+                    {
+                        pattern: 'amender un conducteur',
+                        example_fr: 'Ils l’amendent pour usage du téléphone au volant.',
+                        example_en: 'They fine him for using his phone while driving.',
+                    },
+                ],
+                payer: [
+                    {
+                        pattern: 'payer une amende',
+                        example_fr: 'Elle paie l’amende en ligne avant que le montant n’augmente.',
+                        example_en: 'She pays the fine online before the amount goes up.',
+                    },
+                ],
+                contester: [
+                    {
+                        pattern: 'contester une contravention',
+                        example_fr: 'Il conteste la contravention parce qu’il estime ne pas être en faute.',
+                        example_en: 'He is contesting the ticket because he believes he was not at fault.',
+                    },
+                ],
+                immobiliser: [
+                    {
+                        pattern: 'immobiliser un véhicule',
+                        example_fr: 'Les policiers immobilisent le véhicule après plusieurs infractions graves.',
+                        example_en: 'The police impound the vehicle after several serious offenses.',
+                    },
+                ],
+                cartonner: [
+                    {
+                        pattern: 'cartonner sur le périph',
+                        example_fr: 'Ils ont failli cartonner sur le périph à cause d’un freinage brutal.',
+                        example_en: 'They almost crashed on the ring road because of sudden braking.',
+                    },
+                ],
+            },
+        },
+        {
             id: 'builtin-crafts-making',
             name: 'Crafts & Making',
             scope: 'handmade, sewing, assembly, fixing, improvising',
@@ -2368,6 +2740,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const explorerToggleBtn = document.getElementById('explorer-toggle-btn');
     const optionsToggleBtn = document.getElementById('options-toggle-btn'); // Gear icon button
+    const tutorialQuickBtn = document.getElementById('tutorial-btn');
     const helpBtn = document.getElementById('help-btn');
     const helpNavBtn = document.getElementById('help-nav-btn');
     const answerFlowBtn = document.getElementById('answer-flow-btn');
@@ -2389,12 +2762,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const returnInlineBodyEl = returnInlineMessageEl ? returnInlineMessageEl.querySelector('.return-inline-body') : null;
     const correctDictationHelperEl = document.getElementById('correct-dictation-helper');
     const pressToDictateHelperEl = document.getElementById('press-to-dictate-helper');
+    const settingsV2Nav = document.getElementById('settings-v2-nav');
+    const optionsContainerEl = document.getElementById('options-container');
 
     const searchBar = document.getElementById('search-bar');
     const explorerScopeRow = document.getElementById('explorer-scope-row');
     const explorerScopeFilteredBtn = document.getElementById('explorer-scope-filtered');
     const explorerScopeAllBtn = document.getElementById('explorer-scope-all');
     const explorerScopeSummary = document.getElementById('explorer-scope-summary');
+
+    const SETTINGS_V2_STORAGE_KEY = 'settingsV2Enabled';
+    const SETTINGS_V2_QUERY_PARAM = 'settingsV2';
+    const NO_FRAMES_QUERY_PARAM = 'noframes';
+    const debugDisableFillBlanks = (() => {
+        try {
+            const params = new URLSearchParams(window.location.search || '');
+            const explicit = String(params.get(NO_FRAMES_QUERY_PARAM) || '').trim().toLowerCase();
+            return explicit === '1' || explicit === 'true' || explicit === 'yes';
+        } catch (error) {
+            return false;
+        }
+    })();
+
+    const isSettingsV2Enabled = (() => {
+        try {
+            const params = new URLSearchParams(window.location.search || '');
+            const explicit = params.get(SETTINGS_V2_QUERY_PARAM);
+            if (explicit === '1' || explicit === 'true') {
+                window.localStorage.setItem(SETTINGS_V2_STORAGE_KEY, '1');
+                return true;
+            }
+            if (explicit === '0' || explicit === 'false') {
+                window.localStorage.setItem(SETTINGS_V2_STORAGE_KEY, '0');
+                return false;
+            }
+            const stored = window.localStorage.getItem(SETTINGS_V2_STORAGE_KEY);
+            if (stored === '0') return false;
+            if (stored === '1') return true;
+            return true;
+        } catch (error) {
+            return true;
+        }
+    })();
+
+    if (isSettingsV2Enabled) {
+        document.documentElement.setAttribute('data-settings-v2', 'true');
+    }
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
     let packagedTtsBusy = false;
@@ -2445,6 +2858,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const IDLE_NUDGE_ENABLED_KEY = 'idleNudgeEnabledV1';
     const PRESS_TO_DICTATE_ENABLED_KEY = 'pressToDictateEnabledV1';
     const SHOW_TIPS_ENABLED_KEY = 'showTipsEnabledV1';
+    const HIDE_TUTORIAL_QUICK_BUTTON_KEY = 'hideTutorialQuickButtonV1';
+    const SETTINGS_V3_SOURCE_MODE_KEY = 'settingsV3VerbSourceModeV1';
     const REOPEN_MESSAGE_LAST_OPEN_KEY = 'reopenMessageLastOpenAtV1';
     const REOPEN_MESSAGE_THRESHOLD_MS = 12 * 60 * 60 * 1000;
     const REOPEN_MESSAGE_WELCOME_BACK_THRESHOLD_MS = 24 * 60 * 60 * 1000;
@@ -2480,6 +2895,11 @@ document.addEventListener('DOMContentLoaded', () => {
             body: '💡 Tap any word or phrase in French to hear how it sounds.'
         }
     ];
+    let hideTutorialQuickButton = getScopedStorageItem(HIDE_TUTORIAL_QUICK_BUTTON_KEY) === 'true';
+    let settingsVerbSourceMode = (() => {
+        const stored = getScopedStorageItem(SETTINGS_V3_SOURCE_MODE_KEY);
+        return stored === 'topic' || stored === 'frequency' ? stored : '';
+    })();
     const reopenMessageState = {
         active: false,
         dismissed: false,
@@ -2821,6 +3241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (appInstallPill) {
             appInstallPill.classList.toggle('hidden', !shouldShowInstallPill());
         }
+        updateSettingsV2LayoutState();
     };
 
     const triggerInstallFlow = async () => {
@@ -2873,6 +3294,7 @@ document.addEventListener('DOMContentLoaded', () => {
             appUpdateActionBtn.textContent = appUpdateState.updateAvailable ? 'Reload now' : 'Check for updates';
         }
         syncAppInstallUi();
+        updateSettingsV2LayoutState();
     };
 
     const setAppUpdateState = (patch = {}) => {
@@ -3083,6 +3505,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isAppleMobileBrowser = () => isAppleInstallPlatform();
 
+    const applyTemporaryUiClass = (element, className, duration = 2200) => {
+        if (!element || !className) return;
+        if (!element._temporaryUiClassTimers) {
+            element._temporaryUiClassTimers = Object.create(null);
+        }
+        element.classList.remove(className);
+        void element.offsetWidth;
+        element.classList.add(className);
+        if (element._temporaryUiClassTimers[className]) {
+            window.clearTimeout(element._temporaryUiClassTimers[className]);
+        }
+        element._temporaryUiClassTimers[className] = window.setTimeout(() => {
+            element.classList.remove(className);
+            delete element._temporaryUiClassTimers[className];
+        }, duration);
+    };
+
+    let pendingMicSettingsNudgeUntil = 0;
+    const pulseMicSettingsTargets = () => {
+        applyTemporaryUiClass(optionsToggleBtn, 'settings-attention-glow');
+        if (optionsView?.classList.contains('hidden')) return;
+        applyTemporaryUiClass(document.getElementById('settings-mic-group'), 'settings-attention-glow', 2400);
+        applyTemporaryUiClass(document.getElementById('settings-v2-practice-section'), 'settings-attention-glow', 2400);
+        applyTemporaryUiClass(settingsV2Nav?.querySelector('[data-target="settings-v2-practice-section"]'), 'settings-attention-glow', 2400);
+    };
+    const nudgeMicSettings = () => {
+        pendingMicSettingsNudgeUntil = Date.now() + 4500;
+        pulseMicSettingsTargets();
+    };
+
     const getMicUnavailableOverlayMessage = (availability, micMode) => {
         if (availability === 'unsupported') {
             if (isAppleMobileBrowser()) {
@@ -3094,7 +3546,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return 'Mic input is disabled in Safe mode.';
         }
         if (availability === 'tutorial-locked') {
-            return 'The tutorial unlocks the mic on step 3, after reveal.';
+            return 'Finish the tutorial first. After that, you can turn on the mic flow in Settings.';
+        }
+        if (availability === 'settings-disabled') {
+            return 'Turn on the mic flow in Settings if you want to use the mic before reveal.';
         }
         if (availability === 'phase-disabled') {
             return micMode === 'answerByVoice'
@@ -3104,22 +3559,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return '';
     };
 
+    const showMicUnavailableGuidance = (availability, micMode) => {
+        const unavailableMessage = getMicUnavailableOverlayMessage(availability, micMode);
+        if (!unavailableMessage) return;
+        if (availability === 'tutorial-locked' || availability === 'settings-disabled') {
+            nudgeMicSettings();
+        }
+        showDictationOverlay(
+            unavailableMessage,
+            availability === 'unsupported' || availability === 'safeModeBlocked' ? 'error' : 'prompt',
+            availability === 'tutorial-locked' || availability === 'settings-disabled' ? 3600 : 2600,
+            false,
+            true
+        );
+    };
+
     const refreshDictationButton = () => {
         if (!dictateBtn) return;
         const availability = getMicAvailability();
         const micMode = getEffectiveMicMode();
-        const hardDisabled = availability === 'tutorial-locked' || availability === 'phase-disabled';
 
         dictateBtn.style.display = 'inline-flex';
         dictateBtn.dataset.micMode = micMode;
         dictateBtn.dataset.availability = availability;
 
         dictateBtn.classList.toggle('is-tutorial-locked', availability === 'tutorial-locked');
-        dictateBtn.classList.toggle('is-phase-disabled', availability === 'phase-disabled');
+        dictateBtn.classList.toggle('is-phase-disabled', availability === 'phase-disabled' || availability === 'settings-disabled');
         dictateBtn.classList.toggle('is-unsupported', availability === 'unsupported' || availability === 'safeModeBlocked');
         dictateBtn.classList.toggle('is-no-content', false);
 
-        dictateBtn.disabled = hardDisabled;
+        dictateBtn.disabled = false;
+        dictateBtn.setAttribute('aria-disabled', availability === 'enabled' ? 'false' : 'true');
 
         if (dictateBtnLabelEl) {
             dictateBtnLabelEl.textContent = micMode === 'answerByVoice' ? 'Answer' : 'Say';
@@ -3127,7 +3597,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let title = 'Practice saying the answer aloud';
         if (availability === 'tutorial-locked') {
-            title = 'The tutorial unlocks the mic a little later';
+            title = 'Finish the tutorial first, then enable the mic flow in Settings if you want it';
+        } else if (availability === 'settings-disabled') {
+            title = 'Turn on the mic flow in Settings if you want to use the mic before reveal';
         } else if (availability === 'phase-disabled') {
             title = micMode === 'answerByVoice'
                 ? 'Voice-answer mode works before reveal'
@@ -3368,7 +3840,7 @@ document.addEventListener('DOMContentLoaded', () => {
         conjugatedVerbEl.title = revealed ? 'Tap to hear full phrase' : 'Tap to reveal';
         conjugatedVerbEl.innerHTML = revealed
             ? renderFrameSolvedMarkup(card.frameQuestion || '', card.frameAnswer || '')
-            : renderFramePromptMarkup(card.frameQuestion || '');
+            : renderFramePromptMarkup(card.frameQuestion || '', card.frameAnswer || '');
     };
 
     const FRENCH_HOMOPHONE_FALLBACK_TENSES = new Set(['present', 'imparfait', 'subjonctifPresent']);
@@ -3944,16 +4416,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const availability = getMicAvailability();
             const micMode = getEffectiveMicMode();
             if (availability !== 'enabled') {
-                const unavailableMessage = getMicUnavailableOverlayMessage(availability, micMode);
-                if (unavailableMessage) {
-                    showDictationOverlay(
-                        unavailableMessage,
-                        availability === 'unsupported' || availability === 'safeModeBlocked' ? 'error' : 'prompt',
-                        2600,
-                        false,
-                        true
-                    );
-                }
+                showMicUnavailableGuidance(availability, micMode);
                 refreshDictationButton();
                 return false;
             }
@@ -4124,6 +4587,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!pressToDictateEnabled) return;
                 if (event.button !== undefined && event.button !== 0) return;
                 if (activeDictationPointerId !== null || (isDictating && recognition)) return;
+                const availability = getMicAvailability();
+                if (availability !== 'enabled') {
+                    suppressNextDictationClick = true;
+                    event.preventDefault();
+                    event.stopPropagation();
+                    showMicUnavailableGuidance(availability, getEffectiveMicMode());
+                    refreshDictationButton();
+                    return;
+                }
                 activeDictationPointerId = event.pointerId;
                 suppressNextDictationClick = true;
                 if (typeof dictateBtn.setPointerCapture === 'function') {
@@ -4162,16 +4634,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const availability = getMicAvailability();
                 const micMode = getEffectiveMicMode();
                 if (availability !== 'enabled') {
-                    const unavailableMessage = getMicUnavailableOverlayMessage(availability, micMode);
-                    if (unavailableMessage) {
-                        showDictationOverlay(
-                            unavailableMessage,
-                            availability === 'unsupported' || availability === 'safeModeBlocked' ? 'error' : 'prompt',
-                            2600,
-                            false,
-                            true
-                        );
-                    }
+                    showMicUnavailableGuidance(availability, micMode);
                     refreshDictationButton();
                     return;
                 }
@@ -4990,12 +5453,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 if (badge) {
-                    const label = options.reason === 'debug-counter'
-                        ? 'Test solitaire'
-                        : (options.milestoneIndex && options.milestoneIndex > 1
-                            ? `Objectif x${options.milestoneIndex}`
-                            : 'Objectif atteint');
-                    badge.textContent = label;
+                    badge.textContent = options.milestoneIndex && options.milestoneIndex > 1
+                        ? `Objectif x${options.milestoneIndex}`
+                        : 'Objectif atteint';
                 }
                 if (hint) {
                     hint.textContent = 'Touchez pour passer';
@@ -5004,7 +5464,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     overlay.classList.add('is-visible');
                 }
                 if (badge) {
-                    badge.style.display = 'inline-flex';
+                    badge.style.display = options.reason === 'debug-counter' ? 'none' : 'inline-flex';
                 }
                 setSkipEnabled(false);
                 skipUnlockTimer = window.setTimeout(() => {
@@ -5116,7 +5576,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isTutorialMicLocked()) return 'tutorial-locked';
 
         const micMode = getEffectiveMicMode();
-        if (micMode === 'practiceAfterReveal' && !isAnswerVisible) return 'phase-disabled';
+        if (micMode === 'practiceAfterReveal' && !isAnswerVisible) {
+            return tutorialState.active ? 'phase-disabled' : 'settings-disabled';
+        }
         return 'enabled';
     };
 
@@ -5162,7 +5624,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!pressToDictateToggle) return;
         pressToDictateToggle.checked = pressToDictateEnabled;
         if (pressToDictateHelperEl) {
-            pressToDictateHelperEl.textContent = 'Hold the mic while speaking, then release to transcribe.';
+            pressToDictateHelperEl.textContent = 'Hold the mic while speaking, then release.';
         }
     };
 
@@ -5173,10 +5635,45 @@ document.addEventListener('DOMContentLoaded', () => {
         renderReopenMessage();
     };
 
+    const getEffectiveVerbSourceMode = () => {
+        if (settingsVerbSourceMode === 'topic' || settingsVerbSourceMode === 'frequency') {
+            return settingsVerbSourceMode;
+        }
+        return getResolvedVerbSetSelection() ? 'topic' : 'frequency';
+    };
+
+    const setSettingsVerbSourceMode = (mode, options = {}) => {
+        const { persist = true, repopulate = true, repopulateOptions = undefined } = options;
+        settingsVerbSourceMode = mode === 'topic' ? 'topic' : 'frequency';
+        if (persist) {
+            setScopedStorageItem(SETTINGS_V3_SOURCE_MODE_KEY, settingsVerbSourceMode);
+        }
+        if (repopulate && typeof window._populateOptions === 'function') {
+            window._populateOptions(repopulateOptions || {});
+        } else if (typeof window._updateSettingsV2LayoutState === 'function') {
+            window._updateSettingsV2LayoutState();
+        }
+    };
+
+    window._setSettingsVerbSourceMode = setSettingsVerbSourceMode;
+
+    const setHideTutorialQuickButton = (enabled) => {
+        hideTutorialQuickButton = !!enabled;
+        setScopedStorageItem(HIDE_TUTORIAL_QUICK_BUTTON_KEY, hideTutorialQuickButton ? 'true' : 'false');
+        syncTutorialQuickButtonVisibility();
+        syncHideTutorialQuickButtonSettingUi();
+    };
+
     const syncShowTipsSettingUi = () => {
         const showTipsToggle = document.getElementById('show-tips-toggle');
         if (!showTipsToggle) return;
         showTipsToggle.checked = showTipsEnabled;
+    };
+
+    const syncHideTutorialQuickButtonSettingUi = () => {
+        const tutorialQuickToggle = document.getElementById('hide-tutorial-quick-btn-toggle');
+        if (!tutorialQuickToggle) return;
+        tutorialQuickToggle.checked = hideTutorialQuickButton;
     };
 
     const syncMicModeSettingUi = () => {
@@ -5187,8 +5684,22 @@ document.addEventListener('DOMContentLoaded', () => {
         correctDictationToggle.disabled = tutorialLocksMicMode;
         if (correctDictationHelperEl) {
             correctDictationHelperEl.textContent = tutorialLocksMicMode
-                ? 'The tutorial begins with after-reveal pronunciation practice.'
-                : 'When off, the mic is used for pronunciation practice after reveal.';
+                ? 'Finish the tutorial to use this.'
+                : 'Use the mic before reveal.';
+        }
+    };
+
+    const syncTutorialQuickButtonVisibility = () => {
+        if (tutorialQuickBtn) {
+            tutorialQuickBtn.hidden = true;
+            tutorialQuickBtn.classList.add('hidden');
+            tutorialQuickBtn.style.display = 'none';
+        }
+        if (helpNavBtn) {
+            const shouldHideBottomTutorialBtn = !!hideTutorialQuickButton;
+            helpNavBtn.hidden = shouldHideBottomTutorialBtn;
+            helpNavBtn.classList.toggle('hidden', shouldHideBottomTutorialBtn);
+            helpNavBtn.style.display = shouldHideBottomTutorialBtn ? 'none' : '';
         }
     };
 
@@ -5265,6 +5776,8 @@ document.addEventListener('DOMContentLoaded', () => {
         syncMicModeSettingUi();
         syncIdleNudgeSettingUi();
         syncShowTipsSettingUi();
+        syncHideTutorialQuickButtonSettingUi();
+        syncTutorialQuickButtonVisibility();
     };
 
     const clearIdleGuidanceTimer = () => {
@@ -5848,7 +6361,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     let reviewModelState = loadReviewModelState();
-    let verbSetProgressState = loadVerbSetProgressState();
+    let verbSetProgressState = { selections: {} };
     let currentCardShownAtMs = 0;
 
     // --- Local Storage for Options ---
@@ -5894,7 +6407,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cardGenerationOptions.showUsageNugget = savedOptions.showUsageNugget;
                 }
                 if (savedOptions.cardTypeMode) {
-                    cardGenerationOptions.cardTypeMode = normalizeCardTypeMode(savedOptions.cardTypeMode);
+                    cardGenerationOptions.cardTypeMode = normalizeCardTypeModeForCapabilities(savedOptions.cardTypeMode);
                 }
                 if (savedOptions.reflexiveMode) {
                     cardGenerationOptions.reflexiveMode = savedOptions.reflexiveMode;
@@ -5949,6 +6462,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 cardGenerationOptions.sharedVerbSet = normalizeEmbeddedVerbSet(savedOptions.sharedVerbSet);
             }
+            cardGenerationOptions.cardTypeMode = normalizeCardTypeModeForCapabilities(cardGenerationOptions.cardTypeMode);
         } catch (e) {
             console.warn("Could not load options from localStorage:", e);
         }
@@ -6146,7 +6660,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeVerbSet = getResolvedVerbSetSelection();
         const categoryCount = activeVerbSet?.selectionCount || (activeVerbSet ? 1 : 0);
         el.textContent = activeVerbSet
-            ? `In play: ${n} verbs from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'}`
+            ? `In play: ${n} verbs from ${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'}`
             : `In play: ${n} verbs`;
     };
     let explorerVerbScopeMode = 'filtered';
@@ -6155,7 +6669,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeVerbSet = getResolvedVerbSetSelection();
         if (activeVerbSet) {
             const categoryCount = activeVerbSet.selectionCount || 1;
-            return `Showing ${filteredCount} verbs from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'}`;
+            return `Showing ${filteredCount} verbs from ${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'}`;
         }
         if (filteredCount >= totalCount) {
             return `Showing all ${totalCount} verbs`;
@@ -6297,7 +6811,7 @@ document.addEventListener('DOMContentLoaded', () => {
             reflexiveMode = 'include',
             prepositionalVerbMode = 'all',
         } = options;
-        const resolvedCardTypeMode = normalizeCardTypeMode(cardTypeMode);
+        const resolvedCardTypeMode = normalizeCardTypeModeForCapabilities(cardTypeMode);
         const sentenceFilterEnabled = ENABLE_LEGACY_SENTENCE_DATA && verbsWithSentencesOnly;
 
         // Helpers for filters
@@ -6357,7 +6871,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const buildFrameDeck = () => {
             const candidateVerbIds = new Set(
                 baseVerbUniverse
-                    .filter((verbInfo) => activeVerbSet || passesFilters(verbInfo))
+                    .filter((verbInfo) => verbsWithPlayableFrames.has(verbInfo.infinitive))
+                    .filter((verbInfo) => prepositionalVerbMode !== 'only' || verbsWithPrepositionalFrames.has(verbInfo.infinitive))
                     .map((verbInfo) => verbInfo.infinitive)
             );
             const activeVerbSetCoverage = buildActiveVerbSetCoverageMultiplierMap(activeVerbSet, candidateVerbIds);
@@ -6369,10 +6884,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .map((entry) => {
                     const verbInfo = uniqueVerbByInfinitive.get(entry.verb);
                     if (!verbInfo) return null;
-                    const score = ((activeVerbSet || reflexiveMode === 'only')
-                        ? 1
-                        : (frequencyWeights[verbInfo.frequency || 'common'] || 0))
-                        * (coverageMultipliers?.get(entry.verb) || 1);
+                    const score = 1 * (coverageMultipliers?.get(entry.verb) || 1);
                     if (score <= 0) return null;
                     const card = buildFramePracticeCard(entry);
                     if (!card) return null;
@@ -6445,6 +6957,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         pronoun: pronounEntry.pronoun,
                                         pronounKey: pronounEntry.pronounKey,
                                         conjugated: pronounEntry.conjugated,
+                                        topicName: getTopicLabelForVerbFromSelection(verbInfo.infinitive, activeVerbSet),
                                         ...(progressKey ? { verbSetProgressKey: progressKey } : {}),
                                     },
                                     score: tenseWeight * (coverageMultipliers?.get(verbInfo.infinitive) || 1)
@@ -6489,6 +7002,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         pronoun: pronounEntry.pronoun,
                                         pronounKey: pronounEntry.pronounKey,
                                         conjugated: pronounEntry.conjugated,
+                                        topicName: getTopicLabelForVerbFromSelection(verbInfo.infinitive, activeVerbSet),
                                         ...(progressKey ? { verbSetProgressKey: progressKey } : {}),
                                     },
                                     score: score * (coverageMultipliers?.get(verbInfo.infinitive) || 1)
@@ -6695,7 +7209,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Set English phrase for English toggle
-            if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = card.translation || '';
+            if (englishVerbPhraseEl) {
+                englishVerbPhraseEl.textContent = card.translation || '';
+                englishVerbPhraseEl.style.display = 'none';
+            }
             if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = '';
             if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
 
@@ -6737,10 +7254,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (verbHintEl) verbHintEl.textContent = card.verb.hint || '';
             if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^[\(|\)]/g, '');
             if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
-            if (englishVerbPhraseEl) englishVerbPhraseEl.textContent = '';
+            if (englishVerbPhraseEl) {
+                englishVerbPhraseEl.textContent = card.translation || '';
+                englishVerbPhraseEl.style.display = 'none';
+            }
 
             const normalizedVerbFrequency = normalizeFrequencyKey(verbFrequency) || String(verbFrequency || '').trim();
-            const frequencyText = formatFrequencyLabel(normalizedVerbFrequency);
+            const frequencyText = getCardFrequencyBadgeText(card, normalizedVerbFrequency);
             verbFrequencyEl.textContent = frequencyText;
             verbFrequencyEl.className = 'meta-info frequency-tag';
             verbFrequencyEl.classList.add((normalizedVerbFrequency || 'common').replace(/\s+/g, '-'));
@@ -6758,8 +7278,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             verbPronounEl.textContent = '';
             verbPronounEl.style.display = 'none';
-            verbTenseEl.textContent = 'présent';
+            verbTenseEl.textContent = tenseKeyToLabel[card.tense] || card.tense;
             verbTenseEl.className = 'meta-info';
+            const frameTenseClassMap = {
+                'present': 'tense-present',
+                'passeCompose': 'tense-passeCompose',
+                'imparfait': 'tense-imparfait',
+                'futurSimple': 'tense-futurSimple',
+                'plusQueParfait': 'tense-plusQueParfait',
+                'subjonctifPresent': 'tense-subjonctifPresent',
+                'conditionnelPresent': 'tense-conditionnelPresent'
+            };
+            if (frameTenseClassMap[card.tense]) {
+                verbTenseEl.classList.add(frameTenseClassMap[card.tense]);
+            }
 
             updateFrameCardInlineState(card, false);
 
@@ -6831,7 +7363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             verbTenseEl.classList.add(tenseClassMap[card.tense]);
         }
         const normalizedVerbFrequency = normalizeFrequencyKey(verbFrequency) || String(verbFrequency || '').trim();
-        const frequencyText = formatFrequencyLabel(normalizedVerbFrequency);
+        const frequencyText = getCardFrequencyBadgeText(card, normalizedVerbFrequency);
         verbFrequencyEl.textContent = frequencyText;
         verbFrequencyEl.className = 'meta-info frequency-tag';
         verbFrequencyEl.classList.add((normalizedVerbFrequency || 'common').replace(/\s+/g, '-'));
@@ -6900,6 +7432,9 @@ document.addEventListener('DOMContentLoaded', () => {
             maybeTriggerDailyGoalCelebration(previousDailyCount, getCurrentDailyCount());
             if (currentCard?.isFrameCard) {
                 updateFrameCardInlineState(currentCard, true);
+                if (englishVerbPhraseEl) {
+                    englishVerbPhraseEl.style.display = currentCard.translation ? 'block' : 'none';
+                }
             }
             // In phrase mode, show the French sentence now
             if (currentCard && !currentCard.verb) {
@@ -6929,6 +7464,9 @@ document.addEventListener('DOMContentLoaded', () => {
         isAnswerVisible = false;
         if (currentCard?.isFrameCard) {
             updateFrameCardInlineState(currentCard, false);
+            if (englishVerbPhraseEl) {
+                englishVerbPhraseEl.style.display = 'none';
+            }
         }
         syncUsageNuggetVisibility();
         refreshContextAudioButton();
@@ -7084,8 +7622,15 @@ document.addEventListener('DOMContentLoaded', () => {
             refreshAnswerFlowButton();
             refreshDictationButton();
             syncUsageNuggetVisibility();
+        } else if (viewId === 'options-view' && Date.now() < pendingMicSettingsNudgeUntil) {
+            window.setTimeout(() => {
+                if (!optionsView?.classList.contains('hidden') && Date.now() < pendingMicSettingsNudgeUntil) {
+                    pulseMicSettingsTargets();
+                }
+            }, 60);
         }
         syncAppInstallUi();
+        syncTutorialQuickButtonVisibility();
     }
 
     const showExplorerList = () => {
@@ -7692,8 +8237,596 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     };
 
+    const getSettingsV2PracticeLabel = (mode = normalizeCardTypeMode(cardGenerationOptions.cardTypeMode)) => {
+        mode = normalizeCardTypeModeForCapabilities(mode);
+        if (mode === 'frame') return 'Fill Blanks';
+        if (mode === 'both') return 'Mixed';
+        return 'Conjugation';
+    };
+
+    const getCardTopicBadgeLabel = (card) => {
+        if (!card) return '';
+        if (card.topicName) return String(card.topicName).trim();
+        if (card.isFrameCard) {
+            return String(card.topicName || '').trim();
+        }
+        const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
+        if (!card.verb || !activeVerbSet) return '';
+        return getTopicLabelForVerbFromSelection(card.verb.infinitive, activeVerbSet);
+    };
+
+    const getCardFrequencyBadgeText = (card, normalizedFrequency) => {
+        const frequencyText = formatFrequencyLabel(normalizedFrequency);
+        const topicText = getCardTopicBadgeLabel(card);
+        return topicText ? `${frequencyText} | ${topicText}` : frequencyText;
+    };
+
+    const getSettingsV2AppSummary = () => {
+        const theme = (document.documentElement.getAttribute('data-theme') || 'system').toLowerCase();
+        const slider = document.getElementById('font-size-slider');
+        const size = slider ? Number(slider.value || 1) : 1;
+        const sizeLabel = size >= 1.2 ? 'large text' : size <= 0.9 ? 'small text' : 'default text';
+        return `${theme} theme · ${sizeLabel}`;
+    };
+
+    const getSettingsV2AudioSummary = () => {
+        const speedSlider = document.getElementById('tts-speed-slider');
+        const speedValue = speedSlider ? Number(speedSlider.value || 1) : 1;
+        const packagedEnabled = !!(packagedTtsEnabledToggle && packagedTtsEnabledToggle.checked);
+        const ttsText = ttsStatusText ? String(ttsStatusText.textContent || '').trim() : '';
+        const shortTts = ttsText
+            ? ttsText.replace(/^Looking for\s+/i, '').replace(/\.$/, '')
+            : 'audio status unknown';
+        return `${shortTts} · ${speedValue.toFixed(2)}x · packaged ${packagedEnabled ? 'on' : 'off'}`;
+    };
+
+    const updateSettingsV2NavState = () => {
+        if (!isSettingsV2Enabled || !settingsV2Nav || settingsV2Nav.classList.contains('hidden')) return;
+        const sections = Array.from(document.querySelectorAll('.settings-v2-section, .settings-v2-section-shell'))
+            .filter((section) => !section.classList.contains('hidden'));
+        if (!sections.length) return;
+        const targetOffset = 150;
+        let activeId = sections[0].id;
+        let bestScore = Number.POSITIVE_INFINITY;
+        sections.forEach((section) => {
+            const rect = section.getBoundingClientRect();
+            const score = Math.abs(rect.top - targetOffset);
+            if (score < bestScore) {
+                bestScore = score;
+                activeId = section.id;
+            }
+        });
+        settingsV2Nav.querySelectorAll('.mode-toggle-btn').forEach((btn) => {
+            btn.classList.toggle('active', btn.dataset.target === activeId);
+        });
+    };
+
+    const ensureSettingsV2Layout = () => {
+        if (!isSettingsV2Enabled || !optionsContainerEl || !settingsV2Nav) return null;
+
+        settingsV2Nav.classList.remove('hidden');
+        optionsContainerEl.classList.add('settings-v2-enabled');
+        if (helpNavBtn) helpNavBtn.classList.add('hidden');
+        const hasFillBlanks = hasFillBlankExerciseCapability();
+
+        const createUtilityBtn = (label, className, onClick) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = className;
+            btn.textContent = label;
+            btn.addEventListener('click', onClick);
+            settingsV2Nav.appendChild(btn);
+        };
+        const sections = [
+            { id: 'settings-v2-conjugation-setup', label: 'Conjugation' },
+            { id: 'tts-voice-group', label: 'Text To Speech' },
+            { id: 'app-group', label: 'App' },
+        ];
+        if (hasFillBlanks) {
+            sections.splice(1, 0, { id: 'settings-v2-fill-setup', label: 'Fill Blanks' });
+        }
+        settingsV2Nav.innerHTML = '';
+        createUtilityBtn('Back', 'settings-v2-nav-utility-btn settings-v2-nav-back-btn', () => {
+            backToFlashcardFromOptionsBtn?.click();
+        });
+        sections.forEach(({ id, label }) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'mode-toggle-btn';
+            btn.dataset.target = id;
+            btn.textContent = label;
+            btn.addEventListener('click', () => {
+                const target = document.getElementById(id);
+                if (target instanceof HTMLDetailsElement) {
+                    target.open = true;
+                }
+                target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                window.requestAnimationFrame(updateSettingsV2NavState);
+            });
+            settingsV2Nav.appendChild(btn);
+        });
+        if (!settingsV2Nav.dataset.initialized) {
+            settingsV2Nav.dataset.initialized = 'true';
+            window.addEventListener('scroll', updateSettingsV2NavState, { passive: true });
+        }
+
+        const ensureShell = (id, title, summaryId, bodyId) => {
+            let shell = document.getElementById(id);
+            if (!shell) {
+                shell = document.createElement('section');
+                shell.id = id;
+                shell.className = 'settings-v2-section-shell settings-v2-section';
+                shell.innerHTML = `
+                    <div class="settings-v2-section-header">
+                        <div class="settings-v2-section-copy">
+                            <h3>${title}</h3>
+                            <p id="${summaryId}" class="settings-v2-section-summary"></p>
+                        </div>
+                    </div>
+                    <div id="${bodyId}" class="settings-v2-section-body"></div>
+                `;
+                optionsContainerEl.appendChild(shell);
+            }
+            return shell;
+        };
+
+        ensureShell('settings-v2-practice-section', 'Current exercise', 'settings-v2-practice-summary', 'settings-v2-practice-body');
+        document.getElementById('settings-v2-setup-section')?.remove();
+
+        const practiceBody = document.getElementById('settings-v2-practice-body');
+        const micGroup = document.getElementById('settings-mic-group');
+        const tenseGroup = document.getElementById('settings-tenses-group');
+        const topNGroup = document.getElementById('settings-topn-group');
+        const drillsGroup = document.getElementById('settings-drills-group');
+        const verbSetGroup = document.getElementById('verb-set-group');
+        const advancedGroup = document.getElementById('advanced-group');
+        const ttsGroup = document.getElementById('tts-voice-group');
+        const appGroup = document.getElementById('app-group');
+
+        document.getElementById('settings-v2-exercise-card')?.remove();
+        document.getElementById('settings-v2-setup-summary-card')?.remove();
+
+        let exerciseControlsContainer = document.getElementById('settings-v2-exercise-controls');
+        if (!exerciseControlsContainer) {
+            exerciseControlsContainer = document.createElement('div');
+            exerciseControlsContainer.id = 'settings-v2-exercise-controls';
+            exerciseControlsContainer.className = 'option-group settings-v2-exercise-controls-group';
+        }
+
+        let drillActionsContainer = document.getElementById('settings-v2-drill-actions');
+        if (!drillActionsContainer) {
+            drillActionsContainer = document.createElement('div');
+            drillActionsContainer.id = 'settings-v2-drill-actions';
+            drillActionsContainer.className = 'option-group settings-v2-drill-actions-group';
+        }
+
+        let verbSourceContainer = document.getElementById('settings-v2-verb-source-group');
+        if (!verbSourceContainer) {
+            verbSourceContainer = document.createElement('div');
+            verbSourceContainer.id = 'settings-v2-verb-source-group';
+            verbSourceContainer.className = 'option-group settings-v2-verb-source-group';
+        }
+
+        const ensureSubsetupDetails = (id, title, bodyId, summaryId) => {
+            let details = document.getElementById(id);
+            if (!details) {
+                details = document.createElement('details');
+                details.id = id;
+                details.className = 'option-group settings-collapsible settings-v2-subsetup';
+                details.innerHTML = `
+                    <summary>
+                        <span class="settings-v2-collapsible-copy">
+                            <span class="settings-v2-collapsible-title">${title}</span>
+                            <span id="${summaryId}" class="settings-v2-collapsible-meta"></span>
+                        </span>
+                    </summary>
+                    <div id="${bodyId}" class="collapsible-body settings-v2-subsetup-body"></div>
+                `;
+            }
+            return details;
+        };
+
+        const conjugationSetupDetails = ensureSubsetupDetails(
+            'settings-v2-conjugation-setup',
+            'Conjugation Setup',
+            'settings-v2-conjugation-setup-body',
+            'settings-v2-conjugation-setup-summary'
+        );
+        const fillBlankSetupDetails = ensureSubsetupDetails(
+            'settings-v2-fill-setup',
+            'Fill Blanks',
+            'settings-v2-fill-setup-body',
+            'settings-v2-fill-setup-summary'
+        );
+
+        let sharedAdvancedContainer = document.getElementById('settings-v2-shared-advanced');
+        if (!sharedAdvancedContainer) {
+            sharedAdvancedContainer = document.createElement('div');
+            sharedAdvancedContainer.id = 'settings-v2-shared-advanced';
+            sharedAdvancedContainer.className = 'settings-v2-subsetup-stack';
+        }
+
+        let conjugationAdvancedContainer = document.getElementById('settings-v2-conjugation-advanced');
+        if (!conjugationAdvancedContainer) {
+            conjugationAdvancedContainer = document.createElement('div');
+            conjugationAdvancedContainer.id = 'settings-v2-conjugation-advanced';
+            conjugationAdvancedContainer.className = 'settings-v2-subsetup-stack';
+        }
+
+        let fillAdvancedContainer = document.getElementById('settings-v2-fill-advanced');
+        if (!fillAdvancedContainer) {
+            fillAdvancedContainer = document.createElement('div');
+            fillAdvancedContainer.id = 'settings-v2-fill-advanced';
+            fillAdvancedContainer.className = 'settings-v2-subsetup-stack';
+        }
+
+        practiceBody.appendChild(exerciseControlsContainer);
+        if (micGroup) practiceBody.appendChild(micGroup);
+        optionsContainerEl.appendChild(conjugationSetupDetails);
+        optionsContainerEl.appendChild(fillBlankSetupDetails);
+        const conjugationSetupBody = document.getElementById('settings-v2-conjugation-setup-body');
+        const fillSetupBody = document.getElementById('settings-v2-fill-setup-body');
+        if (verbSourceContainer && conjugationSetupBody) conjugationSetupBody.appendChild(verbSourceContainer);
+        if (drillsGroup && conjugationSetupBody) conjugationSetupBody.appendChild(drillsGroup);
+        if (tenseGroup && conjugationSetupBody) conjugationSetupBody.appendChild(tenseGroup);
+        if (topNGroup && conjugationSetupBody) conjugationSetupBody.appendChild(topNGroup);
+        if (sharedAdvancedContainer && conjugationSetupBody) conjugationSetupBody.appendChild(sharedAdvancedContainer);
+        if (conjugationSetupBody) {
+            conjugationSetupBody.appendChild(conjugationAdvancedContainer);
+            conjugationSetupBody.appendChild(drillActionsContainer);
+        }
+        if (fillSetupBody) fillSetupBody.appendChild(fillAdvancedContainer);
+        fillBlankSetupDetails.classList.toggle('hidden', !hasFillBlanks);
+        if (advancedGroup) advancedGroup.classList.add('hidden');
+        if (ttsGroup) {
+            ttsGroup.classList.add('settings-v2-section');
+            optionsContainerEl.appendChild(ttsGroup);
+        }
+        if (appGroup) {
+            appGroup.classList.add('settings-v2-section');
+            optionsContainerEl.appendChild(appGroup);
+        }
+
+        const micHeading = micGroup?.querySelector('h3');
+        if (micHeading) micHeading.hidden = true;
+        const drillsHeading = drillsGroup?.querySelector('h3');
+        if (drillsHeading) drillsHeading.textContent = 'Drill';
+        const drillsDesc = drillsGroup?.querySelector('.option-desc');
+        if (drillsDesc) drillsDesc.textContent = 'Choose a built-in or saved drill. Once edited, it becomes Custom.';
+        const topNHeading = topNGroup?.querySelector('h3');
+        if (topNHeading) topNHeading.textContent = 'By frequency';
+        const topNDesc = topNGroup?.querySelector('.option-desc');
+        if (topNDesc) topNDesc.textContent = 'Use frequency bands when you want a popularity-based verb pool.';
+        const tenseDesc = tenseGroup?.querySelector('.option-desc');
+        if (tenseDesc) tenseDesc.textContent = 'Choose which tenses to practice for conjugation cards.';
+
+        const decorateSummary = (detailsEl, title, summaryId, actionId = null) => {
+            if (!detailsEl) return;
+            const summary = detailsEl.querySelector(':scope > summary');
+            if (!summary || summary.dataset.v2Decorated === 'true') return;
+            summary.dataset.v2Decorated = 'true';
+            summary.textContent = '';
+
+            const copy = document.createElement('span');
+            copy.className = 'settings-v2-collapsible-copy';
+            const titleEl = document.createElement('span');
+            titleEl.className = 'settings-v2-collapsible-title';
+            titleEl.textContent = title;
+            const metaEl = document.createElement('span');
+            metaEl.className = 'settings-v2-collapsible-meta';
+            metaEl.id = summaryId;
+            copy.appendChild(titleEl);
+            copy.appendChild(metaEl);
+            summary.appendChild(copy);
+
+            if (actionId) {
+                const actions = document.createElement('span');
+                actions.className = 'settings-v2-collapsible-actions';
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.id = actionId;
+                button.className = 'settings-inline-action-btn settings-v2-heading-action-btn';
+                button.textContent = 'Install';
+                button.setAttribute('aria-label', 'Install or update app');
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (button.dataset.action === 'update') {
+                        appUpdateActionBtn?.click();
+                    } else {
+                        appInstallActionBtn?.click();
+                    }
+                });
+                actions.appendChild(button);
+                summary.appendChild(actions);
+            }
+
+            const chevron = document.createElement('span');
+            chevron.className = 'settings-v2-summary-chevron';
+            chevron.setAttribute('aria-hidden', 'true');
+            chevron.textContent = detailsEl.open ? '−' : '+';
+            summary.appendChild(chevron);
+
+            detailsEl.addEventListener('toggle', () => {
+                chevron.textContent = detailsEl.open ? '−' : '+';
+            });
+        };
+
+        decorateSummary(ttsGroup, 'Text to Speech', 'settings-v2-audio-summary');
+        decorateSummary(appGroup, 'App', 'settings-v2-app-summary', 'settings-v2-app-summary-action');
+        decorateSummary(advancedGroup, 'Customize', 'settings-v2-advanced-summary');
+        decorateSummary(verbSetGroup, 'Topics', 'settings-v2-categories-summary');
+
+        const appToggleRows = appGroup?.querySelector('.toggle-rows');
+        const micToggleRows = micGroup?.querySelector('.toggle-rows');
+        const pressToDictateRow = document.getElementById('press-to-dictate-toggle')?.closest('.toggle-row') || null;
+        const correctDictationRow = document.getElementById('correct-dictation-toggle')?.closest('.toggle-row') || null;
+        const installRow = appInstallActionBtn?.closest('.toggle-row') || null;
+        const updateRow = appUpdateActionBtn?.closest('.toggle-row') || null;
+        const versionRow = appVersionBadge?.closest('.toggle-row') || null;
+        const supportRow = document.getElementById('support-email-link')?.closest('.toggle-row') || null;
+        const idleNudgeRow = document.getElementById('idle-nudge-toggle')?.closest('.toggle-row') || null;
+        const showTipsRow = document.getElementById('show-tips-toggle')?.closest('.toggle-row') || null;
+        const themeRow = document.getElementById('theme-pills')?.closest('.toggle-row') || null;
+        const textSizeRow = document.getElementById('font-size-slider')?.closest('.toggle-row') || null;
+        if (micToggleRows && correctDictationRow) {
+            micToggleRows.insertBefore(correctDictationRow, micToggleRows.firstChild || null);
+        }
+        let tutorialActionRow = document.getElementById('settings-tutorial-action-row');
+        if (appToggleRows && !tutorialActionRow) {
+            tutorialActionRow = document.createElement('div');
+            tutorialActionRow.id = 'settings-tutorial-action-row';
+            tutorialActionRow.className = 'toggle-row settings-action-row';
+            tutorialActionRow.innerHTML = `
+                <div class="settings-row-copy">
+                    <label for="settings-tutorial-action-btn">Tutorial</label>
+                    <p id="settings-tutorial-status-text" class="setting-helper-text">Walk through the onboarding again.</p>
+                </div>
+                <button id="settings-tutorial-action-btn" type="button" class="settings-inline-action-btn">Restart tutorial</button>
+            `;
+            appToggleRows.insertBefore(tutorialActionRow, appToggleRows.firstChild || null);
+            tutorialActionRow.querySelector('#settings-tutorial-action-btn')?.addEventListener('click', () => {
+                restartTutorialFlow({ confirmRestart: true });
+            });
+        }
+        if (appToggleRows) {
+            [
+                installRow,
+                themeRow,
+                textSizeRow,
+                updateRow,
+                versionRow,
+                supportRow,
+                idleNudgeRow,
+                showTipsRow,
+                tutorialActionRow,
+                pressToDictateRow,
+            ].filter(Boolean).forEach((row) => {
+                appToggleRows.appendChild(row);
+            });
+        }
+
+        let tutorialQuickToggleRow = document.getElementById('settings-hide-tutorial-quick-btn-row');
+        if (micToggleRows && !tutorialQuickToggleRow) {
+            tutorialQuickToggleRow = document.createElement('div');
+            tutorialQuickToggleRow.id = 'settings-hide-tutorial-quick-btn-row';
+            tutorialQuickToggleRow.className = 'toggle-row';
+            tutorialQuickToggleRow.innerHTML = `
+                <div class="settings-row-copy">
+                    <label for="hide-tutorial-quick-btn-toggle">Hide tutorial button in main screen</label>
+                </div>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="hide-tutorial-quick-btn-toggle" class="toggle-input">
+                    <label for="hide-tutorial-quick-btn-toggle" class="toggle-label"></label>
+                </div>
+            `;
+            tutorialQuickToggleRow.querySelector('#hide-tutorial-quick-btn-toggle')?.addEventListener('change', (event) => {
+                setHideTutorialQuickButton(event.target.checked);
+            });
+            micToggleRows.appendChild(tutorialQuickToggleRow);
+        }
+
+        let balancedPronounsToggleRow = document.getElementById('settings-balanced-pronouns-row');
+        if (micToggleRows && !balancedPronounsToggleRow) {
+            balancedPronounsToggleRow = document.createElement('div');
+            balancedPronounsToggleRow.id = 'settings-balanced-pronouns-row';
+            balancedPronounsToggleRow.className = 'toggle-row';
+            balancedPronounsToggleRow.innerHTML = `
+                <div class="settings-row-copy">
+                    <label for="settings-balanced-pronouns-toggle">Practice all pronouns evenly</label>
+                    <p class="setting-helper-text">Split grouped pronouns so they appear more evenly in the deck.</p>
+                </div>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="settings-balanced-pronouns-toggle" class="toggle-input">
+                    <label for="settings-balanced-pronouns-toggle" class="toggle-label"></label>
+                </div>
+            `;
+            balancedPronounsToggleRow.querySelector('#settings-balanced-pronouns-toggle')?.addEventListener('change', (event) => {
+                cardGenerationOptions.balancedPronouns = !!event.target.checked;
+                saveOptions();
+                updateVerbFiltersCountLabel();
+            });
+            micToggleRows.appendChild(balancedPronounsToggleRow);
+        }
+        const balancedPronounsToggle = document.getElementById('settings-balanced-pronouns-toggle');
+        if (balancedPronounsToggle) {
+            balancedPronounsToggle.checked = !!cardGenerationOptions.balancedPronouns;
+        }
+
+        updateSettingsV2NavState();
+        return {
+            exerciseControls: document.getElementById('settings-v2-exercise-controls'),
+            verbSourceContainer,
+            sharedAdvancedContainer,
+            conjugationAdvancedContainer,
+            fillAdvancedContainer,
+            conjugationSetupDetails,
+            fillBlankSetupDetails,
+            drillActionsContainer,
+            practiceSummary: document.getElementById('settings-v2-practice-summary'),
+            setupSummary: null,
+        };
+    };
+
+    const updateSettingsV2LayoutState = () => {
+        if (!isSettingsV2Enabled) return;
+        try {
+            const practiceSummary = document.getElementById('settings-v2-practice-summary');
+            const conjugationSetupDetails = document.getElementById('settings-v2-conjugation-setup');
+            const fillBlankSetupDetails = document.getElementById('settings-v2-fill-setup');
+            const conjugationSetupSummary = document.getElementById('settings-v2-conjugation-setup-summary');
+            const fillSetupSummary = document.getElementById('settings-v2-fill-setup-summary');
+            const hasFillBlanks = hasFillBlankExerciseCapability();
+            const currentExerciseMode = normalizeCardTypeModeForCapabilities(cardGenerationOptions.cardTypeMode);
+            const sourceMode = currentExerciseMode === 'frame' ? 'topic' : getEffectiveVerbSourceMode();
+            const activeVerbSet = getResolvedVerbSetSelection();
+            const tenseCount = getSelectedTenseCount();
+            const filterCount = getActiveVerbFilterCount();
+            const currentVerbCount = computeActiveVerbPoolCount();
+            const topicCount = activeVerbSet?.selectionCount || (activeVerbSet ? 1 : 0);
+            const topicSummary = activeVerbSet
+                ? topicCount > 1
+                    ? `${topicCount} topics enabled`
+                    : activeVerbSet.name
+                : 'All verbs';
+            const fillTopicSummary = activeVerbSet
+                ? topicCount > 1
+                    ? `${topicCount} topics enabled`
+                    : activeVerbSet.name
+                : 'All topics';
+            const conjugationSummary = (() => {
+                if (sourceMode === 'topic' && activeVerbSet) {
+                    return `Custom · ${topicCount > 1 ? `${topicCount} topics` : activeVerbSet.name}`;
+                }
+                const parts = [`${getCurrentDrillDisplayLabel()} drill`, `${tenseCount} ${tenseCount === 1 ? 'tense' : 'tenses'}`];
+                if (filterCount > 0) {
+                    parts.push(`${filterCount} ${filterCount === 1 ? 'filter' : 'filters'}`);
+                }
+                return parts.join(' · ');
+            })();
+
+            if (practiceSummary) {
+                if (currentExerciseMode === 'both') {
+                    practiceSummary.innerHTML = `
+                        <span class="settings-v2-summary-primary">Mixed</span><br>
+                        <span class="settings-v2-summary-detail">Conjugation: ${escapeHtml(conjugationSummary)}</span><br>
+                        <span class="settings-v2-summary-detail">Fill Blanks: ${escapeHtml(fillTopicSummary)}</span>
+                    `;
+                } else if (currentExerciseMode === 'frame') {
+                    practiceSummary.innerHTML = `
+                        <span class="settings-v2-summary-primary">Fill Blanks</span><br>
+                        <span class="settings-v2-summary-detail">${escapeHtml(fillTopicSummary)}</span>
+                    `;
+                } else {
+                    practiceSummary.innerHTML = `
+                        <span class="settings-v2-summary-primary">Conjugation</span><br>
+                        <span class="settings-v2-summary-detail">${escapeHtml(conjugationSummary)}</span>
+                    `;
+                }
+            }
+            if (fillBlankSetupDetails) {
+                fillBlankSetupDetails.classList.toggle('hidden', !hasFillBlanks);
+            }
+            if (conjugationSetupDetails) {
+                if (currentExerciseMode !== 'frame') {
+                    conjugationSetupDetails.setAttribute('open', '');
+                } else {
+                    conjugationSetupDetails.removeAttribute('open');
+                }
+            }
+            if (fillBlankSetupDetails && hasFillBlanks) {
+                if (currentExerciseMode !== 'conjugation') {
+                    fillBlankSetupDetails.setAttribute('open', '');
+                } else {
+                    fillBlankSetupDetails.removeAttribute('open');
+                }
+            }
+            if (conjugationSetupSummary) {
+                conjugationSetupSummary.textContent = currentExerciseMode === 'frame'
+                    ? 'Configure conjugation questions (currently disabled)'
+                    : 'Configure conjugation questions (currently enabled)';
+            }
+            if (fillSetupSummary) {
+                fillSetupSummary.textContent = currentExerciseMode === 'conjugation'
+                    ? 'Configure fill-in-the-blank questions (currently disabled)'
+                    : 'Configure fill-in-the-blank questions (currently enabled)';
+            }
+
+            const balancedPronounsRow = document.getElementById('settings-balanced-pronouns-row');
+            if (balancedPronounsRow) {
+                balancedPronounsRow.classList.toggle('hidden', currentExerciseMode === 'frame');
+            }
+
+            const categoriesSummary = document.getElementById('settings-v2-categories-summary');
+            if (categoriesSummary) {
+                if (activeVerbSet) {
+                    const topicCount = activeVerbSet.selectionCount || 1;
+                    categoriesSummary.textContent = `${topicCount} ${topicCount === 1 ? 'topic' : 'topics'} · ${activeVerbSet.count} verbs`;
+                } else {
+                    categoriesSummary.textContent = 'Choose one or more topics.';
+                }
+            }
+            const advancedSummary = document.getElementById('settings-v2-advanced-summary');
+            if (advancedSummary) {
+                advancedSummary.textContent = sourceMode === 'topic'
+                    ? 'Sharing, reset, and phrase-specific filters'
+                    : 'Verb traits, frequency weights, reset, and sharing';
+            }
+            const advancedGroup = document.getElementById('advanced-group');
+            if (advancedGroup) {
+                const showAdvanced = sourceMode === 'frequency' && currentExerciseMode !== 'frame';
+                advancedGroup.classList.toggle('hidden', !showAdvanced);
+                if (!showAdvanced && advancedGroup instanceof HTMLDetailsElement) {
+                    advancedGroup.removeAttribute('open');
+                }
+            }
+            const audioSummary = document.getElementById('settings-v2-audio-summary');
+            if (audioSummary) {
+                audioSummary.textContent = '';
+            }
+            const appSummary = document.getElementById('settings-v2-app-summary');
+            if (appSummary) {
+                appSummary.textContent = '';
+            }
+            const appSummaryAction = document.getElementById('settings-v2-app-summary-action');
+            if (appSummaryAction) {
+                const useUpdate = !!(appUpdateState.updateAvailable || appUpdateState.debugForceVisible);
+                appSummaryAction.dataset.action = useUpdate ? 'update' : 'install';
+                appSummaryAction.textContent = useUpdate ? 'Update' : (installState.installed ? 'Installed' : 'Install');
+                appSummaryAction.disabled = useUpdate ? !!appUpdateActionBtn?.disabled : !!appInstallActionBtn?.disabled;
+            }
+            const tutorialStatusText = document.getElementById('settings-tutorial-status-text');
+            if (tutorialStatusText) {
+                tutorialStatusText.textContent = tutorialState.active
+                    ? 'Tutorial is currently in progress.'
+                    : 'Walk through the onboarding again.';
+            }
+            const tutorialActionBtn = document.getElementById('settings-tutorial-action-btn');
+            if (tutorialActionBtn) {
+                tutorialActionBtn.textContent = tutorialState.active ? 'Restart tutorial' : 'Start tutorial';
+            }
+
+            updateSettingsV2NavState();
+        } catch (error) {
+            return;
+        }
+    };
+
+    window._updateSettingsV2LayoutState = updateSettingsV2LayoutState;
+
     // --- Options UI Logic ---
-    const populateOptions = () => {
+    const populateOptions = (options = {}) => {
+        const { preserveAnchorId = null } = options || {};
+        const preservedAnchor = preserveAnchorId ? document.getElementById(preserveAnchorId) : null;
+        const preservedAnchorTop = preservedAnchor ? preservedAnchor.getBoundingClientRect().top : null;
+        const settingsV2Refs = ensureSettingsV2Layout();
+        const settingsV2ExerciseControls = settingsV2Refs?.exerciseControls || null;
+        const settingsV2VerbSourceContainer = settingsV2Refs?.verbSourceContainer || null;
+        const settingsV2DrillActionsContainer = settingsV2Refs?.drillActionsContainer || null;
+        const settingsV2SharedAdvancedContainer = settingsV2Refs?.sharedAdvancedContainer || null;
+        const settingsV2ConjugationAdvancedContainer = settingsV2Refs?.conjugationAdvancedContainer || null;
+        const settingsV2FillAdvancedContainer = settingsV2Refs?.fillAdvancedContainer || null;
+
         // Helper function to create a slider control for a given weight object
         const tenseDisplayNames = {
             'present': 'présent', 'passeCompose': 'passé composé',
@@ -7851,9 +8984,82 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeVerbSetSelection = getResolvedVerbSetSelection();
         const activeVerbSetSelections = getResolvedVerbSetSelections();
         const activeVerbSetIds = new Set(activeVerbSetSelections.map((selection) => selection.id).filter(Boolean));
+        const activeVerbSourceMode = getEffectiveVerbSourceMode();
+        const hasFillBlanks = hasFillBlankExerciseCapability();
+        const currentExerciseMode = normalizeCardTypeModeForCapabilities(cardGenerationOptions.cardTypeMode);
+        if (cardGenerationOptions.cardTypeMode !== currentExerciseMode) {
+            cardGenerationOptions.cardTypeMode = currentExerciseMode;
+            saveOptions({ preserveActiveDrill: true });
+        }
+        const isPhraseExercise = currentExerciseMode === 'frame';
+        const useTopicOnlyForFill = currentExerciseMode === 'frame';
+        const effectiveVerbSourceMode = useTopicOnlyForFill ? 'topic' : activeVerbSourceMode;
         const verbSetGroup = document.getElementById('verb-set-group');
-        if (verbSetGroup instanceof HTMLDetailsElement && activeVerbSetSelection) {
-            verbSetGroup.open = true;
+        const topNGroup = document.getElementById('settings-topn-group');
+        const tenseGroup = document.getElementById('settings-tenses-group');
+        const conjugationSetupBody = document.getElementById('settings-v2-conjugation-setup-body');
+        const fillSetupBody = document.getElementById('settings-v2-fill-setup-body');
+        if (verbSetGroup instanceof HTMLDetailsElement) {
+            if (effectiveVerbSourceMode === 'topic' || useTopicOnlyForFill) {
+                verbSetGroup.setAttribute('open', '');
+            } else {
+                verbSetGroup.removeAttribute('open');
+            }
+        }
+
+        if (settingsV2VerbSourceContainer) {
+            settingsV2VerbSourceContainer.innerHTML = '';
+            settingsV2VerbSourceContainer.classList.toggle('hidden', useTopicOnlyForFill);
+            if (!useTopicOnlyForFill) {
+                const sourceRow = createSegmentedPillRow(
+                    'Verb source',
+                    '',
+                    [
+                        { value: 'topic', label: 'By Topic' },
+                        { value: 'frequency', label: 'By Frequency' }
+                    ],
+                    effectiveVerbSourceMode,
+                    (value) => {
+                        if (value === 'frequency' && getResolvedVerbSetSelection()) {
+                            clearVerbSetSelection({ preserveActiveDrill: true });
+                        }
+                        setSettingsVerbSourceMode(value, {
+                            repopulate: true,
+                            repopulateOptions: { preserveAnchorId: 'settings-v2-conjugation-setup' }
+                        });
+                    }
+                );
+                settingsV2VerbSourceContainer.appendChild(sourceRow);
+                const sourceSummary = document.createElement('p');
+                sourceSummary.className = 'option-desc settings-v2-verb-source-summary';
+                sourceSummary.textContent = effectiveVerbSourceMode === 'topic'
+                    ? 'Choose one or more topics.'
+                    : 'Use Top N or the weights below.';
+                settingsV2VerbSourceContainer.appendChild(sourceSummary);
+            }
+        }
+
+        if (topNGroup) {
+            topNGroup.classList.toggle('hidden', effectiveVerbSourceMode !== 'frequency');
+        }
+        const drillsGroup = document.getElementById('settings-drills-group');
+        if (drillsGroup) {
+            drillsGroup.classList.toggle('hidden', effectiveVerbSourceMode !== 'frequency');
+        }
+        if (verbSetGroup) {
+            verbSetGroup.classList.toggle('hidden', effectiveVerbSourceMode !== 'topic');
+            if (effectiveVerbSourceMode === 'topic') {
+                if (currentExerciseMode === 'conjugation') {
+                    const beforeNode = tenseGroup || settingsV2ConjugationAdvancedContainer || settingsV2DrillActionsContainer || null;
+                    if (conjugationSetupBody) conjugationSetupBody.insertBefore(verbSetGroup, beforeNode);
+                } else {
+                    const beforeNode = settingsV2FillAdvancedContainer || null;
+                    if (fillSetupBody) fillSetupBody.insertBefore(verbSetGroup, beforeNode);
+                }
+            }
+        }
+        if (tenseGroup) {
+            tenseGroup.classList.remove('hidden');
         }
 
         tenseWeightsContainer.innerHTML = '';
@@ -7894,6 +9100,34 @@ document.addEventListener('DOMContentLoaded', () => {
             verbPoolBasicContainer.appendChild(verbPoolPanel);
         }
 
+        const TOPIC_EMOJI_BY_NAME = {
+            'Super Everyday': '🏠',
+            'Sports & Fitness': '🏃',
+            'Cooking & Food': '🍳',
+            'Outdoors & Nature': '🌿',
+            'Woodworking': '🪵',
+            'Art & Design': '🎨',
+            'Nightlife & Partying': '🎉',
+            'Music': '🎵',
+            'History & Culture': '🏛️',
+            'Politics & Current Events': '🗞️',
+            'Cinema & Series': '🎬',
+            'Relationship Drama': '💔',
+            'Office & Admin': '🗂️',
+            'Bureaucracy & Delivery': '📦',
+            'Tech & Digital Work': '💻',
+            'Travel & Tourism': '✈️',
+            'Driving & Road Code': '🚗',
+            'Crafts & Making': '🧵',
+            'Education & Learning': '📚',
+        };
+        const formatTopicDisplayName = (name) => {
+            const label = String(name || '').trim();
+            if (!label) return '';
+            const emoji = TOPIC_EMOJI_BY_NAME[label];
+            return emoji ? `${emoji} ${label}` : label;
+        };
+
         if (verbSetContainer) {
             verbSetContainer.innerHTML = '';
             const panel = document.createElement('div');
@@ -7906,10 +9140,22 @@ document.addEventListener('DOMContentLoaded', () => {
             allCard.type = 'button';
             allCard.className = `verb-set-card${activeVerbSetSelection ? '' : ' active'}`;
             allCard.innerHTML = `
-                <span class="verb-set-card-title">All verbs</span>
-                <span class="verb-set-card-meta">Use the regular Top N pool.</span>
+                <span class="verb-set-card-title">${isPhraseExercise ? 'All topics' : 'All verbs'}</span>
+                <span class="verb-set-card-meta">${isPhraseExercise ? 'Use the full fill-blanks deck across every topic.' : 'Leave topic mode and go back to the frequency pool.'}</span>
             `;
-            allCard.addEventListener('click', () => clearVerbSetSelection());
+            allCard.addEventListener('click', () => {
+                clearVerbSetSelection({ preserveActiveDrill: true });
+                if (isPhraseExercise) {
+                    populateOptions();
+                    updateVerbFiltersCountLabel();
+                    updateSettingsV2LayoutState();
+                } else {
+                    setSettingsVerbSourceMode('frequency', {
+                        repopulate: true,
+                        repopulateOptions: { preserveAnchorId: 'verb-set-group' }
+                    });
+                }
+            });
             grid.appendChild(allCard);
 
             builtInVerbSets.forEach((set) => {
@@ -7918,10 +9164,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.type = 'button';
                 card.className = `verb-set-card${isActive ? ' active' : ''}`;
                 card.innerHTML = `
-                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
-                    <span class="verb-set-card-meta">${escapeHtml(set.scope || 'Built-in')} · ${set.verbs.length} verbs</span>
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(set.name))}</span>
+                    <span class="verb-set-card-meta">${escapeHtml(set.scope || 'Built-in topic')} · ${set.verbs.length} verbs</span>
                 `;
-                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                card.addEventListener('click', () => {
+                    setSettingsVerbSourceMode('topic', { repopulate: false });
+                    toggleVerbSetSelection(set.id);
+                });
                 grid.appendChild(card);
             });
 
@@ -7931,14 +9180,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.type = 'button';
                 card.className = `verb-set-card${isActive ? ' active' : ''}`;
                 card.innerHTML = `
-                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
-                    <span class="verb-set-card-meta">Saved · ${set.verbs.length} verbs</span>
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(set.name))}</span>
+                    <span class="verb-set-card-meta">Saved topic · ${set.verbs.length} verbs</span>
                     <span class="verb-set-card-actions">
                         <span class="verb-set-card-action" data-action="edit">Edit</span>
                         <span class="verb-set-card-action" data-action="delete">Delete</span>
                     </span>
                 `;
-                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                card.addEventListener('click', () => {
+                    setSettingsVerbSourceMode('topic', { repopulate: false });
+                    toggleVerbSetSelection(set.id);
+                });
                 card.querySelector('[data-action="edit"]')?.addEventListener('click', (event) => {
                     event.stopPropagation();
                     openVerbSetModal({ mode: 'edit', setId: set.id });
@@ -7955,7 +9207,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sharedCard.type = 'button';
                 sharedCard.className = 'verb-set-card active shared-set-card';
                 sharedCard.innerHTML = `
-                    <span class="verb-set-card-title">${escapeHtml(activeVerbSetSelection.name)}</span>
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(activeVerbSetSelection.name))}</span>
                     <span class="verb-set-card-meta">Shared set · ${activeVerbSetSelection.count} verbs</span>
                 `;
                 grid.appendChild(sharedCard);
@@ -7965,8 +9217,8 @@ document.addEventListener('DOMContentLoaded', () => {
             newSetCard.type = 'button';
             newSetCard.className = 'verb-set-card new-set-card';
             newSetCard.innerHTML = `
-                <span class="verb-set-card-title">New category</span>
-                <span class="verb-set-card-meta">Paste a list of infinitives.</span>
+                <span class="verb-set-card-title">New topic</span>
+                <span class="verb-set-card-meta">Paste a list of infinitives to make a custom topic.</span>
             `;
             newSetCard.addEventListener('click', () => openVerbSetModal({ mode: 'create' }));
             grid.appendChild(newSetCard);
@@ -7977,8 +9229,10 @@ document.addEventListener('DOMContentLoaded', () => {
             summary.className = 'verb-set-summary';
             const categoryCount = activeVerbSetSelection?.selectionCount || (activeVerbSetSelection ? 1 : 0);
             summary.textContent = activeVerbSetSelection
-                ? `Exact pool active: ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} with ${activeVerbSetSelection.count} unique verbs. ${activeVerbSetSelection.scope ? `${activeVerbSetSelection.scope}. ` : ''}Tenses still apply.`
-                : 'When categories are active, their verbs are merged into one exact pool for drills and sharing.';
+                ? `${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'} · ${activeVerbSetSelection.count} verbs${isPhraseExercise ? '' : ' · tenses still apply'}`
+                : isPhraseExercise
+                    ? 'Choose one or more topics, or leave All topics.'
+                    : 'Choose one or more topics, or leave All verbs.';
             panel.appendChild(summary);
 
             if (activeVerbSetSelection?.source === 'shared') {
@@ -8000,269 +9254,353 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (advancedPracticeContainer) {
             advancedPracticeContainer.innerHTML = '';
-            const advancedSections = document.createElement('div');
-            advancedSections.className = 'advanced-sections';
-
-            const frequencyBehaviorCard = createAdvancedCard('Frequency behavior');
-            if (activeVerbSetSelection) {
-                const ignoredHelper = document.createElement('div');
-                ignoredHelper.className = 'advanced-action-helper';
-                ignoredHelper.textContent = `Verb set "${activeVerbSetSelection.name}" is active, so Top N settings below are currently ignored.`;
-                frequencyBehaviorCard.appendChild(ignoredHelper);
+            if (settingsV2ExerciseControls) settingsV2ExerciseControls.innerHTML = '';
+            if (settingsV2DrillActionsContainer) settingsV2DrillActionsContainer.innerHTML = '';
+            if (settingsV2SharedAdvancedContainer) settingsV2SharedAdvancedContainer.innerHTML = '';
+            if (settingsV2ConjugationAdvancedContainer) settingsV2ConjugationAdvancedContainer.innerHTML = '';
+            if (settingsV2FillAdvancedContainer) settingsV2FillAdvancedContainer.innerHTML = '';
+            const sharedSections = document.createElement('div');
+            sharedSections.className = 'advanced-sections';
+            const conjugationSections = document.createElement('div');
+            conjugationSections.className = 'advanced-sections';
+            let conjugationAdvancedDetails = null;
+            let conjugationAdvancedBody = null;
+            if (effectiveVerbSourceMode === 'frequency') {
+                conjugationAdvancedDetails = document.createElement('details');
+                conjugationAdvancedDetails.className = 'option-group settings-collapsible settings-v2-advanced-details';
+                conjugationAdvancedDetails.innerHTML = `
+                    <summary>
+                        <span class="settings-v2-collapsible-copy">
+                            <span class="settings-v2-collapsible-title">Advanced</span>
+                            <span class="settings-v2-collapsible-meta">Reflexive, verb traits, and detailed frequency weights</span>
+                        </span>
+                    </summary>
+                    <div class="collapsible-body"></div>
+                `;
+                conjugationAdvancedBody = conjugationAdvancedDetails.querySelector('.collapsible-body');
             }
-            frequencyBehaviorCard.appendChild(createToggleRow(
-                'Favor common verbs',
-                'When off, included verbs are practiced more evenly across the selected pool.',
-                !!cardGenerationOptions.hierarchical,
-                (checked) => {
-                    cardGenerationOptions.hierarchical = checked;
-                    saveOptions();
-                    populateOptions();
-                }
-            ));
-            if (hasRareFrequencyBucket()) {
+            if (effectiveVerbSourceMode === 'frequency') {
+                const frequencyBehaviorCard = createAdvancedCard('Frequency behavior');
                 frequencyBehaviorCard.appendChild(createToggleRow(
-                    'Include rare verbs',
-                    `Adds verbs ${describeRareFrequencyBucket()} as a separate outlier bucket.`,
-                    (cardGenerationOptions.frequencyWeights.rare || 0) > 0,
+                    'Favor common verbs',
+                    'When off, included verbs are practiced more evenly across the selected pool.',
+                    !!cardGenerationOptions.hierarchical,
                     (checked) => {
-                        cardGenerationOptions.frequencyWeights.rare = checked ? 1 : 0;
+                        cardGenerationOptions.hierarchical = checked;
                         saveOptions();
                         populateOptions();
-                        updateVerbFiltersCountLabel();
                     }
                 ));
-            }
-            advancedSections.appendChild(frequencyBehaviorCard);
-
-            const freqCard = createAdvancedCard('Detailed frequency');
-            const freqHelper = document.createElement('div');
-            freqHelper.className = 'advanced-action-helper';
-            freqHelper.textContent = 'Fine-tune the exact weights when the simple Verb Pool controls are not enough.';
-            const detailedFrequencyContainer = document.createElement('div');
-            const freqEntries = Object.entries(cardGenerationOptions.frequencyWeights);
-            freqEntries.sort(([a], [b]) => {
-                return getFrequencySortIndex(a) - getFrequencySortIndex(b);
-            });
-            freqEntries.forEach(([freq, weight]) => createSlider(freq, weight, detailedFrequencyContainer, 'frequencyWeights'));
-            freqCard.appendChild(detailedFrequencyContainer);
-            freqCard.appendChild(freqHelper);
-            advancedSections.appendChild(freqCard);
-
-            const practiceCard = createAdvancedCard('Practice filters');
-            if (activeVerbSetSelection) {
-                const filtersIgnoredHelper = document.createElement('div');
-                filtersIgnoredHelper.className = 'advanced-action-helper';
-                filtersIgnoredHelper.textContent = `Verb filters are ignored while "${activeVerbSetSelection.name}" is selected.`;
-                practiceCard.appendChild(filtersIgnoredHelper);
-            }
-            practiceCard.appendChild(createToggleRow(
-                'Practice all pronouns evenly',
-                'Split grouped pronouns so they appear more evenly in the deck.',
-                !!cardGenerationOptions.balancedPronouns,
-                (checked) => {
-                    cardGenerationOptions.balancedPronouns = checked;
-                    saveOptions();
-                    updateVerbFiltersCountLabel();
-                }
-            ));
-
-            const cardFamilyRow = createSegmentedPillRow(
-                'Card family',
-                'Choose conjugation cards, frame cards, or both. Frame cards are present-only for now, and quarantined verbs stay excluded.',
-                [
-                    { value: 'conjugation', label: 'Conjugation' },
-                    { value: 'both', label: 'Both' },
-                    { value: 'frame', label: 'Frames' }
-                ],
-                normalizeCardTypeMode(cardGenerationOptions.cardTypeMode),
-                (value) => {
-                    cardGenerationOptions.cardTypeMode = normalizeCardTypeMode(value);
-                    saveOptions();
-                    updateVerbFiltersCountLabel();
-                }
-            );
-            practiceCard.appendChild(cardFamilyRow);
-
-            const reflexiveRow = createSegmentedPillRow(
-                'Reflexive verbs',
-                'Limit the drill to reflexives, exclude them, or mix both.',
-                [
-                    { value: 'exclude', label: 'Without' },
-                    { value: 'include', label: 'Both' },
-                    { value: 'only', label: 'Only' }
-                ],
-                cardGenerationOptions.reflexiveMode || 'include',
-                (value) => {
-                    cardGenerationOptions.reflexiveMode = value;
-                    saveOptions();
-                    updateVerbFiltersCountLabel();
-                }
-            );
-            practiceCard.appendChild(reflexiveRow);
-
-            const prepositionRow = createSegmentedPillRow(
-                'Prepositional verbs',
-                'Keep all verbs, or only verbs that take a preposition in at least one playable frame.',
-                [
-                    { value: 'all', label: 'All' },
-                    { value: 'only', label: 'Only' }
-                ],
-                cardGenerationOptions.prepositionalVerbMode || 'all',
-                (value) => {
-                    cardGenerationOptions.prepositionalVerbMode = value === 'only' ? 'only' : 'all';
-                    saveOptions();
-                    updateVerbFiltersCountLabel();
-                }
-            );
-            practiceCard.appendChild(prepositionRow);
-
-            const filtersSection = document.createElement('div');
-            filtersSection.className = 'filters-section';
-            filtersSection.style.marginTop = '1rem';
-            filtersSection.style.padding = '0.75em 0.9em';
-            filtersSection.style.border = '1px solid var(--border-color)';
-            filtersSection.style.borderRadius = '12px';
-            filtersSection.style.background = 'var(--settings-subtle-bg, var(--card-bg, #f8f9fa))';
-
-            const heading = document.createElement('div');
-            heading.textContent = 'Verb filters';
-            heading.style.fontWeight = '700';
-            heading.style.fontSize = '1.05rem';
-            heading.style.color = 'var(--accent-color, #3498db)';
-            heading.style.margin = '0.2em 0 0.6em 0';
-            filtersSection.appendChild(heading);
-
-            const createCheckboxGroup = (labelText, options, currentValues) => {
-                const group = document.createElement('div');
-                group.style.margin = '0.5rem 0 0.7rem';
-
-                const label = document.createElement('div');
-                label.textContent = labelText;
-                label.style.fontWeight = '600';
-                label.style.fontSize = '0.9rem';
-                label.style.color = 'var(--text-color, #2c3e50)';
-                label.style.marginBottom = '0.45rem';
-                group.appendChild(label);
-
-                const row = document.createElement('div');
-                row.style.display = 'flex';
-                row.style.flexWrap = 'wrap';
-                row.style.gap = '0.4rem';
-
-                options.forEach(({ value, text }) => {
-                    const pill = document.createElement('label');
-                    pill.style.display = 'inline-flex';
-                    pill.style.alignItems = 'center';
-                    pill.style.padding = '0.28em 0.8em';
-                    pill.style.borderRadius = '999px';
-                    pill.style.border = '1.5px solid var(--border-color, #e9ecef)';
-                    pill.style.cursor = 'pointer';
-                    pill.style.fontSize = '0.88rem';
-                    pill.style.fontWeight = '600';
-                    pill.style.userSelect = 'none';
-                    pill.style.transition = 'background 0.15s, border-color 0.15s, opacity 0.15s';
-
-                    const cb = document.createElement('input');
-                    cb.type = 'checkbox';
-                    cb.checked = currentValues[value] !== false;
-                    cb.style.display = 'none';
-
-                    const applyPillStyle = () => {
-                        if (cb.checked) {
-                            pill.style.background = 'var(--accent-color, #3498db)';
-                            pill.style.borderColor = 'var(--accent-color, #3498db)';
-                            pill.style.color = 'var(--settings-chip-active-text, #fff)';
-                            pill.style.opacity = '1';
-                        } else {
-                            pill.style.background = 'transparent';
-                            pill.style.borderColor = 'var(--border-color, #e9ecef)';
-                            pill.style.color = 'var(--text-color, #2c3e50)';
-                            pill.style.opacity = '0.45';
+                if (hasRareFrequencyBucket()) {
+                    frequencyBehaviorCard.appendChild(createToggleRow(
+                        'Include rare verbs',
+                        `Adds verbs ${describeRareFrequencyBucket()} as a separate outlier bucket.`,
+                        (cardGenerationOptions.frequencyWeights.rare || 0) > 0,
+                        (checked) => {
+                            cardGenerationOptions.frequencyWeights.rare = checked ? 1 : 0;
+                            saveOptions();
+                            populateOptions();
+                            updateVerbFiltersCountLabel();
                         }
-                    };
-                    applyPillStyle();
+                    ));
+                }
+                conjugationAdvancedBody?.appendChild(frequencyBehaviorCard);
 
-                    cb.addEventListener('change', () => {
-                        currentValues[value] = cb.checked;
-                        applyPillStyle();
+                const freqCard = createAdvancedCard('Detailed frequency');
+                const freqHelper = document.createElement('div');
+                freqHelper.className = 'advanced-action-helper';
+                freqHelper.textContent = 'Fine-tune the exact weights when the simple Verb Source controls are not enough.';
+                const detailedFrequencyContainer = document.createElement('div');
+                const freqEntries = Object.entries(cardGenerationOptions.frequencyWeights);
+                freqEntries.sort(([a], [b]) => {
+                    return getFrequencySortIndex(a) - getFrequencySortIndex(b);
+                });
+                freqEntries.forEach(([freq, weight]) => createSlider(freq, weight, detailedFrequencyContainer, 'frequencyWeights'));
+                freqCard.appendChild(detailedFrequencyContainer);
+                freqCard.appendChild(freqHelper);
+                const practiceCard = createAdvancedCard('Verb traits');
+                const reflexiveRow = createSegmentedPillRow(
+                    'Reflexive verbs',
+                    'Limit the drill to reflexives, exclude them, or mix both.',
+                    [
+                        { value: 'exclude', label: 'Without' },
+                        { value: 'include', label: 'Both' },
+                        { value: 'only', label: 'Only' }
+                    ],
+                    cardGenerationOptions.reflexiveMode || 'include',
+                    (value) => {
+                        cardGenerationOptions.reflexiveMode = value;
                         saveOptions();
                         updateVerbFiltersCountLabel();
+                    }
+                );
+                practiceCard.appendChild(reflexiveRow);
+
+                const filtersSection = document.createElement('div');
+                filtersSection.className = 'filters-section';
+                filtersSection.style.marginTop = '1rem';
+                filtersSection.style.padding = '0.75em 0.9em';
+                filtersSection.style.border = '1px solid var(--border-color)';
+                filtersSection.style.borderRadius = '12px';
+                filtersSection.style.background = 'var(--settings-subtle-bg, var(--card-bg, #f8f9fa))';
+
+                const heading = document.createElement('div');
+                heading.textContent = 'Verb traits';
+                heading.style.fontWeight = '700';
+                heading.style.fontSize = '1.05rem';
+                heading.style.color = 'var(--accent-color, #3498db)';
+                heading.style.margin = '0.2em 0 0.6em 0';
+                filtersSection.appendChild(heading);
+
+                const createCheckboxGroup = (labelText, options, currentValues) => {
+                    const group = document.createElement('div');
+                    group.style.margin = '0.5rem 0 0.7rem';
+
+                    const label = document.createElement('div');
+                    label.textContent = labelText;
+                    label.style.fontWeight = '600';
+                    label.style.fontSize = '0.9rem';
+                    label.style.color = 'var(--text-color, #2c3e50)';
+                    label.style.marginBottom = '0.45rem';
+                    group.appendChild(label);
+
+                    const row = document.createElement('div');
+                    row.style.display = 'flex';
+                    row.style.flexWrap = 'wrap';
+                    row.style.gap = '0.4rem';
+
+                    options.forEach(({ value, text }) => {
+                        const pill = document.createElement('label');
+                        pill.style.display = 'inline-flex';
+                        pill.style.alignItems = 'center';
+                        pill.style.padding = '0.28em 0.8em';
+                        pill.style.borderRadius = '999px';
+                        pill.style.border = '1.5px solid var(--border-color, #e9ecef)';
+                        pill.style.cursor = 'pointer';
+                        pill.style.fontSize = '0.88rem';
+                        pill.style.fontWeight = '600';
+                        pill.style.userSelect = 'none';
+                        pill.style.transition = 'background 0.15s, border-color 0.15s, opacity 0.15s';
+
+                        const cb = document.createElement('input');
+                        cb.type = 'checkbox';
+                        cb.checked = currentValues[value] !== false;
+                        cb.style.display = 'none';
+
+                        const applyPillStyle = () => {
+                            if (cb.checked) {
+                                pill.style.background = 'var(--accent-color, #3498db)';
+                                pill.style.borderColor = 'var(--accent-color, #3498db)';
+                                pill.style.color = 'var(--settings-chip-active-text, #fff)';
+                                pill.style.opacity = '1';
+                            } else {
+                                pill.style.background = 'transparent';
+                                pill.style.borderColor = 'var(--border-color, #e9ecef)';
+                                pill.style.color = 'var(--text-color, #2c3e50)';
+                                pill.style.opacity = '0.45';
+                            }
+                        };
+                        applyPillStyle();
+
+                        cb.addEventListener('change', () => {
+                            currentValues[value] = cb.checked;
+                            applyPillStyle();
+                            saveOptions();
+                            updateVerbFiltersCountLabel();
+                        });
+
+                        pill.appendChild(cb);
+                        pill.appendChild(document.createTextNode(text));
+                        row.appendChild(pill);
                     });
 
-                    pill.appendChild(cb);
-                    pill.appendChild(document.createTextNode(text));
-                    row.appendChild(pill);
-                });
+                    group.appendChild(row);
+                    return group;
+                };
 
-                group.appendChild(row);
-                return group;
-            };
+                const regularityGroup = createCheckboxGroup(
+                    'Regular Vs Irregular',
+                    [
+                        { value: 'regular', text: 'Regular' },
+                        { value: 'irregular', text: 'Irregular' },
+                    ],
+                    cardGenerationOptions.regularityFilter
+                );
+                filtersSection.appendChild(regularityGroup);
 
-            const regularityGroup = createCheckboxGroup(
-                'Regular Vs Irregular',
-                [
-                    { value: 'regular', text: 'Regular' },
-                    { value: 'irregular', text: 'Irregular' },
-                ],
-                cardGenerationOptions.regularityFilter
+                const endingGroup = createCheckboxGroup(
+                    'Verb Ending',
+                    [
+                        { value: 'er', text: '-er' },
+                        { value: 'ir', text: '-ir' },
+                        { value: 're', text: '-re' },
+                        { value: 'other', text: 'other' },
+                    ],
+                    cardGenerationOptions.endingFilter
+                );
+                filtersSection.appendChild(endingGroup);
+
+                const countEl = document.createElement('div');
+                countEl.id = 'verb-filters-count';
+                countEl.style.marginTop = '0.6rem';
+                countEl.style.fontSize = '0.95rem';
+                countEl.style.fontWeight = '600';
+                countEl.style.color = 'var(--meta-color, #6c757d)';
+                countEl.textContent = 'In play: …';
+                filtersSection.appendChild(countEl);
+
+                practiceCard.appendChild(filtersSection);
+                conjugationAdvancedBody?.appendChild(practiceCard);
+                conjugationAdvancedBody?.appendChild(freqCard);
+            }
+
+            const cardFamilyRow = createSegmentedPillRow(
+                'Exercise type',
+                '',
+                hasFillBlanks
+                    ? [
+                        { value: 'conjugation', label: 'Conjugation' },
+                        { value: 'both', label: 'Mixed' },
+                        { value: 'frame', label: 'Fill Blanks' }
+                    ]
+                    : [
+                        { value: 'conjugation', label: 'Conjugation' }
+                    ],
+                currentExerciseMode,
+                (value) => {
+                    cardGenerationOptions.cardTypeMode = normalizeCardTypeModeForCapabilities(value);
+                    saveOptions();
+                    populateOptions();
+                    updateVerbFiltersCountLabel();
+                    updateSettingsV2LayoutState();
+                }
             );
-            filtersSection.appendChild(regularityGroup);
+            if (settingsV2ExerciseControls && hasFillBlanks) {
+                settingsV2ExerciseControls.appendChild(cardFamilyRow);
+            }
 
-            const endingGroup = createCheckboxGroup(
-                'Verb Ending',
-                [
-                    { value: 'er', text: '-er' },
-                    { value: 'ir', text: '-ir' },
-                    { value: 're', text: '-re' },
-                    { value: 'other', text: 'other' },
-                ],
-                cardGenerationOptions.endingFilter
-            );
-            filtersSection.appendChild(endingGroup);
+            const fillPracticeCard = hasFillBlanks ? createAdvancedCard('Fill filter') : null;
+            if (fillPracticeCard) {
+                const prepositionRow = createSegmentedPillRow(
+                    'Fill Blanks filter',
+                    'Keep all verbs, or only verbs that take a preposition in at least one playable fill-in-the-blank card.',
+                    [
+                        { value: 'all', label: 'All' },
+                        { value: 'only', label: 'Only' }
+                    ],
+                    cardGenerationOptions.prepositionalVerbMode || 'all',
+                    (value) => {
+                        cardGenerationOptions.prepositionalVerbMode = value === 'only' ? 'only' : 'all';
+                        saveOptions();
+                        updateVerbFiltersCountLabel();
+                    }
+                );
+                fillPracticeCard.appendChild(prepositionRow);
+            }
+            if (conjugationAdvancedDetails) {
+                conjugationSections.appendChild(conjugationAdvancedDetails);
+            }
+            if (fillPracticeCard && fillPracticeCard.children.length > 1 && settingsV2FillAdvancedContainer) {
+                settingsV2FillAdvancedContainer.appendChild(fillPracticeCard);
+            }
 
-            const countEl = document.createElement('div');
-            countEl.id = 'verb-filters-count';
-            countEl.style.marginTop = '0.6rem';
-            countEl.style.fontSize = '0.95rem';
-            countEl.style.fontWeight = '600';
-            countEl.style.color = 'var(--meta-color, #6c757d)';
-            countEl.textContent = 'In play: …';
-            filtersSection.appendChild(countEl);
-
-            practiceCard.appendChild(filtersSection);
-            advancedSections.appendChild(practiceCard);
-
-            const drillActionsCard = createAdvancedCard('Drill actions');
+            const drillActionsCard = document.createElement('div');
+            drillActionsCard.className = 'settings-v2-compact-actions-card';
             const actionsRow = document.createElement('div');
             actionsRow.className = 'advanced-actions';
 
             const saveBtn = document.createElement('button');
             saveBtn.type = 'button';
             saveBtn.className = 'advanced-action-btn';
-            saveBtn.textContent = 'Save current drill';
+            saveBtn.textContent = 'Save';
             saveBtn.addEventListener('click', () => saveCurrentDrillPrompt());
 
             const shareBtn = document.createElement('button');
             shareBtn.type = 'button';
             shareBtn.className = 'advanced-action-btn';
-            shareBtn.textContent = 'Share current drill';
+            shareBtn.textContent = 'Share';
             shareBtn.addEventListener('click', () => shareCurrentDrill());
 
             actionsRow.appendChild(saveBtn);
             actionsRow.appendChild(shareBtn);
-            drillActionsCard.appendChild(actionsRow);
-
+            if (isSettingsV2Enabled) {
+                const resetBtn = document.createElement('button');
+                resetBtn.type = 'button';
+                resetBtn.className = 'advanced-action-btn';
+                resetBtn.textContent = 'Reset';
+                resetBtn.addEventListener('click', () => {
+                    if (!window.confirm('Reset the current practice setup to the default starter drill?')) return;
+                    const starter = presets.find((preset) => preset.id === STARTER_DRILL_ID);
+                    if (starter) {
+                        applyPreset(starter);
+                    }
+                });
+                actionsRow.appendChild(resetBtn);
+            }
             const actionsHelper = document.createElement('div');
             actionsHelper.className = 'advanced-action-helper';
-            actionsHelper.textContent = `Current drill: ${getCurrentDrillDisplayName()}`;
+            const setupParts = [];
+            const currentVerbCount = computeActiveVerbPoolCount();
+            if (effectiveVerbSourceMode === 'topic') {
+                setupParts.push(
+                    activeVerbSetSelection
+                        ? `Custom · ${activeVerbSetSelection.selectionCount > 1 ? `${activeVerbSetSelection.selectionCount} topics` : activeVerbSetSelection.name}`
+                        : 'Custom · All topics'
+                );
+                if (Number.isFinite(currentVerbCount) && currentVerbCount > 0) {
+                    setupParts.push(`${currentVerbCount} verbs`);
+                }
+                if (!isPhraseExercise) {
+                    const tenseCount = getSelectedTenseCount();
+                    setupParts.push(`${tenseCount} ${tenseCount === 1 ? 'tense' : 'tenses'}`);
+                }
+            } else {
+                setupParts.push(`${getCurrentDrillDisplayLabel()} drill`);
+                if (Number.isFinite(currentVerbCount) && currentVerbCount > 0) {
+                    setupParts.push(`${currentVerbCount} verbs`);
+                }
+                if (!isPhraseExercise) {
+                    const tenseCount = getSelectedTenseCount();
+                    setupParts.push(`${tenseCount} ${tenseCount === 1 ? 'tense' : 'tenses'}`);
+                }
+                const filterCount = getActiveVerbFilterCount();
+                if (filterCount > 0) {
+                    setupParts.push(`${filterCount} ${filterCount === 1 ? 'filter' : 'filters'}`);
+                }
+            }
+            actionsHelper.textContent = setupParts.join(' · ');
             drillActionsCard.appendChild(actionsHelper);
-            advancedSections.appendChild(drillActionsCard);
+            drillActionsCard.appendChild(actionsRow);
+            if (settingsV2DrillActionsContainer) {
+                settingsV2DrillActionsContainer.appendChild(drillActionsCard);
+            } else {
+                sharedSections.appendChild(drillActionsCard);
+            }
 
-            advancedPracticeContainer.appendChild(advancedSections);
+            if (settingsV2SharedAdvancedContainer) {
+                settingsV2SharedAdvancedContainer.appendChild(sharedSections);
+            } else {
+                advancedPracticeContainer.appendChild(sharedSections);
+            }
+            if (settingsV2ConjugationAdvancedContainer) {
+                settingsV2ConjugationAdvancedContainer.appendChild(conjugationSections);
+            } else {
+                advancedPracticeContainer.appendChild(conjugationSections);
+            }
         }
 
         updateVerbFiltersCountLabel();
+        updateSettingsV2LayoutState();
+        if (preserveAnchorId && preservedAnchorTop !== null) {
+            const nextAnchor = document.getElementById(preserveAnchorId);
+            if (nextAnchor) {
+                const nextTop = nextAnchor.getBoundingClientRect().top;
+                const delta = nextTop - preservedAnchorTop;
+                if (Math.abs(delta) > 1) {
+                    window.scrollBy(0, delta);
+                }
+            }
+        }
     };
 
     // Expose so applyPreset (global scope) can re-render the settings UI
@@ -8542,7 +9880,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openSearchFromFlashcard();
     });
     optionsToggleBtn.addEventListener('click', showOptions);
-    [helpBtn, helpNavBtn].filter(Boolean).forEach((btn) => {
+    [tutorialQuickBtn, helpBtn, helpNavBtn].filter(Boolean).forEach((btn) => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -9510,7 +10848,7 @@ function getResolvedVerbSetSelection(options = cardGenerationOptions) {
         id: null,
         name: `${first.name} + ${selections.length - 1} more`,
         verbs: uniqueVerbs,
-        scope: `${selections.length} categories selected`,
+        scope: `${selections.length} topics selected`,
         topicUsages: mergeVerbSetTopicUsages(selections),
         count: uniqueVerbs.length,
         selectionCount: selections.length,
@@ -9540,6 +10878,14 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
         tenseWeights = {},
         reflexiveMode = 'include',
     } = options || {};
+    const currentCardTypeMode = normalizeCardTypeMode(options?.cardTypeMode);
+
+    if (currentCardTypeMode === 'frame') {
+        const eligibleFrameVerbSet = prepositionalVerbMode === 'only'
+            ? verbsWithPrepositionalFrames
+            : verbsWithPlayableFrames;
+        return candidateVerbs.filter((verbInfo) => eligibleFrameVerbSet.has(verbInfo.infinitive));
+    }
 
     const activeFrequencies = new Set(
         Object.entries(frequencyWeights)
@@ -9606,7 +10952,7 @@ function clearVerbSetSelection(options = {}) {
     cardGenerationOptions.selectedVerbSetIds = [];
     cardGenerationOptions.sharedVerbSet = null;
     saveOptions(options);
-    populateOptions();
+    populateOptions({ preserveAnchorId: 'verb-set-group' });
 }
 
 function toggleVerbSetSelection(setId) {
@@ -9624,7 +10970,7 @@ function toggleVerbSetSelection(setId) {
         : [...currentIds, target.id];
     cardGenerationOptions.sharedVerbSet = null;
     saveOptions();
-    populateOptions();
+    populateOptions({ preserveAnchorId: 'verb-set-group' });
 }
 
 function applySharedVerbSet(verbSet, options = {}) {
@@ -9636,7 +10982,7 @@ function applySharedVerbSet(verbSet, options = {}) {
     cardGenerationOptions.selectedVerbSetIds = [];
     cardGenerationOptions.sharedVerbSet = normalized;
     saveOptions(options);
-    populateOptions();
+    populateOptions({ preserveAnchorId: 'verb-set-group' });
 }
 
 function syncVerbSetSelectionAfterLibraryChange(options = {}) {
@@ -10012,8 +11358,8 @@ function openVerbSetModal(options = {}) {
         scope: sourceSet?.scope || '',
         topicUsages: deepClone(sourceSet?.topicUsages || {}),
     };
-    verbSetModalTitle.textContent = existingSet ? 'Edit category' : 'New category';
-    verbSetModalText.textContent = 'Paste infinitives, comma-, semicolon-, or newline-separated to add your own category.';
+    verbSetModalTitle.textContent = existingSet ? 'Edit topic' : 'New topic';
+    verbSetModalText.textContent = 'Paste infinitives, comma-, semicolon-, or newline-separated to add your own topic.';
     verbSetNameInput.value = sourceSet?.name || '';
     verbSetVerbsInput.value = sourceSet?.verbs?.join('\n') || '';
     verbSetModalDeleteBtn?.classList.toggle('hidden', !existingSet);
@@ -10040,7 +11386,7 @@ function saveVerbSetFromModal() {
 
     const trimmedName = String(verbSetNameInput?.value || '').trim();
     if (!trimmedName) {
-        window.alert('Give this category a name.');
+        window.alert('Give this topic a name.');
         return;
     }
 
@@ -10075,7 +11421,7 @@ function saveVerbSetFromModal() {
 function deleteVerbSetById(setId) {
     const target = getSavedVerbSetById(setId);
     if (!target) return;
-    if (!window.confirm(`Delete category "${target.name}"?`)) return;
+    if (!window.confirm(`Delete topic "${target.name}"?`)) return;
     savedVerbSets = savedVerbSets.filter((set) => set.id !== setId);
     persistSavedVerbSets();
     if ((cardGenerationOptions.selectedVerbSetIds || []).includes(setId)) {
@@ -10115,6 +11461,13 @@ function getCurrentDrillDisplayName() {
     return getActiveDrill()?.preset?.name || 'Custom';
 }
 
+function getCurrentDrillDisplayLabel() {
+    const preset = getActiveDrill()?.preset || null;
+    const name = preset?.name || 'Custom';
+    const emoji = String(preset?.emoji || '').trim();
+    return emoji ? `${emoji} ${name}` : name;
+}
+
 function snapshotCurrentDrillConfig(options = {}) {
     const { forShare = false } = options;
     const snapshot = {};
@@ -10151,6 +11504,8 @@ function loadVerbSetProgressState() {
         return buildEmptyVerbSetProgressState();
     }
 }
+
+verbSetProgressState = loadVerbSetProgressState();
 
 function pruneVerbSetProgressState(state, maxEntries = 60) {
     const keys = Object.keys(state.selections || {});
@@ -10239,7 +11594,7 @@ function describeDrillConfig(config = {}) {
     if (activeVerbSet) {
         parts.push(
             activeVerbSet.selectionCount && activeVerbSet.selectionCount > 1
-                ? `${activeVerbSet.selectionCount} categories · ${activeVerbSet.count} verbs`
+                ? `${activeVerbSet.selectionCount} topics · ${activeVerbSet.count} verbs`
                 : `${activeVerbSet.name} · ${activeVerbSet.count} verbs`
         );
     } else {
@@ -10254,10 +11609,11 @@ function describeDrillConfig(config = {}) {
     if (!activeVerbSet && options.prepositionalVerbMode === 'only') {
         parts.push('prepositional verbs only');
     }
-    if (options.cardTypeMode === 'frame') {
-        parts.push('frame cards only');
-    } else if (options.cardTypeMode === 'both') {
-        parts.push('includes frame cards');
+    const exerciseMode = normalizeCardTypeModeForCapabilities(options.cardTypeMode);
+    if (exerciseMode === 'frame') {
+        parts.push('fill in the blank only');
+    } else if (exerciseMode === 'both') {
+        parts.push('includes fill in the blank');
     }
     return parts.join(' · ');
 }
@@ -10291,7 +11647,7 @@ function getVerbPoolSummary() {
     const activeVerbSet = getResolvedVerbSetSelection();
     if (activeVerbSet) {
         const categoryCount = activeVerbSet.selectionCount || 1;
-        return `Exact pool from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} · ${activeVerbSet.count} verbs · Top N and other verb filters are ignored`;
+        return `Exact pool from ${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'} · ${activeVerbSet.count} verbs · Top N and other verb filters are ignored`;
     }
     const selectedRange = getSelectedVerbPoolRangeKey();
     const parts = [];
@@ -10302,6 +11658,26 @@ function getVerbPoolSummary() {
     return parts.join(' · ');
 }
 
+function getSelectedTenseCount(options = cardGenerationOptions) {
+    return Object.values(options.tenseWeights || {}).filter((value) => Number(value) > 0).length;
+}
+
+function getActiveVerbFilterCount(options = cardGenerationOptions) {
+    let count = 0;
+    if (options.reflexiveMode && options.reflexiveMode !== 'include') count += 1;
+    if (options.prepositionalVerbMode === 'only') count += 1;
+    if (options.regularityFilter && (options.regularityFilter.regular === false || options.regularityFilter.irregular === false)) count += 1;
+    if (options.endingFilter && Object.values(options.endingFilter).some((value) => value === false)) count += 1;
+    return count;
+}
+
+function getExerciseModeLabel(cardTypeMode = normalizeCardTypeMode(cardGenerationOptions.cardTypeMode)) {
+    cardTypeMode = normalizeCardTypeModeForCapabilities(cardTypeMode);
+    if (cardTypeMode === 'frame') return 'Fill Blanks';
+    if (cardTypeMode === 'both') return 'Mixed';
+    return 'Conjugation';
+}
+
 function applyDrillCardOptions(config = {}) {
     const resolved = buildDrillCardOptions(config);
     cardGenerationOptions.tenseWeights = deepClone(resolved.tenseWeights);
@@ -10309,7 +11685,7 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.hierarchical = resolved.hierarchical;
     cardGenerationOptions.balancedPronouns = resolved.balancedPronouns;
     cardGenerationOptions.useMicToAnswer = resolved.useMicToAnswer;
-    cardGenerationOptions.cardTypeMode = normalizeCardTypeMode(resolved.cardTypeMode);
+    cardGenerationOptions.cardTypeMode = normalizeCardTypeModeForCapabilities(resolved.cardTypeMode);
     cardGenerationOptions.reflexiveMode = resolved.reflexiveMode;
     cardGenerationOptions.prepositionalVerbMode = resolved.prepositionalVerbMode === 'only' ? 'only' : 'all';
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
@@ -10487,12 +11863,10 @@ function promptForDrillMetadata(defaultName, defaultDescription = '', defaultEmo
     if (!trimmedName) return null;
     const description = window.prompt('Short description (optional)', defaultDescription || '');
     if (description === null) return null;
-    const emoji = window.prompt('Emoji', defaultEmoji || '💾');
-    if (emoji === null) return null;
     return {
         name: trimmedName,
         desc: description.trim(),
-        emoji: normalizeDrillEmojiInput(emoji, defaultEmoji || '💾'),
+        emoji: normalizeDrillEmojiInput(defaultEmoji, defaultEmoji || '💾'),
     };
 }
 

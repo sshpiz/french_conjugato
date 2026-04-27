@@ -851,9 +851,11 @@
                 <div class="options-header-spacer"></div>
             </div>
 
+            <div id="settings-v2-nav" class="settings-v2-nav hidden" aria-label="Settings sections"></div>
+
             <div id="options-container">
 
-                <div class="option-group">
+                <div class="option-group" id="settings-mic-group">
                     <h3>Mic to Answer</h3>
                     <div class="toggle-rows">
                         <div class="toggle-row settings-mic-mode-row">
@@ -879,25 +881,25 @@
                     </div>
                 </div>
 
-                <div class="option-group">
+                <div class="option-group" id="settings-tenses-group">
                     <h3>Tenses</h3>
                     <p class="option-desc">Choose which tenses to practice.</p>
                     <div id="tense-weights-container"></div>
                 </div>
-                <div class="option-group">
+                <div class="option-group" id="settings-topn-group">
                     <h3>Top N</h3>
                     <p class="option-desc">Pick how deep into the verb list to go.</p>
                     <div id="verb-pool-basic-container"></div>
                 </div>
                 <details class="option-group settings-collapsible" id="verb-set-group">
-                    <summary>Categories</summary>
+                    <summary>Topics</summary>
                     <div class="collapsible-body">
-                        <p class="option-desc">Use all verbs, mix built-in categories, or add your own.</p>
+                        <p class="option-desc">Use all verbs, mix built-in topics, or add your own.</p>
                         <div id="verb-set-container"></div>
                     </div>
                 </details>
 
-                <div class="option-group">
+                <div class="option-group" id="settings-drills-group">
                     <h3>Drills</h3>
                     <p class="option-desc">Choose a drill, then adjust anything you want.</p>
                     <div id="current-drill-card" class="current-drill-card" aria-live="polite"></div>
@@ -1432,11 +1434,11 @@
         <div class="install-modal-backdrop" data-close-verb-set-modal="true"></div>
         <div class="install-modal-panel verb-set-modal-panel">
             <button id="verb-set-modal-close-btn" type="button" class="install-modal-close-btn" aria-label="Close verb set editor">✕</button>
-            <div id="verb-set-modal-title" class="install-modal-title">New category</div>
+            <div id="verb-set-modal-title" class="install-modal-title">New topic</div>
             <p id="verb-set-modal-text" class="install-modal-text">Paste infinitives, comma-, semicolon-, or newline-separated.</p>
             <div class="verb-set-modal-body">
                 <label class="verb-set-field">
-                    <span class="verb-set-field-label">Category name</span>
+                    <span class="verb-set-field-label">Topic name</span>
                     <input id="verb-set-name-input" class="verb-set-text-input" type="text" maxlength="80" autocomplete="off" placeholder="Sports">
                 </label>
                 <label class="verb-set-field">
@@ -1446,18 +1448,20 @@
                 <div id="verb-set-validation" class="verb-set-validation" aria-live="polite"></div>
             </div>
             <div class="verb-set-modal-actions">
-                <button id="verb-set-modal-delete-btn" type="button" class="secondary-btn verb-set-delete-btn hidden">Delete category</button>
-                <button id="verb-set-modal-save-btn" type="button" class="advanced-action-btn">Save category</button>
+                <button id="verb-set-modal-delete-btn" type="button" class="secondary-btn verb-set-delete-btn hidden">Delete topic</button>
+                <button id="verb-set-modal-save-btn" type="button" class="advanced-action-btn">Save topic</button>
             </div>
         </div>
     </div>
     <script src="js/verbs.full.generated.js?v=20260411b"></script>
     <script src="verb_core_patterns.js?v=20260418a" onerror="window.verbCorePatterns=[]"></script>
     <script src="verb_usages.js?v=20260411b" onerror="window.verbUsages=[]"></script>
-    <script src="verb_frames.js?v=20260421a" onerror="window.verbFrames=[]"></script>
+    <!-- Legacy frame deck intentionally sidelined while the new category-by-category A/De deck is rebuilt. -->
+    <!-- <script src="verb_frames.js?v=20260421a" onerror="window.verbFrames=[]"></script> -->
+    <script src="verb_frames.french_320.js?v=20260426e" onerror="window.verbFrames=[]"></script>
     <script src="js/preRenderedTts.js?v=20260411b"></script>
     <script src="js/frenchHomophoneGroups.js?v=20260420a" onerror="window.frenchHomophoneGroupByAnswer={};window.frenchHomophoneGroupMeta=null;"></script>
-    <script src="js/script.js?v=20260422a"></script>
+    <script src="js/script.js?v=20260426d"></script>
     <script>
 function getFrenchVoices() {
     if (!window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {

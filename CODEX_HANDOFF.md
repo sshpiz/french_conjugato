@@ -45,6 +45,9 @@ Use this repo, not the stale path:
 3. If touching GitHub Pages, remember the published Greek path is `greek-verbs`, not `greek`.
 4. If working on Portuguese packaged audio, the prompt for Claude was already prepared in chat: use Portugal Portuguese voice (`pt-PT`) and packed mode only (`--pack` as the main path).
 
+## Open follow-up
+- Rebuild packaged TTS for newer phrase / fill-blanks decks after phrase content changes land. The phrase-side audio inventory will lag unless we regenerate it explicitly.
+
 ## Quick sanity commands
 ```bash
 cd /Users/simeon/Desktop/proj1
