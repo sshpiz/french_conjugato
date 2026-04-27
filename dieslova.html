@@ -735,6 +735,24 @@ body {
     margin-bottom: 1rem;
 }
 
+.explorer-scope-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.explorer-scope-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.explorer-scope-summary {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--meta-color);
+}
+
 #search-bar {
     width: 100%;
     padding: 0.75rem;
@@ -1677,6 +1695,33 @@ html {
   margin: 0;
   padding: 0;
   text-align: center;
+}
+
+.tutorial-inline-skip-btn {
+  position: absolute;
+  top: -0.1rem;
+  right: 0;
+  z-index: 1;
+  pointer-events: auto;
+  appearance: none;
+  border: 1px solid rgba(94, 120, 143, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(66, 86, 109, 0.9);
+  font: inherit;
+  font-size: calc(0.78rem * var(--font-scale, 1));
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.38rem 0.72rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(32, 52, 78, 0.08);
+}
+
+.tutorial-inline-skip-btn:hover,
+.tutorial-inline-skip-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(43, 60, 80, 0.98);
+  outline: none;
 }
 
 .tutorial-inline-heading {
@@ -3889,6 +3934,659 @@ html[data-theme="dark"] #options-container .preset-btn.active {
   }
 }
 
+.daily-goal-celebration-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.daily-goal-celebration-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.daily-goal-celebration-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.daily-goal-celebration-badge {
+  position: absolute;
+  left: 50%;
+  top: 0.9rem;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.9rem;
+  padding: 0.42rem 0.82rem;
+  border-radius: 999px;
+  background: rgba(15, 86, 31, 0.9);
+  color: #f4fff4;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+}
+
+.daily-goal-celebration-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.8rem;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.7rem;
+  padding: 0.34rem 0.74rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(50, 64, 82, 0.92);
+  font-size: 0.76rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(27, 43, 66, 0.12);
+}
+
+html[data-theme="dark"] .daily-goal-celebration-overlay {
+  filter: saturate(1.04);
+}
+
+html[data-theme="dark"] .daily-goal-celebration-badge {
+  background: rgba(16, 90, 33, 0.94);
+  color: #f2fff2;
+}
+
+html[data-theme="dark"] .daily-goal-celebration-hint {
+  background: rgba(18, 26, 36, 0.86);
+  color: rgba(233, 240, 248, 0.94);
+}
+
+.verb-set-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.verb-set-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.8rem, 1fr));
+  gap: 0.5rem;
+}
+
+.verb-set-card {
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-color);
+  padding: 0.58rem 0.72rem;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.verb-set-card:hover,
+.verb-set-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
+}
+
+.verb-set-card.active {
+  background: var(--settings-chip-active-bg);
+  border-color: var(--settings-chip-active-bg);
+  color: var(--settings-chip-active-text);
+  box-shadow: 0 12px 24px rgba(37, 79, 125, 0.12);
+}
+
+.verb-set-card.new-set-card {
+  border-style: dashed;
+}
+
+.verb-set-card.shared-set-card {
+  border-color: rgba(77, 120, 168, 0.38);
+}
+
+.verb-set-card-title {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.verb-set-card-meta {
+  display: block;
+  margin-top: 0.22rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: inherit;
+  opacity: 0.78;
+}
+
+.verb-set-card-actions {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.verb-set-card.active .verb-set-card-actions {
+  display: flex;
+}
+
+.verb-set-card-action {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  padding: 0.26rem 0.65rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0.92;
+}
+
+.verb-set-summary {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.verb-set-secondary-btn {
+  border-radius: 999px;
+}
+
+.verb-set-modal-panel {
+  width: min(100%, 34rem);
+}
+
+.verb-set-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.verb-set-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.verb-set-field-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.verb-set-text-input,
+.verb-set-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+  box-sizing: border-box;
+}
+
+.verb-set-textarea {
+  min-height: 10.5rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.verb-set-text-input:focus,
+.verb-set-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.14);
+}
+
+.verb-set-validation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 2.4rem;
+}
+
+.verb-set-validation-summary {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.65rem;
+}
+
+.verb-set-validation-group {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  background: var(--settings-subtle-bg);
+}
+
+.verb-set-validation-group.invalid {
+  border-color: rgba(184, 82, 82, 0.28);
+}
+
+.verb-set-validation-heading {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.verb-set-validation-list {
+  margin-top: 0.42rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.verb-set-validation-empty {
+  color: var(--meta-color);
+}
+
+.verb-set-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.verb-set-delete-btn {
+  border-radius: 999px;
+}
+
+html[data-theme="dark"] .verb-set-card {
+  background: rgba(20, 29, 40, 0.94);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .verb-set-card.active {
+  background: linear-gradient(180deg, rgba(27, 47, 67, 0.98), rgba(20, 37, 54, 0.98));
+  border-color: rgba(109, 180, 245, 0.72);
+  box-shadow: 0 14px 28px rgba(3, 12, 20, 0.34);
+}
+
+/* Polish pass: support row, report modal, and category cards */
+.settings-support-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1250;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.15rem;
+  background: rgba(20, 31, 46, 0.56);
+  backdrop-filter: blur(6px);
+}
+
+.contact-modal-panel {
+  width: min(100%, 30rem);
+  max-height: min(90vh, 42rem);
+  overflow-y: auto;
+  border-radius: 22px;
+  border: 1px solid rgba(122, 149, 175, 0.22);
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--text-color);
+  box-shadow: 0 22px 48px rgba(24, 44, 70, 0.22);
+}
+
+.contact-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem 0.9rem;
+  border-bottom: 1px solid rgba(166, 182, 198, 0.22);
+}
+
+.contact-modal-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+.contact-modal-close-btn {
+  border: none;
+  background: transparent;
+  color: var(--meta-color);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.contact-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.contact-modal-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--meta-color);
+}
+
+.contact-report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.contact-report-btn {
+  min-height: 3.3rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text-color);
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(24, 44, 70, 0.08);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.contact-report-btn:hover,
+.contact-report-btn:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(116, 172, 223, 0.58);
+  box-shadow: 0 12px 22px rgba(24, 44, 70, 0.12);
+}
+
+.contact-report-btn.is-selected {
+  border-color: rgba(92, 166, 232, 0.78);
+  background: linear-gradient(180deg, rgba(237, 246, 255, 0.98), rgba(227, 241, 252, 0.98));
+  box-shadow: 0 14px 24px rgba(35, 104, 156, 0.16);
+}
+
+.contact-modal-textarea {
+  width: 100%;
+  min-height: 5.9rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  padding: 0.78rem 0.9rem;
+  font: inherit;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.contact-modal-textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.14);
+}
+
+.contact-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.contact-modal-action-btn {
+  border-radius: 999px;
+  padding: 0.66rem 1rem;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+}
+
+.contact-modal-action-btn:hover,
+.contact-modal-action-btn:focus-visible {
+  transform: translateY(-1px);
+}
+
+.contact-modal-cancel {
+  border: 1px solid var(--border-color);
+  background: var(--settings-subtle-bg);
+  color: var(--meta-color);
+}
+
+.contact-modal-cancel:hover,
+.contact-modal-cancel:focus-visible {
+  border-color: var(--settings-card-hover-border);
+  color: var(--text-color);
+}
+
+.contact-modal-send {
+  border: 1px solid rgba(140, 177, 210, 0.48);
+  background: linear-gradient(180deg, rgba(240, 248, 255, 0.95), rgba(227, 239, 250, 0.98));
+  color: #2f77b2;
+  box-shadow: 0 8px 18px rgba(52, 98, 141, 0.12);
+}
+
+.contact-modal-send:hover,
+.contact-modal-send:focus-visible {
+  border-color: rgba(109, 161, 210, 0.62);
+  background: linear-gradient(180deg, rgba(245, 250, 255, 0.98), rgba(230, 241, 251, 0.98));
+}
+
+.verb-set-grid {
+  grid-template-columns: repeat(auto-fit, minmax(9.25rem, 1fr));
+  gap: 0.6rem;
+}
+
+.verb-set-card {
+  min-height: 5rem;
+  padding: 0.72rem 0.8rem;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  box-shadow: 0 8px 18px rgba(24, 44, 70, 0.06);
+}
+
+.verb-set-card:hover,
+.verb-set-card:focus-visible {
+  box-shadow: 0 12px 24px rgba(24, 44, 70, 0.11);
+}
+
+.verb-set-card.new-set-card {
+  background: rgba(248, 252, 255, 0.94);
+}
+
+.verb-set-card.shared-set-card {
+  background: rgba(242, 247, 252, 0.94);
+}
+
+.verb-set-card-title {
+  font-size: 0.86rem;
+}
+
+.verb-set-card-meta {
+  display: block;
+  margin-top: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.verb-set-card-actions {
+  margin-top: auto;
+  padding-top: 0.15rem;
+}
+
+.verb-set-summary {
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(135, 168, 197, 0.18);
+  background: rgba(244, 248, 252, 0.9);
+}
+
+html[data-theme="dark"] .contact-modal-panel {
+  border-color: rgba(91, 113, 135, 0.38);
+  background: rgba(22, 30, 40, 0.98);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .contact-modal-close-btn,
+html[data-theme="dark"] .contact-modal-text {
+  color: #9eb1c6;
+}
+
+html[data-theme="dark"] .contact-report-btn,
+html[data-theme="dark"] .verb-set-card {
+  background: rgba(20, 29, 40, 0.94);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+}
+
+html[data-theme="dark"] .contact-report-btn.is-selected {
+  background: linear-gradient(180deg, rgba(27, 47, 67, 0.98), rgba(20, 37, 54, 0.98));
+  border-color: rgba(109, 180, 245, 0.72);
+  box-shadow: 0 14px 28px rgba(3, 12, 20, 0.34);
+}
+
+html[data-theme="dark"] .contact-modal-textarea {
+  background: rgba(16, 24, 34, 0.92);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .contact-modal-cancel {
+  border-color: rgba(82, 101, 121, 0.72);
+  color: #93a7bb;
+  background: rgba(30, 43, 58, 0.55);
+}
+
+html[data-theme="dark"] .contact-modal-send {
+  border-color: rgba(109, 180, 245, 0.38);
+  background: linear-gradient(180deg, rgba(31, 55, 77, 0.96), rgba(22, 40, 58, 0.98));
+  color: #d7e8f8;
+}
+
+html[data-theme="dark"] .verb-set-summary {
+  background: rgba(13, 22, 31, 0.55);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .contact-modal-panel,
+  html[data-theme="system"] .contact-modal-panel {
+    border-color: rgba(91, 113, 135, 0.38);
+    background: rgba(22, 30, 40, 0.98);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
+  }
+
+  html:not([data-theme]) .contact-modal-close-btn,
+  html[data-theme="system"] .contact-modal-close-btn,
+  html:not([data-theme]) .contact-modal-text,
+  html[data-theme="system"] .contact-modal-text {
+    color: #9eb1c6;
+  }
+
+  html:not([data-theme]) .contact-report-btn,
+  html[data-theme="system"] .contact-report-btn,
+  html:not([data-theme]) .verb-set-card,
+  html[data-theme="system"] .verb-set-card {
+    background: rgba(20, 29, 40, 0.94);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+  }
+
+  html:not([data-theme]) .contact-report-btn.is-selected,
+  html[data-theme="system"] .contact-report-btn.is-selected {
+    background: linear-gradient(180deg, rgba(27, 47, 67, 0.98), rgba(20, 37, 54, 0.98));
+    border-color: rgba(109, 180, 245, 0.72);
+    box-shadow: 0 14px 28px rgba(3, 12, 20, 0.34);
+  }
+
+  html:not([data-theme]) .contact-modal-textarea,
+  html[data-theme="system"] .contact-modal-textarea {
+    background: rgba(16, 24, 34, 0.92);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  html:not([data-theme]) .contact-modal-cancel,
+  html[data-theme="system"] .contact-modal-cancel {
+    border-color: rgba(82, 101, 121, 0.72);
+    color: #93a7bb;
+    background: rgba(30, 43, 58, 0.55);
+  }
+
+  html:not([data-theme]) .contact-modal-send,
+  html[data-theme="system"] .contact-modal-send {
+    border-color: rgba(109, 180, 245, 0.38);
+    background: linear-gradient(180deg, rgba(31, 55, 77, 0.96), rgba(22, 40, 58, 0.98));
+    color: #d7e8f8;
+  }
+
+  html:not([data-theme]) .verb-set-summary,
+  html[data-theme="system"] .verb-set-summary {
+    background: rgba(13, 22, 31, 0.55);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 520px) {
+  .settings-support-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .settings-support-actions .settings-inline-action-btn,
+  .settings-support-actions .settings-support-link,
+  .contact-modal-action-btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .contact-report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .verb-set-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* ── Big dictate mic button (inside phrase-container) ── */
 .dictate-big-btn {
   display: flex;
@@ -4011,7 +4709,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260419_183553";
+      window.APP_BUILD_VERSION = "20260426_222143";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -4266,6 +4964,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                     <p id="question-phrase" class="verb-phrase"></p>
                     <div id="tutorial-inline-hint" class="hidden" aria-live="polite">
                       <div class="tutorial-inline-text">
+                        <button id="tutorial-inline-skip-btn" type="button" class="tutorial-inline-skip-btn" aria-label="Skip tutorial">Skip</button>
                         <span class="tutorial-inline-heading"></span>
                         <span class="tutorial-inline-body"></span>
                       </div>
@@ -4367,6 +5066,13 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
             <div class="explorer-header">
                 <button id="back-to-flashcard-btn" class="back-link-btn">← Back to Flashcards</button>
                 <input type="text" id="search-bar" placeholder="Search for a verb (e.g. читати)...">
+                <div id="explorer-scope-row" class="explorer-scope-row hidden">
+                    <div id="explorer-scope-toggle" class="explorer-scope-toggle">
+                        <button id="explorer-scope-filtered" type="button" class="mode-toggle-btn">Filtered</button>
+                        <button id="explorer-scope-all" type="button" class="mode-toggle-btn">All</button>
+                    </div>
+                    <p id="explorer-scope-summary" class="explorer-scope-summary"></p>
+                </div>
             </div>
             <div id="verb-list-container"></div>
         </div>
@@ -4416,6 +5122,13 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                     <p class="option-desc">Pick how deep into the verb list to go.</p>
                     <div id="verb-pool-basic-container"></div>
                 </div>
+                <details class="option-group settings-collapsible" id="verb-set-group">
+                    <summary>Categories</summary>
+                    <div class="collapsible-body">
+                        <p class="option-desc">Use all verbs, mix built-in categories, or add your own.</p>
+                        <div id="verb-set-container"></div>
+                    </div>
+                </details>
                 <div class="option-group">
                     <h3>Drills</h3>
                     <p class="option-desc">Choose a drill, then adjust anything you want.</p>
@@ -4506,10 +5219,13 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
                             <div class="toggle-row settings-action-row settings-support-row">
                                 <div class="settings-row-copy">
-                                    <label for="support-email-link">Support email</label>
+                                    <label for="support-report-btn">Support</label>
                                     <p class="setting-helper-text">Questions, bug reports, or feedback.</p>
                                 </div>
-                                <a id="support-email-link" class="settings-support-link" href="mailto:lesverbes.support@gmail.com">lesverbes.support@gmail.com</a>
+                                <div class="settings-inline-actions settings-support-actions">
+                                    <button id="support-report-btn" class="settings-inline-action-btn" type="button">Report issue</button>
+                                    <a id="support-email-link" class="settings-support-link" href="mailto:lesverbes.support@gmail.com">lesverbes.support@gmail.com</a>
+                                </div>
                             </div>
                             <div class="toggle-row compact-toggle-row">
                                 <div class="settings-row-copy">
@@ -4610,26 +5326,50 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                 <p id="app-install-modal-note" class="install-modal-note"></p>
             </div>
         </div>
+
+        <div id="verb-set-modal" class="install-modal hidden" role="dialog" aria-modal="true" aria-labelledby="verb-set-modal-title">
+            <div class="install-modal-backdrop" data-close-verb-set-modal="true"></div>
+            <div class="install-modal-panel verb-set-modal-panel">
+                <button id="verb-set-modal-close-btn" type="button" class="install-modal-close-btn" aria-label="Close category editor">✕</button>
+                <div id="verb-set-modal-title" class="install-modal-title">New category</div>
+                <p id="verb-set-modal-text" class="install-modal-text">Paste infinitives, comma-, semicolon-, or newline-separated.</p>
+                <div class="verb-set-modal-body">
+                    <label class="verb-set-field">
+                        <span class="verb-set-field-label">Category name</span>
+                        <input id="verb-set-name-input" type="text" class="verb-set-text-input" placeholder="Aspect partners">
+                    </label>
+                    <label class="verb-set-field">
+                        <span class="verb-set-field-label">Verbs</span>
+                        <textarea id="verb-set-verbs-input" class="verb-set-textarea" spellcheck="false" placeholder="писати&#10;прочитати&#10;робити"></textarea>
+                    </label>
+                    <div id="verb-set-validation" class="verb-set-validation" aria-live="polite"></div>
+                </div>
+                <div class="verb-set-modal-actions">
+                    <button id="verb-set-modal-delete-btn" type="button" class="secondary-btn verb-set-delete-btn hidden">Delete category</button>
+                    <button id="verb-set-modal-save-btn" type="button" class="advanced-action-btn">Save category</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="contact-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.6);z-index:10000;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
-        <div style="background:white;border-radius:16px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px 16px;border-bottom:1px solid #eee;">
-                <h3 style="margin:0;font-size:1.3rem;font-weight:600;color:#2c3e50;">Report an issue</h3>
-                <button id="contact-close" style="background:none;border:none;font-size:1.5rem;color:#7f8c8d;cursor:pointer;padding:4px;border-radius:4px;">&times;</button>
+    <div id="contact-modal" class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+        <div class="contact-modal-panel">
+            <div class="contact-modal-header">
+                <h3 id="contact-modal-title" class="contact-modal-title">Report an issue</h3>
+                <button id="contact-close" type="button" class="contact-modal-close-btn" aria-label="Close report form">&times;</button>
             </div>
-            <div style="padding:20px 24px 24px;">
-                <p style="margin:0 0 16px 0;color:#5a6c7d;font-size:1rem;">Choose what you'd like to report:</p>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
-                    <button class="report-btn" data-type="wrong" style="padding:12px 16px;border:2px solid #e9ecef;border-radius:12px;background:white;color:#2c3e50;font-size:0.95rem;font-weight:500;cursor:pointer;text-align:center;">🚫 This is wrong</button>
-                    <button class="report-btn" data-type="sentence" style="padding:12px 16px;border:2px solid #e9ecef;border-radius:12px;background:white;color:#2c3e50;font-size:0.95rem;font-weight:500;cursor:pointer;text-align:center;">🤔 Weird sentence</button>
-                    <button class="report-btn" data-type="translation" style="padding:12px 16px;border:2px solid #e9ecef;border-radius:12px;background:white;color:#2c3e50;font-size:0.95rem;font-weight:500;cursor:pointer;text-align:center;">📝 Bad translation</button>
-                    <button class="report-btn" data-type="custom" style="padding:12px 16px;border:2px solid #e9ecef;border-radius:12px;background:white;color:#2c3e50;font-size:0.95rem;font-weight:500;cursor:pointer;text-align:center;">💬 Custom message</button>
+            <div class="contact-modal-body">
+                <p class="contact-modal-text">Choose what you'd like to report:</p>
+                <div class="contact-report-grid">
+                    <button class="report-btn contact-report-btn" type="button" data-type="wrong">🚫 This is wrong</button>
+                    <button class="report-btn contact-report-btn" type="button" data-type="sentence">🤔 Weird sentence</button>
+                    <button class="report-btn contact-report-btn" type="button" data-type="translation">📝 Bad translation</button>
+                    <button class="report-btn contact-report-btn" type="button" data-type="custom">💬 Custom message</button>
                 </div>
-                <textarea id="contact-msg" placeholder="Optional: Add more details about the issue..." rows="3" style="width:100%;padding:12px 16px;border:2px solid #e9ecef;border-radius:12px;font-family:inherit;font-size:0.95rem;line-height:1.4;resize:vertical;min-height:80px;margin-bottom:20px;box-sizing:border-box;"></textarea>
-                <div style="display:flex;gap:12px;justify-content:flex-end;">
-                    <button id="contact-cancel" style="padding:12px 24px;border:1px solid #dee2e6;border-radius:8px;background:#f8f9fa;color:#6c757d;font-size:0.95rem;font-weight:600;cursor:pointer;">Cancel</button>
-                    <button id="contact-send" style="padding:12px 24px;border:none;border-radius:8px;background:#3498db;color:white;font-size:0.95rem;font-weight:600;cursor:pointer;">Send via Email</button>
+                <textarea id="contact-msg" class="contact-modal-textarea" placeholder="Optional: Add more details about the issue..." rows="3"></textarea>
+                <div class="contact-modal-actions">
+                    <button id="contact-cancel" type="button" class="contact-modal-action-btn contact-modal-cancel">Cancel</button>
+                    <button id="contact-send" type="button" class="contact-modal-action-btn contact-modal-send">Send via Email</button>
                 </div>
             </div>
         </div>
@@ -30167,7 +30907,7 @@ const ENABLE_LEGACY_SENTENCE_DATA = false;
 
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260419_183553') ? 'dev' : raw;
+    return !raw || raw.includes('20260426_222143') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -30580,6 +31320,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const answerFlowBtn = document.getElementById('answer-flow-btn');
     const answerFlowLabelEl = answerFlowBtn ? answerFlowBtn.querySelector('.control-dock-label') : null;
     const searchBar = document.getElementById('search-bar');
+    const explorerScopeRow = document.getElementById('explorer-scope-row');
+    const explorerScopeFilteredBtn = document.getElementById('explorer-scope-filtered');
+    const explorerScopeAllBtn = document.getElementById('explorer-scope-all');
+    const explorerScopeSummary = document.getElementById('explorer-scope-summary');
     const verbListContainer = document.getElementById('verb-list-container');
     const verbDetailContainer = document.getElementById('verb-detail-container');
     const explorerToggleBtn = document.getElementById('explorer-toggle-btn');
@@ -30600,9 +31344,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipsBtn = document.getElementById('tips-btn');
     const helpNavBtn = document.getElementById('help-nav-btn');
     const contactBtn = document.getElementById('contact-btn');
+    const supportReportBtn = document.getElementById('support-report-btn');
     const infoBtn = document.getElementById('info-btn');
     const infoPanel = document.getElementById('info-panel');
     const tutorialInlineHintEl = document.getElementById('tutorial-inline-hint');
+    const tutorialInlineSkipBtn = document.getElementById('tutorial-inline-skip-btn');
     const tutorialInlineHeadingEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-heading') : null;
     const tutorialInlineBodyEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-body') : null;
     const returnInlineMessageEl = document.getElementById('return-inline-message');
@@ -30613,9 +31359,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipsModalCloseBtn = document.getElementById('tips-modal-close-btn');
     const contactModal = document.getElementById('contact-modal');
     const contactMessageEl = document.getElementById('contact-msg');
+    const dailyProgressContainer = document.getElementById('daily-progress-container');
 
     const tenseWeightsContainer = document.getElementById('tense-weights-container');
     const verbPoolBasicContainer = document.getElementById('verb-pool-basic-container');
+    const verbSetContainer = document.getElementById('verb-set-container');
     const currentDrillCard = document.getElementById('current-drill-card');
     const presetsContainer = document.getElementById('presets-container');
     const savedDrillsGroup = document.getElementById('saved-drills-group');
@@ -30652,6 +31400,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const packagedTtsDownloadFullBtn = document.getElementById('packaged-tts-download-full-btn');
     const packagedTtsRemoveBtn = document.getElementById('packaged-tts-remove-btn');
     const packagedTtsStatusText = document.getElementById('packaged-tts-status-text');
+    const verbSetModal = document.getElementById('verb-set-modal');
+    const verbSetModalTitle = document.getElementById('verb-set-modal-title');
+    const verbSetModalText = document.getElementById('verb-set-modal-text');
+    const verbSetModalCloseBtn = document.getElementById('verb-set-modal-close-btn');
+    const verbSetNameInput = document.getElementById('verb-set-name-input');
+    const verbSetVerbsInput = document.getElementById('verb-set-verbs-input');
+    const verbSetValidation = document.getElementById('verb-set-validation');
+    const verbSetModalDeleteBtn = document.getElementById('verb-set-modal-delete-btn');
+    const verbSetModalSaveBtn = document.getElementById('verb-set-modal-save-btn');
 
     const MIC_MODE_KEY = 'micAnswerMode';
     const INSTALL_APP_NAME = 'Дієслова';
@@ -30678,6 +31435,8 @@ document.addEventListener('DOMContentLoaded', () => {
         frequencyWeights: { top20: 1, top50: 0, top100: 0, top500: 0 },
         usageNuggetVisible: true,
         activeDrill: 'crucial',
+        selectedVerbSetIds: [],
+        sharedVerbSet: null,
     };
     const DRILL_PRESETS = [
         {
@@ -30724,6 +31483,15 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     let savedDrills = [];
     let activePresetKey = `builtin:${DEFAULT_OPTIONS.activeDrill}`;
+    let builtInVerbSets = [];
+    let savedVerbSets = [];
+    let verbSetModalState = {
+        mode: 'create',
+        editingSetId: null,
+        scope: '',
+        topicUsages: {},
+    };
+    let verbSetProgressState = { selections: {} };
 
     let currentCard = null;
     let currentDetailVerb = null;
@@ -30865,15 +31633,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadOptions() {
         try {
             const saved = JSON.parse(getScopedStorageItem('options') || 'null');
-            if (!saved) return JSON.parse(JSON.stringify(DEFAULT_OPTIONS));
-            return {
-                ...DEFAULT_OPTIONS,
-                ...saved,
-                tenseWeights: { ...DEFAULT_OPTIONS.tenseWeights, ...(saved.tenseWeights || {}) },
-                frequencyWeights: { ...DEFAULT_OPTIONS.frequencyWeights, ...(saved.frequencyWeights || {}) },
-            };
+            return normalizeDrillOptions(saved || {});
         } catch (error) {
-            return JSON.parse(JSON.stringify(DEFAULT_OPTIONS));
+            return normalizeDrillOptions({});
         }
     }
 
@@ -30881,7 +31643,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setScopedStorageItem('options', JSON.stringify(nextOptions));
     }
 
+    builtInVerbSets = buildBuiltInVerbSets();
+    savedVerbSets = loadSavedVerbSets();
+    verbSetProgressState = loadVerbSetProgressState();
     let options = loadOptions();
+    syncVerbSetSelectionAfterLibraryChange();
 
     const getSelectedVerbPoolRangeKey = () => {
         let selected = null;
@@ -30904,6 +31670,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getVerbPoolSummary = () => {
+        const activeVerbSet = getResolvedVerbSetSelection();
+        if (activeVerbSet) {
+            const categoryCount = activeVerbSet.selectionCount || 1;
+            return `Exact pool from ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} · ${activeVerbSet.count} verbs · Top N is ignored`;
+        }
         const rangeKey = getSelectedVerbPoolRangeKey();
         if (!rangeKey) {
             return 'Using a custom frequency mix';
@@ -30922,6 +31693,653 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const deepClone = (value) => JSON.parse(JSON.stringify(value));
+    const VERB_SET_STORAGE_KEY = 'savedVerbSets';
+    const VERB_SET_PROGRESS_STORAGE_KEY = 'verbSetProgressStateV1';
+
+    const normalizeEmbeddedVerbSet = (rawSet) => {
+        if (!rawSet || typeof rawSet !== 'object') return null;
+        const verbs = Array.isArray(rawSet.verbs)
+            ? [...new Set(rawSet.verbs.map((verb) => String(verb || '').trim()).filter((verb) => verbInfoByInfinitive.has(verb)))]
+            : [];
+        if (!verbs.length) return null;
+        return {
+            name: String(rawSet.name || 'Shared category').trim() || 'Shared category',
+            verbs,
+            scope: String(rawSet.scope || '').trim(),
+            topicUsages: {},
+        };
+    };
+
+    const normalizeDrillOptions = (raw = {}) => {
+        const selectedVerbSetIds = Array.isArray(raw.selectedVerbSetIds)
+            ? raw.selectedVerbSetIds.map((id) => String(id)).filter(Boolean)
+            : raw.selectedVerbSetId
+                ? [String(raw.selectedVerbSetId)]
+                : [];
+        return {
+            ...deepClone(DEFAULT_OPTIONS),
+            ...deepClone(raw || {}),
+            tenseWeights: { ...DEFAULT_OPTIONS.tenseWeights, ...deepClone((raw && raw.tenseWeights) || {}) },
+            frequencyWeights: { ...DEFAULT_OPTIONS.frequencyWeights, ...deepClone((raw && raw.frequencyWeights) || {}) },
+            selectedVerbSetIds,
+            sharedVerbSet: normalizeEmbeddedVerbSet(raw && raw.sharedVerbSet),
+        };
+    };
+
+    const makeVerbSetId = () => `verb-set-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
+    const loadSavedVerbSets = () => {
+        try {
+            const raw = getScopedStorageItem(VERB_SET_STORAGE_KEY);
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed)
+                ? parsed
+                    .map((entry) => {
+                        const verbs = Array.isArray(entry.verbs)
+                            ? [...new Set(entry.verbs.map((verb) => String(verb || '').trim()).filter((verb) => verbInfoByInfinitive.has(verb)))]
+                            : [];
+                        if (!verbs.length) return null;
+                        return {
+                            id: String(entry.id || makeVerbSetId()),
+                            name: String(entry.name || 'Custom category').trim() || 'Custom category',
+                            verbs,
+                            scope: String(entry.scope || '').trim(),
+                            topicUsages: {},
+                            createdAt: Number(entry.createdAt) || Date.now(),
+                            updatedAt: Number(entry.updatedAt) || Date.now(),
+                        };
+                    })
+                    .filter(Boolean)
+                : [];
+        } catch (error) {
+            console.warn('Could not load saved categories:', error);
+            return [];
+        }
+    };
+
+    const persistSavedVerbSets = () => {
+        try {
+            setScopedStorageItem(VERB_SET_STORAGE_KEY, JSON.stringify(savedVerbSets));
+        } catch (error) {
+            console.warn('Could not save categories:', error);
+        }
+    };
+
+    const buildVerbSetDefinition = (id, name, scope, verbs, options = {}) => {
+        const normalizedVerbs = [...new Set((verbs || []).map((verb) => String(verb || '').trim()).filter((verb) => verbInfoByInfinitive.has(verb)))];
+        if (!normalizedVerbs.length) return null;
+        return {
+            id,
+            name,
+            scope,
+            verbs: normalizedVerbs,
+            count: normalizedVerbs.length,
+            topicUsages: {},
+            isBuiltIn: !!options.isBuiltIn,
+        };
+    };
+
+    
+    const THEMATIC_BUILTIN_VERB_SET_SPECS = [
+        {
+            id: 'builtin-super-everyday',
+            name: 'Super Everyday',
+            scope: 'daily life, errands, movement, conversations',
+            strongKeywords: ['be', 'have', 'do', 'make', 'go', 'come', 'give', 'say', 'tell', 'see', 'talk', 'speak', 'eat', 'drink', 'pay', 'send', 'call', 'open', 'close', 'arrive', 'leave', 'enter', 'hear', 'take', 'bring', 'wait', 'find'],
+            weakKeywords: ['work', 'help', 'show', 'ask', 'answer', 'remember', 'need', 'want'],
+        },
+        {
+            id: 'builtin-sports-fitness',
+            name: 'Sports & Fitness',
+            scope: 'movement, matches, exertion, recovery',
+            strongKeywords: ['run', 'swim', 'play', 'train', 'exercise', 'win', 'lose', 'score', 'shoot', 'throw', 'catch', 'defend', 'block', 'jump', 'climb', 'walk', 'tackle', 'stretch', 'dribble', 'kick'],
+            weakKeywords: ['fall', 'protect'],
+        },
+        {
+            id: 'builtin-cooking-food',
+            name: 'Cooking & Food',
+            scope: 'shopping, prep, serving, eating, cleanup',
+            strongKeywords: ['cook', 'eat', 'drink', 'bake', 'boil', 'fry', 'roast', 'cut', 'mix', 'prepare', 'serve', 'taste', 'peel'],
+            weakKeywords: ['buy', 'wash', 'clean', 'store', 'offer'],
+        },
+        {
+            id: 'builtin-outdoors-nature',
+            name: 'Outdoors & Nature',
+            scope: 'walking, climbing, camping, growing, living outdoors',
+            strongKeywords: ['walk', 'run', 'climb', 'camp', 'plant', 'grow', 'travel', 'visit', 'live', 'be born', 'die', 'hike'],
+            weakKeywords: ['return', 'go', 'come', 'fall', 'escape'],
+        },
+        {
+            id: 'builtin-woodworking',
+            name: 'Woodworking',
+            scope: 'building, finishing, handling, workshop routines',
+            strongKeywords: ['build', 'cut', 'measure', 'drill', 'sand', 'carve', 'glue', 'fix', 'paint', 'saw', 'hammer'],
+            weakKeywords: ['prepare', 'clean', 'protect', 'carry', 'arrange', 'produce'],
+        },
+        {
+            id: 'builtin-art-design',
+            name: 'Art & Design',
+            scope: 'making, sketching, visual work, creative choices',
+            strongKeywords: ['create', 'draw', 'paint', 'photograph', 'design', 'edit', 'imagine', 'transform'],
+            weakKeywords: ['show', 'choose', 'produce', 'record', 'publish'],
+        },
+        {
+            id: 'builtin-nightlife-partying',
+            name: 'Nightlife & Partying',
+            scope: 'going out, dancing, flirting, late-night plans',
+            strongKeywords: ['drink', 'dance', 'sing', 'laugh', 'kiss', 'celebrate', 'invite', 'date'],
+            weakKeywords: ['listen', 'go out', 'meet', 'arrive', 'return', 'pay', 'fight'],
+        },
+        {
+            id: 'builtin-music',
+            name: 'Music',
+            scope: 'listening, playing, recording, sharing tracks',
+            strongKeywords: ['sing', 'listen', 'play', 'record', 'repeat', 'produce', 'stream', 'download', 'upload'],
+            weakKeywords: ['publish', 'show', 'save', 'send', 'receive'],
+        },
+        {
+            id: 'builtin-history-culture',
+            name: 'History & Culture',
+            scope: 'reading, memory, visits, interpretation, heritage',
+            strongKeywords: ['read', 'write', 'study', 'remember', 'know', 'discover', 'visit', 'translate', 'teach'],
+            weakKeywords: ['explain', 'publish', 'comment', 'show', 'live', 'die'],
+        },
+        {
+            id: 'builtin-politics-current-events',
+            name: 'Politics & Current Events',
+            scope: 'governing, debate, policy, public response',
+            strongKeywords: ['govern', 'debate', 'vote', 'judge', 'control', 'define', 'develop', 'force', 'allow', 'protect', 'publish'],
+            weakKeywords: ['decide', 'change', 'respond', 'explain', 'comment', 'indicate'],
+        },
+        {
+            id: 'builtin-cinema-series',
+            name: 'Cinema & Series',
+            scope: 'watching, directing, appearing, scenes and stories',
+            strongKeywords: ['watch', 'show', 'record', 'direct', 'stream', 'appear'],
+            weakKeywords: ['listen', 'publish', 'repeat', 'imagine', 'enter', 'leave', 'die', 'live', 'feel'],
+        },
+        {
+            id: 'builtin-relationship-drama',
+            name: 'Relationship Drama',
+            scope: 'love, conflict, messaging, waiting, reconnecting',
+            strongKeywords: ['love', 'like', 'date', 'kiss', 'trust', 'lie', 'meet'],
+            weakKeywords: ['feel', 'know', 'fight', 'remember', 'leave', 'lose', 'call', 'send', 'wait', 'return', 'care', 'respond'],
+        },
+        {
+            id: 'builtin-office-admin',
+            name: 'Office & Admin',
+            scope: 'writing, planning, coordination, files, responses',
+            strongKeywords: ['work', 'write', 'read', 'send', 'receive', 'respond', 'explain', 'organize', 'plan', 'manage', 'prepare', 'control', 'define', 'pay', 'schedule'],
+            weakKeywords: ['open', 'close', 'store', 'show', 'solve'],
+        },
+        {
+            id: 'builtin-bureaucracy-delivery',
+            name: 'Bureaucracy & Delivery',
+            scope: 'forms, drop-offs, intercoms, missed deliveries, admin errands',
+            strongKeywords: ['deliver', 'send', 'receive', 'wait', 'call', 'ring', 'return', 'pick up', 'leave behind', 'show', 'indicate', 'sign', 'package'],
+            weakKeywords: ['bring', 'fetch', 'solve'],
+        },
+        {
+            id: 'builtin-tech-digital-work',
+            name: 'Tech & Digital Work',
+            scope: 'files, settings, uploads, messaging, research',
+            strongKeywords: ['open', 'close', 'turn on', 'turn off', 'upload', 'download', 'save', 'record', 'publish', 'develop', 'search', 'research', 'translate', 'program', 'code'],
+            weakKeywords: ['send', 'receive', 'respond', 'show', 'control', 'define', 'manage', 'stream'],
+        },
+        {
+            id: 'builtin-travel-tourism',
+            name: 'Travel & Tourism',
+            scope: 'arrivals, departures, visits, getting around',
+            strongKeywords: ['go', 'come', 'arrive', 'depart', 'leave', 'enter', 'exit', 'travel', 'visit', 'return', 'stay'],
+            weakKeywords: ['walk', 'take', 'bring', 'lose', 'find', 'wait', 'discover'],
+        },
+        {
+            id: 'builtin-crafts-making',
+            name: 'Crafts & Making',
+            scope: 'making, arranging, painting, care, practical creation',
+            strongKeywords: ['create', 'draw', 'paint', 'build', 'mix', 'craft', 'make', 'fix'],
+            weakKeywords: ['prepare', 'store', 'arrange', 'wash', 'clean', 'change', 'produce', 'photograph', 'show'],
+        },
+        {
+            id: 'builtin-education-learning',
+            name: 'Education & Learning',
+            scope: 'study, teaching, review, practice, understanding',
+            strongKeywords: ['learn', 'teach', 'study', 'read', 'write', 'repeat', 'research', 'translate', 'review', 'understand', 'practice'],
+            weakKeywords: ['explain', 'respond', 'remember', 'discover', 'follow', 'choose', 'imagine'],
+        },
+    ];
+
+    const THEMATIC_BUILTIN_PRIMARY_POOL_SIZE = 1200;
+    const THEMATIC_BUILTIN_TARGET_SIZE = 18;
+    const THEMATIC_BUILTIN_MIN_SIZE = 8;
+
+    function normalizeVerbSetMatchText(text) {
+        return String(text || '')
+            .toLowerCase()
+            .replace(/[()/,;:]/g, ' ')
+            .replace(/[–—-]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function matchVerbSetPhrase(text, phrase) {
+        const haystack = ` ${normalizeVerbSetMatchText(text)} `;
+        const needle = ` ${normalizeVerbSetMatchText(phrase)} `;
+        if (!needle.trim()) return false;
+        return haystack.includes(needle);
+    }
+
+    function getThematicVerbSetSourceVerbs() {
+        if (Array.isArray(uniqueVerbs) && uniqueVerbs.length) return uniqueVerbs;
+        if (typeof practiceVerbs !== 'undefined' && Array.isArray(practiceVerbs) && practiceVerbs.length) return practiceVerbs;
+        return [];
+    }
+
+    function getThematicVerbSetMatchInfo(verbInfo, spec) {
+        const translation = typeof cleanTranslation === 'function'
+            ? cleanTranslation(verbInfo.infinitive, verbInfo.translation || '')
+            : String(verbInfo.translation || '');
+        const strongMatches = (spec.strongKeywords || []).filter((keyword) => matchVerbSetPhrase(translation, keyword));
+        const weakMatches = (spec.weakKeywords || []).filter((keyword) => matchVerbSetPhrase(translation, keyword));
+        return {
+            strongMatches,
+            weakMatches,
+            score: (strongMatches.length * 4) + weakMatches.length,
+        };
+    }
+
+    function buildThematicVerbSetDefinition(spec) {
+        const sourceVerbs = getThematicVerbSetSourceVerbs();
+        const primaryPool = sourceVerbs.slice(0, Math.min(THEMATIC_BUILTIN_PRIMARY_POOL_SIZE, sourceVerbs.length));
+        const seen = new Set();
+        const selected = [];
+
+        const scorePool = (pool, requireStrong = false) => pool
+            .map((verbInfo, index) => ({
+                verbInfo,
+                index,
+                match: getThematicVerbSetMatchInfo(verbInfo, spec),
+            }))
+            .filter(({ match }) => requireStrong ? match.strongMatches.length > 0 : match.score > 0)
+            .sort((a, b) => (b.match.score - a.match.score) || (a.index - b.index));
+
+        const addFromRanked = (ranked, limit = THEMATIC_BUILTIN_TARGET_SIZE) => {
+            ranked.forEach(({ verbInfo }) => {
+                const infinitive = String(verbInfo?.infinitive || '').trim();
+                if (!infinitive || seen.has(infinitive) || selected.length >= limit) return;
+                seen.add(infinitive);
+                selected.push(infinitive);
+            });
+        };
+
+        addFromRanked(scorePool(primaryPool, true));
+        if (selected.length < THEMATIC_BUILTIN_MIN_SIZE) {
+            addFromRanked(scorePool(primaryPool, false));
+        }
+        if (selected.length < THEMATIC_BUILTIN_MIN_SIZE) {
+            addFromRanked(scorePool(sourceVerbs, true));
+        }
+        if (selected.length < THEMATIC_BUILTIN_MIN_SIZE) {
+            addFromRanked(scorePool(sourceVerbs, false));
+        }
+
+        return buildVerbSetDefinition(spec.id, spec.name, spec.scope, selected, { isBuiltIn: true });
+    }
+
+    const buildBuiltInVerbSets = () => {
+        const sets = [];
+        const push = (set) => {
+            if (!set || sets.some((entry) => entry.id === set.id)) return;
+            sets.push(set);
+        };
+        THEMATIC_BUILTIN_VERB_SET_SPECS.forEach((spec) => {
+            push(buildThematicVerbSetDefinition(spec));
+        });
+        return sets;
+    };
+
+    const getBuiltInVerbSetById = (id) => builtInVerbSets.find((set) => set.id === id) || null;
+    const getSavedVerbSetById = (id) => savedVerbSets.find((set) => set.id === id) || null;
+    const getAvailableVerbSetById = (id) => getBuiltInVerbSetById(id) || getSavedVerbSetById(id);
+
+    const getResolvedVerbSetSelections = (targetOptions = options) => {
+        const selectedIds = Array.isArray(targetOptions.selectedVerbSetIds)
+            ? targetOptions.selectedVerbSetIds.map((id) => String(id)).filter(Boolean)
+            : [];
+        const selections = selectedIds
+            .map((id) => getAvailableVerbSetById(id))
+            .filter(Boolean)
+            .map((set) => ({
+                source: set.isBuiltIn ? 'builtin' : 'saved',
+                id: set.id,
+                name: set.name,
+                verbs: [...set.verbs],
+                scope: set.scope || '',
+                count: set.verbs.length,
+                topicUsages: {},
+            }));
+        if (selections.length) return selections;
+        const sharedSet = normalizeEmbeddedVerbSet(targetOptions.sharedVerbSet);
+        if (sharedSet) {
+            return [{
+                source: 'shared',
+                id: null,
+                name: sharedSet.name,
+                verbs: [...sharedSet.verbs],
+                scope: sharedSet.scope || '',
+                count: sharedSet.verbs.length,
+                topicUsages: {},
+            }];
+        }
+        return [];
+    };
+
+    const getResolvedVerbSetSelection = (targetOptions = options) => {
+        const selections = getResolvedVerbSetSelections(targetOptions);
+        if (!selections.length) return null;
+        if (selections.length === 1) return selections[0];
+        const mergedVerbs = [...new Set(selections.flatMap((selection) => selection.verbs))];
+        return {
+            source: 'multiple',
+            id: null,
+            name: `${selections[0].name} + ${selections.length - 1} more`,
+            verbs: mergedVerbs,
+            scope: `${selections.length} categories selected`,
+            count: mergedVerbs.length,
+            selectionCount: selections.length,
+            selections,
+            topicUsages: {},
+        };
+    };
+
+    const getResolvedVerbUniverse = (targetOptions = options) => {
+        const selection = getResolvedVerbSetSelection(targetOptions);
+        if (!selection) return uniqueVerbs;
+        return selection.verbs
+            .map((verb) => verbInfoByInfinitive.get(verb))
+            .filter(Boolean);
+    };
+
+    const buildSharedVerbSetPayloadFromOptions = (targetOptions = options) => {
+        const selection = getResolvedVerbSetSelection(targetOptions);
+        return selection ? {
+            name: selection.name,
+            verbs: [...selection.verbs],
+            scope: selection.scope || '',
+            topicUsages: {},
+        } : null;
+    };
+
+    const clearVerbSetSelection = () => {
+        options.selectedVerbSetIds = [];
+        options.sharedVerbSet = null;
+        markOptionsAsCustom();
+        saveOptions(options);
+        renderOptions();
+    };
+
+    const toggleVerbSetSelection = (setId) => {
+        const target = getAvailableVerbSetById(setId);
+        if (!target) {
+            clearVerbSetSelection();
+            return;
+        }
+        const currentIds = Array.isArray(options.selectedVerbSetIds) ? [...options.selectedVerbSetIds] : [];
+        const alreadySelected = currentIds.includes(target.id);
+        options.selectedVerbSetIds = alreadySelected
+            ? currentIds.filter((id) => id !== target.id)
+            : [...currentIds, target.id];
+        options.sharedVerbSet = null;
+        markOptionsAsCustom();
+        saveOptions(options);
+        renderOptions();
+    };
+
+    const applySharedVerbSet = (verbSet) => {
+        const normalized = normalizeEmbeddedVerbSet(verbSet);
+        if (!normalized) {
+            clearVerbSetSelection();
+            return;
+        }
+        options.selectedVerbSetIds = [];
+        options.sharedVerbSet = normalized;
+        markOptionsAsCustom();
+        saveOptions(options);
+        renderOptions();
+    };
+
+    const syncVerbSetSelectionAfterLibraryChange = () => {
+        const selectedIds = Array.isArray(options.selectedVerbSetIds) ? options.selectedVerbSetIds : [];
+        const validIds = selectedIds.filter((id) => getAvailableVerbSetById(id));
+        if (validIds.length !== selectedIds.length) {
+            options.selectedVerbSetIds = validIds;
+            saveOptions(options);
+        }
+    };
+
+    const normalizeVerbSetVerbTokens = (rawText) => {
+        const lookup = new Map();
+        uniqueVerbs.forEach((verb) => {
+            lookup.set(String(verb.infinitive || '').trim().toLowerCase(), verb.infinitive);
+        });
+        const tokens = String(rawText || '')
+            .split(/[\n,;]+/)
+            .map((token) => token.trim())
+            .filter(Boolean);
+        const validVerbs = [];
+        const notFound = [];
+        const seen = new Set();
+        tokens.forEach((token) => {
+            const resolved = lookup.get(token.toLowerCase());
+            if (!resolved) {
+                if (!notFound.includes(token)) notFound.push(token);
+                return;
+            }
+            if (seen.has(resolved)) return;
+            seen.add(resolved);
+            validVerbs.push(resolved);
+        });
+        return { validVerbs, notFound };
+    };
+
+    const getVerbSetValidationSummary = (rawText) => {
+        const { validVerbs, notFound } = normalizeVerbSetVerbTokens(rawText);
+        return {
+            validVerbs,
+            recognizedCount: validVerbs.length,
+            notFound,
+            notFoundCount: notFound.length,
+        };
+    };
+
+    const formatVerbSetPreviewList = (values, emptyLabel) => {
+        if (!Array.isArray(values) || values.length === 0) return emptyLabel;
+        const preview = values.slice(0, 10).join(', ');
+        return values.length > 10 ? `${preview} +${values.length - 10} more` : preview;
+    };
+
+    const renderVerbSetValidation = (rawText) => {
+        if (!verbSetValidation) return null;
+        const summary = getVerbSetValidationSummary(rawText);
+        const validPreview = formatVerbSetPreviewList(summary.validVerbs, 'None yet');
+        const invalidPreview = formatVerbSetPreviewList(summary.notFound, 'Everything pasted is recognized so far.');
+        verbSetValidation.innerHTML = `
+            <div class="verb-set-validation-summary">
+                Recognized: <strong>${summary.recognizedCount}</strong> · Not found: <strong>${summary.notFoundCount}</strong>
+            </div>
+            <div class="verb-set-validation-groups">
+                <div class="verb-set-validation-group">
+                    <div class="verb-set-validation-heading">Valid verbs</div>
+                    <div class="verb-set-validation-list${summary.validVerbs.length ? '' : ' verb-set-validation-empty'}">${escapeHtml(validPreview)}</div>
+                </div>
+                <div class="verb-set-validation-group invalid">
+                    <div class="verb-set-validation-heading">Not found</div>
+                    <div class="verb-set-validation-list${summary.notFound.length ? '' : ' verb-set-validation-empty'}">${escapeHtml(invalidPreview)}</div>
+                </div>
+            </div>
+        `;
+        if (verbSetModalSaveBtn) {
+            verbSetModalSaveBtn.disabled = summary.recognizedCount === 0;
+        }
+        return summary;
+    };
+
+    const closeVerbSetModal = () => {
+        if (!verbSetModal) return;
+        verbSetModal.classList.add('hidden');
+        verbSetModalState = { mode: 'create', editingSetId: null, scope: '', topicUsages: {} };
+    };
+
+    const openVerbSetModal = (modalOptions = {}) => {
+        if (!verbSetModal || !verbSetNameInput || !verbSetVerbsInput) return;
+        const { setId = null, initialVerbSet = null } = modalOptions;
+        const existingSet = setId ? getSavedVerbSetById(setId) : null;
+        const sourceSet = existingSet || normalizeEmbeddedVerbSet(initialVerbSet);
+        verbSetModalState = {
+            mode: existingSet ? 'edit' : 'create',
+            editingSetId: existingSet?.id || null,
+            scope: sourceSet?.scope || '',
+            topicUsages: {},
+        };
+        verbSetModalTitle.textContent = existingSet ? 'Edit category' : 'New category';
+        verbSetModalText.textContent = 'Paste infinitives, comma-, semicolon-, or newline-separated to add your own category.';
+        verbSetNameInput.value = sourceSet?.name || '';
+        verbSetVerbsInput.value = sourceSet?.verbs?.join('\n') || '';
+        verbSetModalDeleteBtn?.classList.toggle('hidden', !existingSet);
+        renderVerbSetValidation(verbSetVerbsInput.value);
+        verbSetModal.classList.remove('hidden');
+        window.requestAnimationFrame(() => {
+            try {
+                verbSetNameInput.focus({ preventScroll: true });
+            } catch (error) {
+                verbSetNameInput.focus();
+            }
+        });
+    };
+
+    const saveVerbSetFromModal = () => {
+        const validation = renderVerbSetValidation(verbSetVerbsInput?.value || '');
+        if (!validation || validation.recognizedCount === 0) {
+            window.alert('Add at least one recognized verb before saving.');
+            return;
+        }
+        const trimmedName = String(verbSetNameInput?.value || '').trim();
+        if (!trimmedName) {
+            window.alert('Give this category a name.');
+            return;
+        }
+        const existingSet = verbSetModalState.editingSetId ? getSavedVerbSetById(verbSetModalState.editingSetId) : null;
+        const now = Date.now();
+        const nextSet = {
+            id: existingSet?.id || makeVerbSetId(),
+            name: trimmedName,
+            verbs: validation.validVerbs,
+            scope: verbSetModalState.scope || existingSet?.scope || '',
+            topicUsages: {},
+            createdAt: existingSet?.createdAt || now,
+            updatedAt: now,
+        };
+        if (existingSet) {
+            savedVerbSets = savedVerbSets.map((set) => set.id === existingSet.id ? nextSet : set);
+        } else {
+            savedVerbSets = [nextSet, ...savedVerbSets];
+        }
+        savedVerbSets.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+        persistSavedVerbSets();
+        options.selectedVerbSetIds = [nextSet.id];
+        options.sharedVerbSet = null;
+        markOptionsAsCustom();
+        saveOptions(options);
+        renderOptions();
+        closeVerbSetModal();
+    };
+
+    const deleteVerbSetById = (setId) => {
+        const target = getSavedVerbSetById(setId);
+        if (!target) return;
+        if (!window.confirm(`Delete category "${target.name}"?`)) return;
+        savedVerbSets = savedVerbSets.filter((set) => set.id !== setId);
+        persistSavedVerbSets();
+        if ((options.selectedVerbSetIds || []).includes(setId)) {
+            clearVerbSetSelection();
+        } else {
+            renderOptions();
+        }
+    };
+
+    const saveSharedVerbSetToLibrary = (sharedSelection = getResolvedVerbSetSelection()) => {
+        if (!sharedSelection || sharedSelection.source !== 'shared') return;
+        openVerbSetModal({
+            initialVerbSet: {
+                name: sharedSelection.name,
+                verbs: sharedSelection.verbs,
+                scope: sharedSelection.scope || '',
+            },
+        });
+    };
+
+    const buildEmptyVerbSetProgressState = () => ({ selections: {} });
+
+    const loadVerbSetProgressState = () => {
+        try {
+            const raw = getScopedStorageItem(VERB_SET_PROGRESS_STORAGE_KEY);
+            if (!raw) return buildEmptyVerbSetProgressState();
+            const parsed = JSON.parse(raw);
+            return {
+                ...buildEmptyVerbSetProgressState(),
+                ...parsed,
+                selections: parsed && typeof parsed.selections === 'object' && parsed.selections ? parsed.selections : {},
+            };
+        } catch (error) {
+            console.warn('Could not load category progress state:', error);
+            return buildEmptyVerbSetProgressState();
+        }
+    };
+
+    const persistVerbSetProgressState = () => {
+        try {
+            setScopedStorageItem(VERB_SET_PROGRESS_STORAGE_KEY, JSON.stringify(verbSetProgressState));
+        } catch (error) {
+            console.warn('Could not save category progress state:', error);
+        }
+    };
+
+    const buildVerbSetProgressKey = (selection) => {
+        if (!selection || !Array.isArray(selection.verbs) || !selection.verbs.length) return '';
+        const scopeId = selection.id ? `${selection.source}:${selection.id}` : `${selection.source}:${selection.name || 'shared'}`;
+        return `${scopeId}::${[...selection.verbs].sort().join('|')}`;
+    };
+
+    const getVerbSetProgressEntry = (selectionOrKey, create = false) => {
+        const key = typeof selectionOrKey === 'string' ? selectionOrKey : buildVerbSetProgressKey(selectionOrKey);
+        if (!key) return null;
+        if (!verbSetProgressState.selections[key] && create) {
+            verbSetProgressState.selections[key] = { seenVerbs: {}, lastSeenTurn: 0 };
+        }
+        return verbSetProgressState.selections[key] || null;
+    };
+
+    const buildActiveVerbSetCoverageMultiplierMap = (activeVerbSet, eligibleVerbIds = null) => {
+        if (!activeVerbSet || !Array.isArray(activeVerbSet.verbs) || !activeVerbSet.verbs.length) return null;
+        const progressKey = buildVerbSetProgressKey(activeVerbSet);
+        if (!progressKey) return null;
+        const relevantVerbs = eligibleVerbIds instanceof Set
+            ? activeVerbSet.verbs.filter((verb) => eligibleVerbIds.has(verb))
+            : activeVerbSet.verbs;
+        if (!relevantVerbs.length) return { progressKey, multipliers: null };
+        const progressEntry = getVerbSetProgressEntry(progressKey);
+        const seenVerbs = progressEntry?.seenVerbs || {};
+        const unseenVerbs = relevantVerbs.filter((verb) => !seenVerbs[verb]);
+        if (!unseenVerbs.length) {
+            return { progressKey, multipliers: null };
+        }
+        const multipliers = new Map();
+        relevantVerbs.forEach((verb) => {
+            multipliers.set(verb, seenVerbs[verb] ? 0.16 : 14);
+        });
+        return { progressKey, multipliers };
+    };
 
     const getPresetKey = (preset, source = 'builtin') => `${source}:${preset.id || preset.name}`;
 
@@ -30930,7 +32348,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const raw = getScopedStorageItem(DRILL_STORAGE_KEY);
             if (!raw) return [];
             const parsed = JSON.parse(raw);
-            return Array.isArray(parsed) ? parsed : [];
+            return Array.isArray(parsed)
+                ? parsed.map((drill) => ({
+                    ...drill,
+                    config: {
+                        ...(drill.config || {}),
+                        options: normalizeDrillOptions((drill.config && drill.config.options) || {}),
+                    },
+                }))
+                : [];
         } catch (error) {
             console.warn('Could not load saved drills:', error);
             return [];
@@ -30947,21 +32373,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getCustomPreset = () => DRILL_PRESETS.find((preset) => preset.isCustom) || null;
 
-    const snapshotCurrentDrillConfig = () => ({
+    const snapshotCurrentDrillConfig = (snapshotOptions = {}) => ({
         options: {
             tenseWeights: deepClone(options.tenseWeights || {}),
             frequencyWeights: deepClone(options.frequencyWeights || {}),
             usageNuggetVisible: options.usageNuggetVisible !== false,
+            selectedVerbSetIds: snapshotOptions.forShare ? [] : deepClone(options.selectedVerbSetIds || []),
+            sharedVerbSet: snapshotOptions.forShare ? buildSharedVerbSetPayloadFromOptions(options) : deepClone(options.sharedVerbSet),
         },
         micAnswerMode: getScopedStorageItem(MIC_MODE_KEY) === 'true',
     });
 
     const describeDrillConfig = (config = {}) => {
-        const drillOptions = config.options || {};
+        const drillOptions = normalizeDrillOptions(config.options || {});
         const tenseSummary = Object.entries(drillOptions.tenseWeights || {})
             .filter(([, weight]) => weight > 0)
             .map(([tenseKey]) => (TENSE_ENGLISH_LABELS[tenseKey] || tenseKey).toLowerCase())
             .join(' · ') || 'no tenses';
+        const activeVerbSet = getResolvedVerbSetSelection(drillOptions);
         const frequencyWeights = drillOptions.frequencyWeights || {};
         let rangeKey = null;
         FREQ_ORDER.forEach((freqKey, index) => {
@@ -30971,7 +32400,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 rangeKey = freqKey;
             }
         });
-        const parts = [tenseSummary, rangeKey ? (FREQ_LABELS[rangeKey] || rangeKey).toLowerCase() : 'custom frequency mix'];
+        const parts = [tenseSummary];
+        if (activeVerbSet) {
+            parts.push(
+                activeVerbSet.selectionCount && activeVerbSet.selectionCount > 1
+                    ? `${activeVerbSet.selectionCount} categories · ${activeVerbSet.count} verbs`
+                    : `${activeVerbSet.name} · ${activeVerbSet.count} verbs`
+            );
+        } else {
+            parts.push(rangeKey ? (FREQ_LABELS[rangeKey] || rangeKey).toLowerCase() : 'custom frequency mix');
+        }
         if (drillOptions.usageNuggetVisible === false) {
             parts.push('usage nuggets off');
         }
@@ -31111,7 +32549,7 @@ document.addEventListener('DOMContentLoaded', () => {
         version: DRILL_SHARE_VERSION,
         name: metadata.name || getCurrentDrillMeta().name || 'Custom Drill',
         description: metadata.description ?? getCurrentDrillMeta().description ?? '',
-        config: snapshotCurrentDrillConfig(),
+        config: snapshotCurrentDrillConfig({ forShare: !!metadata.forShare }),
     });
 
     const shareCurrentDrill = () => {
@@ -31122,7 +32560,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!prompted) return;
             metadata = prompted;
         }
-        const payload = buildCurrentDrillPayload(metadata);
+        const payload = buildCurrentDrillPayload({ ...metadata, forShare: true });
         const encoded = encodeDrillPayload(payload);
         const url = new URL(window.location.href);
         url.searchParams.set('drill', encoded);
@@ -31171,6 +32609,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!payload || payload.version !== DRILL_SHARE_VERSION || !payload.config || !payload.config.options) {
                 return null;
             }
+            payload.config.options = normalizeDrillOptions(payload.config.options);
             const signature = JSON.stringify(payload.config);
             const existing = savedDrills.find((drill) => JSON.stringify(drill.config) === signature);
             if (existing) {
@@ -31562,6 +33001,15 @@ document.addEventListener('DOMContentLoaded', () => {
             tutorialState.stepIndex += 1;
         }
         saveTutorialState();
+    };
+
+    const skipTutorialFlow = () => {
+        if (!tutorialState.active) return;
+        tutorialState.active = false;
+        tutorialState.completed = true;
+        tutorialState.stepIndex = TUTORIAL_STEPS.length;
+        saveTutorialState();
+        refreshTutorialAwareUi();
     };
 
     const resetTutorialPracticeBaseline = () => {
@@ -32090,6 +33538,224 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const ENABLE_DAILY_GOAL_CELEBRATION = true;
+    const DAILY_GOAL_CELEBRATION_CONFIG = {
+        durationMs: 1680,
+        particleCount: 34,
+        gravity: 1240,
+        drag: 0.988,
+        skipUnlockDelayMs: 260,
+    };
+
+    const createDailyGoalCelebrationController = () => {
+        let overlay = null;
+        let canvas = null;
+        let badge = null;
+        let hint = null;
+        let context = null;
+        let rafId = 0;
+        let unlockTimer = 0;
+        let skipEnabled = false;
+        let currentRun = null;
+        let dismissHandlersBound = false;
+        const palette = {
+            colors: ['#55d17a', '#4d8cf5', '#f5c24d', '#ef6f92', '#7d65f8'],
+            ink: '#243242',
+        };
+
+        const clearRun = () => {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = 0;
+            }
+            if (unlockTimer) {
+                clearTimeout(unlockTimer);
+                unlockTimer = 0;
+            }
+            skipEnabled = false;
+            currentRun = null;
+            if (overlay) overlay.classList.remove('is-visible');
+            if (badge) badge.style.display = 'none';
+            if (hint) hint.style.display = 'none';
+            if (context && canvas) {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        };
+
+        const handleDismiss = () => {
+            if (!skipEnabled) return;
+            clearRun();
+        };
+
+        const ensureElements = () => {
+            if (overlay && canvas && badge && hint && context) return true;
+            if (!flashcard) return false;
+            overlay = document.createElement('div');
+            overlay.className = 'daily-goal-celebration-overlay';
+            overlay.setAttribute('aria-hidden', 'true');
+
+            canvas = document.createElement('canvas');
+            canvas.className = 'daily-goal-celebration-canvas';
+            badge = document.createElement('div');
+            badge.className = 'daily-goal-celebration-badge';
+            badge.textContent = 'Goal reached';
+            hint = document.createElement('div');
+            hint.className = 'daily-goal-celebration-hint';
+            hint.textContent = 'Tap to continue';
+
+            overlay.appendChild(canvas);
+            overlay.appendChild(badge);
+            overlay.appendChild(hint);
+            flashcard.appendChild(overlay);
+
+            context = canvas.getContext('2d');
+            if (!context) return false;
+
+            if (!dismissHandlersBound) {
+                overlay.addEventListener('pointerdown', handleDismiss);
+                overlay.addEventListener('click', handleDismiss);
+                dismissHandlersBound = true;
+            }
+            return true;
+        };
+
+        const fitCanvas = () => {
+            if (!overlay || !canvas) return null;
+            const bounds = overlay.getBoundingClientRect();
+            const pixelRatio = window.devicePixelRatio || 1;
+            const width = Math.max(1, Math.round(bounds.width));
+            const height = Math.max(1, Math.round(bounds.height));
+            canvas.width = Math.round(width * pixelRatio);
+            canvas.height = Math.round(height * pixelRatio);
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+            return { width, height };
+        };
+
+        const buildParticles = (width, height) => {
+            const colors = palette.colors;
+            const particles = [];
+            for (let index = 0; index < DAILY_GOAL_CELEBRATION_CONFIG.particleCount; index += 1) {
+                const angle = (-Math.PI / 2) + ((Math.random() - 0.5) * 1.15);
+                const speed = 280 + (Math.random() * 240);
+                particles.push({
+                    x: width * 0.5 + (Math.random() - 0.5) * 28,
+                    y: height * 0.86,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: 5 + Math.random() * 9,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotationSpeed: (Math.random() - 0.5) * 8,
+                    color: colors[index % colors.length],
+                    life: 1,
+                    shape: index % 3 === 0 ? 'circle' : 'card',
+                });
+            }
+            return particles;
+        };
+
+        const drawParticle = (particle) => {
+            context.save();
+            context.translate(particle.x, particle.y);
+            context.rotate(particle.rotation);
+            context.globalAlpha = Math.max(0, particle.life);
+            if (particle.shape === 'circle') {
+                context.fillStyle = particle.color;
+                context.beginPath();
+                context.arc(0, 0, particle.size * 0.38, 0, Math.PI * 2);
+                context.fill();
+            } else {
+                const width = particle.size * 1.1;
+                const height = particle.size * 1.45;
+                context.fillStyle = '#ffffff';
+                context.strokeStyle = particle.color;
+                context.lineWidth = 1.2;
+                context.beginPath();
+                context.roundRect(-width / 2, -height / 2, width, height, 3);
+                context.fill();
+                context.stroke();
+                context.fillStyle = particle.color;
+                context.fillRect(-width / 2 + 2.2, -height / 2 + 2.4, width - 4.4, 2.1);
+                context.fillStyle = palette.ink;
+                context.fillRect(-width / 2 + 2.4, 0.6, width - 4.8, 1.9);
+            }
+            context.restore();
+        };
+
+        const render = (frameTimeMs) => {
+            if (!currentRun || !context) return;
+            const elapsedMs = frameTimeMs - currentRun.startedAtMs;
+            const dtMs = Math.min(32, frameTimeMs - currentRun.lastFrameMs);
+            const dt = dtMs / 1000;
+            currentRun.lastFrameMs = frameTimeMs;
+            context.clearRect(0, 0, currentRun.width, currentRun.height);
+            currentRun.particles.forEach((particle) => {
+                particle.vx *= DAILY_GOAL_CELEBRATION_CONFIG.drag;
+                particle.vy = (particle.vy * DAILY_GOAL_CELEBRATION_CONFIG.drag) + (DAILY_GOAL_CELEBRATION_CONFIG.gravity * dt);
+                particle.x += particle.vx * dt;
+                particle.y += particle.vy * dt;
+                particle.rotation += particle.rotationSpeed * dt;
+                particle.life = Math.max(0, 1 - (elapsedMs / DAILY_GOAL_CELEBRATION_CONFIG.durationMs));
+                drawParticle(particle);
+            });
+            if (elapsedMs >= DAILY_GOAL_CELEBRATION_CONFIG.durationMs) {
+                clearRun();
+                return;
+            }
+            rafId = requestAnimationFrame(render);
+        };
+
+        return {
+            trigger(options = {}) {
+                if (!ENABLE_DAILY_GOAL_CELEBRATION) return;
+                if (!ensureElements()) return;
+                clearRun();
+                const size = fitCanvas();
+                if (!size) return;
+                currentRun = {
+                    startedAtMs: performance.now(),
+                    lastFrameMs: performance.now(),
+                    width: size.width,
+                    height: size.height,
+                    particles: buildParticles(size.width, size.height),
+                };
+                badge.textContent = options.milestoneIndex && options.milestoneIndex > 1 ? `Goal x${options.milestoneIndex}` : 'Goal reached';
+                badge.style.display = options.reason === 'debug-counter' ? 'none' : 'inline-flex';
+                hint.style.display = 'inline-flex';
+                overlay.classList.add('is-visible');
+                unlockTimer = window.setTimeout(() => {
+                    skipEnabled = true;
+                }, DAILY_GOAL_CELEBRATION_CONFIG.skipUnlockDelayMs);
+                rafId = requestAnimationFrame(render);
+            },
+            isActive() {
+                return !!currentRun;
+            },
+        };
+    };
+
+    const dailyGoalCelebration = createDailyGoalCelebrationController();
+    const maybeTriggerDailyGoalCelebration = (previousCount, nextCount) => {
+        if (!ENABLE_DAILY_GOAL_CELEBRATION || dailyGoalCelebration.isActive()) return;
+        const goal = typeof getDailyGoalTarget === 'function' ? getDailyGoalTarget() : 0;
+        if (goal <= 0) return;
+        const previousMilestoneIndex = Math.floor(previousCount / goal);
+        const nextMilestoneIndex = Math.floor(nextCount / goal);
+        if (nextMilestoneIndex > previousMilestoneIndex) {
+            dailyGoalCelebration.trigger({
+                reason: 'daily-goal',
+                milestoneIndex: nextMilestoneIndex,
+            });
+        }
+    };
+    window.triggerUkrainianGoalCelebration = (options = {}) => {
+        dailyGoalCelebration.trigger({
+            reason: options.reason || 'manual',
+            milestoneIndex: Number(options.milestoneIndex) || 0,
+        });
+    };
+
     const renderUsageNugget = (card) => {
         if (!usageNuggetEl || !card) return;
         usageNuggetEl.style.display = 'none';
@@ -32102,11 +33768,50 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(([, weight]) => weight > 0)
             .map(([tenseKey]) => tenseKey);
 
-    const getActiveVerbs = () =>
-        uniqueVerbs.filter((verb) => {
-            const weight = (options.frequencyWeights || {})[verb.frequency];
+    const getActiveVerbs = (targetOptions = options) => {
+        const selection = getResolvedVerbSetSelection(targetOptions);
+        if (selection) {
+            return selection.verbs
+                .map((verb) => verbInfoByInfinitive.get(verb))
+                .filter(Boolean);
+        }
+        return uniqueVerbs.filter((verb) => {
+            const weight = (targetOptions.frequencyWeights || {})[verb.frequency];
             return weight && weight > 0;
         });
+    };
+    let explorerVerbScopeMode = 'filtered';
+
+    const getFilteredVerbUniverse = (targetOptions = options) => getActiveVerbs(targetOptions);
+
+    const getCurrentVerbSelectionSummary = (filteredCount, totalCount) => {
+        if (filteredCount >= totalCount) {
+            return `Showing all ${totalCount} verbs`;
+        }
+        if (filteredCount <= 0) {
+            return 'No verbs match the current filters';
+        }
+        return `Showing ${filteredCount} verbs from the current drill filters`;
+    };
+
+    const refreshExplorerScopeUi = () => {
+        if (!explorerScopeRow || !explorerScopeFilteredBtn || !explorerScopeAllBtn || !explorerScopeSummary) return;
+        const filteredUniverse = getFilteredVerbUniverse();
+        const hasNarrowedPool = filteredUniverse.length > 0 && filteredUniverse.length < uniqueVerbs.length;
+        explorerScopeRow.classList.toggle('hidden', !hasNarrowedPool);
+        if (!hasNarrowedPool) {
+            explorerScopeSummary.textContent = '';
+            explorerScopeFilteredBtn.classList.remove('active');
+            explorerScopeAllBtn.classList.remove('active');
+            return;
+        }
+        const effectiveMode = explorerVerbScopeMode === 'all' ? 'all' : 'filtered';
+        explorerScopeFilteredBtn.classList.toggle('active', effectiveMode === 'filtered');
+        explorerScopeAllBtn.classList.toggle('active', effectiveMode === 'all');
+        explorerScopeSummary.textContent = effectiveMode === 'filtered'
+            ? getCurrentVerbSelectionSummary(filteredUniverse.length, uniqueVerbs.length)
+            : `Showing all ${uniqueVerbs.length} verbs`;
+    };
 
     const cardKey = (card) => `${card.verb?.infinitive}|${card.tense}|${card.pronounKey || card.pronoun}`;
     const REVIEW_MODEL_STORAGE_KEY = 'reviewModelStateV1';
@@ -32255,6 +33960,14 @@ document.addEventListener('DOMContentLoaded', () => {
         cardMeta.lastSeenTurn = currentTurn;
         verbMeta.seenCount = (verbMeta.seenCount || 0) + 1;
         verbMeta.lastSeenTurn = currentTurn;
+        if (card.verbSetProgressKey) {
+            const progressEntry = getVerbSetProgressEntry(card.verbSetProgressKey, true);
+            if (progressEntry) {
+                progressEntry.seenVerbs[card.verb.infinitive] = currentTurn;
+                progressEntry.lastSeenTurn = currentTurn;
+                persistVerbSetProgressState();
+            }
+        }
         persistReviewModelState();
     };
 
@@ -32423,6 +34136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeVerbs = getActiveVerbs();
         const activeTenses = getActiveTenses();
         if (!activeVerbs.length || !activeTenses.length) return null;
+        const activeVerbSet = getResolvedVerbSetSelection();
 
         const weightedDeck = [];
         activeTenses.forEach((tenseKey) => {
@@ -32430,7 +34144,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tenseWeight <= 0) return;
 
             activeVerbs.forEach((verb) => {
-                const frequencyWeight = (options.frequencyWeights || {})[verb.frequency] || 0;
+                const frequencyWeight = activeVerbSet
+                    ? 1
+                    : ((options.frequencyWeights || {})[verb.frequency] || 0);
                 if (frequencyWeight <= 0) return;
 
                 const forms = (allTenses[tenseKey] || {})[verb.infinitive];
@@ -32452,8 +34168,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+        const coverageInfo = activeVerbSet
+            ? buildActiveVerbSetCoverageMultiplierMap(activeVerbSet, new Set(activeVerbs.map((verb) => verb.infinitive)))
+            : null;
+        let weightedDeckWithReview = applyReviewModelToWeightedDeck(weightedDeck);
+        if (coverageInfo?.multipliers) {
+            weightedDeckWithReview = weightedDeckWithReview.map((item) => ({
+                ...item,
+                score: (item.score || 0) * (coverageInfo.multipliers.get(item.card.verb.infinitive) || 1),
+            }));
+        }
 
-        return performWeightedSelection(applyReviewModelToWeightedDeck(weightedDeck), { allowRecentCardBlocking: true });
+        const nextCard = performWeightedSelection(weightedDeckWithReview, { allowRecentCardBlocking: true });
+        if (nextCard && coverageInfo?.progressKey) {
+            nextCard.verbSetProgressKey = coverageInfo.progressKey;
+        }
+        return nextCard;
     };
 
     const updateCardTenseBadge = (tenseKey) => {
@@ -32524,8 +34254,13 @@ document.addEventListener('DOMContentLoaded', () => {
         answerContainer.style.visibility = 'visible';
         answerContainer.style.opacity = '1';
         answerContainer.classList.add('is-visible');
+        const previousDailyCount = typeof getCurrentDailyCount === 'function' ? getCurrentDailyCount() : 0;
         if (countProgress && typeof window.incrementDailyCount === 'function') {
             window.incrementDailyCount();
+            maybeTriggerDailyGoalCelebration(
+                previousDailyCount,
+                typeof getCurrentDailyCount === 'function' ? getCurrentDailyCount() : previousDailyCount
+            );
         }
         syncUsageNuggetVisibility();
         refreshAnswerFlowButton();
@@ -32651,8 +34386,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderVerbList = (filter = '') => {
         if (!verbListContainer) return;
+        refreshExplorerScopeUi();
         const query = normalizeSearchText(filter);
-        const filteredVerbs = uniqueVerbs.filter((verb) => getVerbMatchesQuery(verb, query));
+        const filteredUniverse = getFilteredVerbUniverse();
+        const useFilteredScope = filteredUniverse.length > 0
+            && filteredUniverse.length < uniqueVerbs.length
+            && explorerVerbScopeMode !== 'all';
+        const sourceVerbs = useFilteredScope ? filteredUniverse : uniqueVerbs;
+        const filteredVerbs = sourceVerbs.filter((verb) => getVerbMatchesQuery(verb, query));
 
         verbListContainer.innerHTML = '';
         if (!filteredVerbs.length) {
@@ -32828,20 +34569,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyDrillConfig = (config = {}) => {
-        const nextOptions = deepClone(DEFAULT_OPTIONS);
-        nextOptions.tenseWeights = {
-            ...DEFAULT_OPTIONS.tenseWeights,
-            ...deepClone((config.options && config.options.tenseWeights) || {}),
-        };
-        nextOptions.frequencyWeights = {
-            ...DEFAULT_OPTIONS.frequencyWeights,
-            ...deepClone((config.options && config.options.frequencyWeights) || {}),
-        };
-        nextOptions.usageNuggetVisible = config.options && config.options.usageNuggetVisible !== undefined
-            ? !!config.options.usageNuggetVisible
-            : DEFAULT_OPTIONS.usageNuggetVisible;
+        const nextOptions = normalizeDrillOptions((config && config.options) || {});
         nextOptions.activeDrill = 'custom';
         options = { ...options, ...nextOptions };
+        syncVerbSetSelectionAfterLibraryChange();
         setScopedStorageItem(MIC_MODE_KEY, config.micAnswerMode ? 'true' : 'false');
     };
 
@@ -32870,6 +34601,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderOptions = () => {
         syncMicModeSettingUi();
+        const activeVerbSetSelection = getResolvedVerbSetSelection();
+        const activeVerbSetIds = new Set(options.selectedVerbSetIds || []);
 
         if (tenseWeightsContainer) {
             tenseWeightsContainer.innerHTML = '';
@@ -32927,6 +34660,136 @@ document.addEventListener('DOMContentLoaded', () => {
             verbPoolBasicContainer.appendChild(panel);
         }
 
+        const TOPIC_EMOJI_BY_NAME = {
+            'Super Everyday': '🏠',
+            'Sports & Fitness': '🏃',
+            'Cooking & Food': '🍳',
+            'Outdoors & Nature': '🌿',
+            'Woodworking': '🪵',
+            'Art & Design': '🎨',
+            'Nightlife & Partying': '🎉',
+            'Music': '🎵',
+            'History & Culture': '🏛️',
+            'Politics & Current Events': '🗞️',
+            'Cinema & Series': '🎬',
+            'Relationship Drama': '💔',
+            'Office & Admin': '🗂️',
+            'Bureaucracy & Delivery': '📦',
+            'Tech & Digital Work': '💻',
+            'Travel & Tourism': '✈️',
+            'Driving & Road Code': '🚗',
+            'Crafts & Making': '🧵',
+            'Education & Learning': '📚',
+        };
+        const formatTopicDisplayName = (name) => {
+            const label = String(name || '').trim();
+            if (!label) return '';
+            const emoji = TOPIC_EMOJI_BY_NAME[label];
+            return emoji ? `${emoji} ${label}` : label;
+        };
+
+        if (verbSetContainer) {
+            verbSetContainer.innerHTML = '';
+            const panel = document.createElement('div');
+            panel.className = 'verb-set-panel';
+
+            const grid = document.createElement('div');
+            grid.className = 'verb-set-grid';
+
+            const allCard = document.createElement('button');
+            allCard.type = 'button';
+            allCard.className = `verb-set-card${activeVerbSetSelection ? '' : ' active'}`;
+            allCard.innerHTML = `
+                <span class="verb-set-card-title">All verbs</span>
+                <span class="verb-set-card-meta">Use the regular Top N pool.</span>
+            `;
+            allCard.addEventListener('click', () => clearVerbSetSelection());
+            grid.appendChild(allCard);
+
+            builtInVerbSets.forEach((set) => {
+                const isActive = activeVerbSetIds.has(set.id);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `verb-set-card${isActive ? ' active' : ''}`;
+                card.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(set.name))}</span>
+                    <span class="verb-set-card-meta">${escapeHtml(set.scope || 'Built-in')} · ${set.verbs.length} verbs</span>
+                `;
+                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                grid.appendChild(card);
+            });
+
+            savedVerbSets.forEach((set) => {
+                const isActive = activeVerbSetIds.has(set.id);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `verb-set-card${isActive ? ' active' : ''}`;
+                card.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(set.name))}</span>
+                    <span class="verb-set-card-meta">Saved · ${set.verbs.length} verbs</span>
+                    <span class="verb-set-card-actions">
+                        <span class="verb-set-card-action" data-action="edit">Edit</span>
+                        <span class="verb-set-card-action" data-action="delete">Delete</span>
+                    </span>
+                `;
+                card.addEventListener('click', () => toggleVerbSetSelection(set.id));
+                card.querySelector('[data-action="edit"]')?.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    openVerbSetModal({ setId: set.id });
+                });
+                card.querySelector('[data-action="delete"]')?.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    deleteVerbSetById(set.id);
+                });
+                grid.appendChild(card);
+            });
+
+            if (activeVerbSetSelection?.source === 'shared') {
+                const sharedCard = document.createElement('button');
+                sharedCard.type = 'button';
+                sharedCard.className = 'verb-set-card active shared-set-card';
+                sharedCard.innerHTML = `
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(activeVerbSetSelection.name))}</span>
+                    <span class="verb-set-card-meta">Shared set · ${activeVerbSetSelection.count} verbs</span>
+                `;
+                grid.appendChild(sharedCard);
+            }
+
+            const newSetCard = document.createElement('button');
+            newSetCard.type = 'button';
+            newSetCard.className = 'verb-set-card new-set-card';
+            newSetCard.innerHTML = `
+                <span class="verb-set-card-title">New category</span>
+                <span class="verb-set-card-meta">Paste a list of infinitives.</span>
+            `;
+            newSetCard.addEventListener('click', () => openVerbSetModal());
+            grid.appendChild(newSetCard);
+
+            panel.appendChild(grid);
+
+            const summary = document.createElement('div');
+            summary.className = 'verb-set-summary';
+            const categoryCount = activeVerbSetSelection?.selectionCount || (activeVerbSetSelection ? 1 : 0);
+            summary.textContent = activeVerbSetSelection
+                ? `Exact pool active: ${categoryCount} ${categoryCount === 1 ? 'category' : 'categories'} with ${activeVerbSetSelection.count} unique verbs. ${activeVerbSetSelection.scope ? `${activeVerbSetSelection.scope}. ` : ''}Tenses still apply.`
+                : 'When categories are active, their verbs are merged into one exact pool for drills and sharing.';
+            panel.appendChild(summary);
+
+            if (activeVerbSetSelection?.source === 'shared') {
+                const actionsRow = document.createElement('div');
+                actionsRow.className = 'verb-set-actions-row';
+                const saveSharedBtn = document.createElement('button');
+                saveSharedBtn.type = 'button';
+                saveSharedBtn.className = 'secondary-btn verb-set-secondary-btn';
+                saveSharedBtn.textContent = 'Save this category';
+                saveSharedBtn.addEventListener('click', () => saveSharedVerbSetToLibrary(activeVerbSetSelection));
+                actionsRow.appendChild(saveSharedBtn);
+                panel.appendChild(actionsRow);
+            }
+
+            verbSetContainer.appendChild(panel);
+        }
+
         renderPresets();
 
         if (advancedPracticeContainer) {
@@ -32971,6 +34834,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const detailedFreqCard = createAdvancedCard('Detailed frequency');
+            if (activeVerbSetSelection) {
+                const ignoredHelper = document.createElement('div');
+                ignoredHelper.className = 'advanced-action-helper';
+                ignoredHelper.textContent = `Category "${activeVerbSetSelection.name}" is active, so Top N settings below are currently ignored.`;
+                detailedFreqCard.appendChild(ignoredHelper);
+            }
             FREQ_ORDER.forEach((freqKey) => {
                 const row = document.createElement('div');
                 row.className = 'freq-weight-row';
@@ -33433,13 +35302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const showContactHint = () => {
-        if (!contactModal) return;
-        contactModal.style.display = 'flex';
-        selectedReportType = null;
-        document.querySelectorAll('.report-btn').forEach((btn) => {
-            btn.style.borderColor = '#e9ecef';
-        });
-        if (contactMessageEl) contactMessageEl.value = '';
+        openContactModal();
     };
 
     const setupInfoPanel = () => {
@@ -33521,6 +35384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.startTutorial = () => restartTutorialFlow({ confirmRestart: false });
+    window.skipTutorial = skipTutorialFlow;
 
     const loadInitialCard = () => {
         const params = parseHashParams();
@@ -33674,6 +35538,27 @@ document.addEventListener('DOMContentLoaded', () => {
     [backToFlashcardBtn, backToListBtn, backToFlashcardFromOptionsBtn].filter(Boolean).forEach((button) => {
         button.addEventListener('click', () => window.history.back());
     });
+
+    if (tutorialInlineSkipBtn) {
+        tutorialInlineSkipBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            skipTutorialFlow();
+        });
+    }
+
+    if (explorerScopeFilteredBtn) {
+        explorerScopeFilteredBtn.addEventListener('click', () => {
+            explorerVerbScopeMode = 'filtered';
+            renderVerbList(searchBar ? searchBar.value : '');
+        });
+    }
+
+    if (explorerScopeAllBtn) {
+        explorerScopeAllBtn.addEventListener('click', () => {
+            explorerVerbScopeMode = 'all';
+            renderVerbList(searchBar ? searchBar.value : '');
+        });
+    }
 
     if (searchBar) {
         searchBar.addEventListener('input', (event) => renderVerbList(event.target.value));
@@ -33852,6 +35737,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (verbSetModal) {
+        verbSetModal.addEventListener('click', (event) => {
+            if (event.target instanceof Element && event.target.closest('[data-close-verb-set-modal="true"]')) {
+                closeVerbSetModal();
+            }
+        });
+    }
+
+    if (verbSetModalCloseBtn) {
+        verbSetModalCloseBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            closeVerbSetModal();
+        });
+    }
+
+    if (verbSetVerbsInput) {
+        verbSetVerbsInput.addEventListener('input', () => {
+            renderVerbSetValidation(verbSetVerbsInput.value);
+        });
+    }
+
+    if (verbSetModalSaveBtn) {
+        verbSetModalSaveBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            saveVerbSetFromModal();
+        });
+    }
+
+    if (verbSetModalDeleteBtn) {
+        verbSetModalDeleteBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (verbSetModalState.editingSetId) {
+                deleteVerbSetById(verbSetModalState.editingSetId);
+                closeVerbSetModal();
+            }
+        });
+    }
+
+    if (dailyProgressContainer) {
+        dailyProgressContainer.addEventListener('click', (event) => {
+            if (!(event.altKey || event.metaKey)) return;
+            event.preventDefault();
+            dailyGoalCelebration.trigger({ reason: 'debug-counter', milestoneIndex: 0 });
+        });
+    }
+
     if (tipsBtn) {
         tipsBtn.addEventListener('click', (event) => {
             event.stopPropagation();
@@ -33887,23 +35818,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.getElementById('contact-close')?.addEventListener('click', () => {
+    function resetContactModalState() {
+        selectedReportType = null;
+        document.querySelectorAll('.report-btn').forEach((button) => {
+            button.classList.remove('is-selected');
+        });
+        if (contactMessageEl) contactMessageEl.value = '';
+    }
+
+    function openContactModal(event) {
+        event?.stopPropagation();
+        if (!contactModal) return;
+        contactModal.style.display = 'flex';
+        resetContactModalState();
+    }
+
+    contactBtn?.addEventListener('click', openContactModal);
+    supportReportBtn?.addEventListener('click', openContactModal);
+
+    function closeContactModal() {
         if (contactModal) contactModal.style.display = 'none';
-    });
-    document.getElementById('contact-cancel')?.addEventListener('click', () => {
-        if (contactModal) contactModal.style.display = 'none';
-    });
+    }
+
+    document.getElementById('contact-close')?.addEventListener('click', closeContactModal);
+    document.getElementById('contact-cancel')?.addEventListener('click', closeContactModal);
     contactModal?.addEventListener('click', (event) => {
         if (event.target === contactModal) {
-            contactModal.style.display = 'none';
+            closeContactModal();
         }
     });
     document.querySelectorAll('.report-btn').forEach((button) => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.report-btn').forEach((btn) => {
-                btn.style.borderColor = '#e9ecef';
+                btn.classList.remove('is-selected');
             });
-            button.style.borderColor = '#3498db';
+            button.classList.add('is-selected');
             selectedReportType = button.dataset.type;
         });
     });

@@ -1679,6 +1679,33 @@ html {
   text-align: center;
 }
 
+.tutorial-inline-skip-btn {
+  position: absolute;
+  top: -0.1rem;
+  right: 0;
+  z-index: 1;
+  pointer-events: auto;
+  appearance: none;
+  border: 1px solid rgba(94, 120, 143, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(66, 86, 109, 0.9);
+  font: inherit;
+  font-size: calc(0.78rem * var(--font-scale, 1));
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.38rem 0.72rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(32, 52, 78, 0.08);
+}
+
+.tutorial-inline-skip-btn:hover,
+.tutorial-inline-skip-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(43, 60, 80, 0.98);
+  outline: none;
+}
+
 .tutorial-inline-heading {
   display: block;
   width: 100%;
@@ -5797,6 +5824,33 @@ html {
   margin: 0;
   padding: 0;
   text-align: center;
+}
+
+.tutorial-inline-skip-btn {
+  position: absolute;
+  top: -0.1rem;
+  right: 0;
+  z-index: 1;
+  pointer-events: auto;
+  appearance: none;
+  border: 1px solid rgba(94, 120, 143, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(66, 86, 109, 0.9);
+  font: inherit;
+  font-size: calc(0.78rem * var(--font-scale, 1));
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.38rem 0.72rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(32, 52, 78, 0.08);
+}
+
+.tutorial-inline-skip-btn:hover,
+.tutorial-inline-skip-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(43, 60, 80, 0.98);
+  outline: none;
 }
 
 .tutorial-inline-heading {
@@ -9923,6 +9977,33 @@ html {
   text-align: center;
 }
 
+.tutorial-inline-skip-btn {
+  position: absolute;
+  top: -0.1rem;
+  right: 0;
+  z-index: 1;
+  pointer-events: auto;
+  appearance: none;
+  border: 1px solid rgba(94, 120, 143, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(66, 86, 109, 0.9);
+  font: inherit;
+  font-size: calc(0.78rem * var(--font-scale, 1));
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.38rem 0.72rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(32, 52, 78, 0.08);
+}
+
+.tutorial-inline-skip-btn:hover,
+.tutorial-inline-skip-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(43, 60, 80, 0.98);
+  outline: none;
+}
+
 .tutorial-inline-heading {
   display: block;
   width: 100%;
@@ -14043,6 +14124,33 @@ html {
   text-align: center;
 }
 
+.tutorial-inline-skip-btn {
+  position: absolute;
+  top: -0.1rem;
+  right: 0;
+  z-index: 1;
+  pointer-events: auto;
+  appearance: none;
+  border: 1px solid rgba(94, 120, 143, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(66, 86, 109, 0.9);
+  font: inherit;
+  font-size: calc(0.78rem * var(--font-scale, 1));
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.38rem 0.72rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(32, 52, 78, 0.08);
+}
+
+.tutorial-inline-skip-btn:hover,
+.tutorial-inline-skip-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(43, 60, 80, 0.98);
+  outline: none;
+}
+
 .tutorial-inline-heading {
   display: block;
   width: 100%;
@@ -16511,7 +16619,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
 
 </style></noscript>
     <script>
-      window.APP_BUILD_VERSION = "20260423_093022";
+      window.APP_BUILD_VERSION = "20260426_222141";
     </script>
     <!-- Register service worker for PWA compliance -->
     <script>
@@ -16997,6 +17105,7 @@ html[data-theme="dark"] .verb-detail-book-btn:hover {
                     <p id="question-phrase" class="verb-phrase"></p>
                     <div id="tutorial-inline-hint" class="hidden" aria-live="polite">
                       <div class="tutorial-inline-text">
+                        <button id="tutorial-inline-skip-btn" type="button" class="tutorial-inline-skip-btn" aria-label="Skip tutorial">Skip</button>
                         <span class="tutorial-inline-heading"></span>
                         <span class="tutorial-inline-body"></span>
                       </div>
@@ -28546,7 +28655,7 @@ const removeScopedStorageItem = window.removeAppStoredItem || ((name) => localSt
 const ENABLE_LEGACY_SENTENCE_DATA = false;
 const normalizeAppVersion = (value) => {
     const raw = String(value || '').trim();
-    return !raw || raw.includes('20260423_093022') ? 'dev' : raw;
+    return !raw || raw.includes('20260426_222141') ? 'dev' : raw;
 };
 const parseAppVersionParts = (version) => {
     const match = /^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/.exec(String(version || '').trim());
@@ -29163,6 +29272,12 @@ document.addEventListener('DOMContentLoaded', () => {
             verbs: ['trabalhar', 'escrever', 'ler', 'mandar', 'receber', 'responder', 'explicar', 'organizar', 'planejar', 'gerenciar', 'preparar', 'controlar', 'definir', 'pagar', 'abrir', 'fechar', 'guardar', 'enviar', 'mostrar', 'resolver'],
         },
         {
+            id: 'builtin-bureaucracy-delivery',
+            name: 'Bureaucracy & Delivery',
+            scope: 'forms, drop-offs, intercoms, missed deliveries, admin errands',
+            verbs: ['deixar', 'entregar', 'receber', 'enviar', 'mandar', 'buscar', 'chamar', 'ligar', 'responder', 'esperar', 'abrir', 'fechar', 'indicar', 'mostrar', 'guardar', 'resolver', 'devolver', 'tocar', 'vir', 'passar'],
+        },
+        {
             id: 'builtin-tech-digital-work',
             name: 'Tech & Digital Work',
             scope: 'files, settings, uploads, messaging, research',
@@ -29359,6 +29474,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dictateBtnLabelEl = document.querySelector('#dictate-btn-bottom .control-dock-label');
     const tutorialInlineHintEl = document.getElementById('tutorial-inline-hint');
     const tutorialInlineTextEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-text') : null;
+    const tutorialInlineSkipBtn = document.getElementById('tutorial-inline-skip-btn');
     const tutorialInlineHeadingEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-heading') : null;
     const tutorialInlineBodyEl = tutorialInlineHintEl ? tutorialInlineHintEl.querySelector('.tutorial-inline-body') : null;
     const returnInlineMessageEl = document.getElementById('return-inline-message');
@@ -30498,6 +30614,23 @@ document.addEventListener('DOMContentLoaded', () => {
         saveTutorialState();
     };
 
+    const skipTutorialFlow = () => {
+        if (!tutorialState.active) return;
+        stopActiveDictation({ abort: true, silent: true });
+        tutorialState.active = false;
+        tutorialState.completed = true;
+        tutorialState.stepIndex = TUTORIAL_STEPS.length;
+        saveTutorialState();
+        renderTutorialHint();
+        refreshTutorialAwareUi();
+        refreshContextAudioButton();
+        refreshAnswerFlowButton();
+        syncUsageNuggetVisibility();
+        refreshDictationButton();
+        syncTaskPromptVisibility();
+        refreshIdleGuidance();
+    };
+
     const restartTutorialFlow = (options = {}) => {
         const { confirmRestart = false } = options;
         if (confirmRestart && !window.confirm('Restart the tutorial from the beginning?')) {
@@ -30535,6 +30668,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.startTutorial = () => restartTutorialFlow({ confirmRestart: false });
+    window.skipTutorial = skipTutorialFlow;
+    if (tutorialInlineSkipBtn) {
+        tutorialInlineSkipBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            skipTutorialFlow();
+        });
+    }
 
     const DICTATION_POST_RESULT_SILENCE_MS = 1500;
     const DICTATION_LONG_SILENCE_MS = 10000;
@@ -33386,6 +33527,34 @@ document.addEventListener('DOMContentLoaded', () => {
             verbPoolBasicContainer.appendChild(verbPoolPanel);
         }
 
+        const TOPIC_EMOJI_BY_NAME = {
+            'Super Everyday': '🏠',
+            'Sports & Fitness': '🏃',
+            'Cooking & Food': '🍳',
+            'Outdoors & Nature': '🌿',
+            'Woodworking': '🪵',
+            'Art & Design': '🎨',
+            'Nightlife & Partying': '🎉',
+            'Music': '🎵',
+            'History & Culture': '🏛️',
+            'Politics & Current Events': '🗞️',
+            'Cinema & Series': '🎬',
+            'Relationship Drama': '💔',
+            'Office & Admin': '🗂️',
+            'Bureaucracy & Delivery': '📦',
+            'Tech & Digital Work': '💻',
+            'Travel & Tourism': '✈️',
+            'Driving & Road Code': '🚗',
+            'Crafts & Making': '🧵',
+            'Education & Learning': '📚',
+        };
+        const formatTopicDisplayName = (name) => {
+            const label = String(name || '').trim();
+            if (!label) return '';
+            const emoji = TOPIC_EMOJI_BY_NAME[label];
+            return emoji ? `${emoji} ${label}` : label;
+        };
+
         if (verbSetContainer) {
             verbSetContainer.innerHTML = '';
             const panel = document.createElement('div');
@@ -33410,7 +33579,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.type = 'button';
                 card.className = `verb-set-card${isActive ? ' active' : ''}`;
                 card.innerHTML = `
-                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(set.name))}</span>
                     <span class="verb-set-card-meta">${escapeHtml(set.scope || 'Built-in')} · ${set.verbs.length} verbs</span>
                 `;
                 card.addEventListener('click', () => toggleVerbSetSelection(set.id));
@@ -33423,7 +33592,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.type = 'button';
                 card.className = `verb-set-card${isActive ? ' active' : ''}`;
                 card.innerHTML = `
-                    <span class="verb-set-card-title">${escapeHtml(set.name)}</span>
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(set.name))}</span>
                     <span class="verb-set-card-meta">Saved · ${set.verbs.length} verbs</span>
                     <span class="verb-set-card-actions">
                         <span class="verb-set-card-action" data-action="edit">Edit</span>
@@ -33447,7 +33616,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sharedCard.type = 'button';
                 sharedCard.className = 'verb-set-card active shared-set-card';
                 sharedCard.innerHTML = `
-                    <span class="verb-set-card-title">${escapeHtml(activeVerbSetSelection.name)}</span>
+                    <span class="verb-set-card-title">${escapeHtml(formatTopicDisplayName(activeVerbSetSelection.name))}</span>
                     <span class="verb-set-card-meta">Shared set · ${activeVerbSetSelection.count} verbs</span>
                 `;
                 grid.appendChild(sharedCard);
