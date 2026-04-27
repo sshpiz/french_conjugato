@@ -1,7 +1,7 @@
-// sw.js - scoped stale-while-revalidate for the French app.
+// sw.js - scoped stale-while-revalidate for the German app.
 
-const CACHE_PREFIX = 'fr-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v18';
+const CACHE_PREFIX = 'de-app-cache-';
+const CACHE_NAME = CACHE_PREFIX + 'v19';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
