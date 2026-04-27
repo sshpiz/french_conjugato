@@ -7329,6 +7329,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (verbHintEl) verbHintEl.textContent = card.verb.hint || '';
         if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = translation.replace(/^[\(|\)]/g, '');
         if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
+        if (englishVerbPhraseEl) {
+            englishVerbPhraseEl.textContent = '';
+            englishVerbPhraseEl.style.display = 'none';
+        }
         let pronounDisplay = isFrenchIlOnlyVerb(card.verb.infinitive)
             ? FRENCH_IL_ONLY_DETAIL_PRONOUN
             : card.pronoun;
