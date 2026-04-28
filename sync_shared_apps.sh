@@ -28,6 +28,28 @@ sync_app() {
   else
     echo "warning: missing standalone for $target_name: $source_dist/$standalone_name" >&2
   fi
+
+  ensure_favicon_alias "$DIST_DIR/$target_name"
+  if [[ -d "$DIST_GH_DIR" ]]; then
+    ensure_favicon_alias "$DIST_GH_DIR/$target_name"
+  fi
+}
+
+ensure_favicon_alias() {
+  local target_dir="$1"
+  local canonical="$target_dir/favicon_big.png"
+
+  if [[ -f "$canonical" ]]; then
+    return
+  fi
+
+  local candidates=("$target_dir"/favicon_*.png "$target_dir"/favicon.png)
+  for candidate in "${candidates[@]}"; do
+    if [[ -f "$candidate" ]]; then
+      cp "$candidate" "$canonical"
+      return
+    fi
+  done
 }
 
 sync_app "/Users/simeon/Desktop/greek-verbs/dist" "greek" "greekonjugation.html"

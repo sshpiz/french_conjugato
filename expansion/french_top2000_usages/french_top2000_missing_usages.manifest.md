@@ -1,0 +1,97 @@
+# French Top 2,000 Missing Usage Manifest
+
+- Scope: `app-top2000`
+- Selected verbs: `1672`
+- Verbs already covered: `652`
+- Missing verbs: `1020`
+- Generation tasks: `1217`
+
+## Task Families
+
+- `general`: `1020`
+- `combo_a`: `49`
+- `a_object`: `31`
+- `de_object`: `117`
+
+## First Tasks
+
+- `pouvoir__general` pouvoir (top-20) — general usage
+- `naitre__general` naître (top-50) — general usage
+- `continuer__general` continuer (top-100) — general usage
+- `reconnaitre__general` reconnaître (top-100) — general usage
+- `reconnaitre__combo_a` reconnaître (top-100) — object + à pattern — LEFFF: reconnaître qqch à qqn
+- `mener__general` mener (top-100) — general usage
+- `manquer__general` manquer (top-500) — general usage
+- `manquer__a_object` manquer (top-500) — à pattern — LEFFF: manquer à qqn / qqch
+- `pleurer__general` pleurer (top-500) — general usage
+- `souvenir__general` souvenir (top-500) — general usage
+- `oser__general` oser (top-500) — general usage
+- `meriter__general` mériter (top-500) — general usage
+- `songer__general` songer (top-500) — general usage
+- `laver__general` laver (top-500) — general usage
+- `laver__de_object` laver (top-500) — de pattern — LEFFF: laver de qqn / qqch
+- `interesser__general` intéresser (top-500) — general usage
+- `rire__general` rire (top-500) — general usage
+- `rire__de_object` rire (top-500) — de pattern — LEFFF: rire de qqn / qqch
+- `apercevoir__general` apercevoir (top-500) — general usage
+- `reprendre__general` reprendre (top-500) — general usage
+- `reprendre__combo_a` reprendre (top-500) — object + à pattern — LEFFF: reprendre qqch à qqn
+- `preter__general` prêter (top-500) — general usage
+- `preter__a_object` prêter (top-500) — à pattern — LEFFF: prêter à qqn / qqch
+- `surprendre__general` surprendre (top-500) — general usage
+- `dejeuner__general` déjeuner (top-500) — general usage
+- `dejeuner__de_object` déjeuner (top-500) — de pattern — LEFFF: déjeuner de qqn / qqch
+- `eprouver__general` éprouver (top-500) — general usage
+- `suggerer__general` suggérer (top-500) — general usage
+- `fatiguer__general` fatiguer (top-500) — general usage
+- `admirer__general` admirer (top-500) — general usage
+- `admirer__de_object` admirer (top-500) — de pattern — LEFFF: admirer de qqn / qqch
+- `demeurer__general` demeurer (top-500) — general usage
+- `demeurer__de_object` demeurer (top-500) — de pattern — LEFFF: demeurer de qqn / qqch
+- `neiger__general` neiger (top-500) — general usage
+- `eclater__general` éclater (top-500) — general usage
+- `recommander__general` recommander (top-500) — general usage
+- `recommander__combo_a` recommander (top-500) — object + à pattern — LEFFF: recommander qqch à qqn
+- `confectionner__general` confectionner (top-500) — general usage
+- `mepriser__general` mépriser (top-500) — general usage
+- `mepriser__de_object` mépriser (top-500) — de pattern — LEFFF: mépriser de qqn / qqch
+- `nier__general` nier (top-500) — general usage
+- `soucier__general` soucier (top-500) — general usage
+- `miser__general` miser (top-500) — general usage
+- `supplier__general` supplier (top-500) — general usage
+- `supplier__de_object` supplier (top-500) — de pattern — LEFFF: supplier de qqn / qqch
+- `obliger__general` obliger (top-500) — general usage
+- `estimer__general` estimer (top-500) — general usage
+- `ficher__general` ficher (top-500) — general usage
+- `diner__general` dîner (top-500) — general usage
+- `faillir__general` faillir (top-500) — general usage
+- `hair__general` haïr (top-500) — general usage
+- `hair__de_object` haïr (top-500) — de pattern — LEFFF: haïr de qqn / qqch
+- `precipiter__general` précipiter (top-500) — general usage
+- `emprunter__general` emprunter (top-500) — general usage
+- `emprunter__combo_a` emprunter (top-500) — object + à pattern — LEFFF: emprunter qqch à qqn
+- `opposer__general` opposer (top-500) — general usage
+- `opposer__combo_a` opposer (top-500) — object + à pattern — LEFFF: opposer qqch à qqn
+- `dependre__general` dépendre (top-500) — general usage
+- `dependre__de_object` dépendre (top-500) — de pattern — LEFFF: dépendre de qqn / qqch
+- `persuader__general` persuader (top-500) — general usage
+- `persuader__de_object` persuader (top-500) — de pattern — LEFFF: persuader de qqn / qqch
+- `rejouir__general` réjouir (top-500) — general usage
+- `eloigner__general` éloigner (top-500) — general usage
+- `eloigner__de_object` éloigner (top-500) — de pattern — LEFFF: éloigner de qqn / qqch
+- `emporter__general` emporter (top-500) — general usage
+- `plaisanter__general` plaisanter (top-500) — general usage
+- `plaisanter__de_object` plaisanter (top-500) — de pattern — LEFFF: plaisanter de qqn / qqch
+- `obeir__general` obéir (top-500) — general usage
+- `obeir__a_object` obéir (top-500) — à pattern — LEFFF: obéir à qqn / qqch
+- `fier__general` fier (top-500) — general usage
+- `evanouir__general` évanouir (top-500) — general usage
+- `confondre__general` confondre (top-500) — general usage
+- `joindre__general` joindre (top-500) — general usage
+- `ravir__general` ravir (top-500) — general usage
+- `oter__general` ôter (top-500) — general usage
+- `oter__combo_a` ôter (top-500) — object + à pattern — LEFFF: ôter qqch à qqn
+- `echapper__general` échapper (top-500) — general usage
+- `echapper__a_object` échapper (top-500) — à pattern — LEFFF: échapper à qqn / qqch
+- `advenir__general` advenir (top-500) — general usage
+- `advenir__de_object` advenir (top-500) — de pattern — LEFFF: advenir de qqn / qqch
