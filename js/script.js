@@ -1093,6 +1093,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .map((entry) => String(entry.verb || '').trim())
             .filter(Boolean)
     );
+    const verbsWithPlayablePronounFills = new Set(
+        playablePronounFillRows
+            .map((entry) => String(entry.verb || '').trim())
+            .filter(Boolean)
+    );
     const getFilteredVerbFrameRowsForOptions = (options = cardGenerationOptions) => {
         if (debugDisableFillBlanks) return [];
         const prepositionalVerbMode = options?.prepositionalVerbMode === 'only' ? 'only' : 'all';
@@ -6969,7 +6974,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cardTypeMode = 'conjugation',
             fillFocusMode = 'all',
             reflexiveMode = 'include',
-            prepositionalVerbMode = 'all',
         } = options;
         const resolvedCardTypeMode = normalizeCardTypeModeForCapabilities(cardTypeMode);
         const resolvedFillFocusMode = getEffectiveFillFocusMode({ ...options, fillFocusMode });
@@ -6998,7 +7002,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
                 if (cat !== categoryFilter) return false;
             }
-            if (prepositionalVerbMode === 'only' && !verbsWithPrepositionalFrames.has(verbInfo.infinitive)) return false;
             return true;
         };
 
@@ -9700,11 +9703,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 settingsV2ExerciseControls.appendChild(cardFamilyRow);
             }
 
-            const fillPracticeCard = hasFillBlanks ? createAdvancedCard('Fill filter') : null;
+            const fillPracticeCard = hasFillBlanks ? createAdvancedCard('Question filter') : null;
             if (fillPracticeCard) {
                 const prepositionRow = createSegmentedPillRow(
-                    'Fill Blanks filter',
-                    'Keep all verbs, or only verbs that take a preposition in at least one playable fill-in-the-blank card.',
+                    'Preposition patterns',
+                    'Use every verb-pattern question, or focus verb-pattern questions on preposition constructions. Pronoun replacements stay included when Question type is All.',
                     [
                         { value: 'all', label: 'All' },
                         { value: 'only', label: 'Only' }
@@ -9772,7 +9775,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Number.isFinite(currentVerbCount) && currentVerbCount > 0) {
                     setupParts.push(`${currentVerbCount} verbs`);
                 }
-                if (cardGenerationOptions.prepositionalVerbMode === 'only') {
+                if (fillFocusMode !== 'pronouns' && cardGenerationOptions.prepositionalVerbMode === 'only') {
                     setupParts.push('prepositional only');
                 }
             } else if (effectiveVerbSourceMode === 'topic') {
@@ -11116,10 +11119,18 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
     const currentCardTypeMode = normalizeCardTypeMode(options?.cardTypeMode);
 
     if (currentCardTypeMode === 'frame') {
-        const eligibleFrameVerbSet = prepositionalVerbMode === 'only'
-            ? verbsWithPrepositionalFrames
-            : verbsWithPlayableFrames;
-        return uniqueVerbs.filter((verbInfo) => eligibleFrameVerbSet.has(verbInfo.infinitive));
+        const fillFocusMode = getEffectiveFillFocusMode(options);
+        const eligibleVerbSet = new Set();
+        if (fillFocusMode !== 'pronouns') {
+            const frameVerbSet = prepositionalVerbMode === 'only'
+                ? verbsWithPrepositionalFrames
+                : verbsWithPlayableFrames;
+            frameVerbSet.forEach((infinitive) => eligibleVerbSet.add(infinitive));
+        }
+        if (fillFocusMode !== 'frames') {
+            verbsWithPlayablePronounFills.forEach((infinitive) => eligibleVerbSet.add(infinitive));
+        }
+        return uniqueVerbs.filter((verbInfo) => eligibleVerbSet.has(verbInfo.infinitive));
     }
 
     const activeFrequencies = new Set(
@@ -11167,7 +11178,6 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
                 const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
                 if (cat !== categoryFilter) return false;
             }
-            if (prepositionalVerbMode === 'only' && !verbsWithPrepositionalFrames.has(verbInfo.infinitive)) return false;
         }
         return hasPracticeSentences(verbInfo.infinitive);
     });
@@ -11842,11 +11852,16 @@ function describeDrillConfig(config = {}) {
     if (!activeVerbSet && options.reflexiveMode === 'only') {
         parts.push('reflexive only');
     }
-    if (!activeVerbSet && options.prepositionalVerbMode === 'only') {
-        parts.push('prepositional verbs only');
-    }
     const exerciseMode = normalizeCardTypeModeForCapabilities(options.cardTypeMode);
     const fillFocusMode = getEffectiveFillFocusMode(options);
+    if (
+        !activeVerbSet
+        && options.prepositionalVerbMode === 'only'
+        && exerciseMode !== 'conjugation'
+        && fillFocusMode !== 'pronouns'
+    ) {
+        parts.push('prepositional verbs only');
+    }
     if (exerciseMode === 'frame') {
         if (fillFocusMode === 'pronouns') {
             parts.push('pronouns only');
@@ -11914,7 +11929,6 @@ function getSelectedTenseCount(options = cardGenerationOptions) {
 function getActiveVerbFilterCount(options = cardGenerationOptions) {
     let count = 0;
     if (options.reflexiveMode && options.reflexiveMode !== 'include') count += 1;
-    if (options.prepositionalVerbMode === 'only') count += 1;
     if (options.regularityFilter && (options.regularityFilter.regular === false || options.regularityFilter.irregular === false)) count += 1;
     if (options.endingFilter && Object.values(options.endingFilter).some((value) => value === false)) count += 1;
     return count;
