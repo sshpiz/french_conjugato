@@ -7331,14 +7331,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show English translation in question container (visible immediately)
             if (card.translation && questionPhraseEl) {
                 const translationDiv = document.createElement('div');
-                translationDiv.innerHTML = `Comment dit-on <br> <strong> "${card.translation}"</strong>? `;
-                translationDiv.style.marginTop = '0.0em';
-                translationDiv.style.fontSize = '0.9em';
-                // translationDiv.style.fontWeight = "bold";
-                translationDiv.style.marginBottom = '0.3em';
-                // translationDiv.classList.add('tappable-audio');
-                translationDiv.style.color = 'var(--text-color)';
-                // questionPhraseEl.prepend(translationDiv);
+                translationDiv.className = 'phrase-translation-prompt';
+
+                const labelSpan = document.createElement('span');
+                labelSpan.className = 'phrase-translation-label';
+                labelSpan.textContent = 'Comment dit-on';
+
+                const quoteSpan = document.createElement('strong');
+                quoteSpan.className = 'phrase-translation-quote';
+                quoteSpan.textContent = `“${card.translation}”`;
+
+                translationDiv.appendChild(labelSpan);
+                translationDiv.appendChild(quoteSpan);
                 questionPhraseEl.appendChild(translationDiv);
                 questionPhraseEl.style.top = '8%';
                 questionPhraseEl.style.display = 'block'; // Ensure visible
@@ -12284,6 +12288,11 @@ function updateCustomPresetFromUI() {
 savedDrills = loadSavedDrills();
 savedVerbSets = loadSavedVerbSets();
 syncVerbSetSelectionAfterLibraryChange({ skipSave: true });
+
+// Hydrate saved options before we derive the Custom preset snapshot or replay
+// the last drill. Otherwise a relaunch can rebuild "Custom" from defaults and
+// clobber a saved Fill Blanks setup back to plain conjugation.
+loadOptions();
 
 // On load, fill Custom from localStorage cardGenerationOptions
 const storedOptions = JSON.parse(localStorage.getItem(localStorageKey) || 'null');

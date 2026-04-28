@@ -12,6 +12,34 @@
     font-weight: bolder;  
 }
 
+.phrase-translation-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.32rem;
+  margin: 0 0 0.42rem;
+  color: var(--text-color);
+  font-size: clamp(1.08rem, 2.9vw, 1.36rem);
+  font-weight: 560;
+  font-style: normal;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.phrase-translation-label {
+  color: var(--meta-color);
+  font-size: 0.88em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.phrase-translation-quote {
+  color: var(--text-color);
+  font-size: 1.08em;
+  font-weight: 760;
+  line-height: 1.28;
+}
+
 html {
   --idle-prompt-bg: rgba(255, 255, 255, 0.66);
   --idle-prompt-border: rgba(97, 120, 144, 0.16);
@@ -62,6 +90,16 @@ html[data-theme="dark"] {
     word-break: break-word;
     line-height: 1.2;
     font-size: clamp(0.9em, 2.5vw, 1.2em);
+  }
+  .phrase-translation-prompt {
+    color: #e7eff8;
+  }
+  .phrase-translation-label {
+    color: #b6c6d8;
+  }
+  .phrase-translation-quote {
+    color: #f4f8fc;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.32);
   }
   /* Infinitive: light, glowing */
   .infinitive-line h1, #verb-infinitive {
@@ -4762,6 +4800,16 @@ html[data-theme="dark"] .setting-helper-text { color: #8ca0b7; }
 html[data-theme="dark"] #question-phrase.frame-card-question {
   color: #f0f5fa !important;
 }
+html[data-theme="dark"] .phrase-translation-prompt {
+  color: #e7eff8 !important;
+}
+html[data-theme="dark"] .phrase-translation-label {
+  color: #b6c6d8 !important;
+}
+html[data-theme="dark"] .phrase-translation-quote {
+  color: #f4f8fc !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.32);
+}
 html[data-theme="dark"] #question-phrase.frame-card-question .frame-card-gap {
   background: rgba(236, 243, 250, 0.16);
   box-shadow: inset 0 0 0 1px rgba(236, 243, 250, 0.18);
@@ -4912,6 +4960,15 @@ html[data-theme="light"] .conjugated-line h2 {
 }
 html[data-theme="light"] #question-phrase.frame-card-question {
   color: #2a3746 !important;
+}
+html[data-theme="light"] .phrase-translation-prompt {
+  color: #27384d !important;
+}
+html[data-theme="light"] .phrase-translation-label {
+  color: #5f7388 !important;
+}
+html[data-theme="light"] .phrase-translation-quote {
+  color: #1f2f44 !important;
 }
 html[data-theme="light"] #question-phrase.frame-card-question .frame-card-gap {
   background: rgba(11, 18, 26, 0.12);
