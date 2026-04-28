@@ -1172,17 +1172,39 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${activeSelection.selectionCount} topics`;
     }
 
+    function hideVisibleFrenchFrameParticle(question, answer) {
+        const frameQuestion = String(question || '').trim();
+        const frameAnswer = String(answer || '').trim();
+        if (!frameQuestion || !frameAnswer) return { question: frameQuestion, answer: frameAnswer };
+        if ((frameQuestion.match(/____/g) || []).length !== 1 || /\s/.test(frameAnswer)) {
+            return { question: frameQuestion, answer: frameAnswer };
+        }
+
+        const particleMatch = frameQuestion.match(/____\s+(d['’]|à|de|au|aux)(?=\s|[A-Za-zÀ-ÖØ-öø-ÿ])/i);
+        if (!particleMatch) return { question: frameQuestion, answer: frameAnswer };
+
+        const particle = particleMatch[1];
+        return {
+            question: frameQuestion
+                .replace(/____\s+(d['’]|à|de|au|aux)(?=\s|[A-Za-zÀ-ÖØ-öø-ÿ])/i, '____ ____ ')
+                .replace(/\s{2,}/g, ' ')
+                .trim(),
+            answer: `${frameAnswer} ${particle}`.trim(),
+        };
+    }
+
     function buildFramePracticeCard(entry) {
         const verbInfo = uniqueVerbByInfinitive.get(entry.verb);
         if (!verbInfo) return null;
         const pronoun = inferFrameCardPronoun(entry.question || entry.full_answer || '');
-        const answer = String(entry.answer || '').trim();
+        const normalizedCloze = hideVisibleFrenchFrameParticle(entry.question, entry.answer);
+        const answer = normalizedCloze.answer;
         const tense = String(entry.tense || 'present').trim() || 'present';
         return {
             isFrameCard: true,
             frameId: String(entry.frame_id || `${entry.verb}:frame`),
             frameType: String(entry.frame_type || 'frame'),
-            frameQuestion: String(entry.question || '').trim(),
+            frameQuestion: normalizedCloze.question,
             frameAnswer: answer,
             frameFullAnswer: String(entry.full_answer || '').trim(),
             verb: verbInfo,
