@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the French app.
 
 const CACHE_PREFIX = 'fr-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v25';
+const CACHE_NAME = CACHE_PREFIX + 'v28';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -111,6 +111,9 @@ self.addEventListener('message', event => {
   if (data.type === 'WARM_INDEX') {
     event.waitUntil(warmIndexCache(data.reason || 'message'));
   }
+  if (data.type === 'WARM_APP_ASSETS') {
+    event.waitUntil(warmAppAssets(Array.isArray(data.urls) ? data.urls : [], data.reason || 'message'));
+  }
 });
 
 async function warmIndexCache(reason = 'unknown') {
@@ -126,6 +129,41 @@ async function warmIndexCache(reason = 'unknown') {
   } catch (e) {
     swLog.add(`warm-index failed reason=${reason}: ${e.message}`);
   }
+}
+
+async function warmAppAssets(urls = [], reason = 'unknown') {
+  const uniqueUrls = [...new Set(urls)]
+    .map(value => {
+      try { return new URL(String(value || ''), self.registration.scope); }
+      catch (_) { return null; }
+    })
+    .filter(url => url && url.origin === self.location.origin && inScopePath(url.pathname) && !url.pathname.startsWith(TTS_PREFIX));
+
+  if (!uniqueUrls.length) {
+    swLog.add(`warm-assets skipped reason=${reason} count=0`);
+    return;
+  }
+
+  const cache = await caches.open(CACHE_NAME);
+  let ok = 0;
+  let failed = 0;
+  for (const url of uniqueUrls) {
+    try {
+      const request = new Request(url.href, { cache: 'default' });
+      const response = await fetch(request);
+      if (response.ok) {
+        await cache.put(request, response.clone());
+        ok += 1;
+      } else {
+        failed += 1;
+        swLog.add(`warm-assets bad-status ${url.pathname} status=${response.status}`);
+      }
+    } catch (e) {
+      failed += 1;
+      swLog.add(`warm-assets failed ${url.pathname}: ${e.message}`);
+    }
+  }
+  swLog.add(`warm-assets done reason=${reason} ok=${ok} failed=${failed}`);
 }
 
 async function serveWithSWR(request, url) {

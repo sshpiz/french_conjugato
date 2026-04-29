@@ -58,4 +58,6 @@ sync_app "/Users/simeon/Desktop/russian-verbs/dist" "russian" "glagoly.html"
 
 cp "$DIST_DIR/index.html" "$DIST_GH_DIR/index.html" 2>/dev/null || true
 cp "$DIST_DIR/franconjugue.html" "$DIST_GH_DIR/franconjugue.html" 2>/dev/null || true
-cp "$DIST_DIR/french/index.html" "$DIST_GH_DIR/french/index.html" 2>/dev/null || true
+if [[ -d "$DIST_DIR/french" && -d "$DIST_GH_DIR" ]]; then
+  rsync -a --delete "$DIST_DIR/french/" "$DIST_GH_DIR/french/"
+fi

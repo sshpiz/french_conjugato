@@ -317,6 +317,14 @@ function splitFrameAnswerIntoSlots(answer, slotCount) {
     const rawTokens = String(answer || '').trim().split(/\s+/).filter(Boolean);
     if (slotCount <= 0) return rawTokens;
     if (rawTokens.length === 0) return Array.from({ length: slotCount }, () => '');
+    const tailToken = normalizeFrameAnswerToken(rawTokens[rawTokens.length - 1]);
+    const penultimateToken = normalizeFrameAnswerToken(rawTokens[rawTokens.length - 2]);
+    if (slotCount === 2 && rawTokens.length > 3 && ['à', 'de'].includes(penultimateToken) && ['la', "l'", 'l’'].includes(tailToken)) {
+        return [rawTokens.slice(0, -2).join(' '), rawTokens.slice(-2).join(' ')];
+    }
+    if (slotCount === 2 && rawTokens.length > 2 && ['à', 'de', "d'", 'd’', 'au', 'aux', 'du', 'des'].includes(tailToken)) {
+        return [rawTokens.slice(0, -1).join(' '), rawTokens[rawTokens.length - 1]];
+    }
     if (rawTokens.length > slotCount) {
         return [
             ...rawTokens.slice(0, slotCount - 1),
@@ -468,6 +476,9 @@ function renderFrameSentenceMarkup(question, answer, revealed = false, options =
     const singleGapType = options.singleGapType === 'particle' || options.singleGapType === 'verb'
         ? options.singleGapType
         : null;
+    const slotTypeOverride = options.slotTypeOverride === 'particle' || options.slotTypeOverride === 'verb'
+        ? options.slotTypeOverride
+        : null;
 
     const htmlParts = ['<span class="frame-sentence">'];
     tokens.forEach((token, index) => {
@@ -483,9 +494,8 @@ function renderFrameSentenceMarkup(question, answer, revealed = false, options =
 
         const stateClass = revealed ? 'slot-revealed' : 'slot-hidden';
         const answerText = escapeHtml(String(token.answer || '').trim()) || '&nbsp;';
-        const effectiveType = singleGapType && tokens.filter((entry) => entry.type !== 'text').length === 1
-            ? singleGapType
-            : token.type;
+        const effectiveType = slotTypeOverride
+            || (singleGapType && tokens.filter((entry) => entry.type !== 'text').length === 1 ? singleGapType : token.type);
         const markerText = effectiveType === 'particle' ? '?' : '&nbsp;';
         htmlParts.push(`<span class="frame-slot ${effectiveType}-slot ${stateClass}" style="min-width:${token.widthCh}ch"><span class="ghost" aria-hidden="true">${answerText}</span><span class="marker" aria-hidden="true">${markerText}</span><span class="answer">${answerText}</span></span>`);
     });
@@ -665,8 +675,9 @@ function getBuiltInVerbUsageFallbacks() {
 // ── Deferred verb context data ────────────────────────────────────────────────
 const VERB_CORE_PATTERNS_DATA_ELEMENT_ID = 'verb-core-patterns-data';
 const VERB_USAGES_DATA_ELEMENT_ID = 'verb-usages-data';
-const FRENCH_HOMOPHONE_GROUP_BY_ANSWER = window.frenchHomophoneGroupByAnswer || {};
-const FRENCH_HOMOPHONE_GROUP_META = window.frenchHomophoneGroupMeta || null;
+let FRENCH_HOMOPHONE_GROUP_BY_ANSWER = window.frenchHomophoneGroupByAnswer || {};
+let FRENCH_HOMOPHONE_GROUP_META = window.frenchHomophoneGroupMeta || null;
+let frenchHomophoneGroupLoadPromise = null;
 let verbCorePatternsIndex = null;
 let verbUsagesIndex = null;
 
@@ -729,6 +740,50 @@ function getVerbUsagesIndex() {
     }
     verbUsagesIndex = index;
     return verbUsagesIndex;
+}
+
+function logFrenchHomophoneGroupStatus(prefix = 'homophone-groups loaded') {
+    if (FRENCH_HOMOPHONE_GROUP_META) {
+        appDebugLog(
+            `${prefix} groups=${FRENCH_HOMOPHONE_GROUP_META.groupCount || 0} `
+            + `normalizedAnswers=${FRENCH_HOMOPHONE_GROUP_META.normalizedAnswerCount || 0} `
+            + `multiGroupAnswers=${FRENCH_HOMOPHONE_GROUP_META.multiGroupAnswerCount || 0}`
+        );
+    } else {
+        appDebugLog('homophone-groups unavailable; homophone dictation fallback disabled');
+    }
+}
+
+function ensureFrenchHomophoneGroupsLoaded(reason = 'unknown') {
+    if (FRENCH_HOMOPHONE_GROUP_META) return Promise.resolve(true);
+    const url = window.__FRENCH_HOMOPHONE_GROUP_URL;
+    if (!url || location.protocol === 'file:') {
+        logFrenchHomophoneGroupStatus();
+        return Promise.resolve(false);
+    }
+    if (frenchHomophoneGroupLoadPromise) return frenchHomophoneGroupLoadPromise;
+    frenchHomophoneGroupLoadPromise = new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = url;
+        script.async = true;
+        script.onload = () => {
+            FRENCH_HOMOPHONE_GROUP_BY_ANSWER = window.frenchHomophoneGroupByAnswer || {};
+            FRENCH_HOMOPHONE_GROUP_META = window.frenchHomophoneGroupMeta || null;
+            logFrenchHomophoneGroupStatus(`homophone-groups loaded reason=${reason}`);
+            resolve(!!FRENCH_HOMOPHONE_GROUP_META);
+        };
+        script.onerror = () => {
+            window.frenchHomophoneGroupByAnswer = window.frenchHomophoneGroupByAnswer || {};
+            window.frenchHomophoneGroupMeta = window.frenchHomophoneGroupMeta || null;
+            FRENCH_HOMOPHONE_GROUP_BY_ANSWER = window.frenchHomophoneGroupByAnswer;
+            FRENCH_HOMOPHONE_GROUP_META = null;
+            frenchHomophoneGroupLoadPromise = null;
+            logFrenchHomophoneGroupStatus();
+            resolve(false);
+        };
+        document.head.appendChild(script);
+    });
+    return frenchHomophoneGroupLoadPromise;
 }
 
 function appendVerbSectionHeading(container, text, className) {
@@ -944,16 +999,11 @@ function focusUsageExamplesInPanel(container, options = {}) {
 
 document.addEventListener('DOMContentLoaded', () => {
     startupMark('dom-bootstrap-start');
+    const FRENCH_VERB_DATA_SPLIT = window.__FRENCH_VERB_DATA_SPLIT && typeof window.__FRENCH_VERB_DATA_SPLIT === 'object'
+        ? window.__FRENCH_VERB_DATA_SPLIT
+        : null;
     const PACKAGED_TTS = window.preRenderedFrenchTts || null;
-    if (FRENCH_HOMOPHONE_GROUP_META) {
-        appDebugLog(
-            `homophone-groups loaded groups=${FRENCH_HOMOPHONE_GROUP_META.groupCount || 0} `
-            + `normalizedAnswers=${FRENCH_HOMOPHONE_GROUP_META.normalizedAnswerCount || 0} `
-            + `multiGroupAnswers=${FRENCH_HOMOPHONE_GROUP_META.multiGroupAnswerCount || 0}`
-        );
-    } else {
-        appDebugLog('homophone-groups unavailable; homophone dictation fallback disabled');
-    }
+    if (FRENCH_HOMOPHONE_GROUP_META) logFrenchHomophoneGroupStatus();
     // --- Dictation (Speech Recognition) ---
     // (Moved to after DOM element assignments)
     const phrasebook = {};
@@ -1001,9 +1051,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const allVerbCategories = [...new Set(uniqueVerbs.map(v => v.category))].sort();
 
     const discoveredFrequencies = [...new Set(uniqueVerbs.map((verb) => normalizeFrequencyKey(verb.frequency) || 'common'))];
+    const splitDataFrequencies = Array.isArray(FRENCH_VERB_DATA_SPLIT?.allFrequencies)
+        ? FRENCH_VERB_DATA_SPLIT.allFrequencies.map((key) => normalizeFrequencyKey(key)).filter(Boolean)
+        : [];
+    const splitDataFrequencySet = new Set(splitDataFrequencies);
+    const frequencyUniverse = splitDataFrequencySet.size
+        ? [...new Set([...splitDataFrequencies, ...discoveredFrequencies])]
+        : discoveredFrequencies;
     const allFrequencies = [
-        ...KNOWN_FREQUENCY_ORDER.filter((key) => discoveredFrequencies.includes(key)),
-        ...discoveredFrequencies.filter((key) => !KNOWN_FREQUENCY_ORDER.includes(key)).sort(),
+        ...KNOWN_FREQUENCY_ORDER.filter((key) => frequencyUniverse.includes(key)),
+        ...frequencyUniverse.filter((key) => !KNOWN_FREQUENCY_ORDER.includes(key)).sort(),
     ];
 
     const frequencyOrder = {};
@@ -1016,10 +1073,8 @@ document.addEventListener('DOMContentLoaded', () => {
             frequencyOrder[freq] = nextFrequencyIndex++;
         }
     });
-    
-    // Sort the unique `verbs` array in place. This is done once on load.
-    // Note: we are sorting `uniqueVerbs`, not the original `verbs` array.
-    uniqueVerbs.sort((a, b) => {
+
+    const sortUniqueVerbsByFrequency = () => uniqueVerbs.sort((a, b) => {
         const freqA = frequencyOrder[normalizeFrequencyKey(a.frequency)] ?? Number.MAX_SAFE_INTEGER;
         const freqB = frequencyOrder[normalizeFrequencyKey(b.frequency)] ?? Number.MAX_SAFE_INTEGER;
         // First, sort by frequency. If they are different, the sort is done.
@@ -1027,6 +1082,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // If frequency is the same, sort alphabetically by the infinitive.
         return a.infinitive.localeCompare(b.infinitive);
     });
+    sortUniqueVerbsByFrequency();
 
     const uniqueVerbByInfinitive = new Map(uniqueVerbs.map((verb) => [verb.infinitive, verb]));
     const FRAME_CARD_QUARANTINED_VERBS = new Set(['approprier', 'carter', 'coter', 'crémer', 'douer', 'enculer', 'souvenir']);
@@ -1066,6 +1122,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const normalizeFillFocusMode = (value) => {
         const normalized = String(value || 'all').trim().toLowerCase();
         return ['all', 'frames', 'pronouns'].includes(normalized) ? normalized : 'all';
+    };
+    const normalizeFillDifficultyMode = (value) => {
+        const normalized = String(value || 'easy').trim().toLowerCase();
+        return ['easy', 'medium', 'hard'].includes(normalized) ? normalized : 'easy';
     };
     const getEffectiveFillFocusMode = (options = cardGenerationOptions) => {
         const requested = normalizeFillFocusMode(options?.fillFocusMode);
@@ -1122,19 +1182,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const getFillDeckSummary = (options = cardGenerationOptions) => {
         const { focus, frameCount, pronounCount, total } = getFillDeckCounts(options);
+        const difficulty = normalizeFillDifficultyMode(options?.fillDifficultyMode);
+        const difficultyLabel = difficulty === 'easy' ? '' : ` · ${difficulty}`;
         if (focus === 'pronouns') {
-            return `Pronouns only · ${pronounCount} cards`;
+            return `Pronoun replacements only · ${pronounCount} cards${difficultyLabel}`;
         }
         if (focus === 'frames') {
             if (options?.prepositionalVerbMode === 'only') {
-                return `Verb frames only · prepositional focus · ${frameCount} cards`;
+                return `Verb patterns only · preposition focus · ${frameCount} cards${difficultyLabel}`;
             }
-            return `Verb frames only · ${frameCount} cards`;
+            return `Verb patterns only · ${frameCount} cards${difficultyLabel}`;
         }
         if (options?.prepositionalVerbMode === 'only') {
-            return `Verb frames + pronouns · prepositional focus · ${total} cards`;
+            return `Verb patterns + pronoun replacements · preposition focus · ${total} cards${difficultyLabel}`;
         }
-        return `Verb frames + pronouns · ${total} cards`;
+        return `Verb patterns + pronoun replacements · ${total} cards${difficultyLabel}`;
     };
     const verbSetLookupByNormalizedInfinitive = new Map();
     uniqueVerbs.forEach((verb) => {
@@ -1143,6 +1205,115 @@ document.addEventListener('DOMContentLoaded', () => {
             verbSetLookupByNormalizedInfinitive.set(normalized, verb.infinitive);
         }
     });
+
+    const frenchExtraVerbDataState = {
+        status: FRENCH_VERB_DATA_SPLIT?.extraUrl ? 'idle' : 'unavailable',
+        promise: null,
+        loadedAt: 0,
+        error: null,
+    };
+
+    const mergeExtraFrenchVerbData = (payload) => {
+        if (!payload || typeof payload !== 'object') return { verbsAdded: 0, tensesAdded: 0 };
+        const extraTenses = payload.tenses && typeof payload.tenses === 'object' ? payload.tenses : {};
+        let tensesAdded = 0;
+        Object.entries(extraTenses).forEach(([tenseName, tenseData]) => {
+            if (!tenseName || !tenseData || typeof tenseData !== 'object') return;
+            if (!tenses[tenseName]) tenses[tenseName] = {};
+            Object.entries(tenseData).forEach(([infinitive, forms]) => {
+                if (!infinitive || !forms || typeof forms !== 'object') return;
+                if (!tenses[tenseName][infinitive]) tensesAdded += 1;
+                tenses[tenseName][infinitive] = forms;
+            });
+        });
+
+        let verbsAdded = 0;
+        (Array.isArray(payload.verbs) ? payload.verbs : []).forEach((rawVerb) => {
+            if (!rawVerb || typeof rawVerb !== 'object' || !rawVerb.infinitive) return;
+            if (uniqueVerbByInfinitive.has(rawVerb.infinitive)) return;
+            const verb = { ...rawVerb };
+            const normalizedFrequency = normalizeFrequencyKey(verb.frequency);
+            if (normalizedFrequency) verb.frequency = normalizedFrequency;
+            try {
+                verb.category = classifyFrenchVerb(verb.infinitive);
+            } catch (error) {
+                verb.category = 'unknown';
+            }
+            uniqueVerbs.push(verb);
+            uniqueVerbByInfinitive.set(verb.infinitive, verb);
+            const normalized = normalizeVerbSetVerbCandidate(verb.infinitive);
+            if (normalized && !verbSetLookupByNormalizedInfinitive.has(normalized)) {
+                verbSetLookupByNormalizedInfinitive.set(normalized, verb.infinitive);
+            }
+            const freq = normalizeFrequencyKey(verb.frequency) || 'common';
+            frequencyCounts[freq] = (frequencyCounts[freq] || 0) + 1;
+            if (!allFrequencies.includes(freq)) {
+                allFrequencies.push(freq);
+                if (!(freq in frequencyOrder)) {
+                    frequencyOrder[freq] = KNOWN_FREQUENCY_ORDER.length + allFrequencies.length;
+                }
+            }
+            verbsAdded += 1;
+        });
+        if (verbsAdded) {
+            sortUniqueVerbsByFrequency();
+        }
+        return { verbsAdded, tensesAdded };
+    };
+
+    const ensureExtraFrenchVerbDataLoaded = (reason = 'unknown') => {
+        if (!FRENCH_VERB_DATA_SPLIT?.extraUrl) return Promise.resolve(false);
+        if (frenchExtraVerbDataState.status === 'loaded') return Promise.resolve(true);
+        if (frenchExtraVerbDataState.promise) return frenchExtraVerbDataState.promise;
+        frenchExtraVerbDataState.status = 'loading';
+        frenchExtraVerbDataState.error = null;
+        const extraUrl = new URL(FRENCH_VERB_DATA_SPLIT.extraUrl, window.location.href).toString();
+        frenchExtraVerbDataState.promise = fetch(extraUrl, { cache: 'default' })
+            .then((response) => {
+                if (!response.ok) throw new Error(`extra verb data status ${response.status}`);
+                return response.json();
+            })
+            .then((payload) => {
+                const result = mergeExtraFrenchVerbData(payload);
+                frenchExtraVerbDataState.status = 'loaded';
+                frenchExtraVerbDataState.loadedAt = Date.now();
+                if (window.appLog) {
+                    window.appLog(
+                        `extra-verb-data loaded reason=${reason} verbsAdded=${result.verbsAdded} tensesAdded=${result.tensesAdded}`
+                    );
+                }
+                if (optionsView && !optionsView.classList.contains('hidden')) {
+                    populateOptions();
+                    updateVerbFiltersCountLabel();
+                }
+                return true;
+            })
+            .catch((error) => {
+                frenchExtraVerbDataState.status = 'error';
+                frenchExtraVerbDataState.error = error;
+                frenchExtraVerbDataState.promise = null;
+                if (window.appLog) window.appLog(`extra-verb-data failed reason=${reason} message="${error.message}"`);
+                return false;
+            });
+        return frenchExtraVerbDataState.promise;
+    };
+
+    const scheduleExtraFrenchVerbDataLoad = (reason = 'startup') => {
+        if (!FRENCH_VERB_DATA_SPLIT?.extraUrl || frenchExtraVerbDataState.status !== 'idle') return;
+        window.setTimeout(() => {
+            ensureExtraFrenchVerbDataLoaded(reason);
+        }, 350);
+    };
+
+    window.ensureExtraFrenchVerbDataLoaded = ensureExtraFrenchVerbDataLoaded;
+
+    const verbHasLoadedConjugationForEnabledTenses = (verbInfo, weights = {}) => {
+        if (!verbInfo?.infinitive) return false;
+        return Object.entries(weights).some(([tenseName, weight]) => {
+            if ((weight || 0) <= 0) return false;
+            return !!(tenses[tenseName] && tenses[tenseName][verbInfo.infinitive]);
+        });
+    };
 
     function inferFrameCardPronoun(text) {
         const normalized = String(text || '').trim().toLowerCase().replace(/[\u2018\u2019\u02bc]/g, "'");
@@ -1229,13 +1400,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const subject = String(entry.subject || inferFrameCardPronoun(entry.question || entry.full_answer || 'je') || 'je').trim();
         const answer = String(entry.answer || '').trim();
         const fullAnswer = String(entry.full_answer || '').trim();
+        const tense = String(entry.tense || 'present').trim() || 'present';
         if (!answer || !fullAnswer) return null;
+        const answerParts = answer.split(/\s+/).filter(Boolean);
+        let frameQuestion = String(entry.question || entry.prompt_fr || '').trim();
+        if (answerParts.length > 1 && (frameQuestion.match(/____/g) || []).length === 1) {
+            frameQuestion = frameQuestion.replace('____', answerParts.map(() => '____').join(' '));
+        }
         return {
             isFrameCard: true,
             frameSubtype: 'pronoun_fill',
             frameId: String(entry.id || entry.frame_id || `${entry.verb}:pronoun_fill`),
             frameType: 'pronoun_fill',
-            frameQuestion: String(entry.question || entry.prompt_fr || '').trim(),
+            frameQuestion,
             frameAnswer: answer,
             frameFullAnswer: fullAnswer,
             frameTarget: String(entry.target_fr || '').trim(),
@@ -1243,7 +1420,7 @@ document.addEventListener('DOMContentLoaded', () => {
             frameAnswerSpanKind: String(entry.answer_span_kind || '').trim(),
             framePromptStyle: String(entry.prompt_style || 'standard').trim(),
             verb: verbInfo,
-            tense: 'present',
+            tense,
             pronoun: subject,
             pronounKey: getFrameCardPronounKey(subject),
             conjugated: answer,
@@ -1326,6 +1503,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tricoter: [{ pattern: 'tricoter une écharpe', example_fr: 'Elle tricote une écharpe pour l’hiver.', example_en: 'She is knitting a scarf for winter.' }],
         trinquer: [{ pattern: 'trinquer au succès', example_fr: 'On trinque au succès du projet après la présentation.', example_en: 'We are toasting the project’s success after the presentation.' }],
         ajuster: [{ pattern: 'ajuster un panneau', example_fr: 'J’ajuste le panneau avant de fixer la dernière vis.', example_en: 'I am adjusting the panel before fastening the last screw.' }],
+        accélérer: [{ pattern: 'accélérer à la sortie', example_fr: 'Il accélère à la sortie du rond-point quand la voie se libère.', example_en: 'He is accelerating out of the roundabout when the lane opens up.' }],
         appeler: [{ pattern: 'appeler quelqu’un', example_fr: 'Je l’appelle en sortant du métro.', example_en: 'I am calling them as I leave the subway.' }],
         archiver: [{ pattern: 'archiver un dossier', example_fr: 'Elle archive le dossier une fois le projet bouclé.', example_en: 'She is archiving the file once the project is wrapped up.' }],
         bachoter: [{ pattern: 'bachoter toute la nuit', example_fr: 'Il bachote toute la nuit avant le partiel.', example_en: 'He is cramming all night before the exam.' }],
@@ -1370,6 +1548,7 @@ document.addEventListener('DOMContentLoaded', () => {
         potasser: [{ pattern: 'potasser un chapitre', example_fr: 'Je potasse le chapitre depuis le début de l’après-midi.', example_en: 'I have been grinding through the chapter since early afternoon.' }],
         ramener: [{ pattern: 'ramener quelqu’un', example_fr: 'Je le ramène en voiture après le dîner.', example_en: 'I am giving him a ride home after dinner.' }],
         ranger: [{ pattern: 'ranger le bureau', example_fr: 'Elle range le bureau avant l’arrivée du client.', example_en: 'She is tidying the office before the client arrives.' }],
+        redémarrer: [{ pattern: 'redémarrer au feu', example_fr: 'Elle redémarre doucement au feu pour ne pas caler dans la côte.', example_en: 'She is pulling away gently at the light so she does not stall on the hill.' }],
         relancer: [{ pattern: 'relancer un contact', example_fr: 'Je relance le client parce qu’on n’a toujours pas de réponse.', example_en: 'I am following up with the client because we still do not have an answer.' }],
         reprocher: [{ pattern: 'reprocher quelque chose à quelqu’un', example_fr: 'Elle lui reproche encore de ne jamais répondre franchement.', example_en: 'She is once again blaming him for never answering honestly.' }],
         retoucher: [{ pattern: 'retoucher une image', example_fr: 'Il retouche l’image pour calmer un peu les contrastes.', example_en: 'He is touching up the image to soften the contrast a bit.' }],
@@ -1527,6 +1706,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'saisir la viande',
                         example_fr: 'Il saisit la viande très fort pour bien la colorer.',
                         example_en: 'He is searing the meat hard to brown it well.',
+                    },
+                ],
+                mixer: [
+                    {
+                        pattern: 'mixer une soupe',
+                        example_fr: 'Je mixe la soupe encore une minute pour qu’elle soit vraiment lisse.',
+                        example_en: 'I am blending the soup one more minute so it gets really smooth.',
                     },
                 ],
                 bouffer: [
@@ -1743,11 +1929,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         example_en: 'He has been trying to chat someone up at the bar for ten minutes.',
                     },
                 ],
+                flirter: [
+                    {
+                        pattern: 'flirter en soirée',
+                        example_fr: 'Ils flirtent en soirée comme si personne autour ne les regardait.',
+                        example_en: 'They are flirting at the party like nobody around them is watching.',
+                    },
+                ],
                 kiffer: [
                     {
                         pattern: 'kiffer l’ambiance',
                         example_fr: 'On kiffe l’ambiance dès qu’on passe la porte.',
                         example_en: 'We are loving the vibe as soon as we walk in.',
+                    },
+                ],
+                mater: [
+                    {
+                        pattern: 'mater tout le monde',
+                        example_fr: 'Ils matent tout le monde à l’entrée en attendant que leurs amis arrivent.',
+                        example_en: 'They are checking everyone out at the entrance while waiting for their friends.',
+                    },
+                ],
+                bouffer: [
+                    {
+                        pattern: 'bouffer après la soirée',
+                        example_fr: 'On bouffe un truc gras à trois heures du matin avant de rentrer.',
+                        example_en: 'We are grabbing something greasy at three in the morning before heading home.',
                     },
                 ],
                 zoner: [
@@ -1762,8 +1969,8 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'builtin-music',
             name: 'Music',
-            scope: 'bands, rehearsal, performance, production',
-            verbs: ['chanter', 'écouter', 'composer', 'enregistrer', 'répéter', 'interpréter', 'danser', 'jouer', 'improviser', 'mixer', 'accorder', 'brancher', 'caler', 'assurer', 'accélérer', 'ralentir', 'chauffer', 'foirer', 'rater'],
+            scope: 'songs, playlists, gigs, fandom, rehearsal, production',
+            verbs: ['chanter', 'écouter', 'composer', 'enregistrer', 'répéter', 'interpréter', 'danser', 'jouer', 'improviser', 'mixer', 'accorder', 'brancher', 'caler', 'assurer', 'accélérer', 'ralentir', 'chauffer', 'foirer', 'rater', 'partager', 'fredonner', 'zapper', 'saigner', 'adorer', 'kiffer', 'découvrir', 'suivre', 'réécouter', 'monter', 'sortir'],
             topicUsages: {
                 répéter: [
                     {
@@ -1791,6 +1998,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'brancher la sono',
                         example_fr: 'On branche la sono pendant que le batteur s’échauffe.',
                         example_en: 'We are hooking up the sound system while the drummer warms up.',
+                    },
+                ],
+                caler: [
+                    {
+                        pattern: 'caler une entrée',
+                        example_fr: 'On cale l’entrée du refrain sur le clic avant d’enregistrer la prise finale.',
+                        example_en: 'We are locking the chorus entrance to the click before recording the final take.',
                     },
                 ],
                 accélérer: [
@@ -1886,6 +2100,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         example_en: 'The opposition is boycotting the vote to denounce the procedure.',
                     },
                 ],
+                relancer: [
+                    {
+                        pattern: 'relancer une polémique',
+                        example_fr: 'Le ministre relance la polémique avec une petite phrase calculée.',
+                        example_en: 'The minister is reigniting the controversy with a carefully calculated remark.',
+                    },
+                ],
                 pointer: [
                     {
                         pattern: 'pointer une contradiction',
@@ -1941,6 +2162,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'mater une série',
                         example_fr: 'On mate une série entière pendant le week-end pluvieux.',
                         example_en: 'We are binge-watching a whole series over the rainy weekend.',
+                    },
+                ],
+                documenter: [
+                    {
+                        pattern: 'documenter un tournage',
+                        example_fr: 'Elle documente le tournage pour les bonus de l’édition collector.',
+                        example_en: 'She is documenting the shoot for the collector edition bonus features.',
                     },
                 ],
                 zapper: [
@@ -2064,6 +2292,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         example_en: 'We have been working on this file since the start of the week.',
                     },
                 ],
+                caler: [
+                    {
+                        pattern: 'caler un point rapide',
+                        example_fr: 'Je cale un point rapide demain matin avant que tout le monde parte en réunion.',
+                        example_en: 'I am slotting in a quick check-in tomorrow morning before everyone heads into meetings.',
+                    },
+                ],
                 relancer: [
                     {
                         pattern: 'relancer un client',
@@ -2090,6 +2325,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'reporter à demain',
                         example_fr: 'Elle reporte ça à demain parce que tout le monde est déjà saturé.',
                         example_en: 'She is pushing it to tomorrow because everyone is already overloaded.',
+                    },
+                ],
+                pointer: [
+                    {
+                        pattern: 'pointer un oubli',
+                        example_fr: 'Elle pointe un oubli dans le compte-rendu juste avant l’envoi final.',
+                        example_en: 'She is pointing out an omission in the summary right before the final send.',
                     },
                 ],
                 boucler: [
@@ -2199,6 +2441,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         example_en: 'I am merging the branch after the final green light.',
                     },
                 ],
+                documenter: [
+                    {
+                        pattern: 'documenter une API',
+                        example_fr: 'On documente l’API au fur et à mesure pour éviter les devinettes côté client.',
+                        example_en: 'We are documenting the API as we go to avoid guesswork on the client side.',
+                    },
+                ],
                 planter: [
                     {
                         pattern: 'planter en prod',
@@ -2218,6 +2467,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'casser la build',
                         example_fr: 'Tu casses la build dès qu’on active ce flag.',
                         example_en: 'You break the build as soon as we enable this flag.',
+                    },
+                ],
+                bidouiller: [
+                    {
+                        pattern: 'bidouiller un script',
+                        example_fr: 'Je bidouille un script maison pour dépanner le pipeline avant la démo.',
+                        example_en: 'I am hacking together a little script to unstick the pipeline before the demo.',
+                    },
+                ],
+                archiver: [
+                    {
+                        pattern: 'archiver un ticket',
+                        example_fr: 'Elle archive le ticket une fois le rollback validé et les logs sauvegardés.',
+                        example_en: 'She is archiving the ticket once the rollback is confirmed and the logs are saved.',
                     },
                 ],
                 redémarrer: [
@@ -2268,6 +2531,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'trimballer sa valise',
                         example_fr: 'Je trimballe ma valise de station en station depuis ce matin.',
                         example_en: 'I have been dragging my suitcase from station to station since this morning.',
+                    },
+                ],
+                crapahuter: [
+                    {
+                        pattern: 'crapahuter jusqu’au point de vue',
+                        example_fr: 'On crapahute jusqu’au point de vue avec les sacs et les gourdes qui cognent partout.',
+                        example_en: 'We are scrambling up to the viewpoint with packs and water bottles banging everywhere.',
                     },
                 ],
                 débarquer: [
@@ -2327,6 +2597,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         example_en: 'He is pulling away on a hill without rolling back an inch in front of the instructor.',
                     },
                 ],
+                redémarrer: [
+                    {
+                        pattern: 'redémarrer après un stop',
+                        example_fr: 'Elle redémarre après le stop sans se faire klaxonner par la voiture derrière.',
+                        example_en: 'She is pulling away after the stop without getting honked at by the car behind her.',
+                    },
+                ],
                 caler: [
                     {
                         pattern: 'caler au feu',
@@ -2339,6 +2616,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'céder le passage',
                         example_fr: 'Tu cèdes le passage au rond-point avant de t’engager.',
                         example_en: 'You yield at the roundabout before pulling in.',
+                    },
+                ],
+                accélérer: [
+                    {
+                        pattern: 'accélérer en sortie de rond-point',
+                        example_fr: 'Il accélère en sortie de rond-point dès que la voie se libère enfin.',
+                        example_en: 'He is accelerating out of the roundabout as soon as the lane finally opens up.',
                     },
                 ],
                 stationner: [
@@ -2503,6 +2787,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         example_en: 'He is patching up the object instead of starting over.',
                     },
                 ],
+                poncer: [
+                    {
+                        pattern: 'poncer une pièce',
+                        example_fr: 'Elle ponce la pièce à la main pour rattraper les petites bosses avant l’assemblage.',
+                        example_en: 'She is sanding the piece by hand to smooth out the little bumps before assembly.',
+                    },
+                ],
                 foirer: [
                     {
                         pattern: 'foirer une finition',
@@ -2536,6 +2827,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         pattern: 'souder une jonction',
                         example_fr: 'Elle soude la jonction avant de reprendre la finition.',
                         example_en: 'She is soldering the joint before returning to the finish.',
+                    },
+                ],
+                démonter: [
+                    {
+                        pattern: 'démonter un prototype',
+                        example_fr: 'Je démonte le prototype pièce par pièce pour récupérer ce qui peut encore servir.',
+                        example_en: 'I am taking the prototype apart piece by piece to salvage whatever can still be used.',
                     },
                 ],
                 ajuster: [
@@ -2596,8 +2894,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(Boolean);
     window.builtinVerbUsageFallbacks = BUILTIN_VERB_USAGE_FALLBACKS;
 
-    // Calculate verb counts per frequency for display in options
-    const frequencyCounts = uniqueVerbs.reduce((acc, verb) => {
+    // Calculate verb counts per frequency for display in options. Split builds
+    // provide full counts even before the long-tail conjugation matrix hydrates.
+    const frequencyCounts = FRENCH_VERB_DATA_SPLIT?.frequencyCounts && typeof FRENCH_VERB_DATA_SPLIT.frequencyCounts === 'object'
+        ? Object.entries(FRENCH_VERB_DATA_SPLIT.frequencyCounts).reduce((acc, [key, count]) => {
+            const normalizedKey = normalizeFrequencyKey(key) || String(key || '').trim();
+            if (normalizedKey) acc[normalizedKey] = Number(count) || 0;
+            return acc;
+        }, {})
+        : uniqueVerbs.reduce((acc, verb) => {
         const freq = normalizeFrequencyKey(verb.frequency) || 'common';
         acc[freq] = (acc[freq] || 0) + 1;
         return acc;
@@ -3223,6 +3528,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let shellWarmupRequested = false;
+    const getWarmableAppAssetUrls = () => {
+        if (location.protocol === 'file:') return [];
+        const urls = Array.from(document.querySelectorAll('script[src]'))
+            .map((script) => {
+                try {
+                    return new URL(script.getAttribute('src') || '', window.location.href);
+                } catch (_) {
+                    return null;
+                }
+            })
+            .filter((url) => url && url.origin === window.location.origin && !url.pathname.includes('/tts/'))
+            .map((url) => `${url.pathname}${url.search}`);
+        if (FRENCH_VERB_DATA_SPLIT?.extraUrl) {
+            try {
+                const extraUrl = new URL(FRENCH_VERB_DATA_SPLIT.extraUrl, window.location.href);
+                if (extraUrl.origin === window.location.origin && !extraUrl.pathname.includes('/tts/')) {
+                    urls.push(`${extraUrl.pathname}${extraUrl.search}`);
+                }
+            } catch (_) {}
+        }
+        if (window.__FRENCH_HOMOPHONE_GROUP_URL) {
+            try {
+                const homophoneUrl = new URL(window.__FRENCH_HOMOPHONE_GROUP_URL, window.location.href);
+                if (homophoneUrl.origin === window.location.origin && !homophoneUrl.pathname.includes('/tts/')) {
+                    urls.push(`${homophoneUrl.pathname}${homophoneUrl.search}`);
+                }
+            } catch (_) {}
+        }
+        return [...new Set(urls)];
+    };
+
     const requestShellWarmup = async (reason = 'unknown') => {
         if (shellWarmupRequested || !('serviceWorker' in navigator)) return;
         try {
@@ -3230,6 +3566,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const worker = registration && (registration.active || registration.waiting || registration.installing);
             if (!worker) return;
             worker.postMessage({ type: 'WARM_INDEX', reason });
+            worker.postMessage({ type: 'WARM_APP_ASSETS', reason, urls: getWarmableAppAssetUrls() });
             shellWarmupRequested = true;
             if (window.appLog) window.appLog(`shell-warmup requested reason=${reason}`);
         } catch (error) {
@@ -3770,12 +4107,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const syncUsageNuggetVisibility = () => {
         if (!usageNuggetEl) return;
         const availability = getUsageAvailability();
+        const showUsageNugget = !!window.cardGenerationOptions?.showUsageNugget;
         const shouldShow = !!(
             isAnswerVisible &&
             currentCard &&
             currentCard._hasUsages &&
             availability === 'enabled' &&
-            cardGenerationOptions.showUsageNugget
+            showUsageNugget
         );
         usageNuggetEl.style.display = shouldShow ? 'block' : 'none';
         usageNuggetEl.classList.toggle('usage-nugget-hidden', !shouldShow);
@@ -3788,9 +4126,9 @@ document.addEventListener('DOMContentLoaded', () => {
             usageVisibilityBtn.classList.toggle('is-no-content', availability === 'no-content');
             usageVisibilityBtn.classList.toggle('is-unsupported', false);
             usageVisibilityBtn.disabled = availability !== 'enabled';
-            usageVisibilityBtn.setAttribute('aria-pressed', cardGenerationOptions.showUsageNugget ? 'true' : 'false');
+            usageVisibilityBtn.setAttribute('aria-pressed', showUsageNugget ? 'true' : 'false');
 
-            let usageTitle = cardGenerationOptions.showUsageNugget ? 'Hide verb usage' : 'Show verb usage';
+            let usageTitle = showUsageNugget ? 'Hide verb usage' : 'Show verb usage';
             if (availability === 'tutorial-locked') {
                 usageTitle = 'Usage examples unlock after the tutorial';
             } else if (availability === 'no-content') {
@@ -3944,13 +4282,76 @@ document.addEventListener('DOMContentLoaded', () => {
         return idsA.find((groupId) => idSetB.has(groupId)) || null;
     };
 
+    const getCurrentFillDifficultyMode = () => normalizeFillDifficultyMode(cardGenerationOptions.fillDifficultyMode);
+
+    const stripFrameAnswerPunctuation = (value) => String(value || '').trim().replace(/[.!?…]+$/u, '');
+    const normalizeFrameClozeToken = (value) => stripFrameAnswerPunctuation(value)
+        .toLowerCase()
+        .replace(/[’`]/g, "'");
+
+    const buildHardPronounFillCloze = (card) => {
+        if (!card || card.frameSubtype !== 'pronoun_fill') return null;
+        const answerTokens = String(card.frameAnswer || '').trim().split(/\s+/).filter(Boolean);
+        const fullAnswer = String(card.frameFullAnswer || '').trim();
+        if (!answerTokens.length || !fullAnswer) return null;
+
+        const terminalPunctuation = (fullAnswer.match(/([.!?…]+)\s*$/u) || [])[1] || '';
+        const fullCore = fullAnswer.replace(/[.!?…]+\s*$/u, '').trim();
+        const fullTokens = fullCore.split(/\s+/).filter(Boolean);
+        const normalizedFullTokens = fullTokens.map(normalizeFrameClozeToken);
+        const normalizedAnswerTokens = answerTokens.map(normalizeFrameClozeToken);
+
+        let answerStartIndex = -1;
+        for (let index = 0; index <= normalizedFullTokens.length - normalizedAnswerTokens.length; index += 1) {
+            const matches = normalizedAnswerTokens.every((token, offset) => normalizedFullTokens[index + offset] === token);
+            if (matches) {
+                answerStartIndex = index;
+                break;
+            }
+        }
+
+        if (answerStartIndex >= 0) {
+            const verbIndex = answerStartIndex + answerTokens.length;
+            if (verbIndex < fullTokens.length) {
+                const hardAnswerTokens = [...answerTokens, stripFrameAnswerPunctuation(fullTokens[verbIndex])].filter(Boolean);
+                const hardQuestion = fullTokens
+                    .map((token, index) => (index >= answerStartIndex && index <= verbIndex ? '____' : token))
+                    .join(' ') + terminalPunctuation;
+                return {
+                    question: hardQuestion,
+                    answer: hardAnswerTokens.join(' '),
+                };
+            }
+        }
+
+        const fallbackQuestion = String(card.frameQuestion || '').trim();
+        const fallbackMatch = fallbackQuestion.match(/^(.*____(?:\s+____)*)\s+([^\s.!?…]+)([.!?…]*)\s*$/u);
+        if (!fallbackMatch) return null;
+        return {
+            question: `${fallbackMatch[1]} ____${fallbackMatch[3] || ''}`,
+            answer: [...answerTokens, stripFrameAnswerPunctuation(fallbackMatch[2])].join(' '),
+        };
+    };
+
+    const getFrameDisplayCloze = (card = currentCard) => {
+        if (!card || !card.isFrameCard) return { question: '', answer: '' };
+        if (card.frameSubtype === 'pronoun_fill' && getCurrentFillDifficultyMode() === 'hard') {
+            const hardCloze = buildHardPronounFillCloze(card);
+            if (hardCloze) return hardCloze;
+        }
+        return {
+            question: String(card.frameQuestion || '').trim(),
+            answer: String(card.frameAnswer || '').trim(),
+        };
+    };
+
     const getCardAnswerText = (card = currentCard) => {
         if (!card) return '';
         if (card.isPhraseMode || !card.verb) {
             return (card.phrase || '').trim();
         }
         if (card.isFrameCard) {
-            return String(card.frameAnswer || card.conjugated || '').trim();
+            return String(getFrameDisplayCloze(card).answer || card.conjugated || '').trim();
         }
         return window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated).trim();
     };
@@ -3961,12 +4362,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getFrameRenderOptions = (card = currentCard) => {
         if (card?.frameSubtype !== 'pronoun_fill') return {};
-        const answer = String(card.frameAnswer || '').trim();
+        const answer = String(getFrameDisplayCloze(card).answer || '').trim();
         if (!/\s/.test(answer) && answer.length <= 4) {
             return { singleGapType: 'particle' };
         }
+        if (/\s/.test(answer)) {
+            return { slotTypeOverride: 'particle' };
+        }
         return {};
     };
+
+    const shouldShowFramePhraseTranslation = (card = currentCard) => (
+        !!(card?.isFrameCard && card.translation)
+        && (
+            (card.frameSubtype === 'pronoun_fill' && getCurrentFillDifficultyMode() !== 'medium')
+            || card.frameSubtype !== 'pronoun_fill'
+        )
+    );
+
+    const getFramePhraseTranslationText = (card = currentCard) => (
+        card?.isFrameCard ? String(card.translation || '').trim() : ''
+    );
 
     const getPronounFillSecondaryCueText = (card = currentCard, revealed = false) => {
         if (!card || card.frameSubtype !== 'pronoun_fill') return '';
@@ -3990,9 +4406,10 @@ document.addEventListener('DOMContentLoaded', () => {
         conjugatedVerbEl.setAttribute('aria-label', revealed ? 'Hear solved phrase' : 'Reveal answer');
         conjugatedVerbEl.title = revealed ? 'Tap to hear full phrase' : 'Tap to reveal';
         const renderOptions = getFrameRenderOptions(card);
+        const displayCloze = getFrameDisplayCloze(card);
         conjugatedVerbEl.innerHTML = revealed
-            ? renderFrameSolvedMarkup(card.frameQuestion || '', card.frameAnswer || '', renderOptions)
-            : renderFramePromptMarkup(card.frameQuestion || '', card.frameAnswer || '', renderOptions);
+            ? renderFrameSolvedMarkup(displayCloze.question || '', displayCloze.answer || '', renderOptions)
+            : renderFramePromptMarkup(displayCloze.question || '', displayCloze.answer || '', renderOptions);
     };
 
     const FRENCH_HOMOPHONE_FALLBACK_TENSES = new Set(['present', 'imparfait', 'subjonctifPresent']);
@@ -4586,6 +5003,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 stopActiveDictation({ abort: true, silent: true });
             }
             clearDictationListeningTimers();
+            ensureFrenchHomophoneGroupsLoaded('dictation');
             isDictating = true;
             dictationStopRequested = false;
             setDictating(true);
@@ -6214,6 +6632,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showUsageNugget: false,
         cardTypeMode: 'conjugation', // 'conjugation' | 'both' | 'frame'
         fillFocusMode: 'all', // 'all' | 'frames' | 'pronouns'
+        fillDifficultyMode: 'easy', // 'easy' | 'medium' | 'hard'
         reflexiveMode: 'include', // 'include' = both, 'only' = reflexive only, 'exclude' = no reflexive
         prepositionalVerbMode: 'all', // 'all' | 'only'
         tenseWeights,
@@ -6520,6 +6939,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }))
     );
 
+    const getTurnsSinceVerbSeen = (verbInfinitive) => {
+        const meta = getVerbReviewMeta(verbInfinitive);
+        if (!meta || !meta.lastSeenTurn) return null;
+        return Math.max(0, (reviewModelState.turnCounter || 0) - meta.lastSeenTurn);
+    };
+
+    const selectFillBlankCard = (weightedDeck) => {
+        const adjustedDeck = applyReviewModelToWeightedDeck(weightedDeck || []);
+        if (!adjustedDeck.length) return null;
+        const strictPool = adjustedDeck.filter(({ card }) => {
+            const cardTurns = getTurnsSinceLastSeen(card);
+            const verbTurns = getTurnsSinceVerbSeen(card?.verb?.infinitive);
+            return (cardTurns === null || cardTurns >= 36) && (verbTurns === null || verbTurns >= 10);
+        });
+        if (strictPool.length >= 8) {
+            return performWeightedSelection(strictPool, { allowRecentCardBlocking: false });
+        }
+        const relaxedPool = adjustedDeck.filter(({ card }) => {
+            const cardTurns = getTurnsSinceLastSeen(card);
+            return cardTurns === null || cardTurns >= 18;
+        });
+        return performWeightedSelection(relaxedPool.length ? relaxedPool : adjustedDeck, { allowRecentCardBlocking: false });
+    };
+
     let reviewModelState = loadReviewModelState();
     let verbSetProgressState = { selections: {} };
     let currentCardShownAtMs = 0;
@@ -6571,6 +7014,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (savedOptions.fillFocusMode) {
                     cardGenerationOptions.fillFocusMode = getEffectiveFillFocusMode(savedOptions);
+                }
+                if (savedOptions.fillDifficultyMode) {
+                    cardGenerationOptions.fillDifficultyMode = normalizeFillDifficultyMode(savedOptions.fillDifficultyMode);
                 }
                 if (savedOptions.reflexiveMode) {
                     cardGenerationOptions.reflexiveMode = savedOptions.reflexiveMode;
@@ -6974,6 +7420,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cardTypeMode = 'conjugation',
             fillFocusMode = 'all',
             reflexiveMode = 'include',
+            prepositionalVerbMode = 'all',
         } = options;
         const resolvedCardTypeMode = normalizeCardTypeModeForCapabilities(cardTypeMode);
         const resolvedFillFocusMode = getEffectiveFillFocusMode({ ...options, fillFocusMode });
@@ -7079,7 +7526,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (weightedFrequencies.length === 0) {
                     verbsInFrequency = [];
                 } else {
-                    const selectedFrequency = performWeightedSelection(weightedFrequencies);
+                    let selectableFrequencies = weightedFrequencies;
+                    if (frenchExtraVerbDataState.status !== 'loaded') {
+                        ensureExtraFrenchVerbDataLoaded('frequency-selection');
+                        const loadedFrequencies = weightedFrequencies.filter((item) =>
+                            baseVerbUniverse.some((verbInfo) =>
+                                (verbInfo.frequency || 'common') === item.card
+                                && passesFilters(verbInfo)
+                                && verbHasLoadedConjugationForEnabledTenses(verbInfo, tenseWeights)
+                            )
+                        );
+                        if (loadedFrequencies.length) selectableFrequencies = loadedFrequencies;
+                    }
+                    const selectedFrequency = performWeightedSelection(selectableFrequencies);
                     verbsInFrequency = selectedFrequency
                         ? baseVerbUniverse.filter(v => (v.frequency || 'common') === selectedFrequency)
                         : [];
@@ -7173,10 +7632,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (resolvedCardTypeMode !== 'conjugation') {
             if (resolvedFillFocusMode !== 'pronouns') {
-                frameCard = performWeightedSelection(applyReviewModelToWeightedDeck(buildFrameDeck()), { allowRecentCardBlocking: true });
+                frameCard = selectFillBlankCard(buildFrameDeck());
             }
             if (resolvedFillFocusMode !== 'frames') {
-                pronounFillCard = performWeightedSelection(applyReviewModelToWeightedDeck(buildPronounFillDeck()), { allowRecentCardBlocking: true });
+                pronounFillCard = selectFillBlankCard(buildPronounFillDeck());
             }
         }
 
@@ -7390,6 +7849,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Set English phrase for English toggle
             if (englishVerbPhraseEl) {
                 englishVerbPhraseEl.textContent = card.translation || '';
+                englishVerbPhraseEl.classList.remove('pronoun-fill-translation-prompt');
+                englishVerbPhraseEl.classList.remove('frame-translation-prompt');
                 englishVerbPhraseEl.style.display = card.translation ? 'block' : 'none';
             }
             if (englishVerbInfinitiveEl) englishVerbInfinitiveEl.textContent = '';
@@ -7442,8 +7903,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 : translation.replace(/^[\(|\)]/g, '');
             if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
             if (englishVerbPhraseEl) {
-                englishVerbPhraseEl.textContent = card.frameSubtype === 'pronoun_fill' ? '' : (card.translation || '');
-                englishVerbPhraseEl.style.display = 'none';
+                englishVerbPhraseEl.textContent = getFramePhraseTranslationText(card);
+                englishVerbPhraseEl.classList.toggle('pronoun-fill-translation-prompt', card.frameSubtype === 'pronoun_fill');
+                englishVerbPhraseEl.classList.toggle('frame-translation-prompt', card.frameSubtype !== 'pronoun_fill');
+                englishVerbPhraseEl.style.display = shouldShowFramePhraseTranslation(card) ? 'block' : 'none';
+            }
+            const fillDifficulty = getCurrentFillDifficultyMode();
+            const showFrameInfinitive = fillDifficulty === 'easy';
+            const showTopTranslation = fillDifficulty === 'easy' || (fillDifficulty === 'hard' && card.frameSubtype !== 'pronoun_fill');
+            const showFrameHint = fillDifficulty === 'easy';
+            if (verbInfinitiveEl?.parentElement) {
+                verbInfinitiveEl.parentElement.style.display = showFrameInfinitive ? 'flex' : 'none';
+            }
+            if (verbTranslationEl) {
+                verbTranslationEl.style.display = showTopTranslation && translation ? 'block' : 'none';
+            }
+            if (verbHintEl) {
+                verbHintEl.style.display = showFrameHint ? '' : 'none';
             }
 
             const normalizedVerbFrequency = normalizeFrequencyKey(verbFrequency) || String(verbFrequency || '').trim();
@@ -7528,6 +8004,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (englishVerbTranslationEl) englishVerbTranslationEl.textContent = '';
         if (englishVerbPhraseEl) {
             englishVerbPhraseEl.textContent = '';
+            englishVerbPhraseEl.classList.remove('pronoun-fill-translation-prompt');
+            englishVerbPhraseEl.classList.remove('frame-translation-prompt');
             englishVerbPhraseEl.style.display = 'none';
         }
         let pronounDisplay = isFrenchIlOnlyVerb(card.verb.infinitive)
@@ -7627,8 +8105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     verbHintEl.textContent = getPronounFillSecondaryCueText(currentCard, true);
                 }
                 if (englishVerbPhraseEl) {
-                    const shouldShowTranslation = currentCard.frameSubtype !== 'pronoun_fill' && currentCard.translation;
-                    englishVerbPhraseEl.style.display = shouldShowTranslation ? 'block' : 'none';
+                    englishVerbPhraseEl.style.display = shouldShowFramePhraseTranslation(currentCard) ? 'block' : 'none';
                 }
             }
             // In phrase mode, show the French sentence now
@@ -7663,8 +8140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 verbHintEl.textContent = getPronounFillSecondaryCueText(currentCard, false);
             }
             if (englishVerbPhraseEl) {
-                const shouldShowTranslation = currentCard.frameSubtype !== 'pronoun_fill' && currentCard.translation;
-                englishVerbPhraseEl.style.display = shouldShowTranslation ? 'block' : 'none';
+                englishVerbPhraseEl.style.display = shouldShowFramePhraseTranslation(currentCard) ? 'block' : 'none';
             }
         }
         syncUsageNuggetVisibility();
@@ -9191,6 +9667,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hasFillBlanks = hasFillBlankExerciseCapability();
         const currentExerciseMode = normalizeCardTypeModeForCapabilities(cardGenerationOptions.cardTypeMode);
         const fillFocusMode = getEffectiveFillFocusMode(cardGenerationOptions);
+        const fillDifficultyMode = normalizeFillDifficultyMode(cardGenerationOptions.fillDifficultyMode);
         if (cardGenerationOptions.cardTypeMode !== currentExerciseMode) {
             cardGenerationOptions.cardTypeMode = currentExerciseMode;
             saveOptions({ preserveActiveDrill: true });
@@ -9247,12 +9724,12 @@ document.addEventListener('DOMContentLoaded', () => {
             settingsV2FillFocusContainer.classList.toggle('hidden', !hasFillBlanks);
             if (hasFillBlanks) {
                 const fillFocusRow = createSegmentedPillRow(
-                    'Fill focus',
+                    'Question type',
                     '',
                     [
                         { value: 'all', label: 'All' },
-                        { value: 'frames', label: 'Verb Frames' },
-                        { value: 'pronouns', label: 'Pronouns' }
+                        { value: 'frames', label: 'Verb patterns' },
+                        { value: 'pronouns', label: 'Pronoun replacements' }
                     ],
                     fillFocusMode,
                     (value) => {
@@ -9263,14 +9740,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 );
                 settingsV2FillFocusContainer.appendChild(fillFocusRow);
+                const fillDifficultyRow = createSegmentedPillRow(
+                    'Difficulty',
+                    '',
+                    [
+                        { value: 'easy', label: 'Easy' },
+                        { value: 'medium', label: 'Medium' },
+                        { value: 'hard', label: 'Hard' }
+                    ],
+                    fillDifficultyMode,
+                    (value) => {
+                        cardGenerationOptions.fillDifficultyMode = normalizeFillDifficultyMode(value);
+                        saveOptions();
+                        populateOptions({ preserveAnchorId: 'settings-v2-fill-setup' });
+                        updateSettingsV2LayoutState();
+                    }
+                );
+                settingsV2FillFocusContainer.appendChild(fillDifficultyRow);
                 const fillSummary = document.createElement('p');
                 fillSummary.className = 'option-desc settings-v2-fill-focus-summary';
                 if (fillFocusMode === 'pronouns') {
-                    fillSummary.textContent = 'Practice French pronoun replacements in short sentence prompts.';
+                    fillSummary.textContent = 'Practice replacing nouns with French pronouns in short sentences.';
                 } else if (fillFocusMode === 'frames') {
-                    fillSummary.textContent = 'Practice verb construction fill-in-the-blank cards only.';
+                    fillSummary.textContent = 'Practice verb-pattern questions, including à/de/en-style constructions.';
                 } else {
-                    fillSummary.textContent = 'Mix verb-frame fill blanks with French pronoun fill blanks.';
+                    fillSummary.textContent = 'Mix verb-pattern questions with pronoun-replacement questions.';
                 }
                 settingsV2FillFocusContainer.appendChild(fillSummary);
             }
@@ -10505,6 +10999,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check for URL parameters for initial card - but only if no seed is present
         const urlParams = new URLSearchParams(window.location.search);
         const hasSeed = urlParams.get('seed');
+        const showRouteLoadingPlaceholder = (params) => {
+            if (verbInfinitiveEl) verbInfinitiveEl.textContent = params.verb || 'Loading';
+            if (verbTranslationEl) verbTranslationEl.textContent = 'Loading conjugation…';
+            if (verbPronounEl) verbPronounEl.textContent = params.pronoun || '';
+            if (verbTenseEl) verbTenseEl.textContent = params.tense || '';
+            if (verbFrequencyEl) verbFrequencyEl.textContent = '';
+            if (conjugatedVerbEl) conjugatedVerbEl.textContent = '';
+            if (answerContainer) answerContainer.classList.add('is-visible');
+        };
+        const displayRouteCardFromParams = (params) => {
+            const customCard = generateCardFromParams(params.pronoun, params.verb, params.tense);
+            if (customCard) {
+                history.push(customCard);
+                historyIndex = history.length - 1;
+                displayCard(customCard);
+                backBtn.disabled = historyIndex === 0;
+                return true;
+            }
+            nextCard();
+            return false;
+        };
         
         if (sharedDetailCard && seedFlashcardHistoryWithCard(sharedDetailCard, {
             deferTutorial: shouldDeferTutorialForSharedEntry,
@@ -10515,14 +11030,20 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (!hasSeed) {
             const params = parseHashParams();
             if (params.pronoun && params.verb && params.tense) {
-                const customCard = generateCardFromParams(params.pronoun, params.verb, params.tense);
-                if (customCard) {
-                    history.push(customCard);
-                    historyIndex = history.length - 1;
-                    displayCard(customCard);
-                    backBtn.disabled = historyIndex === 0;
+                const routeNeedsExtraData = !!(
+                    FRENCH_VERB_DATA_SPLIT?.extraUrl
+                    && frenchExtraVerbDataState.status !== 'loaded'
+                    && params.verb
+                    && params.tense
+                    && !(tenses[params.tense] && tenses[params.tense][params.verb])
+                );
+                if (routeNeedsExtraData) {
+                    showRouteLoadingPlaceholder(params);
+                    ensureExtraFrenchVerbDataLoaded('route').then(() => {
+                        displayRouteCardFromParams(params);
+                    });
                 } else {
-                    nextCard(); // Fall back to random card if params are invalid
+                    displayRouteCardFromParams(params);
                 }
             } else {
                 nextCard(); // Normal random card
@@ -10546,6 +11067,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }, false);
         }
         startupMark('initialize-app-complete');
+        scheduleExtraFrenchVerbDataLoad('startup');
+        window.setTimeout(() => {
+            ensureFrenchHomophoneGroupsLoaded('startup');
+        }, 1200);
     };
 
     // Expose showView globally for inline script
@@ -10886,6 +11411,7 @@ const DRILL_OPTION_KEYS = [
     'useMicToAnswer',
     'cardTypeMode',
     'fillFocusMode',
+    'fillDifficultyMode',
     'reflexiveMode',
     'prepositionalVerbMode',
     'regularityFilter',
@@ -11354,6 +11880,7 @@ function buildDrillCardOptions(overrides = {}) {
         useMicToAnswer: false,
         cardTypeMode: normalizedCardTypeMode,
         fillFocusMode: normalizeFillFocusMode(overrides.fillFocusMode),
+        fillDifficultyMode: normalizeFillDifficultyMode(overrides.fillDifficultyMode),
         reflexiveMode: 'include',
         prepositionalVerbMode: 'all',
         categoryFilter: 'all',
@@ -11950,6 +12477,7 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.useMicToAnswer = resolved.useMicToAnswer;
     cardGenerationOptions.cardTypeMode = normalizeCardTypeModeForCapabilities(resolved.cardTypeMode);
     cardGenerationOptions.fillFocusMode = getEffectiveFillFocusMode(resolved);
+    cardGenerationOptions.fillDifficultyMode = normalizeFillDifficultyMode(resolved.fillDifficultyMode);
     cardGenerationOptions.reflexiveMode = resolved.reflexiveMode;
     cardGenerationOptions.prepositionalVerbMode = resolved.prepositionalVerbMode === 'only' ? 'only' : 'all';
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
@@ -11992,6 +12520,7 @@ function resetTutorialPracticeBaseline() {
   cardGenerationOptions.showUsageNugget = false;
   cardGenerationOptions.cardTypeMode = 'conjugation';
   cardGenerationOptions.fillFocusMode = 'all';
+  cardGenerationOptions.fillDifficultyMode = 'easy';
   cardGenerationOptions.reflexiveMode = 'include';
   cardGenerationOptions.prepositionalVerbMode = 'all';
   cardGenerationOptions.regularityFilter = { regular: true, irregular: true };

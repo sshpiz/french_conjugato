@@ -2189,6 +2189,18 @@ html[data-settings-v2="true"] .settings-collapsible[open] > summary {
     cursor: text;
 }
 
+#english-verb-phrase.pronoun-fill-translation-prompt,
+#english-verb-phrase.frame-translation-prompt {
+    color: #233852;
+    margin-top: 1rem;
+    margin-bottom: 0.45rem;
+    font-size: clamp(1.28rem, 3.2vw, 1.95rem);
+    font-weight: 800;
+    line-height: 1.24;
+    letter-spacing: -0.015em;
+    max-width: min(90%, 720px);
+}
+
 #english-infinitive-line {
     min-height: 48px;
     display: flex;
@@ -2225,6 +2237,13 @@ html[data-settings-v2="true"] .settings-collapsible[open] > summary {
         line-height: 1.35;
         font-weight: 650;
         font-size: clamp(1rem, 2.4vw, 1.22rem);
+    }
+
+    #english-verb-phrase.pronoun-fill-translation-prompt,
+    #english-verb-phrase.frame-translation-prompt {
+        color: #f2f7ff !important;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
+        font-size: clamp(1.24rem, 3vw, 1.85rem);
     }
 }
 

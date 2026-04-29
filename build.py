@@ -35,6 +35,29 @@ APP_STANDALONE_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "franconjugue.html")
 APP_INDEX_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "index.html")
 APP_VERSION_OUTPUT_PATH = os.path.join(APP_DIST_DIR, "version.json")
 APP_FILES_TO_COPY = ["manifest.json", "favicon_big.png", "sw.js"]
+FRENCH_WEB_DATA_SOURCE = "js/verbs.full.generated.js"
+FRENCH_WEB_STARTER_DATA_ASSET = "js/verbs.starter.generated.js"
+FRENCH_WEB_EXTRA_DATA_ASSET = "js/verbs.extra.generated.json"
+FRENCH_STARTER_FREQUENCIES = {"top-20", "top-50", "top-100", "top-500"}
+FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS = [
+    FRENCH_WEB_DATA_SOURCE,
+    "verb_core_patterns.js",
+    "verb_usages.js",
+    "verb_frames.french_320.js",
+    "verb_frames.french_topic_expansion.js",
+    "verb_frames.french_passe_compose.js",
+    "js/pronounFillRows.js",
+    "js/pronounFillRows.passeCompose.js",
+    "js/preRenderedTts.js",
+    "js/frenchHomophoneGroups.js",
+    "js/script.js",
+]
+FRENCH_WEB_EXTERNAL_SCRIPT_REWRITES = {
+    FRENCH_WEB_DATA_SOURCE: FRENCH_WEB_STARTER_DATA_ASSET,
+}
+FRENCH_WEB_DEFERRED_SCRIPT_URL_GLOBALS = {
+    "js/frenchHomophoneGroups.js": "__FRENCH_HOMOPHONE_GROUP_URL",
+}
 ROOT_FILES_TO_COPY = [
     "favicon_big.png",
     "CNAME",
@@ -200,6 +223,131 @@ def write_versioned_app_manifest(app_version):
     )
 
 
+def extract_json_const_assignment(script_text, const_name):
+    pattern = re.compile(rf"const\s+{re.escape(const_name)}\s*=\s*(.*?);\s*(?=\nconst\s+|\Z)", re.S)
+    match = pattern.search(script_text)
+    if not match:
+        raise ValueError(f"Could not find const assignment for {const_name}")
+    return json.loads(match.group(1))
+
+
+def collect_french_starter_verbs_from_supporting_data():
+    starter_verbs = set()
+
+    script_path = os.path.join(ROOT_DIR, "js", "script.js")
+    if os.path.exists(script_path):
+        script_text = open(script_path, "r", encoding="utf-8").read()
+        for match in re.finditer(r"\bverbs\s*:\s*\[([^\]]*)\]", script_text, re.S):
+            starter_verbs.update(re.findall(r"['\"]([^'\"]+)['\"]", match.group(1)))
+
+    frame_and_pronoun_files = [
+        "verb_frames.french_320.js",
+        "verb_frames.french_topic_expansion.js",
+        "verb_frames.french_passe_compose.js",
+        "js/pronounFillRows.js",
+        "js/pronounFillRows.passeCompose.js",
+    ]
+    for relative_path in frame_and_pronoun_files:
+        path = os.path.join(ROOT_DIR, relative_path)
+        if not os.path.exists(path):
+            continue
+        text = open(path, "r", encoding="utf-8").read()
+        starter_verbs.update(re.findall(r'"verb"\s*:\s*"([^"]+)"', text))
+
+    return {verb.strip() for verb in starter_verbs if verb and verb.strip()}
+
+
+def write_french_split_verb_data(app_version):
+    source_path = os.path.join(ROOT_DIR, FRENCH_WEB_DATA_SOURCE)
+    source_text = open(source_path, "r", encoding="utf-8").read()
+    all_verbs = extract_json_const_assignment(source_text, "verbs")
+    all_tenses = extract_json_const_assignment(source_text, "tenses")
+    all_pronouns = extract_json_const_assignment(source_text, "pronouns")
+
+    starter_infinitives = {
+        verb.get("infinitive")
+        for verb in all_verbs
+        if verb.get("frequency") in FRENCH_STARTER_FREQUENCIES
+    }
+    starter_infinitives.update(collect_french_starter_verbs_from_supporting_data())
+    starter_infinitives = {verb for verb in starter_infinitives if verb}
+
+    # Keep lightweight lemma metadata available immediately so search, topics, and
+    # settings can render honestly. The heavy part is the conjugation matrix, so
+    # only Top 500/topic/fill-blank conjugations are in the starter payload.
+    starter_verbs = all_verbs
+    extra_verbs = []
+    def normalize_frequency_key_for_build(value):
+        raw = str(value or "common").strip().lower()
+        return re.sub(r"^top-(\d+)$", r"top\1", raw)
+
+    all_frequency_counts = {}
+    for verb in all_verbs:
+        freq = normalize_frequency_key_for_build(verb.get("frequency") or "common")
+        all_frequency_counts[freq] = all_frequency_counts.get(freq, 0) + 1
+    all_frequencies = list(all_frequency_counts.keys())
+
+    starter_tenses = {}
+    extra_tenses = {}
+    for tense_name, tense_data in all_tenses.items():
+        if not isinstance(tense_data, dict):
+            continue
+        starter_tenses[tense_name] = {
+            infinitive: forms
+            for infinitive, forms in tense_data.items()
+            if infinitive in starter_infinitives
+        }
+        extra_tenses[tense_name] = {
+            infinitive: forms
+            for infinitive, forms in tense_data.items()
+            if infinitive not in starter_infinitives
+        }
+
+    extra_conjugation_verbs = set()
+    for tense_data in extra_tenses.values():
+        extra_conjugation_verbs.update(tense_data.keys())
+
+    split_meta = {
+        "version": app_version,
+        "starterCount": len(starter_verbs),
+        "starterConjugationCount": len(starter_infinitives),
+        "extraCount": len(extra_conjugation_verbs),
+        "totalCount": len(all_verbs),
+        "extraUrl": f"{FRENCH_WEB_EXTRA_DATA_ASSET}?v={app_version}",
+        "allFrequencies": all_frequencies,
+        "frequencyCounts": all_frequency_counts,
+    }
+    compact_json = lambda value: json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    starter_js = (
+        "// AUTO-GENERATED by build.py from js/verbs.full.generated.js\n"
+        "// Contains the fast-start French deck. The long tail loads in the background.\n"
+        f"const verbs = {compact_json(starter_verbs)};\n"
+        f"const tenses = {compact_json(starter_tenses)};\n"
+        f"const pronouns = {compact_json(all_pronouns)};\n"
+        f"window.__FRENCH_VERB_DATA_SPLIT = {compact_json(split_meta)};\n"
+    )
+    extra_json = compact_json({
+        "version": app_version,
+        "verbs": extra_verbs,
+        "tenses": extra_tenses,
+    })
+
+    starter_path = os.path.join(APP_DIST_DIR, FRENCH_WEB_STARTER_DATA_ASSET)
+    extra_path = os.path.join(APP_DIST_DIR, FRENCH_WEB_EXTRA_DATA_ASSET)
+    write_text(starter_path, starter_js)
+    write_text(extra_path, extra_json)
+    stale_full_web_copy = os.path.join(APP_DIST_DIR, FRENCH_WEB_DATA_SOURCE)
+    if os.path.exists(stale_full_web_copy):
+        os.remove(stale_full_web_copy)
+    print(
+        "   - Wrote French split verb data:",
+        f"lemmaMetadata={len(starter_verbs)}",
+        f"starterConjugations={len(starter_infinitives)}",
+        f"extraConjugations={len(extra_conjugation_verbs)}",
+        f"total={len(all_verbs)}",
+    )
+
+
 def remove_tree(path, attempts=3, delay=0.12):
     if not os.path.exists(path):
         return
@@ -322,7 +470,8 @@ def build_french_app(force_jpeg=False):
 
         return STYLESHEET_HREF_RE.sub(repl, html)
 
-    def inline_local_scripts(html):
+    def inline_local_scripts(html, external_scripts=None, external_asset_version=None):
+        external_scripts = set(external_scripts or [])
         deferred_json_scripts = {
             "verb_usages.js": {
                 "element_id": "verb-usages-data",
@@ -356,6 +505,17 @@ def build_french_app(force_jpeg=False):
             with open(script_path, "r", encoding="utf-8") as f:
                 content = f.read()
             clean_src = strip_url_suffix(src)
+            if clean_src in external_scripts:
+                output_src = FRENCH_WEB_EXTERNAL_SCRIPT_REWRITES.get(clean_src, clean_src)
+                versioned_src = output_src
+                if external_asset_version:
+                    versioned_src = f"{output_src}?v={external_asset_version}"
+                deferred_global = FRENCH_WEB_DEFERRED_SCRIPT_URL_GLOBALS.get(clean_src)
+                if deferred_global:
+                    print("   - Deferring script:", versioned_src, f"(len={len(content)})")
+                    return f'<script>window.{deferred_global}="{versioned_src}";</script>'
+                print("   - Keeping external script:", versioned_src, f"(len={len(content)})")
+                return f'<script{match.group(1)} src="{versioned_src}"{match.group(3)}></script>'
             print("   - Inlining script:", clean_src, f"(len={len(content)})")
 
             deferred_spec = deferred_json_scripts.get(clean_src)
@@ -375,13 +535,18 @@ def build_french_app(force_jpeg=False):
 
     final_html = inline_local_stylesheets(html_template)
     final_html = re.sub(r'(<link rel="icon" href=")[^"]*(".*?>)', rf"\1{icon_data_uri}\2", final_html)
-    final_html = inline_local_scripts(final_html)
 
     from datetime import datetime
 
     app_version = datetime.now().strftime("%Y%m%d_%H%M%S")
-    web_html = final_html.replace("{{APP_VERSION}}", app_version)
-    standalone_html = MANIFEST_LINK_RE.sub("\n", web_html)
+    write_french_split_verb_data(app_version)
+    web_html = inline_local_scripts(
+        final_html,
+        external_scripts=FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS,
+        external_asset_version=app_version,
+    ).replace("{{APP_VERSION}}", app_version)
+    standalone_html = inline_local_scripts(final_html).replace("{{APP_VERSION}}", app_version)
+    standalone_html = MANIFEST_LINK_RE.sub("\n", standalone_html)
 
     os.makedirs(APP_DIST_DIR, exist_ok=True)
     write_text(APP_INDEX_OUTPUT_PATH, web_html)
@@ -403,6 +568,17 @@ def build_french_app(force_jpeg=False):
             copy_file(src_path, dest_path)
         else:
             print(f"⚠️  Warning: {src_path} does not exist, skipping copy.")
+
+    for name in FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS:
+        if name in FRENCH_WEB_EXTERNAL_SCRIPT_REWRITES:
+            continue
+        src_path = os.path.join(ROOT_DIR, name)
+        dest_path = os.path.join(APP_DIST_DIR, name)
+        if os.path.exists(src_path):
+            print(f"   - Copying French web script {src_path} to {dest_path}...")
+            copy_file(src_path, dest_path)
+        else:
+            print(f"⚠️  Warning: {src_path} does not exist, skipping French web script copy.")
 
     if os.path.isdir(GENERATED_TTS_DIR):
         if os.path.exists(APP_DIST_TTS_DIR):
