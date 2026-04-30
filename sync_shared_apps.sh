@@ -1,7 +1,9 @@
 #!/bin/zsh
 set -euo pipefail
 
-PROJ1_DIR="/Users/simeon/Desktop/proj1"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPOS_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJ1_DIR="$SCRIPT_DIR"
 DIST_DIR="$PROJ1_DIR/dist"
 DIST_GH_DIR="$PROJ1_DIR/dist-gh"
 
@@ -15,9 +17,9 @@ sync_app() {
     return 1
   fi
 
-  rsync -a --delete "$source_dist/" "$DIST_DIR/$target_name/"
+  rsync -a --delete --exclude latest "$source_dist/" "$DIST_DIR/$target_name/"
   if [[ -d "$DIST_GH_DIR" ]]; then
-    rsync -a --delete "$source_dist/" "$DIST_GH_DIR/$target_name/"
+    rsync -a --delete --exclude latest "$source_dist/" "$DIST_GH_DIR/$target_name/"
   fi
 
   if [[ -f "$source_dist/$standalone_name" ]]; then
@@ -52,12 +54,18 @@ ensure_favicon_alias() {
   done
 }
 
-sync_app "/Users/simeon/Desktop/greek-verbs/dist" "greek" "greekonjugation.html"
-sync_app "/Users/simeon/Desktop/portuguese-verbs/dist" "portugese" "portoconjugue.html"
-sync_app "/Users/simeon/Desktop/russian-verbs/dist" "russian" "glagoly.html"
+sync_app "$REPOS_ROOT/greek-verbs/dist" "greek" "greekonjugation.html"
+sync_app "$REPOS_ROOT/portuguese-verbs/dist" "portugese" "portoconjugue.html"
+sync_app "$REPOS_ROOT/russian-verbs/dist" "russian" "glagoly.html"
+sync_app "$REPOS_ROOT/spanish-verbs/dist" "spanish" "conjugaespanol.html"
+sync_app "$REPOS_ROOT/catalan-verbs/dist" "catalan" "catalanjugacio.html"
+sync_app "$REPOS_ROOT/ukrainian-verbs/dist" "ukrainian" "dieslova.html"
+sync_app "$REPOS_ROOT/latvian-verbs/dist" "latvian" "darbibasvardi.html"
+sync_app "$REPOS_ROOT/german-verbs/dist" "german" "dieverben.html"
+sync_app "$REPOS_ROOT/italian-verbs/dist" "italian" "iverbi.html"
 
 cp "$DIST_DIR/index.html" "$DIST_GH_DIR/index.html" 2>/dev/null || true
 cp "$DIST_DIR/franconjugue.html" "$DIST_GH_DIR/franconjugue.html" 2>/dev/null || true
 if [[ -d "$DIST_DIR/french" && -d "$DIST_GH_DIR" ]]; then
-  rsync -a --delete "$DIST_DIR/french/" "$DIST_GH_DIR/french/"
+  rsync -a --delete --exclude latest "$DIST_DIR/french/" "$DIST_GH_DIR/french/"
 fi
