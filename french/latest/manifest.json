@@ -1,0 +1,20 @@
+{
+  "name": "Les Verbes",
+  "short_name": "Les Verbes",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b0d",
+  "theme_color": "#050b0d",
+  "description": "Master French verb conjugations",
+  "icons": [
+    {
+      "src": "favicon_big.png?v=20260430_031556",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
