@@ -1,7 +1,7 @@
 {
-  "name": "Глаголы — Russian Verb Trainer",
-  "short_name": "Глаголы",
-  "id": "./",
+  "name": "Глаголы — Russian Verb Trainer Latest",
+  "short_name": "Глаголы Latest",
+  "id": "/russian/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

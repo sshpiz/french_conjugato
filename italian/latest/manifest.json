@@ -1,7 +1,7 @@
 {
-  "name": "I Verbi",
-  "short_name": "I Verbi",
-  "id": "./",
+  "name": "I Verbi Latest",
+  "short_name": "I Verbi Latest",
+  "id": "/italian/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

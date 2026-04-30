@@ -1,7 +1,7 @@
 {
-  "name": "Les Verbes",
-  "short_name": "Les Verbes",
-  "id": "./",
+  "name": "Les Verbes Latest",
+  "short_name": "Les Verbes Latest",
+  "id": "/french/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

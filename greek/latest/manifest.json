@@ -1,7 +1,7 @@
 {
-  "name": "Τα Ρήματα",
-  "short_name": "Τα Ρήματα",
-  "id": "./",
+  "name": "Τα Ρήματα Latest",
+  "short_name": "Τα Ρήματα Latest",
+  "id": "/greek/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

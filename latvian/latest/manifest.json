@@ -1,7 +1,7 @@
 {
-  "name": "Darbības vārdi",
-  "short_name": "Darbības v.",
-  "id": "./",
+  "name": "Darbības vārdi Latest",
+  "short_name": "Darbības v. Latest",
+  "id": "/latvian/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

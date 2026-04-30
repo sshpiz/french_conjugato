@@ -1,7 +1,7 @@
 {
-  "name": "Os Verbos",
-  "short_name": "Os Verbos",
-  "id": "./",
+  "name": "Os Verbos Latest",
+  "short_name": "Os Verbos Latest",
+  "id": "/portugese/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

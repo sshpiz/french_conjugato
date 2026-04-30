@@ -1,7 +1,7 @@
 {
-  "name": "Els Verbs — Catalan Verb Trainer",
-  "short_name": "Els Verbs",
-  "id": "./",
+  "name": "Els Verbs — Catalan Verb Trainer Latest",
+  "short_name": "Els Verbs Latest",
+  "id": "/catalan/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

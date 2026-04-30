@@ -1,7 +1,7 @@
 {
-  "name": "Los Verbos",
-  "short_name": "Verbos",
-  "id": "./",
+  "name": "Los Verbos Latest",
+  "short_name": "Verbos Latest",
+  "id": "/spanish/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

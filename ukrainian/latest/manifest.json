@@ -1,7 +1,7 @@
 {
-  "name": "Дієслова — Ukrainian Verb Trainer",
-  "short_name": "Дієслова",
-  "id": "./",
+  "name": "Дієслова — Ukrainian Verb Trainer Latest",
+  "short_name": "Дієслова Latest",
+  "id": "/ukrainian/latest/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
