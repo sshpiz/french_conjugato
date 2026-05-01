@@ -28,9 +28,13 @@ python3 build.py
 
 echo "Preparing Cloudflare deploy directory: $DEPLOY_DIR"
 rm -rf "$DEPLOY_DIR"
-rsync -a --delete dist/ "$DEPLOY_DIR/"
+rsync -a --delete \
+  --exclude 'reference/' \
+  --exclude '*/tts/' \
+  --exclude '*/latest/' \
+  dist/ "$DEPLOY_DIR/"
 
-echo "Removing bulky/generated folders from Cloudflare deploy directory..."
+echo "Ensuring bulky/generated folders are excluded from Cloudflare deploy directory..."
 rm -rf "$DEPLOY_DIR/reference"
 find "$DEPLOY_DIR" -path '*/tts' -type d -prune -exec rm -rf {} +
 find "$DEPLOY_DIR" -path '*/latest' -type d -prune -exec rm -rf {} +
