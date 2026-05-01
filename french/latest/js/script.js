@@ -7426,6 +7426,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Flashcard Logic ---
     const removeAccents = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const normalizeSearchText = (value) => removeAccents(String(value || '').toLowerCase())
+        .replace(/[’']/g, ' ')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+    const searchTextIncludes = (haystack, needle) => {
+        const normalizedNeedle = normalizeSearchText(needle);
+        if (!normalizedNeedle) return true;
+        const normalizedHaystack = normalizeSearchText(haystack);
+        if (normalizedHaystack.includes(normalizedNeedle)) return true;
+        return normalizedHaystack.replace(/\s+/g, '').includes(normalizedNeedle.replace(/\s+/g, ''));
+    };
 
     const cardKey = (card) => card?.isFrameCard
         ? `frame|${card.frameId || `${card.verb?.infinitive}|${card.pronoun}`}`
@@ -8650,7 +8661,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateExplorerList(filter = '') {
         verbListContainer.innerHTML = '';
         refreshExplorerScopeUi();
-        const normalizedFilter = removeAccents(filter.toLowerCase().trim());
+        const normalizedFilter = normalizeSearchText(filter);
         const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
         const useFilteredScope = filteredUniverse.length > 0
             && filteredUniverse.length < uniqueVerbs.length
@@ -8659,10 +8670,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredVerbs = sourceVerbs.filter(v => {
             if (!normalizedFilter) return true;
             // Match French infinitive
-            if (removeAccents(v.infinitive.toLowerCase()).includes(normalizedFilter)) return true;
+            if (searchTextIncludes(v.infinitive, normalizedFilter)) return true;
+            if (v.verbExpression && v.expressionOf && searchTextIncludes(`${v.expressionOf} ${v.infinitive}`, normalizedFilter)) return true;
             // Match English translation
             const trans = cleanTranslation(v.infinitive, v.translation || '');
-            if (trans && removeAccents(trans.toLowerCase()).includes(normalizedFilter)) return true;
+            if (trans && searchTextIncludes(trans, normalizedFilter)) return true;
             // Match any conjugated form across all tenses.
             // For compound forms (e.g. "j'ai abandonné"), only match the participle part —
             // otherwise aux verbs (avoir/être) would match every single verb.
@@ -8671,8 +8683,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const conjugations = tenses[tenseName] && tenses[tenseName][v.infinitive];
                 if (!conjugations) continue;
                 for (const form of Object.values(conjugations)) {
-                    const searchable = removeAccents(form.replace(auxPrefix, '').toLowerCase());
-                    if (searchable.includes(normalizedFilter)) return true;
+                    if (searchTextIncludes(form.replace(auxPrefix, ''), normalizedFilter)) return true;
                 }
             }
             return false;
