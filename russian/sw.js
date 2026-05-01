@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the Russian app.
 
 const CACHE_PREFIX = 'ru-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v4';
+const CACHE_NAME = CACHE_PREFIX + 'v5';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
