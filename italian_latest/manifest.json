@@ -1,0 +1,20 @@
+{
+  "name": "I Verbi Latest",
+  "short_name": "I Verbi Latest",
+  "id": "/italian_latest/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b0d",
+  "theme_color": "#050b0d",
+  "description": "Master Italian verb conjugations",
+  "icons": [
+    {
+      "src": "favicon_big.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

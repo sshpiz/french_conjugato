@@ -1,0 +1,20 @@
+{
+  "name": "Os Verbos Latest",
+  "short_name": "Os Verbos Latest",
+  "id": "/portugese_latest/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b0d",
+  "theme_color": "#050b0d",
+  "description": "Master Portuguese verb conjugations",
+  "icons": [
+    {
+      "src": "favicon_big.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

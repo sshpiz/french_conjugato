@@ -1,0 +1,20 @@
+{
+  "name": "Los Verbos Latest",
+  "short_name": "Verbos Latest",
+  "id": "/spanish_latest/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b0d",
+  "theme_color": "#050b0d",
+  "description": "Practica conjugaciones españolas con tarjetas, audio y repasos",
+  "icons": [
+    {
+      "src": "favicon_big.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

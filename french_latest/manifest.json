@@ -1,0 +1,20 @@
+{
+  "name": "Les Verbes Latest",
+  "short_name": "Les Verbes Latest",
+  "id": "/french_latest/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b0d",
+  "theme_color": "#050b0d",
+  "description": "Master French verb conjugations",
+  "icons": [
+    {
+      "src": "favicon_big.png?v=20260501_215802",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

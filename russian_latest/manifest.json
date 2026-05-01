@@ -1,0 +1,20 @@
+{
+  "name": "Глаголы — Russian Verb Trainer Latest",
+  "short_name": "Глаголы Latest",
+  "id": "/russian_latest/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050b0d",
+  "theme_color": "#050b0d",
+  "description": "Master Russian verb conjugations",
+  "icons": [
+    {
+      "src": "favicon_russian_20260416.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

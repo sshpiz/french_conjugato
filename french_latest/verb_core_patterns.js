@@ -1,0 +1,3650 @@
+window.verbCorePatterns = [
+  {
+    "verb": "accorder",
+    "core_patterns": [
+      {
+        "pattern": "accorder à qqn / qqch",
+        "meaning_en": "give to",
+        "pattern_id": "accorder_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: accorder + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "accorder qqch à qqn",
+        "meaning_en": "grant something to someone",
+        "pattern_id": "accorder_cp02",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: la banque lui a accordé un autre crédit",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "accuser",
+    "core_patterns": [
+      {
+        "pattern": "accuser qqn de qqch",
+        "meaning_en": "accuse someone of something",
+        "pattern_id": "accuser_cp01",
+        "pattern_type": "combo-de",
+        "notes": "Usage-backed: accuser + quelqu’un + de + nom",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "accéder",
+    "core_patterns": [
+      {
+        "pattern": "accéder à qqn / qqch",
+        "meaning_en": "gain access to",
+        "pattern_id": "acceder_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: accéder + à + object",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "acheter",
+    "core_patterns": [
+      {
+        "pattern": "acheter qqch",
+        "meaning_en": "buy something",
+        "pattern_id": "acheter_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "acheter qqch à qqn",
+        "meaning_en": "buy something from someone",
+        "pattern_id": "acheter_cp02",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "s'acheter qqch",
+        "meaning_en": "buy oneself something",
+        "pattern_id": "acheter_cp03",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "acheter à qqn / qqch",
+        "meaning_en": "buy from someone",
+        "pattern_id": "acheter_cp04",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: acheter + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "adresser",
+    "core_patterns": [
+      {
+        "pattern": "adresser à qqn / qqch",
+        "meaning_en": "direct to",
+        "pattern_id": "adresser_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: adresser + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "adresser qqch à qqn",
+        "meaning_en": "address; direct something to someone",
+        "pattern_id": "adresser_cp02",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: on peut essayer de l'adresser à notre chef",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "affirmer",
+    "core_patterns": [
+      {
+        "pattern": "affirmer à qqn",
+        "meaning_en": "state to someone",
+        "pattern_id": "affirmer_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: affirmer + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "agir",
+    "core_patterns": [
+      {
+        "pattern": "agir",
+        "meaning_en": "act; take action",
+        "pattern_id": "agir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "agir sur qqch",
+        "meaning_en": "act on; affect something",
+        "pattern_id": "agir_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "il s'agit de + infinitif",
+        "meaning_en": "the point is to",
+        "pattern_id": "agir_cp03",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "aider",
+    "core_patterns": [
+      {
+        "pattern": "aider qqn",
+        "meaning_en": "help someone",
+        "pattern_id": "aider_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "aider qqn à + infinitif",
+        "meaning_en": "help someone do something",
+        "pattern_id": "aider_cp02",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "aimer",
+    "core_patterns": [
+      {
+        "pattern": "aimer qqn / qqch",
+        "meaning_en": "like; love someone / something",
+        "pattern_id": "aimer_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "aimer + infinitif",
+        "meaning_en": "like doing",
+        "pattern_id": "aimer_cp02",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "aimer que + subj.",
+        "meaning_en": "like that; appreciate that",
+        "pattern_id": "aimer_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "aller",
+    "core_patterns": [
+      {
+        "pattern": "aller à + lieu",
+        "meaning_en": "go to a place",
+        "pattern_id": "aller_cp01",
+        "pattern_type": "locative",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "aller chez + qqn",
+        "meaning_en": "go to someone's place",
+        "pattern_id": "aller_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "aller + infinitif",
+        "meaning_en": "be going to; go and do",
+        "pattern_id": "aller_cp03",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "apparaître",
+    "core_patterns": [
+      {
+        "pattern": "apparaître à qqn",
+        "meaning_en": "appear to; become apparent to someone",
+        "pattern_id": "apparaitre_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: la Sainte Vierge lui est apparue trois fois",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "appartenir",
+    "core_patterns": [
+      {
+        "pattern": "appartenir à qqn / qqch",
+        "meaning_en": "belong to someone",
+        "pattern_id": "appartenir_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: toute cette terre lui appartient",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "appeler",
+    "core_patterns": [
+      {
+        "pattern": "appeler qqn",
+        "meaning_en": "call someone",
+        "pattern_id": "appeler_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "appeler qqch + nom",
+        "meaning_en": "call; name something",
+        "pattern_id": "appeler_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "s'appeler + nom",
+        "meaning_en": "be called",
+        "pattern_id": "appeler_cp03",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "apprendre",
+    "core_patterns": [
+      {
+        "pattern": "apprendre qqch",
+        "meaning_en": "learn something",
+        "pattern_id": "apprendre_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "apprendre à + infinitif",
+        "meaning_en": "learn to do",
+        "pattern_id": "apprendre_cp02",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "apprendre qqch à qqn",
+        "meaning_en": "teach someone something",
+        "pattern_id": "apprendre_cp03",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "apprendre que + proposition",
+        "meaning_en": "find out that",
+        "pattern_id": "apprendre_cp04",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "arracher",
+    "core_patterns": [
+      {
+        "pattern": "arracher à qqn",
+        "meaning_en": "take away from someone",
+        "pattern_id": "arracher_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: arracher + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "arriver",
+    "core_patterns": [
+      {
+        "pattern": "arriver",
+        "meaning_en": "arrive",
+        "pattern_id": "arriver_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "arriver à qqn",
+        "meaning_en": "happen to someone",
+        "pattern_id": "arriver_cp02",
+        "pattern_type": "a-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "arriver à + infinitif",
+        "meaning_en": "manage to; succeed in doing",
+        "pattern_id": "arriver_cp03",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "arrêter",
+    "core_patterns": [
+      {
+        "pattern": "arrêter qqn / qqch",
+        "meaning_en": "stop someone / something",
+        "pattern_id": "arreter_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "arrêter de + infinitif",
+        "meaning_en": "stop doing",
+        "pattern_id": "arreter_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "s'arrêter",
+        "meaning_en": "stop; come to a halt",
+        "pattern_id": "arreter_cp03",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "asseoir",
+    "core_patterns": [
+      {
+        "pattern": "asseoir qqn",
+        "meaning_en": "seat someone",
+        "pattern_id": "asseoir_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "s'asseoir",
+        "meaning_en": "sit down",
+        "pattern_id": "asseoir_cp02",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "assister",
+    "core_patterns": [
+      {
+        "pattern": "assister à qqn / qqch",
+        "meaning_en": "attend (events)",
+        "pattern_id": "assister_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: assister + à + object",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "associer",
+    "core_patterns": [
+      {
+        "pattern": "associer qqn / qqch à qqn / qqch",
+        "meaning_en": "associate; connect with",
+        "pattern_id": "associer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: j'associe cette robe à Marie",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "attendre",
+    "core_patterns": [
+      {
+        "pattern": "attendre qqn / qqch",
+        "meaning_en": "wait for someone / something",
+        "pattern_id": "attendre_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "attendre que + proposition",
+        "meaning_en": "wait until",
+        "pattern_id": "attendre_cp02",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "s'attendre à + infinitif",
+        "meaning_en": "expect to",
+        "pattern_id": "attendre_cp03",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "attendre de qqn / qqch",
+        "meaning_en": "expect from",
+        "pattern_id": "attendre_cp04",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il attend trop de moi",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "avoir",
+    "core_patterns": [
+      {
+        "pattern": "avoir qqch",
+        "meaning_en": "have something",
+        "pattern_id": "avoir_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "avoir besoin de qqch / de + infinitif",
+        "meaning_en": "need something; need to do",
+        "pattern_id": "avoir_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "il y a + nom",
+        "meaning_en": "there is; there are",
+        "pattern_id": "avoir_cp03",
+        "pattern_type": "impersonal",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "cacher",
+    "core_patterns": [
+      {
+        "pattern": "cacher à qqn / qqch",
+        "meaning_en": "hide from someone",
+        "pattern_id": "cacher_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: cacher + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "changer",
+    "core_patterns": [
+      {
+        "pattern": "changer qqch",
+        "meaning_en": "change something",
+        "pattern_id": "changer_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "changer de + nom",
+        "meaning_en": "change; switch",
+        "pattern_id": "changer_cp02",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "se changer",
+        "meaning_en": "change one's clothes",
+        "pattern_id": "changer_cp03",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "changer qqch en qqch",
+        "meaning_en": "turn something into something",
+        "pattern_id": "changer_cp04",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "changer de qqn / qqch",
+        "meaning_en": "change; switch from",
+        "pattern_id": "changer_cp05",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: cette excursion la change de son train-train quotidien",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "chercher",
+    "core_patterns": [
+      {
+        "pattern": "chercher qqn / qqch",
+        "meaning_en": "look for someone / something",
+        "pattern_id": "chercher_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "chercher à + infinitif",
+        "meaning_en": "try to do",
+        "pattern_id": "chercher_cp02",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "choisir",
+    "core_patterns": [
+      {
+        "pattern": "choisir de + infinitif",
+        "meaning_en": "choose to do; decide to",
+        "pattern_id": "choisir_cp01",
+        "pattern_type": "de-infinitive",
+        "notes": "Close to décider de + infinitif",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "choisir qqn / qqch",
+        "meaning_en": "choose; pick someone / something",
+        "pattern_id": "choisir_cp02",
+        "pattern_type": "direct-object",
+        "notes": "Most common pattern",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "commander",
+    "core_patterns": [
+      {
+        "pattern": "commander à qqn / qqch",
+        "meaning_en": "give an order to someone",
+        "pattern_id": "commander_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: commander + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "commander qqch à qqn",
+        "meaning_en": "order something from someone",
+        "pattern_id": "commander_cp02",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il lui commande de se lever",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "commencer",
+    "core_patterns": [
+      {
+        "pattern": "commencer à + infinitif",
+        "meaning_en": "start doing; begin to do",
+        "pattern_id": "commencer_cp01",
+        "pattern_type": "a-infinitive",
+        "notes": "de + infinitif also exists (more formal/rare)",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "commencer qqch",
+        "meaning_en": "start something",
+        "pattern_id": "commencer_cp02",
+        "pattern_type": "direct-object",
+        "notes": "Start with/by = commencer par + nom / infinitif",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "commencer",
+        "meaning_en": "start; begin",
+        "pattern_id": "commencer_cp03",
+        "pattern_type": "intransitive",
+        "notes": "Intransitive for events/times (Le film commence)",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "communiquer",
+    "core_patterns": [
+      {
+        "pattern": "communiquer à qqn / qqch",
+        "meaning_en": "inform someone",
+        "pattern_id": "communiquer_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: communiquer + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "comparer",
+    "core_patterns": [
+      {
+        "pattern": "comparer à qqn / qqch",
+        "meaning_en": "liken to someone",
+        "pattern_id": "comparer_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: comparer + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "comprendre",
+    "core_patterns": [
+      {
+        "pattern": "comprendre que + proposition",
+        "meaning_en": "understand that; realize that",
+        "pattern_id": "comprendre_cp01",
+        "pattern_type": "que-clause",
+        "notes": "Indicative for facts; subjunctive when it means “it’s understandable that” (Je comprends que tu sois…)",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "comprendre qqn / qqch",
+        "meaning_en": "understand someone / something",
+        "pattern_id": "comprendre_cp02",
+        "pattern_type": "direct-object",
+        "notes": "Direct object; e.g., Je te comprends",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "comprendre qqch",
+        "meaning_en": "include; contain",
+        "pattern_id": "comprendre_cp03",
+        "pattern_type": "direct-object",
+        "notes": "Common with prices/offers: Le prix comprend le petit déjeuner",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "se comprendre",
+        "meaning_en": "understand each other; be understandable",
+        "pattern_id": "comprendre_cp04",
+        "pattern_type": "reflexive",
+        "notes": "Reciprocal (Elles se comprennent). Also: Ça se comprend = that’s understandable",
+        "confidence": 0.86,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "confier",
+    "core_patterns": [
+      {
+        "pattern": "confier qqch à qqn",
+        "meaning_en": "entrust something to someone",
+        "pattern_id": "confier_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il leur a confié tous ses biens",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "confirmer",
+    "core_patterns": [
+      {
+        "pattern": "confirmer qqch à qqn",
+        "meaning_en": "confirm something to someone",
+        "pattern_id": "confirmer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je vais lui confirmer cet état de choses",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "connaître",
+    "core_patterns": [
+      {
+        "pattern": "connaître qqn / qqch",
+        "meaning_en": "know; be familiar with someone / something",
+        "pattern_id": "connaitre_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "consacrer",
+    "core_patterns": [
+      {
+        "pattern": "consacrer qqch à qqn",
+        "meaning_en": "devote something (time, energy, etc.) to someone/something",
+        "pattern_id": "consacrer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: elle consacre tout son temps à sa vieille mère",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "continuer",
+    "core_patterns": [
+      {
+        "pattern": "continuer à + infinitif",
+        "meaning_en": "continue; keep doing",
+        "pattern_id": "continuer_cp01",
+        "pattern_type": "a-infinitive",
+        "notes": "Most common before an infinitive",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "continuer de + infinitif",
+        "meaning_en": "continue; keep doing",
+        "pattern_id": "continuer_cp02",
+        "pattern_type": "de-infinitive",
+        "notes": "Also correct; slightly more formal/written. Interchangeable with à in most contexts",
+        "confidence": 0.94,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "continuer qqch",
+        "meaning_en": "continue something",
+        "pattern_id": "continuer_cp03",
+        "pattern_type": "direct-object",
+        "notes": "Transitive with a noun (travail, études, route, etc.)",
+        "confidence": 0.97,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      },
+      {
+        "pattern": "continuer",
+        "meaning_en": "continue; go on",
+        "pattern_id": "continuer_cp04",
+        "pattern_type": "intransitive",
+        "notes": "Intransitive with a subject (Le spectacle continue, Ça continue)",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "convenir",
+    "core_patterns": [
+      {
+        "pattern": "convenir à qqn / qqch",
+        "meaning_en": "suit someone",
+        "pattern_id": "convenir_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: convenir + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "convenir de qqn / qqch",
+        "meaning_en": "agree on; settle",
+        "pattern_id": "convenir_cp02",
+        "pattern_type": "combo-de",
+        "notes": "LEFFF example: je conviens de ces abus",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "correspondre",
+    "core_patterns": [
+      {
+        "pattern": "correspondre à qqn / qqch",
+        "meaning_en": "correspond to; match",
+        "pattern_id": "correspondre_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: le numéro ne correspond pas à celui dans mon carnet",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "coûter",
+    "core_patterns": [
+      {
+        "pattern": "coûter à qqn / qqch",
+        "meaning_en": "be expensive for",
+        "pattern_id": "couter_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: cette voiture lui a coûté les trois quarts de ses économies",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "croire",
+    "core_patterns": [
+      {
+        "pattern": "croire qqn",
+        "meaning_en": "believe someone",
+        "pattern_id": "croire_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "croire en qqn / qqch",
+        "meaning_en": "believe in someone / something",
+        "pattern_id": "croire_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "croire que + proposition",
+        "meaning_en": "believe; think that",
+        "pattern_id": "croire_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "céder",
+    "core_patterns": [
+      {
+        "pattern": "céder à qqn / qqch",
+        "meaning_en": "yield to",
+        "pattern_id": "ceder_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: j'ai finalement cédé à ses prières",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "demander",
+    "core_patterns": [
+      {
+        "pattern": "demander qqch",
+        "meaning_en": "ask for something",
+        "pattern_id": "demander_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "demander qqch à qqn",
+        "meaning_en": "ask someone for something",
+        "pattern_id": "demander_cp02",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "demander à qqn de + infinitif",
+        "meaning_en": "ask someone to do something",
+        "pattern_id": "demander_cp03",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "demander à qqn / qqch",
+        "meaning_en": "ask someone",
+        "pattern_id": "demander_cp04",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: demander + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "devenir",
+    "core_patterns": [
+      {
+        "pattern": "devenir + nom / adjectif",
+        "meaning_en": "become",
+        "pattern_id": "devenir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "devoir",
+    "core_patterns": [
+      {
+        "pattern": "devoir + infinitif",
+        "meaning_en": "have to; must",
+        "pattern_id": "devoir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "devoir qqch à qqn",
+        "meaning_en": "owe something to someone",
+        "pattern_id": "devoir_cp02",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "dire",
+    "core_patterns": [
+      {
+        "pattern": "dire qqch à qqn",
+        "meaning_en": "tell someone something",
+        "pattern_id": "dire_cp01",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "dire à qqn de + infinitif",
+        "meaning_en": "tell someone to do something",
+        "pattern_id": "dire_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "dire que + proposition",
+        "meaning_en": "say that",
+        "pattern_id": "dire_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "dire à qqn / qqch",
+        "meaning_en": "tell someone",
+        "pattern_id": "dire_cp04",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: dire + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "dire de qqn / qqch",
+        "meaning_en": "say about; think of",
+        "pattern_id": "dire_cp05",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il a dit de cette initiative qu'elle manque de réalisme",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "discuter",
+    "core_patterns": [
+      {
+        "pattern": "discuter de qqn / qqch",
+        "meaning_en": "discuss; talk about",
+        "pattern_id": "discuter_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: les ouvriers discutaient avec le délégué du syndicat d'une augmentation de leur salaire",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "disposer",
+    "core_patterns": [
+      {
+        "pattern": "disposer de qqn / qqch",
+        "meaning_en": "have at one's disposal; have",
+        "pattern_id": "disposer_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il dispose de l'argent de son vieil oncle",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "donner",
+    "core_patterns": [
+      {
+        "pattern": "donner qqch à qqn",
+        "meaning_en": "give something to someone",
+        "pattern_id": "donner_cp01",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "donner à + infinitif",
+        "meaning_en": "make one want to; give cause to",
+        "pattern_id": "donner_cp02",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "douter",
+    "core_patterns": [
+      {
+        "pattern": "douter de qqn / qqch",
+        "meaning_en": "doubt",
+        "pattern_id": "douter_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: je doute de son intégrité",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "déborder",
+    "core_patterns": [
+      {
+        "pattern": "déborder de qqn / qqch",
+        "meaning_en": "be overflowing with",
+        "pattern_id": "deborder_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: le seau déborde de lait",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "décider",
+    "core_patterns": [
+      {
+        "pattern": "décider de qqch",
+        "meaning_en": "decide on something",
+        "pattern_id": "decider_cp01",
+        "pattern_type": "de-object",
+        "notes": "Pronominalizes with en. Direct-object form (décider qqch) exists, often formal: Le comité a décidé la date",
+        "confidence": 0.92,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "se décider à + infinitif",
+        "meaning_en": "finally decide to do",
+        "pattern_id": "decider_cp02",
+        "pattern_type": "a-infinitive",
+        "notes": "Implies finally, after hesitation",
+        "confidence": 0.95,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "décider de + infinitif",
+        "meaning_en": "decide to do",
+        "pattern_id": "decider_cp03",
+        "pattern_type": "de-infinitive",
+        "notes": "Most common structure for actions (not à)",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "décider que + proposition",
+        "meaning_en": "decide that; rule that",
+        "pattern_id": "decider_cp04",
+        "pattern_type": "que-clause",
+        "notes": "Common in official/judicial statements",
+        "confidence": 0.95,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "découvrir",
+    "core_patterns": [
+      {
+        "pattern": "découvrir qqch à qqn",
+        "meaning_en": "reveal something to someone",
+        "pattern_id": "decouvrir_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui ai découvert tous mes secrets",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "décrire",
+    "core_patterns": [
+      {
+        "pattern": "décrire qqch à qqn",
+        "meaning_en": "describe something to someone",
+        "pattern_id": "decrire_cp01",
+        "pattern_type": "combo-a",
+        "notes": "Usage-backed: décrire + object + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "défendre",
+    "core_patterns": [
+      {
+        "pattern": "défendre qqch à qqn",
+        "meaning_en": "forbid something to someone",
+        "pattern_id": "defendre_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: son mari lui a défendu de couper ses cheveux",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "dépendre",
+    "core_patterns": [
+      {
+        "pattern": "dépendre de qqn / qqch",
+        "meaning_en": "depend on",
+        "pattern_id": "dependre_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: la décision dépend de son humeur",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "enlever",
+    "core_patterns": [
+      {
+        "pattern": "enlever à qqn / qqch",
+        "meaning_en": "take from someone",
+        "pattern_id": "enlever_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: enlever + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "enseigner",
+    "core_patterns": [
+      {
+        "pattern": "enseigner qqch à qqn",
+        "meaning_en": "teach something to someone",
+        "pattern_id": "enseigner_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: on leur enseigne l'écriture",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "entendre",
+    "core_patterns": [
+      {
+        "pattern": "entendre qqn / qqch",
+        "meaning_en": "hear someone / something",
+        "pattern_id": "entendre_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "entendre qqn + infinitif",
+        "meaning_en": "hear someone do something",
+        "pattern_id": "entendre_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "s'entendre avec qqn",
+        "meaning_en": "get along with someone",
+        "pattern_id": "entendre_cp03",
+        "pattern_type": "reflexive-avec",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "envoyer",
+    "core_patterns": [
+      {
+        "pattern": "envoyer qqch à qqn",
+        "meaning_en": "send something to someone",
+        "pattern_id": "envoyer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "Pronouns: lui/leur envoyer qqch; le/la/les + lui/leur -> Je le lui envoie",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "envoyer qqn / qqch",
+        "meaning_en": "send; dispatch someone / something",
+        "pattern_id": "envoyer_cp02",
+        "pattern_type": "direct-object",
+        "notes": "Common mediums: par e-mail / SMS / la poste. Destinations follow the object: envoyer qqn à Paris / chez le médecin; envoyer le dossier au service client",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      },
+      {
+        "pattern": "envoyer qqn + infinitif",
+        "meaning_en": "send someone to do something",
+        "pattern_id": "envoyer_cp03",
+        "pattern_type": "direct-object",
+        "notes": "Je l’envoie chercher du pain; On l’a envoyé voir le médecin",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "essayer",
+    "core_patterns": [
+      {
+        "pattern": "essayer qqch",
+        "meaning_en": "try something",
+        "pattern_id": "essayer_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "essayer de + infinitif",
+        "meaning_en": "try to do",
+        "pattern_id": "essayer_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "s'essayer à + nom / infinitif",
+        "meaning_en": "try one's hand at",
+        "pattern_id": "essayer_cp03",
+        "pattern_type": "reflexive-a",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "exiger",
+    "core_patterns": [
+      {
+        "pattern": "exiger de qqn",
+        "meaning_en": "demand from someone; require of someone",
+        "pattern_id": "exiger_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: ses parents exigent trop de lui",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "faire",
+    "core_patterns": [
+      {
+        "pattern": "faire qqch",
+        "meaning_en": "do; make something",
+        "pattern_id": "faire_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "faire + infinitif",
+        "meaning_en": "make; have something done",
+        "pattern_id": "faire_cp02",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "il fait + météo / adjectif",
+        "meaning_en": "the weather is; it is",
+        "pattern_id": "faire_cp03",
+        "pattern_type": "impersonal",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "falloir",
+    "core_patterns": [
+      {
+        "pattern": "il faut + nom",
+        "meaning_en": "need; require something",
+        "pattern_id": "falloir_cp01",
+        "pattern_type": "impersonal",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "il faut + infinitif",
+        "meaning_en": "must; need to",
+        "pattern_id": "falloir_cp02",
+        "pattern_type": "impersonal",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "il faut que + subj.",
+        "meaning_en": "it is necessary that",
+        "pattern_id": "falloir_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "finir",
+    "core_patterns": [
+      {
+        "pattern": "finir qqch",
+        "meaning_en": "finish something",
+        "pattern_id": "finir_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "finir de + infinitif",
+        "meaning_en": "finish doing",
+        "pattern_id": "finir_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "finir par + infinitif",
+        "meaning_en": "end up doing",
+        "pattern_id": "finir_cp03",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "fournir",
+    "core_patterns": [
+      {
+        "pattern": "fournir à qqn / qqch",
+        "meaning_en": "supply to someone",
+        "pattern_id": "fournir_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: fournir + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "garder",
+    "core_patterns": [
+      {
+        "pattern": "garder de qqn / qqch",
+        "meaning_en": "protect from; keep from",
+        "pattern_id": "garder_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: ce parapluie me gardera de la drache nationale belge",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "importer",
+    "core_patterns": [
+      {
+        "pattern": "importer à qqn / qqch",
+        "meaning_en": "matter to sb",
+        "pattern_id": "importer_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: importer + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "imposer",
+    "core_patterns": [
+      {
+        "pattern": "imposer à qqn",
+        "meaning_en": "impose on someone",
+        "pattern_id": "imposer_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: imposer + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "indiquer",
+    "core_patterns": [
+      {
+        "pattern": "indiquer à qqn",
+        "meaning_en": "tell; indicate to someone",
+        "pattern_id": "indiquer_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: indiquer + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "informer",
+    "core_patterns": [
+      {
+        "pattern": "informer qqn de qqch",
+        "meaning_en": "inform someone about something",
+        "pattern_id": "informer_cp01",
+        "pattern_type": "combo-de",
+        "notes": "Usage-backed: informer [quelqu’un] de [quelque chose]",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "inspirer",
+    "core_patterns": [
+      {
+        "pattern": "inspirer qqch à qqn",
+        "meaning_en": "inspire something in someone",
+        "pattern_id": "inspirer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il leur inspire du respect",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "jouer",
+    "core_patterns": [
+      {
+        "pattern": "jouer à + jeu / sport",
+        "meaning_en": "play a game / sport",
+        "pattern_id": "jouer_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "jouer de + instrument",
+        "meaning_en": "play an instrument",
+        "pattern_id": "jouer_cp02",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "jouer qqch / un rôle",
+        "meaning_en": "play; perform; play a role",
+        "pattern_id": "jouer_cp03",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "laisser",
+    "core_patterns": [
+      {
+        "pattern": "laisser qqn / qqch",
+        "meaning_en": "leave someone / something",
+        "pattern_id": "laisser_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "laisser qqn + infinitif",
+        "meaning_en": "let someone do something",
+        "pattern_id": "laisser_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "se laisser + infinitif",
+        "meaning_en": "let oneself be; allow oneself to",
+        "pattern_id": "laisser_cp03",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "laisser qqch à qqn",
+        "meaning_en": "leave something with someone",
+        "pattern_id": "laisser_cp04",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je leur ai laissé le nécessaire pour vivre",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "lancer",
+    "core_patterns": [
+      {
+        "pattern": "lancer qqch à qqn",
+        "meaning_en": "throw something to someone",
+        "pattern_id": "lancer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: sa femme lui lance des injures du matin au soir",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "livrer",
+    "core_patterns": [
+      {
+        "pattern": "livrer qqch à qqn",
+        "meaning_en": "deliver something to someone",
+        "pattern_id": "livrer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: le malfaiteur a été livré à la gendarmerie",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "manquer",
+    "core_patterns": [
+      {
+        "pattern": "manquer à qqn / qqch",
+        "meaning_en": "be missed by; fail",
+        "pattern_id": "manquer_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: un honnête homme ne peut manquer à ses obligations",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "mentir",
+    "core_patterns": [
+      {
+        "pattern": "mentir à qqn / qqch",
+        "meaning_en": "lie to someone",
+        "pattern_id": "mentir_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: mentir + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "mettre",
+    "core_patterns": [
+      {
+        "pattern": "mettre qqch",
+        "meaning_en": "put something",
+        "pattern_id": "mettre_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "mettre qqch dans / sur + lieu",
+        "meaning_en": "put something somewhere",
+        "pattern_id": "mettre_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "mettre du temps à + infinitif",
+        "meaning_en": "take time to do",
+        "pattern_id": "mettre_cp03",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "se mettre à + infinitif",
+        "meaning_en": "start doing",
+        "pattern_id": "mettre_cp04",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "montrer",
+    "core_patterns": [
+      {
+        "pattern": "montrer qqch à qqn",
+        "meaning_en": "show something to someone",
+        "pattern_id": "montrer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "Pronouns: le/la/les + lui/leur -> le lui montrer",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "montrer que + proposition",
+        "meaning_en": "show that; demonstrate that",
+        "pattern_id": "montrer_cp02",
+        "pattern_type": "que-clause",
+        "notes": "Takes the indicative",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "montrer qqn / qqch",
+        "meaning_en": "show; display",
+        "pattern_id": "montrer_cp03",
+        "pattern_type": "direct-object",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "offrir",
+    "core_patterns": [
+      {
+        "pattern": "offrir qqch à qqn",
+        "meaning_en": "offer something to someone",
+        "pattern_id": "offrir_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui ai offert mes excuses publiques",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "opposer",
+    "core_patterns": [
+      {
+        "pattern": "opposer qqn / qqch à qqn / qqch",
+        "meaning_en": "oppose; set against",
+        "pattern_id": "opposer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: la Russie y oppose son véto",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "oublier",
+    "core_patterns": [
+      {
+        "pattern": "oublier qqn / qqch",
+        "meaning_en": "forget someone / something",
+        "pattern_id": "oublier_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "oublier de + infinitif",
+        "meaning_en": "forget to do",
+        "pattern_id": "oublier_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "oublier que + proposition",
+        "meaning_en": "forget that",
+        "pattern_id": "oublier_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "pardonner",
+    "core_patterns": [
+      {
+        "pattern": "pardonner qqch à qqn",
+        "meaning_en": "forgive someone for something",
+        "pattern_id": "pardonner_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il n'est pas facile de pardonner à ceux qui vous ont offensé",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "parler",
+    "core_patterns": [
+      {
+        "pattern": "parler à qqn",
+        "meaning_en": "speak to someone",
+        "pattern_id": "parler_cp01",
+        "pattern_type": "a-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "parler de qqn / qqch",
+        "meaning_en": "talk about someone / something",
+        "pattern_id": "parler_cp02",
+        "pattern_type": "de-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "parler + langue",
+        "meaning_en": "speak a language",
+        "pattern_id": "parler_cp03",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "participer",
+    "core_patterns": [
+      {
+        "pattern": "participer à qqn / qqch",
+        "meaning_en": "take part in",
+        "pattern_id": "participer_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: elle a participé à toutes les expéditions de son club spéléo",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "partir",
+    "core_patterns": [
+      {
+        "pattern": "partir",
+        "meaning_en": "leave; go away",
+        "pattern_id": "partir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "partir de + lieu",
+        "meaning_en": "leave from",
+        "pattern_id": "partir_cp02",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "partir + infinitif",
+        "meaning_en": "go and do",
+        "pattern_id": "partir_cp03",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "parvenir",
+    "core_patterns": [
+      {
+        "pattern": "parvenir à qqn / qqch",
+        "meaning_en": "reach someone",
+        "pattern_id": "parvenir_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: Hitler n'est pas parvenu a réaliser son Europe germanique à lui",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "passer",
+    "core_patterns": [
+      {
+        "pattern": "passer chez qqn / à + lieu",
+        "meaning_en": "stop by; drop in",
+        "pattern_id": "passer_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "passer qqch à qqn",
+        "meaning_en": "hand something to someone",
+        "pattern_id": "passer_cp02",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "passer du temps à + infinitif",
+        "meaning_en": "spend time doing",
+        "pattern_id": "passer_cp03",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "se passer",
+        "meaning_en": "happen",
+        "pattern_id": "passer_cp04",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "payer",
+    "core_patterns": [
+      {
+        "pattern": "payer qqch à qqn",
+        "meaning_en": "pay something to or for someone",
+        "pattern_id": "payer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui ai payé un rouge",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "payer de qqn / qqch",
+        "meaning_en": "pay with; pay by losing",
+        "pattern_id": "payer_cp02",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il a payé de sa vie",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "penser",
+    "core_patterns": [
+      {
+        "pattern": "penser à qqn / qqch",
+        "meaning_en": "think about someone / something",
+        "pattern_id": "penser_cp01",
+        "pattern_type": "a-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "penser à + infinitif",
+        "meaning_en": "think to; remember to do",
+        "pattern_id": "penser_cp02",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "penser que + proposition",
+        "meaning_en": "think that",
+        "pattern_id": "penser_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "penser de qqn / qqch",
+        "meaning_en": "think of; have an opinion of",
+        "pattern_id": "penser_cp04",
+        "pattern_type": "de-object",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "plaire",
+    "core_patterns": [
+      {
+        "pattern": "plaire à qqn / qqch",
+        "meaning_en": "be pleasing to",
+        "pattern_id": "plaire_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: plaire + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "pouvoir",
+    "core_patterns": [
+      {
+        "pattern": "pouvoir + infinitif",
+        "meaning_en": "can; be able to",
+        "pattern_id": "pouvoir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "prendre",
+    "core_patterns": [
+      {
+        "pattern": "prendre qqch",
+        "meaning_en": "take something",
+        "pattern_id": "prendre_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "prendre qqch à qqn",
+        "meaning_en": "take something from someone",
+        "pattern_id": "prendre_cp02",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "prendre à qqn",
+        "meaning_en": "take from someone",
+        "pattern_id": "prendre_cp03",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: prendre + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "priver",
+    "core_patterns": [
+      {
+        "pattern": "priver de qqn / qqch",
+        "meaning_en": "deprive of",
+        "pattern_id": "priver_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: par jugement du tribunal il a été privé de tous ses droits civils",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "procéder",
+    "core_patterns": [
+      {
+        "pattern": "procéder à qqn / qqch",
+        "meaning_en": "to proceed with",
+        "pattern_id": "proceder_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: le bourreau procède à l'exécution del'arrêt de mort",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "profiter",
+    "core_patterns": [
+      {
+        "pattern": "profiter de qqn / qqch",
+        "meaning_en": "benefit from",
+        "pattern_id": "profiter_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il profite de toute occasion",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "profiter à qqn / qqch",
+        "meaning_en": "benefit; be good for",
+        "pattern_id": "profiter_cp02",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: cette situation lui profite",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "proposer",
+    "core_patterns": [
+      {
+        "pattern": "proposer qqch à qqn",
+        "meaning_en": "offer; suggest something to someone",
+        "pattern_id": "proposer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui ai proposé un financement plus intéressant",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "préciser",
+    "core_patterns": [
+      {
+        "pattern": "préciser qqch à qqn",
+        "meaning_en": "specify something to someone",
+        "pattern_id": "preciser_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je tiens à préciser mon hypothèse de travail",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "préciser à qqn",
+        "meaning_en": "specify to someone",
+        "pattern_id": "preciser_cp02",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: préciser + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "préférer",
+    "core_patterns": [
+      {
+        "pattern": "préférer qqn / qqch à qqn / qqch",
+        "meaning_en": "prefer X to Y",
+        "pattern_id": "preferer_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je préfère cette approche à la vôtre",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "présenter",
+    "core_patterns": [
+      {
+        "pattern": "présenter à qqn / qqch",
+        "meaning_en": "introduce to someone",
+        "pattern_id": "presenter_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: présenter + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "prévenir",
+    "core_patterns": [
+      {
+        "pattern": "prévenir de qqn / qqch",
+        "meaning_en": "warn; inform about",
+        "pattern_id": "prevenir_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il est prévenu d'avoir à terminer ce travail avant demain soir",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "qualifier",
+    "core_patterns": [
+      {
+        "pattern": "qualifier qqn / qqch de + nom",
+        "meaning_en": "describe; label as",
+        "pattern_id": "qualifier_cp01",
+        "pattern_type": "de-object",
+        "notes": "Usage-backed: qualifier + object + de + noun",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "raconter",
+    "core_patterns": [
+      {
+        "pattern": "raconter qqch à qqn",
+        "meaning_en": "tell something to someone",
+        "pattern_id": "raconter_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: elle raconte de belles histoires à ces enfants",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "rappeler",
+    "core_patterns": [
+      {
+        "pattern": "rappeler qqch à qqn",
+        "meaning_en": "remind someone of something",
+        "pattern_id": "rappeler_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: elle lui rappelle sa promesse de mariage",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "rapporter",
+    "core_patterns": [
+      {
+        "pattern": "rapporter qqch à qqn",
+        "meaning_en": "bring back; report something to someone",
+        "pattern_id": "rapporter_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: c'est une branche qui lui rapporte gros",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "recevoir",
+    "core_patterns": [
+      {
+        "pattern": "recevoir qqch de qqn",
+        "meaning_en": "receive/get something from someone",
+        "pattern_id": "recevoir_cp01",
+        "pattern_type": "combo-de",
+        "notes": "Use de (not à) to mark the giver/source",
+        "confidence": 0.97,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "recevoir qqn / qqch",
+        "meaning_en": "receive; get; host (guests)",
+        "pattern_id": "recevoir_cp02",
+        "pattern_type": "direct-object",
+        "notes": "Direct object takes le/la/les. With people, commonly means entertain/host",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "recommander",
+    "core_patterns": [
+      {
+        "pattern": "recommander qqch à qqn",
+        "meaning_en": "recommend something to someone",
+        "pattern_id": "recommander_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il leur a été recommandé par les médecins de s'en tenir aux prescriptions",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "reconnaître",
+    "core_patterns": [
+      {
+        "pattern": "reconnaître qqch à qqn",
+        "meaning_en": "acknowledge something in someone",
+        "pattern_id": "reconnaitre_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: on lui reconnaît une grande rapidité d'esprit",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "refuser",
+    "core_patterns": [
+      {
+        "pattern": "refuser qqch à qqn",
+        "meaning_en": "refuse; deny something to someone",
+        "pattern_id": "refuser_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: on ne lui a refusé rien",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "regarder",
+    "core_patterns": [
+      {
+        "pattern": "regarder qqn / qqch",
+        "meaning_en": "look at; watch someone / something",
+        "pattern_id": "regarder_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "rembourser",
+    "core_patterns": [
+      {
+        "pattern": "rembourser qqch à qqn",
+        "meaning_en": "pay back; refund something to someone",
+        "pattern_id": "rembourser_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il m'a remboursé la moitié de ce je lui avais prêté",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "remettre",
+    "core_patterns": [
+      {
+        "pattern": "remettre à qqn / qqch",
+        "meaning_en": "give back to (sb)",
+        "pattern_id": "remettre_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: remettre + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "rendre",
+    "core_patterns": [
+      {
+        "pattern": "rendre qqch à qqn",
+        "meaning_en": "give something back to someone",
+        "pattern_id": "rendre_cp01",
+        "pattern_type": "combo-a",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "rendre qqn / qqch + adjectif",
+        "meaning_en": "make",
+        "pattern_id": "rendre_cp02",
+        "pattern_type": "object-predicate",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "se rendre compte que + proposition",
+        "meaning_en": "realize that",
+        "pattern_id": "rendre_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "renoncer",
+    "core_patterns": [
+      {
+        "pattern": "renoncer à qqn / qqch",
+        "meaning_en": "give up; renounce",
+        "pattern_id": "renoncer_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: il a renoncé à cette promotion peu intéressante",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "rentrer",
+    "core_patterns": [
+      {
+        "pattern": "rentrer",
+        "meaning_en": "go home; go back in",
+        "pattern_id": "rentrer_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "rentrer qqch",
+        "meaning_en": "bring; put something inside",
+        "pattern_id": "rentrer_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "rentrer dans qqch",
+        "meaning_en": "fit; go into something",
+        "pattern_id": "rentrer_cp03",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "reparler",
+    "core_patterns": [
+      {
+        "pattern": "reparler à qqn / qqch",
+        "meaning_en": "talk again to",
+        "pattern_id": "reparler_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: reparler + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "reparler de qqn / qqch",
+        "meaning_en": "talk again about",
+        "pattern_id": "reparler_cp02",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: ils se reparlent depuis peu de temps",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "ressembler",
+    "core_patterns": [
+      {
+        "pattern": "ressembler à qqn / qqch",
+        "meaning_en": "look like someone",
+        "pattern_id": "ressembler_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: ma filla aînée ressemble à sa mère à s'y méprendre",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "rester",
+    "core_patterns": [
+      {
+        "pattern": "rester",
+        "meaning_en": "stay; remain",
+        "pattern_id": "rester_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "rester à qqn",
+        "meaning_en": "be left to someone",
+        "pattern_id": "rester_cp02",
+        "pattern_type": "a-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "rester + adjectif",
+        "meaning_en": "remain",
+        "pattern_id": "rester_cp03",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "rester à + infinitif",
+        "meaning_en": "still have to do",
+        "pattern_id": "rester_cp04",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "retourner",
+    "core_patterns": [
+      {
+        "pattern": "retourner qqch à qqn",
+        "meaning_en": "return something to someone",
+        "pattern_id": "retourner_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui retourne ses propres remarques",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "revenir",
+    "core_patterns": [
+      {
+        "pattern": "revenir",
+        "meaning_en": "come back",
+        "pattern_id": "revenir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "revenir de + infinitif",
+        "meaning_en": "come back from doing",
+        "pattern_id": "revenir_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "revenir à qqn de + infinitif",
+        "meaning_en": "be up to someone to do",
+        "pattern_id": "revenir_cp03",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "revenir à + infinitif",
+        "meaning_en": "amount to doing",
+        "pattern_id": "revenir_cp04",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "revenir à qqn / qqch",
+        "meaning_en": "amount to; be up to",
+        "pattern_id": "revenir_cp05",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: cet avis revient à une condamnation",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "rire",
+    "core_patterns": [
+      {
+        "pattern": "rire de qqn / qqch",
+        "meaning_en": "laugh at",
+        "pattern_id": "rire_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: je ris de te voir dans ce miroir",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "réagir",
+    "core_patterns": [
+      {
+        "pattern": "réagir à qqn / qqch",
+        "meaning_en": "respond to something",
+        "pattern_id": "reagir_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: réagir + à + object",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "réfléchir",
+    "core_patterns": [
+      {
+        "pattern": "réfléchir à qqn / qqch",
+        "meaning_en": "think about; reflect on",
+        "pattern_id": "reflechir_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: elle réfléchit à ses actes",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "répondre",
+    "core_patterns": [
+      {
+        "pattern": "répondre à qqn / qqch",
+        "meaning_en": "reply to someone",
+        "pattern_id": "repondre_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: répondre + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "répondre de qqn / qqch",
+        "meaning_en": "answer for; be responsible for",
+        "pattern_id": "repondre_cp02",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: je réponds de mes enfants",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "répéter",
+    "core_patterns": [
+      {
+        "pattern": "répéter qqch à qqn",
+        "meaning_en": "repeat something to someone",
+        "pattern_id": "repeter_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui ai répété mes instructions",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "réserver",
+    "core_patterns": [
+      {
+        "pattern": "réserver à qqn / qqch",
+        "meaning_en": "save for someone",
+        "pattern_id": "reserver_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: réserver + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "réserver qqch à qqn",
+        "meaning_en": "reserve; keep something for someone",
+        "pattern_id": "reserver_cp02",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: cette année lui a réservé pas mal de problèmes financiers et familiaux",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "résister",
+    "core_patterns": [
+      {
+        "pattern": "résister à qqn / qqch",
+        "meaning_en": "withstand",
+        "pattern_id": "resister_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: il leur résista de toutes ses forces",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "réussir",
+    "core_patterns": [
+      {
+        "pattern": "réussir à qqn / qqch",
+        "meaning_en": "suit; work well for",
+        "pattern_id": "reussir_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: cette tâche lui réussit parfaitement",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "rêver",
+    "core_patterns": [
+      {
+        "pattern": "rêver à qqn / qqch",
+        "meaning_en": "dream about; think of",
+        "pattern_id": "rever_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: je rêve à ce parc de cèdres que j'ai traversé en VTT",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "rêver de qqn / qqch",
+        "meaning_en": "dream of",
+        "pattern_id": "rever_cp02",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: je rêve d'expéditions en montagne",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "s'appeler",
+    "core_patterns": [
+      {
+        "pattern": "s'appeler + nom",
+        "meaning_en": "be called",
+        "pattern_id": "s_appeler_cp01",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "s'intéresser",
+    "core_patterns": [
+      {
+        "pattern": "s'intéresser à qqn / qqch",
+        "meaning_en": "be interested in; take an interest in",
+        "pattern_id": "s_interesser_cp01",
+        "pattern_type": "a-object",
+        "notes": "Pronouns: y for things (Je m'y intéresse). Alternative: être intéressé par + nom. Avoid être intéressé à in this sense",
+        "confidence": 0.97,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "s'occuper",
+    "core_patterns": [
+      {
+        "pattern": "s'occuper de qqn / qqch",
+        "meaning_en": "take care of; deal with; look after",
+        "pattern_id": "s_occuper_cp01",
+        "pattern_type": "de-object",
+        "notes": "Pronoun = en: Je m'en occupe. People: look after; things/tasks: handle/deal with",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "s'occuper de + infinitif",
+        "meaning_en": "see to doing; handle doing",
+        "pattern_id": "s_occuper_cp02",
+        "pattern_type": "de-infinitive",
+        "notes": "For tasks/arrangements: Je m'occupe d'appeler",
+        "confidence": 0.96,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "sauver",
+    "core_patterns": [
+      {
+        "pattern": "sauver de qqn / qqch",
+        "meaning_en": "save from",
+        "pattern_id": "sauver_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: elle m'a sauvé de la noyade",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "savoir",
+    "core_patterns": [
+      {
+        "pattern": "savoir qqch",
+        "meaning_en": "know a fact",
+        "pattern_id": "savoir_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "savoir + infinitif",
+        "meaning_en": "know how to do",
+        "pattern_id": "savoir_cp02",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "savoir que + proposition",
+        "meaning_en": "know that",
+        "pattern_id": "savoir_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "se demander",
+    "core_patterns": [
+      {
+        "pattern": "se demander si + proposition",
+        "meaning_en": "wonder if / whether",
+        "pattern_id": "se_demander_cp01",
+        "pattern_type": "si-clause",
+        "notes": "Also with question words: pourquoi, quand, comment, qui, ce que/ce qui",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      },
+      {
+        "pattern": "se demander",
+        "meaning_en": "wonder",
+        "pattern_id": "se_demander_cp02",
+        "pattern_type": "reflexive",
+        "notes": "Standalone use (no complement): Je me demande",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "se faire",
+    "core_patterns": [
+      {
+        "pattern": "se faire à qqn / qqch",
+        "meaning_en": "get used to sb",
+        "pattern_id": "se_faire_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: il s'est fait à ses caprices",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "se mettre",
+    "core_patterns": [
+      {
+        "pattern": "se mettre à + infinitif",
+        "meaning_en": "start doing; begin to",
+        "pattern_id": "se_mettre_cp01",
+        "pattern_type": "a-infinitive",
+        "notes": "Very common: Il se met à pleuvoir = it starts raining",
+        "confidence": 0.99,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "se mettre d'accord avec qqn",
+        "meaning_en": "agree with someone; come to an agreement",
+        "pattern_id": "se_mettre_cp02",
+        "pattern_type": "reflexive-avec",
+        "notes": "Often followed by sur/pour qqch",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "se moquer",
+    "core_patterns": [
+      {
+        "pattern": "se moquer de qqn / qqch",
+        "meaning_en": "make fun of",
+        "pattern_id": "se_moquer_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: les élèves de cette classe se moquent de leur titulaire",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "se passer",
+    "core_patterns": [
+      {
+        "pattern": "se passer de qqn / qqch",
+        "meaning_en": "do without",
+        "pattern_id": "se_passer_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: Pierre se passe facilement de Marie",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "se plaindre",
+    "core_patterns": [
+      {
+        "pattern": "se plaindre de qqn / qqch",
+        "meaning_en": "complain about",
+        "pattern_id": "se_plaindre_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il s'en est plaint auprès de ses supérieurs",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "se plaindre à qqn / qqch",
+        "meaning_en": "complain to someone",
+        "pattern_id": "se_plaindre_cp02",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: se plaindre + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "se rappeler",
+    "core_patterns": [
+      {
+        "pattern": "se rappeler + infinitif",
+        "meaning_en": "remember doing",
+        "pattern_id": "se_rappeler_cp01",
+        "pattern_type": "bare-infinitive",
+        "notes": "Usually with the perfect infinitive for past actions: se rappeler avoir fait",
+        "confidence": 0.85,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      },
+      {
+        "pattern": "se rappeler si + proposition",
+        "meaning_en": "remember whether/if",
+        "pattern_id": "se_rappeler_cp02",
+        "pattern_type": "si-clause",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      },
+      {
+        "pattern": "se rappeler que + proposition",
+        "meaning_en": "remember that",
+        "pattern_id": "se_rappeler_cp03",
+        "pattern_type": "que-clause",
+        "notes": "Takes the indicative",
+        "confidence": 0.94,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      },
+      {
+        "pattern": "se rappeler qqn / qqch",
+        "meaning_en": "remember someone / something",
+        "pattern_id": "se_rappeler_cp04",
+        "pattern_type": "reflexive",
+        "notes": "No de before a noun/pronoun. Use le/la/les as object pronouns (not en). Contrast: se souvenir de + nom",
+        "confidence": 0.96,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "se souvenir",
+    "core_patterns": [
+      {
+        "pattern": "se souvenir de qqn / qqch",
+        "meaning_en": "remember someone / something",
+        "pattern_id": "se_souvenir_cp01",
+        "pattern_type": "de-object",
+        "notes": "Always with de. The de-phrase becomes en: Je m’en souviens. Contrast: se rappeler takes a direct object (no de)",
+        "confidence": 0.98,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      },
+      {
+        "pattern": "se souvenir de + infinitif",
+        "meaning_en": "remember doing; remember to do",
+        "pattern_id": "se_souvenir_cp02",
+        "pattern_type": "de-infinitive",
+        "notes": "Usually remember doing; in commands it can mean remember to do. Use the past infinitive for having done",
+        "confidence": 0.9,
+        "source": "ai:gpt-5",
+        "status": "candidate"
+      },
+      {
+        "pattern": "se souvenir que + proposition",
+        "meaning_en": "remember that",
+        "pattern_id": "se_souvenir_cp03",
+        "pattern_type": "que-clause",
+        "notes": "Indicative is usual; after negation or in questions, subjunctive is possible (e.g., Je ne me souviens pas qu’il soit…)",
+        "confidence": 0.92,
+        "source": "ai:gpt-5",
+        "status": "audited"
+      }
+    ]
+  },
+  {
+    "verb": "se tromper",
+    "core_patterns": [
+      {
+        "pattern": "se tromper de qqn / qqch",
+        "meaning_en": "be mistaken about; get wrong",
+        "pattern_id": "se_tromper_cp01",
+        "pattern_type": "de-object",
+        "notes": "Usage-backed: se tromper + de + object",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "sembler",
+    "core_patterns": [
+      {
+        "pattern": "sembler à qqn / qqch",
+        "meaning_en": "seem to someone",
+        "pattern_id": "sembler_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: sembler + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "servir",
+    "core_patterns": [
+      {
+        "pattern": "servir de qqn / qqch",
+        "meaning_en": "act as",
+        "pattern_id": "servir_cp01",
+        "pattern_type": "de-object",
+        "notes": "Usage-backed: servir + de + noun",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "servir à qqn / qqch",
+        "meaning_en": "be useful for; serve to",
+        "pattern_id": "servir_cp02",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: apparemment ça n'a servi à rien",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "signifier",
+    "core_patterns": [
+      {
+        "pattern": "signifier à qqn / qqch",
+        "meaning_en": "notify",
+        "pattern_id": "signifier_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: signifier + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "signifier qqch à qqn",
+        "meaning_en": "notify; mean something to someone",
+        "pattern_id": "signifier_cp02",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je leur ai signifié mon agenda de la semaine",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "sortir",
+    "core_patterns": [
+      {
+        "pattern": "sortir",
+        "meaning_en": "go out",
+        "pattern_id": "sortir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "sortir qqch",
+        "meaning_en": "take something out",
+        "pattern_id": "sortir_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "sortir de + lieu",
+        "meaning_en": "go out of; leave",
+        "pattern_id": "sortir_cp03",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "sortir de qqn / qqch",
+        "meaning_en": "come out of; get out of",
+        "pattern_id": "sortir_cp04",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: le dicovalence est sorti de nos recherches syntaxiques",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "souffler",
+    "core_patterns": [
+      {
+        "pattern": "souffler qqch à qqn",
+        "meaning_en": "suggest; whisper something to someone",
+        "pattern_id": "souffler_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je leur ai soufflé la subvention",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "souffler à qqn",
+        "meaning_en": "suggest to someone",
+        "pattern_id": "souffler_cp02",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: souffler + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "souffrir",
+    "core_patterns": [
+      {
+        "pattern": "souffrir de qqn / qqch",
+        "meaning_en": "suffer from something",
+        "pattern_id": "souffrir_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: ma femme souffre d'arthrose",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "souhaiter",
+    "core_patterns": [
+      {
+        "pattern": "souhaiter qqch à qqn",
+        "meaning_en": "structural a/de/combo pattern",
+        "pattern_id": "souhaiter_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: nous leur souhaitons longue vie",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "sourire",
+    "core_patterns": [
+      {
+        "pattern": "sourire à qqn / qqch",
+        "meaning_en": "smile at someone",
+        "pattern_id": "sourire_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: sourire + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "suffire",
+    "core_patterns": [
+      {
+        "pattern": "suffire à qqn / qqch",
+        "meaning_en": "be enough for",
+        "pattern_id": "suffire_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: il ne parvient plus à suffire à ses besoins",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "survivre",
+    "core_patterns": [
+      {
+        "pattern": "survivre à qqn / qqch",
+        "meaning_en": "outlive someone",
+        "pattern_id": "survivre_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: j'ai survécu à plus d'un accident en montagne",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "tendre",
+    "core_patterns": [
+      {
+        "pattern": "tendre qqch à qqn",
+        "meaning_en": "hand something to someone",
+        "pattern_id": "tendre_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: elle lui a tendu sa plus belle pomme",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "tenir",
+    "core_patterns": [
+      {
+        "pattern": "tenir à qqn / qqch",
+        "meaning_en": "depend on; care about",
+        "pattern_id": "tenir_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: la puissance d'un pays tient à son économie",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "tenir de qqn / qqch",
+        "meaning_en": "come from; take after",
+        "pattern_id": "tenir_cp02",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: elle tient ces contes pour enfants de sa grand-mère",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "trouver",
+    "core_patterns": [
+      {
+        "pattern": "trouver qqn / qqch",
+        "meaning_en": "find someone / something",
+        "pattern_id": "trouver_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "trouver qqn / qqch + adjectif",
+        "meaning_en": "find ...; consider",
+        "pattern_id": "trouver_cp02",
+        "pattern_type": "object-predicate",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "trouver que + proposition",
+        "meaning_en": "find; think that",
+        "pattern_id": "trouver_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "se trouver",
+        "meaning_en": "be located",
+        "pattern_id": "trouver_cp04",
+        "pattern_type": "reflexive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "téléphoner",
+    "core_patterns": [
+      {
+        "pattern": "téléphoner à qqn / qqch",
+        "meaning_en": "call someone",
+        "pattern_id": "telephoner_cp01",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: téléphoner + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "vendre",
+    "core_patterns": [
+      {
+        "pattern": "vendre qqch à qqn",
+        "meaning_en": "sell something to someone",
+        "pattern_id": "vendre_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: il a vendu tous ses biens à ses enfants pour un prix dérisoire",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "venir",
+    "core_patterns": [
+      {
+        "pattern": "venir",
+        "meaning_en": "come",
+        "pattern_id": "venir_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "venir de + infinitif",
+        "meaning_en": "have just done",
+        "pattern_id": "venir_cp02",
+        "pattern_type": "de-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "venir à qqn",
+        "meaning_en": "occur to someone",
+        "pattern_id": "venir_cp03",
+        "pattern_type": "a-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "venir à + infinitif",
+        "meaning_en": "end up; happen to do",
+        "pattern_id": "venir_cp04",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "verser",
+    "core_patterns": [
+      {
+        "pattern": "verser qqch à qqn",
+        "meaning_en": "pay; pour something for someone",
+        "pattern_id": "verser_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je lui verse un verre de bière belge",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "verser à qqn",
+        "meaning_en": "pay to someone",
+        "pattern_id": "verser_cp02",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: verser + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "vivre",
+    "core_patterns": [
+      {
+        "pattern": "vivre de qqn / qqch",
+        "meaning_en": "live on; live off",
+        "pattern_id": "vivre_cp01",
+        "pattern_type": "de-object",
+        "notes": "LEFFF example: il parvient encore à vivre de sa pension",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "voir",
+    "core_patterns": [
+      {
+        "pattern": "voir qqn / qqch",
+        "meaning_en": "see someone / something",
+        "pattern_id": "voir_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "voir qqn + infinitif",
+        "meaning_en": "see someone do something",
+        "pattern_id": "voir_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "voir que + proposition",
+        "meaning_en": "see; realize that",
+        "pattern_id": "voir_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "voler",
+    "core_patterns": [
+      {
+        "pattern": "voler qqch à qqn",
+        "meaning_en": "steal something from someone",
+        "pattern_id": "voler_cp01",
+        "pattern_type": "combo-a",
+        "notes": "LEFFF example: je l'ai vu lui voler son portefeuille pendant le match",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "vouloir",
+    "core_patterns": [
+      {
+        "pattern": "vouloir qqch",
+        "meaning_en": "want something",
+        "pattern_id": "vouloir_cp01",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "vouloir + infinitif",
+        "meaning_en": "want to do",
+        "pattern_id": "vouloir_cp02",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "vouloir que + subj.",
+        "meaning_en": "want someone to; want that",
+        "pattern_id": "vouloir_cp03",
+        "pattern_type": "que-clause",
+        "source": "seed-v1",
+        "status": "seed"
+      }
+    ]
+  },
+  {
+    "verb": "échapper",
+    "core_patterns": [
+      {
+        "pattern": "échapper à qqn / qqch",
+        "meaning_en": "escape; elude",
+        "pattern_id": "echapper_cp01",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: vous avez échappé à la mort",
+        "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  },
+  {
+    "verb": "être",
+    "core_patterns": [
+      {
+        "pattern": "être + nom / adjectif",
+        "meaning_en": "be",
+        "pattern_id": "etre_cp01",
+        "pattern_type": "intransitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "être à + qqn",
+        "meaning_en": "belong to someone",
+        "pattern_id": "etre_cp02",
+        "pattern_type": "direct-object",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "être à + infinitif",
+        "meaning_en": "need doing",
+        "pattern_id": "etre_cp03",
+        "pattern_type": "a-infinitive",
+        "source": "seed-v1",
+        "status": "seed"
+      },
+      {
+        "pattern": "être à qqn",
+        "meaning_en": "belong to someone",
+        "pattern_id": "etre_cp04",
+        "pattern_type": "a-object",
+        "notes": "Usage-backed: être + à + person",
+        "confidence": 0.94,
+        "source": "usage:ad-combo",
+        "status": "candidate"
+      }
+    ]
+  }
+];
