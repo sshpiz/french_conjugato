@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ENV_FILE="${CLOUDFLARE_ENV_FILE:-$ROOT_DIR/.cloudflare.env}"
 PROJECT_NAME="${CLOUDFLARE_PAGES_PROJECT:-verbsfirst}"
+DEPLOY_BRANCH="${CLOUDFLARE_DEPLOY_BRANCH:-production}"
 DEPLOY_DIR="${CLOUDFLARE_DEPLOY_DIR:-$ROOT_DIR/dist-cloudflare}"
 
 if [[ -f "$ENV_FILE" ]]; then
@@ -37,5 +38,5 @@ find "$DEPLOY_DIR" -path '*/latest' -type d -prune -exec rm -rf {} +
 echo "Creating sibling latest apps..."
 LATEST_CHANNEL_TARGETS_ONLY="$DEPLOY_DIR" python3 sync_latest_channels.py
 
-echo "Deploying to Cloudflare Pages project: $PROJECT_NAME"
-npx --yes wrangler@latest pages deploy "$DEPLOY_DIR" --project-name "$PROJECT_NAME" --commit-dirty=true
+echo "Deploying to Cloudflare Pages project: $PROJECT_NAME branch: $DEPLOY_BRANCH"
+npx --yes wrangler@latest pages deploy "$DEPLOY_DIR" --project-name "$PROJECT_NAME" --branch "$DEPLOY_BRANCH" --commit-dirty=true
