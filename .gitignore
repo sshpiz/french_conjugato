@@ -1,5 +1,6 @@
 # === Environment ===
 venv/
+.cloudflare.env
 verbvec/
 bin/
 lib/
