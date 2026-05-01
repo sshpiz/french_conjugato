@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Create per-language /latest/ app channels from the built dist output.
+"""Create per-language sibling latest app channels from the built dist output.
 
 The latest channel should be a fresh app copy without duplicating large TTS
-payloads. Packaged audio is resolved from the stable sibling directory:
-  /french/latest/ -> /french/tts/
+payloads. Packaged audio is resolved from the stable sibling app directory:
+  /french_latest/ -> /french/tts/
 """
 
 from __future__ import annotations
@@ -65,6 +65,10 @@ def remove_latest_seo(html_path: Path) -> None:
     html_path.write_text(text, encoding="utf-8")
 
 
+def latest_slug(lang: str) -> str:
+    return f"{lang}_latest"
+
+
 def patch_manifest(manifest_path: Path, lang: str) -> None:
     if not manifest_path.exists():
         return
@@ -76,7 +80,7 @@ def patch_manifest(manifest_path: Path, lang: str) -> None:
 
     data["name"] = latest_name
     data["short_name"] = latest_short_name
-    data["id"] = f"/{lang}/latest/"
+    data["id"] = f"/{latest_slug(lang)}/"
     data["start_url"] = "./"
     data["scope"] = "./"
     manifest_path.write_text(
@@ -98,15 +102,49 @@ def patch_service_worker(sw_path: Path, lang: str) -> None:
     sw_path.write_text(text, encoding="utf-8")
 
 
-def patch_tts_references(text_path: Path) -> None:
+def patch_html_identity(html_path: Path, lang: str) -> None:
+    text = html_path.read_text(encoding="utf-8")
+    updated = text
+    title_suffix = " Latest"
+
+    updated = re.sub(
+        r"(<title>)(.*?)(</title>)",
+        lambda match: match.group(0)
+        if match.group(2).strip().endswith(title_suffix)
+        else f"{match.group(1)}{match.group(2).strip()}{title_suffix}{match.group(3)}",
+        updated,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    updated = re.sub(
+        r'(<meta\s+name="apple-mobile-web-app-title"\s+content=")([^"]*)(")',
+        lambda match: match.group(0)
+        if match.group(2).strip().endswith(title_suffix)
+        else f"{match.group(1)}{match.group(2).strip()}{title_suffix}{match.group(3)}",
+        updated,
+        count=1,
+        flags=re.IGNORECASE,
+    )
+    updated = re.sub(
+        r"(window\.appStoragePrefix\s*=\s*)['\"][^'\"]+['\"](\s*;)",
+        rf"\1'{latest_slug(lang)}'\2",
+        updated,
+        count=1,
+    )
+    if updated != text:
+        html_path.write_text(updated, encoding="utf-8")
+
+
+def patch_tts_references(text_path: Path, lang: str) -> None:
     text = text_path.read_text(encoding="utf-8")
     updated = text
+    stable_tts_prefix = f"../{lang}/tts/"
     replacements = {
-        "'tts/manifest.json'": "'../tts/manifest.json'",
-        '"tts/manifest.json"': '"../tts/manifest.json"',
-        "`tts/${": "`../tts/${",
-        "'tts/": "'../tts/",
-        '"tts/': '"../tts/',
+        "'tts/manifest.json'": f"'{stable_tts_prefix}manifest.json'",
+        '"tts/manifest.json"': f'"{stable_tts_prefix}manifest.json"',
+        "`tts/${": f"`{stable_tts_prefix}${{",
+        "'tts/": f"'{stable_tts_prefix}",
+        '"tts/': f'"{stable_tts_prefix}',
     }
     for old, new in replacements.items():
         updated = updated.replace(old, new)
@@ -120,13 +158,22 @@ def patch_latest_tree(latest_dir: Path, lang: str) -> None:
 
     for html_path in latest_dir.rglob("*.html"):
         remove_latest_seo(html_path)
-        patch_tts_references(html_path)
+        patch_html_identity(html_path, lang)
+        patch_tts_references(html_path, lang)
 
     for js_path in latest_dir.rglob("*.js"):
-        patch_tts_references(js_path)
+        patch_tts_references(js_path, lang)
 
 
 def target_roots() -> list[Path]:
+    explicit_targets = [
+        Path(raw.strip()).expanduser().resolve()
+        for raw in os.environ.get("LATEST_CHANNEL_TARGETS_ONLY", "").split(os.pathsep)
+        if raw.strip()
+    ]
+    if explicit_targets:
+        return explicit_targets
+
     roots = [DIST]
     if DIST_GH.exists():
         roots.append(DIST_GH)
@@ -145,7 +192,7 @@ def main() -> None:
             print(f"skip {lang}: no source at {src}")
             continue
         for root in target_roots():
-            dest = root / lang / "latest"
+            dest = root / latest_slug(lang)
             copy_without_excluded_dirs(src, dest)
             patch_latest_tree(dest, lang)
             copied.append(str(dest))
