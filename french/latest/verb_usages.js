@@ -22316,5 +22316,955 @@ window.verbUsages = [
       "transport",
       "tourism"
     ]
+  },
+  {
+    "verb": "s'en aller",
+    "sense_id": "expr_s_en_aller_01",
+    "pattern": "s'en aller",
+    "meaning_en": "to go away; leave",
+    "example_fr": "Je m'en vais avant la pluie.",
+    "example_en": "I'm leaving before the rain.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en foutre",
+    "sense_id": "expr_s_en_foutre_01",
+    "pattern": "s'en foutre",
+    "meaning_en": "not to give a damn",
+    "example_fr": "Il s'en fout complètement.",
+    "example_en": "He really doesn't give a damn.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en fiche",
+    "sense_id": "expr_s_en_fiche_01",
+    "pattern": "s'en fiche",
+    "meaning_en": "not to care",
+    "example_fr": "Elle s'en fiche du regard des autres.",
+    "example_en": "She doesn't care what others think.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en sortir",
+    "sense_id": "expr_s_en_sortir_01",
+    "pattern": "s'en sortir",
+    "meaning_en": "to manage; get through it",
+    "example_fr": "On s'en sort avec un peu d'aide.",
+    "example_en": "We're managing with a little help.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en tirer",
+    "sense_id": "expr_s_en_tirer_01",
+    "pattern": "s'en tirer",
+    "meaning_en": "to get away with it; manage",
+    "example_fr": "Tu t'en tires bien cette fois.",
+    "example_en": "You get out of it well this time.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en occuper",
+    "sense_id": "expr_s_en_occuper_01",
+    "pattern": "s'en occuper",
+    "meaning_en": "to take care of it",
+    "example_fr": "Je m'en occupe après le déjeuner.",
+    "example_en": "I'll take care of it after lunch.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en charger",
+    "sense_id": "expr_s_en_charger_01",
+    "pattern": "s'en charger",
+    "meaning_en": "to handle it; take charge of it",
+    "example_fr": "Nous nous en chargeons demain matin.",
+    "example_en": "We'll handle it tomorrow morning.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en servir",
+    "sense_id": "expr_s_en_servir_01",
+    "pattern": "s'en servir",
+    "meaning_en": "to use it",
+    "example_fr": "Elle s'en sert pour réparer son vélo.",
+    "example_en": "She uses it to fix her bike.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en passer",
+    "sense_id": "expr_s_en_passer_01",
+    "pattern": "s'en passer",
+    "meaning_en": "to do without it",
+    "example_fr": "Je m'en passe très bien.",
+    "example_en": "I do perfectly well without it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en souvenir",
+    "sense_id": "expr_s_en_souvenir_01",
+    "pattern": "s'en souvenir",
+    "meaning_en": "to remember it",
+    "example_fr": "Tu t'en souviens encore ?",
+    "example_en": "Do you still remember it?",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en rappeler",
+    "sense_id": "expr_s_en_rappeler_01",
+    "pattern": "s'en rappeler",
+    "meaning_en": "to remember it",
+    "example_fr": "Il s'en rappelle soudain.",
+    "example_en": "He suddenly remembers it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en rendre compte",
+    "sense_id": "expr_s_en_rendre_compte_01",
+    "pattern": "s'en rendre compte",
+    "meaning_en": "to realize it",
+    "example_fr": "Je m'en rends compte trop tard.",
+    "example_en": "I realize it too late.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en apercevoir",
+    "sense_id": "expr_s_en_apercevoir_01",
+    "pattern": "s'en apercevoir",
+    "meaning_en": "to notice it",
+    "example_fr": "Elle s'en aperçoit en relisant le message.",
+    "example_en": "She notices it while rereading the message.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en douter",
+    "sense_id": "expr_s_en_douter_01",
+    "pattern": "s'en douter",
+    "meaning_en": "to suspect it",
+    "example_fr": "Je m'en doutais depuis hier.",
+    "example_en": "I suspected it since yesterday.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en méfier",
+    "sense_id": "expr_s_en_m_fier_01",
+    "pattern": "s'en méfier",
+    "meaning_en": "to be wary of it",
+    "example_fr": "Ils s'en méfient maintenant.",
+    "example_en": "They're wary of it now.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en moquer",
+    "sense_id": "expr_s_en_moquer_01",
+    "pattern": "s'en moquer",
+    "meaning_en": "not to care about it; mock it",
+    "example_fr": "Elle s'en moque gentiment.",
+    "example_en": "She jokes about it lightly.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en plaindre",
+    "sense_id": "expr_s_en_plaindre_01",
+    "pattern": "s'en plaindre",
+    "meaning_en": "to complain about it",
+    "example_fr": "Il s'en plaint à chaque réunion.",
+    "example_en": "He complains about it at every meeting.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en réjouir",
+    "sense_id": "expr_s_en_r_jouir_01",
+    "pattern": "s'en réjouir",
+    "meaning_en": "to be delighted about it",
+    "example_fr": "Nous nous en réjouissons sincèrement.",
+    "example_en": "We're sincerely delighted about it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en étonner",
+    "sense_id": "expr_s_en_tonner_01",
+    "pattern": "s'en étonner",
+    "meaning_en": "to be surprised by it",
+    "example_fr": "Personne ne s'en étonne vraiment.",
+    "example_en": "No one is really surprised by it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en inquiéter",
+    "sense_id": "expr_s_en_inqui_ter_01",
+    "pattern": "s'en inquiéter",
+    "meaning_en": "to worry about it",
+    "example_fr": "Je m'en inquiète un peu.",
+    "example_en": "I'm a little worried about it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en lasser",
+    "sense_id": "expr_s_en_lasser_01",
+    "pattern": "s'en lasser",
+    "meaning_en": "to get tired of it",
+    "example_fr": "Tu t'en lasses vite.",
+    "example_en": "You get tired of it quickly.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en remettre",
+    "sense_id": "expr_s_en_remettre_01",
+    "pattern": "s'en remettre",
+    "meaning_en": "to recover from it",
+    "example_fr": "Elle s'en remet lentement.",
+    "example_en": "She's slowly recovering from it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en remettre à quelqu'un",
+    "sense_id": "expr_s_en_remettre_quelqu_un_01",
+    "pattern": "s'en remettre à quelqu'un",
+    "meaning_en": "to rely on someone",
+    "example_fr": "Je m'en remets à toi.",
+    "example_en": "I'm relying on you.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en tenir à",
+    "sense_id": "expr_s_en_tenir_01",
+    "pattern": "s'en tenir à",
+    "meaning_en": "to stick to it",
+    "example_fr": "Nous nous en tenons au plan.",
+    "example_en": "We're sticking to the plan.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en prendre à quelqu'un",
+    "sense_id": "expr_s_en_prendre_quelqu_un_01",
+    "pattern": "s'en prendre à quelqu'un",
+    "meaning_en": "to take it out on someone",
+    "example_fr": "Il s'en prend toujours au stagiaire.",
+    "example_en": "He always takes it out on the intern.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en vouloir à quelqu'un",
+    "sense_id": "expr_en_vouloir_quelqu_un_01",
+    "pattern": "en vouloir à quelqu'un",
+    "meaning_en": "to be mad at someone",
+    "example_fr": "Je t'en veux encore un peu.",
+    "example_en": "I'm still a little mad at you.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en vouloir",
+    "sense_id": "expr_s_en_vouloir_01",
+    "pattern": "s'en vouloir",
+    "meaning_en": "to blame oneself",
+    "example_fr": "Elle s'en veut beaucoup.",
+    "example_en": "She blames herself a lot.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir assez",
+    "sense_id": "expr_en_avoir_assez_01",
+    "pattern": "en avoir assez",
+    "meaning_en": "to have had enough",
+    "example_fr": "J'en ai assez de ces excuses.",
+    "example_en": "I've had enough of these excuses.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir marre",
+    "sense_id": "expr_en_avoir_marre_01",
+    "pattern": "en avoir marre",
+    "meaning_en": "to be fed up",
+    "example_fr": "On en a marre du bruit.",
+    "example_en": "We're fed up with the noise.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir ras-le-bol",
+    "sense_id": "expr_en_avoir_ras_le_bol_01",
+    "pattern": "en avoir ras-le-bol",
+    "meaning_en": "to be totally fed up",
+    "example_fr": "Ils en ont ras-le-bol des retards.",
+    "example_en": "They're completely fed up with the delays.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir besoin",
+    "sense_id": "expr_en_avoir_besoin_01",
+    "pattern": "en avoir besoin",
+    "meaning_en": "to need it",
+    "example_fr": "J'en ai besoin pour travailler.",
+    "example_en": "I need it for work.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir envie",
+    "sense_id": "expr_en_avoir_envie_01",
+    "pattern": "en avoir envie",
+    "meaning_en": "to feel like it; want some",
+    "example_fr": "Tu en as vraiment envie ?",
+    "example_en": "Do you really feel like it?",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir peur",
+    "sense_id": "expr_en_avoir_peur_01",
+    "pattern": "en avoir peur",
+    "meaning_en": "to be afraid of it",
+    "example_fr": "Elle en a peur depuis l'accident.",
+    "example_en": "She's been afraid of it since the accident.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir honte",
+    "sense_id": "expr_en_avoir_honte_01",
+    "pattern": "en avoir honte",
+    "meaning_en": "to be ashamed of it",
+    "example_fr": "Il en a honte aujourd'hui.",
+    "example_en": "He's ashamed of it today.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en être sûr",
+    "sense_id": "expr_en_tre_s_r_01",
+    "pattern": "en être sûr",
+    "meaning_en": "to be sure of it",
+    "example_fr": "J'en suis sûr à cent pour cent.",
+    "example_en": "I'm one hundred percent sure of it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en être capable",
+    "sense_id": "expr_en_tre_capable_01",
+    "pattern": "en être capable",
+    "meaning_en": "to be capable of it",
+    "example_fr": "Tu en es capable.",
+    "example_en": "You're capable of it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en parler",
+    "sense_id": "expr_en_parler_01",
+    "pattern": "en parler",
+    "meaning_en": "to talk about it",
+    "example_fr": "On en parle ce soir.",
+    "example_en": "We'll talk about it tonight.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en discuter",
+    "sense_id": "expr_en_discuter_01",
+    "pattern": "en discuter",
+    "meaning_en": "to discuss it",
+    "example_fr": "Nous en discutons après le cours.",
+    "example_en": "We'll discuss it after class.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en revenir",
+    "sense_id": "expr_en_revenir_01",
+    "pattern": "en revenir",
+    "meaning_en": "to get over it; come back from it",
+    "example_fr": "Je n'en reviens pas.",
+    "example_en": "I can't get over it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en finir avec",
+    "sense_id": "expr_en_finir_avec_01",
+    "pattern": "en finir avec",
+    "meaning_en": "to be done with it",
+    "example_fr": "Je veux en finir avec ce dossier.",
+    "example_en": "I want to be done with this file.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en profiter",
+    "sense_id": "expr_en_profiter_01",
+    "pattern": "en profiter",
+    "meaning_en": "to take advantage of it; enjoy it",
+    "example_fr": "Profitez-en pendant les soldes.",
+    "example_en": "Take advantage of it during the sales.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en dépendre",
+    "sense_id": "expr_en_d_pendre_01",
+    "pattern": "en dépendre",
+    "meaning_en": "to depend on it",
+    "example_fr": "Le résultat en dépend.",
+    "example_en": "The result depends on it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en rire",
+    "sense_id": "expr_en_rire_01",
+    "pattern": "en rire",
+    "meaning_en": "to laugh about it",
+    "example_fr": "Un jour, on en rira.",
+    "example_en": "One day we'll laugh about it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en pleurer",
+    "sense_id": "expr_en_pleurer_01",
+    "pattern": "en pleurer",
+    "meaning_en": "to cry about it",
+    "example_fr": "Elle en pleure encore.",
+    "example_en": "She's still crying about it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en mourir",
+    "sense_id": "expr_en_mourir_01",
+    "pattern": "en mourir",
+    "meaning_en": "to die from it; be dying for it",
+    "example_fr": "Il en meurt d'envie.",
+    "example_en": "He's dying for it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en approcher",
+    "sense_id": "expr_s_en_approcher_01",
+    "pattern": "s'en approcher",
+    "meaning_en": "to approach it",
+    "example_fr": "Ne t'en approche pas trop.",
+    "example_en": "Don't get too close to it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en éloigner",
+    "sense_id": "expr_s_en_loigner_01",
+    "pattern": "s'en éloigner",
+    "meaning_en": "to move away from it",
+    "example_fr": "Nous nous en éloignons doucement.",
+    "example_en": "We're slowly moving away from it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en échapper",
+    "sense_id": "expr_s_en_chapper_01",
+    "pattern": "s'en échapper",
+    "meaning_en": "to escape from it",
+    "example_fr": "Le prisonnier s'en échappe la nuit.",
+    "example_en": "The prisoner escapes from it at night.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en débarrasser",
+    "sense_id": "expr_s_en_d_barrasser_01",
+    "pattern": "s'en débarrasser",
+    "meaning_en": "to get rid of it",
+    "example_fr": "Je m'en débarrasse ce week-end.",
+    "example_en": "I'm getting rid of it this weekend.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en mordre les doigts",
+    "sense_id": "expr_s_en_mordre_les_doigts_01",
+    "pattern": "s'en mordre les doigts",
+    "meaning_en": "to kick oneself; regret it",
+    "example_fr": "Il s'en mord les doigts maintenant.",
+    "example_en": "He's kicking himself for it now.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en mettre plein les poches",
+    "sense_id": "expr_s_en_mettre_plein_les_poches_01",
+    "pattern": "s'en mettre plein les poches",
+    "meaning_en": "to make a lot of money dishonestly",
+    "example_fr": "Ils s'en mettent plein les poches.",
+    "example_en": "They're lining their pockets.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en laver les mains",
+    "sense_id": "expr_s_en_laver_les_mains_01",
+    "pattern": "s'en laver les mains",
+    "meaning_en": "to wash one's hands of it",
+    "example_fr": "La direction s'en lave les mains.",
+    "example_en": "Management washes its hands of it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en donner à cœur joie",
+    "sense_id": "expr_s_en_donner_c_ur_joie_01",
+    "pattern": "s'en donner à cœur joie",
+    "meaning_en": "to have a field day",
+    "example_fr": "Les enfants s'en donnent à cœur joie.",
+    "example_en": "The kids are having a field day.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en donner les moyens",
+    "sense_id": "expr_s_en_donner_les_moyens_01",
+    "pattern": "s'en donner les moyens",
+    "meaning_en": "to give oneself the means",
+    "example_fr": "Si tu veux réussir, tu t'en donnes les moyens.",
+    "example_en": "If you want to succeed, you give yourself the means.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en sortir haut la main",
+    "sense_id": "expr_s_en_sortir_haut_la_main_01",
+    "pattern": "s'en sortir haut la main",
+    "meaning_en": "to come through with flying colors",
+    "example_fr": "Elle s'en sort haut la main.",
+    "example_en": "She comes through with flying colors.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en tirer à bon compte",
+    "sense_id": "expr_s_en_tirer_bon_compte_01",
+    "pattern": "s'en tirer à bon compte",
+    "meaning_en": "to get off lightly",
+    "example_fr": "Tu t'en tires à bon compte.",
+    "example_en": "You get off lightly.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en prendre plein la figure",
+    "sense_id": "expr_s_en_prendre_plein_la_figure_01",
+    "pattern": "s'en prendre plein la figure",
+    "meaning_en": "to take a beating; get blasted",
+    "example_fr": "Il s'en prend plein la figure en ligne.",
+    "example_en": "He's getting blasted online.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en prendre à plus faible que soi",
+    "sense_id": "expr_s_en_prendre_plus_faible_que_soi_01",
+    "pattern": "s'en prendre à plus faible que soi",
+    "meaning_en": "to pick on someone weaker",
+    "example_fr": "Il s'en prend à plus faible que lui.",
+    "example_en": "He picks on someone weaker than him.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en remettre au hasard",
+    "sense_id": "expr_s_en_remettre_au_hasard_01",
+    "pattern": "s'en remettre au hasard",
+    "meaning_en": "to leave it to chance",
+    "example_fr": "On s'en remet au hasard.",
+    "example_en": "We're leaving it to chance.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en remettre à Dieu",
+    "sense_id": "expr_s_en_remettre_dieu_01",
+    "pattern": "s'en remettre à Dieu",
+    "meaning_en": "to leave it to God",
+    "example_fr": "Elle s'en remet à Dieu.",
+    "example_en": "She leaves it to God.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en tenir là",
+    "sense_id": "expr_s_en_tenir_l_01",
+    "pattern": "s'en tenir là",
+    "meaning_en": "to leave it at that",
+    "example_fr": "On s'en tient là pour aujourd'hui.",
+    "example_en": "We'll leave it at that for today.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en tenir aux faits",
+    "sense_id": "expr_s_en_tenir_aux_faits_01",
+    "pattern": "s'en tenir aux faits",
+    "meaning_en": "to stick to the facts",
+    "example_fr": "Le témoin s'en tient aux faits.",
+    "example_en": "The witness sticks to the facts.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en tenir à sa version",
+    "sense_id": "expr_s_en_tenir_sa_version_01",
+    "pattern": "s'en tenir à sa version",
+    "meaning_en": "to stick to one's version",
+    "example_fr": "Il s'en tient à sa version.",
+    "example_en": "He sticks to his version.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en faire pour rien",
+    "sense_id": "expr_s_en_faire_pour_rien_01",
+    "pattern": "s'en faire pour rien",
+    "meaning_en": "to worry for nothing",
+    "example_fr": "Tu t'en fais pour rien.",
+    "example_en": "You're worrying for nothing.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "ne pas s'en faire",
+    "sense_id": "expr_ne_pas_s_en_faire_01",
+    "pattern": "ne pas s'en faire",
+    "meaning_en": "not to worry",
+    "example_fr": "Ne t'en fais pas, ça ira.",
+    "example_en": "Don't worry, it'll be fine.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en faire tout un monde",
+    "sense_id": "expr_s_en_faire_tout_un_monde_01",
+    "pattern": "s'en faire tout un monde",
+    "meaning_en": "to make a huge deal of it",
+    "example_fr": "Elle s'en fait tout un monde.",
+    "example_en": "She's making a huge deal of it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en faire une montagne",
+    "sense_id": "expr_s_en_faire_une_montagne_01",
+    "pattern": "s'en faire une montagne",
+    "meaning_en": "to make a mountain out of it",
+    "example_fr": "Tu t'en fais une montagne.",
+    "example_en": "You're making a mountain out of it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en payer une tranche",
+    "sense_id": "expr_s_en_payer_une_tranche_01",
+    "pattern": "s'en payer une tranche",
+    "meaning_en": "to have a good laugh",
+    "example_fr": "Ils s'en paient une tranche.",
+    "example_en": "They're having a good laugh.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en payer une bonne",
+    "sense_id": "expr_s_en_payer_une_bonne_01",
+    "pattern": "s'en payer une bonne",
+    "meaning_en": "to have a good laugh",
+    "example_fr": "On s'en paie une bonne.",
+    "example_en": "We're having a good laugh.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en jeter un derrière la cravate",
+    "sense_id": "expr_s_en_jeter_un_derri_re_la_cravate_01",
+    "pattern": "s'en jeter un derrière la cravate",
+    "meaning_en": "to knock back a drink",
+    "example_fr": "Il s'en jette un derrière la cravate.",
+    "example_en": "He knocks back a drink.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en mettre jusque-là",
+    "sense_id": "expr_s_en_mettre_jusque_l_01",
+    "pattern": "s'en mettre jusque-là",
+    "meaning_en": "to stuff oneself; overdo it",
+    "example_fr": "Au buffet, ils s'en mettent jusque-là.",
+    "example_en": "At the buffet, they really stuff themselves.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "s'en mettre plein la vue",
+    "sense_id": "expr_s_en_mettre_plein_la_vue_01",
+    "pattern": "s'en mettre plein la vue",
+    "meaning_en": "to dazzle oneself; show off",
+    "example_fr": "Ils s'en mettent plein la vue avec ce décor.",
+    "example_en": "They dazzle themselves with that decor.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en faire trop",
+    "sense_id": "expr_en_faire_trop_01",
+    "pattern": "en faire trop",
+    "meaning_en": "to overdo it",
+    "example_fr": "Tu en fais trop avec cette histoire.",
+    "example_en": "You're overdoing it with this story.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en faire des tonnes",
+    "sense_id": "expr_en_faire_des_tonnes_01",
+    "pattern": "en faire des tonnes",
+    "meaning_en": "to lay it on thick",
+    "example_fr": "Il en fait des tonnes pour impressionner.",
+    "example_en": "He lays it on thick to impress people.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en faire tout un plat",
+    "sense_id": "expr_en_faire_tout_un_plat_01",
+    "pattern": "en faire tout un plat",
+    "meaning_en": "to make a big fuss about it",
+    "example_fr": "N'en fais pas tout un plat.",
+    "example_en": "Don't make a big fuss about it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir gros sur le cœur",
+    "sense_id": "expr_en_avoir_gros_sur_le_c_ur_01",
+    "pattern": "en avoir gros sur le cœur",
+    "meaning_en": "to have a heavy heart about it",
+    "example_fr": "J'en ai gros sur le cœur.",
+    "example_en": "I have a heavy heart about it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir par-dessus la tête",
+    "sense_id": "expr_en_avoir_par_dessus_la_t_te_01",
+    "pattern": "en avoir par-dessus la tête",
+    "meaning_en": "to be sick of it",
+    "example_fr": "On en a par-dessus la tête.",
+    "example_en": "We're sick of it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir jusqu'au cou",
+    "sense_id": "expr_en_avoir_jusqu_au_cou_01",
+    "pattern": "en avoir jusqu'au cou",
+    "meaning_en": "to be up to one's neck in it",
+    "example_fr": "Elle en a jusqu'au cou.",
+    "example_en": "She's up to her neck in it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir jusque-là",
+    "sense_id": "expr_en_avoir_jusque_l_01",
+    "pattern": "en avoir jusque-là",
+    "meaning_en": "to have had it up to here",
+    "example_fr": "J'en ai jusque-là.",
+    "example_en": "I've had it up to here.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en avoir pour son argent",
+    "sense_id": "expr_en_avoir_pour_son_argent_01",
+    "pattern": "en avoir pour son argent",
+    "meaning_en": "to get one's money's worth",
+    "example_fr": "Avec ce concert, tu en as pour ton argent.",
+    "example_en": "With this concert, you get your money's worth.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en voir de toutes les couleurs",
+    "sense_id": "expr_en_voir_de_toutes_les_couleurs_01",
+    "pattern": "en voir de toutes les couleurs",
+    "meaning_en": "to go through a lot",
+    "example_fr": "Ils en voient de toutes les couleurs.",
+    "example_en": "They go through a lot.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en prendre de la graine",
+    "sense_id": "expr_en_prendre_de_la_graine_01",
+    "pattern": "en prendre de la graine",
+    "meaning_en": "to learn from it; take a lesson",
+    "example_fr": "Tu devrais en prendre de la graine.",
+    "example_en": "You should learn from it.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en perdre son latin",
+    "sense_id": "expr_en_perdre_son_latin_01",
+    "pattern": "en perdre son latin",
+    "meaning_en": "to be completely baffled",
+    "example_fr": "J'en perds mon latin.",
+    "example_en": "I'm completely baffled.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en baver",
+    "sense_id": "expr_en_baver_01",
+    "pattern": "en baver",
+    "meaning_en": "to have a hard time",
+    "example_fr": "Ils en bavent pendant l'entraînement.",
+    "example_en": "They're having a hard time during training.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en chier",
+    "sense_id": "expr_en_chier_01",
+    "pattern": "en chier",
+    "meaning_en": "to struggle badly",
+    "example_fr": "J'en chie avec ce dossier.",
+    "example_en": "I'm really struggling with this file.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en suer",
+    "sense_id": "expr_en_suer_01",
+    "pattern": "en suer",
+    "meaning_en": "to sweat over it; struggle",
+    "example_fr": "Tu vas en suer sur cet exercice.",
+    "example_en": "You're going to sweat over this exercise.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en découdre",
+    "sense_id": "expr_en_d_coudre_01",
+    "pattern": "en découdre",
+    "meaning_en": "to fight it out",
+    "example_fr": "Ils veulent en découdre ce soir.",
+    "example_en": "They want to fight it out tonight.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en rester bouche bée",
+    "sense_id": "expr_en_rester_bouche_b_e_01",
+    "pattern": "en rester bouche bée",
+    "meaning_en": "to be left speechless",
+    "example_fr": "Elle en reste bouche bée.",
+    "example_en": "She's left speechless.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en rester là",
+    "sense_id": "expr_en_rester_l_01",
+    "pattern": "en rester là",
+    "meaning_en": "to leave it there",
+    "example_fr": "On en reste là pour ce soir.",
+    "example_en": "We'll leave it there for tonight.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en venir aux mains",
+    "sense_id": "expr_en_venir_aux_mains_01",
+    "pattern": "en venir aux mains",
+    "meaning_en": "to come to blows",
+    "example_fr": "Les voisins en viennent aux mains.",
+    "example_en": "The neighbors come to blows.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en venir au fait",
+    "sense_id": "expr_en_venir_au_fait_01",
+    "pattern": "en venir au fait",
+    "meaning_en": "to get to the point",
+    "example_fr": "Venons-en au fait.",
+    "example_en": "Let's get to the point.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en revenir à ses moutons",
+    "sense_id": "expr_en_revenir_ses_moutons_01",
+    "pattern": "en revenir à ses moutons",
+    "meaning_en": "to get back to the subject",
+    "example_fr": "Revenons-en à nos moutons.",
+    "example_en": "Let's get back to the subject.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en dire long",
+    "sense_id": "expr_en_dire_long_01",
+    "pattern": "en dire long",
+    "meaning_en": "to say a lot about it",
+    "example_fr": "Son silence en dit long.",
+    "example_en": "His silence says a lot.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en savoir long",
+    "sense_id": "expr_en_savoir_long_01",
+    "pattern": "en savoir long",
+    "meaning_en": "to know a lot about it",
+    "example_fr": "Elle en sait long sur l'affaire.",
+    "example_en": "She knows a lot about the matter.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
+  },
+  {
+    "verb": "en vouloir toujours plus",
+    "sense_id": "expr_en_vouloir_toujours_plus_01",
+    "pattern": "en vouloir toujours plus",
+    "meaning_en": "to always want more",
+    "example_fr": "Il en veut toujours plus.",
+    "example_en": "He always wants more.",
+    "source": "curated:french-verb-expressions",
+    "family": "verb_expression"
   }
 ];

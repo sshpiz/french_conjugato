@@ -1051,7 +1051,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Compute a classification category for each verb (e.g., "ir/venir-tenir", "er", "re/faire", "oir")
     uniqueVerbs.forEach(v => {
         try {
-            v.category = classifyFrenchVerb(v.infinitive);
+            if (v.verbExpression && v.category) return;
+            v.category = classifyFrenchVerb(v.expressionOf || v.infinitive);
         } catch (e) {
             v.category = 'unknown';
         }
@@ -1280,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const normalizedFrequency = normalizeFrequencyKey(verb.frequency);
             if (normalizedFrequency) verb.frequency = normalizedFrequency;
             try {
-                verb.category = classifyFrenchVerb(verb.infinitive);
+                verb.category = classifyFrenchVerb(verb.expressionOf || verb.infinitive);
             } catch (error) {
                 verb.category = 'unknown';
             }
@@ -6681,6 +6682,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fillFocusMode: 'all', // 'all' | 'frames' | 'pronouns'
         fillDifficultyMode: 'easy', // 'easy' | 'medium' | 'hard'
         reflexiveMode: 'include', // 'include' = both, 'only' = reflexive only, 'exclude' = no reflexive
+        includeVerbExpressions: true,
         prepositionalVerbMode: 'all', // 'all' | 'only'
         tenseWeights,
         frequencyWeights,
@@ -7070,6 +7072,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (typeof savedOptions.includeReflexive === 'boolean') {
                     // migrate old boolean
                     cardGenerationOptions.reflexiveMode = savedOptions.includeReflexive ? 'include' : 'exclude';
+                }
+                if (typeof savedOptions.includeVerbExpressions === 'boolean') {
+                    cardGenerationOptions.includeVerbExpressions = savedOptions.includeVerbExpressions;
                 }
                 if (savedOptions.prepositionalVerbMode === 'only') {
                     cardGenerationOptions.prepositionalVerbMode = 'only';
@@ -7467,6 +7472,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cardTypeMode = 'conjugation',
             fillFocusMode = 'all',
             reflexiveMode = 'include',
+            includeVerbExpressions = true,
             prepositionalVerbMode = 'all',
         } = options;
         const resolvedCardTypeMode = normalizeCardTypeModeForCapabilities(cardTypeMode);
@@ -7482,18 +7488,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return 'other';
         };
         const passesFilters = (verbInfo) => {
+            if (verbInfo.verbExpression && includeVerbExpressions === false) return false;
             if (reflexiveMode === 'only' && !verbInfo.reflexive) return false;
             if (reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
             // Regularity
-            const irreg = isIrregular(verbInfo.infinitive);
+            const filterInfinitive = getVerbFilterInfinitive(verbInfo);
+            const filterVerbInfo = uniqueVerbByInfinitive.get(filterInfinitive) || verbInfo;
+            const irreg = isIrregular(filterInfinitive);
             if (irreg && !regularityFilter.irregular) return false;
             if (!irreg && !regularityFilter.regular) return false;
             // Ending
-            const end = getEnding(verbInfo.infinitive);
+            const end = getEnding(filterInfinitive);
             if (!endingFilter[end]) return false;
             // Category
             if (categoryFilter !== 'all') {
-                const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
+                const cat = filterVerbInfo.category || classifyFrenchVerb(filterInfinitive);
                 if (cat !== categoryFilter) return false;
             }
             return true;
@@ -10261,6 +10270,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 freqCard.appendChild(detailedFrequencyContainer);
                 freqCard.appendChild(freqHelper);
                 const practiceCard = createAdvancedCard('Verb traits');
+                practiceCard.appendChild(createToggleRow(
+                    'Verb expressions',
+                    "Includes common expression cards like s'en aller and en avoir marre when the base verb is in your pool.",
+                    cardGenerationOptions.includeVerbExpressions !== false,
+                    (checked) => {
+                        cardGenerationOptions.includeVerbExpressions = !!checked;
+                        saveOptions();
+                        updateVerbFiltersCountLabel();
+                    }
+                ));
                 const reflexiveRow = createSegmentedPillRow(
                     'Reflexive verbs',
                     'Limit the drill to reflexives, exclude them, or mix both.',
@@ -11650,6 +11669,7 @@ const DRILL_OPTION_KEYS = [
     'fillFocusMode',
     'fillDifficultyMode',
     'reflexiveMode',
+    'includeVerbExpressions',
     'prepositionalVerbMode',
     'regularityFilter',
     'endingFilter',
@@ -11858,12 +11878,48 @@ function getResolvedVerbSetSelection(options = cardGenerationOptions) {
 }
 window.getResolvedVerbSetSelection = getResolvedVerbSetSelection;
 
+function shouldIncludeVerbExpressions(options = cardGenerationOptions) {
+    return options?.includeVerbExpressions !== false;
+}
+
+function getVerbFilterInfinitive(verbInfo) {
+    return verbInfo?.expressionOf || verbInfo?.infinitive || '';
+}
+
+function expandVerbUniverseWithExpressions(candidateVerbs, options = cardGenerationOptions) {
+    const candidates = Array.isArray(candidateVerbs) ? candidateVerbs.filter(Boolean) : [];
+    const includeExpressions = shouldIncludeVerbExpressions(options);
+    const output = new Map();
+    const baseInfinitives = new Set();
+    candidates.forEach((verbInfo) => {
+        if (!verbInfo?.infinitive) return;
+        if (verbInfo.verbExpression) {
+            if (!includeExpressions) return;
+            if (verbInfo.expressionOf) baseInfinitives.add(verbInfo.expressionOf);
+            output.set(verbInfo.infinitive, verbInfo);
+            return;
+        }
+        baseInfinitives.add(verbInfo.infinitive);
+        output.set(verbInfo.infinitive, verbInfo);
+    });
+    if (includeExpressions) {
+        uniqueVerbs.forEach((verbInfo) => {
+            if (!verbInfo?.verbExpression || !verbInfo.expressionOf) return;
+            if (baseInfinitives.has(verbInfo.expressionOf)) {
+                output.set(verbInfo.infinitive, verbInfo);
+            }
+        });
+    }
+    return [...output.values()];
+}
+
 function getResolvedVerbUniverse(options = cardGenerationOptions) {
     const selection = getResolvedVerbSetSelection(options);
-    if (!selection) return uniqueVerbs;
-    return selection.verbs
+    if (!selection) return expandVerbUniverseWithExpressions(uniqueVerbs, options);
+    const selectedVerbs = selection.verbs
         .map((verb) => uniqueVerbByInfinitive.get(verb))
         .filter(Boolean);
+    return expandVerbUniverseWithExpressions(selectedVerbs, options);
 }
 
 function getFilteredVerbUniverse(options = cardGenerationOptions) {
@@ -11878,6 +11934,7 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
         verbsWithSentencesOnly = false,
         tenseWeights = {},
         reflexiveMode = 'include',
+        includeVerbExpressions = true,
     } = options || {};
     const currentCardTypeMode = normalizeCardTypeMode(options?.cardTypeMode);
 
@@ -11926,6 +11983,7 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
     };
 
     return candidateVerbs.filter((verbInfo) => {
+        if (verbInfo.verbExpression && includeVerbExpressions === false) return false;
         if (!activeVerbSet && reflexiveMode !== 'only') {
             const freq = verbInfo.frequency || 'common';
             if (!activeFrequencies.has(freq)) return false;
@@ -11933,12 +11991,14 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
         if (!activeVerbSet) {
             if (reflexiveMode === 'only' && !verbInfo.reflexive) return false;
             if (reflexiveMode === 'exclude' && verbInfo.reflexive) return false;
-            const isIrregular = IRREGULAR_VERBS.has(verbInfo.infinitive);
+            const filterInfinitive = getVerbFilterInfinitive(verbInfo);
+            const filterVerbInfo = uniqueVerbByInfinitive.get(filterInfinitive) || verbInfo;
+            const isIrregular = IRREGULAR_VERBS.has(filterInfinitive);
             if (isIrregular && !regularityFilter.irregular) return false;
             if (!isIrregular && !regularityFilter.regular) return false;
-            if (!endingFilter[getEnding(verbInfo.infinitive)]) return false;
+            if (!endingFilter[getEnding(filterInfinitive)]) return false;
             if (categoryFilter !== 'all') {
-                const cat = verbInfo.category || classifyFrenchVerb(verbInfo.infinitive);
+                const cat = filterVerbInfo.category || classifyFrenchVerb(filterInfinitive);
                 if (cat !== categoryFilter) return false;
             }
         }
@@ -12119,6 +12179,7 @@ function buildDrillCardOptions(overrides = {}) {
         fillFocusMode: normalizeFillFocusMode(overrides.fillFocusMode),
         fillDifficultyMode: normalizeFillDifficultyMode(overrides.fillDifficultyMode),
         reflexiveMode: 'include',
+        includeVerbExpressions: true,
         prepositionalVerbMode: 'all',
         categoryFilter: 'all',
         selectedVerbSetIds: [],
@@ -12616,6 +12677,9 @@ function describeDrillConfig(config = {}) {
     if (!activeVerbSet && options.reflexiveMode === 'only') {
         parts.push('reflexive only');
     }
+    if (options.includeVerbExpressions === false) {
+        parts.push('expressions off');
+    }
     const exerciseMode = normalizeCardTypeModeForCapabilities(options.cardTypeMode);
     const fillFocusMode = getEffectiveFillFocusMode(options);
     if (
@@ -12692,6 +12756,7 @@ function getSelectedTenseCount(options = cardGenerationOptions) {
 
 function getActiveVerbFilterCount(options = cardGenerationOptions) {
     let count = 0;
+    if (options.includeVerbExpressions === false) count += 1;
     if (options.reflexiveMode && options.reflexiveMode !== 'include') count += 1;
     if (options.regularityFilter && (options.regularityFilter.regular === false || options.regularityFilter.irregular === false)) count += 1;
     if (options.endingFilter && Object.values(options.endingFilter).some((value) => value === false)) count += 1;
@@ -12716,6 +12781,7 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.fillFocusMode = getEffectiveFillFocusMode(resolved);
     cardGenerationOptions.fillDifficultyMode = normalizeFillDifficultyMode(resolved.fillDifficultyMode);
     cardGenerationOptions.reflexiveMode = resolved.reflexiveMode;
+    cardGenerationOptions.includeVerbExpressions = resolved.includeVerbExpressions !== false;
     cardGenerationOptions.prepositionalVerbMode = resolved.prepositionalVerbMode === 'only' ? 'only' : 'all';
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
     cardGenerationOptions.endingFilter = deepClone(resolved.endingFilter);
@@ -12781,6 +12847,7 @@ function resetTutorialPracticeBaseline() {
   cardGenerationOptions.fillFocusMode = 'all';
   cardGenerationOptions.fillDifficultyMode = 'easy';
   cardGenerationOptions.reflexiveMode = 'include';
+  cardGenerationOptions.includeVerbExpressions = true;
   cardGenerationOptions.prepositionalVerbMode = 'all';
   cardGenerationOptions.regularityFilter = { regular: true, irregular: true };
   cardGenerationOptions.endingFilter = { er: true, ir: true, re: true, other: true };
