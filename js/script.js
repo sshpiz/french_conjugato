@@ -9497,6 +9497,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const { preserveAnchorId = null } = options || {};
         const preservedAnchor = preserveAnchorId ? document.getElementById(preserveAnchorId) : null;
         const preservedAnchorTop = preservedAnchor ? preservedAnchor.getBoundingClientRect().top : null;
+        const preservedOpenDetailsIds = new Set(
+            Array.from(document.querySelectorAll('details[id][open]'))
+                .map((details) => details.id)
+                .filter(Boolean)
+        );
         const settingsV2Refs = ensureSettingsV2Layout();
         const settingsV2ExerciseControls = settingsV2Refs?.exerciseControls || null;
         const settingsV2VerbSourceContainer = settingsV2Refs?.verbSourceContainer || null;
@@ -9985,6 +9990,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let conjugationAdvancedBody = null;
             if (effectiveVerbSourceMode === 'frequency') {
                 conjugationAdvancedDetails = document.createElement('details');
+                conjugationAdvancedDetails.id = 'settings-v2-conjugation-advanced-details';
                 conjugationAdvancedDetails.className = 'option-group settings-collapsible settings-v2-advanced-details';
                 conjugationAdvancedDetails.innerHTML = `
                     <summary>
@@ -10006,7 +10012,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     (checked) => {
                         cardGenerationOptions.hierarchical = checked;
                         saveOptions();
-                        populateOptions();
+                        populateOptions({ preserveAnchorId: 'settings-v2-conjugation-advanced-details' });
                     }
                 ));
                 if (hasRareFrequencyBucket()) {
@@ -10017,7 +10023,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         (checked) => {
                             cardGenerationOptions.frequencyWeights.rare = checked ? 1 : 0;
                             saveOptions();
-                            populateOptions();
+                            populateOptions({ preserveAnchorId: 'settings-v2-conjugation-advanced-details' });
                             updateVerbFiltersCountLabel();
                         }
                     ));
@@ -10321,6 +10327,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateVerbFiltersCountLabel();
+        preservedOpenDetailsIds.forEach((id) => {
+            const details = document.getElementById(id);
+            if (details instanceof HTMLDetailsElement && !details.classList.contains('hidden')) {
+                details.open = true;
+            }
+        });
         updateSettingsV2LayoutState();
         if (preserveAnchorId && preservedAnchorTop !== null) {
             const nextAnchor = document.getElementById(preserveAnchorId);
