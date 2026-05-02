@@ -1,0 +1,38 @@
+Feature	French	Spanish	German	Portuguese	Italian	Russian	Notes
+Reference app	Reference	Done	Done	Done	Done	Done	French is the reference; all targets browser-checked against its settings/card flow.
+VerbsFirst branding	Done	Done	Done	Done	Done	Done	App names/copy retained per language.
+Cloudflare deployment	Done	Not requested	Not requested	Not requested	Not requested	Not requested	No deploy was requested in this run.
+Separate latest PWA install	Done	Existing	Existing	Existing	Existing	Existing	Builds completed; install/deploy paths were not changed.
+Fast starter deck	Done	Done	Done	Done	Done	Done	All checked apps render a first card quickly.
+Settings order	Done	Done	Done	Done	Done	Done	Language-specific no-fill apps omit the French Exercise Type/Fill Blanks controls.
+Current Exercise card	Done	Done	Done	Done	Done	Done	Settings summary reflects active drill/topic where applicable.
+Exercise type toggle	Done	Done	Done	N/A hidden	N/A hidden	N/A hidden	Only shown where playable Fill Blanks data exists.
+Answer by voice	Done	Done	Done	Done	Done	Done	Mic controls present and not dead in checked flows.
+Hide tutorial button	Done	Done	Done	Done	Done	Done	Available in settings; tutorial controls are not floating legacy UI.
+Practice all pronouns evenly	Done	Done	Done	Done	Done	Done	Promoted in main settings surface.
+Conjugation Setup	Done	Done	Done	Done	Done	Done	Collapsible setup area verified in browser checks.
+Verb source toggle	Done	Done	Done	Done	Done	Done	Russian toggle patched for French-compatible selector and click behavior.
+Topics selector	Done	Done	Done	Done	Done	Done	Cooking & Food selected and card flow verified in each target.
+Topic emoji labels	Done	Done	Done	Done	Done	Done	All target apps expose topic labels/emojis.
+Topic verb memberships	Done	Done	Done	Done	Done	Done	Topic pools are language-native.
+Topic usage coverage	Done	Done	Done	Done	Done	Done	Russian inventory confirms 0 topic verbs missing usages; Italian/Portuguese topic cards opened usage.
+Topic card badge	Done	Done	Done	Done	Done	Done	Portuguese, Italian, and Russian patched to show topic in the card badge.
+Frequency mode	Done	Done	Done	Done	Done	Done	Top N/frequency mode remains available when topics are not active.
+Advanced frequency/traits	Done	Done	Done	Done	Done	Done	Advanced/frequency controls remain in the conjugation setup area.
+Drill save/share/reset	Done	Done	Done	Done	Done	Done	Existing drill controls retained; not reworked in this pass.
+Fill Blanks availability	Done	Done	Done	N/A hidden	N/A hidden	N/A hidden	Portuguese/Italian/Russian stay hidden until full playable frame data exists.
+Fill Blanks settings	Done	Done	Done	N/A	N/A	N/A	Not exposed for no-fill languages.
+Fill Blanks data volume	Done	Done	Done	N/A	N/A	N/A	Spanish/German browser-checked; no-fill languages marked N/A.
+Fill Blanks translations	Done	Done	Done	N/A	N/A	N/A	Checked where Fill Blanks exists.
+Fill Blanks TTS/hear	Done	Done	Done	N/A	N/A	N/A	Checked where Fill Blanks exists.
+Fill-to-conjugation cleanup	Done	Done	Done	N/A	N/A	N/A	Spanish/German cleanup verified after returning to conjugation.
+Dictation answer span	Done	Done	Done	Done	Done	Done	No new dictation span changes in this pass.
+Tutorial/help button	Done	Done	Done	Done	Done	Done	No old floating red question button in checked flows.
+Text To Speech settings	Done	Done	Done	Done	Done	Done	German build warns generated_tts source is absent; browser settings still render.
+Inventory section	Done	Done	Done	Done	Done	Done	Italian inventory added; Russian inventory rows fixed; all browser-checked.
+No console errors	Done	Done	Done	Done	Done	Done	No browser-use errors in final checked flows.
+Visual settings check	Done	Done	Done	Done	Done	Done	Browser-use DOM/visual checks completed on local server.
+Visual card-flow check	Done	Done	Done	Done	Done	Done	Conjugation + topics + usage checked; Fill Blanks checked where present.
+Build passed	Done	Done	Done	Done	Done	Done	Ran build.py for French, Spanish, German, Portuguese, Italian, and Russian; node --check and py_compile passed.
+Committed	Done	Done	Done	Done	Done	Done	Committed per changed app plus this matrix.
+Deployed	Done	Not requested	Not requested	Not requested	Not requested	Not requested	Deployment intentionally skipped because this run did not request it.
