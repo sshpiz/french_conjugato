@@ -57,9 +57,9 @@
   add('pf_en_003', 'Travel & Tourism', 'rêver', 'I am dreaming about them.', 'J\'____ rêve.', 'ces vacances', 'en', 'J\'en rêve.', 'rêver de + thing -> en', { family: 'de_thing_to_en' });
   add('pf_en_004', 'Tech & Digital Work', 'discuter', 'I am discussing it.', 'J\'____ discute.', 'ce projet', 'en', 'J\'en discute.', 'discuter de + thing -> en', { family: 'de_thing_to_en' });
   add('pf_en_005', 'Education & Learning', 'douter', 'I am doubting it.', 'J\'____ doute.', 'ce résultat', 'en', 'J\'en doute.', 'douter de + thing -> en', { family: 'de_thing_to_en' });
-  add('pf_en_006', 'Cinema & Series', 'parler', 'I am talking about it.', 'J\'____ parle.', 'ce film', 'en', 'J\'en parle.', 'parler de + thing -> en', { family: 'de_thing_to_en' });
+  add('pf_en_006', 'Cinema & Series', 'parler', 'We are talking about it.', 'Nous ____ parlons.', 'ce film', 'en', 'Nous en parlons.', 'parler de + thing -> en', { family: 'de_thing_to_en', subject: 'nous' });
   add('pf_en_007', 'Art & Design', 'avoir', 'I want it.', 'J\'____ ai envie.', 'cette robe', 'en', 'J\'en ai envie.', 'avoir envie de + thing -> en', { family: 'de_thing_to_en' });
-  add('pf_en_008', 'Music', 'parler', 'I am talking about it.', 'J\'____ parle.', 'cette chanson', 'en', 'J\'en parle.', 'parler de + thing -> en', { family: 'de_thing_to_en' });
+  add('pf_en_008', 'Music', 'parler', 'She is talking about it.', 'Elle ____ parle.', 'cette chanson', 'en', 'Elle en parle.', 'parler de + thing -> en', { family: 'de_thing_to_en', subject: 'elle' });
 
   add('pf_y_001', 'Tech & Digital Work', 'penser', 'I am thinking about it.', 'J\'____ pense.', 'ce projet', 'y', 'J\'y pense.', 'penser à + thing -> y', { family: 'a_thing_to_y' });
   add('pf_y_002', 'Education & Learning', 'réfléchir', 'I am thinking about it.', 'J\'____ réfléchis.', 'cette question', 'y', 'J\'y réfléchis.', 'réfléchir à + thing -> y', { family: 'a_thing_to_y' });
@@ -77,7 +77,7 @@
   add('pf_lui_005', 'Super Everyday', 'sourire', 'I am smiling at them.', 'Je ____ souris.', 'les enfants', 'leur', 'Je leur souris.', 'sourire à + people -> leur', { family: 'indirect_person' });
   add('pf_lui_006', 'Office & Admin', 'demander', 'I am asking her.', 'Je ____ demande.', 'Julie', 'lui', 'Je lui demande.', 'demander à + person -> lui', { family: 'indirect_person' });
   add('pf_lui_007', 'Education & Learning', 'expliquer', 'I am explaining it to him.', 'Je ____ explique.', 'Luc', 'lui', 'Je lui explique.', 'expliquer à + person -> lui', { family: 'indirect_person' });
-  add('pf_lui_008', 'Travel & Tourism', 'écrire', 'I am writing to them.', 'Je ____ écris.', 'mes amis', 'leur', 'Je leur écris.', 'écrire à + people -> leur', { family: 'indirect_person' });
+  add('pf_lui_008', 'Travel & Tourism', 'écrire', 'We are writing to them.', 'Nous ____ écrivons.', 'mes amis', 'leur', 'Nous leur écrivons.', 'écrire à + people -> leur', { family: 'indirect_person', subject: 'nous' });
 
   add('pf_multi_001', 'Super Everyday', 'montrer', 'I am showing them to you.', 'Je ____ montre.', 'les photos -> toi', 'te les', 'Je te les montre.', 'to you + them -> te les', { family: 'multi_clitic', answerSpanKind: 'pronoun_cluster' });
   add('pf_multi_002', 'Travel & Tourism', 'rendre', 'I am giving it back to you.', 'Je ____ rends.', 'le passeport -> vous', 'vous le', 'Je vous le rends.', 'to you + it -> vous le', { family: 'multi_clitic', answerSpanKind: 'pronoun_cluster' });

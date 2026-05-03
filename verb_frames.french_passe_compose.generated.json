@@ -1365,21 +1365,6 @@
     "frame_id": "assurer_a_object_04_pc"
   },
   {
-    "verb": "travailler",
-    "frame_type": "a_object",
-    "question": "J'____ ____ bureau toute la matinée.",
-    "answer": "ai travaillé au",
-    "full_answer": "J'ai travaillé au bureau toute la matinée.",
-    "meaning_en": "I worked at the office all morning.",
-    "category_id": "builtin-office-admin",
-    "category_name": "Office & Admin",
-    "note": "manual_dense_expansion; generated passé composé; fresh passé composé sibling",
-    "type": "frame",
-    "tense": "passeCompose",
-    "source": "manual_dense_expansion:passe_compose:passe_compose_content",
-    "frame_id": "travailler_a_object_03_pc"
-  },
-  {
     "verb": "grimper",
     "frame_type": "a_object",
     "question": "Nous ____ ____ sommet avant le brouillard.",
@@ -1483,21 +1468,6 @@
     "tense": "passeCompose",
     "source": "manual_dense_expansion:passe_compose:passe_compose_content",
     "frame_id": "reprocher_a_object_02_pc"
-  },
-  {
-    "verb": "jouer",
-    "frame_type": "a_object",
-    "question": "On ____ ____ volley sur la plage.",
-    "answer": "a joué au",
-    "full_answer": "On a joué au volley sur la plage.",
-    "meaning_en": "We played volleyball on the beach.",
-    "category_id": "builtin-sports-fitness",
-    "category_name": "Sports & Fitness",
-    "note": "manual_dense_expansion; generated passé composé; fresh passé composé sibling",
-    "type": "frame",
-    "tense": "passeCompose",
-    "source": "manual_dense_expansion:passe_compose:passe_compose_content",
-    "frame_id": "jouer_a_object_04_pc"
   },
   {
     "verb": "marquer",
@@ -2265,21 +2235,6 @@
     "frame_id": "écrire_a_object_17_pc"
   },
   {
-    "verb": "jouer",
-    "frame_type": "a_object",
-    "question": "On ____ ____ volley sur la plage.",
-    "answer": "a joué au",
-    "full_answer": "On a joué au volley sur la plage.",
-    "meaning_en": "We played volleyball on the beach.",
-    "category_id": "builtin-sports-fitness",
-    "category_name": "Sports & Fitness",
-    "note": "manual_hundred_expansion; generated passé composé; fresh passé composé sibling",
-    "type": "frame",
-    "tense": "passeCompose",
-    "source": "manual_hundred_expansion:passe_compose:passe_compose_content",
-    "frame_id": "jouer_a_object_05_pc"
-  },
-  {
     "verb": "marquer",
     "frame_type": "de_object",
     "question": "L'attaquant ____ ____ poitrine à bout portant.",
@@ -2385,21 +2340,6 @@
     "frame_id": "parler_de_object_14_pc"
   },
   {
-    "verb": "venir",
-    "frame_type": "de_object",
-    "question": "Je ____ ____ bureau à pied.",
-    "answer": "suis venu du",
-    "full_answer": "Je suis venu du bureau à pied.",
-    "meaning_en": "I came from the office on foot.",
-    "category_id": "builtin-super-everyday",
-    "category_name": "Super Everyday",
-    "note": "manual_hundred_expansion; generated passé composé; fresh passé composé sibling",
-    "type": "frame",
-    "tense": "passeCompose",
-    "source": "manual_hundred_expansion:passe_compose:passe_compose_content",
-    "frame_id": "venir_de_object_03_pc"
-  },
-  {
     "verb": "partir",
     "frame_type": "de_object",
     "question": "Le train ____ ____ quai sans retard.",
@@ -2443,21 +2383,6 @@
     "tense": "passeCompose",
     "source": "manual_hundred_expansion:passe_compose:passe_compose_content",
     "frame_id": "parler_de_object_15_pc"
-  },
-  {
-    "verb": "écrire",
-    "frame_type": "a_object",
-    "question": "J'____ ____ musée pour réserver une visite.",
-    "answer": "ai écrit au",
-    "full_answer": "J'ai écrit au musée pour réserver une visite.",
-    "meaning_en": "I wrote to the museum to book a visit.",
-    "category_id": "builtin-travel-tourism",
-    "category_name": "Travel & Tourism",
-    "note": "manual_hundred_expansion; generated passé composé; fresh passé composé sibling",
-    "type": "frame",
-    "tense": "passeCompose",
-    "source": "manual_hundred_expansion:passe_compose:passe_compose_content",
-    "frame_id": "écrire_a_object_18_pc"
   },
   {
     "verb": "servir",

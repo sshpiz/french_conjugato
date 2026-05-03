@@ -1712,6 +1712,111 @@ html[data-settings-v2="true"] .settings-collapsible[open] > summary {
   flex-shrink: 0;
 }
 
+.settings-inventory-panel {
+  margin: 0.35rem 0 0;
+  border: 1px solid var(--settings-elevated-border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--settings-elevated-bg) 82%, transparent);
+  overflow: hidden;
+}
+
+.settings-inventory-panel > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+}
+
+.settings-inventory-panel > summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-inventory-summary-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.settings-inventory-title {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.settings-inventory-meta {
+  color: var(--meta-color);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.settings-inventory-summary-icon {
+  color: var(--meta-color);
+  font-size: 1.15rem;
+  font-weight: 850;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.settings-inventory-panel[open] .settings-inventory-summary-icon {
+  transform: rotate(45deg);
+}
+
+.settings-inventory-body {
+  border-top: 1px solid var(--settings-elevated-border);
+  padding: 0.2rem 0.75rem 0.75rem;
+  overflow-x: auto;
+}
+
+.settings-inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  color: var(--text-color);
+}
+
+.settings-inventory-table th,
+.settings-inventory-table td {
+  padding: 0.58rem 0.3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--settings-elevated-border) 78%, transparent);
+  text-align: left;
+  vertical-align: top;
+}
+
+.settings-inventory-table thead th {
+  color: var(--meta-color);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.settings-inventory-table tbody th {
+  font-weight: 750;
+}
+
+.settings-inventory-table tr:last-child th,
+.settings-inventory-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.settings-inventory-value {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+}
+
+.settings-inventory-note {
+  color: var(--meta-color);
+  font-size: 0.8rem;
+}
+
 .option-group {
     margin-bottom: 2rem;
     display: flex;
