@@ -209,77 +209,6 @@
       padding: 7px 10px;
     }
 
-    .gallery-panel {
-      overflow: hidden;
-    }
-
-    .gallery-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .gallery-head p {
-      margin: 0;
-      max-width: 640px;
-      color: rgba(19, 32, 38, 0.78);
-      line-height: 1.6;
-    }
-
-    .gallery-rail {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(280px, 340px);
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      scroll-snap-type: x proximity;
-      scrollbar-width: thin;
-    }
-
-    .shot-card {
-      scroll-snap-align: start;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      border-radius: 24px;
-      border: 1px solid rgba(19, 32, 38, 0.1);
-      background: rgba(255,255,255,0.7);
-      padding: 14px;
-      box-shadow: 0 12px 30px rgba(23, 36, 42, 0.07);
-    }
-
-    .shot-frame {
-      overflow: hidden;
-      border-radius: 18px;
-      border: 1px solid rgba(19, 32, 38, 0.08);
-      background: #0e1316;
-      aspect-ratio: 0.9 / 1.7;
-    }
-
-    .shot-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-    }
-
-    .shot-card h3 {
-      margin: 0;
-      font-size: 1.1rem;
-    }
-
-    .shot-card p {
-      margin: 0;
-      color: rgba(19, 32, 38, 0.76);
-      line-height: 1.55;
-      font-size: 0.94rem;
-    }
-
     .badge {
       align-self: flex-start;
       border-radius: 999px;
@@ -320,10 +249,6 @@
       margin-top: 24px;
     }
 
-    .reference-site {
-      margin-top: 24px;
-    }
-
     .about-site {
       margin-top: 24px;
     }
@@ -339,37 +264,6 @@
     .panel h3 {
       margin: 0 0 12px;
       font-size: 1.45rem;
-    }
-
-    .reference-panel {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .reference-copy {
-      max-width: 700px;
-    }
-
-    .reference-copy p {
-      margin: 0;
-      color: rgba(19, 32, 38, 0.78);
-    }
-
-    .reference-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid rgba(31, 89, 100, 0.2);
-      background: rgba(31, 89, 100, 0.08);
-      color: var(--sea);
-      padding: 11px 16px;
-      font-weight: 700;
-      white-space: nowrap;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
     }
 
     .about-panel-main {
@@ -503,9 +397,6 @@
         grid-template-columns: 1fr;
       }
 
-      .gallery-rail {
-        grid-auto-columns: minmax(260px, 82vw);
-      }
     }
 
     @media (max-width: 700px) {
@@ -684,80 +575,6 @@
             </div>
           </div>
         </a>
-      </div>
-    </section>
-
-    <section class="why">
-      <div class="panel gallery-panel">
-        <div class="gallery-head">
-          <div>
-            <h3>A quick feel for the apps</h3>
-            <p>Each language keeps the same direct drill-first spirit, but the screens start revealing their own priorities: aspect, usage, tense focus, or simply getting forms out faster.</p>
-          </div>
-          <span class="badge">Swipe Through</span>
-        </div>
-        <div class="gallery-rail" aria-label="Screenshot gallery">
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-french.png" alt="French app screenshot"></div>
-            <h3>French</h3>
-            <p>The deepest drill stack so far: strong presets, details, and a lot of iteration around speed and recall.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-german.png" alt="German app screenshot"></div>
-            <h3>German</h3>
-            <p>The new arrival: enough to test the shape of a German verb trainer while the grammar direction gets refined.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-italian.png" alt="Italian app screenshot"></div>
-            <h3>Italian</h3>
-            <p>Fresh beta territory: close enough to feel familiar, different enough to deserve its own drill priorities.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-portugese.png" alt="Portuguese app screenshot"></div>
-            <h3>Portuguese</h3>
-            <p>Compact, drillable, and built for quick repetition without the usual streak-and-confetti nonsense.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-spanish.png" alt="Spanish app screenshot"></div>
-            <h3>Spanish</h3>
-            <p>Spanish practice keeps things fast, with cards per pronoun and a growing set of language-specific fixes.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-catalan.png" alt="Catalan app screenshot"></div>
-            <h3>Catalan</h3>
-            <p>A lean Catalan build for focused review when you want forms and not a whole lecture around them.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-russian.png" alt="Russian app screenshot"></div>
-            <h3>Russian</h3>
-            <p>Aspect and verb choice matter more here, so the interface leans into those distinctions instead of hiding them.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-greek.png" alt="Greek app screenshot"></div>
-            <h3>Greek</h3>
-            <p>Greek gets the same clean loop, with a flashcard flow that stays out of the way while you grind the forms.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-ukrainian.png" alt="Ukrainian app screenshot"></div>
-            <h3>Ukrainian</h3>
-            <p>Still evolving, but already useful for pushing through the core tense and pronoun combinations quickly.</p>
-          </article>
-          <article class="shot-card">
-            <div class="shot-frame"><img src="/landing-latvian.png" alt="Latvian app screenshot"></div>
-            <h3>Latvian</h3>
-            <p>Smaller and still rougher, but part of the same experiment: put verbs first and see how much faster speech unlocks.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="why">
-      <div class="panel reference-panel">
-        <div class="reference-copy">
-          <h3>Reference library</h3>
-          <p>Prefer browsing first? Explore the verb reference pages by language and jump straight into the corresponding app when you are ready to drill.</p>
-        </div>
-        <a class="reference-link" href="/reference/">Open Reference Library</a>
       </div>
     </section>
 
