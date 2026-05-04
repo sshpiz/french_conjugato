@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the French app.
 
 const CACHE_PREFIX = 'fr-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v28';
+const CACHE_NAME = CACHE_PREFIX + 'v29';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -18,6 +18,30 @@ const FAVICON_PATH = appPath('favicon_big.png');
 const VERSION_PATH = appPath('version.json');
 const LOG_PATH = appPath(LOG_KEY);
 const TTS_PREFIX = appPath('tts/');
+const PRECACHE_URLS = [INDEX_PATH, MANIFEST_PATH, FAVICON_PATH, VERSION_PATH];
+const FALLBACK_HTML = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VerbsFirst</title>
+  <link rel="icon" href="${FAVICON_PATH}">
+  <style>
+    html,body{height:100%;margin:0}
+    body{display:grid;place-items:center;background:#f8faf7;color:#243328;font:16px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:28rem;padding:2rem;text-align:center}
+    h1{margin:0 0 .5rem;font-size:1.75rem;font-weight:750}
+    p{margin:.35rem 0;color:#4d5c50}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>VerbsFirst</h1>
+    <p>Loading the app...</p>
+    <p>Reconnect and refresh if this stays on screen.</p>
+  </main>
+</body>
+</html>`;
 
 function inScopePath(pathname) {
   if (!SCOPE_PATH) return true;
@@ -59,12 +83,7 @@ self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      // Keep install light: cache only the small essentials here.
-      // The large app shell HTML is warmed after first usable render instead.
-      for (const url of [MANIFEST_PATH, FAVICON_PATH, VERSION_PATH]) {
-        try { await cache.add(url); swLog.add(`pre-cached ${url}`); }
-        catch (e) { swLog.add(`pre-cache failed ${url}: ${e.message}`); }
-      }
+      for (const url of PRECACHE_URLS) await preCacheUrl(cache, url);
     })
   );
 });
@@ -115,6 +134,20 @@ self.addEventListener('message', event => {
     event.waitUntil(warmAppAssets(Array.isArray(data.urls) ? data.urls : [], data.reason || 'message'));
   }
 });
+
+async function preCacheUrl(cache, url) {
+  try {
+    const request = new Request(url, {
+      cache: url === INDEX_PATH ? 'no-store' : 'default'
+    });
+    const response = await fetch(request);
+    if (!response.ok) throw new Error(`status ${response.status}`);
+    await cache.put(url, response.clone());
+    swLog.add(`pre-cached ${url}`);
+  } catch (e) {
+    swLog.add(`pre-cache failed ${url}: ${e.message}`);
+  }
+}
 
 async function warmIndexCache(reason = 'unknown') {
   try {
@@ -252,6 +285,17 @@ async function serveWithSWR(request, url) {
     const fresh = await cache.match(request) || await cache.match(INDEX_PATH);
     if (fresh) return fresh;
   } catch (_) {}
+
+  if (isNav) {
+    swLog.add(`nav FALLBACK-SHELL ${url.pathname}`);
+    return new Response(FALLBACK_HTML, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'no-store'
+      }
+    });
+  }
 
   return new Response('Offline - open once with internet to cache the app', { status: 503 });
 }
