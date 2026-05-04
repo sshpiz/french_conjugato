@@ -4,7 +4,7 @@ Status: Fixed
 Owner: Dev Agent
 Started: 2026-05-04
 Updated: 2026-05-04
-Commit(s): proj1 pending, greek-verbs 0d3a01bf0, portuguese-verbs ccb495e18, russian-verbs 63e74e094, spanish-verbs 4f1414bd7, catalan-verbs 298b72f5e, ukrainian-verbs 86482b895, latvian-verbs 8fe357e1c, german-verbs 03b3b94d5, italian-verbs 3f77e37ec
+Commit(s): proj1 c14ed1b7b, greek-verbs 0d3a01bf0, portuguese-verbs ccb495e18, russian-verbs 63e74e094, spanish-verbs 4f1414bd7, catalan-verbs 298b72f5e, ukrainian-verbs 86482b895, latvian-verbs 8fe357e1c, german-verbs 03b3b94d5, italian-verbs 3f77e37ec
 
 ### Summary
 
