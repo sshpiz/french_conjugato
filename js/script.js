@@ -5296,11 +5296,12 @@ document.addEventListener('DOMContentLoaded', () => {
         celebrationDurationMs: 15000,
         skipUnlockDelayMs: 1000,
         debugTapThreshold: 5,
-        debugTapWindowMs: 1400,
+        debugTapWindowMs: 3200,
         trailStampCount: 14,
         trailSampleMs: 40,
         bounceDamping: 0.84,
     };
+    const DAILY_GOAL_MILESTONE_STEPS = [1, 0.75, 0.5];
     const recentCelebrationSnapshots = [];
 
     const clampValue = (value, min, max) => Math.min(max, Math.max(min, value));
@@ -5368,8 +5369,10 @@ document.addEventListener('DOMContentLoaded', () => {
             recentCelebrationSnapshots.splice(0, recentCelebrationSnapshots.length - 24);
         }
     };
-    const buildCelebrationDeck = () => {
-        const limit = DAILY_GOAL_CELEBRATION_CONFIG.deckSize;
+    const buildCelebrationDeck = (limitOverride = null) => {
+        const limit = Number.isFinite(limitOverride)
+            ? Math.max(1, Math.round(limitOverride))
+            : DAILY_GOAL_CELEBRATION_CONFIG.deckSize;
         const deck = [];
         const seenKeys = new Set();
         const pushSnapshot = (snapshot) => {
@@ -5689,20 +5692,93 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.appLog(`daily-goal-celebration ${reason}`);
             }
         };
-        const buildSprites = (deck, width, height, palette) => {
-            const cardWidth = clampValue(width * 0.145, 46, 64);
+        const getCelebrationVariant = (options = {}) => {
+            const rawMilestoneValue = Number(options.milestoneValue);
+            if (Number.isFinite(rawMilestoneValue) && rawMilestoneValue < 75) {
+                return {
+                    key: 'mini-50',
+                    badgeText: '50 cartes',
+                    deckSize: 4,
+                    maxCards: 1,
+                    durationMs: 4200,
+                    launchCadenceMs: 0,
+                    gravity: 560,
+                    bounceDamping: 0.92,
+                    cardScale: 1.18,
+                    trailSampleMs: 95,
+                    trailAlpha: 0.22,
+                    showStackGhost: false,
+                    spawnXRatio: 0.16,
+                    spawnYRatio: 0.72,
+                    launchAngleMin: -1.05,
+                    launchAngleMax: -0.48,
+                    launchSpeedMin: 0.42,
+                    launchSpeedMax: 0.62,
+                };
+            }
+            if (Number.isFinite(rawMilestoneValue) && rawMilestoneValue < 100) {
+                return {
+                    key: 'mini-75',
+                    badgeText: '75 cartes',
+                    deckSize: 8,
+                    maxCards: 7,
+                    durationMs: 6600,
+                    launchCadenceMs: 130,
+                    gravity: 660,
+                    bounceDamping: 0.88,
+                    cardScale: 1.04,
+                    trailSampleMs: 58,
+                    trailAlpha: 0.5,
+                    showStackGhost: false,
+                    spawnXRatio: 0.13,
+                    spawnYRatio: 0.7,
+                    launchAngleMin: -1.18,
+                    launchAngleMax: -0.42,
+                    launchSpeedMin: 0.58,
+                    launchSpeedMax: 0.92,
+                };
+            }
+            return {
+                key: 'full-100',
+                badgeText: options.milestoneIndex && options.milestoneIndex > 1
+                    ? `Objectif x${options.milestoneIndex}`
+                    : 'Objectif atteint',
+                deckSize: DAILY_GOAL_CELEBRATION_CONFIG.deckSize,
+                maxCards: DAILY_GOAL_CELEBRATION_CONFIG.maxCards,
+                durationMs: DAILY_GOAL_CELEBRATION_CONFIG.celebrationDurationMs,
+                launchCadenceMs: DAILY_GOAL_CELEBRATION_CONFIG.launchCadenceMs,
+                gravity: DAILY_GOAL_CELEBRATION_CONFIG.gravity,
+                bounceDamping: DAILY_GOAL_CELEBRATION_CONFIG.bounceDamping,
+                cardScale: 1,
+                trailSampleMs: DAILY_GOAL_CELEBRATION_CONFIG.trailSampleMs,
+                trailAlpha: 0.98,
+                showStackGhost: true,
+                launchSpeedMin: 0.54,
+                launchSpeedMax: 0.9,
+            };
+        };
+        const buildSprites = (deck, width, height, palette, variant) => {
+            const cardWidth = clampValue(width * 0.145 * (variant.cardScale || 1), 46, 76);
             const cardHeight = Math.round(cardWidth * 1.36);
-            const spawnX = 28;
-            const spawnY = 34;
+            const spawnX = Number.isFinite(variant.spawnXRatio) ? width * variant.spawnXRatio : 28;
+            const spawnY = Number.isFinite(variant.spawnYRatio) ? height * variant.spawnYRatio : 34;
             const bounds = getCelebrationBounds(width, height);
-            const totalCards = Math.min(DAILY_GOAL_CELEBRATION_CONFIG.maxCards, Math.max(deck.length * 2, 24));
+            const totalCards = Math.min(
+                Math.max(1, variant.maxCards || DAILY_GOAL_CELEBRATION_CONFIG.maxCards),
+                Math.max(deck.length * 2, variant.maxCards || 24)
+            );
             const sprites = [];
 
             for (let index = 0; index < totalCards; index += 1) {
                 const snapshot = deck[index % deck.length];
                 const burstBias = (index % 6) / 5;
-                const launchSpeed = randomBetween(height * 0.54, height * 0.9) + (burstBias * 10);
-                const launchAngle = randomBetween(-2.38, -0.72);
+                const launchSpeed = randomBetween(
+                    height * (variant.launchSpeedMin || 0.54),
+                    height * (variant.launchSpeedMax || 0.9)
+                ) + (burstBias * 10);
+                const launchAngle = Number.isFinite(variant.launchAngleMin) && Number.isFinite(variant.launchAngleMax)
+                    ? randomBetween(variant.launchAngleMin, variant.launchAngleMax)
+                    : randomBetween(-2.38, -0.72);
                 const vx = Math.cos(launchAngle) * launchSpeed;
                 const vy = Math.sin(launchAngle) * launchSpeed;
                 const cardAngle = randomBetween(-0.14, 0.1);
@@ -5716,7 +5792,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     angularVelocity: randomBetween(-1.25, 1.25),
                     width: cardWidth,
                     height: cardHeight,
-                    delayMs: index * DAILY_GOAL_CELEBRATION_CONFIG.launchCadenceMs,
+                    delayMs: index * (variant.launchCadenceMs ?? DAILY_GOAL_CELEBRATION_CONFIG.launchCadenceMs),
                     launched: false,
                     accentColor: getAccentColorForSnapshot(snapshot, palette),
                     bounceCount: 0,
@@ -5970,7 +6046,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!sprite.launched || sprite.settled) return;
             sprite.vx *= 0.9992;
             sprite.angularVelocity *= 0.998;
-            sprite.vy += DAILY_GOAL_CELEBRATION_CONFIG.gravity * dtSeconds;
+            const variant = currentRun?.variant || {};
+            sprite.vy += (variant.gravity || DAILY_GOAL_CELEBRATION_CONFIG.gravity) * dtSeconds;
             sprite.x += sprite.vx * dtSeconds;
             sprite.y += sprite.vy * dtSeconds;
             sprite.angle += sprite.angularVelocity * dtSeconds;
@@ -5980,10 +6057,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const halfHeight = sprite.height / 2;
             const { leftBound, rightBound, topBound, floorY } = sprite.bounds;
 
-            if (sprite.trailAccumulatorMs >= DAILY_GOAL_CELEBRATION_CONFIG.trailSampleMs) {
+            if (sprite.trailAccumulatorMs >= (variant.trailSampleMs || DAILY_GOAL_CELEBRATION_CONFIG.trailSampleMs)) {
                 sprite.trailAccumulatorMs = 0;
                 if (trailContext && currentRun?.palette) {
-                    drawRenderedSprite(trailContext, sprite, 0.98);
+                    drawRenderedSprite(trailContext, sprite, variant.trailAlpha || 0.98);
                 }
             }
 
@@ -6004,7 +6081,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sprite.y = floorY - halfHeight;
                 sprite.bounceCount += 1;
                 const damping = clampValue(
-                    DAILY_GOAL_CELEBRATION_CONFIG.bounceDamping - (sprite.bounceCount * 0.028) + randomBetween(-0.015, 0.015),
+                    (variant.bounceDamping || DAILY_GOAL_CELEBRATION_CONFIG.bounceDamping) - (sprite.bounceCount * 0.028) + randomBetween(-0.015, 0.015),
                     0.62,
                     0.88
                 );
@@ -6036,7 +6113,9 @@ document.addEventListener('DOMContentLoaded', () => {
             currentRun.previousFrameTimeMs = frameTimeMs;
 
             context.clearRect(0, 0, currentRun.size.width, currentRun.size.height);
-            drawStackGhost(context, currentRun.palette);
+            if (currentRun.variant?.showStackGhost !== false) {
+                drawStackGhost(context, currentRun.palette);
+            }
 
             currentRun.sprites.forEach((sprite) => {
                 if (!sprite.launched && elapsedMs >= sprite.delayMs) {
@@ -6048,7 +6127,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 drawRenderedSprite(context, sprite, 1);
             });
 
-            if (elapsedMs >= DAILY_GOAL_CELEBRATION_CONFIG.celebrationDurationMs) {
+            const durationMs = currentRun.variant?.durationMs || DAILY_GOAL_CELEBRATION_CONFIG.celebrationDurationMs;
+            if (elapsedMs >= durationMs) {
                 cleanup('completed');
                 return;
             }
@@ -6065,8 +6145,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const size = fitCanvasToFlashcard(true);
                 if (!size || !context) return;
 
-                const deck = buildCelebrationDeck();
-                const sprites = buildSprites(deck, size.width, size.height, palette);
+                const variant = getCelebrationVariant(options);
+                if (window.appLog) {
+                    window.appLog(`daily-goal-celebration start variant=${variant.key} milestone=${options.milestoneValue || 100}`);
+                }
+                const deck = buildCelebrationDeck(variant.deckSize);
+                const sprites = buildSprites(deck, size.width, size.height, palette, variant);
                 assignRenderedAssets(sprites, palette, size.dpr);
                 currentRun = {
                     reason: options.reason || 'manual',
@@ -6075,12 +6159,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     palette,
                     size,
                     sprites,
+                    variant,
                 };
 
                 if (badge) {
-                    badge.textContent = options.milestoneIndex && options.milestoneIndex > 1
-                        ? `Objectif x${options.milestoneIndex}`
-                        : 'Objectif atteint';
+                    badge.textContent = variant.badgeText || 'Objectif atteint';
                 }
                 if (hint) {
                     hint.textContent = 'Touchez pour passer';
@@ -6089,7 +6172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     overlay.classList.add('is-visible');
                 }
                 if (badge) {
-                    badge.style.display = options.reason === 'debug-counter' ? 'none' : 'inline-flex';
+                    badge.style.display = 'inline-flex';
                 }
                 setSkipEnabled(false);
                 skipUnlockTimer = window.setTimeout(() => {
@@ -6111,12 +6194,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!ENABLE_DAILY_GOAL_CELEBRATION || dailyGoalCelebration.isActive()) return;
         const goal = getDailyGoalTarget();
         if (goal <= 0) return;
-        const previousMilestoneIndex = Math.floor(previousCount / goal);
-        const nextMilestoneIndex = Math.floor(nextCount / goal);
-        if (nextMilestoneIndex > previousMilestoneIndex) {
+        const crossedStep = DAILY_GOAL_MILESTONE_STEPS.find((step) => {
+            const previousStepIndex = Math.floor(previousCount / (goal * step));
+            const nextStepIndex = Math.floor(nextCount / (goal * step));
+            return nextStepIndex > previousStepIndex;
+        });
+        if (crossedStep) {
+            const nextMilestoneIndex = Math.floor(nextCount / goal);
             dailyGoalCelebration.trigger({
                 reason: 'daily-goal',
-                milestoneIndex: nextMilestoneIndex,
+                milestoneIndex: Math.max(1, nextMilestoneIndex),
+                milestoneValue: Math.round(crossedStep * 100),
             });
         }
     };
@@ -6124,8 +6212,230 @@ document.addEventListener('DOMContentLoaded', () => {
         dailyGoalCelebration.trigger({
             reason: options.reason || 'manual',
             milestoneIndex: Number(options.milestoneIndex) || 0,
+            milestoneValue: Number(options.milestoneValue) || 100,
         });
     };
+
+    const STUDY_STATS_STORAGE_KEY = getScopedStorageKey('studyStatsV1');
+    const STUDY_STATS_SCHEMA_VERSION = 1;
+    const STUDY_STATS_MAX_RECENT_EVENTS = 240;
+    const STUDY_STATS_MAX_REVEAL_MS = 90000;
+    const STUDY_STATS_MAX_POST_REVEAL_MS = 60000;
+    const STUDY_STATS_MAX_UNREVEALED_MS = 30000;
+    const studyStatsSessionId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+    let activeStudyStatsCardSession = null;
+
+    const createEmptyStudyStats = () => ({
+        schemaVersion: STUDY_STATS_SCHEMA_VERSION,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        totals: {
+            cardsShown: 0,
+            cardsRevealed: 0,
+            cardsAdvanced: 0,
+            abandonedBeforeReveal: 0,
+            activeMs: 0,
+            timeToRevealMs: 0,
+            postRevealMs: 0,
+        },
+        byMode: {},
+        byQuestionType: {},
+        byTense: {},
+        byPronoun: {},
+        byTopic: {},
+        byFrequency: {},
+        byVerb: {},
+        byDay: {},
+        recentEvents: [],
+    });
+
+    const loadStudyStats = () => {
+        try {
+            const raw = localStorage.getItem(STUDY_STATS_STORAGE_KEY);
+            if (!raw) return createEmptyStudyStats();
+            const parsed = JSON.parse(raw);
+            if (!parsed || parsed.schemaVersion !== STUDY_STATS_SCHEMA_VERSION) {
+                return createEmptyStudyStats();
+            }
+            return {
+                ...createEmptyStudyStats(),
+                ...parsed,
+                totals: { ...createEmptyStudyStats().totals, ...(parsed.totals || {}) },
+                recentEvents: Array.isArray(parsed.recentEvents) ? parsed.recentEvents : [],
+            };
+        } catch (error) {
+            console.warn('Could not load study stats:', error);
+            return createEmptyStudyStats();
+        }
+    };
+
+    const saveStudyStats = (stats) => {
+        try {
+            stats.updatedAt = new Date().toISOString();
+            localStorage.setItem(STUDY_STATS_STORAGE_KEY, JSON.stringify(stats));
+        } catch (error) {
+            console.warn('Could not save study stats:', error);
+        }
+    };
+
+    const normalizeStudyStatsKey = (value, fallback = 'none') => {
+        const text = String(value || '').trim();
+        return text || fallback;
+    };
+
+    const incrementStudyStatsBucket = (stats, bucketName, key, delta) => {
+        const bucket = stats[bucketName];
+        if (!bucket) return;
+        const normalizedKey = normalizeStudyStatsKey(key);
+        const entry = bucket[normalizedKey] || {
+            cardsShown: 0,
+            cardsRevealed: 0,
+            cardsAdvanced: 0,
+            abandonedBeforeReveal: 0,
+            activeMs: 0,
+            timeToRevealMs: 0,
+            postRevealMs: 0,
+        };
+        Object.keys(delta).forEach((field) => {
+            entry[field] = (Number(entry[field]) || 0) + (Number(delta[field]) || 0);
+        });
+        bucket[normalizedKey] = entry;
+    };
+
+    const getStudyStatsCardDescriptor = (card) => {
+        const verb = card?.verb || {};
+        const isFrameCard = !!card?.isFrameCard;
+        const isPhraseMode = !!(card?.isPhraseMode || (!card?.verb && card?.phrase));
+        const mode = isFrameCard ? 'fill_blanks' : (isPhraseMode ? 'phrase' : 'conjugation');
+        const questionType = isFrameCard
+            ? (card.frameSubtype === 'pronoun_fill' ? 'pronoun_replacement' : 'verb_pattern')
+            : (isPhraseMode ? 'phrase' : 'conjugation');
+        const frequency = normalizeFrequencyKey(verb.frequency) || String(verb.frequency || '').trim() || 'unknown';
+        const topic = card?.topicName || (card?.verb ? getCardTopicBadgeLabel(card) : '') || 'none';
+        return {
+            mode,
+            questionType,
+            verb: verb.infinitive || (card?.phrase ? 'phrase-card' : 'unknown'),
+            tense: card?.tense || 'none',
+            pronoun: card?.pronoun || card?.pronounKey || 'none',
+            topic,
+            frequency,
+            cardKey: card ? cardKey(card) : 'unknown-card',
+        };
+    };
+
+    const getStudyStatsDayKey = () => {
+        const now = new Date();
+        return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    };
+
+    const recordStudyStatsDelta = (descriptor, delta, event = null) => {
+        if (!descriptor) return;
+        const stats = loadStudyStats();
+        Object.keys(delta).forEach((field) => {
+            stats.totals[field] = (Number(stats.totals[field]) || 0) + (Number(delta[field]) || 0);
+        });
+        incrementStudyStatsBucket(stats, 'byMode', descriptor.mode, delta);
+        incrementStudyStatsBucket(stats, 'byQuestionType', descriptor.questionType, delta);
+        incrementStudyStatsBucket(stats, 'byTense', descriptor.tense, delta);
+        incrementStudyStatsBucket(stats, 'byPronoun', descriptor.pronoun, delta);
+        incrementStudyStatsBucket(stats, 'byTopic', descriptor.topic, delta);
+        incrementStudyStatsBucket(stats, 'byFrequency', descriptor.frequency, delta);
+        incrementStudyStatsBucket(stats, 'byVerb', descriptor.verb, delta);
+        incrementStudyStatsBucket(stats, 'byDay', getStudyStatsDayKey(), delta);
+        if (event) {
+            stats.recentEvents.push({
+                ...event,
+                at: new Date().toISOString(),
+                sessionId: studyStatsSessionId,
+                mode: descriptor.mode,
+                questionType: descriptor.questionType,
+                verb: descriptor.verb,
+                tense: descriptor.tense,
+                pronoun: descriptor.pronoun,
+                topic: descriptor.topic,
+                frequency: descriptor.frequency,
+            });
+            if (stats.recentEvents.length > STUDY_STATS_MAX_RECENT_EVENTS) {
+                stats.recentEvents.splice(0, stats.recentEvents.length - STUDY_STATS_MAX_RECENT_EVENTS);
+            }
+        }
+        saveStudyStats(stats);
+    };
+
+    const beginStudyStatsCardSession = (card) => {
+        if (!card) return;
+        const descriptor = getStudyStatsCardDescriptor(card);
+        activeStudyStatsCardSession = {
+            descriptor,
+            shownAtMs: performance.now(),
+            revealedAtMs: null,
+            revealRecorded: false,
+        };
+        recordStudyStatsDelta(descriptor, { cardsShown: 1 }, { type: 'shown' });
+    };
+
+    const recordStudyStatsReveal = (card) => {
+        const session = activeStudyStatsCardSession;
+        if (!session || session.revealRecorded) return;
+        const descriptor = session.descriptor || getStudyStatsCardDescriptor(card);
+        const now = performance.now();
+        const timeToRevealMs = clampValue(now - session.shownAtMs, 0, STUDY_STATS_MAX_REVEAL_MS);
+        session.revealedAtMs = now;
+        session.revealRecorded = true;
+        recordStudyStatsDelta(descriptor, {
+            cardsRevealed: 1,
+            timeToRevealMs,
+            activeMs: timeToRevealMs,
+        }, {
+            type: 'revealed',
+            timeToRevealMs: Math.round(timeToRevealMs),
+        });
+    };
+
+    const finalizeStudyStatsCardSession = (reason = 'advanced') => {
+        const session = activeStudyStatsCardSession;
+        if (!session) return;
+        activeStudyStatsCardSession = null;
+        const now = performance.now();
+        if (session.revealRecorded) {
+            const postRevealMs = clampValue(now - (session.revealedAtMs || now), 0, STUDY_STATS_MAX_POST_REVEAL_MS);
+            recordStudyStatsDelta(session.descriptor, {
+                cardsAdvanced: 1,
+                postRevealMs,
+                activeMs: postRevealMs,
+            }, {
+                type: 'advanced',
+                reason,
+                postRevealMs: Math.round(postRevealMs),
+            });
+            return;
+        }
+        const activeMs = clampValue(now - session.shownAtMs, 0, STUDY_STATS_MAX_UNREVEALED_MS);
+        recordStudyStatsDelta(session.descriptor, {
+            abandonedBeforeReveal: 1,
+            activeMs,
+        }, {
+            type: 'abandoned',
+            reason,
+            activeMs: Math.round(activeMs),
+        });
+    };
+
+    window.getLocalStudyStats = () => loadStudyStats();
+    window.resetLocalStudyStats = () => {
+        localStorage.removeItem(STUDY_STATS_STORAGE_KEY);
+        activeStudyStatsCardSession = null;
+    };
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            finalizeStudyStatsCardSession('hidden');
+        }
+    });
+    window.addEventListener('pagehide', () => {
+        finalizeStudyStatsCardSession('pagehide');
+    });
 
     const loadTutorialState = () => {
         try {
@@ -7847,8 +8157,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hasLoggedFirstCardDisplay = false;
     const displayCard = (card) => {
+        finalizeStudyStatsCardSession('card-replaced');
         currentCard = card;
         currentCardShownAtMs = performance.now();
+        beginStudyStatsCardSession(card);
         if (!hasLoggedFirstCardDisplay) {
             hasLoggedFirstCardDisplay = true;
             const cardSummary = card && card.verb
@@ -8177,6 +8489,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dismissReopenMessage();
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
+            recordStudyStatsReveal(currentCard);
             const previousDailyCount = getCurrentDailyCount();
             if (window.incrementDailyCount) window.incrementDailyCount();
             maybeTriggerDailyGoalCelebration(previousDailyCount, getCurrentDailyCount());
@@ -10729,6 +11042,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dailyProgressContainer) {
         let debugTapCount = 0;
         let debugTapResetTimer = null;
+        let debugCelebrationMilestoneIndex = 0;
+        const debugCelebrationMilestones = [50, 75, 100];
         const resetDailyGoalDebugCounter = () => {
             debugTapCount = 0;
             if (debugTapResetTimer) {
@@ -10748,7 +11063,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (debugTapCount >= DAILY_GOAL_CELEBRATION_CONFIG.debugTapThreshold) {
                 resetDailyGoalDebugCounter();
-                dailyGoalCelebration.trigger({ reason: 'debug-counter' });
+                const milestoneValue = debugCelebrationMilestones[
+                    debugCelebrationMilestoneIndex % debugCelebrationMilestones.length
+                ];
+                debugCelebrationMilestoneIndex += 1;
+                dailyGoalCelebration.trigger({
+                    reason: 'debug-counter',
+                    milestoneValue,
+                });
             }
         });
     }

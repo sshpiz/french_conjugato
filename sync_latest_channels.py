@@ -32,6 +32,19 @@ LANGS = [
     "ukrainian",
 ]
 
+LANG_CODES = {
+    "french": "FR",
+    "spanish": "ES",
+    "german": "DE",
+    "portugese": "PT",
+    "italian": "IT",
+    "greek": "EL",
+    "catalan": "CA",
+    "latvian": "LV",
+    "russian": "RU",
+    "ukrainian": "UK",
+}
+
 EXCLUDED_DIRS = {"latest", "tts"}
 EXCLUDED_FILES = {".DS_Store"}
 
@@ -69,17 +82,18 @@ def latest_slug(lang: str) -> str:
     return f"{lang}_latest"
 
 
+def latest_app_name(lang: str) -> str:
+    return f"Verbs 1st - {LANG_CODES.get(lang, lang[:2].upper())}"
+
+
 def patch_manifest(manifest_path: Path, lang: str) -> None:
     if not manifest_path.exists():
         return
     data = json.loads(manifest_path.read_text(encoding="utf-8"))
-    base_name = str(data.get("name") or "VerbsFirst").strip()
-    base_short_name = str(data.get("short_name") or base_name).strip()
-    latest_name = f"{base_name} Latest"
-    latest_short_name = f"{base_short_name} Latest"
+    app_name = latest_app_name(lang)
 
-    data["name"] = latest_name
-    data["short_name"] = latest_short_name
+    data["name"] = app_name
+    data["short_name"] = app_name
     data["id"] = f"/{latest_slug(lang)}/"
     data["start_url"] = "./"
     data["scope"] = "./"
@@ -105,22 +119,18 @@ def patch_service_worker(sw_path: Path, lang: str) -> None:
 def patch_html_identity(html_path: Path, lang: str) -> None:
     text = html_path.read_text(encoding="utf-8")
     updated = text
-    title_suffix = " Latest"
+    app_name = latest_app_name(lang)
 
     updated = re.sub(
         r"(<title>)(.*?)(</title>)",
-        lambda match: match.group(0)
-        if match.group(2).strip().endswith(title_suffix)
-        else f"{match.group(1)}{match.group(2).strip()}{title_suffix}{match.group(3)}",
+        rf"\1{app_name}\3",
         updated,
         count=1,
         flags=re.IGNORECASE | re.DOTALL,
     )
     updated = re.sub(
         r'(<meta\s+name="apple-mobile-web-app-title"\s+content=")([^"]*)(")',
-        lambda match: match.group(0)
-        if match.group(2).strip().endswith(title_suffix)
-        else f"{match.group(1)}{match.group(2).strip()}{title_suffix}{match.group(3)}",
+        rf"\1{app_name}\3",
         updated,
         count=1,
         flags=re.IGNORECASE,

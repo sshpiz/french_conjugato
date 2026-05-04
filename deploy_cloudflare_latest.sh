@@ -26,13 +26,21 @@ cd "$ROOT_DIR"
 echo "Building VerbsFirst dist..."
 python3 build.py
 
-echo "Preparing Cloudflare deploy directory: $DEPLOY_DIR"
-rm -rf "$DEPLOY_DIR"
-rsync -a --delete \
-  --exclude 'reference/' \
-  --exclude '*/tts/' \
-  --exclude '*/latest/' \
-  dist/ "$DEPLOY_DIR/"
+if [[ "${LATEST_ONLY:-}" == "1" ]]; then
+  if [[ ! -d "$DEPLOY_DIR" ]]; then
+    echo "LATEST_ONLY=1 needs an existing deploy directory at $DEPLOY_DIR so stable app folders can be preserved." >&2
+    exit 1
+  fi
+  echo "Preparing latest-only deploy directory: $DEPLOY_DIR"
+else
+  echo "Preparing Cloudflare deploy directory: $DEPLOY_DIR"
+  rm -rf "$DEPLOY_DIR"
+  rsync -a --delete \
+    --exclude 'reference/' \
+    --exclude '*/tts/' \
+    --exclude '*/latest/' \
+    dist/ "$DEPLOY_DIR/"
+fi
 
 echo "Ensuring bulky/generated folders are excluded from Cloudflare deploy directory..."
 rm -rf "$DEPLOY_DIR/reference"
