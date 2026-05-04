@@ -244,8 +244,58 @@ def phrase_tail(tail: str | None) -> str:
     return f" {tail.strip()}" if tail else ""
 
 
+POSSESSIVE_REPLACEMENTS = {
+    "je": {
+        "son argent": "mon argent",
+        "son latin": "mon latin",
+        "sa version": "ma version",
+        "ses moutons": "mes moutons",
+    },
+    "tu": {
+        "son argent": "ton argent",
+        "son latin": "ton latin",
+        "sa version": "ta version",
+        "ses moutons": "tes moutons",
+    },
+    "il/elle/on": {
+        "son argent": "son argent",
+        "son latin": "son latin",
+        "sa version": "sa version",
+        "ses moutons": "ses moutons",
+    },
+    "nous": {
+        "son argent": "notre argent",
+        "son latin": "notre latin",
+        "sa version": "notre version",
+        "ses moutons": "nos moutons",
+    },
+    "vous": {
+        "son argent": "votre argent",
+        "son latin": "votre latin",
+        "sa version": "votre version",
+        "ses moutons": "vos moutons",
+    },
+    "ils/elles": {
+        "son argent": "leur argent",
+        "son latin": "leur latin",
+        "sa version": "leur version",
+        "ses moutons": "leurs moutons",
+    },
+}
+
+
+def agree_tail(tail: str | None, pronoun: str) -> str | None:
+    if not tail:
+        return tail
+    agreed = tail
+    for source, replacement in POSSESSIVE_REPLACEMENTS[pronoun].items():
+        agreed = agreed.replace(source, replacement)
+    return agreed
+
+
 def conjugate_en(base_form: str, pronoun: str, tail: str | None) -> str:
     rest = strip_subject(base_form, pronoun)
+    tail = agree_tail(tail, pronoun)
     if pronoun == "je":
         return f"j'en {rest}{phrase_tail(tail)}"
     return f"{SUBJECT[pronoun]} en {rest}{phrase_tail(tail)}"
@@ -253,12 +303,13 @@ def conjugate_en(base_form: str, pronoun: str, tail: str | None) -> str:
 
 def conjugate_reflexive_en(base_form: str, pronoun: str, tail: str | None) -> str:
     rest = strip_subject(base_form, pronoun)
+    tail = agree_tail(tail, pronoun)
     return f"{SUBJECT[pronoun]} {REFLEXIVE_EN[pronoun]} {rest}{phrase_tail(tail)}"
 
 
 def conjugate_reflexive_en_compound(tenses, spec, pronoun: str, tense: str) -> str:
     base = spec["base"]
-    tail = spec.get("tail")
+    tail = agree_tail(spec.get("tail"), pronoun)
     aux = ETRE_PRESENT[pronoun] if tense == "passeCompose" else ETRE_IMPARFAIT[pronoun]
     participle = past_participle(tenses, base, pronoun)
     if should_agree_reflexive_participle(spec):
@@ -268,12 +319,13 @@ def conjugate_reflexive_en_compound(tenses, spec, pronoun: str, tense: str) -> s
 
 def conjugate_negative_reflexive_en(base_form: str, pronoun: str, tail: str | None) -> str:
     rest = strip_subject(base_form, pronoun)
+    tail = agree_tail(tail, pronoun)
     return f"{SUBJECT[pronoun]} ne {REFLEXIVE_EN[pronoun]} {rest} pas{phrase_tail(tail)}"
 
 
 def conjugate_negative_reflexive_en_compound(tenses, spec, pronoun: str, tense: str) -> str:
     base = spec["base"]
-    tail = spec.get("tail")
+    tail = agree_tail(spec.get("tail"), pronoun)
     aux = ETRE_PRESENT[pronoun] if tense == "passeCompose" else ETRE_IMPARFAIT[pronoun]
     participle = past_participle(tenses, base, pronoun)
     if should_agree_reflexive_participle(spec):
