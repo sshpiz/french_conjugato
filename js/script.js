@@ -9738,8 +9738,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Options UI Logic ---
     const populateOptions = (options = {}) => {
-        const { preserveAnchorId = null } = options || {};
-        const preservedAnchor = preserveAnchorId ? document.getElementById(preserveAnchorId) : null;
+        const { preserveAnchorId = null, preserveAnchorSelector = null } = options || {};
+        const preservedAnchor = preserveAnchorSelector
+            ? document.querySelector(preserveAnchorSelector)
+            : (preserveAnchorId ? document.getElementById(preserveAnchorId) : null);
         const preservedAnchorTop = preservedAnchor ? preservedAnchor.getBoundingClientRect().top : null;
         const preservedOpenDetailsIds = new Set(
             Array.from(document.querySelectorAll('details[id][open]'))
@@ -9882,10 +9884,28 @@ document.addEventListener('DOMContentLoaded', () => {
             card.appendChild(heading);
             return card;
         };
+        const preserveElementViewportPosition = (anchor, update) => {
+            const anchorTop = anchor && typeof anchor.getBoundingClientRect === 'function'
+                ? anchor.getBoundingClientRect().top
+                : null;
+            update();
+            if (anchorTop === null) return;
+            const restore = () => {
+                if (!anchor.isConnected) return;
+                const delta = anchor.getBoundingClientRect().top - anchorTop;
+                if (Math.abs(delta) > 1) {
+                    window.scrollBy(0, delta);
+                }
+            };
+            restore();
+            requestAnimationFrame(restore);
+        };
+
         const createSegmentedPillRow = (labelText, helperText, options, activeValue, onSelect) => {
             const row = document.createElement('div');
             row.className = 'toggle-row';
             row.style.marginTop = '0.4rem';
+            row.dataset.settingsRowKey = labelText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
             const pills = options.map(({ value, label }) => (
                 `<button class="reflexive-pill${activeValue === value ? ' active' : ''}" data-value="${escapeHtml(value)}">${escapeHtml(label)}</button>`
@@ -9903,8 +9923,8 @@ document.addEventListener('DOMContentLoaded', () => {
             row.querySelectorAll('.reflexive-pill').forEach((btn) => {
                 btn.addEventListener('click', () => {
                     const nextValue = btn.dataset.value || '';
-                    onSelect(nextValue);
                     row.querySelectorAll('.reflexive-pill').forEach((pill) => pill.classList.toggle('active', pill === btn));
+                    onSelect(nextValue, { row, button: btn });
                 });
             });
             return row;
@@ -9981,10 +10001,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         { value: 'pronouns', label: 'Pronoun replacements' }
                     ],
                     fillFocusMode,
-                    (value) => {
+                    (value, context) => {
                         cardGenerationOptions.fillFocusMode = normalizeFillFocusMode(value);
                         saveOptions();
-                        populateOptions({ preserveAnchorId: 'settings-v2-fill-setup' });
+                        populateOptions({
+                            preserveAnchorId: 'settings-v2-fill-setup',
+                            preserveAnchorSelector: '[data-settings-row-key="question-type"]'
+                        });
                         updateSettingsV2LayoutState();
                     }
                 );
@@ -9998,11 +10021,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         { value: 'hard', label: 'Hard' }
                     ],
                     fillDifficultyMode,
-                    (value) => {
-                        cardGenerationOptions.fillDifficultyMode = normalizeFillDifficultyMode(value);
-                        saveOptions();
-                        populateOptions({ preserveAnchorId: 'settings-v2-fill-setup' });
-                        updateSettingsV2LayoutState();
+                    (value, context) => {
+                        const nextDifficultyMode = normalizeFillDifficultyMode(value);
+                        if (nextDifficultyMode === normalizeFillDifficultyMode(cardGenerationOptions.fillDifficultyMode)) return;
+                        preserveElementViewportPosition(context?.row || fillDifficultyRow, () => {
+                            cardGenerationOptions.fillDifficultyMode = nextDifficultyMode;
+                            saveOptions();
+                            updateVerbFiltersCountLabel();
+                            updateSettingsV2LayoutState();
+                        });
                     }
                 );
                 settingsV2FillFocusContainer.appendChild(fillDifficultyRow);
@@ -10590,8 +10617,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         updateSettingsV2LayoutState();
-        if (preserveAnchorId && preservedAnchorTop !== null) {
-            const nextAnchor = document.getElementById(preserveAnchorId);
+        if ((preserveAnchorSelector || preserveAnchorId) && preservedAnchorTop !== null) {
+            const nextAnchor = preserveAnchorSelector
+                ? document.querySelector(preserveAnchorSelector)
+                : document.getElementById(preserveAnchorId);
             if (nextAnchor) {
                 const nextTop = nextAnchor.getBoundingClientRect().top;
                 const delta = nextTop - preservedAnchorTop;
