@@ -778,6 +778,7 @@ body {
     position: relative;
     flex: 0 0 auto;
     overflow: hidden;
+    line-height: 1.18;
     transition:
         background-color 700ms ease,
         border-color 700ms ease,
@@ -791,14 +792,16 @@ body {
     align-items: center;
     justify-content: center;
     font: inherit;
-    line-height: 1;
+    line-height: 1.18;
+    box-sizing: border-box;
+    padding-block: 0.06em 0.12em;
     white-space: nowrap;
     text-align: center;
     transition: opacity 220ms ease, color 220ms ease;
 }
 
 #conjugated-verb.frame-card-inline-text .frame-slot .ghost {
-    padding: 0 0.04em;
+    padding-inline: 0.04em;
     color: transparent;
     opacity: 1;
     user-select: none;
@@ -834,13 +837,15 @@ body {
 }
 
 #conjugated-verb.frame-card-inline-text .verb-slot {
-    height: 1.02em;
+    min-height: 1.32em;
+    height: auto;
     padding: 0 0.42em;
     border-radius: 999px;
 }
 
 #conjugated-verb.frame-card-inline-text .particle-slot {
-    height: 0.9em;
+    min-height: 1.16em;
+    height: auto;
     padding: 0 0.16em;
     border-radius: 16px;
 }
