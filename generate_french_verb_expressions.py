@@ -284,11 +284,35 @@ POSSESSIVE_REPLACEMENTS = {
 }
 
 
+TONIC_REFLEXIVE_REPLACEMENTS = {
+    "je": {
+        "que soi": "que moi",
+    },
+    "tu": {
+        "que soi": "que toi",
+    },
+    "il/elle/on": {
+        "que soi": "que lui",
+    },
+    "nous": {
+        "que soi": "que nous",
+    },
+    "vous": {
+        "que soi": "que vous",
+    },
+    "ils/elles": {
+        "que soi": "qu'eux",
+    },
+}
+
+
 def agree_tail(tail: str | None, pronoun: str) -> str | None:
     if not tail:
         return tail
     agreed = tail
     for source, replacement in POSSESSIVE_REPLACEMENTS[pronoun].items():
+        agreed = agreed.replace(source, replacement)
+    for source, replacement in TONIC_REFLEXIVE_REPLACEMENTS[pronoun].items():
         agreed = agreed.replace(source, replacement)
     return agreed
 
