@@ -1,7 +1,7 @@
 {
-  "name": "Les Verbes",
-  "short_name": "Les Verbes", 
-  "id": "./",
+  "name": "Verbs 1st - FR",
+  "short_name": "Verbs 1st - FR",
+  "id": "/french/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

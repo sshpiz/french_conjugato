@@ -83,7 +83,7 @@ def latest_slug(lang: str) -> str:
 
 
 def latest_app_name(lang: str) -> str:
-    return f"Verbs 1st - {LANG_CODES.get(lang, lang[:2].upper())}"
+    return f"Verbs 1st - {LANG_CODES.get(lang, lang[:2].upper())} Latest"
 
 
 def patch_manifest(manifest_path: Path, lang: str) -> None:
