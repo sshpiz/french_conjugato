@@ -63,6 +63,7 @@ ROOT_FILES_TO_COPY = [
     "CNAME",
     "robots.txt",
     "llms.txt",
+    "_headers",
     "landing-greek.png",
     "landing-portugese.png",
     "landing-french.png",

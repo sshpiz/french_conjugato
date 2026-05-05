@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the French app.
 
 const CACHE_PREFIX = 'fr-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v29';
+const CACHE_NAME = CACHE_PREFIX + 'v30';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -122,7 +122,10 @@ self.addEventListener('fetch', event => {
   if (url.origin !== self.location.origin) return;
   if (!inScopePath(url.pathname)) return;
 
-  event.respondWith(serveWithSWR(event.request, url));
+  event.respondWith(
+    serveWithSWR(event.request, url)
+      .catch(error => serveAfterUnhandledError(event.request, url, error))
+  );
 });
 
 self.addEventListener('message', event => {
@@ -199,11 +202,36 @@ async function warmAppAssets(urls = [], reason = 'unknown') {
   swLog.add(`warm-assets done reason=${reason} ok=${ok} failed=${failed}`);
 }
 
-async function serveWithSWR(request, url) {
-  const isNav = request.mode === 'navigate'
+function isNavigationRequest(request, url) {
+  return request.mode === 'navigate'
     || url.pathname === SCOPE_PATH
     || url.pathname === `${SCOPE_PATH}/`
     || url.pathname.endsWith('.html');
+}
+
+function fallbackShellResponse() {
+  return new Response(FALLBACK_HTML, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'no-store'
+    }
+  });
+}
+
+async function serveAfterUnhandledError(request, url, error) {
+  const message = error && error.message ? error.message : String(error || 'unknown');
+  const isNav = isNavigationRequest(request, url);
+  swLog.add(`serve-error ${url.pathname}: ${message}`);
+  if (isNav) {
+    swLog.add(`nav FALLBACK-SHELL ${url.pathname} after serve-error`);
+    return fallbackShellResponse();
+  }
+  return new Response('Offline - open once with internet to cache the app', { status: 503 });
+}
+
+async function serveWithSWR(request, url) {
+  const isNav = isNavigationRequest(request, url);
   const isTtsAsset = url.pathname.startsWith(TTS_PREFIX);
   const isVersionRequest = url.pathname === VERSION_PATH;
   const forceRefresh = isNav && url.searchParams.has('__refresh');
@@ -288,13 +316,7 @@ async function serveWithSWR(request, url) {
 
   if (isNav) {
     swLog.add(`nav FALLBACK-SHELL ${url.pathname}`);
-    return new Response(FALLBACK_HTML, {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/html; charset=utf-8',
-        'Cache-Control': 'no-store'
-      }
-    });
+    return fallbackShellResponse();
   }
 
   return new Response('Offline - open once with internet to cache the app', { status: 503 });
