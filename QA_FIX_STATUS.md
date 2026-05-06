@@ -349,3 +349,43 @@ Local file inspection, local generated French latest data, local headless Chrome
 ### Remaining Risk
 
 The current live asset is correct, so the original screenshot was likely from an older cached or pre-fix build. A user with a stale service-worker/browser cache may still need a hard refresh or normal app update cycle before seeing the corrected rows.
+
+## VF-QA-0007 Follow-up
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-06
+Updated: 2026-05-06
+Commit(s): spanish-verbs e6ce770
+
+### Summary
+
+Added an early Spanish app canonical-host guard so bare-domain Spanish app loads redirect to `https://www.verbsfirst.com` before service-worker registration or install UI can run.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/spanish-verbs/index.html
+
+### Root Cause Confirmed
+
+Confirmed. `https://verbsfirst.com` and `https://www.verbsfirst.com` are separate browser origins, so Chrome can keep separate service workers, storage, install prompt state, and PWA identities for the same Spanish app. Serving Spanish on both hostnames without canonicalization lets install work on one origin while failing or falling back on the other.
+
+### Fix Details
+
+Inserted a first-head script in the Spanish app that matches `https://verbsfirst.com/spanish...` and `https://verbsfirst.com/spanish_latest...`, then performs `location.replace()` to the same path, query, and fragment on `https://www.verbsfirst.com`. The guard is before manifest discovery and before `navigator.serviceWorker.register('./sw.js', { scope: './' })`, so the wrong origin should not reach the app install flow once the rebuilt Spanish HTML is deployed.
+
+### Verification Run
+
+- `curl -L --compressed -I https://verbsfirst.com/spanish/`
+- `curl -L --compressed -I https://www.verbsfirst.com/spanish/`
+- `python3 /Users/simeon/Code/VerbsFirst/spanish-verbs/build.py`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `rg -n 'Canonicalize Spanish PWA origin|location.replace\(' /Users/simeon/Code/VerbsFirst/spanish-verbs/index.html /Users/simeon/Code/VerbsFirst/spanish-verbs/dist/index.html`
+- `rg -n 'Canonicalize Spanish PWA origin|location.replace\(' /Users/simeon/Code/VerbsFirst/proj1/dist/spanish/index.html /Users/simeon/Code/VerbsFirst/proj1/dist/spanish_latest/index.html /Users/simeon/Code/VerbsFirst/proj1/dist/conjugaespanol.html`
+- Local ordering check confirmed the canonical guard appears before both `rel="manifest"` and `navigator.serviceWorker.register` in rebuilt `/spanish/` and `/spanish_latest/` HTML.
+- `git -C /Users/simeon/Code/VerbsFirst/spanish-verbs diff --check -- index.html`
+
+### Remaining Risk
+
+The cleaner edge-level Cloudflare redirect was not applied because the available Pages API token returned `403 Authentication error` for the Rulesets API. Cloudflare Pages `_redirects` cannot target one hostname without also matching the other, so this local fix uses the earliest app-level redirect instead. This still needs deploy/live verification and physical Chrome Android install testing; stale bare-origin service-worker state may also require clearing site data or a normal update cycle.
