@@ -389,3 +389,44 @@ Inserted a first-head script in the Spanish app that matches `https://verbsfirst
 ### Remaining Risk
 
 The cleaner edge-level Cloudflare redirect was not applied because the available Pages API token returned `403 Authentication error` for the Rulesets API. Cloudflare Pages `_redirects` cannot target one hostname without also matching the other, so this local fix uses the earliest app-level redirect instead. This still needs deploy/live verification and physical Chrome Android install testing; stale bare-origin service-worker state may also require clearing site data or a normal update cycle.
+
+## VF-QA-0009
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-07
+Updated: 2026-05-07
+Commit(s): portuguese-verbs 2c15ab4
+
+### Summary
+
+Added a Portuguese Latest Fill Blanks settings section with visible Settings navigation, question type, difficulty, and Portuguese pattern-focus controls. The controls feed the Fill Blanks card generator, persist through saved drill/options state, and leave Conjugation settings untouched.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/portuguese-verbs/js/script.js
+
+### Root Cause Confirmed
+
+Confirmed. Portuguese had Fill Blanks exercises available and could switch `cardTypeMode` to Fill Blanks, but its Settings V2 layout only registered Conjugation, Text To Speech, and App sections. There was no `settings-v2-fill-setup` section or Fill Blanks-specific controls in the Portuguese source, so users could enable Fill Blanks without any way to configure its question pool.
+
+### Fix Details
+
+Added Portuguese Fill Blanks option state for question family, difficulty weighting, and prepositional pattern focus. The frame deck now filters/weights `verb_frames.portuguese.js` rows from those settings, and Settings V2 now creates a `Fill Blanks` nav target plus a `Fill Blanks Setup` details section showing the current question count and controls. Drill option normalization/persistence now carries the new Fill Blanks settings without resetting Conjugation options.
+
+### Verification Run
+
+- `node --check /Users/simeon/Code/VerbsFirst/portuguese-verbs/js/script.js`
+- `python3 /Users/simeon/Code/VerbsFirst/portuguese-verbs/build.py`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `rg -n "settings-v2-fill-setup|Question type|Difficulty|Pattern focus" /Users/simeon/Code/VerbsFirst/portuguese-verbs/dist/index.html`
+- `rg -n "settings-v2-fill-setup|Question type|Difficulty|Pattern focus" /Users/simeon/Code/VerbsFirst/proj1/dist/portugese_latest/index.html`
+- `git -C /Users/simeon/Code/VerbsFirst/portuguese-verbs diff --cached --check -- js/script.js`
+- Served `/Users/simeon/Code/VerbsFirst/proj1/dist` at `http://127.0.0.1:4173/`.
+- Browser-use/in-app browser tooling was unavailable in this session; headless Chrome/Playwright mobile viewport 390x844 verified `/portugese_latest/` shows the Fill Blanks nav/section, exposes Question type and Difficulty controls, persists `fillFocusMode=patterns`, `fillDifficultyMode=hard`, and `prepositionalVerbMode=only`, and still generates Fill Blanks cards after returning to practice.
+- The same browser pass verified English Fill Blanks translation contrast in explicit Dark and system-dark themes at 15.94:1.
+
+### Remaining Risk
+
+Not yet checked on a physical phone or live production after deploy. The rebuilt `dist/portugese_latest/` output is ignored by git and must be regenerated/deployed from the fixed Portuguese source in the normal release flow.
