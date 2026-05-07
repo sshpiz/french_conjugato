@@ -430,3 +430,44 @@ Added Portuguese Fill Blanks option state for question family, difficulty weight
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. The rebuilt `dist/portugese_latest/` output is ignored by git and must be regenerated/deployed from the fixed Portuguese source in the normal release flow.
+
+## VF-QA-0010
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-07
+Updated: 2026-05-07
+Commit(s): proj1 this commit
+
+### Summary
+
+Reduced the intermittent Chrome `ERR_FAILED` flash for French and Portuguese-family app routes by hardening the root VerbsFirst service worker as a pre-app navigation safety net. When the root worker controls the origin but a language-specific worker is not yet in charge, app navigations now use network-first loading with cached app-shell fallback and a branded auto-retry shell, instead of falling through to Chrome's native error page.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/proj1/site_sw.js
+
+### Root Cause Confirmed
+
+Partially confirmed. The screenshots show Chrome-native `ERR_FAILED` pages that later recover into the app, including French, so this is not explained by a Portuguese spelling/path issue. The concrete hardenable gap was in the root service worker: production root `sw.js` is still `landing-cache-v1`, explicitly excludes `/french`, and ignores app-route navigations, so an origin-controlled page can still depend entirely on a raw network navigation until the app-specific service worker takes over.
+
+### Fix Details
+
+Bumped the root service-worker cache to `landing-cache-v2`, removed the language-route exclusion, and added explicit app-route navigation handling for the language apps and latest channels. Successful app navigations are cached by their route `index.html`; failed app navigations return cached app HTML when available, or a VerbsFirst-owned loading/retry HTML shell when not. Root landing-page caching remains scoped to the existing root paths.
+
+### Verification Run
+
+- `node --check /Users/simeon/Code/VerbsFirst/proj1/site_sw.js`
+- `node --check /Users/simeon/Code/VerbsFirst/proj1/dist/sw.js`
+- `/Users/simeon/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /private/tmp/vfqa0010_site_sw_vm.mjs`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `rg -n "CACHE_NAME|EXCLUDED_PREFIXES|APP_ROUTE_PREFIXES|serveAppNavigation" /Users/simeon/Code/VerbsFirst/proj1/dist/sw.js`
+- `curl -L https://verbsfirst.com/sw.js | rg -n "CACHE_NAME|EXCLUDED_PREFIXES|APP_ROUTE_PREFIXES|serveAppNavigation"`
+- `curl -L -I https://verbsfirst.com/sw.js`
+- `git -C /Users/simeon/Code/VerbsFirst/proj1 diff --check -- site_sw.js QA_FIX_STATUS.md`
+
+The VM service-worker check asserted that `/french/` and the reported Portuguese latest route are recognized as app routes, SEO reference pages are not, a simulated network failure returns HTTP 200 app-owned HTML with auto-retry, cached French app HTML wins over the fallback shell, and a successful network navigation refreshes the cached route shell. Live production still serves root `sw.js` v1 with the old language exclusions until this fix is deployed; the current live header is already `Cache-Control: no-cache, no-store, must-revalidate`.
+
+### Remaining Risk
+
+This still cannot prevent a true network, DNS, browser, or CDN failure before Chrome receives any document or before any service worker controls the origin. It also needs live deployment plus physical iOS/Android Chrome verification with fresh and previously-used site data, since local in-app browser tooling was unavailable and the headless Chrome fallback was not completed after the root-cause pivot.
