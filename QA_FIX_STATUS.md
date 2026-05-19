@@ -350,6 +350,13 @@ Local file inspection, local generated French latest data, local headless Chrome
 
 The current live asset is correct, so the original screenshot was likely from an older cached or pre-fix build. A user with a stale service-worker/browser cache may still need a hard refresh or normal app update cycle before seeing the corrected rows.
 
+### Latest Deploy Blocker
+
+- 2026-05-19 18:18:12 CDT
+- Candidate commit: `19e196677` (intended latest channel(s): `french`)
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
+- Next step: stash/commit/clean the working tree (or move the WIP to another branch), then rerun the latest deploy gate to verify + deploy `french_latest` only via `LATEST_CHANNEL_LANGS=french LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
+
 ## VF-QA-0007 Follow-up
 
 Status: Fixed Locally
