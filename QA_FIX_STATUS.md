@@ -59,6 +59,13 @@ Bumped each language service-worker cache version, added `INDEX_PATH` to install
 
 This cannot prevent a true network/browser failure before the very first HTML document is received, because no service worker exists yet for that origin. Live Chrome Android and Cloudflare cache-header behavior still need post-deploy validation. Local build scripts produced existing Pillow-missing warnings; no deploy was performed.
 
+### Latest Deploy Blocker
+
+- 2026-05-19 18:28:25 CDT
+- Candidate commit: `c14ed1b7b` (intended latest channel(s): `french`, `spanish`, `german`, `portugese`, `italian`, `greek`, `catalan`, `latvian`, `russian`, `ukrainian`)
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
+- Next step: stash/commit/clean the `proj1/` working tree (and ensure sibling app repos are on their recorded fix commits and rebuilt), then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS="french spanish german portugese italian greek catalan latvian russian ukrainian" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
+
 ## VF-QA-0002
 
 Status: Fixed
