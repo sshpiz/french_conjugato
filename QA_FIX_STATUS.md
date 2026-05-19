@@ -471,3 +471,49 @@ The VM service-worker check asserted that `/french/` and the reported Portuguese
 ### Remaining Risk
 
 This still cannot prevent a true network, DNS, browser, or CDN failure before Chrome receives any document or before any service worker controls the origin. It also needs live deployment plus physical iOS/Android Chrome verification with fresh and previously-used site data, since local in-app browser tooling was unavailable and the headless Chrome fallback was not completed after the root-cause pivot.
+
+## VF-QA-0011
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-19
+Updated: 2026-05-19
+Commit(s): proj1 this commit
+
+### Summary
+
+Fixed French `elles` agreement for être-auxiliary compound expressions where the past participle is followed by an `en` expression tail or complement. The helper now feminizes the participle after the être auxiliary instead of blindly mutating the final word in the phrase.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/proj1/index.html
+- /Users/simeon/Code/VerbsFirst/proj1/QA_FIX_STATUS.md
+
+### Root Cause Confirmed
+
+Confirmed. `feminizeParticiple(parts, pronoun)` assumed the participle was the final whitespace-delimited token. For forms like `ils en sont venus aux mains` and `ils en sont revenus à leurs moutons`, the final token is a complement noun, so `venus/revenus/restés` stayed masculine or a later complement word was incorrectly changed.
+
+### Fix Details
+
+Added an être-auxiliary participle locator that scans immediately after the auxiliary, allowing common intervening adverbs/negators such as `pas` or `déjà`, and stops before complement phrases. `feminizeParticiple` now mutates that participle token while preserving trailing punctuation. Simple terminal-participle cases still use the same agreement output, masculine `ils` output is unchanged, and complements like `mains` and `moutons` are left alone.
+
+### Verification Run
+
+- Node smoke-tested `/Users/simeon/Code/VerbsFirst/proj1/index.html` for:
+  - `ils sont venus` -> `elles sont venues`
+  - `ils en sont venus au fait` -> `elles en sont venues au fait`
+  - `ils en sont venus aux mains` -> `elles en sont venues aux mains`
+  - `ils en sont revenus à leurs moutons` -> `elles en sont revenues à leurs moutons`
+  - `ils en sont restés là` -> `elles en sont restées là`
+  - `ils ne sont pas venus au fait` -> `elles ne sont pas venues au fait`
+  - `il est venu au fait` -> `elle est venue au fait`
+  - masculine `ils` output remains unchanged.
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- Node smoke-tested the same regression set against `/Users/simeon/Code/VerbsFirst/proj1/dist/french/index.html` and `/Users/simeon/Code/VerbsFirst/proj1/dist/french_latest/index.html`.
+- Served `/Users/simeon/Code/VerbsFirst/proj1/dist` at `http://127.0.0.1:4191/`.
+- Headless Chrome/Playwright mobile viewport 390x844 loaded `http://127.0.0.1:4191/french/` and verified the browser runtime returns the expected `elles en sont venues/revenues/restées` outputs while preserving masculine `ils`.
+
+### Remaining Risk
+
+Not yet checked on a physical phone or live production after deploy. This fix is intentionally scoped to French display-time pronoun agreement; any stale deployed service worker or cached HTML may need the normal app update cycle before users see it.

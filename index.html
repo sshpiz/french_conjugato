@@ -1312,19 +1312,56 @@
     // space/apostrophe delimiters instead.
     const ETRE_AUX_SINGULAR = /(^|[' ])(est|était|sera|serait|soit|fût)( |$)/;
     const ETRE_AUX_PLURAL   = /(^|[' ])(sont|étaient|seront|seraient|soient|fussent)( |$)/;
+    const ETRE_AUX_FORMS = new Set([
+        'est', 'était', 'sera', 'serait', 'soit', 'fût',
+        'sont', 'étaient', 'seront', 'seraient', 'soient', 'fussent'
+    ]);
+    const PARTICIPLE_SKIP_TOKENS = new Set([
+        'ne', "n'", 'n’', 'pas', 'plus', 'jamais', 'déjà', 'encore',
+        'bien', 'mal', 'vite', 'toujours', 'souvent', 'trop', 'assez',
+        'vraiment'
+    ]);
 
-    // Feminize past participle at end of conjugated string.
+    function splitTrailingPunctuation(token) {
+        const match = String(token || '').match(/^(.+?)([.,!?;:»”)]*)$/);
+        return match ? { core: match[1], suffix: match[2] } : { core: token, suffix: '' };
+    }
+
+    function normalizedPartToken(token) {
+        return splitTrailingPunctuation(token).core.toLowerCase();
+    }
+
+    function looksLikePastParticiple(token) {
+        const core = normalizedPartToken(token);
+        return core.length > 1 && /(?:é|i|u|t)s?$/.test(core);
+    }
+
+    function findParticipleAfterEtre(parts) {
+        const auxIndex = parts.findIndex(part => ETRE_AUX_FORMS.has(normalizedPartToken(part)));
+        if (auxIndex === -1) return -1;
+        for (let i = auxIndex + 1; i < parts.length; i++) {
+            const token = normalizedPartToken(parts[i]);
+            if (looksLikePastParticiple(parts[i])) return i;
+            if (PARTICIPLE_SKIP_TOKENS.has(token)) continue;
+            break;
+        }
+        return -1;
+    }
+
+    // Feminize the être past participle, even when it is followed by a complement.
     // Singular: allé→allée, parti→partie, venu→venue, mort→morte, né→née
     // Plural:   allés→allées, partis→parties, venus→venues, morts→mortes
     function feminizeParticiple(parts, pronoun) {
         if (parts.length < 3) return parts;
-        const pp = parts[parts.length - 1];
+        const participleIndex = findParticipleAfterEtre(parts);
+        if (participleIndex === -1) return parts;
+        const { core: pp, suffix } = splitTrailingPunctuation(parts[participleIndex]);
         if (pronoun === 'elle') {
-            if (!pp.endsWith('e')) parts[parts.length - 1] = pp + 'e';
+            if (!pp.endsWith('e')) parts[participleIndex] = pp + 'e' + suffix;
         } else if (pronoun === 'elles') {
             // Remove trailing 's', add 'e', re-add 's' → és→ées, us→ues, is→ies, ts→tes
             if (pp.endsWith('s') && !pp.endsWith('es')) {
-                parts[parts.length - 1] = pp.slice(0, -1) + 'es';
+                parts[participleIndex] = pp.slice(0, -1) + 'es' + suffix;
             }
         }
         return parts;
