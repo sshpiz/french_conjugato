@@ -47,6 +47,9 @@ LANG_CODES = {
 
 EXCLUDED_DIRS = {"latest", "tts"}
 EXCLUDED_FILES = {".DS_Store"}
+LANG_ALIASES = {
+    "portuguese": "portugese",
+}
 
 
 def copy_without_excluded_dirs(src: Path, dest: Path) -> None:
@@ -193,10 +196,41 @@ def target_roots() -> list[Path]:
     return roots
 
 
+def selected_langs() -> list[str]:
+    raw = os.environ.get("LATEST_CHANNEL_LANGS") or os.environ.get("LATEST_LANGS") or ""
+    if not raw.strip():
+        return LANGS
+
+    requested = [
+        LANG_ALIASES.get(part.strip().lower(), part.strip().lower())
+        for part in re.split(r"[,\s:]+", raw)
+        if part.strip()
+    ]
+    unknown = [lang for lang in requested if lang not in LANGS]
+    if unknown:
+        expected = ", ".join(LANGS)
+        raise SystemExit(
+            f"Unknown latest channel language(s): {', '.join(unknown)}. "
+            f"Expected one or more of: {expected}"
+        )
+
+    unique: list[str] = []
+    for lang in requested:
+        if lang not in unique:
+            unique.append(lang)
+    if not unique:
+        raise SystemExit("LATEST_CHANNEL_LANGS was set but no languages were provided")
+    return unique
+
+
 def main() -> None:
     source_root = Path(os.environ.get("LATEST_CHANNEL_SOURCE", DIST)).resolve()
+    langs = selected_langs()
+    if langs != LANGS:
+        print(f"limiting latest channel sync to: {', '.join(langs)}")
+
     copied: list[str] = []
-    for lang in LANGS:
+    for lang in langs:
         src = source_root / lang
         if not src.exists():
             print(f"skip {lang}: no source at {src}")

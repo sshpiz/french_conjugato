@@ -47,7 +47,11 @@ rm -rf "$DEPLOY_DIR/reference"
 find "$DEPLOY_DIR" -path '*/tts' -type d -prune -exec rm -rf {} +
 find "$DEPLOY_DIR" -path '*/latest' -type d -prune -exec rm -rf {} +
 
-echo "Creating sibling latest apps..."
+if [[ -n "${LATEST_CHANNEL_LANGS:-${LATEST_LANGS:-}}" ]]; then
+  echo "Creating sibling latest apps for: ${LATEST_CHANNEL_LANGS:-$LATEST_LANGS}"
+else
+  echo "Creating sibling latest apps..."
+fi
 LATEST_CHANNEL_TARGETS_ONLY="$DEPLOY_DIR" python3 sync_latest_channels.py
 
 echo "Deploying to Cloudflare Pages project: $PROJECT_NAME branch: $DEPLOY_BRANCH"
