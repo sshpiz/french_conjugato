@@ -107,6 +107,15 @@ Changed the French and Spanish difficulty handlers to update the active pill, pe
 
 Not yet checked on a physical phone or live production after deploy. Existing service-worker/cache state may require normal refresh/update behavior before users see the rebuilt app.
 
+### Latest Deploy Blocker
+
+- Date: 2026-05-19 18:38 CDT
+- Commit: `90588e059` (proj1)
+- Intended latest channels: `french`, `spanish`
+- Blocker: `proj1` working tree is dirty (modified + untracked files), so verification/deploy could ship unrelated WIP.
+- Next step: stash/commit/clean `proj1`, then rerun latest-only deploy for these channels.
+- Intended command: `LATEST_CHANNEL_LANGS="french spanish" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`
+
 ## VF-QA-0003
 
 Status: Fixed
