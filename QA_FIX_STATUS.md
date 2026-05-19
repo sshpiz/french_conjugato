@@ -582,3 +582,47 @@ Corrected the current `ouvrir` rows to use `l'` in both the blank answer and ful
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. Existing deployed service-worker/browser caches may need the normal refresh/update path before users see the rebuilt pronoun-fill data.
+
+## VF-QA-0013
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-19
+Updated: 2026-05-19
+Commit(s): spanish-verbs this commit, proj1 this commit
+
+### Summary
+
+Fixed Spanish latest Fill Blanks dark/system contrast by porting the French-style dark English translation treatment to Spanish and making System-dark frame-slot revealed answers use the same readable colors as explicit Dark.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/spanish-verbs/css/style.css
+- /Users/simeon/Code/VerbsFirst/proj1/QA_FIX_STATUS.md
+
+### Root Cause Confirmed
+
+Confirmed. Spanish had an OS-dark media rule that forced `#english-verb-phrase` to dark `#263040 !important`, which made the bottom English sentence low-contrast on dark Fill Blanks cards. Revealed frame-slot answers had a readable override only under `html[data-theme="dark"]`, so System theme with OS dark kept the base bright-blue slot answer color.
+
+### Fix Details
+
+Scoped the OS-dark English phrase override away from explicit Light and changed it to readable light text. Added dark-mode `pronoun-fill-translation-prompt` / `frame-translation-prompt` colors with `!important` so the existing JS class toggles win over the generic ID rule. Added a `prefers-color-scheme: dark` frame-slot override for non-Light themes so System-dark and explicit Dark share the same light slot text, hidden-slot, and revealed-slot styling.
+
+### Verification Run
+
+- `git -C /Users/simeon/Code/VerbsFirst/spanish-verbs diff --check -- css/style.css`
+- `python3 /Users/simeon/Code/VerbsFirst/spanish-verbs/build.py`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `env LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `rg` confirmed rebuilt Spanish regular/latest and Cloudflare latest HTML contain the new `#dce9f8`, `#f2f7ff`, and System-dark frame-slot selectors.
+- Served `/Users/simeon/Code/VerbsFirst/proj1/dist` at `http://127.0.0.1:4193/`.
+- Headless Chrome/Playwright mobile viewport 390x844 with emulated OS dark loaded `http://127.0.0.1:4193/spanish_latest/` and verified:
+  - Theme System: translation `rgb(242, 247, 255)` at ~17.02:1 contrast; revealed slot answers `rgb(240, 245, 250)` at ~16.7:1.
+  - Theme Dark: same translation and revealed answer colors/contrast.
+  - No System-dark revealed slot answer used the old bright blue `rgb(47, 127, 208)`.
+- Headless Chrome sanity-checked `french_latest` and `portugese_latest` System-dark translation/slot contrast; both remained above 16:1.
+
+### Remaining Risk
+
+Not yet checked on a physical phone or live production after deploy. Users with stale Spanish latest service-worker/browser cache may need the normal update path before seeing the rebuilt CSS.
