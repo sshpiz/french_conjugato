@@ -196,6 +196,13 @@ Updated the shared newer frame-slot CSS in French, Spanish, and German to use a 
 
 Not yet checked on a physical phone or live production after deploy. German still logs an existing unrelated startup warning for the hard-coded `parler` fallback; it was ignored for this frame-slot verification because the revealed-slot checks passed after app load.
 
+### Latest Deploy Blocker
+
+- 2026-05-19 18:50:00 CDT
+- Candidate commit: `cdcd666ad` (intended latest channel(s): `french`, `spanish`, `german`)
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
+- Next step: stash/commit/clean the working tree (or move the WIP to another branch), then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS="french spanish german" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
+
 ## VF-QA-0005
 
 Status: Fixed
