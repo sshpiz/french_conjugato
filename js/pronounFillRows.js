@@ -1,5 +1,28 @@
 (function initPronounFillRows() {
   const rows = [];
+  const DIRECT_OBJECT_ELISION_START_RE = /^[hH]?[aeiouàâäéèêëîïôöùûüœæ]/u;
+
+  const getBlankFollower = (question) => {
+    const match = String(question || '').match(/____\s+([^\s.,;:!?]+)/);
+    return match ? match[1].replace(/^[“"'\u2018\u2019]+|[”"',.;:!?]+$/g, '') : '';
+  };
+
+  const shouldElideDirectObject = (answer, question, options, reason) => {
+    if (answer !== 'le' && answer !== 'la') return false;
+    const family = options && options.family ? options.family : '';
+    if (family !== 'direct_object' && !/direct object/i.test(String(reason || ''))) return false;
+    return DIRECT_OBJECT_ELISION_START_RE.test(getBlankFollower(question).toLocaleLowerCase('fr-FR'));
+  };
+
+  const normalizeDirectObjectElision = (answer, fullAnswer, question, options, reason) => {
+    if (!shouldElideDirectObject(answer, question, options, reason)) {
+      return { answer, fullAnswer };
+    }
+    return {
+      answer: 'l\'',
+      fullAnswer: String(fullAnswer).replace(/\b(?:le|la)\s+([hH]?[aeiouàâäéèêëîïôöùûüœæ])/u, 'l\'$1'),
+    };
+  };
 
   const add = (
     id,
@@ -13,6 +36,10 @@
     reason,
     options = {}
   ) => {
+    const normalizedElision = normalizeDirectObjectElision(answer, fullAnswer, question, options, reason);
+    answer = normalizedElision.answer;
+    fullAnswer = normalizedElision.fullAnswer;
+
     rows.push({
       id,
       type: 'pronoun_fill',

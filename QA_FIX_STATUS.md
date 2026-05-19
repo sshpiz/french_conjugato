@@ -517,3 +517,45 @@ Added an être-auxiliary participle locator that scans immediately after the aux
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. This fix is intentionally scoped to French display-time pronoun agreement; any stale deployed service worker or cached HTML may need the normal app update cycle before users see it.
+
+## VF-QA-0012
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-19
+Updated: 2026-05-19
+Commit(s): proj1 this commit
+
+### Summary
+
+Fixed French pronoun-fill direct-object rows so `ouvrir` cards reveal `l'ouvr...` forms instead of `le ouvr...`. The row loader now also guards direct-object `le`/`la` answers before vowel or mute-h verb forms, so copied/static rows cannot reintroduce the same visible clitic-elision error.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/proj1/js/pronounFillRows.js
+- /Users/simeon/Code/VerbsFirst/proj1/QA_FIX_STATUS.md
+
+### Root Cause Confirmed
+
+Confirmed. The present-tense pronoun-fill source data hard-coded `le` for `ouvrir` rows even though the following forms start with a vowel sound: `ouvrons`, `ouvrez`, `ouvre`, and `ouvrent`. Because `build.py` copies `js/pronounFillRows.js` directly into the French web artifacts, the bad literal rows propagated into regular and latest builds.
+
+### Fix Details
+
+Corrected the current `ouvrir` rows to use `l'` in both the blank answer and full revealed answer: `Nous l'ouvrons.`, `Vous l'ouvrez.`, `Elle l'ouvre.`, and `Ils l'ouvrent.` Added a source-side direct-object elision normalizer in `add()` that turns static `le`/`la` answers into `l'` when the blank is immediately followed by a vowel or mute-h verb form.
+
+### Verification Run
+
+- `node --check /Users/simeon/Code/VerbsFirst/proj1/js/pronounFillRows.js`
+- `rg -n "le ouvr|la ouvr|\\b(le|la) [aeiouhàâäéèêëîïôöùûüœ]" /Users/simeon/Code/VerbsFirst/proj1/js/pronounFillRows.js /Users/simeon/Code/VerbsFirst/proj1/js/pronounFillRows.passeCompose.js`
+- Node VM loaded `/Users/simeon/Code/VerbsFirst/proj1/js/pronounFillRows.js` and verified 350 rows, the four `ouvrir` rows reveal `l'ouvr...`, and no loaded full answer contains `le/la + vowel`.
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `env LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `rg` confirmed no `le ouvr`, `la ouvr`, or `le/la + vowel` bad strings in source, `dist/french`, `dist/french_latest`, or `dist-cloudflare/french_latest` pronoun-fill files.
+- Node VM loaded source, `dist/french`, `dist/french_latest`, and `dist-cloudflare/french_latest` pronoun-fill files and verified all four `ouvrir` rows return `Nous l'ouvrons.`, `Vous l'ouvrez.`, `Elle l'ouvre.`, and `Ils l'ouvrent.` with zero bad loaded full answers.
+- Served `/Users/simeon/Code/VerbsFirst/proj1/dist` at `http://127.0.0.1:4192/`.
+- Headless Chrome/Playwright mobile viewport 390x844 loaded `http://127.0.0.1:4192/french/` and verified the browser runtime exposes the corrected `ouvrir` pronoun-fill rows with `badCount: 0`.
+
+### Remaining Risk
+
+Not yet checked on a physical phone or live production after deploy. Existing deployed service-worker/browser caches may need the normal refresh/update path before users see the rebuilt pronoun-fill data.
