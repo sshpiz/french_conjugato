@@ -410,6 +410,17 @@ The current live asset is correct, so the original screenshot was likely from an
 - Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
 - Next step: stash/commit/clean the working tree (or move the WIP to another branch), then rerun the latest deploy gate to verify + deploy `french_latest` only via `LATEST_CHANNEL_LANGS=french LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
 
+### Latest Deploy
+
+- 2026-05-19 21:40:13 CDT
+- Candidate commit: `19e196677`
+- Latest channel(s): `french`
+- Verification run (production):
+  - `curl -fsS https://verbsfirst.com/french_latest/js/verbs.starter.generated.js`
+  - Confirmed conjugated rows for `s'en prendre à plus faible que soi` include `que moi/toi/lui/nous/vous/qu'eux` (no conjugated value contained `que soi`; only the infinitive label and expression key contained it).
+- Command used: N/A (already live on production)
+- Result: `french_latest` already contains the fix; no deploy run from this machine.
+
 ## VF-QA-0007 Follow-up
 
 Status: Fixed
