@@ -412,7 +412,7 @@ The current live asset is correct, so the original screenshot was likely from an
 
 ## VF-QA-0007 Follow-up
 
-Status: Fixed Locally
+Status: Fixed
 Owner: Dev Agent
 Started: 2026-05-06
 Updated: 2026-05-06
@@ -538,7 +538,7 @@ Status: Fixed Locally
 Owner: Dev Agent
 Started: 2026-05-19
 Updated: 2026-05-19
-Commit(s): proj1 this commit
+Commit(s): proj1 ab8e872fe
 
 ### Summary
 
@@ -711,3 +711,10 @@ Added a bounded `checking` fallback to the shared app-update state setter so pas
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. The browser pass simulated the `SW_UPDATED` message rather than performing a full service-worker version bump upgrade cycle. Existing deployed service-worker/browser caches may still need the normal refresh/update path before users see the rebuilt update-state code.
+
+### Latest Deploy Blocker
+
+- 2026-05-19 20:11:19 CDT
+- Candidate commit: `ab8e872fe` (intended latest channel(s): `french`)
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
+- Next step: stash/commit/clean the `proj1/` working tree, then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS=french LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
