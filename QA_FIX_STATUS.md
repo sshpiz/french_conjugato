@@ -606,6 +606,16 @@ This still cannot prevent a true network, DNS, browser, or CDN failure before Ch
 - Blocked: `proj1/` working tree is dirty (203 paths in `git status --short`), so a rebuild + deploy from `proj1/` could ship unrelated WIP.
 - Next step: stash/commit/clean the `proj1/` working tree until it is clean, then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS="french spanish german portugese italian greek catalan latvian russian ukrainian" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
 
+### Latest Deploy
+
+- 2026-05-20 16:56 CDT
+- Candidate commit: `ef9f2e82b`
+- Latest channel(s): `french`, `spanish`, `german`, `portugese`, `italian`, `greek`, `catalan`, `latvian`, `russian`, `ukrainian`
+- Verification run (production):
+  - `curl -fsS -L https://verbsfirst.com/sw.js | rg -n "CACHE_NAME = CACHE_PREFIX \\+ 'v2'|serveAppNavigation|french_latest|portugese_latest" | head`
+- Command used: N/A (already live on production)
+- Result: Production root `sw.js` includes the v2 app-route navigation fallback, so VF-QA-0010 is present on `_latest`.
+
 ## VF-QA-0011
 
 Status: Fixed Locally
