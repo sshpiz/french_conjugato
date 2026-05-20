@@ -604,7 +604,7 @@ Status: Fixed Locally
 Owner: Dev Agent
 Started: 2026-05-19
 Updated: 2026-05-19
-Commit(s): proj1 ab8e872fe
+Commit(s): (needs correction) — `ab8e872fe` is the proj1 fix commit for `VF-QA-0014`
 
 ### Summary
 
@@ -736,7 +736,7 @@ Status: Fixed Locally
 Owner: Dev Agent
 Started: 2026-05-19
 Updated: 2026-05-19
-Commit(s): proj1 this commit
+Commit(s): proj1 ab8e872fe
 
 ### Summary
 
@@ -777,6 +777,13 @@ Added a bounded `checking` fallback to the shared app-update state setter so pas
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. The browser pass simulated the `SW_UPDATED` message rather than performing a full service-worker version bump upgrade cycle. Existing deployed service-worker/browser caches may still need the normal refresh/update path before users see the rebuilt update-state code.
+
+### Latest Deploy Blocker
+
+- 2026-05-20 12:36 CDT
+- Commit: `ab8e872fe` (preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify ab8e872fe^{commit}` OK)
+- Intended latest channel(s): `french`
+- Blocked: `proj1/` working tree is dirty (203 paths in `git status --short`), so verification rebuild + deploy could ship unrelated WIP.
 
 ## VF-QA-0015
 
