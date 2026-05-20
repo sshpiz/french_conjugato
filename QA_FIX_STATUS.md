@@ -347,6 +347,20 @@ This still cannot prevent a true network/browser/CDN failure before Chrome recei
 - Blocker: `proj1/` working tree is very dirty (many modified + untracked files). Latest deploy builds from `proj1/`, so deploying now risks shipping unrelated WIP.
 - Unblock: stash/commit/clean unrelated `proj1/` changes until `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` is clean, then rerun the latest deploy gate.
 
+### Latest Deploy
+
+- 2026-05-20 11:45 CDT
+- Candidate commit: `05aa2970b` (proj1)
+- Latest channel(s): `spanish`, `french`
+- Verification run (production):
+  - `curl -fsSL -I https://verbsfirst.com/spanish_latest/sw.js | rg -ni '^cache-control:.*no-store'`
+  - `curl -fsSL https://verbsfirst.com/spanish_latest/sw.js | rg -n "FALLBACK_HTML|Loading the app|CACHE_NAME" | head`
+  - `curl -fsSL -I https://verbsfirst.com/french_latest/sw.js | rg -ni '^cache-control:.*no-store'`
+  - `curl -fsSL https://verbsfirst.com/french_latest/sw.js | rg -n "FALLBACK_HTML|Loading the app|CACHE_NAME" | head`
+  - Repeated the same checks for `https://verbsfirst.com/spanish/sw.js` and `https://verbsfirst.com/french/sw.js`.
+- Command used: N/A (already live on production)
+- Result: Both stable and `_latest` service workers are served with `Cache-Control: no-cache, no-store, must-revalidate` and include the navigation fallback shell (`Loading the app...`), indicating VF-QA-0006 is already present.
+
 ## VF-QA-0007
 
 Status: Fixed
