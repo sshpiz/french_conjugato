@@ -559,11 +559,11 @@ Not yet checked on a physical phone or live production after deploy. The rebuilt
 
 ## VF-QA-0010
 
-Status: Fixed Locally
+Status: Fixed
 Owner: Dev Agent
 Started: 2026-05-07
 Updated: 2026-05-07
-Commit(s): proj1 this commit
+Commit(s): proj1 ef9f2e82b
 
 ### Summary
 
@@ -597,6 +597,14 @@ The VM service-worker check asserted that `/french/` and the reported Portuguese
 ### Remaining Risk
 
 This still cannot prevent a true network, DNS, browser, or CDN failure before Chrome receives any document or before any service worker controls the origin. It also needs live deployment plus physical iOS/Android Chrome verification with fresh and previously-used site data, since local in-app browser tooling was unavailable and the headless Chrome fallback was not completed after the root-cause pivot.
+
+### Latest Deploy Blocker
+
+- 2026-05-20 16:46 CDT
+- Candidate commit: `ef9f2e82b` (preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify ef9f2e82b^{commit}` OK)
+- Latest channel(s): `french`, `spanish`, `german`, `portugese`, `italian`, `greek`, `catalan`, `latvian`, `russian`, `ukrainian`
+- Blocked: `proj1/` working tree is dirty (203 paths in `git status --short`), so a rebuild + deploy from `proj1/` could ship unrelated WIP.
+- Next step: stash/commit/clean the `proj1/` working tree until it is clean, then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS="french spanish german portugese italian greek catalan latvian russian ukrainian" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
 
 ## VF-QA-0011
 
