@@ -48,9 +48,36 @@
             lastUpdatedAt: 0,
             debugForceVisible: false
         };
+        var APP_UPDATE_CHECK_MAX_MS = 8000;
+        var appUpdateCheckingTimer = null;
+
+        function clearAppUpdateCheckingTimer() {
+            if (appUpdateCheckingTimer) {
+                window.clearTimeout(appUpdateCheckingTimer);
+                appUpdateCheckingTimer = null;
+            }
+        }
+
+        function armAppUpdateCheckingTimer() {
+            clearAppUpdateCheckingTimer();
+            appUpdateCheckingTimer = window.setTimeout(function() {
+                appUpdateCheckingTimer = null;
+                if (window.__appUpdateState.status === 'checking' && !window.__appUpdateState.updateAvailable) {
+                    window.__setAppUpdateState({
+                        status: 'idle',
+                        updateAvailable: false
+                    });
+                }
+            }, APP_UPDATE_CHECK_MAX_MS);
+        }
 
         window.__setAppUpdateState = function(patch) {
             window.__appUpdateState = Object.assign({}, window.__appUpdateState, patch || {});
+            if (window.__appUpdateState.status === 'checking') {
+                armAppUpdateCheckingTimer();
+            } else {
+                clearAppUpdateCheckingTimer();
+            }
             window.dispatchEvent(new CustomEvent('app-update-state', {
                 detail: Object.assign({}, window.__appUpdateState)
             }));
@@ -61,14 +88,65 @@
             navigator.serviceWorker.register('./sw.js', { scope: './' })
                 .then((registration) => {
                     console.log('[SW] Registered');
+                    var hasWaitingUpdate = !!(registration.active && registration.waiting);
                     window.__setAppUpdateState({
                         registration,
-                        status: registration.waiting ? 'ready' : 'idle',
-                        updateAvailable: !!registration.waiting
+                        status: hasWaitingUpdate ? 'ready' : 'idle',
+                        updateAvailable: hasWaitingUpdate
                     });
 
                     registration.addEventListener('updatefound', () => {
-                        window.__setAppUpdateState({ status: 'checking' });
+                        var installingWorker = registration.installing;
+                        if (!installingWorker) return;
+                        var hadScopedActiveWorker = !!registration.active;
+                        var settled = false;
+
+                        function setIdleIfNoUpdate() {
+                            if (settled || window.__appUpdateState.updateAvailable) return;
+                            settled = true;
+                            window.__setAppUpdateState({
+                                registration,
+                                status: 'idle',
+                                updateAvailable: false
+                            });
+                        }
+
+                        function setReadyIfWaiting() {
+                            if (settled || !hadScopedActiveWorker || !registration.waiting) return false;
+                            settled = true;
+                            window.__setAppUpdateState({
+                                registration,
+                                status: 'ready',
+                                updateAvailable: true,
+                                lastUpdatedAt: Date.now()
+                            });
+                            return true;
+                        }
+
+                        function handleInstallingState() {
+                            if (setReadyIfWaiting()) return;
+                            if (installingWorker.state === 'installed' && !hadScopedActiveWorker) {
+                                setIdleIfNoUpdate();
+                                return;
+                            }
+                            if (installingWorker.state === 'activated' || installingWorker.state === 'redundant') {
+                                setIdleIfNoUpdate();
+                            }
+                        }
+
+                        if (hadScopedActiveWorker) {
+                            window.__setAppUpdateState({
+                                registration,
+                                status: 'checking',
+                                checkedAt: Date.now()
+                            });
+                        }
+                        installingWorker.addEventListener('statechange', handleInstallingState);
+                        handleInstallingState();
+                        window.setTimeout(function() {
+                            if (!settled) handleInstallingState();
+                            if (!settled && !registration.waiting) setIdleIfNoUpdate();
+                        }, APP_UPDATE_CHECK_MAX_MS);
                     });
                 })
                 .catch(() => console.log('[SW] Registration failed'));

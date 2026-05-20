@@ -641,3 +641,51 @@ Scoped the OS-dark English phrase override away from explicit Light and changed 
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. Users with stale Spanish latest service-worker/browser cache may need the normal update path before seeing the rebuilt CSS.
+
+## VF-QA-0014
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-19
+Updated: 2026-05-19
+Commit(s): proj1 this commit
+
+### Summary
+
+Fixed the French Latest update row so a first service-worker install no longer strands Settings -> App in `Checking for updates...` with a disabled `Check for updates` button.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/proj1/index.html
+- /Users/simeon/Code/VerbsFirst/proj1/QA_FIX_STATUS.md
+
+### Root Cause Confirmed
+
+Confirmed. The inline service-worker registration handler marked every `updatefound` event as an active update check. On a fresh `/french_latest/` install, the app-scoped worker installs for the first time, but there is no previous scoped worker and no real update. Because the service worker only posts `SW_UPDATED` for cache upgrades, nothing cleared the passive `checking` state and the UI disabled the only manual recovery button.
+
+### Fix Details
+
+Added a bounded `checking` fallback to the shared app-update state setter so passive update checks cannot remain active indefinitely. Reworked the `updatefound` handler to inspect the installing worker state, distinguish first install from a real scoped-worker update, return to idle when a first install completes without an update, and only treat `registration.waiting` as an update when there was already an active scoped worker.
+
+### Verification Run
+
+- `node --check /Users/simeon/Code/VerbsFirst/proj1/js/script.js`
+- Extracted and parsed the inline service-worker registration script from `/Users/simeon/Code/VerbsFirst/proj1/index.html`.
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_LANGS=french LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `env LATEST_CHANNEL_LANGS=french LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- Extracted and parsed the rebuilt inline service-worker registration script from `/Users/simeon/Code/VerbsFirst/proj1/dist/french/index.html`, `/Users/simeon/Code/VerbsFirst/proj1/dist/french_latest/index.html`, and `/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare/french_latest/index.html`.
+- `rg` confirmed `APP_UPDATE_CHECK_MAX_MS`, `hadScopedActiveWorker`, and `setIdleIfNoUpdate` are present in source, French stable build, French latest build, and Cloudflare latest output.
+- Served `/Users/simeon/Code/VerbsFirst/proj1/dist` at `http://127.0.0.1:4194/`.
+- Headless Chrome/Playwright with fresh profiles verified `http://127.0.0.1:4194/french_latest/`:
+  - first install settled to `App is up to date.`
+  - `Check for updates` was enabled
+  - no false `Update available` pill appeared
+  - first-install `__sw-log` showed `old caches: [] isUpgrade=false` and no real `SW_UPDATED`
+  - clicking `Check for updates` returned to idle with version `20260519_190805`
+  - simulated `SW_UPDATED` still showed `New version available.` with `Reload now`
+- The same headless Chrome pass verified the equivalent idle/manual-check/update-message behavior for `http://127.0.0.1:4194/french/`.
+
+### Remaining Risk
+
+Not yet checked on a physical phone or live production after deploy. The browser pass simulated the `SW_UPDATED` message rather than performing a full service-worker version bump upgrade cycle. Existing deployed service-worker/browser caches may still need the normal refresh/update path before users see the rebuilt update-state code.
