@@ -787,11 +787,11 @@ Not yet checked on a physical phone or live production after deploy. The browser
 
 ## VF-QA-0015
 
-Status: Fixed Locally
+Status: Fixed
 Owner: Dev Agent
 Started: 2026-05-19
-Updated: 2026-05-19
-Commit(s): proj1 this commit
+Updated: 2026-05-20
+Commit(s): proj1 89eed5422
 
 ### Summary
 
@@ -829,9 +829,12 @@ Added `LEARNER_TRANSLATION_OVERRIDES` to `combine_dataset_enhanced.py` and appli
 
 Not yet checked on a physical phone or live production after deploy. Existing deployed service-worker/browser caches may need the normal update path before users see the rebuilt French gloss data. This is a targeted override for the reported verb; a broader audit could still find other obscure low-frequency English glosses.
 
-### Latest Deploy Blocker
+### Latest Deploy
 
-- 2026-05-19 20:11:19 CDT
-- Candidate commit: `ab8e872fe` (intended latest channel(s): `french`)
-- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
-- Next step: stash/commit/clean the `proj1/` working tree, then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS=french LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
+- 2026-05-20 16:07 CDT
+- Candidate commit: `89eed5422` (preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 89eed5422^{commit}` OK)
+- Latest channel(s): `french`
+- Verification run (production):
+  - `curl -fsSL https://verbsfirst.com/french_latest/js/verbs.starter.generated.js | rg -o '"infinitive":"tuméfier"[^}]{0,220}' | head -n 1`
+- Command used: N/A (already live on production)
+- Result: `french_latest` contains `"infinitive":"tuméfier","translation":"to swell up"`, so VF-QA-0015 is already present on `_latest`.
