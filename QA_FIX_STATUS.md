@@ -232,6 +232,18 @@ Not yet checked on a physical phone or live production after deploy. German stil
 - Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
 - Next step: stash/commit/clean the working tree (or move the WIP to another branch), then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS="french spanish german" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
 
+### Latest Deploy
+
+- 2026-05-20 11:16 CDT
+- Candidate commit: `cdcd666ad` (proj1)
+- Latest channel(s): `french`, `spanish`, `german`
+- Verification run (production):
+  - `curl -fsS https://verbsfirst.com/french_latest/ | rg -n "padding-block:\\s*0\\.06em\\s+0\\.12em|min-height:\\s*1\\.32em|min-height:\\s*1\\.16em|line-height:\\s*1\\.18" | head`
+  - `curl -fsS https://verbsfirst.com/spanish_latest/ | rg -n "padding-block:\\s*0\\.06em\\s+0\\.12em|min-height:\\s*1\\.32em|min-height:\\s*1\\.16em|line-height:\\s*1\\.18" | head`
+  - `curl -fsS https://verbsfirst.com/german_latest/ | rg -n "padding-block:\\s*0\\.06em\\s+0\\.12em|min-height:\\s*1\\.32em|min-height:\\s*1\\.16em|line-height:\\s*1\\.18" | head`
+- Command used: N/A (already live on production)
+- Result: All three `_latest` pages include the frame-slot line-height/padding/min-height CSS fix, so VF-QA-0004 is already present on `_latest`.
+
 ## VF-QA-0005
 
 Status: Fixed
