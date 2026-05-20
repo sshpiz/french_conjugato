@@ -126,6 +126,17 @@ Not yet checked on a physical phone or live production after deploy. Existing se
 - Next step: stash/commit/clean `proj1`, then rerun latest-only deploy for these channels.
 - Intended command: `LATEST_CHANNEL_LANGS="french spanish" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`
 
+### Latest Deploy
+
+- 2026-05-20 10:55 CDT
+- Candidate commit: `90588e059`
+- Latest channel(s): `french`, `spanish`
+- Verification run (production):
+  - `curl -fsS https://verbsfirst.com/french_latest/js/script.js | rg -n "preserveElementViewportPosition|settingsRowKey|preserveAnchorSelector"`
+  - `curl -fsS https://verbsfirst.com/spanish_latest/ | rg -n "preserveElementViewportPosition|settingsRowKey|preserveAnchorSelector"`
+- Command used: N/A (already live on production)
+- Result: Both French and Spanish `_latest` include the settings difficulty scroll-preservation fix, so the VF-QA-0002 fix is already present on `_latest`.
+
 ## VF-QA-0003
 
 Status: Fixed
