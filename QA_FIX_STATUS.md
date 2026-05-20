@@ -450,6 +450,14 @@ Inserted a first-head script in the Spanish app that matches `https://verbsfirst
 
 The cleaner edge-level Cloudflare redirect was not applied because the available Pages API token returned `403 Authentication error` for the Rulesets API. Cloudflare Pages `_redirects` cannot target one hostname without also matching the other, so this local fix uses the earliest app-level redirect instead. This still needs deploy/live verification and physical Chrome Android install testing; stale bare-origin service-worker state may also require clearing site data or a normal update cycle.
 
+### Latest Deploy Blocker
+
+- 2026-05-19 20:50:17 CDT
+- Commit: `e6ce770` (spanish-verbs)
+- Intended latest channel(s): `spanish`
+- Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify e6ce770^{commit}` failed, so this commit hash is not present in the `proj1` repo history and the deploy gate cannot verify/rebuild/deploy it.
+- Next step: record a corresponding `proj1` commit hash for the Spanish app wiring (or update the deploy gate rules to verify app commits in their own repos), then rerun.
+
 ## VF-QA-0009
 
 Status: Fixed Locally
