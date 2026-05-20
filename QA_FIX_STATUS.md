@@ -154,6 +154,14 @@ Split the long Spanish detail pronoun labels into stacked display lines while pr
 
 Not yet checked on a physical phone or live production after deploy. Other language apps with long slash-delimited detail pronouns were not changed in this bug-specific fix.
 
+### Latest Deploy Blocker
+
+- Date: 2026-05-19 19:39 CDT
+- Commit: `44a144c` (spanish-verbs)
+- Intended latest channels: `spanish`
+- Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 44a144c^{commit}` failed, so this commit hash is not present in the `proj1` repo history and the deploy gate cannot verify/rebuild/deploy it.
+- Next step: record a corresponding `proj1` commit hash for the Spanish app wiring (or update the deploy gate rules to verify app commits in their own repos), then rerun; also ensure `proj1/` working tree is clean before any rebuild/deploy.
+
 ## VF-QA-0004
 
 Status: Fixed
