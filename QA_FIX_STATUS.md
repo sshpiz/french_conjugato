@@ -731,6 +731,50 @@ Added a bounded `checking` fallback to the shared app-update state setter so pas
 
 Not yet checked on a physical phone or live production after deploy. The browser pass simulated the `SW_UPDATED` message rather than performing a full service-worker version bump upgrade cycle. Existing deployed service-worker/browser caches may still need the normal refresh/update path before users see the rebuilt update-state code.
 
+## VF-QA-0015
+
+Status: Fixed Locally
+Owner: Dev Agent
+Started: 2026-05-19
+Updated: 2026-05-19
+Commit(s): proj1 this commit
+
+### Summary
+
+Changed the French learner gloss for `tuméfier` from the obscure English `to tumefy` to the clearer `to swell up` in the tracked French verb data and added a source-side learner translation override so future French data regeneration keeps the friendlier gloss.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/proj1/combine_dataset_enhanced.py
+- /Users/simeon/Code/VerbsFirst/proj1/js/verbs.full.generated.js
+- /Users/simeon/Code/VerbsFirst/proj1/js/verbs.full.js
+- /Users/simeon/Code/VerbsFirst/proj1/QA_FIX_STATUS.md
+
+### Root Cause Confirmed
+
+Confirmed. The French generated verb data carried the upstream/generated translation `to tumefy`, and the stable/latest app builds consume that tracked generated data when creating starter verb bundles. Although the gloss sidecar already had clearer alternate wording, there was no learner-facing override layer in the French dataset generation path for this verb.
+
+### Fix Details
+
+Added `LEARNER_TRANSLATION_OVERRIDES` to `combine_dataset_enhanced.py` and applied it after the normal French translation lookup so `tuméfier` resolves to `to swell up` on regeneration. Updated the tracked full French verb data files to match, then rebuilt the app and resynced the French latest channel outputs.
+
+### Verification Run
+
+- `python3 -m py_compile /Users/simeon/Code/VerbsFirst/proj1/combine_dataset_enhanced.py`
+- `node --check /Users/simeon/Code/VerbsFirst/proj1/js/verbs.full.generated.js`
+- `node --check /Users/simeon/Code/VerbsFirst/proj1/js/verbs.full.js`
+- `git -C /Users/simeon/Code/VerbsFirst/proj1 diff --check -- combine_dataset_enhanced.py js/verbs.full.generated.js js/verbs.full.js`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_LANGS=french LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `env LATEST_CHANNEL_LANGS=french LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- Node parser verified `tuméfier` has translation `to swell up` in `/Users/simeon/Code/VerbsFirst/proj1/js/verbs.full.generated.js`, `/Users/simeon/Code/VerbsFirst/proj1/js/verbs.full.js`, `/Users/simeon/Code/VerbsFirst/proj1/dist/french/js/verbs.starter.generated.js`, `/Users/simeon/Code/VerbsFirst/proj1/dist/french_latest/js/verbs.starter.generated.js`, and `/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare/french_latest/js/verbs.starter.generated.js`.
+- Served `/Users/simeon/Code/VerbsFirst/proj1/dist` at `http://127.0.0.1:4195/`.
+- Headless Chrome/Playwright mobile viewport 390x844 verified both `http://127.0.0.1:4195/french_latest/#pronoun=tu&verb=tum%C3%A9fier&tense=subjonctifPresent` and `http://127.0.0.1:4195/french/#pronoun=tu&verb=tum%C3%A9fier&tense=subjonctifPresent` render `tuméfier` with translation `to swell up`.
+
+### Remaining Risk
+
+Not yet checked on a physical phone or live production after deploy. Existing deployed service-worker/browser caches may need the normal update path before users see the rebuilt French gloss data. This is a targeted override for the reported verb; a broader audit could still find other obscure low-frequency English glosses.
+
 ### Latest Deploy Blocker
 
 - 2026-05-19 20:11:19 CDT

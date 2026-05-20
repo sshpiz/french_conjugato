@@ -138,6 +138,10 @@ MORPH_TENSE_TO_VALIDATION = {
     'Past': 'passé composé',  # This might need refinement
 }
 
+LEARNER_TRANSLATION_OVERRIDES = {
+    "tuméfier": "to swell up",
+}
+
 
 def normalize_verbecc_output(conjugation_result):
     """Support both older dict-like verbecc output and newer object output."""
@@ -146,6 +150,10 @@ def normalize_verbecc_output(conjugation_result):
     if hasattr(conjugation_result, "to_json"):
         return json.loads(conjugation_result.to_json())
     raise TypeError(f"Unsupported verbecc conjugation result type: {type(conjugation_result)!r}")
+
+
+def learner_translation_for_verb(infinitive, translation):
+    return LEARNER_TRANSLATION_OVERRIDES.get(infinitive, translation)
 
 # Verbecc pronoun to app pronoun mapping
 VERBECC_PRONOUN_MAPPING = {
@@ -538,6 +546,7 @@ def generate_verbs_data(sentences_data, verb_translations=None):
                     if eng_translation and eng_translation.lower() != verb.lower():
                         print("WTF")
                         exit(1)
+        translation = learner_translation_for_verb(verb, translation)
         
         verbs_data.append({
             "infinitive": verb,

@@ -12191,7 +12191,7 @@ const verbs = [
   },
   {
     "infinitive": "tuméfier",
-    "translation": "to tumefy",
+    "translation": "to swell up",
     "frequency": "top-3000",
     "usage_count": 1
   },
