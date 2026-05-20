@@ -242,6 +242,13 @@ Updated the Portuguese English phrase CSS to use readable light/dark colors, add
 
 Not yet checked on a physical phone or live production after deploy. Existing service-worker/cache state may require normal refresh/update behavior before users see the rebuilt Portuguese app.
 
+### Latest Deploy Blocker
+
+- 2026-05-19 19:31 CDT
+- Candidate commit: `a327954a7` (listed under `portuguese-verbs`)
+- Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify a327954a7^{commit}` failed, so this commit hash is not present in the `proj1` repo history and cannot be used as the deploy gate’s provenance for a `proj1/`-based latest build/deploy.
+- Unblock: record the corresponding `proj1` commit hash that incorporates the Portuguese fix (or land the fix into `proj1` in a traceable way), then rerun the latest deploy gate. If a `proj1` commit exists already, update `Commit(s):` to include `proj1 <hash>`.
+
 ## VF-QA-0006
 
 Status: Fixed
