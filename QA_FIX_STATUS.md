@@ -291,6 +291,14 @@ Added a Cloudflare Pages `_headers` file that sets `Cache-Control: no-cache, no-
 
 This still cannot prevent a true network/browser/CDN failure before Chrome receives the first HTML document, because no service worker or app code can run before that response exists. The Cloudflare header fix must be deployed before live `/spanish/sw.js` stops showing the old four-hour browser cache header. Physical Chrome Android first-open verification was not run in this local pass.
 
+### Latest Deploy Blocker
+
+- 2026-05-19 18:59 CDT
+- Candidate fix commit(s): `proj1 05aa2970b`, `spanish-verbs 8e14cae`
+- Intended latest channel(s): `spanish french`
+- Blocker: `proj1/` working tree is very dirty (many modified + untracked files). Latest deploy builds from `proj1/`, so deploying now risks shipping unrelated WIP.
+- Unblock: stash/commit/clean unrelated `proj1/` changes until `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` is clean, then rerun the latest deploy gate.
+
 ## VF-QA-0007
 
 Status: Fixed
