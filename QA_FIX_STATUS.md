@@ -66,6 +66,16 @@ This cannot prevent a true network/browser failure before the very first HTML do
 - Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
 - Next step: stash/commit/clean the `proj1/` working tree (and ensure sibling app repos are on their recorded fix commits and rebuilt), then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS="french spanish german portugese italian greek catalan latvian russian ukrainian" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
 
+### Latest Deploy
+
+- 2026-05-20 09:37 CDT
+- Candidate commit: `c14ed1b7b`
+- Latest channel(s): `french`, `spanish`, `german`, `portugese`, `italian`, `greek`, `catalan`, `latvian`, `russian`, `ukrainian`
+- Verification run (production):
+  - `curl -fsS https://verbsfirst.com/<lang>_latest/sw.js | rg -n "PRECACHE_URLS = \\[INDEX_PATH" && rg -n "const FALLBACK_HTML"`
+- Command used: N/A (already live on production)
+- Result: Each listed `<lang>_latest` service worker contains the install-time `index.html` pre-cache and navigation fallback HTML, so the VF-QA-0001 fix is already present on `_latest`.
+
 ## VF-QA-0002
 
 Status: Fixed
