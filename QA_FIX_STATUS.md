@@ -798,10 +798,11 @@ Not yet checked on a physical phone or live production after deploy. The browser
 
 ### Latest Deploy Blocker
 
-- 2026-05-20 12:36 CDT
+- 2026-05-21 15:15 CDT
 - Commit: `ab8e872fe` (preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify ab8e872fe^{commit}` OK)
 - Intended latest channel(s): `french`
-- Blocked: `proj1/` working tree is dirty (203 paths in `git status --short`), so verification rebuild + deploy could ship unrelated WIP.
+- Blocked: `proj1/` working tree is still dirty (203 paths in `git status --short`), and the unrelated modified source/data/build files include `build.py`, `css/style.css`, `js/script.js`, `js/pronounFillRows.js`, and many untracked artifacts. Because `ab8e872fe` only changes `index.html`, a rebuild + `LATEST_ONLY` deploy from the current tree could ship unrelated WIP alongside the French update-state fix.
+- Next step: stash/commit/clean unrelated `proj1/` changes until `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` is clean, then rerun the latest deploy gate for `VF-QA-0014`.
 
 ## VF-QA-0015
 
