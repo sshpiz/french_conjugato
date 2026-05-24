@@ -929,7 +929,7 @@ Status: Fixed
 Owner: Dev Agent
 Started: 2026-05-24
 Updated: 2026-05-24
-Commit(s): spanish-verbs this commit, proj1 this commit
+Commit(s): spanish-verbs 28cbf12, proj1 33381c402
 
 ### Summary
 
@@ -964,3 +964,12 @@ Removed the Spanish app's client-side bare-domain-to-`www` redirect so the insta
 ### Remaining Risk
 
 Not yet checked on a physical phone, true production bare-domain origin, or live deployed PWA after update. Existing Spanish installs that already cached the redirecting shell may need one online update cycle to receive the `v23` worker and non-redirecting `index.html`. If the product still wants `www` as the only install origin, that should be enforced at the edge before install rather than by an app-shell redirect that can run offline.
+
+### Latest Deploy Blocker
+
+- Date: 2026-05-24 20:44 CEST
+- Candidate fix commit(s): `spanish-verbs 28cbf12`, `proj1 33381c402`
+- Intended latest channel(s): `spanish`
+- Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 28cbf12^{commit}` failed, so the Spanish fix commit hash is not present in the `proj1` repo history and the deploy gate cannot verify/rebuild/deploy it.
+- Also blocking: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive unrelated modified + untracked files, so any rebuild + deploy from `proj1/` would risk shipping local WIP.
+- Next step: record a corresponding `proj1` commit hash that vendors/wires the Spanish fix into `proj1` deploy inputs (or update deploy-gate rules to verify + deploy from the app repo), and ensure the `proj1/` working tree is clean before rerunning the latest deploy gate.
