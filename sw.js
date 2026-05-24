@@ -1,7 +1,7 @@
 // sw.js - scoped stale-while-revalidate for the French app.
 
 const CACHE_PREFIX = 'fr-app-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'v30';
+const CACHE_NAME = CACHE_PREFIX + 'v31';
 const LOG_KEY = '__sw-log';
 const MAX_LOG = 100;
 const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
@@ -83,7 +83,10 @@ self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      for (const url of PRECACHE_URLS) await preCacheUrl(cache, url);
+      await preCacheIndexAndBuildAssets(cache, 'install', { requireBuildAssets: true });
+      for (const url of PRECACHE_URLS.filter(url => url !== INDEX_PATH)) {
+        await preCacheUrl(cache, url);
+      }
     })
   );
 });
@@ -152,6 +155,19 @@ async function preCacheUrl(cache, url) {
   }
 }
 
+async function preCacheIndexAndBuildAssets(cache, reason = 'unknown', options = {}) {
+  try {
+    const response = await fetch(new Request(INDEX_PATH, { cache: 'no-store' }));
+    if (!response.ok) throw new Error(`status ${response.status}`);
+    const cached = await cacheIndexResponseAndBuildAssets(cache, response, reason, options);
+    if (!cached) throw new Error('index assets were not cached');
+    swLog.add(`pre-cached ${INDEX_PATH}`);
+  } catch (e) {
+    swLog.add(`pre-cache failed ${INDEX_PATH}: ${e.message}`);
+    if (options.requireBuildAssets) throw e;
+  }
+}
+
 async function warmIndexCache(reason = 'unknown') {
   try {
     const cache = await caches.open(CACHE_NAME);
@@ -160,11 +176,149 @@ async function warmIndexCache(reason = 'unknown') {
       swLog.add(`warm-index bad-status reason=${reason} status=${response.status}`);
       return;
     }
-    await cache.put(INDEX_PATH, response.clone());
-    swLog.add(`warm-index ok reason=${reason} status=${response.status}`);
+    const cached = await cacheIndexResponseAndBuildAssets(cache, response, `warm-index:${reason}`);
+    if (cached) {
+      swLog.add(`warm-index ok reason=${reason} status=${response.status}`);
+    } else {
+      swLog.add(`warm-index kept-previous reason=${reason} status=${response.status}`);
+    }
   } catch (e) {
     swLog.add(`warm-index failed reason=${reason}: ${e.message}`);
   }
+}
+
+async function cacheIndexResponseAndBuildAssets(cache, response, reason = 'unknown', options = {}) {
+  let indexText = '';
+  try {
+    indexText = await response.clone().text();
+  } catch (e) {
+    swLog.add(`index-parse failed reason=${reason}: ${e.message}`);
+    if (options.requireBuildAssets) throw e;
+    return false;
+  }
+  const stats = await warmBuildAssetsFromIndex(cache, indexText, reason, options);
+  if (!stats.count || stats.failed > 0) {
+    swLog.add(`index-cache skipped reason=${reason} asset-count=${stats.count} failed=${stats.failed}`);
+    return false;
+  }
+  await cache.put(INDEX_PATH, response.clone());
+  if (options.cacheRequest) {
+    await cache.put(options.cacheRequest, response.clone());
+  }
+  return true;
+}
+
+async function warmBuildAssetsFromIndex(cache, indexText, reason = 'unknown', options = {}) {
+  const urls = collectBuildAssetUrls(indexText);
+  if (!urls.length) {
+    swLog.add(`warm-build-assets skipped reason=${reason} count=0`);
+    if (options.requireBuildAssets) {
+      throw new Error('no build assets found in index');
+    }
+    return { count: 0, ok: 0, failed: 0 };
+  }
+
+  let ok = 0;
+  let failed = 0;
+  for (const url of urls) {
+    try {
+      const request = new Request(url.href, { cache: 'default' });
+      const response = await fetch(request);
+      if (response.ok) {
+        await cache.put(request, response.clone());
+        ok += 1;
+        if (isStarterVerbDataUrl(url)) {
+          ok += await warmExtraVerbDataFromStarter(cache, response, reason);
+        }
+      } else {
+        failed += 1;
+        swLog.add(`warm-build-assets bad-status ${url.pathname} status=${response.status}`);
+      }
+    } catch (e) {
+      failed += 1;
+      swLog.add(`warm-build-assets failed ${url.pathname}: ${e.message}`);
+    }
+  }
+  swLog.add(`warm-build-assets done reason=${reason} ok=${ok} failed=${failed}`);
+  if (options.requireBuildAssets && failed > 0) {
+    throw new Error(`failed to cache ${failed} build asset(s)`);
+  }
+  return { count: urls.length, ok, failed };
+}
+
+async function warmExtraVerbDataFromStarter(cache, response, reason = 'unknown') {
+  let starterText = '';
+  try {
+    starterText = await response.clone().text();
+  } catch (e) {
+    swLog.add(`warm-extra-data parse failed reason=${reason}: ${e.message}`);
+    return 0;
+  }
+
+  const match = starterText.match(/"extraUrl"\s*:\s*"([^"]+)"/);
+  if (!match) return 0;
+
+  const extraUrl = buildScopedUrl(match[1]);
+  if (!extraUrl) return 0;
+
+  try {
+    const request = new Request(extraUrl.href, { cache: 'default' });
+    const extraResponse = await fetch(request);
+    if (!extraResponse.ok) {
+      swLog.add(`warm-extra-data bad-status ${extraUrl.pathname} status=${extraResponse.status}`);
+      return 0;
+    }
+    await cache.put(request, extraResponse.clone());
+    swLog.add(`warm-extra-data ok reason=${reason} ${extraUrl.pathname}`);
+    return 1;
+  } catch (e) {
+    swLog.add(`warm-extra-data failed ${extraUrl.pathname}: ${e.message}`);
+    return 0;
+  }
+}
+
+function collectBuildAssetUrls(indexText) {
+  const urls = [];
+  const add = value => {
+    const url = buildScopedUrl(value);
+    if (url) urls.push(url);
+  };
+
+  for (const match of indexText.matchAll(/<script\b[^>]*\bsrc=(["'])(.*?)\1/gi)) {
+    add(match[2]);
+  }
+  for (const match of indexText.matchAll(/<link\b[^>]*\bhref=(["'])(.*?)\1[^>]*>/gi)) {
+    const tag = match[0];
+    if (/\brel=(["'])(?:manifest|icon|apple-touch-icon|stylesheet|modulepreload|preload)\1/i.test(tag)) {
+      add(match[2]);
+    }
+  }
+  for (const match of indexText.matchAll(/__FRENCH_HOMOPHONE_GROUP_URL\s*=\s*(["'])(.*?)\1/g)) {
+    add(match[2]);
+  }
+
+  const seen = new Set();
+  return urls.filter(url => {
+    if (seen.has(url.href)) return false;
+    seen.add(url.href);
+    return true;
+  });
+}
+
+function buildScopedUrl(value) {
+  try {
+    const url = new URL(String(value || ''), self.registration.scope);
+    if (url.origin !== self.location.origin) return null;
+    if (!inScopePath(url.pathname)) return null;
+    if (url.pathname === LOG_PATH || url.pathname.startsWith(TTS_PREFIX)) return null;
+    return url;
+  } catch (_) {
+    return null;
+  }
+}
+
+function isStarterVerbDataUrl(url) {
+  return /\/js\/verbs\.starter\.generated\.js$/.test(url.pathname);
 }
 
 async function warmAppAssets(urls = [], reason = 'unknown') {
@@ -290,15 +444,24 @@ async function serveWithSWR(request, url) {
 
   const refresh = fetch(request, (isNav || forceRefresh) ? { cache: 'no-store' } : {})
     .then(async response => {
-      if (!response.ok) return;
-      await cache.put(request, response.clone());
+      if (!response.ok) return response;
       if (isNav) {
-        await cache.put(INDEX_PATH, response.clone());
-        swLog.add(`bg-refresh ok ${url.pathname} status=${response.status}`);
+        const cachedIndex = await cacheIndexResponseAndBuildAssets(cache, response, `nav-refresh:${url.pathname}`, {
+          cacheRequest: request
+        });
+        if (cachedIndex) {
+          swLog.add(`bg-refresh ok ${url.pathname} status=${response.status}`);
+        } else {
+          swLog.add(`bg-refresh kept-cache ${url.pathname} status=${response.status}`);
+        }
+      } else {
+        await cache.put(request, response.clone());
       }
+      return response;
     })
     .catch(e => {
       if (isNav) swLog.add(`bg-refresh failed ${url.pathname}: ${e.message}`);
+      return undefined;
     });
 
   if (cached) {
@@ -309,9 +472,10 @@ async function serveWithSWR(request, url) {
   if (forceRefresh) swLog.add(`nav FORCE-REFRESH ${url.pathname} - bypassing cache`);
   if (isNav) swLog.add(`nav NO-CACHE ${url.pathname} - waiting for network`);
   try {
-    await refresh;
+    const networkResponse = await refresh;
     const fresh = await cache.match(request) || await cache.match(INDEX_PATH);
     if (fresh) return fresh;
+    if (networkResponse) return networkResponse;
   } catch (_) {}
 
   if (isNav) {

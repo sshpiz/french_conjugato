@@ -857,3 +857,43 @@ Not yet checked on a physical phone or live production after deploy. Existing de
   - `curl -fsSL https://verbsfirst.com/french_latest/js/verbs.starter.generated.js | rg -o '"infinitive":"tuméfier"[^}]{0,220}' | head -n 1`
 - Command used: N/A (already live on production)
 - Result: `french_latest` contains `"infinitive":"tuméfier","translation":"to swell up"`, so VF-QA-0015 is already present on `_latest`.
+
+## VF-QA-0016
+
+Status: Fixed
+Owner: Dev Agent
+Started: 2026-05-23
+Updated: 2026-05-24
+Commit(s): proj1 this commit
+
+### Summary
+
+Fixed French stable and French Latest service-worker upgrades so a newly cached offline HTML document is cached with its versioned build scripts before the worker can serve that HTML offline.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/proj1/sw.js
+- /Users/simeon/Code/VerbsFirst/proj1/QA_FIX_STATUS.md
+
+### Root Cause Confirmed
+
+Confirmed. French stable/latest index files load critical scripts with `?v=` cache-busting query strings, but the service worker previously pre-cached only the offline document and a few unversioned shell assets at install. During an update, the new worker could cache a new `index.html` while the still-open old page warmed only the old DOM's script URLs, leaving the new offline document pointing at uncached script URLs if the device went offline immediately after the worker update.
+
+### Fix Details
+
+The French service worker now bumps its cache to `v31` and, at install time, fetches the current `index.html`, parses its script/link/inline French homophone asset references, and caches those scoped build assets before completing install. It also follows the starter verb bundle's `extraUrl` pointer so `verbs.extra.generated.json?v=...` is cached with the starter bundle. Navigation and explicit index warming now parse and warm the fetched HTML first, then replace the cached offline HTML only when the referenced build assets cached successfully.
+
+### Verification Run
+
+- `node --check /Users/simeon/Code/VerbsFirst/proj1/sw.js`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_LANGS=french LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `env LATEST_CHANNEL_LANGS=french LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `node --check` passed for `/Users/simeon/Code/VerbsFirst/proj1/dist/french/sw.js`, `/Users/simeon/Code/VerbsFirst/proj1/dist/french_latest/sw.js`, and `/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare/french_latest/sw.js`.
+- Static service-worker VM verification collected 13 build URLs from rebuilt `dist/french_latest/index.html` and cached 16 responses, including `index.html`, `js/verbs.starter.generated.js?v=20260524_191716`, `js/verbs.extra.generated.json?v=20260524_191716`, `js/script.js?v=20260524_191716`, and `js/frenchHomophoneGroups.js?v=20260524_191716`.
+- Headless Chrome/Playwright served `/Users/simeon/Code/VerbsFirst/proj1/dist`, installed an old `v30` worker, switched the server to the rebuilt `v31` worker, forced the service-worker update while the old page stayed open, went offline before reloading into the new build, and verified both `/french_latest/` and `/french/` loaded the app UI offline.
+- Browser CacheStorage verification confirmed the updated worker cached the new `20260524_191716` `index.html`, starter bundle, extra bundle, main script, and homophone bundle for both French Latest and French stable, with install logs reporting `warm-build-assets done reason=install ok=14 failed=0`.
+
+### Remaining Risk
+
+Not yet checked on a physical phone or live production after deploy. Existing deployed service-worker/browser caches may need the normal update cycle before users receive the `v31` worker. `VF-QA-0017` remains a separate Spanish bare-domain/offline launch bug.
