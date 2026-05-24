@@ -557,6 +557,15 @@ Added Portuguese Fill Blanks option state for question family, difficulty weight
 
 Not yet checked on a physical phone or live production after deploy. The rebuilt `dist/portugese_latest/` output is ignored by git and must be regenerated/deployed from the fixed Portuguese source in the normal release flow.
 
+### Latest Deploy Blocker
+
+- Date: 2026-05-24 19:53 CEST
+- Commit: `2c15ab4` (portuguese-verbs)
+- Intended latest channels: `portugese`
+- Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 2c15ab4^{commit}` failed, so this hash is not present in the `proj1` repo history and the deploy gate cannot verify/rebuild/deploy it.
+- Additional blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files, so a rebuild + deploy could accidentally ship unrelated local work.
+- Next step: record a corresponding `proj1` commit hash for the Portuguese app wiring (or update the deploy gate rules to verify app commits in their own repos), then rerun; also ensure `proj1/` working tree is clean before any rebuild/deploy.
+
 ## VF-QA-0010
 
 Status: Fixed
