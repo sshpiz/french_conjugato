@@ -662,6 +662,14 @@ Added an être-auxiliary participle locator that scans immediately after the aux
 
 Not yet checked on a physical phone or live production after deploy. This fix is intentionally scoped to French display-time pronoun agreement; any stale deployed service worker or cached HTML may need the normal app update cycle before users see it.
 
+### Latest Deploy Blocker
+
+- 2026-05-24 19:33 CEST
+- Candidate commit: `ef9f2e82b` (preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify ef9f2e82b^{commit}` OK)
+- Intended latest channel(s): `french`, `portugese`
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
+- Next step: stash/commit/clean the `proj1/` working tree (and ensure it’s on `ef9f2e82b`), then rerun the latest deploy gate to verify + deploy latest-only via `LATEST_CHANNEL_LANGS="french portugese" LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
+
 ## VF-QA-0012
 
 Status: Fixed Locally
