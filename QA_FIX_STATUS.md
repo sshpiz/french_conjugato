@@ -881,7 +881,7 @@ Status: Fixed
 Owner: Dev Agent
 Started: 2026-05-23
 Updated: 2026-05-24
-Commit(s): proj1 this commit
+Commit(s): proj1 cec79e7ce
 
 ### Summary
 
@@ -914,6 +914,14 @@ The French service worker now bumps its cache to `v31` and, at install time, fet
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. Existing deployed service-worker/browser caches may need the normal update cycle before users receive the `v31` worker. `VF-QA-0017` remains a separate Spanish bare-domain/offline launch bug.
+
+### Latest Deploy Blocker
+
+- Date: 2026-05-24 20:34:41 CEST
+- Candidate commit: `cec79e7ce` (intended latest channel(s): `french`)
+- Preflight: `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify cec79e7ce^{commit}` succeeded.
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive modified + untracked files in `proj1/`, so a rebuild + deploy could accidentally ship unrelated local work.
+- Next step: stash/commit/clean the `proj1/` working tree, then rerun the latest deploy gate to rebuild/verify and deploy latest-only via `LATEST_CHANNEL_LANGS=french LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
 
 ## VF-QA-0017
 
