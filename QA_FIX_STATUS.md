@@ -905,3 +905,45 @@ The French service worker now bumps its cache to `v31` and, at install time, fet
 ### Remaining Risk
 
 Not yet checked on a physical phone or live production after deploy. Existing deployed service-worker/browser caches may need the normal update cycle before users receive the `v31` worker. `VF-QA-0017` remains a separate Spanish bare-domain/offline launch bug.
+
+## VF-QA-0017
+
+Status: Fixed
+Owner: Dev Agent
+Started: 2026-05-24
+Updated: 2026-05-24
+Commit(s): spanish-verbs this commit, proj1 this commit
+
+### Summary
+
+Fixed Spanish stable and Spanish Latest so the app no longer performs an in-page cross-origin redirect from `verbsfirst.com` to `www.verbsfirst.com` before service-worker registration, which could leave a bare-domain install unable to launch while offline.
+
+### Files Changed
+
+- /Users/simeon/Code/VerbsFirst/spanish-verbs/index.html
+- /Users/simeon/Code/VerbsFirst/spanish-verbs/sw.js
+- /Users/simeon/Code/VerbsFirst/proj1/QA_FIX_STATUS.md
+
+### Root Cause Confirmed
+
+Confirmed. The Spanish app template included an early head script that ran before service-worker registration and replaced `/spanish/` or `/spanish_latest/` on the bare `verbsfirst.com` origin with the matching `www.verbsfirst.com` URL. A home-screen app or tab opened from the bare origin while offline could therefore require a cross-origin network navigation before the Spanish service worker had a chance to control and serve the cached app shell.
+
+### Fix Details
+
+Removed the Spanish app's client-side bare-domain-to-`www` redirect so the installed/current origin can load and register its own scoped service worker. Bumped the Spanish service-worker cache from `v22` to `v23` so updated installs refresh their cached `index.html` and stop serving the older redirecting shell.
+
+### Verification Run
+
+- `node --check /Users/simeon/Code/VerbsFirst/spanish-verbs/sw.js`
+- `git -C /Users/simeon/Code/VerbsFirst/spanish-verbs diff --check -- index.html sw.js`
+- `python3 /Users/simeon/Code/VerbsFirst/spanish-verbs/build.py`
+- `python3 /Users/simeon/Code/VerbsFirst/proj1/build.py`
+- `env LATEST_CHANNEL_LANGS=spanish LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `env LATEST_CHANNEL_LANGS=spanish LATEST_CHANNEL_TARGETS_ONLY=/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare python3 /Users/simeon/Code/VerbsFirst/proj1/sync_latest_channels.py`
+- `node --check` passed for `/Users/simeon/Code/VerbsFirst/proj1/dist/spanish/sw.js`, `/Users/simeon/Code/VerbsFirst/proj1/dist/spanish_latest/sw.js`, and `/Users/simeon/Code/VerbsFirst/proj1/dist-cloudflare/spanish_latest/sw.js`.
+- `rg` confirmed `location.replace`, `verbsfirst.com`, and `www.verbsfirst.com` are absent from source Spanish HTML and rebuilt Spanish stable/latest/Cloudflare latest HTML; rebuilt workers use `v23` with the latest-channel cache prefix applied.
+- Headless Chrome/Playwright served `/Users/simeon/Code/VerbsFirst/proj1/dist`, opened `/spanish_latest/` and `/spanish/` online, confirmed their service workers pre-cached each app `index.html`, then switched offline and reloaded both URLs. Both rendered app UI offline without a browser-level `You're offline` / `ERR_INTERNET_DISCONNECTED` page.
+
+### Remaining Risk
+
+Not yet checked on a physical phone, true production bare-domain origin, or live deployed PWA after update. Existing Spanish installs that already cached the redirecting shell may need one online update cycle to receive the `v23` worker and non-redirecting `index.html`. If the product still wants `www` as the only install origin, that should be enforced at the edge before install rather than by an app-shell redirect that can run offline.
