@@ -929,6 +929,14 @@ Not yet checked on a physical phone or live production after deploy. Existing de
 - Blocker: current `proj1` working tree still contains unrelated modified source/build inputs (`build.py`, `css/style.css`, `js/frenchHomophoneGroups.js`, `js/pronounFillRows.js`, `js/script.js`) plus untracked `data/`, `dist-cloudflare/`, `js/french-phonetic-diff-v3.js`, and `js/vendor/`. A fresh French rebuild for `LATEST_ONLY=1` would include those non-`VF-QA-0016` changes.
 - Next step: clean or isolate the unrelated `proj1/` work, then rerun the deploy gate so it can rebuild, verify, and deploy only `french_latest` with `LATEST_CHANNEL_LANGS=french`.
 
+### Latest Deploy Blocker
+
+- Date: 2026-05-27 19:06 CEST
+- Candidate commit: `cec79e7ce` (proj1)
+- Intended latest channel(s): `french`
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` still shows 203 dirty paths, so a rebuild+deploy could ship unrelated WIP.
+- Intended command (once clean): `LATEST_CHANNEL_LANGS=french LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`
+
 ## VF-QA-0017
 
 Status: Fixed
