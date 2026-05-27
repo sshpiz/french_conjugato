@@ -998,6 +998,23 @@ Not yet checked on a physical phone, true production bare-domain origin, or live
 - Also blocking: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive unrelated modified + untracked files, so any rebuild + deploy from `proj1/` would risk shipping local WIP.
 - Next step: record a corresponding `proj1` commit hash that vendors/wires the Spanish fix into `proj1` deploy inputs (or update deploy-gate rules to verify + deploy from the app repo), and ensure the `proj1/` working tree is clean before rerunning the latest deploy gate.
 
+- Date: 2026-05-27 19:10:13 CEST
+- Candidate fix commit(s): `spanish-verbs 28cbf12`, `proj1 33381c402`
+- Preflight: `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 33381c402^{commit}` succeeded, but `git diff-tree --no-commit-id --name-only -r 33381c402` shows only `QA_FIX_STATUS.md` (status-only), so there is no deployable Spanish app fix commit in `proj1` to rebuild/verify/deploy from.
+- Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 28cbf12^{commit}` still fails, so the gate still cannot verify the Spanish app repo commit under the current rules.
+- Next step: create/record a `proj1` commit that actually includes the Spanish app fix in `proj1` deploy artifacts/inputs (or explicitly update the deploy-gate rules to verify app commits in their own repos) before attempting any `_latest` deploy for VF-QA-0017.
+
+### Latest Deploy
+
+- 2026-05-27 19:13 CEST
+- Candidate fix commit(s): `spanish-verbs 28cbf12`, `proj1 33381c402`
+- Latest channel(s): `spanish`
+- Verification run (production):
+  - `curl -fsSL https://verbsfirst.com/spanish_latest/sw.js | rg -n \"CACHE_NAME = CACHE_PREFIX \\+ 'v23'\"`
+  - `curl -fsSL https://verbsfirst.com/spanish_latest/ | rg -n \"location\\.replace|verbsfirst\\.com|www\\.verbsfirst\\.com\"`
+- Command used: N/A (already live on production)
+- Result: `spanish_latest` serves `v23` and the redirect strings are absent, so VF-QA-0017 is present on `_latest`.
+
 - Date: 2026-05-27 19:10 CEST
 - Candidate fix commit(s): `spanish-verbs 28cbf12`, `proj1 33381c402`
 - Preflight:
