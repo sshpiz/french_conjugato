@@ -937,6 +937,16 @@ Not yet checked on a physical phone or live production after deploy. Existing de
 - Blocker: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` still shows 203 dirty paths, so a rebuild+deploy could ship unrelated WIP.
 - Intended command (once clean): `LATEST_CHANNEL_LANGS=french LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`
 
+### Latest Deploy
+
+- 2026-05-27 19:09 CEST
+- Candidate commit: `cec79e7ce` (preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify cec79e7ce^{commit}` OK)
+- Latest channel(s): `french`
+- Verification run (production):
+  - `curl -fsSL https://verbsfirst.com/french_latest/sw.js | rg -n "CACHE_NAME = CACHE_PREFIX \\+ 'v31'|preCacheIndexAndBuildAssets"`
+- Command used: N/A (already live on production)
+- Result: `french_latest` includes service-worker cache `v31` and the `preCacheIndexAndBuildAssets` logic, so VF-QA-0016 is present on `_latest`.
+
 ## VF-QA-0017
 
 Status: Fixed
