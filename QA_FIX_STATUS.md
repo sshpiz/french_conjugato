@@ -997,3 +997,14 @@ Not yet checked on a physical phone, true production bare-domain origin, or live
 - Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 28cbf12^{commit}` failed, so the Spanish fix commit hash is not present in the `proj1` repo history and the deploy gate cannot verify/rebuild/deploy it.
 - Also blocking: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` shows extensive unrelated modified + untracked files, so any rebuild + deploy from `proj1/` would risk shipping local WIP.
 - Next step: record a corresponding `proj1` commit hash that vendors/wires the Spanish fix into `proj1` deploy inputs (or update deploy-gate rules to verify + deploy from the app repo), and ensure the `proj1/` working tree is clean before rerunning the latest deploy gate.
+
+- Date: 2026-05-27 19:10 CEST
+- Candidate fix commit(s): `spanish-verbs 28cbf12`, `proj1 33381c402`
+- Preflight:
+  - `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 33381c402^{commit}` succeeded.
+  - `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 28cbf12^{commit}` failed with `fatal: Needed a single revision`.
+  - `git -C /Users/simeon/Code/VerbsFirst/proj1 diff-tree --no-commit-id --name-only -r 33381c402` shows only `QA_FIX_STATUS.md`, while `git -C /Users/simeon/Code/VerbsFirst/spanish-verbs diff-tree --no-commit-id --name-only -r 28cbf12` shows the real Spanish app changes in `index.html` and `sw.js`.
+- Intended latest channel(s): `spanish`
+- Blocker: the required `proj1` preflight still cannot verify the actual Spanish fix commit, and the only recorded `proj1` hash for `VF-QA-0017` is a QA status update rather than a deployable app/build change.
+- Also blocking: `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short | wc -l` reports `204`, so a rebuild + `LATEST_ONLY=1` deploy from `proj1/` would still risk shipping unrelated local WIP.
+- Next step: add the Spanish fix to a real `proj1` deploy-input commit (or adjust the deploy-gate rules to verify/deploy from the app repo), then rerun after cleaning the `proj1/` working tree.
