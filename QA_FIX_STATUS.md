@@ -821,6 +821,16 @@ Not yet checked on a physical phone or live production after deploy. The browser
 - Blocked: `proj1/` working tree is still dirty (203 paths in `git status --short`), and the unrelated modified source/data/build files include `build.py`, `css/style.css`, `js/script.js`, `js/pronounFillRows.js`, and many untracked artifacts. Because `ab8e872fe` only changes `index.html`, a rebuild + `LATEST_ONLY` deploy from the current tree could ship unrelated WIP alongside the French update-state fix.
 - Next step: stash/commit/clean unrelated `proj1/` changes until `git -C /Users/simeon/Code/VerbsFirst/proj1 status --short` is clean, then rerun the latest deploy gate for `VF-QA-0014`.
 
+### Latest Deploy
+
+- 2026-06-01 01:50 CEST
+- Candidate commit: `ab8e872fe`
+- Latest channel(s): `french`
+- Verification run (production):
+  - `curl -fsS -L https://verbsfirst.com/french_latest/index.html | rg -n "APP_UPDATE_CHECK_MAX_MS|hadScopedActiveWorker|setIdleIfNoUpdate"`
+- Command used: N/A (already live on production)
+- Result: Production `french_latest` `index.html` contains the bounded update-check idle fallback and first-install vs update-state logic, so VF-QA-0014 is present on `_latest`.
+
 ## VF-QA-0015
 
 Status: Fixed
