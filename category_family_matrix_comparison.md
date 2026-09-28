@@ -1,0 +1,132 @@
+# LEFFF vs DICOVALENCE Category Family Matrix Comparison
+
+Comparison values:
+- `agree`: same status in both matrices
+- `lefff_unknown`: LEFFF direct column was `?`
+- `disagree`: explicit mismatch
+
+- `Art & Design` / `exposer`: a_ok, direct_a_ok
+- `Bureaucracy & Delivery` / `appeler`: a_ok, de_ok, direct_a_ok
+- `Bureaucracy & Delivery` / `attendre`: a_ok
+- `Bureaucracy & Delivery` / `confirmer`: a_ok
+- `Bureaucracy & Delivery` / `envoyer`: a_ok
+- `Bureaucracy & Delivery` / `fermer`: a_ok, de_ok, direct_a_ok
+- `Bureaucracy & Delivery` / `indiquer`: a_ok, direct_a_ok
+- `Bureaucracy & Delivery` / `joindre`: a_ok, direct_a_ok
+- `Bureaucracy & Delivery` / `laisser`: a_ok
+- `Bureaucracy & Delivery` / `livrer`: a_ok
+- `Bureaucracy & Delivery` / `ouvrir`: a_ok, de_ok, direct_a_ok
+- `Bureaucracy & Delivery` / `passer`: a_ok
+- `Bureaucracy & Delivery` / `recevoir`: de_ok
+- `Bureaucracy & Delivery` / `renvoyer`: a_ok, direct_a_ok
+- `Bureaucracy & Delivery` / `répondre`: a_ok
+- `Bureaucracy & Delivery` / `venir`: de_ok
+- `Cinema & Series` / `couper`: a_ok, de_ok
+- `Cinema & Series` / `enchaîner`: a_ok, direct_a_ok
+- `Cinema & Series` / `raconter`: a_ok
+- `Cinema & Series` / `regarder`: a_ok
+- `Cinema & Series` / `tourner`: a_ok
+- `Cooking & Food` / `couper`: a_ok, de_ok
+- `Cooking & Food` / `cuire`: a_ok
+- `Cooking & Food` / `mélanger`: a_ok, direct_a_ok
+- `Cooking & Food` / `préparer`: a_ok, direct_a_ok
+- `Cooking & Food` / `saisir`: de_ok
+- `Cooking & Food` / `servir`: direct_a_ok
+- `Cooking & Food` / `verser`: a_ok
+- `Crafts & Making` / `ajuster`: a_ok, direct_a_ok
+- `Crafts & Making` / `coller`: a_ok, direct_a_ok
+- `Crafts & Making` / `coudre`: a_ok, direct_a_ok
+- `Crafts & Making` / `souder`: a_ok, direct_a_ok
+- `Education & Learning` / `apprendre`: a_ok, de_ok
+- `Education & Learning` / `enseigner`: a_ok
+- `Education & Learning` / `expliquer`: a_ok, direct_a_ok
+- `Education & Learning` / `présenter`: a_ok, direct_a_ok
+- `Education & Learning` / `traduire`: de_ok
+- `Education & Learning` / `écrire`: a_ok, direct_a_ok
+- `History & Culture` / `exposer`: a_ok, direct_a_ok
+- `History & Culture` / `raconter`: a_ok
+- `History & Culture` / `traduire`: de_ok
+- `History & Culture` / `écrire`: a_ok, direct_a_ok
+- `Music` / `accorder`: a_ok
+- `Music` / `assurer`: a_ok, direct_a_ok
+- `Music` / `chanter`: direct_a_ok
+- `Music` / `chauffer`: a_ok, direct_a_ok
+- `Music` / `composer`: de_ok
+- `Music` / `jouer`: a_ok, de_ok
+- `Music` / `répéter`: a_ok
+- `Nightlife & Partying` / `dépenser`: a_ok, direct_a_ok
+- `Nightlife & Partying` / `inviter`: a_ok, direct_a_ok
+- `Nightlife & Partying` / `sortir`: a_ok, direct_a_ok
+- `Office & Admin` / `assurer`: a_ok, direct_a_ok
+- `Office & Admin` / `bosser`: a_ok
+- `Office & Admin` / `envoyer`: a_ok
+- `Office & Admin` / `présenter`: a_ok, direct_a_ok
+- `Office & Admin` / `rappeler`: a_ok
+- `Office & Admin` / `relancer`: a_ok
+- `Office & Admin` / `reporter`: a_ok, direct_a_ok
+- `Office & Admin` / `répondre`: a_ok
+- `Office & Admin` / `transférer`: a_ok, direct_a_ok
+- `Office & Admin` / `travailler`: de_ok
+- `Outdoors & Nature` / `grimper`: a_ok
+- `Politics & Current Events` / `condamner`: a_ok, direct_a_ok
+- `Politics & Current Events` / `débattre`: de_ok
+- `Politics & Current Events` / `dénoncer`: a_ok
+- `Politics & Current Events` / `imposer`: a_ok, direct_a_ok
+- `Politics & Current Events` / `manifester`: a_ok, direct_a_ok
+- `Politics & Current Events` / `promettre`: a_ok, direct_a_ok
+- `Politics & Current Events` / `relancer`: a_ok
+- `Relationship Drama` / `aimer`: de_ok
+- `Relationship Drama` / `appeler`: a_ok, de_ok, direct_a_ok
+- `Relationship Drama` / `disputer`: a_ok, direct_a_ok
+- `Relationship Drama` / `mentir`: a_ok
+- `Relationship Drama` / `pardonner`: a_ok
+- `Relationship Drama` / `reprocher`: a_ok
+- `Relationship Drama` / `sortir`: a_ok, direct_a_ok
+- `Relationship Drama` / `tromper`: a_ok
+- `Sports & Fitness` / `attraper`: a_ok, direct_a_ok
+- `Sports & Fitness` / `changer`: a_ok, direct_a_ok
+- `Sports & Fitness` / `défendre`: a_ok, de_ok
+- `Sports & Fitness` / `entraîner`: a_ok, direct_a_ok
+- `Sports & Fitness` / `frapper`: de_ok
+- `Sports & Fitness` / `gagner`: a_ok, direct_a_ok
+- `Sports & Fitness` / `jouer`: a_ok, de_ok
+- `Sports & Fitness` / `lancer`: a_ok
+- `Sports & Fitness` / `passer`: a_ok
+- `Sports & Fitness` / `recevoir`: de_ok
+- `Sports & Fitness` / `tirer`: a_ok, de_ok
+- `Super Everyday` / `acheter`: a_ok, de_ok, direct_a_ok
+- `Super Everyday` / `aider`: a_ok, de_ok, direct_a_ok
+- `Super Everyday` / `aimer`: de_ok
+- `Super Everyday` / `aller`: a_ok, de_ok
+- `Super Everyday` / `appeler`: a_ok, de_ok, direct_a_ok
+- `Super Everyday` / `attendre`: a_ok
+- `Super Everyday` / `demander`: a_ok, de_ok
+- `Super Everyday` / `donner`: a_ok
+- `Super Everyday` / `envoyer`: a_ok
+- `Super Everyday` / `faire`: a_ok
+- `Super Everyday` / `fermer`: a_ok, de_ok, direct_a_ok
+- `Super Everyday` / `laisser`: a_ok
+- `Super Everyday` / `mettre`: a_ok, direct_a_ok
+- `Super Everyday` / `montrer`: a_ok
+- `Super Everyday` / `ouvrir`: a_ok, de_ok, direct_a_ok
+- `Super Everyday` / `partir`: de_ok
+- `Super Everyday` / `passer`: a_ok
+- `Super Everyday` / `payer`: a_ok, de_ok
+- `Super Everyday` / `porter`: a_ok
+- `Super Everyday` / `poser`: direct_a_ok
+- `Super Everyday` / `prendre`: a_ok, de_ok, direct_a_ok
+- `Super Everyday` / `ramener`: a_ok, direct_a_ok
+- `Super Everyday` / `regarder`: a_ok
+- `Super Everyday` / `sortir`: a_ok, direct_a_ok
+- `Super Everyday` / `travailler`: de_ok
+- `Super Everyday` / `trouver`: a_ok, de_ok
+- `Super Everyday` / `venir`: de_ok
+- `Super Everyday` / `être`: a_ok, de_ok
+- `Travel & Tourism` / `louer`: a_ok, direct_a_ok
+- `Travel & Tourism` / `partir`: de_ok
+- `Travel & Tourism` / `payer`: a_ok, de_ok
+- `Travel & Tourism` / `réserver`: a_ok
+- `Woodworking` / `ajuster`: a_ok, direct_a_ok
+- `Woodworking` / `coller`: a_ok, direct_a_ok
+- `Woodworking` / `frapper`: de_ok
+- `Woodworking` / `vernir`: de_ok

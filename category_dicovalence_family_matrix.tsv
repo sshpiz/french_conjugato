@@ -1,0 +1,377 @@
+verb	category_id	category_name	direct_ok	a_ok	de_ok	direct_a_ok
+croquer	builtin-art-design	Art & Design	yes	no	no	no
+créer	builtin-art-design	Art & Design	yes	no	no	no
+dessiner	builtin-art-design	Art & Design	yes	no	no	no
+esquisser	builtin-art-design	Art & Design	yes	no	no	no
+exposer	builtin-art-design	Art & Design	yes	yes	no	yes
+filmer	builtin-art-design	Art & Design	yes	no	no	no
+graver	builtin-art-design	Art & Design	yes	no	no	no
+modeler	builtin-art-design	Art & Design	yes	no	no	no
+peindre	builtin-art-design	Art & Design	yes	no	no	no
+photographier	builtin-art-design	Art & Design	yes	no	no	no
+restaurer	builtin-art-design	Art & Design	yes	no	no	no
+retoucher	builtin-art-design	Art & Design	yes	no	no	no
+sculpter	builtin-art-design	Art & Design	yes	no	no	no
+tracer	builtin-art-design	Art & Design	yes	no	no	no
+appeler	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	yes	yes
+attendre	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	yes	no
+confirmer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+déposer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	no
+envoyer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+fermer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	yes	yes
+imprimer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	no
+indiquer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+joindre	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+laisser	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+livrer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+ouvrir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	yes	yes
+passer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+recevoir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	yes	no
+remplir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	yes	no
+renvoyer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	no	yes
+récupérer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	no
+répondre	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	yes	yes	yes
+signer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	no
+sonner	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	no
+venir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	no	yes	yes	no
+couper	builtin-cinema-series	Cinema & Series	yes	yes	yes	no
+diffuser	builtin-cinema-series	Cinema & Series	yes	no	no	no
+documenter	builtin-cinema-series	Cinema & Series	yes	no	no	no
+enchaîner	builtin-cinema-series	Cinema & Series	yes	yes	no	yes
+enregistrer	builtin-cinema-series	Cinema & Series	yes	no	no	no
+filmer	builtin-cinema-series	Cinema & Series	yes	no	no	no
+interpréter	builtin-cinema-series	Cinema & Series	yes	no	no	no
+mater	builtin-cinema-series	Cinema & Series	yes	no	no	no
+monter	builtin-cinema-series	Cinema & Series	yes	no	no	no
+raconter	builtin-cinema-series	Cinema & Series	yes	yes	no	yes
+regarder	builtin-cinema-series	Cinema & Series	yes	yes	no	no
+tourner	builtin-cinema-series	Cinema & Series	yes	yes	no	no
+zapper	builtin-cinema-series	Cinema & Series	no	no	no	no
+écouter	builtin-cinema-series	Cinema & Series	yes	no	no	no
+boire	builtin-cooking-food	Cooking & Food	yes	no	no	no
+bouffer	builtin-cooking-food	Cooking & Food	yes	no	no	no
+brûler	builtin-cooking-food	Cooking & Food	yes	no	no	no
+couper	builtin-cooking-food	Cooking & Food	yes	yes	yes	no
+cuire	builtin-cooking-food	Cooking & Food	yes	yes	no	no
+cuisiner	builtin-cooking-food	Cooking & Food	yes	no	no	no
+dresser	builtin-cooking-food	Cooking & Food	yes	no	no	no
+dévorer	builtin-cooking-food	Cooking & Food	yes	no	no	no
+frire	builtin-cooking-food	Cooking & Food	yes	no	no	no
+goûter	builtin-cooking-food	Cooking & Food	yes	yes	yes	no
+grignoter	builtin-cooking-food	Cooking & Food	yes	no	no	no
+manger	builtin-cooking-food	Cooking & Food	yes	no	no	no
+mijoter	builtin-cooking-food	Cooking & Food	yes	no	no	no
+mixer	builtin-cooking-food	Cooking & Food	no	no	no	no
+mélanger	builtin-cooking-food	Cooking & Food	yes	yes	no	yes
+nettoyer	builtin-cooking-food	Cooking & Food	yes	no	no	no
+préparer	builtin-cooking-food	Cooking & Food	yes	yes	no	yes
+rôtir	builtin-cooking-food	Cooking & Food	yes	no	no	no
+saigner	builtin-cooking-food	Cooking & Food	yes	no	no	no
+saisir	builtin-cooking-food	Cooking & Food	yes	no	yes	no
+servir	builtin-cooking-food	Cooking & Food	yes	yes	yes	yes
+verser	builtin-cooking-food	Cooking & Food	yes	yes	no	yes
+éplucher	builtin-cooking-food	Cooking & Food	yes	no	no	no
+ajuster	builtin-crafts-making	Crafts & Making	yes	yes	no	yes
+assembler	builtin-crafts-making	Crafts & Making	yes	no	no	no
+bidouiller	builtin-crafts-making	Crafts & Making	no	no	no	no
+bricoler	builtin-crafts-making	Crafts & Making	yes	no	no	no
+coller	builtin-crafts-making	Crafts & Making	yes	yes	no	yes
+coudre	builtin-crafts-making	Crafts & Making	yes	yes	no	yes
+démonter	builtin-crafts-making	Crafts & Making	yes	no	no	no
+fabriquer	builtin-crafts-making	Crafts & Making	yes	no	no	no
+foirer	builtin-crafts-making	Crafts & Making	no	no	no	no
+merder	builtin-crafts-making	Crafts & Making	no	no	no	no
+mesurer	builtin-crafts-making	Crafts & Making	yes	no	no	no
+monter	builtin-crafts-making	Crafts & Making	yes	no	no	no
+planter	builtin-crafts-making	Crafts & Making	yes	no	yes	no
+poncer	builtin-crafts-making	Crafts & Making	yes	no	no	no
+rafistoler	builtin-crafts-making	Crafts & Making	yes	no	no	no
+rater	builtin-crafts-making	Crafts & Making	yes	no	no	no
+régler	builtin-crafts-making	Crafts & Making	yes	no	no	no
+souder	builtin-crafts-making	Crafts & Making	yes	yes	no	yes
+tisser	builtin-crafts-making	Crafts & Making	yes	no	no	no
+tricoter	builtin-crafts-making	Crafts & Making	yes	no	no	no
+analyser	builtin-education-learning	Education & Learning	yes	no	no	no
+apprendre	builtin-education-learning	Education & Learning	yes	yes	yes	yes
+bachoter	builtin-education-learning	Education & Learning	yes	no	no	no
+calculer	builtin-education-learning	Education & Learning	yes	no	no	no
+enseigner	builtin-education-learning	Education & Learning	yes	yes	no	yes
+expliquer	builtin-education-learning	Education & Learning	yes	yes	no	yes
+lire	builtin-education-learning	Education & Learning	yes	no	no	no
+potasser	builtin-education-learning	Education & Learning	yes	no	no	no
+présenter	builtin-education-learning	Education & Learning	yes	yes	no	yes
+réviser	builtin-education-learning	Education & Learning	yes	no	no	no
+survoler	builtin-education-learning	Education & Learning	yes	no	no	no
+traduire	builtin-education-learning	Education & Learning	yes	no	yes	no
+écrire	builtin-education-learning	Education & Learning	yes	yes	no	yes
+étudier	builtin-education-learning	Education & Learning	yes	no	no	no
+classer	builtin-history-culture	History & Culture	yes	no	no	no
+collectionner	builtin-history-culture	History & Culture	yes	no	no	no
+conserver	builtin-history-culture	History & Culture	yes	no	no	no
+documenter	builtin-history-culture	History & Culture	yes	no	no	no
+explorer	builtin-history-culture	History & Culture	yes	no	no	no
+exposer	builtin-history-culture	History & Culture	yes	yes	no	yes
+fouiller	builtin-history-culture	History & Culture	yes	no	no	no
+lire	builtin-history-culture	History & Culture	yes	no	no	no
+raconter	builtin-history-culture	History & Culture	yes	yes	no	yes
+restaurer	builtin-history-culture	History & Culture	yes	no	no	no
+traduire	builtin-history-culture	History & Culture	yes	no	yes	no
+écrire	builtin-history-culture	History & Culture	yes	yes	no	yes
+étudier	builtin-history-culture	History & Culture	yes	no	no	no
+accorder	builtin-music	Music	yes	yes	no	yes
+accélérer	builtin-music	Music	yes	no	no	no
+assurer	builtin-music	Music	yes	yes	yes	yes
+brancher	builtin-music	Music	yes	no	no	no
+caler	builtin-music	Music	yes	no	no	no
+chanter	builtin-music	Music	yes	no	no	no
+chauffer	builtin-music	Music	yes	yes	no	yes
+composer	builtin-music	Music	yes	no	yes	no
+danser	builtin-music	Music	yes	no	no	no
+enregistrer	builtin-music	Music	yes	no	no	no
+foirer	builtin-music	Music	no	no	no	no
+improviser	builtin-music	Music	yes	no	no	no
+interpréter	builtin-music	Music	yes	no	no	no
+jouer	builtin-music	Music	yes	yes	yes	no
+mixer	builtin-music	Music	no	no	no	no
+ralentir	builtin-music	Music	yes	no	no	no
+rater	builtin-music	Music	yes	no	no	no
+répéter	builtin-music	Music	yes	yes	no	yes
+écouter	builtin-music	Music	yes	no	no	no
+boire	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+bouffer	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+brancher	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+cuver	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+danser	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+dormir	builtin-nightlife-partying	Nightlife & Partying	no	no	no	no
+draguer	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+déconner	builtin-nightlife-partying	Nightlife & Partying	no	no	no	no
+dépenser	builtin-nightlife-partying	Nightlife & Partying	yes	yes	no	yes
+flirter	builtin-nightlife-partying	Nightlife & Partying	no	no	no	no
+fêter	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+inviter	builtin-nightlife-partying	Nightlife & Partying	yes	yes	no	yes
+kiffer	builtin-nightlife-partying	Nightlife & Partying	no	no	no	no
+mater	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+picoler	builtin-nightlife-partying	Nightlife & Partying	no	no	no	no
+rentrer	builtin-nightlife-partying	Nightlife & Partying	yes	no	no	no
+sortir	builtin-nightlife-partying	Nightlife & Partying	yes	yes	yes	yes
+trinquer	builtin-nightlife-partying	Nightlife & Partying	no	yes	yes	no
+zoner	builtin-nightlife-partying	Nightlife & Partying	no	no	no	no
+annuler	builtin-office-admin	Office & Admin	yes	no	no	no
+archiver	builtin-office-admin	Office & Admin	no	no	no	no
+assurer	builtin-office-admin	Office & Admin	yes	yes	yes	yes
+bosser	builtin-office-admin	Office & Admin	no	yes	no	no
+boucler	builtin-office-admin	Office & Admin	yes	no	no	no
+caler	builtin-office-admin	Office & Admin	yes	no	no	no
+classer	builtin-office-admin	Office & Admin	yes	no	no	no
+corriger	builtin-office-admin	Office & Admin	yes	no	yes	no
+envoyer	builtin-office-admin	Office & Admin	yes	yes	no	yes
+gérer	builtin-office-admin	Office & Admin	yes	no	no	no
+imprimer	builtin-office-admin	Office & Admin	yes	no	no	no
+organiser	builtin-office-admin	Office & Admin	yes	no	no	no
+planifier	builtin-office-admin	Office & Admin	yes	no	no	no
+pointer	builtin-office-admin	Office & Admin	yes	no	no	no
+présenter	builtin-office-admin	Office & Admin	yes	yes	no	yes
+ranger	builtin-office-admin	Office & Admin	yes	no	no	no
+rappeler	builtin-office-admin	Office & Admin	yes	yes	no	yes
+relancer	builtin-office-admin	Office & Admin	yes	yes	no	yes
+reporter	builtin-office-admin	Office & Admin	yes	yes	no	yes
+régler	builtin-office-admin	Office & Admin	yes	no	no	no
+répondre	builtin-office-admin	Office & Admin	yes	yes	yes	yes
+signer	builtin-office-admin	Office & Admin	yes	no	no	no
+traiter	builtin-office-admin	Office & Admin	yes	no	yes	no
+transférer	builtin-office-admin	Office & Admin	yes	yes	no	yes
+travailler	builtin-office-admin	Office & Admin	yes	yes	yes	no
+valider	builtin-office-admin	Office & Admin	yes	no	no	no
+camper	builtin-outdoors-nature	Outdoors & Nature	yes	no	no	no
+crapahuter	builtin-outdoors-nature	Outdoors & Nature	no	no	no	no
+escalader	builtin-outdoors-nature	Outdoors & Nature	yes	no	no	no
+explorer	builtin-outdoors-nature	Outdoors & Nature	yes	no	no	no
+galoper	builtin-outdoors-nature	Outdoors & Nature	no	no	no	no
+grimper	builtin-outdoors-nature	Outdoors & Nature	yes	yes	no	no
+marcher	builtin-outdoors-nature	Outdoors & Nature	no	no	no	no
+naviguer	builtin-outdoors-nature	Outdoors & Nature	no	no	no	no
+observer	builtin-outdoors-nature	Outdoors & Nature	yes	no	no	no
+pagayer	builtin-outdoors-nature	Outdoors & Nature	no	no	no	no
+pêcher	builtin-outdoors-nature	Outdoors & Nature	yes	no	no	no
+ramer	builtin-outdoors-nature	Outdoors & Nature	no	no	no	no
+randonner	builtin-outdoors-nature	Outdoors & Nature	no	no	no	no
+tracer	builtin-outdoors-nature	Outdoors & Nature	yes	no	no	no
+accuser	builtin-politics-current-events	Politics & Current Events	yes	no	yes	no
+boycotter	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+condamner	builtin-politics-current-events	Politics & Current Events	yes	yes	no	yes
+discuter	builtin-politics-current-events	Politics & Current Events	yes	no	yes	no
+débattre	builtin-politics-current-events	Politics & Current Events	yes	no	yes	no
+démentir	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+dénoncer	builtin-politics-current-events	Politics & Current Events	yes	yes	no	yes
+gouverner	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+gérer	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+imposer	builtin-politics-current-events	Politics & Current Events	yes	yes	no	yes
+manifester	builtin-politics-current-events	Politics & Current Events	yes	yes	no	yes
+militer	builtin-politics-current-events	Politics & Current Events	no	no	no	no
+négocier	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+pointer	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+promettre	builtin-politics-current-events	Politics & Current Events	yes	yes	no	yes
+protester	builtin-politics-current-events	Politics & Current Events	no	no	no	no
+relancer	builtin-politics-current-events	Politics & Current Events	yes	yes	no	yes
+réformer	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+soutenir	builtin-politics-current-events	Politics & Current Events	yes	no	yes	no
+surveiller	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+traiter	builtin-politics-current-events	Politics & Current Events	yes	no	yes	no
+voter	builtin-politics-current-events	Politics & Current Events	yes	no	no	no
+aimer	builtin-relationship-drama	Relationship Drama	yes	no	yes	no
+appeler	builtin-relationship-drama	Relationship Drama	yes	yes	yes	yes
+discuter	builtin-relationship-drama	Relationship Drama	yes	no	yes	no
+disputer	builtin-relationship-drama	Relationship Drama	yes	yes	no	yes
+draguer	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+embrasser	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+embrouiller	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+engueuler	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+flirter	builtin-relationship-drama	Relationship Drama	no	no	no	no
+larguer	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+mentir	builtin-relationship-drama	Relationship Drama	no	yes	no	no
+pardonner	builtin-relationship-drama	Relationship Drama	yes	yes	no	yes
+quitter	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+reprocher	builtin-relationship-drama	Relationship Drama	yes	yes	no	yes
+rompre	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+sortir	builtin-relationship-drama	Relationship Drama	yes	yes	yes	yes
+séduire	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+trahir	builtin-relationship-drama	Relationship Drama	yes	no	no	no
+tromper	builtin-relationship-drama	Relationship Drama	yes	yes	no	no
+attraper	builtin-sports-fitness	Sports & Fitness	yes	yes	no	yes
+bander	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+blesser	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+bloquer	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+boiter	builtin-sports-fitness	Sports & Fitness	no	no	no	no
+centrer	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+changer	builtin-sports-fitness	Sports & Fitness	yes	yes	yes	yes
+contrer	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+courir	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+dribbler	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+défendre	builtin-sports-fitness	Sports & Fitness	yes	yes	yes	yes
+entraîner	builtin-sports-fitness	Sports & Fitness	yes	yes	no	yes
+frapper	builtin-sports-fitness	Sports & Fitness	yes	no	yes	no
+gagner	builtin-sports-fitness	Sports & Fitness	yes	yes	no	yes
+glacer	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+jouer	builtin-sports-fitness	Sports & Fitness	yes	yes	yes	no
+lancer	builtin-sports-fitness	Sports & Fitness	yes	yes	no	yes
+marquer	builtin-sports-fitness	Sports & Fitness	yes	no	yes	no
+nager	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+passer	builtin-sports-fitness	Sports & Fitness	yes	yes	no	yes
+perdre	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+plaquer	builtin-sports-fitness	Sports & Fitness	yes	no	yes	no
+recevoir	builtin-sports-fitness	Sports & Fitness	yes	no	yes	no
+saigner	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+sauter	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+skier	builtin-sports-fitness	Sports & Fitness	no	no	no	no
+soigner	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+sprinter	builtin-sports-fitness	Sports & Fitness	no	no	no	no
+surfer	builtin-sports-fitness	Sports & Fitness	no	no	no	no
+tirer	builtin-sports-fitness	Sports & Fitness	yes	yes	yes	no
+tomber	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+tordre	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+acheter	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+aider	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+aimer	builtin-super-everyday	Super Everyday	yes	no	yes	no
+aller	builtin-super-everyday	Super Everyday	no	yes	yes	no
+appeler	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+arriver	builtin-super-everyday	Super Everyday	no	yes	no	no
+attendre	builtin-super-everyday	Super Everyday	yes	yes	yes	no
+avoir	builtin-super-everyday	Super Everyday	yes	no	no	no
+boire	builtin-super-everyday	Super Everyday	yes	no	no	no
+bouger	builtin-super-everyday	Super Everyday	yes	no	no	no
+demander	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+donner	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+envoyer	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+faire	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+fermer	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+laisser	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+manger	builtin-super-everyday	Super Everyday	yes	no	no	no
+mettre	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+montrer	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+oublier	builtin-super-everyday	Super Everyday	yes	no	no	no
+ouvrir	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+parler	builtin-super-everyday	Super Everyday	yes	yes	yes	no
+partir	builtin-super-everyday	Super Everyday	no	no	yes	no
+passer	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+payer	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+porter	builtin-super-everyday	Super Everyday	yes	yes	no	no
+poser	builtin-super-everyday	Super Everyday	yes	no	no	no
+prendre	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+ramener	builtin-super-everyday	Super Everyday	yes	yes	no	yes
+ranger	builtin-super-everyday	Super Everyday	yes	no	no	no
+regarder	builtin-super-everyday	Super Everyday	yes	yes	no	no
+rentrer	builtin-super-everyday	Super Everyday	yes	no	no	no
+sortir	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+travailler	builtin-super-everyday	Super Everyday	yes	yes	yes	no
+traîner	builtin-super-everyday	Super Everyday	yes	no	no	no
+trouver	builtin-super-everyday	Super Everyday	yes	yes	yes	yes
+venir	builtin-super-everyday	Super Everyday	no	yes	yes	no
+écouter	builtin-super-everyday	Super Everyday	yes	no	no	no
+être	builtin-super-everyday	Super Everyday	yes	yes	yes	no
+analyser	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+archiver	builtin-tech-digital-work	Tech & Digital Work	no	no	no	no
+automatiser	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+bidouiller	builtin-tech-digital-work	Tech & Digital Work	no	no	no	no
+bloquer	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+boucler	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+casser	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+cliquer	builtin-tech-digital-work	Tech & Digital Work	no	no	no	no
+coder	builtin-tech-digital-work	Tech & Digital Work	no	no	no	no
+configurer	builtin-tech-digital-work	Tech & Digital Work	no	no	no	no
+corriger	builtin-tech-digital-work	Tech & Digital Work	yes	no	yes	no
+documenter	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+déboguer	builtin-tech-digital-work	Tech & Digital Work	no	no	no	no
+déployer	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+fusionner	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+partager	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+planter	builtin-tech-digital-work	Tech & Digital Work	yes	no	yes	no
+programmer	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+redémarrer	builtin-tech-digital-work	Tech & Digital Work	no	no	no	no
+récupérer	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+sauvegarder	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+surveiller	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+tester	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+valider	builtin-tech-digital-work	Tech & Digital Work	yes	no	no	no
+arriver	builtin-travel-tourism	Travel & Tourism	no	yes	no	no
+atterrir	builtin-travel-tourism	Travel & Tourism	no	no	no	no
+bouger	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+crapahuter	builtin-travel-tourism	Travel & Tourism	no	no	no	no
+débarquer	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+décoller	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+déposer	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+embarquer	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+errer	builtin-travel-tourism	Travel & Tourism	no	no	no	no
+flâner	builtin-travel-tourism	Travel & Tourism	no	no	no	no
+guider	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+louer	builtin-travel-tourism	Travel & Tourism	yes	yes	yes	yes
+louper	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+partir	builtin-travel-tourism	Travel & Tourism	no	no	yes	no
+payer	builtin-travel-tourism	Travel & Tourism	yes	yes	no	yes
+perdre	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+rater	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+rejoindre	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+récupérer	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+réserver	builtin-travel-tourism	Travel & Tourism	yes	yes	no	yes
+suivre	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+séjourner	builtin-travel-tourism	Travel & Tourism	no	no	no	no
+trimballer	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+visiter	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+voyager	builtin-travel-tourism	Travel & Tourism	no	no	no	no
+ajuster	builtin-woodworking	Woodworking	yes	yes	no	yes
+assembler	builtin-woodworking	Woodworking	yes	no	no	no
+clouer	builtin-woodworking	Woodworking	yes	no	no	no
+coller	builtin-woodworking	Woodworking	yes	yes	no	yes
+démonter	builtin-woodworking	Woodworking	yes	no	no	no
+fabriquer	builtin-woodworking	Woodworking	yes	no	no	no
+frapper	builtin-woodworking	Woodworking	yes	no	yes	no
+graver	builtin-woodworking	Woodworking	yes	no	no	no
+mesurer	builtin-woodworking	Woodworking	yes	no	no	no
+monter	builtin-woodworking	Woodworking	yes	no	no	no
+percer	builtin-woodworking	Woodworking	yes	no	no	no
+poncer	builtin-woodworking	Woodworking	yes	no	no	no
+raboter	builtin-woodworking	Woodworking	yes	no	no	no
+régler	builtin-woodworking	Woodworking	yes	no	no	no
+sculpter	builtin-woodworking	Woodworking	yes	no	no	no
+tailler	builtin-woodworking	Woodworking	yes	no	no	no
+vernir	builtin-woodworking	Woodworking	yes	no	yes	no
+visser	builtin-woodworking	Woodworking	yes	no	no	no

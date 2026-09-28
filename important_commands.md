@@ -41,7 +41,51 @@ cd ..
 
 ---
 
-## Data pipeline — full regeneration
+## Current frequency-tier refresh
+
+For the current refined-tier model (`top2000` / `top3000` / `top4000` / `top5000`), the live French app and the build both consume:
+
+```bash
+js/verbs.full.generated.js
+```
+
+That means the current French refresh path is:
+
+```bash
+# Regenerate the live generated verb data
+python3 combine_dataset_enhanced.py
+
+# Rebuild dist/ after the generated data is refreshed
+python3 build.py
+```
+
+Important:
+- Do **not** run `python3 fix_frequency_tiers.py` as part of this refined-tier refresh flow.
+- `fix_frequency_tiers.py` is a legacy top1000/rare rebucketing script and will collapse the refined buckets back down if run afterward.
+
+When would `fix_frequency_tiers.py` be run?
+- Only in a legacy/manual maintenance scenario where someone intentionally wants to rebucket an older `js/verbs.full.js` dataset into the historic `top20/top50/top100/top500/top1000/rare` model.
+- It is **not** part of the current refined-tier build path.
+
+One-time note:
+- The refined-tier data regeneration is a catch-up step needed now because the generated files were stale.
+- After the generated files are refreshed and committed, normal future builds can keep using `python3 build.py` unless the verb data itself is intentionally regenerated again.
+
+Related Spanish catch-up for the shared hub build:
+
+```bash
+cd /Users/simeon/Code/VerbsFirst/spanish-verbs
+python3 generate_spanish_verbs.py
+python3 compress_large_js_objects.py
+python3 build.py
+```
+
+Then rebuild the hub from `/Users/simeon/Code/VerbsFirst/proj1` as usual so the refreshed sibling `dist/` is copied into the aggregate output.
+
+## Legacy verb-data pipeline
+
+The section below reflects the older `js/verbs.full.js` patch-in-place workflow.
+It is kept for reference only and should not be used for the refined-tier refresh above.
 
 The pipeline runs in order. Each step patches `js/verbs.full.js` in place.
 
@@ -50,7 +94,7 @@ The pipeline runs in order. Each step patches `js/verbs.full.js` in place.
 #         (only needed if starting from scratch — the output is already tracked)
 python3 combine_dataset_enhanced.py
 
-# Step 2: Fix frequency tiers to exclusive buckets
+# Step 2: Legacy-only rebucketing into top1000 + rare
 python3 fix_frequency_tiers.py
 
 # Step 3: Merge reflexive verb conjugations

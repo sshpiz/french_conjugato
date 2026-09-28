@@ -1,0 +1,306 @@
+[
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "goûter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "sample/taste X"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "servir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "serve something to someone"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "servir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "use as / serve as"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "verser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "pour/pay into/to"
+  },
+  {
+    "category_id": "builtin-history-culture",
+    "verb": "raconter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "tell something to someone"
+  },
+  {
+    "category_id": "builtin-music",
+    "verb": "accorder",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "grant/tune to"
+  },
+  {
+    "category_id": "builtin-music",
+    "verb": "répéter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "repeat to someone"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "verb": "sortir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "reason": "movement/source allowed"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "verb": "trinquer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "toast to"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "accuser",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "accuse of"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "discuter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "discuss"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "dénoncer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "report to"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "traiter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "deal with / treat of"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "changer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "change from/of"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "défendre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "forbid to"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "lancer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "throw/pass to"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "marquer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "mark with"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "passer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "pass to / movement allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "arriver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "movement allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "attendre",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "expect from"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "demander",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "ask someone"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "donner",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "give to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "envoyer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "send to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "laisser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "leave to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "montrer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "show to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "parler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "speak to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "parler",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "talk about"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "passer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "pass to / movement allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "payer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "pay someone / treat someone"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "sortir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "reason": "movement/source allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "travailler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "work on"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "trouver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "find interest/charm in"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "venir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "movement allowed"
+  }
+]

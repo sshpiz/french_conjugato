@@ -229,6 +229,32 @@
             color: var(--muted);
         }
 
+        .field-label {
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 6px;
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+        }
+
+        .checkbox-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            min-height: 52px;
+            padding: 0 2px;
+        }
+
+        .checkbox-row input {
+            width: auto;
+        }
+
         .transcript {
             border-radius: 18px;
             background: rgba(5, 11, 18, 0.78);
@@ -324,8 +350,9 @@
             <div class="eyebrow">Experimental</div>
             <h1>French Offline Dictation Lab</h1>
             <div class="intro">
-                This is a standalone experiment for in-browser offline French dictation using the official <code>whisper.cpp</code> WebAssembly demo runtime.
-                It is deliberately separate from the main app. Enter the correct answer, load a model, then test microphone transcription on this page.
+                This is a standalone experiment for in-browser offline French dictation. It currently falls back to the official vendored
+                <code>whisper.cpp</code> WebAssembly demo runtime, but the page is wired to load a custom rebuilt runtime whenever those assets exist.
+                Enter the correct answer, load a model, then test microphone transcription on this page.
             </div>
         </section>
 
@@ -356,19 +383,67 @@
                 </div>
 
                 <div class="panel stack">
+                    <h2>Prompting</h2>
+                    <div>
+                        <div class="field-label">Initial Prompt</div>
+                        <textarea id="initial-prompt" placeholder="Example: French conjugation answer. Present tense. Pronoun: elles. Verb: rester.">French conjugation answer. Present tense. Pronoun: elles. Verb: rester.</textarea>
+                    </div>
+                    <div class="subtle">This field is intended for the rebuilt custom runtime. The current vendored runtime logs it but does not apply it natively yet.</div>
+                </div>
+
+                <div class="panel stack">
+                    <h2>Experimental Controls</h2>
+                    <div class="control-grid">
+                        <div>
+                            <div class="field-label">Beam Size</div>
+                            <input id="beam-size" type="text" value="1" inputmode="numeric">
+                        </div>
+                        <div>
+                            <div class="field-label">Best Of</div>
+                            <input id="best-of" type="text" value="1" inputmode="numeric">
+                        </div>
+                        <div>
+                            <div class="field-label">No Speech Threshold</div>
+                            <input id="no-speech-threshold" type="text" value="0.45" inputmode="decimal">
+                        </div>
+                        <div>
+                            <div class="field-label">VAD Threshold</div>
+                            <input id="vad-threshold" type="text" value="0.5" inputmode="decimal">
+                        </div>
+                        <label class="checkbox-row">
+                            <input id="short-utterance-toggle" type="checkbox" checked>
+                            <span>Short utterance preset</span>
+                        </label>
+                        <label class="checkbox-row">
+                            <input id="vad-enabled-toggle" type="checkbox" checked>
+                            <span>Enable VAD</span>
+                        </label>
+                        <label class="checkbox-row">
+                            <input id="single-segment-toggle" type="checkbox" checked>
+                            <span>Prefer single segment</span>
+                        </label>
+                        <label class="checkbox-row">
+                            <input id="detect-language-toggle" type="checkbox">
+                            <span>Detect language</span>
+                        </label>
+                    </div>
+                    <div class="subtle">These controls define the request contract for the custom rebuild. Until the custom runtime exists, they are captured in the result metadata and reported as unsupported by the legacy runtime.</div>
+                </div>
+
+                <div class="panel stack">
                     <h2>Microphone Test</h2>
                     <div class="row">
                         <button id="start-btn" type="button" disabled>Start mic</button>
                         <button id="stop-btn" type="button" class="secondary" disabled>Stop mic</button>
                         <button id="reset-session-btn" type="button" class="secondary">Reset transcript</button>
                     </div>
-                    <div class="subtle">This uses the official streaming demo behavior: audio is chunked, decoded, and pushed into the model repeatedly.</div>
+                    <div class="subtle">This prototype captures one short utterance, decodes it to <code>Float32</code>, then sends it through a thin JS wrapper that prefers the custom rebuilt runtime and falls back to the vendored demo runtime when needed.</div>
                 </div>
 
                 <div class="panel stack">
                     <h2>Transcription</h2>
                     <div class="transcript">
-                        <div class="transcript-title">Latest Chunk</div>
+                        <div class="transcript-title">Latest Result</div>
                         <div id="latest-transcript" class="transcript-body">No transcript yet.</div>
                     </div>
                     <div class="transcript">
@@ -390,11 +465,11 @@
                         <div id="metric-expected-normalized" class="metric-value">elles restent</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Normalized latest chunk</div>
+                        <div class="metric-label">Normalized latest result</div>
                         <div id="metric-latest-normalized" class="metric-value">—</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Exact match on latest chunk</div>
+                        <div class="metric-label">Exact match on latest result</div>
                         <div id="metric-latest-match" class="metric-value bad">No</div>
                     </div>
                     <div class="metric">
@@ -428,6 +503,7 @@
 
     <script src="./helpers.js"></script>
     <script src="./app.js"></script>
-    <script src="./stream.js"></script>
+    <script src="./lesverbes-whisper-runtime-loader.js"></script>
+    <script src="./whisper-demo-api.js"></script>
 </body>
 </html>

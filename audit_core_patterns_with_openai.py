@@ -22,6 +22,8 @@ from pydantic import BaseModel, Field
 
 from core_patterns_lib import flatten_pattern_items, load_core_patterns_prefer_json, load_usage_index, load_verbs
 
+ROOT = Path(__file__).resolve().parent
+
 
 class AuditDecision(BaseModel):
     pattern_id: str
@@ -82,7 +84,7 @@ def load_verb_tiers() -> dict[str, str]:
 
 def default_output_dir() -> Path:
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    return Path("/Users/simeon/Desktop/proj1/_ai_audits") / f"verb_core_patterns_french_{stamp}"
+    return ROOT / "_ai_audits" / f"verb_core_patterns_french_{stamp}"
 
 
 def system_prompt() -> str:

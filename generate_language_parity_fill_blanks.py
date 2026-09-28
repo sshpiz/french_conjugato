@@ -19,7 +19,7 @@ from typing import Any
 
 
 TODAY = "2026-05-02"
-ROOT = Path("/Users/simeon/Code/VerbsFirst")
+ROOT = Path(__file__).resolve().parent.parent
 SOURCE = "curated_language_parity_fill_blanks_2026_05_02"
 
 

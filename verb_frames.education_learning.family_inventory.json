@@ -1,0 +1,231 @@
+[
+  {
+    "verb": "apprendre",
+    "translation": "to learn",
+    "hint": "",
+    "frequency": "top-100",
+    "evidence_families": [
+      "direct_object",
+      "combo_a"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD",
+        "core:apprendre qqch"
+      ],
+      "combo_a": [
+        "top500-final:COD+à",
+        "core:apprendre qqch à qqn"
+      ]
+    },
+    "planned_families": [
+      "combo_a",
+      "direct_object"
+    ],
+    "planner_reason": "Core education uses are apprendre quelque chose and apprendre quelque chose à quelqu'un; both are central and already well supported."
+  },
+  {
+    "verb": "enseigner",
+    "translation": "to teach",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object",
+      "combo_a"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ],
+      "combo_a": [
+        "top500-final:COD+à",
+        "core:enseigner qqch à qqn"
+      ]
+    },
+    "planned_families": [
+      "combo_a",
+      "direct_object"
+    ],
+    "planner_reason": "In teaching contexts, enseigner quelque chose and enseigner quelque chose à quelqu'un are the two main learner-relevant patterns."
+  },
+  {
+    "verb": "étudier",
+    "translation": "to study",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "For study-related use, the central pattern is étudier quelque chose: une matière, un texte, un chapitre."
+  },
+  {
+    "verb": "réviser",
+    "translation": "to review",
+    "hint": "",
+    "frequency": "top-2000",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In education, réviser takes a direct object naturally: réviser un cours, ses notes, un chapitre."
+  },
+  {
+    "verb": "expliquer",
+    "translation": "to explain",
+    "hint": "",
+    "frequency": "top-100",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "a_object",
+      "direct_object"
+    ],
+    "planner_reason": "For classroom use, expliquer quelque chose is central, and explaining to someone is also very common: expliquer à quelqu'un. Avoiding clause patterns, these are the safest core families here."
+  },
+  {
+    "verb": "analyser",
+    "translation": "to analyze",
+    "hint": "",
+    "frequency": "top-2000",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "The normal learner-facing pattern is analyser quelque chose: un texte, un document, un résultat."
+  },
+  {
+    "verb": "calculer",
+    "translation": "to calculate",
+    "hint": "",
+    "frequency": "top-1000",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In school/math contexts, calculer takes a direct object naturally: calculer une somme, une moyenne, un pourcentage."
+  },
+  {
+    "verb": "traduire",
+    "translation": "to translate",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "The most central pattern is traduire quelque chose: un texte, une phrase, un mot."
+  },
+  {
+    "verb": "lire",
+    "translation": "to read",
+    "hint": "",
+    "frequency": "top-50",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In learning contexts, lire something is the core use: lire un livre, un article, un texte."
+  },
+  {
+    "verb": "écrire",
+    "translation": "to write",
+    "hint": "",
+    "frequency": "top-50",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "For study and classroom tasks, the basic pattern is écrire quelque chose: une rédaction, un mot, une réponse."
+  },
+  {
+    "verb": "bachoter",
+    "translation": "to cram",
+    "hint": "",
+    "frequency": "rare",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In the cramming sense, a direct object is the clearest deck fit: bachoter un examen, son cours, ses fiches."
+  },
+  {
+    "verb": "potasser",
+    "translation": "to mug up",
+    "hint": "",
+    "frequency": "rare",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "This colloquial study verb most naturally appears with a direct object: potasser un dossier, un manuel, son cours."
+  },
+  {
+    "verb": "survoler",
+    "translation": "to fly",
+    "hint": "",
+    "frequency": "top-3000",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In the study sense here, survoler means to skim something, so survoler un texte / un chapitre is the relevant core pattern."
+  },
+  {
+    "verb": "présenter",
+    "translation": "to present",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object",
+      "a_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ],
+      "a_object": [
+        "core:présenter à qqn / qqch"
+      ]
+    },
+    "planned_families": [
+      "a_object",
+      "direct_object"
+    ],
+    "planner_reason": "In education, présenter quelque chose is common, and presenting to an audience/person also fits naturally with à: présenter un exposé à la classe."
+  }
+]

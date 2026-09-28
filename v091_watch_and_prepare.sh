@@ -1,10 +1,12 @@
 #!/bin/zsh
 set -euo pipefail
 
-PROJ1_DIR="/Users/simeon/Desktop/proj1"
-GREEK_DIR="/Users/simeon/Desktop/greek-verbs"
-PORTUGUESE_DIR="/Users/simeon/Desktop/portuguese-verbs"
-RUSSIAN_DIR="/Users/simeon/Desktop/russian-verbs"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPOS_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJ1_DIR="$SCRIPT_DIR"
+GREEK_DIR="$REPOS_ROOT/greek-verbs"
+PORTUGUESE_DIR="$REPOS_ROOT/portuguese-verbs"
+RUSSIAN_DIR="$REPOS_ROOT/russian-verbs"
 LOG_FILE="$PROJ1_DIR/v091_watch.log"
 
 GREEK_PID="42140"

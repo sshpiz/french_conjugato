@@ -1374,7 +1374,7 @@
   {
     "verb": "appliquer",
     "sense_id": "appliquer_02",
-    "pattern": "s'appliquer à + person/thing",
+    "pattern": "s'appliquer à + règle/personne",
     "meaning_en": "apply to; be applicable to",
     "example_fr": "Cette règle s'applique à tous les élèves.",
     "example_en": "This rule applies to all students."
@@ -1676,7 +1676,7 @@
   {
     "verb": "assassiner",
     "sense_id": "assassiner_01",
-    "pattern": "assassiner + direct object",
+    "pattern": "assassiner + qqn",
     "meaning_en": "murder someone; assassinate someone",
     "example_fr": "Il a assassiné le roi.",
     "example_en": "He killed the king."
@@ -2274,7 +2274,7 @@
   {
     "verb": "balancer",
     "sense_id": "balancer_02",
-    "pattern": "balancer + person + à + authority/person",
+    "pattern": "balancer + qqn + à + autorité/personne",
     "meaning_en": "to snitch on; to rat out",
     "example_fr": "Elle a balancé son frère à la police.",
     "example_en": "She informed on her brother to the police."
@@ -3472,7 +3472,7 @@
   {
     "verb": "classer",
     "sense_id": "classer_02",
-    "pattern": "classer + direct object (+ selon/par)",
+    "pattern": "classer + qqn/qqch (+ selon/par)",
     "meaning_en": "rank; classify",
     "example_fr": "Elle a classé les élèves selon leurs résultats.",
     "example_en": "She ranked the students by their results."
@@ -4108,7 +4108,7 @@
   {
     "verb": "confondre",
     "sense_id": "confondre_01",
-    "pattern": "confondre + person/thing + avec + person/thing",
+    "pattern": "confondre + qqn/qqch + avec + qqn/qqch",
     "meaning_en": "to mistake for",
     "example_fr": "Je confonds souvent Paul avec son frère.",
     "example_en": "I often mistake Paul for his brother.",
@@ -4246,7 +4246,7 @@
   {
     "verb": "consacrer",
     "sense_id": "consacrer_02",
-    "pattern": "consacrer + object + à + person/thing",
+    "pattern": "consacrer + qqch + à + personne/projet",
     "meaning_en": "devote something (time, energy, etc.) to someone/something",
     "example_fr": "Elle consacre beaucoup de temps à ses enfants.",
     "example_en": "She devotes a lot of time to her children."
@@ -4254,7 +4254,7 @@
   {
     "verb": "consacrer",
     "sense_id": "consacrer_03",
-    "pattern": "se consacrer à + person/thing",
+    "pattern": "se consacrer à + personne/projet",
     "meaning_en": "dedicate/devote oneself to someone/something",
     "example_fr": "Il se consacre entièrement à sa carrière.",
     "example_en": "He dedicates himself entirely to his career."
@@ -4452,7 +4452,7 @@
   {
     "verb": "contenter",
     "sense_id": "contenter_03",
-    "pattern": "se contenter de + noun/thing",
+    "pattern": "se contenter de + qqch",
     "meaning_en": "settle for",
     "example_fr": "Ils se contentent de peu.",
     "example_en": "They settle for little."
@@ -5544,7 +5544,7 @@
     "pattern": "décrocher + object (telephone/receiver)",
     "meaning_en": "pick up the phone; answer the phone",
     "example_fr": "Il a décroché le téléphone.",
-    "example_en": "He took down the phone."
+    "example_en": "He picked up the phone."
   },
   {
     "verb": "décrocher",
@@ -5633,7 +5633,7 @@
   {
     "verb": "défier",
     "sense_id": "défier_03",
-    "pattern": "se défier de + object/person",
+    "pattern": "se défier de + qqn/qqch",
     "meaning_en": "distrust; be wary of",
     "example_fr": "Il se défie de ses collègues.",
     "example_en": "He distrusts his colleagues."
@@ -7336,7 +7336,7 @@
   {
     "verb": "doter",
     "sense_id": "doter_01",
-    "pattern": "doter + person/thing + de + thing",
+    "pattern": "doter + qqn/qqch + de + qqch",
     "meaning_en": "to endow",
     "example_fr": "La ville dote chaque école de nouveaux ordinateurs.",
     "example_en": "The city equips each school with new computers.",
@@ -7346,7 +7346,7 @@
   {
     "verb": "doter",
     "sense_id": "doter_01",
-    "pattern": "doter + person/thing + de + thing",
+    "pattern": "doter + qqn/qqch + de + qqch",
     "meaning_en": "to equip, endow",
     "example_fr": "La ville dote l'école de nouveaux ordinateurs.",
     "example_en": "The city is equipping the school with new computers.",
@@ -8118,7 +8118,7 @@
   {
     "verb": "employer",
     "sense_id": "employer_02",
-    "pattern": "employer + person/object (direct object)",
+    "pattern": "employer + qqn/qqch",
     "meaning_en": "to hire; to employ",
     "example_fr": "Elle emploie des étudiants pour l'été.",
     "example_en": "She hires students for the summer."
@@ -8322,7 +8322,7 @@
   {
     "verb": "endormir",
     "sense_id": "endormir_02",
-    "pattern": "endormir + direct object",
+    "pattern": "endormir + qqn",
     "meaning_en": "send someone to sleep; make someone sleepy",
     "example_fr": "Cette histoire m'endort.",
     "example_en": "This story lulls me to sleep."
@@ -8730,7 +8730,7 @@
   {
     "verb": "enterrer",
     "sense_id": "enterrer_02",
-    "pattern": "enterrer + direct object (person/competitor)",
+    "pattern": "enterrer + concurrent/adversaire",
     "meaning_en": "to leave someone far behind; to outshine/crush someone",
     "example_fr": "Elle a enterré tous ses concurrents au concours.",
     "example_en": "She outshone all her competitors in the contest."
@@ -8916,7 +8916,7 @@
   {
     "verb": "envier",
     "sense_id": "envier_01",
-    "pattern": "envier + person + for + thing",
+    "pattern": "envier + qqn + pour + qqch",
     "meaning_en": "to envy",
     "example_fr": "J'envie mon frère pour ses longues vacances.",
     "example_en": "I envy my brother for his long vacation.",
@@ -10161,7 +10161,7 @@
   {
     "verb": "fier",
     "sense_id": "fier_01",
-    "pattern": "se fier à + person/thing",
+    "pattern": "se fier à + qqn/qqch",
     "meaning_en": "to trust, to rely on",
     "example_fr": "Je me fie à ton jugement.",
     "example_en": "I trust your judgment.",
@@ -10811,7 +10811,7 @@
   {
     "verb": "fumer",
     "sense_id": "fumer_02",
-    "pattern": "thing fumer",
+    "pattern": "fumer",
     "meaning_en": "something is smoking; giving off smoke",
     "example_fr": "La cheminée fume beaucoup.",
     "example_en": "The chimney is smoking a lot."
@@ -12436,7 +12436,7 @@
   {
     "verb": "investir",
     "sense_id": "investir_01",
-    "pattern": "investir + person/thing + de + thing",
+    "pattern": "investir + qqn + de + responsabilité/pouvoir",
     "meaning_en": "to invest, to endow with",
     "example_fr": "Le directeur investit Paul de nouvelles responsabilités.",
     "example_en": "The director entrusts Paul with new responsibilities.",
@@ -12832,7 +12832,7 @@
   {
     "verb": "lever",
     "sense_id": "lever_02",
-    "pattern": "lever + direct object (+ pour + infinitive)",
+    "pattern": "lever + qqch (+ pour + infinitif)",
     "meaning_en": "lift something; lift something in order to do something",
     "example_fr": "Elle lève la chaise pour nettoyer en dessous.",
     "example_en": "She lifts the chair to clean underneath."
@@ -15981,7 +15981,7 @@
   {
     "verb": "prouver",
     "sense_id": "prouver_01",
-    "pattern": "prouver + object clause",
+    "pattern": "prouver + proposition/que-clause",
     "meaning_en": "to prove",
     "example_fr": "Cette photo prouve qu'il était là.",
     "example_en": "This photo proves that he was there.",
@@ -21023,10 +21023,10 @@
   {
     "verb": "témoigner",
     "sense_id": "temoigner_02",
-    "pattern": "témoigner de + thing",
+    "pattern": "témoigner de + sentiment/fait",
     "meaning_en": "to show evidence of",
     "example_fr": "Ce message témoigne de son inquiétude.",
-    "example_en": "This message shows his चिंता.",
+    "example_en": "This message shows his concern.",
     "source": "ai:gpt-5.4:french-top2000-usage",
     "family": "de_object"
   },
@@ -21272,7 +21272,7 @@
   {
     "verb": "torturer",
     "sense_id": "torturer_02",
-    "pattern": "torturer + direct object (qqn)",
+    "pattern": "torturer + qqn",
     "meaning_en": "torment; cause distress to",
     "example_fr": "Cette musique me torture à chaque écoute.",
     "example_en": "This music tortures me every time I hear it."

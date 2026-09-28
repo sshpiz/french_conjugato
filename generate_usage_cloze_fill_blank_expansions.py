@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 
-ROOT = Path("/Users/simeon/Code/VerbsFirst")
+ROOT = Path(__file__).resolve().parent.parent
 SOURCE = "usage_cloze_expansion_from_existing_examples_2026_05_03"
 MIN_ROWS = 320
 MIN_VERBS = 80

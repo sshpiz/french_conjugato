@@ -91,3 +91,88 @@ Both files are tracked in git. You only need to regenerate them if you want to a
 ## Deploy
 
 Built output goes to the `gh-pages` branch via a `dist-gh/` worktree. See [important_commands.md](important_commands.md) for the deploy workflow.
+
+## Etymology Graph Pipeline
+
+`etygraph/` is a backend data pipeline for precomputing learner-friendly English relatives for French verbs. It ingests Kaikki/Wiktextract-style JSONL or JSONL.GZ data, extracts structured etymology and descendant edges, builds a directed graph where modern child words point to source or ancestor words, and exports compact JSON for the app.
+
+It does not build a frontend, query Wiktionary live, infer etymologies from free text, or claim that related words still mean the same thing. It only creates graph edges from structured source fields such as `etymology_templates` and `descendants`.
+
+### Data Source
+
+The expected source format is Kaikki/Wiktextract JSONL, one lexical entry per line. The ingest command streams the raw input and writes normalized `nodes.jsonl`, `edges.jsonl`, and `ingest_stats.json` into a build directory.
+
+### Tiny Fixture Quickstart
+
+```bash
+/Users/simeon/Code/VerbsFirst/proj1/bin/python3 -m etygraph.cli ingest \
+  --input tests/fixtures/mini_kaikki.jsonl \
+  --out-dir data/build-fixture
+
+/Users/simeon/Code/VerbsFirst/proj1/bin/python3 -m etygraph.cli relate-one \
+  --build-dir data/build-fixture \
+  --word écrire \
+  --lang fr \
+  --pos verb
+
+/Users/simeon/Code/VerbsFirst/proj1/bin/python3 -m etygraph.cli export-french-verbs \
+  --build-dir data/build-fixture \
+  --out data/french_verbs_related_en.fixture.json \
+  --verb-list tests/fixtures/repo_verbs.csv
+```
+
+### Real Data Commands
+
+```bash
+/Users/simeon/Code/VerbsFirst/proj1/bin/python3 -m etygraph.cli ingest \
+  --input \
+    data/raw/kaikki/kaikki.org-dictionary-French.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-English.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-Latin.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-OldFrench.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-MiddleFrench.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-AncientGreek.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-OldEnglish.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-MiddleEnglish.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-OldNorse.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-ProtoGermanic.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-ProtoIndoEuropean.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-ProtoItalic.jsonl.gz \
+    data/raw/kaikki/kaikki.org-dictionary-ProtoCeltic.jsonl.gz \
+  --out-dir data/build-etygraph-full
+
+/Users/simeon/Code/VerbsFirst/proj1/bin/python3 -m etygraph.cli discover-verbs \
+  --root .
+
+/Users/simeon/Code/VerbsFirst/proj1/bin/python3 -m etygraph.cli relate-one \
+  --build-dir data/build-etygraph-full \
+  --word écrire \
+  --lang fr \
+  --pos verb
+
+/Users/simeon/Code/VerbsFirst/proj1/bin/python3 -m etygraph.cli export-french-verbs \
+  --build-dir data/build-etygraph-full \
+  --out data/french_verbs_related_en.json
+```
+
+The default language allowlist covers French-English etymology work: `fr,en,fro,frm,la,VL.,grc,ang,enm,gem-pro,ine-pro,itc-pro,cel-pro,non`. Override it with `--langs` during ingest. For the full app export, `export-french-verbs` auto-discovers this repo's `js/verbs.full.js` and uses its 7,046 `infinitive` entries as the target list.
+
+### Verb-List Discovery
+
+`etygraph discover-verbs` scans likely repo data files and ranks candidates using conservative signals: file names containing verb/French/lemma/conjugation hints, columns such as `verb`, `infinitive`, or `lemma`, and optional POS/lang evidence. It supports CSV, TSV, JSON, JSONL, TXT, and the simple `const verbs = [...]` JavaScript arrays already used by this app.
+
+For this repo, the strongest discovered default is expected to be `js/verbs.full.js`, because it is the app's explicit French verb dataset with `infinitive` entries and frequency metadata. If discovery changes, run `etygraph discover-verbs --root .` and review the chosen default.
+
+### Known Limitations
+
+- Wiktionary data is inconsistent.
+- Etymology templates vary across entries and languages.
+- Free-text etymologies are mostly ignored.
+- Related does not mean same meaning.
+- False friends need a separate curated or heuristic layer.
+- Proto-root relatives are often pedagogically noisy and are penalized by default.
+- Existing repo verb-list discovery is heuristic and should be reviewed before a production export.
+
+### License And Attribution
+
+See [DATA_LICENSE.md](DATA_LICENSE.md). Practical assumption: derived graph datasets should be treated as CC BY-SA-compatible Wiktionary/Kaikki-derived output with attribution and ShareAlike-compatible terms. The pipeline code can remain under the repo's own license.

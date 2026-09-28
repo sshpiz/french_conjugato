@@ -1,4 +1,11 @@
 # === Environment ===
+.venv/
+.env
+.env.*
+.tls/
+.wrangler/
+.stanza_cache/
+.stanza_resources/
 venv/
 .cloudflare.env
 verbvec/
@@ -17,8 +24,11 @@ __pycache__/
 dist/
 dist_back/
 dist-gh/
+dist-cloudflare/
 generated_tts/
 generated_tts_cache/
+french_tts_inventory.json
+sentences.generated.bak.js
 _hold/
 
 # === Large data / corpora ===
@@ -26,6 +36,9 @@ _hold/
 *.jsonl
 *.pkl
 *.pickle
+data/raw/kaikki/
+data/build-etygraph*/
+data/french_verb_neighborhoods/
 OpenSubtitles*
 en-fr.xml
 en-fr*/

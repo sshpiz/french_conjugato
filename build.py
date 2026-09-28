@@ -50,7 +50,12 @@ FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS = [
     "js/pronounFillRows.passeCompose.js",
     "js/preRenderedTts.js",
     "js/frenchHomophoneGroups.js",
+    "js/french-phonetic-diff-v3.js",
+    "js/vendor/espeak-ng.js",
     "js/script.js",
+]
+FRENCH_WEB_EXTERNAL_NON_SCRIPT_ASSETS = [
+    "js/vendor/espeak-ng.wasm",
 ]
 FRENCH_WEB_EXTERNAL_SCRIPT_REWRITES = {
     FRENCH_WEB_DATA_SOURCE: FRENCH_WEB_STARTER_DATA_ASSET,
@@ -580,6 +585,15 @@ def build_french_app(force_jpeg=False):
             copy_file(src_path, dest_path)
         else:
             print(f"⚠️  Warning: {src_path} does not exist, skipping French web script copy.")
+
+    for name in FRENCH_WEB_EXTERNAL_NON_SCRIPT_ASSETS:
+        src_path = os.path.join(ROOT_DIR, name)
+        dest_path = os.path.join(APP_DIST_DIR, name)
+        if os.path.exists(src_path):
+            print(f"   - Copying French web asset {src_path} to {dest_path}...")
+            copy_file(src_path, dest_path)
+        else:
+            print(f"⚠️  Warning: {src_path} does not exist, skipping French web asset copy.")
 
     if os.path.isdir(GENERATED_TTS_DIR):
         if os.path.exists(APP_DIST_TTS_DIR):

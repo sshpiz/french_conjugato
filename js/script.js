@@ -104,6 +104,63 @@ const TOP_20_VERBS = new Set([
 ]);
 
 const APP_VERSION = normalizeAppVersion(window.APP_BUILD_VERSION);
+const buildVersionedAppAssetUrl = (relativePath) => {
+    const url = new URL(relativePath, window.location.href);
+    if (APP_VERSION !== 'dev') {
+        url.searchParams.set('v', APP_VERSION);
+    }
+    return url.href;
+};
+const FRENCH_PHONETIC_DIFF_MODULE_PATH = 'js/french-phonetic-diff-v3.js';
+const FRENCH_PHONETIC_ESPEAK_MODULE_PATH = 'js/vendor/espeak-ng.js';
+const FRENCH_PHONETIC_ESPEAK_WASM_PATH = 'js/vendor/espeak-ng.wasm';
+const FRENCH_PHONETIC_DIFF_MODULE_URL = buildVersionedAppAssetUrl(FRENCH_PHONETIC_DIFF_MODULE_PATH);
+const FRENCH_PHONETIC_ESPEAK_MODULE_URL = buildVersionedAppAssetUrl(FRENCH_PHONETIC_ESPEAK_MODULE_PATH);
+const FRENCH_PHONETIC_ESPEAK_WASM_URL = new URL(FRENCH_PHONETIC_ESPEAK_WASM_PATH, window.location.href).href;
+let frenchPhoneticDiffEnginePromise = null;
+const logFrenchPhoneticDictationEvent = (message, extra = null) => {
+    const suffix = extra ? ` ${JSON.stringify(extra)}` : '';
+    const finalMessage = `[dictation][phonetic] ${message}${suffix}`;
+    appDebugLog(finalMessage);
+    console.log(finalMessage);
+};
+
+const isFrenchSpeechApp = () => String(speechLang || '').toLowerCase().startsWith('fr');
+
+const getFrenchPhoneticDiffEngine = async () => {
+    if (!isFrenchSpeechApp()) return null;
+    if (frenchPhoneticDiffEnginePromise) return frenchPhoneticDiffEnginePromise;
+    frenchPhoneticDiffEnginePromise = import(FRENCH_PHONETIC_DIFF_MODULE_URL)
+        .then(async (module) => {
+            const engine = new module.FrenchPhoneticDiff({
+                useEspeak: true,
+                preferPhoneticScore: true,
+                diffMode: 'phonetic-first',
+                espeakUrl: FRENCH_PHONETIC_ESPEAK_MODULE_URL,
+                cache: {
+                    enabled: true,
+                    key: `${APP_STORAGE_PREFIX}:FrenchPhoneticDiff:v3:phonetics`,
+                    maxEntries: 4000,
+                },
+                overrides: {
+                    enabled: true,
+                    key: `${APP_STORAGE_PREFIX}:FrenchPhoneticDiff:v3:overrides`,
+                },
+                phoneticEquivalentThreshold: 100,
+            });
+            const initResult = await engine.init();
+            if (!initResult?.espeakAvailable) {
+                throw initResult?.error || new Error('French phonetic diff unavailable');
+            }
+            return engine;
+        })
+        .catch((error) => {
+            frenchPhoneticDiffEnginePromise = null;
+            appDebugLog(`[dictation][phonetic] init-failed message="${error.message}"`);
+            return null;
+        });
+    return frenchPhoneticDiffEnginePromise;
+};
 
 if (getScopedStorageItem("app_version") !== APP_VERSION) {
   setScopedStorageItem("app_version", APP_VERSION);
@@ -1475,6 +1532,33 @@ document.addEventListener('DOMContentLoaded', () => {
             topicName: String(entry.category_name || '').trim(),
             source: String(entry.source || '').trim(),
         };
+    }
+
+    let frameRouteCardIndex = null;
+
+    function getFrameRouteCardIndex() {
+        if (frameRouteCardIndex) return frameRouteCardIndex;
+        const index = new Map();
+        playableVerbFrames.forEach((entry) => {
+            const card = buildFramePracticeCard(entry);
+            if (card?.frameId) index.set(String(card.frameId), card);
+        });
+        getPlayableFrameDecoyRows().forEach((entry) => {
+            const card = buildFramePracticeCard(entry);
+            if (card?.frameId) index.set(String(card.frameId), card);
+        });
+        playablePronounFillRows.forEach((entry) => {
+            const card = buildPronounFillPracticeCard(entry);
+            if (card?.frameId) index.set(String(card.frameId), card);
+        });
+        frameRouteCardIndex = index;
+        return frameRouteCardIndex;
+    }
+
+    function cloneFrameRouteCard(frameId) {
+        if (!frameId) return null;
+        const card = getFrameRouteCardIndex().get(String(frameId).trim());
+        return card ? deepClone(card) : null;
     }
     const BUILTIN_VERB_USAGE_FALLBACKS = {
         assembler: [{ pattern: 'assembler les pièces', example_fr: 'J’assemble les pièces avant de fixer le cadre.', example_en: 'I am assembling the pieces before securing the frame.' }],
@@ -3424,6 +3508,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const DETAIL_ROUTE_VERB_PARAM = 'verb';
     const DETAIL_ROUTE_TENSE_PARAM = 'tense';
     const DETAIL_ROUTE_PRONOUN_PARAM = 'pronoun';
+    const DETAIL_ROUTE_CARD_MODE_PARAM = 'card';
+    const DETAIL_ROUTE_FRAME_ID_PARAM = 'frameId';
     const REOPEN_MESSAGE_DEBUG_PARAM = 'backAfter';
 
     const parseBackAfterOverrideMs = () => {
@@ -3602,6 +3688,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     urls.push(`${homophoneUrl.pathname}${homophoneUrl.search}`);
                 }
             } catch (_) {}
+        }
+        if (isFrenchSpeechApp()) {
+            [FRENCH_PHONETIC_DIFF_MODULE_URL, FRENCH_PHONETIC_ESPEAK_MODULE_URL, FRENCH_PHONETIC_ESPEAK_WASM_URL].forEach((assetHref) => {
+                try {
+                    const assetUrl = new URL(assetHref, window.location.href);
+                    if (assetUrl.origin === window.location.origin && !assetUrl.pathname.includes('/tts/')) {
+                        urls.push(`${assetUrl.pathname}${assetUrl.search}`);
+                    }
+                } catch (_) {}
+            });
         }
         return [...new Set(urls)];
     };
@@ -4246,6 +4342,28 @@ document.addEventListener('DOMContentLoaded', () => {
         dictationOverlayTimeout = null;
     };
 
+    const clearDictationOverlayHideAnimationTimeout = () => {
+        clearTimeout(dictationOverlayHideAnimationTimeout);
+        dictationOverlayHideAnimationTimeout = null;
+    };
+
+    const isDictationOverlayVisible = () => {
+        return !!(
+            dictationResultEl &&
+            dictationResultEl.style.display !== 'none' &&
+            dictationResultEl.style.opacity !== '0'
+        );
+    };
+
+    const updateDictationOverlayOriginFromMic = () => {
+        if (!dictationResultEl || !dictateBtn || !flashcard) return;
+        const cardRect = flashcard.getBoundingClientRect();
+        const micRect = dictateBtn.getBoundingClientRect();
+        const originX = (micRect.left + micRect.width / 2) - cardRect.left;
+        const originY = (micRect.top + micRect.height / 2) - cardRect.top;
+        dictationResultEl.style.transformOrigin = `${originX}px ${originY}px`;
+    };
+
     const scheduleDictationPostResultTimeout = () => {
         clearTimeout(dictationPostResultTimeout);
         if (pressToDictateEnabled) return;
@@ -4560,7 +4678,114 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    const getDictationMatchResult = (transcript, card = currentCard) => {
+    const getFrenchPhoneticExpectedDictationCandidates = (card = currentCard) => {
+        if (!card) return [];
+        const candidates = [];
+        const pushCandidate = (value) => {
+            const text = String(value || '').trim();
+            if (!text) return;
+            if (candidates.includes(text)) return;
+            candidates.push(text);
+        };
+        pushCandidate(getExpectedDictationText(card));
+        if (card.isFrameCard && card.frameFullAnswer) {
+            pushCandidate(card.frameFullAnswer);
+        }
+        return candidates;
+    };
+
+    const buildFrenchPhoneticMismatchHtml = (comparison, options = {}) => {
+        if (!comparison) return '';
+        const score = Math.max(0, Math.min(100, Number(comparison.score || 0)));
+        const allowBravoLabel = options.allowBravoLabel !== false;
+        const scoreLabel = score >= 100 && allowBravoLabel ? 'Bravo' : `${score}% phonetic match`;
+        return `
+            <div class="dictation-phonetic-block">
+                <div class="dictation-phonetic-attempt">${comparison.html?.attempt || escapeHtml(comparison.attemptText || '')}</div>
+                <div class="dictation-phonetic-score">${escapeHtml(scoreLabel)}</div>
+            </div>
+        `.trim();
+    };
+
+    const getFrenchPhoneticDictationResult = async (transcript, card = currentCard) => {
+        if (!card || !isFrenchSpeechApp()) return null;
+        const attemptText = String(transcript || '').trim();
+        if (!attemptText) return null;
+
+        const engine = await getFrenchPhoneticDiffEngine();
+        if (!engine) {
+            logFrenchPhoneticDictationEvent('engine-unavailable');
+            return null;
+        }
+
+        const candidates = getFrenchPhoneticExpectedDictationCandidates(card);
+        if (!candidates.length) return null;
+        logFrenchPhoneticDictationEvent('compare-start', {
+            attempt: attemptText,
+            candidates,
+        });
+
+        let bestComparison = null;
+        for (const expectedText of candidates) {
+            try {
+                const comparison = await engine.compareTexts(expectedText, attemptText, {
+                    render: { classPrefix: 'vf-stt-diff' },
+                });
+                if (
+                    !bestComparison
+                    || comparison.score > bestComparison.score
+                    || (comparison.score === bestComparison.score && expectedText.length < bestComparison.expectedText.length)
+                ) {
+                    bestComparison = comparison;
+                }
+            } catch (error) {
+                logFrenchPhoneticDictationEvent('compare-failed', {
+                    expected: expectedText,
+                    message: error.message,
+                });
+            }
+        }
+
+        if (!bestComparison) return null;
+        logFrenchPhoneticDictationEvent('compare-best', {
+            expected: bestComparison.expectedText,
+            attempt: bestComparison.attemptText,
+            score: bestComparison.score,
+            scoreMode: bestComparison.scoreMode,
+            suppressedTextDiffs: !!bestComparison.flags?.suppressedTextDiffs,
+        });
+
+        const normalizedAttempt = normalizeDictationText(attemptText);
+        const normalizedExpected = normalizeDictationText(bestComparison.expectedText || '');
+        const phoneticPerfect = bestComparison.scoreMode === 'phonetic' && bestComparison.score === 100;
+
+        if (phoneticPerfect) {
+            logFrenchPhoneticDictationEvent('accepted', {
+                expected: bestComparison.expectedText,
+                heard: attemptText,
+                correctedDisplay: normalizedAttempt !== normalizedExpected,
+            });
+            return {
+                matched: true,
+                viaFrenchPhoneticMatch: normalizedAttempt !== normalizedExpected,
+                displayText: String(bestComparison.expectedText || '').trim(),
+                phoneticComparison: bestComparison,
+            };
+        }
+
+        logFrenchPhoneticDictationEvent('mismatch', {
+            expected: bestComparison.expectedText,
+            heard: attemptText,
+            score: bestComparison.score,
+            scoreMode: bestComparison.scoreMode,
+        });
+        return {
+            matched: false,
+            phoneticComparison: bestComparison,
+        };
+    };
+
+    const getDictationMatchResult = async (transcript, card = currentCard) => {
         if (!card) return { matched: false };
         const expected = normalizeDictationText(getExpectedDictationText(card));
         const heard = normalizeDictationText(transcript);
@@ -4568,9 +4793,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (card.isFrameCard && card.frameSubtype === 'pronoun_fill') {
             const expectedFull = normalizeDictationText(card.frameFullAnswer || '');
-            return {
+            const exactPronounFillMatch = {
                 matched: heard === expected || (!!expectedFull && heard === expectedFull),
             };
+            if (exactPronounFillMatch.matched) {
+                return exactPronounFillMatch;
+            }
+            const phoneticPronounFill = await getFrenchPhoneticDictationResult(transcript, card);
+            return phoneticPronounFill || exactPronounFillMatch;
         }
 
         if (card.isPhraseMode || !card.verb) {
@@ -4580,13 +4810,23 @@ document.addEventListener('DOMContentLoaded', () => {
             expectedWords.forEach((word) => {
                 if (heardWords.includes(word)) matchCount += 1;
             });
-            return {
+            const phraseMatch = {
                 matched: expectedWords.length > 0 && (matchCount / expectedWords.length) >= 0.9,
             };
+            if (phraseMatch.matched) {
+                return phraseMatch;
+            }
+            const phoneticPhraseMatch = await getFrenchPhoneticDictationResult(transcript, card);
+            return phoneticPhraseMatch || phraseMatch;
         }
 
         if (heard.includes(expected)) {
             return { matched: true };
+        }
+
+        const phoneticConjugationMatch = await getFrenchPhoneticDictationResult(transcript, card);
+        if (phoneticConjugationMatch?.matched) {
+            return phoneticConjugationMatch;
         }
 
         const frenchFallback = getFrenchPluralHomophoneFallbackResult(transcript, card);
@@ -4606,6 +4846,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayText: homophoneGroupFallback.displayText,
                 homophoneGroupId: homophoneGroupFallback.groupId,
             };
+        }
+
+        if (phoneticConjugationMatch?.phoneticComparison) {
+            return phoneticConjugationMatch;
         }
 
         return { matched: false };
@@ -4641,6 +4885,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 try { recognition.stop(); } catch (error) {}
             }
         }, 1350);
+    };
+
+    const isPronunciationPracticeMode = () => (
+        getEffectiveMicMode() === 'practiceAfterReveal' && !!isAnswerVisible
+    );
+
+    const buildPronunciationPracticeSuccessHtml = (attemptText, options = {}) => {
+        const heardText = String(attemptText || '').trim();
+        const score = Math.max(1, Math.min(100, Number(options.score || 100)));
+        const acceptedSimilar = !!options.acceptedSimilar;
+        const statusLabel = acceptedSimilar ? 'Accepted as similar-sounding' : 'Correct';
+        return `
+            <div class="dictation-phonetic-block">
+                <div class="dictation-phonetic-attempt">${escapeHtml(heardText)}</div>
+                <div class="dictation-phonetic-score">${escapeHtml(`${statusLabel} · ${score}%`)}</div>
+            </div>
+        `.trim();
     };
 
     const setPackagedTtsBusy = (busy) => {
@@ -4969,6 +5230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDictating = false;
     let dictationResultEl = null;
     let dictationOverlayTimeout = null;
+    let dictationOverlayHideAnimationTimeout = null;
     let dictationPostResultTimeout = null;
     let dictationLongTimeout = null;
     let dictationStopRequested = false;
@@ -4977,6 +5239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let suppressNextDictationClick = false;
     let pendingPressToDictateRestart = false;
     let beginDictationSessionRef = null;
+    let dictationOverlayDismissHandlerAttached = false;
 
     // Overlay helpers (already defined above)
     // function showDictationOverlay(...) {...}
@@ -4991,18 +5254,23 @@ document.addEventListener('DOMContentLoaded', () => {
             dictationResultEl.id = 'dictation-result';
             dictationResultEl.style.position = 'absolute';
             dictationResultEl.style.left = '50%';
-            dictationResultEl.style.transform = 'translateX(-50%)';
-            dictationResultEl.style.top = '75%';
-            dictationResultEl.style.width = '58%';
+            dictationResultEl.style.transform = 'translateX(-50%) translateY(18px) scale(0.94)';
+            dictationResultEl.style.top = 'auto';
+            dictationResultEl.style.bottom = '11%';
+            dictationResultEl.style.width = '88%';
+            dictationResultEl.style.maxWidth = '860px';
             dictationResultEl.style.boxShadow = '0 8px 32px rgba(44,62,80,0.18)';
             dictationResultEl.style.borderRadius = '18px';
             dictationResultEl.style.padding = '1em 1.2em';
             dictationResultEl.style.fontSize = '1.25em';
             dictationResultEl.style.minHeight = '2.2em';
+            dictationResultEl.style.maxHeight = '32%';
+            dictationResultEl.style.overflowY = 'auto';
             dictationResultEl.style.display = 'none';
             dictationResultEl.style.zIndex = '100';
             dictationResultEl.style.textAlign = 'center';
-            dictationResultEl.style.transition = 'opacity 0.5s';
+            dictationResultEl.style.willChange = 'opacity, transform';
+            dictationResultEl.style.transition = 'opacity 220ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1)';
             flashcard.style.position = 'relative';
             const applyDictationResultTheme = () => {
                 const isDark = typeof window.isDarkThemeActive === 'function'
@@ -5034,6 +5302,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             dictationResultEl._dictationStopHandlerAttached = true;
         }
+        if (!dictationOverlayDismissHandlerAttached) {
+            document.addEventListener('pointerdown', (event) => {
+                if (!dictationResultEl || isDictating) return;
+                if (dictationResultEl.style.display === 'none' || dictationResultEl.style.opacity === '0') return;
+                if (dictationResultEl.contains(event.target)) return;
+                hideDictationOverlay();
+            });
+            dictationOverlayDismissHandlerAttached = true;
+        }
 
         const beginDictationSession = () => {
             const availability = getMicAvailability();
@@ -5064,6 +5341,7 @@ document.addEventListener('DOMContentLoaded', () => {
             recognition.interimResults = true;
             recognition.continuous = true;
             recognition.onstart = () => {
+                noteDailyActiveWorkInteraction('dictation-start');
                 isDictating = true;
                 setDictating(true);
                 dictationStopRequested = false;
@@ -5075,6 +5353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             recognition.onend = () => {
                 const wasStopRequested = dictationStopRequested;
+                const shouldPersistAfterEnd = isPronunciationPracticeMode();
                 const shouldRestartWhileHeld = !!(
                     pressToDictateEnabled &&
                     activeDictationPointerId !== null &&
@@ -5105,7 +5384,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!dictationResultEl.textContent || String(dictationResultEl.textContent).trim() === String(activeDictationPromptText || '').trim()) {
                     showDictationOverlay(UIStrings.noSpeech, 'prompt', 1800, false, true);
                 } else {
-                    showDictationOverlay(dictationResultEl.innerHTML, 'normal', 4000, true, true);
+                    showDictationOverlay(
+                        dictationResultEl.innerHTML,
+                        'normal',
+                        shouldPersistAfterEnd ? 0 : 2200,
+                        true,
+                        !shouldPersistAfterEnd
+                    );
                 }
             };
             recognition.onerror = (event) => {
@@ -5120,7 +5405,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearDictationListeningTimers();
                 showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
             };
-            recognition.onresult = (event) => {
+            recognition.onresult = async (event) => {
+                noteDailyActiveWorkInteraction('dictation-result');
                 let html = '';
                 let bestTranscript = '';
                 let bestConfidence = 0;
@@ -5152,8 +5438,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         let opacity = 0.4 + 0.6 * (alt.confidence || 0);
                         if (opacity > 1) opacity = 1;
                         if (opacity < 0.4) opacity = 0.4;
-                        const conf = alt.confidence ? ` <span style='font-size:0.8em;color:#888;'>(${(alt.confidence * 100).toFixed(1)}%)</span>` : '';
-                        html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${alt.transcript}${conf}</div>`;
+                        html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${alt.transcript}</div>`;
 
                         if (j === 0 && (!bestTranscript || (alt.confidence || 0) > bestConfidence)) {
                             bestTranscript = alt.transcript.trim();
@@ -5168,23 +5453,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 const transcriptForMatch = bestFinalTranscript || bestTranscript;
                 appDebugLog(`[dictation] best-overall="${bestTranscript}" best-final="${bestFinalTranscript}" transcript-for-match="${transcriptForMatch}"`);
                 scheduleDictationLongTimeout();
-                if (sawFinalResult) {
-                    scheduleDictationPostResultTimeout();
+                if (!sawFinalResult) {
+                    showDictationOverlay(html, 'normal', 0, true, false);
+                    return;
                 }
+                scheduleDictationPostResultTimeout();
                 const matchResult = currentCard && !autoskipLock
-                    ? getDictationMatchResult(transcriptForMatch, currentCard)
+                    ? await getDictationMatchResult(transcriptForMatch, currentCard)
                     : { matched: false };
                 if (matchResult.matched) {
                     clearDictationListeningTimers();
-                    const successHtml = matchResult.viaFrenchPluralHomophoneFallback
+                    const practiceMode = isPronunciationPracticeMode();
+                    const pronunciationPracticeSuccessHtml = buildPronunciationPracticeSuccessHtml(
+                        transcriptForMatch,
+                        {
+                            acceptedSimilar: !!(
+                                matchResult.viaFrenchPhoneticMatch
+                                || matchResult.viaFrenchHomophoneGroupFallback
+                                || matchResult.viaFrenchPluralHomophoneFallback
+                            ),
+                            score: matchResult.phoneticComparison?.score || 100,
+                        }
+                    );
+                    const successHtml = practiceMode
+                        ? pronunciationPracticeSuccessHtml
+                        : matchResult.viaFrenchPhoneticMatch
+                        ? `<div style="opacity:1;font-weight:700;margin-bottom:0.18em;">${escapeHtml(matchResult.displayText)}</div><div style="opacity:0.92;font-size:0.92em;color:inherit;">Accepted as the same-sounding answer.</div>`
+                        : matchResult.viaFrenchPluralHomophoneFallback
                         ? `<div style="opacity:1;font-weight:700;margin-bottom:0.1em;">${escapeHtml(matchResult.displayText)}</div>`
                         : matchResult.viaFrenchHomophoneGroupFallback
                             ? `<div style="opacity:1;font-weight:700;margin-bottom:0.1em;">${escapeHtml(matchResult.displayText)}</div><div style="opacity:0.9;font-size:0.92em;color:#2c3e50;">Accepted as the same-sounding answer.</div>`
                         : html;
-                    dictationResultEl.innerHTML = successHtml + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
+                    dictationResultEl.innerHTML = practiceMode
+                        ? successHtml
+                        : successHtml + `<div style=\"opacity:1;font-weight:700;color:#27ae60;margin-top:0.5em;\">🎉 Bravo !</div>`;
                     dictationResultEl.style.display = 'block';
                     dictationResultEl.style.opacity = '1';
                     handleMicSuccess();
+                    return;
+                }
+
+                if (matchResult.phoneticComparison) {
+                    const practiceMode = isPronunciationPracticeMode();
+                    showDictationOverlay(
+                        buildFrenchPhoneticMismatchHtml(matchResult.phoneticComparison, {
+                            allowBravoLabel: !practiceMode,
+                        }),
+                        'normal',
+                        0,
+                        true,
+                        false
+                    );
                     return;
                 }
 
@@ -5288,6 +5607,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let idleGuidanceTimeout = null;
     const ENABLE_DAILY_COUNTER_DEBUG_CELEBRATION = true;
     const ENABLE_DAILY_GOAL_CELEBRATION = true;
+    const DAILY_REWARD_CARD_STEP = 32;
+    const DAILY_REWARD_ACTIVE_STEP_MS = 6 * 60 * 1000;
+    const DAILY_REWARD_STAGE_COUNT = 3;
+    const DAILY_ACTIVE_WORK_IDLE_GRACE_MS = 45000;
+    const DAILY_ACTIVE_WORK_TICK_MS = 5000;
+    const DAILY_REWARD_BADGE_VARIANTS = {
+        1: [
+            "You're doing great!",
+            "You're doing amazing!",
+            "You're on a roll!",
+            "You're building real momentum!",
+            "You're getting stronger every card!",
+            "You're making this look easy!",
+        ],
+        2: [
+            'Keep pushing 💪',
+            'Keep going strong',
+            'You have real momentum',
+            'You are leveling up ⚡',
+            'Stay with it',
+            'Your future self will thank you ❤️',
+        ],
+        3: [
+            'You deserve to be loved ❤️',
+            "Enjoy the show, it's for you! ❤️",
+            'You earned this moment ❤️',
+            'You are doing something beautiful ❤️',
+            'This celebration is for you ❤️',
+            'Take it in, this one is yours ❤️',
+        ],
+    };
     const DAILY_GOAL_CELEBRATION_CONFIG = {
         maxCards: 42,
         deckSize: 24,
@@ -5301,8 +5651,11 @@ document.addEventListener('DOMContentLoaded', () => {
         trailSampleMs: 40,
         bounceDamping: 0.84,
     };
-    const DAILY_GOAL_MILESTONE_STEPS = [1, 0.75, 0.5];
     const recentCelebrationSnapshots = [];
+    const pickRandomArrayItem = (items, fallback = '') => {
+        if (!Array.isArray(items) || !items.length) return fallback;
+        return items[Math.floor(Math.random() * items.length)] || fallback;
+    };
 
     const clampValue = (value, min, max) => Math.min(max, Math.max(min, value));
     const randomBetween = (min, max) => min + (Math.random() * (max - min));
@@ -5319,6 +5672,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const key = getScopedStorageKey(`verbDailyCount_${now.getFullYear()}_${now.getMonth() + 1}_${now.getDate()}`);
         const raw = parseInt(localStorage.getItem(key) || '0', 10);
         return Number.isFinite(raw) ? raw : 0;
+    };
+    const getDailyRewardDateStamp = (timestamp = Date.now()) => {
+        const now = new Date(timestamp);
+        return `${now.getFullYear()}_${now.getMonth() + 1}_${now.getDate()}`;
+    };
+    const getDailyActiveWorkStorageKey = (timestamp = Date.now()) => (
+        getScopedStorageKey(`activeStudyMs_${getDailyRewardDateStamp(timestamp)}`)
+    );
+    const getCurrentDailyActiveWorkMs = (timestamp = Date.now()) => {
+        const raw = parseInt(localStorage.getItem(getDailyActiveWorkStorageKey(timestamp)) || '0', 10);
+        return Number.isFinite(raw) ? Math.max(0, raw) : 0;
+    };
+    const getDailyRewardStageFromMetrics = (cardCount, activeWorkMs) => {
+        const cardStage = Math.floor(Math.max(0, Number(cardCount) || 0) / DAILY_REWARD_CARD_STEP);
+        const timeStage = Math.floor(Math.max(0, Number(activeWorkMs) || 0) / DAILY_REWARD_ACTIVE_STEP_MS);
+        return clampValue(Math.max(cardStage, timeStage), 0, DAILY_REWARD_STAGE_COUNT);
+    };
+    const getCurrentDailyRewardStage = () => (
+        getDailyRewardStageFromMetrics(getCurrentDailyCount(), getCurrentDailyActiveWorkMs())
+    );
+    const dailyActiveWorkState = {
+        dateStamp: getDailyRewardDateStamp(),
+        accumulatedMs: getCurrentDailyActiveWorkMs(),
+        lastTickAtMs: Date.now(),
+        lastInteractionAtMs: Date.now(),
+        lastCountable: false,
+        intervalId: null,
     };
     const getDailyGoalTarget = () => {
         const rawGoal = Number(window.DAILY_GOAL);
@@ -5557,7 +5937,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const height = Math.max(1, Math.round(rect.height));
             overlay.style.width = `${width}px`;
             overlay.style.height = `${height}px`;
-            const dpr = clampValue(window.devicePixelRatio || 1, 1, 2);
+            // Celebration sprites are fast and layered; capping DPR avoids mobile GPU overdraw jitter.
+            const dpr = clampValue(window.devicePixelRatio || 1, 1, 1.5);
             const pixelWidth = Math.max(1, Math.round(width * dpr));
             const pixelHeight = Math.max(1, Math.round(height * dpr));
             [trailCanvas, canvas].forEach((targetCanvas) => {
@@ -5693,56 +6074,70 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         const getCelebrationVariant = (options = {}) => {
-            const rawMilestoneValue = Number(options.milestoneValue);
-            if (Number.isFinite(rawMilestoneValue) && rawMilestoneValue < 75) {
+            const rewardStage = clampValue(
+                Number(options.rewardStage)
+                    || Number(options.milestoneIndex)
+                    || (Number(options.milestoneValue) >= 100 ? 3 : Number(options.milestoneValue) >= 75 ? 2 : 1),
+                1,
+                DAILY_REWARD_STAGE_COUNT
+            );
+            const badgeText = pickRandomArrayItem(
+                DAILY_REWARD_BADGE_VARIANTS[rewardStage],
+                rewardStage === 1 ? "You're doing great!" : rewardStage === 2 ? 'Keep pushing 💪' : 'You deserve to be loved ❤️'
+            );
+            if (rewardStage <= 1) {
                 return {
                     key: 'mini-50',
-                    badgeText: '50 cartes',
-                    deckSize: 4,
+                    badgeText,
+                    milestoneCardText: '1',
+                    deckSize: 1,
                     maxCards: 1,
-                    durationMs: 4200,
+                    durationMs: 3600,
                     launchCadenceMs: 0,
-                    gravity: 560,
-                    bounceDamping: 0.92,
-                    cardScale: 1.18,
-                    trailSampleMs: 95,
-                    trailAlpha: 0.22,
-                    showStackGhost: false,
-                    spawnXRatio: 0.16,
-                    spawnYRatio: 0.72,
-                    launchAngleMin: -1.05,
-                    launchAngleMax: -0.48,
-                    launchSpeedMin: 0.42,
-                    launchSpeedMax: 0.62,
+                    gravity: 760,
+                    bounceDamping: 0.84,
+                    cardScale: 1.35,
+                    trailSampleMs: 340,
+                    trailAlpha: 0.14,
+                    showStackGhost: true,
+                    streamExitRight: true,
+                    horizontalSpeedMultiplier: 0.75,
+                    maxWallBounces: 0,
+                    launchAngleMin: -0.95,
+                    launchAngleMax: -0.58,
+                    launchSpeedMin: 0.62,
+                    launchSpeedMax: 0.82,
                 };
             }
-            if (Number.isFinite(rawMilestoneValue) && rawMilestoneValue < 100) {
+            if (rewardStage === 2) {
                 return {
                     key: 'mini-75',
-                    badgeText: '75 cartes',
-                    deckSize: 8,
-                    maxCards: 7,
-                    durationMs: 6600,
-                    launchCadenceMs: 130,
-                    gravity: 660,
-                    bounceDamping: 0.88,
-                    cardScale: 1.04,
-                    trailSampleMs: 58,
-                    trailAlpha: 0.5,
-                    showStackGhost: false,
-                    spawnXRatio: 0.13,
-                    spawnYRatio: 0.7,
-                    launchAngleMin: -1.18,
-                    launchAngleMax: -0.42,
-                    launchSpeedMin: 0.58,
-                    launchSpeedMax: 0.92,
+                    badgeText,
+                    milestoneCardText: '2',
+                    deckSize: 1,
+                    maxCards: 1,
+                    durationMs: 4700,
+                    launchCadenceMs: 0,
+                    gravity: 760,
+                    bounceDamping: 0.84,
+                    cardScale: 1.35,
+                    trailSampleMs: 300,
+                    trailAlpha: 0.18,
+                    showStackGhost: true,
+                    streamExitRight: false,
+                    horizontalSpeedMultiplier: 0.75,
+                    maxWallBounces: 1,
+                    wallBounceSide: 'right',
+                    launchAngleMin: -0.95,
+                    launchAngleMax: -0.52,
+                    launchSpeedMin: 0.64,
+                    launchSpeedMax: 0.84,
                 };
             }
             return {
                 key: 'full-100',
-                badgeText: options.milestoneIndex && options.milestoneIndex > 1
-                    ? `Objectif x${options.milestoneIndex}`
-                    : 'Objectif atteint',
+                badgeText,
+                milestoneCardText: '3',
                 deckSize: DAILY_GOAL_CELEBRATION_CONFIG.deckSize,
                 maxCards: DAILY_GOAL_CELEBRATION_CONFIG.maxCards,
                 durationMs: DAILY_GOAL_CELEBRATION_CONFIG.celebrationDurationMs,
@@ -5779,13 +6174,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const launchAngle = Number.isFinite(variant.launchAngleMin) && Number.isFinite(variant.launchAngleMax)
                     ? randomBetween(variant.launchAngleMin, variant.launchAngleMax)
                     : randomBetween(-2.38, -0.72);
-                const vx = Math.cos(launchAngle) * launchSpeed;
+                const vx = Math.cos(launchAngle) * launchSpeed * (variant.horizontalSpeedMultiplier || 1);
                 const vy = Math.sin(launchAngle) * launchSpeed;
                 const cardAngle = randomBetween(-0.14, 0.1);
                 sprites.push({
                     snapshot,
                     x: spawnX + (index % 5) * 1.6 + randomBetween(-1, 2),
-                    y: spawnY + (index % 4) * 1.3 + randomBetween(-1, 1),
+                    y: spawnY + (index % 7) * 2.1 + randomBetween(-1, 1),
                     vx,
                     vy,
                     angle: cardAngle,
@@ -5795,7 +6190,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     delayMs: index * (variant.launchCadenceMs ?? DAILY_GOAL_CELEBRATION_CONFIG.launchCadenceMs),
                     launched: false,
                     accentColor: getAccentColorForSnapshot(snapshot, palette),
+                    milestoneText: index === 0 ? String(variant.milestoneCardText || '') : '',
                     bounceCount: 0,
+                    wallBounceCount: 0,
                     settled: false,
                     liveVisible: true,
                     trailAccumulatorMs: 0,
@@ -5977,6 +6374,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.globalAlpha = alpha;
             }
 
+            const milestoneText = String(sprite.milestoneText || '').trim();
+            if (milestoneText) {
+                const badgeRadius = Math.min(width, height) * 0.2;
+                const badgeX = width / 2 - badgeRadius - 8;
+                const badgeY = height / 2 - badgeRadius - 8;
+                ctx.save();
+                ctx.globalAlpha = Math.min(1, alpha);
+                ctx.beginPath();
+                ctx.arc(badgeX, badgeY, badgeRadius, 0, Math.PI * 2);
+                ctx.fillStyle = accentColor;
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(255,255,255,0.72)';
+                ctx.lineWidth = 1.4;
+                ctx.stroke();
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `900 ${Math.max(10, Math.round(width * 0.22))}px Inter, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(milestoneText, badgeX, badgeY + 0.5);
+                ctx.restore();
+            }
+
             ctx.restore();
         };
         const buildRenderedCardAsset = (sprite, palette, dpr) => {
@@ -6023,6 +6442,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     dpr,
                     palette.cardFillTop,
                     palette.cardFillBottom,
+                    sprite.milestoneText || '',
                 ].join('|');
                 let asset = assetCache.get(assetKey);
                 if (!asset) {
@@ -6064,14 +6484,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            if (variant.streamExitRight && sprite.x - halfWidth > rightBound + sprite.width) {
+                sprite.liveVisible = false;
+                sprite.settled = true;
+                return;
+            }
+
+            const maxWallBounces = Number.isFinite(variant.maxWallBounces) ? variant.maxWallBounces : null;
             if (sprite.x - halfWidth < leftBound) {
-                sprite.x = leftBound + halfWidth;
-                sprite.vx = Math.abs(sprite.vx) * 0.94;
-                sprite.angularVelocity *= -0.92;
-            } else if (sprite.x + halfWidth > rightBound) {
-                sprite.x = rightBound - halfWidth;
-                sprite.vx = -Math.abs(sprite.vx) * 0.94;
-                sprite.angularVelocity *= -0.92;
+                if (variant.wallBounceSide === 'right') {
+                    sprite.liveVisible = sprite.x + halfWidth > leftBound - sprite.width;
+                } else if (maxWallBounces !== null && sprite.wallBounceCount >= maxWallBounces) {
+                    // Mini milestone cards leave the table instead of building a pile.
+                    sprite.liveVisible = sprite.x + halfWidth > leftBound - sprite.width;
+                } else {
+                    sprite.wallBounceCount += 1;
+                    sprite.x = leftBound + halfWidth;
+                    sprite.vx = Math.abs(sprite.vx) * 0.94;
+                    sprite.angularVelocity *= -0.92;
+                }
+            } else if (sprite.x + halfWidth > rightBound && !variant.streamExitRight) {
+                if (maxWallBounces !== null && sprite.wallBounceCount >= maxWallBounces) {
+                    sprite.liveVisible = sprite.x - halfWidth < rightBound + sprite.width;
+                } else {
+                    sprite.wallBounceCount += 1;
+                    sprite.x = rightBound - halfWidth;
+                    sprite.vx = -Math.abs(sprite.vx) * 0.94;
+                    sprite.angularVelocity *= -0.92;
+                }
             }
 
             if (sprite.y - halfHeight < topBound) {
@@ -6080,6 +6520,22 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (sprite.y + halfHeight > floorY) {
                 sprite.y = floorY - halfHeight;
                 sprite.bounceCount += 1;
+                if (variant.hideAfterFloorHit && sprite.bounceCount > (variant.maxFloorBounces || 0)) {
+                    sprite.liveVisible = false;
+                    sprite.settled = true;
+                    return;
+                }
+                if (Number.isFinite(variant.maxFloorBounces) && sprite.bounceCount > variant.maxFloorBounces) {
+                    if (variant.exitAfterFloorLimit) {
+                        sprite.liveVisible = false;
+                        sprite.settled = true;
+                        return;
+                    }
+                    sprite.y = floorY - halfHeight;
+                    sprite.vy = 0;
+                    sprite.angularVelocity *= 0.65;
+                    return;
+                }
                 const damping = clampValue(
                     (variant.bounceDamping || DAILY_GOAL_CELEBRATION_CONFIG.bounceDamping) - (sprite.bounceCount * 0.028) + randomBetween(-0.015, 0.015),
                     0.62,
@@ -6190,21 +6646,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
     const dailyGoalCelebration = createDailyGoalCelebrationController();
-    const maybeTriggerDailyGoalCelebration = (previousCount, nextCount) => {
+    const maybeTriggerDailyGoalCelebration = (previousStage, nextStage, reason = 'daily-progress') => {
         if (!ENABLE_DAILY_GOAL_CELEBRATION || dailyGoalCelebration.isActive()) return;
-        const goal = getDailyGoalTarget();
-        if (goal <= 0) return;
-        const crossedStep = DAILY_GOAL_MILESTONE_STEPS.find((step) => {
-            const previousStepIndex = Math.floor(previousCount / (goal * step));
-            const nextStepIndex = Math.floor(nextCount / (goal * step));
-            return nextStepIndex > previousStepIndex;
-        });
-        if (crossedStep) {
-            const nextMilestoneIndex = Math.floor(nextCount / goal);
+        if (nextStage > previousStage) {
             dailyGoalCelebration.trigger({
-                reason: 'daily-goal',
-                milestoneIndex: Math.max(1, nextMilestoneIndex),
-                milestoneValue: Math.round(crossedStep * 100),
+                reason,
+                milestoneIndex: Math.max(1, nextStage),
+                rewardStage: clampValue(nextStage, 1, DAILY_REWARD_STAGE_COUNT),
             });
         }
     };
@@ -6212,8 +6660,82 @@ document.addEventListener('DOMContentLoaded', () => {
         dailyGoalCelebration.trigger({
             reason: options.reason || 'manual',
             milestoneIndex: Number(options.milestoneIndex) || 0,
-            milestoneValue: Number(options.milestoneValue) || 100,
+            rewardStage: clampValue(
+                Number(options.rewardStage)
+                    || Number(options.milestoneIndex)
+                    || (Number(options.milestoneValue) >= 100 ? 3 : Number(options.milestoneValue) >= 75 ? 2 : 1),
+                1,
+                DAILY_REWARD_STAGE_COUNT
+            ),
         });
+    };
+
+    const syncDailyActiveWorkDate = (timestamp = Date.now()) => {
+        const nextStamp = getDailyRewardDateStamp(timestamp);
+        if (dailyActiveWorkState.dateStamp === nextStamp) return;
+        dailyActiveWorkState.dateStamp = nextStamp;
+        dailyActiveWorkState.accumulatedMs = getCurrentDailyActiveWorkMs(timestamp);
+        dailyActiveWorkState.lastTickAtMs = timestamp;
+        dailyActiveWorkState.lastInteractionAtMs = timestamp;
+        dailyActiveWorkState.lastCountable = false;
+    };
+
+    const persistDailyActiveWorkMs = () => {
+        try {
+            localStorage.setItem(
+                getDailyActiveWorkStorageKey(),
+                String(Math.max(0, Math.round(dailyActiveWorkState.accumulatedMs)))
+            );
+        } catch (error) {
+            console.warn('Could not persist active study time:', error);
+        }
+    };
+
+    const isDailyActiveWorkCountable = (timestamp = Date.now()) => {
+        if (document.visibilityState !== 'visible') return false;
+        if (!currentCard) return false;
+        if (typeof isFlashcardViewActive === 'function' && !isFlashcardViewActive()) return false;
+        if (dailyGoalCelebration.isActive()) return false;
+        return (timestamp - dailyActiveWorkState.lastInteractionAtMs) <= DAILY_ACTIVE_WORK_IDLE_GRACE_MS;
+    };
+
+    const maybeTriggerRewardMilestone = (previousStage, nextStage, reason) => {
+        maybeTriggerDailyGoalCelebration(previousStage, nextStage, reason);
+    };
+
+    const flushDailyActiveWork = (timestamp = Date.now(), reason = 'tick') => {
+        syncDailyActiveWorkDate(timestamp);
+        const previousStage = getDailyRewardStageFromMetrics(getCurrentDailyCount(), dailyActiveWorkState.accumulatedMs);
+        const deltaMs = Math.max(0, timestamp - dailyActiveWorkState.lastTickAtMs);
+        if (dailyActiveWorkState.lastCountable && deltaMs > 0) {
+            dailyActiveWorkState.accumulatedMs += deltaMs;
+            persistDailyActiveWorkMs();
+        }
+        dailyActiveWorkState.lastTickAtMs = timestamp;
+        dailyActiveWorkState.lastCountable = isDailyActiveWorkCountable(timestamp);
+        const nextStage = getDailyRewardStageFromMetrics(getCurrentDailyCount(), dailyActiveWorkState.accumulatedMs);
+        if (nextStage > previousStage) {
+            maybeTriggerRewardMilestone(previousStage, nextStage, `daily-active-time:${reason}`);
+        }
+    };
+
+    const noteDailyActiveWorkInteraction = (reason = 'interaction') => {
+        const now = Date.now();
+        flushDailyActiveWork(now, `${reason}:before`);
+        dailyActiveWorkState.lastInteractionAtMs = now;
+        dailyActiveWorkState.lastCountable = isDailyActiveWorkCountable(now);
+        if (window.appLog) {
+            window.appLog(`daily-active-work interaction reason=${reason} ms=${Math.round(dailyActiveWorkState.accumulatedMs)}`);
+        }
+    };
+
+    const startDailyActiveWorkTracker = () => {
+        if (dailyActiveWorkState.intervalId) return;
+        dailyActiveWorkState.lastTickAtMs = Date.now();
+        dailyActiveWorkState.lastCountable = isDailyActiveWorkCountable(dailyActiveWorkState.lastTickAtMs);
+        dailyActiveWorkState.intervalId = window.setInterval(() => {
+            flushDailyActiveWork(Date.now(), 'interval');
+        }, DAILY_ACTIVE_WORK_TICK_MS);
     };
 
     const STUDY_STATS_STORAGE_KEY = getScopedStorageKey('studyStatsV1');
@@ -7003,6 +7525,50 @@ document.addEventListener('DOMContentLoaded', () => {
         // TODO(Filter): Consider allowing multiple categories (multi-select) and store as array.
     };
     window.cardGenerationOptions = cardGenerationOptions;
+    const deterministicFamilyRotationState = new Map();
+
+    function buildDeterministicFamilySequence(cardTypeMode, fillFocusMode) {
+        if (cardTypeMode === 'both') {
+            if (fillFocusMode === 'pronouns') {
+                return ['conjugation', 'conjugation', 'conjugation', 'conjugation', 'conjugation', 'pronoun_fill', 'pronoun_fill', 'pronoun_fill'];
+            }
+            if (fillFocusMode === 'frames') {
+                return ['conjugation', 'conjugation', 'conjugation', 'conjugation', 'conjugation', 'frame', 'frame', 'frame'];
+            }
+            return ['conjugation', 'conjugation', 'conjugation', 'conjugation', 'conjugation', 'frame', 'frame', 'pronoun_fill'];
+        }
+        if (cardTypeMode === 'frame' && fillFocusMode === 'all') {
+            return ['frame', 'frame', 'pronoun_fill'];
+        }
+        if (cardTypeMode === 'frame' && fillFocusMode === 'frames') {
+            return ['frame'];
+        }
+        if (cardTypeMode === 'frame' && fillFocusMode === 'pronouns') {
+            return ['pronoun_fill'];
+        }
+        return ['conjugation'];
+    }
+
+    function selectDeterministicCardFamily(sequenceKey, sequence, availableCards) {
+        const availableFamilies = sequence.filter((family, index) =>
+            sequence.indexOf(family) === index && availableCards[family]
+        );
+        if (availableFamilies.length === 0) return null;
+        if (sequence.length === 0) return availableFamilies[0];
+
+        let cursor = deterministicFamilyRotationState.get(sequenceKey) || 0;
+        for (let offset = 0; offset < sequence.length; offset++) {
+            const slotIndex = (cursor + offset) % sequence.length;
+            const family = sequence[slotIndex];
+            if (!availableCards[family]) continue;
+            deterministicFamilyRotationState.set(sequenceKey, (slotIndex + 1) % sequence.length);
+            return family;
+        }
+
+        const fallback = availableFamilies[0];
+        deterministicFamilyRotationState.set(sequenceKey, 0);
+        return fallback;
+    }
 
     // --- Lightweight local review-priority model ---
     // This is intentionally not a classic spaced-repetition scheduler.
@@ -8031,11 +8597,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (resolvedCardTypeMode === 'both') {
-            const familyDeck = [];
-            if (conjugationCard) familyDeck.push({ card: 'conjugation', score: 5 });
-            if (frameCard) familyDeck.push({ card: 'frame', score: resolvedFillFocusMode === 'frames' ? 3 : 2 });
-            if (pronounFillCard) familyDeck.push({ card: 'pronoun_fill', score: resolvedFillFocusMode === 'pronouns' ? 3 : 1 });
-            const selectedFamily = performWeightedSelection(familyDeck, { allowRecentCardBlocking: false });
+            const selectedFamily = selectDeterministicCardFamily(
+                `mixed:${resolvedFillFocusMode}`,
+                buildDeterministicFamilySequence('both', resolvedFillFocusMode),
+                {
+                    conjugation: conjugationCard,
+                    frame: frameCard,
+                    pronoun_fill: pronounFillCard,
+                }
+            );
             if (selectedFamily === 'frame') {
                 newCard = frameCard;
             } else if (selectedFamily === 'pronoun_fill') {
@@ -8049,10 +8619,14 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (resolvedFillFocusMode === 'frames') {
                 newCard = frameCard;
             } else {
-                const fillDeck = [];
-                if (frameCard) fillDeck.push({ card: 'frame', score: 2 });
-                if (pronounFillCard) fillDeck.push({ card: 'pronoun_fill', score: 1 });
-                const selectedFillFamily = performWeightedSelection(fillDeck, { allowRecentCardBlocking: false });
+                const selectedFillFamily = selectDeterministicCardFamily(
+                    'frame:all',
+                    buildDeterministicFamilySequence('frame', 'all'),
+                    {
+                        frame: frameCard,
+                        pronoun_fill: pronounFillCard,
+                    }
+                );
                 newCard = selectedFillFamily === 'pronoun_fill' ? pronounFillCard : frameCard;
             }
         } else {
@@ -8303,7 +8877,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const fillDifficulty = getCurrentFillDifficultyMode();
             const showFrameInfinitive = fillDifficulty === 'easy';
-            const showTopTranslation = fillDifficulty === 'easy' || (fillDifficulty === 'hard' && card.frameSubtype !== 'pronoun_fill');
+            const showTopTranslation = fillDifficulty === 'easy' || fillDifficulty === 'hard';
             const showFrameHint = fillDifficulty === 'easy';
             if (verbInfinitiveEl?.parentElement) {
                 verbInfinitiveEl.parentElement.style.display = showFrameInfinitive ? 'flex' : 'none';
@@ -8490,9 +9064,9 @@ document.addEventListener('DOMContentLoaded', () => {
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
             recordStudyStatsReveal(currentCard);
-            const previousDailyCount = getCurrentDailyCount();
+            const previousDailyRewardStage = getCurrentDailyRewardStage();
             if (window.incrementDailyCount) window.incrementDailyCount();
-            maybeTriggerDailyGoalCelebration(previousDailyCount, getCurrentDailyCount());
+            maybeTriggerRewardMilestone(previousDailyRewardStage, getCurrentDailyRewardStage(), 'daily-cards');
             if (currentCard?.isFrameCard) {
                 updateFrameCardInlineState(currentCard, true);
                 if (currentCard.frameSubtype === 'pronoun_fill' && verbHintEl) {
@@ -8755,7 +9329,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return normalized || null;
     };
 
-    const hydrateDetailRouteCard = ({ verbInfinitive, tenseToFocus, pronoun }) => {
+    const hydrateDetailRouteCard = ({ verbInfinitive, tenseToFocus, pronoun, cardMode, frameId }) => {
+        if (cardMode === 'frame' && frameId) {
+            return cloneFrameRouteCard(frameId);
+        }
         const normalizedPronoun = normalizeDetailRoutePronoun(pronoun);
         const normalizedTense = normalizeDetailRouteTense(tenseToFocus);
         if (!verbInfinitive || !normalizedPronoun || !normalizedTense) {
@@ -8767,6 +9344,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const resolveVerbDetailRouteState = (route = {}) => {
         const verbInfinitive = String(route.verbInfinitive || route.verb || '').trim();
         if (!verbInfinitive) return null;
+        const frameId = String(route.frameId || route.card?.frameId || '').trim();
+        const cardMode = String(route.cardMode || (frameId ? 'frame' : '') || (route.card?.isFrameCard ? 'frame' : 'conjugation')).trim();
         const tenseToFocus = normalizeDetailRouteTense(route.tenseToFocus || route.tense || route.card?.tense);
         const pronoun = normalizeDetailRoutePronoun(route.pronoun || route.card?.pronoun);
         let card = route.card || null;
@@ -8774,11 +9353,13 @@ document.addEventListener('DOMContentLoaded', () => {
             card = null;
         }
         if (!card) {
-            card = hydrateDetailRouteCard({ verbInfinitive, tenseToFocus, pronoun });
+            card = hydrateDetailRouteCard({ verbInfinitive, tenseToFocus, pronoun, cardMode, frameId });
         }
         return {
             verbInfinitive,
             tenseToFocus,
+            cardMode: card?.isFrameCard ? 'frame' : (cardMode || 'conjugation'),
+            frameId: card?.isFrameCard ? String(card.frameId || '').trim() : frameId,
             pronoun: card ? (normalizeDetailRoutePronoun(card.pronoun) || pronoun) : pronoun,
             card,
         };
@@ -8788,6 +9369,8 @@ document.addEventListener('DOMContentLoaded', () => {
         view: 'explorer-detail-view',
         verbInfinitive: routeState.verbInfinitive,
         tenseToFocus: routeState.tenseToFocus,
+        cardMode: routeState.cardMode || (routeState.card?.isFrameCard ? 'frame' : 'conjugation'),
+        frameId: routeState.frameId || (routeState.card?.isFrameCard ? String(routeState.card.frameId || '').trim() : ''),
         pronoun: routeState.card ? routeState.card.pronoun : routeState.pronoun,
     });
 
@@ -8813,6 +9396,13 @@ document.addEventListener('DOMContentLoaded', () => {
         url.hash = '';
         url.search = '';
         url.searchParams.set(DETAIL_ROUTE_VERB_PARAM, routeState.verbInfinitive);
+        if (routeState.cardMode === 'frame' && routeState.frameId) {
+            url.searchParams.set(DETAIL_ROUTE_CARD_MODE_PARAM, 'frame');
+            url.searchParams.set(DETAIL_ROUTE_FRAME_ID_PARAM, routeState.frameId);
+        } else {
+            url.searchParams.delete(DETAIL_ROUTE_CARD_MODE_PARAM);
+            url.searchParams.delete(DETAIL_ROUTE_FRAME_ID_PARAM);
+        }
         if (routeState.tenseToFocus) {
             url.searchParams.set(DETAIL_ROUTE_TENSE_PARAM, routeState.tenseToFocus);
         }
@@ -9224,6 +9814,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             verbInfinitive,
             tenseToFocus: normalizeDetailRouteTense(params.get(DETAIL_ROUTE_TENSE_PARAM)),
+            cardMode: String(params.get(DETAIL_ROUTE_CARD_MODE_PARAM) || '').trim(),
+            frameId: String(params.get(DETAIL_ROUTE_FRAME_ID_PARAM) || '').trim(),
             pronoun: normalizeDetailRoutePronoun(params.get(DETAIL_ROUTE_PRONOUN_PARAM)),
         };
     };
@@ -9243,6 +9835,8 @@ document.addEventListener('DOMContentLoaded', () => {
         params.delete(DETAIL_ROUTE_VERB_PARAM);
         params.delete(DETAIL_ROUTE_TENSE_PARAM);
         params.delete(DETAIL_ROUTE_PRONOUN_PARAM);
+        params.delete(DETAIL_ROUTE_CARD_MODE_PARAM);
+        params.delete(DETAIL_ROUTE_FRAME_ID_PARAM);
     }, viewId);
 
     const buildVerbDetailUrl = (routeOrVerb, tenseToFocus = null, card = null) => {
@@ -9252,6 +9846,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!routeState) return buildUrlForView('explorer-detail-view');
         return buildCurrentUrl((params) => {
             params.set(DETAIL_ROUTE_VERB_PARAM, routeState.verbInfinitive);
+            if (routeState.cardMode === 'frame' && routeState.frameId) {
+                params.set(DETAIL_ROUTE_CARD_MODE_PARAM, 'frame');
+                params.set(DETAIL_ROUTE_FRAME_ID_PARAM, routeState.frameId);
+            } else {
+                params.delete(DETAIL_ROUTE_CARD_MODE_PARAM);
+                params.delete(DETAIL_ROUTE_FRAME_ID_PARAM);
+            }
             if (routeState.tenseToFocus) {
                 params.set(DETAIL_ROUTE_TENSE_PARAM, routeState.tenseToFocus);
             } else {
@@ -11043,7 +11644,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let debugTapCount = 0;
         let debugTapResetTimer = null;
         let debugCelebrationMilestoneIndex = 0;
-        const debugCelebrationMilestones = [50, 75, 100];
+        const debugCelebrationMilestones = [1, 2, 3];
         const resetDailyGoalDebugCounter = () => {
             debugTapCount = 0;
             if (debugTapResetTimer) {
@@ -11069,7 +11670,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 debugCelebrationMilestoneIndex += 1;
                 dailyGoalCelebration.trigger({
                     reason: 'debug-counter',
-                    milestoneValue,
+                    rewardStage: milestoneValue,
                 });
             }
         });
@@ -11392,6 +11993,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 verbInfinitive: event.state.verbInfinitive,
                 tenseToFocus: event.state.tenseToFocus,
                 pronoun: event.state.pronoun,
+                cardMode: event.state.cardMode,
+                frameId: event.state.frameId,
             }, true);
             return;
         }
@@ -11723,25 +12326,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Use generic UIStrings for overlays and UI
     function showDictationOverlay(text, type = 'prompt', duration = 1800, isHtml = false, allowTimeout = true) {
+        if (!dictationResultEl) return;
+        const wasVisible = isDictationOverlayVisible();
+        clearDictationOverlayHideAnimationTimeout();
+        updateDictationOverlayOriginFromMic();
         if (isHtml) {
             dictationResultEl.innerHTML = text;
         } else {
             dictationResultEl.textContent = text;
         }
         dictationResultEl.style.display = 'block';
-        dictationResultEl.style.opacity = '1'; // Ensure visible every time
         dictationResultEl.className = 'dictation-result ' + (type || 'prompt');
+        if (!wasVisible) {
+            dictationResultEl.style.opacity = '0';
+            dictationResultEl.style.transform = 'translateX(-50%) translateY(18px) scale(0.94)';
+            requestAnimationFrame(() => {
+                if (!dictationResultEl) return;
+                dictationResultEl.style.opacity = '1';
+                dictationResultEl.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+            });
+        } else {
+            dictationResultEl.style.opacity = '1';
+            dictationResultEl.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+        }
         clearDictationOverlayTimeout();
         if (allowTimeout) {
             dictationOverlayTimeout = setTimeout(hideDictationOverlay, duration);
         }
     }
     function hideDictationOverlay() {
+        if (!dictationResultEl) return;
         clearDictationOverlayTimeout();
+        clearDictationOverlayHideAnimationTimeout();
         dictationResultEl.style.opacity = '0';
-        setTimeout(() => {
+        dictationResultEl.style.transform = 'translateX(-50%) translateY(14px) scale(0.96)';
+        dictationOverlayHideAnimationTimeout = setTimeout(() => {
+            if (!dictationResultEl) return;
             dictationResultEl.style.display = 'none';
-        }, 500);
+        }, 240);
     }
 
     // --- Tips Button Logic ---
@@ -13670,6 +14292,26 @@ if (importedSharedDrill) {
 //   applyPreset(presets.find(p => p.emoji === "👤"));
 // }
 renderPresets();
+
+    document.addEventListener('pointerdown', () => {
+        noteDailyActiveWorkInteraction('pointer');
+    }, true);
+    document.addEventListener('keydown', () => {
+        noteDailyActiveWorkInteraction('keydown');
+    }, true);
+    document.addEventListener('visibilitychange', () => {
+        flushDailyActiveWork(Date.now(), 'visibilitychange');
+        if (document.visibilityState === 'visible') {
+            noteDailyActiveWorkInteraction('visible');
+        }
+    });
+    window.addEventListener('focus', () => {
+        noteDailyActiveWorkInteraction('focus');
+    });
+    window.addEventListener('beforeunload', () => {
+        flushDailyActiveWork(Date.now(), 'beforeunload');
+    });
+    startDailyActiveWorkTracker();
 
 // Call the patched initializeApp only after tutorial/preset state is fully defined.
 window.initializeApp();

@@ -1,0 +1,669 @@
+[
+  {
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "scope": "kitchen, meals, service, casual eating, cuts & burns",
+    "verb": "goûter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "sample/taste X",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Le pâtissier goûte à la crème avant de remplir les choux.",
+    "translation_en": "The pastry chef tastes the cream before filling the puffs.",
+    "tense": "present",
+    "subject": "le pâtissier",
+    "note": "Natural goûter à construction.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected; de->non_target_verb:xcomp:mark_other",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "scope": "kitchen, meals, service, casual eating, cuts & burns",
+    "verb": "servir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "serve something to someone",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Le serveur sert la soupe aux clients près de la fenêtre.",
+    "translation_en": "The waiter serves the soup to the customers by the window.",
+    "tense": "present",
+    "subject": "le serveur",
+    "note": "Service au restaurant avec complément en à.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected; de->noun_phrase:obl:arg:noun_internal",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "scope": "kitchen, meals, service, casual eating, cuts & burns",
+    "verb": "servir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "use as / serve as",
+    "source": "manual_backfill",
+    "sentence_fr": "Cette grande assiette sert de plat de service ce soir.",
+    "translation_en": "This large plate is serving as the serving dish tonight.",
+    "tense": "present",
+    "subject": "cette grande assiette",
+    "note": "manual_curated_backfill",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_selected; de->noun_phrase:nmod:noun_internal",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "scope": "kitchen, meals, service, casual eating, cuts & burns",
+    "verb": "verser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "pour/pay into/to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Elle a versé du jus aux enfants.",
+    "translation_en": "She poured juice for the children.",
+    "tense": "passé composé",
+    "subject": "elle",
+    "note": "Natural indirect object with à.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:de->noun_phrase:det:partitive_or_determiner; à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "scope": "archives, heritage, storytelling, preservation",
+    "verb": "raconter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "tell something to someone",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "La plaque raconte aux visiteurs l'incendie de 1881.",
+    "translation_en": "The plaque tells visitors about the fire of 1881.",
+    "tense": "present",
+    "subject": "la plaque",
+    "note": "Natural raconter à complement.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected; de->noun_phrase:nmod:noun_internal",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "scope": "bands, rehearsal, performance, production",
+    "verb": "accorder",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "grant/tune to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "J'accorde la caisse claire au morceau suivant.",
+    "translation_en": "I tune the snare to the next song.",
+    "tense": "present",
+    "subject": "Je",
+    "note": "Complément en à naturel.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "scope": "bands, rehearsal, performance, production",
+    "verb": "répéter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "repeat to someone",
+    "source": "manual_backfill",
+    "sentence_fr": "Je répète la consigne aux choristes avant l'entrée.",
+    "translation_en": "I repeat the instruction to the choir before the entrance.",
+    "tense": "present",
+    "subject": "je",
+    "note": "manual_curated_backfill",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "scope": "going out, bars, flirting, afters",
+    "verb": "sortir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "target_reason": "movement/source allowed",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Ma sœur est sortie de la boîte avant la fin du set.",
+    "translation_en": "My sister left the club before the end of the set.",
+    "tense": "passé composé",
+    "subject": "ma sœur",
+    "note": "sortir de + lieu, très naturel",
+    "bonus_label": "de_source_or_location",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_source_or_location; de->noun_phrase:nmod:noun_internal",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "scope": "going out, bars, flirting, afters",
+    "verb": "trinquer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "toast to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Je trinque à ton retour parmi nous ce soir.",
+    "translation_en": "I'm toasting your return tonight.",
+    "tense": "present",
+    "subject": "je",
+    "note": "natural à-complement",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "scope": "debate, protest, campaigns, media pressure",
+    "verb": "accuser",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "accuse of",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Le député accuse son rival d'avoir diffusé une fausse vidéo.",
+    "translation_en": "The lawmaker accuses his rival of having spread a fake video.",
+    "tense": "present",
+    "subject": "Le député",
+    "note": "Natural accuser de construction.",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:d'->verb_child:xcomp:de_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "scope": "debate, protest, campaigns, media pressure",
+    "verb": "discuter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "discuss",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Les députés discutent du budget en commission.",
+    "translation_en": "The MPs are discussing the budget in committee.",
+    "tense": "present",
+    "subject": "les députés",
+    "note": "Natural de-complement.",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "scope": "debate, protest, campaigns, media pressure",
+    "verb": "dénoncer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "report to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Les opposants dénoncent au préfet un usage abusif des arrêtés.",
+    "translation_en": "Opponents are reporting to the prefect what they call an abusive use of decrees.",
+    "tense": "present",
+    "subject": "Les opposants",
+    "note": "dénoncer à",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected; de->noun_phrase:nmod:noun_internal",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "scope": "debate, protest, campaigns, media pressure",
+    "verb": "traiter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "deal with / treat of",
+    "source": "manual_backfill",
+    "sentence_fr": "Le débat traite de la réforme du scrutin ce soir.",
+    "translation_en": "The debate is about electoral reform tonight.",
+    "tense": "present",
+    "subject": "le débat",
+    "note": "manual_curated_backfill",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_selected; de->noun_phrase:nmod:noun_internal",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "scope": "training, competition, ball sports, defense, injuries",
+    "verb": "changer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "change from/of",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Le coach change de gardien à la mi-temps.",
+    "translation_en": "The coach changes goalkeepers at halftime.",
+    "tense": "present",
+    "subject": "le coach",
+    "note": "Changement tactique naturel avec de.",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_selected; à->target_verb:obl:mod:none",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "scope": "training, competition, ball sports, defense, injuries",
+    "verb": "défendre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "forbid to",
+    "source": "manual_backfill",
+    "sentence_fr": "Le coach défend aux jeunes l'usage du téléphone dans le vestiaire.",
+    "translation_en": "The coach forbids the younger players from using phones in the locker room.",
+    "tense": "present",
+    "subject": "le coach",
+    "note": "manual_curated_backfill",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected; de->noun_phrase:nmod:noun_internal",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "scope": "training, competition, ball sports, defense, injuries",
+    "verb": "lancer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "throw/pass to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Le joueur lance le frisbee à son partenaire en profondeur.",
+    "translation_en": "The player throws the frisbee to his teammate downfield.",
+    "tense": "present",
+    "subject": "le joueur",
+    "note": "Direct+a complement, clear sport action.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "scope": "training, competition, ball sports, defense, injuries",
+    "verb": "marquer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "mark with",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Il marque souvent de la tête sur corner.",
+    "translation_en": "He often scores with a header from corners.",
+    "tense": "present",
+    "subject": "il",
+    "note": "Natural de-complement with marquer.",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "scope": "training, competition, ball sports, defense, injuries",
+    "verb": "passer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "target_reason": "pass to / movement allowed",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Je passe au centre quand l'aile est fermée.",
+    "translation_en": "I pass to the middle when the wing is closed off.",
+    "tense": "present",
+    "subject": "je",
+    "note": "Choix tactique.",
+    "bonus_label": "a_movement_or_location",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_movement_or_location",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "arriver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "target_reason": "movement allowed",
+    "source": "manual_backfill",
+    "sentence_fr": "Le train arrive à la gare avant huit heures.",
+    "translation_en": "The train arrives at the station before eight o'clock.",
+    "tense": "present",
+    "subject": "le train",
+    "note": "manual_curated_backfill",
+    "bonus_label": "a_movement_or_location",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_movement_or_location",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "attendre",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "expect from",
+    "source": "manual_backfill",
+    "sentence_fr": "J'attends de Paul un message avant midi.",
+    "translation_en": "I'm expecting a message from Paul before noon.",
+    "tense": "present",
+    "subject": "je",
+    "note": "manual_curated_backfill",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_selected",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "demander",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "ask someone",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Je demande un sac à la caissière.",
+    "translation_en": "I ask the cashier for a bag.",
+    "tense": "present",
+    "subject": "je",
+    "note": "Natural a complement.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "donner",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "give to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Je donne les tickets à la caissière.",
+    "translation_en": "I'm giving the tickets to the cashier.",
+    "tense": "present",
+    "subject": "je",
+    "note": "Direct plus à-complement.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "envoyer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "send to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Nous envoyons la liste des courses au colocataire.",
+    "translation_en": "We send the shopping list to our roommate.",
+    "tense": "present",
+    "subject": "nous",
+    "note": "Useful everyday task with à complement.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:de->noun_phrase:nmod:noun_internal; à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "laisser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "target_reason": "leave to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "J'ai laissé un message à mon dentiste.",
+    "translation_en": "I left a message for my dentist.",
+    "tense": "passé composé",
+    "subject": "je",
+    "note": "Complément en à naturel.",
+    "bonus_label": "a_movement_or_location",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_movement_or_location",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "montrer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "show to",
+    "source": "manual_backfill",
+    "sentence_fr": "Je montre la photo à ma sœur dans le métro.",
+    "translation_en": "I show the photo to my sister on the subway.",
+    "tense": "present",
+    "subject": "je",
+    "note": "manual_curated_backfill",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "parler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "speak to",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Je vais parler au voisin pour le bruit.",
+    "translation_en": "I'm going to speak to the neighbor about the noise.",
+    "tense": "futur proche",
+    "subject": "je",
+    "note": "Complément en à naturel.",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "parler",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "target_reason": "talk about",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "On parle du dîner dans la cuisine.",
+    "translation_en": "We're talking about dinner in the kitchen.",
+    "tense": "present",
+    "subject": "on",
+    "note": "parler de + topic, natural home context",
+    "bonus_label": "de_selected",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_selected",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "passer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "target_reason": "pass to / movement allowed",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Je passe à la banque avant midi.",
+    "translation_en": "I'm stopping by the bank before noon.",
+    "tense": "present",
+    "subject": "je",
+    "note": "Errand movement.",
+    "bonus_label": "a_movement_or_location",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_movement_or_location",
+    "judge_source": "mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "payer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "pay someone / treat someone",
+    "source": "manual_backfill",
+    "sentence_fr": "Je paie un café au collègue avant le train.",
+    "translation_en": "I buy my coworker a coffee before the train.",
+    "tense": "present",
+    "subject": "je",
+    "note": "manual_curated_backfill",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "sortir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "target_reason": "movement/source allowed",
+    "source": "manual_backfill",
+    "sentence_fr": "Je sors de la boulangerie avec le pain chaud.",
+    "translation_en": "I come out of the bakery with warm bread.",
+    "tense": "present",
+    "subject": "je",
+    "note": "manual_curated_backfill",
+    "bonus_label": "de_source_or_location",
+    "bonus_reason": "stanza:de->target_verb:obl:arg:de_source_or_location",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "travailler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "work on",
+    "source": "manual_backfill",
+    "sentence_fr": "Je travaille à mon dossier pendant le trajet.",
+    "translation_en": "I'm working on my file during the commute.",
+    "tense": "present",
+    "subject": "je",
+    "note": "manual_curated_backfill",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "trouver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "target_reason": "find interest/charm in",
+    "source": "manual_backfill",
+    "sentence_fr": "Je trouve un intérêt à ce podcast pendant mes trajets.",
+    "translation_en": "I find this podcast genuinely interesting during my commute.",
+    "tense": "present",
+    "subject": "je",
+    "note": "manual_curated_backfill",
+    "bonus_label": "a_selected",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_selected",
+    "judge_source": "manual_mechanical"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "scope": "core daily life, errands, movement, conversations",
+    "verb": "venir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "target_reason": "movement allowed",
+    "source": "existing_gpt_5_4_cleaned",
+    "sentence_fr": "Tu viens avec moi à la poste?",
+    "translation_en": "Are you coming with me to the post office?",
+    "tense": "present",
+    "subject": "tu",
+    "note": "Everyday outing invitation.",
+    "bonus_label": "a_movement_or_location",
+    "bonus_reason": "stanza:à->target_verb:obl:arg:a_movement_or_location",
+    "judge_source": "mechanical"
+  }
+]

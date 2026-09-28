@@ -38,6 +38,8 @@
     const MIN_SPEECH_MS = 300;
     const SILENCE_HOLD_MS = 900;
     const RMS_THRESHOLD = 0.028;
+    const TRIM_THRESHOLD = 0.012;
+    const TRIM_PAD_MS = 120;
 
     var dbName = MODEL_DB_NAME;
     var dbVersion = MODEL_DB_VERSION;
@@ -52,13 +54,15 @@
     let doRecording = false;
     let audio = null;
     let instance = null;
+    let whisperSession = null;
     let currentModelKey = null;
+    let currentModelBytes = null;
     let transcriptLines = [];
     let latestTranscript = '';
-    let updateTimer = null;
+    let modelReady = false;
+    let isTranscribing = false;
     let startTime = 0;
     let runtimeReady = false;
-    let transcriptionPollDeadline = 0;
 
     const correctAnswerEl = document.getElementById('correct-answer');
     const modelGridEl = document.getElementById('model-grid');
@@ -66,6 +70,15 @@
     const modelStatusEl = document.getElementById('model-status');
     const downloadFillEl = document.getElementById('download-fill');
     const downloadTextEl = document.getElementById('download-text');
+    const initialPromptEl = document.getElementById('initial-prompt');
+    const beamSizeEl = document.getElementById('beam-size');
+    const bestOfEl = document.getElementById('best-of');
+    const noSpeechThresholdEl = document.getElementById('no-speech-threshold');
+    const vadThresholdEl = document.getElementById('vad-threshold');
+    const shortUtteranceToggleEl = document.getElementById('short-utterance-toggle');
+    const vadEnabledToggleEl = document.getElementById('vad-enabled-toggle');
+    const singleSegmentToggleEl = document.getElementById('single-segment-toggle');
+    const detectLanguageToggleEl = document.getElementById('detect-language-toggle');
     const startBtn = document.getElementById('start-btn');
     const stopBtn = document.getElementById('stop-btn');
     const resetSessionBtn = document.getElementById('reset-session-btn');
@@ -101,7 +114,7 @@
     }
 
     function updateStartButtonState() {
-        startBtn.disabled = !(currentModelKey && runtimeReady);
+        startBtn.disabled = !(currentModelKey && runtimeReady && modelReady) || doRecording || isTranscribing;
     }
 
     function updateComparison() {
@@ -123,9 +136,10 @@
     }
 
     function updateRuntimeStatus() {
+        const hasCustomRuntime = !!(window.LesVerbesWhisperRuntime && typeof window.LesVerbesWhisperRuntime.createSession === 'function');
         const status = typeof Module !== 'undefined' && typeof Module.get_status === 'function'
             ? (Module.get_status() || 'idle')
-            : 'booting';
+            : (hasCustomRuntime ? 'idle' : 'booting');
         metricRuntimeStatusEl.textContent = status;
         engineStatusPillEl.textContent = `Engine: ${status}`;
         metricModelEl.textContent = currentModelKey || 'none';
@@ -157,6 +171,49 @@
         updateComparison();
     }
 
+    function parseNumberInput(value, fallback) {
+        const trimmed = String(value || '').trim();
+        if (!trimmed) return fallback;
+        const parsed = Number(trimmed);
+        return Number.isFinite(parsed) ? parsed : fallback;
+    }
+
+    function flushUi() {
+        return new Promise((resolve) => {
+            requestAnimationFrame(() => {
+                setTimeout(resolve, 0);
+            });
+        });
+    }
+
+    function buildTranscriptionRequest() {
+        return {
+            stable: {
+                initialPrompt: String(initialPromptEl?.value || '').trim(),
+                shortUtterance: !!shortUtteranceToggleEl?.checked
+            },
+            experimental: {
+                beamSize: parseNumberInput(beamSizeEl?.value, 1),
+                bestOf: parseNumberInput(bestOfEl?.value, 1),
+                noSpeechThreshold: parseNumberInput(noSpeechThresholdEl?.value, 0.45),
+                singleSegment: !!singleSegmentToggleEl?.checked,
+                detectLanguage: !!detectLanguageToggleEl?.checked,
+                timestamps: 'none',
+                threads: 2,
+                maxTokens: 12,
+                audioCtx: 384,
+                vad: {
+                    enabled: !!vadEnabledToggleEl?.checked,
+                    threshold: parseNumberInput(vadThresholdEl?.value, 0.5),
+                    minSpeechMs: MIN_SPEECH_MS,
+                    minSilenceMs: SILENCE_HOLD_MS
+                }
+            },
+            timeoutMs: 6000,
+            pollIntervalMs: 120
+        };
+    }
+
     function getSelectedModelKey() {
         return currentModelKey;
     }
@@ -164,6 +221,8 @@
     function setModelLoaded(key) {
         currentModelKey = key;
         instance = null;
+        whisperSession = null;
+        modelReady = true;
         updateStartButtonState();
         stopBtn.disabled = true;
         setModelStatus(`Loaded model: ${key}`);
@@ -171,19 +230,26 @@
     }
 
     function storeFS(fname, buf) {
-        try {
-            Module.FS_unlink(fname);
-        } catch (_) {}
-
-        Module.FS_createDataFile('/', fname, buf, true, true);
+        currentModelBytes = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
+        if (typeof Module !== 'undefined' && typeof Module.FS_createDataFile === 'function') {
+            try {
+                Module.FS_unlink(fname);
+            } catch (_) {}
+            Module.FS_createDataFile('/', fname, currentModelBytes, true, true);
+        }
         setModelLoaded(getSelectedModelKey());
-        printTextarea(`storeFS: stored model: ${fname} size: ${buf.length}`);
+        printTextarea(`storeFS: prepared model: ${fname} size: ${currentModelBytes.length}`);
     }
 
     function loadModel(key) {
         const model = MODEL_OPTIONS[key];
         if (!model) return;
         currentModelKey = key;
+        currentModelBytes = null;
+        modelReady = false;
+        whisperSession = null;
+        instance = null;
+        updateStartButtonState();
         setModelStatus(`Loading ${model.label} ...`);
         setDownloadProgress(0, `Preparing ${model.label} download ...`);
 
@@ -288,6 +354,85 @@
         });
     }
 
+    function trimFloatAudio(floatAudio) {
+        if (!(floatAudio instanceof Float32Array) || !floatAudio.length) {
+            return floatAudio;
+        }
+
+        let start = 0;
+        let end = floatAudio.length - 1;
+
+        while (start < floatAudio.length && Math.abs(floatAudio[start]) < TRIM_THRESHOLD) {
+            start += 1;
+        }
+
+        while (end > start && Math.abs(floatAudio[end]) < TRIM_THRESHOLD) {
+            end -= 1;
+        }
+
+        if (start >= end) {
+            return floatAudio;
+        }
+
+        const padSamples = Math.round((TRIM_PAD_MS / 1000) * SAMPLE_RATE);
+        const trimmedStart = Math.max(0, start - padSamples);
+        const trimmedEnd = Math.min(floatAudio.length, end + padSamples + 1);
+
+        if (trimmedStart === 0 && trimmedEnd === floatAudio.length) {
+            return floatAudio;
+        }
+
+        return floatAudio.slice(trimmedStart, trimmedEnd);
+    }
+
+    async function ensureWhisperSession() {
+        if (whisperSession) return whisperSession;
+        if (typeof window.createLesVerbesWhisperSession !== 'function') {
+            throw new Error('Demo API layer is not loaded');
+        }
+
+        whisperSession = window.createLesVerbesWhisperSession({
+            Module: typeof Module !== 'undefined' ? Module : null,
+            modelPath: 'whisper.bin',
+            modelBytes: currentModelBytes,
+            language: LANGUAGE,
+            sampleRate: SAMPLE_RATE,
+            mode: 'short-answer',
+            print: printTextarea
+        });
+
+        const readySession = await whisperSession.ensureReady();
+        instance = readySession.instance;
+        printTextarea(`js: whisper session ready, instance: ${instance}`);
+        return whisperSession;
+    }
+
+    function applyDemoResult(result) {
+        if (!result || !result.transcript) {
+            printTextarea('demo: no transcript returned');
+            return;
+        }
+
+        latestTranscript = result.transcript;
+        transcriptLines.push(result.transcript);
+        renderTranscript();
+
+        const summary = {
+            transcript: result.transcript,
+            segments: result.segments.length,
+            totalMs: result.timing.totalMs,
+            avgLogprob: result.avgLogprob,
+            noSpeechProb: result.noSpeechProb,
+            language: result.language
+        };
+        printTextarea(`demo: structured result ${JSON.stringify(summary)}`);
+        if (Array.isArray(result.warnings) && result.warnings.length) {
+            result.warnings.forEach((warning) => {
+                printTextarea(`warning: ${warning.code}: ${warning.message}`);
+            });
+        }
+    }
+
     async function finalizeRecordingBlob(blob, reason) {
         if (!blob || !blob.size) {
             printTextarea(`mic: no audio captured (${reason})`);
@@ -297,16 +442,33 @@
         printTextarea(`mic: captured ${blob.size} bytes (${reason}), decoding ...`);
 
         try {
-            const floatAudio = await decodeBlobToFloat32(blob);
+            const decodedAudio = await decodeBlobToFloat32(blob);
+            const floatAudio = trimFloatAudio(decodedAudio);
             audio = floatAudio;
-            printTextarea(`mic: decoded ${floatAudio.length} samples`);
-            if (instance) {
-                Module.set_audio(instance, floatAudio);
-                transcriptionPollDeadline = Date.now() + 5000;
-                printTextarea('mic: audio sent to whisper');
+            if (floatAudio.length !== decodedAudio.length) {
+                printTextarea(`mic: trimmed audio from ${decodedAudio.length} to ${floatAudio.length} samples`);
             }
+            printTextarea(`mic: decoded ${floatAudio.length} samples`);
+            if (!whisperSession) {
+                printTextarea('wrapper: session not ready');
+                return;
+            }
+
+            isTranscribing = true;
+            updateStartButtonState();
+            const request = buildTranscriptionRequest();
+            setMetricState(metricRuntimeStatusEl, 'decoding...', 'warn');
+            engineStatusPillEl.textContent = 'Engine: decoding...';
+            printTextarea(`mic: audio sent to demo API with request ${JSON.stringify(request)}`);
+            await flushUi();
+            const result = await whisperSession.transcribeFloat32(floatAudio, request);
+            applyDemoResult(result);
         } catch (error) {
-            printTextarea(`mic: decode failed: ${error}`);
+            printTextarea(`mic: transcription failed: ${error}`);
+        } finally {
+            isTranscribing = false;
+            updateStartButtonState();
+            updateRuntimeStatus();
         }
     }
 
@@ -314,10 +476,6 @@
         doRecording = false;
         audio = null;
         cleanupMediaResources();
-        if (updateTimer) {
-            clearInterval(updateTimer);
-            updateTimer = null;
-        }
         updateStartButtonState();
         stopBtn.disabled = true;
     }
@@ -335,14 +493,15 @@
 
     function startRecording() {
         ensureContext();
-        Module.set_status('');
+        if (typeof Module !== 'undefined' && typeof Module.set_status === 'function') {
+            Module.set_status('');
+        }
 
         doRecording = true;
         startTime = Date.now();
         audio = null;
         startBtn.disabled = true;
         stopBtn.disabled = false;
-        transcriptionPollDeadline = 0;
         printTextarea('mic: starting single-utterance capture ...');
 
         let chunks = [];
@@ -422,50 +581,27 @@
             });
     }
 
-    function pollTranscription() {
-        if (!instance || typeof Module.get_transcribed !== 'function') return;
-        const transcribed = Module.get_transcribed();
-        if (transcribed && transcribed.trim()) {
-            const trimmed = transcribed.trim();
-            if (trimmed !== latestTranscript) {
-                latestTranscript = trimmed;
-                transcriptLines.push(trimmed);
-                renderTranscript();
-            }
-        }
-        if (transcriptionPollDeadline && Date.now() > transcriptionPollDeadline && !doRecording) {
-            clearInterval(updateTimer);
-            updateTimer = null;
-        }
-        updateRuntimeStatus();
-    }
-
-    function onStart() {
+    async function onStart() {
         if (!currentModelKey) {
             alert('Load a model first.');
             return;
         }
 
-        if (!runtimeReady || typeof Module === 'undefined' || typeof Module.init !== 'function') {
+        const hasCustomRuntime = !!(window.LesVerbesWhisperRuntime && typeof window.LesVerbesWhisperRuntime.createSession === 'function');
+        const hasLegacyRuntime = typeof Module !== 'undefined' && typeof Module.init === 'function';
+        if (!runtimeReady || (!hasCustomRuntime && !hasLegacyRuntime)) {
             printTextarea('js: whisper runtime is not ready yet. Wait for initialization to finish, then try again.');
             updateRuntimeStatus();
             return;
         }
 
-        if (!instance) {
-            instance = Module.init('whisper.bin', LANGUAGE);
-            if (instance) {
-                printTextarea(`js: whisper initialized, instance: ${instance}`);
-            }
-        }
-
-        if (!instance) {
-            printTextarea('js: failed to initialize whisper');
+        try {
+            await ensureWhisperSession();
+        } catch (error) {
+            printTextarea(`js: failed to initialize whisper session: ${error}`);
             return;
         }
 
-        if (updateTimer) clearInterval(updateTimer);
-        updateTimer = setInterval(pollTranscription, 120);
         startRecording();
         updateRuntimeStatus();
     }
@@ -531,8 +667,21 @@
     clearCacheBtn.addEventListener('click', () => clearCache());
     startBtn.addEventListener('click', onStart);
     stopBtn.addEventListener('click', onStop);
+    window.addEventListener('lesverbes-runtime-ready', (event) => {
+        runtimeReady = true;
+        updateStartButtonState();
+        printTextarea(`js: Custom runtime initialized (${event.detail?.mode || 'custom'}).`);
+        updateRuntimeStatus();
+    });
+    window.addEventListener('lesverbes-runtime-failed', () => {
+        printTextarea('js: Custom runtime failed to initialize. Legacy runtime fallback remains available.');
+        updateRuntimeStatus();
+    });
     resetSessionBtn.addEventListener('click', () => {
         resetTranscriptState();
+        if (whisperSession && typeof whisperSession.reset === 'function') {
+            whisperSession.reset();
+        }
         printTextarea('session: transcript reset');
     });
     correctAnswerEl.addEventListener('input', updateComparison);

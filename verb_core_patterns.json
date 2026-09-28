@@ -3,7 +3,7 @@
     "verb": "accorder",
     "core_patterns": [
       {
-        "pattern": "accorder à qqn / qqch",
+        "pattern": "accorder à qqn",
         "meaning_en": "give to",
         "pattern_id": "accorder_cp01",
         "pattern_type": "a-object",
@@ -82,7 +82,7 @@
         "status": "seed"
       },
       {
-        "pattern": "acheter à qqn / qqch",
+        "pattern": "acheter à qqn",
         "meaning_en": "buy from someone",
         "pattern_id": "acheter_cp04",
         "pattern_type": "a-object",
@@ -97,7 +97,7 @@
     "verb": "adresser",
     "core_patterns": [
       {
-        "pattern": "adresser à qqn / qqch",
+        "pattern": "adresser à qqn",
         "meaning_en": "direct to",
         "pattern_id": "adresser_cp01",
         "pattern_type": "a-object",
@@ -260,8 +260,8 @@
     "verb": "appartenir",
     "core_patterns": [
       {
-        "pattern": "appartenir à qqn / qqch",
-        "meaning_en": "belong to someone",
+        "pattern": "appartenir à qqn / groupe",
+        "meaning_en": "belong to someone/a group",
         "pattern_id": "appartenir_cp01",
         "pattern_type": "a-object",
         "notes": "LEFFF example: toute cette terre lui appartient",
@@ -435,11 +435,11 @@
     "verb": "assister",
     "core_patterns": [
       {
-        "pattern": "assister à qqn / qqch",
+        "pattern": "assister à + événement",
         "meaning_en": "attend (events)",
         "pattern_id": "assister_cp01",
         "pattern_type": "a-object",
-        "notes": "Usage-backed: assister + à + object",
+        "notes": "Usage-backed: assister + à + object; narrowed to events for learner-facing guidance",
         "confidence": 0.94,
         "source": "usage:ad-combo",
         "status": "candidate"
@@ -489,10 +489,10 @@
         "status": "seed"
       },
       {
-        "pattern": "attendre de qqn / qqch",
-        "meaning_en": "expect from",
+        "pattern": "attendre qqch de qqn",
+        "meaning_en": "expect something from someone",
         "pattern_id": "attendre_cp04",
-        "pattern_type": "de-object",
+        "pattern_type": "combo-de",
         "notes": "LEFFF example: il attend trop de moi",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
@@ -533,7 +533,7 @@
     "verb": "cacher",
     "core_patterns": [
       {
-        "pattern": "cacher à qqn / qqch",
+        "pattern": "cacher à qqn",
         "meaning_en": "hide from someone",
         "pattern_id": "cacher_cp01",
         "pattern_type": "a-object",
@@ -580,10 +580,10 @@
         "status": "seed"
       },
       {
-        "pattern": "changer de qqn / qqch",
-        "meaning_en": "change; switch from",
+        "pattern": "changer qqn de + routine/situation",
+        "meaning_en": "give someone a change from",
         "pattern_id": "changer_cp05",
-        "pattern_type": "de-object",
+        "pattern_type": "combo-de",
         "notes": "LEFFF example: cette excursion la change de son train-train quotidien",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
@@ -641,7 +641,7 @@
     "verb": "commander",
     "core_patterns": [
       {
-        "pattern": "commander à qqn / qqch",
+        "pattern": "commander à qqn",
         "meaning_en": "give an order to someone",
         "pattern_id": "commander_cp01",
         "pattern_type": "a-object",
@@ -651,10 +651,10 @@
         "status": "candidate"
       },
       {
-        "pattern": "commander qqch à qqn",
-        "meaning_en": "order something from someone",
+        "pattern": "commander à qqn de + infinitif",
+        "meaning_en": "order someone to do something",
         "pattern_id": "commander_cp02",
-        "pattern_type": "combo-a",
+        "pattern_type": "a-infinitive",
         "notes": "LEFFF example: il lui commande de se lever",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
@@ -701,7 +701,7 @@
     "verb": "communiquer",
     "core_patterns": [
       {
-        "pattern": "communiquer à qqn / qqch",
+        "pattern": "communiquer à qqn",
         "meaning_en": "inform someone",
         "pattern_id": "communiquer_cp01",
         "pattern_type": "a-object",
@@ -716,10 +716,10 @@
     "verb": "comparer",
     "core_patterns": [
       {
-        "pattern": "comparer à qqn / qqch",
-        "meaning_en": "liken to someone",
+        "pattern": "comparer qqn / qqch à qqn / qqch",
+        "meaning_en": "compare someone/something to someone/something",
         "pattern_id": "comparer_cp01",
-        "pattern_type": "a-object",
+        "pattern_type": "combo-a",
         "notes": "Usage-backed: comparer + à + person",
         "confidence": 0.94,
         "source": "usage:ad-combo",
@@ -879,7 +879,7 @@
     "verb": "convenir",
     "core_patterns": [
       {
-        "pattern": "convenir à qqn / qqch",
+        "pattern": "convenir à qqn",
         "meaning_en": "suit someone",
         "pattern_id": "convenir_cp01",
         "pattern_type": "a-object",
@@ -889,11 +889,11 @@
         "status": "candidate"
       },
       {
-        "pattern": "convenir de qqn / qqch",
+        "pattern": "convenir de + arrangement/décision",
         "meaning_en": "agree on; settle",
         "pattern_id": "convenir_cp02",
         "pattern_type": "combo-de",
-        "notes": "LEFFF example: je conviens de ces abus",
+        "notes": "LEFFF example was broad/odd for learners (je conviens de ces abus); narrowed pending native review",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -904,7 +904,7 @@
     "verb": "correspondre",
     "core_patterns": [
       {
-        "pattern": "correspondre à qqn / qqch",
+        "pattern": "correspondre à + norme/modèle",
         "meaning_en": "correspond to; match",
         "pattern_id": "correspondre_cp01",
         "pattern_type": "a-object",
@@ -919,7 +919,7 @@
     "verb": "coûter",
     "core_patterns": [
       {
-        "pattern": "coûter à qqn / qqch",
+        "pattern": "coûter à qqn",
         "meaning_en": "be expensive for",
         "pattern_id": "couter_cp01",
         "pattern_type": "a-object",
@@ -1002,7 +1002,7 @@
         "status": "seed"
       },
       {
-        "pattern": "demander à qqn / qqch",
+        "pattern": "demander à qqn",
         "meaning_en": "ask someone",
         "pattern_id": "demander_cp04",
         "pattern_type": "a-object",
@@ -1075,7 +1075,7 @@
         "status": "seed"
       },
       {
-        "pattern": "dire à qqn / qqch",
+        "pattern": "dire à qqn",
         "meaning_en": "tell someone",
         "pattern_id": "dire_cp04",
         "pattern_type": "a-object",
@@ -1115,7 +1115,7 @@
     "verb": "disposer",
     "core_patterns": [
       {
-        "pattern": "disposer de qqn / qqch",
+        "pattern": "disposer de + ressource/moyen",
         "meaning_en": "have at one's disposal; have",
         "pattern_id": "disposer_cp01",
         "pattern_type": "de-object",
@@ -1166,7 +1166,7 @@
     "verb": "déborder",
     "core_patterns": [
       {
-        "pattern": "déborder de qqn / qqch",
+        "pattern": "déborder de + contenu/émotion",
         "meaning_en": "be overflowing with",
         "pattern_id": "deborder_cp01",
         "pattern_type": "de-object",
@@ -1286,7 +1286,7 @@
     "verb": "enlever",
     "core_patterns": [
       {
-        "pattern": "enlever à qqn / qqch",
+        "pattern": "enlever à qqn",
         "meaning_en": "take from someone",
         "pattern_id": "enlever_cp01",
         "pattern_type": "a-object",
@@ -1511,10 +1511,10 @@
     "verb": "fournir",
     "core_patterns": [
       {
-        "pattern": "fournir à qqn / qqch",
-        "meaning_en": "supply to someone",
+        "pattern": "fournir qqch à qqn / organisation",
+        "meaning_en": "supply something to someone/an organization",
         "pattern_id": "fournir_cp01",
-        "pattern_type": "a-object",
+        "pattern_type": "combo-a",
         "notes": "Usage-backed: fournir + à + person",
         "confidence": 0.94,
         "source": "usage:ad-combo",
@@ -1526,10 +1526,10 @@
     "verb": "garder",
     "core_patterns": [
       {
-        "pattern": "garder de qqn / qqch",
+        "pattern": "garder qqn/qqch de + danger",
         "meaning_en": "protect from; keep from",
         "pattern_id": "garder_cp01",
-        "pattern_type": "de-object",
+        "pattern_type": "combo-de",
         "notes": "LEFFF example: ce parapluie me gardera de la drache nationale belge",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
@@ -1541,7 +1541,7 @@
     "verb": "importer",
     "core_patterns": [
       {
-        "pattern": "importer à qqn / qqch",
+        "pattern": "importer à qqn",
         "meaning_en": "matter to sb",
         "pattern_id": "importer_cp01",
         "pattern_type": "a-object",
@@ -1714,12 +1714,22 @@
     "verb": "manquer",
     "core_patterns": [
       {
-        "pattern": "manquer à qqn / qqch",
-        "meaning_en": "be missed by; fail",
+        "pattern": "manquer à qqn",
+        "meaning_en": "be missed by someone",
         "pattern_id": "manquer_cp01",
         "pattern_type": "a-object",
-        "notes": "LEFFF example: un honnête homme ne peut manquer à ses obligations",
+        "notes": "Core learner sense; contrast with manquer à + devoir/obligation",
         "confidence": 0.93,
+        "source": "lefff:ad-combo",
+        "status": "candidate"
+      },
+      {
+        "pattern": "manquer à + devoir/obligation",
+        "meaning_en": "fail in; fall short of",
+        "pattern_id": "manquer_cp02",
+        "pattern_type": "a-object",
+        "notes": "LEFFF example: un honnête homme ne peut manquer à ses obligations",
+        "confidence": 0.9,
         "source": "lefff:ad-combo",
         "status": "candidate"
       }
@@ -1729,7 +1739,7 @@
     "verb": "mentir",
     "core_patterns": [
       {
-        "pattern": "mentir à qqn / qqch",
+        "pattern": "mentir à qqn",
         "meaning_en": "lie to someone",
         "pattern_id": "mentir_cp01",
         "pattern_type": "a-object",
@@ -1918,7 +1928,7 @@
     "verb": "participer",
     "core_patterns": [
       {
-        "pattern": "participer à qqn / qqch",
+        "pattern": "participer à + activité/événement",
         "meaning_en": "take part in",
         "pattern_id": "participer_cp01",
         "pattern_type": "a-object",
@@ -1962,11 +1972,11 @@
     "verb": "parvenir",
     "core_patterns": [
       {
-        "pattern": "parvenir à qqn / qqch",
-        "meaning_en": "reach someone",
+        "pattern": "parvenir à + infinitif/objectif",
+        "meaning_en": "manage to; succeed in reaching",
         "pattern_id": "parvenir_cp01",
-        "pattern_type": "a-object",
-        "notes": "LEFFF example: Hitler n'est pas parvenu a réaliser son Europe germanique à lui",
+        "pattern_type": "a-infinitive",
+        "notes": "LEFFF example: Hitler n'est pas parvenu à réaliser son Europe germanique à lui",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -2024,7 +2034,7 @@
         "status": "candidate"
       },
       {
-        "pattern": "payer de qqn / qqch",
+        "pattern": "payer de + prix/perte",
         "meaning_en": "pay with; pay by losing",
         "pattern_id": "payer_cp02",
         "pattern_type": "de-object",
@@ -2076,7 +2086,7 @@
     "verb": "plaire",
     "core_patterns": [
       {
-        "pattern": "plaire à qqn / qqch",
+        "pattern": "plaire à qqn",
         "meaning_en": "be pleasing to",
         "pattern_id": "plaire_cp01",
         "pattern_type": "a-object",
@@ -2135,10 +2145,10 @@
     "verb": "priver",
     "core_patterns": [
       {
-        "pattern": "priver de qqn / qqch",
-        "meaning_en": "deprive of",
+        "pattern": "priver qqn de qqch",
+        "meaning_en": "deprive someone of something",
         "pattern_id": "priver_cp01",
-        "pattern_type": "de-object",
+        "pattern_type": "combo-de",
         "notes": "LEFFF example: par jugement du tribunal il a été privé de tous ses droits civils",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
@@ -2150,11 +2160,11 @@
     "verb": "procéder",
     "core_patterns": [
       {
-        "pattern": "procéder à qqn / qqch",
-        "meaning_en": "to proceed with",
+        "pattern": "procéder à + action/opération",
+        "meaning_en": "carry out; proceed with",
         "pattern_id": "proceder_cp01",
         "pattern_type": "a-object",
-        "notes": "LEFFF example: le bourreau procède à l'exécution del'arrêt de mort",
+        "notes": "LEFFF example: le bourreau procède à l'exécution de l'arrêt de mort",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -2245,7 +2255,7 @@
     "verb": "présenter",
     "core_patterns": [
       {
-        "pattern": "présenter à qqn / qqch",
+        "pattern": "présenter à qqn",
         "meaning_en": "introduce to someone",
         "pattern_id": "presenter_cp01",
         "pattern_type": "a-object",
@@ -2260,10 +2270,10 @@
     "verb": "prévenir",
     "core_patterns": [
       {
-        "pattern": "prévenir de qqn / qqch",
-        "meaning_en": "warn; inform about",
+        "pattern": "prévenir qqn de qqch",
+        "meaning_en": "warn; inform someone about something",
         "pattern_id": "prevenir_cp01",
-        "pattern_type": "de-object",
+        "pattern_type": "combo-de",
         "notes": "LEFFF example: il est prévenu d'avoir à terminer ce travail avant demain soir",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
@@ -2433,7 +2443,7 @@
     "verb": "remettre",
     "core_patterns": [
       {
-        "pattern": "remettre à qqn / qqch",
+        "pattern": "remettre à qqn",
         "meaning_en": "give back to (sb)",
         "pattern_id": "remettre_cp01",
         "pattern_type": "a-object",
@@ -2477,7 +2487,7 @@
     "verb": "renoncer",
     "core_patterns": [
       {
-        "pattern": "renoncer à qqn / qqch",
+        "pattern": "renoncer à qqch",
         "meaning_en": "give up; renounce",
         "pattern_id": "renoncer_cp01",
         "pattern_type": "a-object",
@@ -2521,7 +2531,7 @@
     "verb": "reparler",
     "core_patterns": [
       {
-        "pattern": "reparler à qqn / qqch",
+        "pattern": "reparler à qqn",
         "meaning_en": "talk again to",
         "pattern_id": "reparler_cp01",
         "pattern_type": "a-object",
@@ -2535,7 +2545,7 @@
         "meaning_en": "talk again about",
         "pattern_id": "reparler_cp02",
         "pattern_type": "de-object",
-        "notes": "LEFFF example: ils se reparlent depuis peu de temps",
+        "notes": "Pattern is semantically valid, but original LEFFF note was pronominal/intransitive (ils se reparlent depuis peu); native review recommended",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -2550,7 +2560,7 @@
         "meaning_en": "look like someone",
         "pattern_id": "ressembler_cp01",
         "pattern_type": "a-object",
-        "notes": "LEFFF example: ma filla aînée ressemble à sa mère à s'y méprendre",
+        "notes": "LEFFF example: ma fille aînée ressemble à sa mère à s'y méprendre",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
         "status": "candidate"
@@ -2675,7 +2685,7 @@
     "verb": "réagir",
     "core_patterns": [
       {
-        "pattern": "réagir à qqn / qqch",
+        "pattern": "réagir à qqch",
         "meaning_en": "respond to something",
         "pattern_id": "reagir_cp01",
         "pattern_type": "a-object",
@@ -2745,7 +2755,7 @@
     "verb": "réserver",
     "core_patterns": [
       {
-        "pattern": "réserver à qqn / qqch",
+        "pattern": "réserver à qqn",
         "meaning_en": "save for someone",
         "pattern_id": "reserver_cp01",
         "pattern_type": "a-object",
@@ -2785,8 +2795,8 @@
     "verb": "réussir",
     "core_patterns": [
       {
-        "pattern": "réussir à qqn / qqch",
-        "meaning_en": "suit; work well for",
+        "pattern": "réussir à qqn",
+        "meaning_en": "suit; work well for someone",
         "pattern_id": "reussir_cp01",
         "pattern_type": "a-object",
         "notes": "LEFFF example: cette tâche lui réussit parfaitement",
@@ -2878,10 +2888,10 @@
     "verb": "sauver",
     "core_patterns": [
       {
-        "pattern": "sauver de qqn / qqch",
-        "meaning_en": "save from",
+        "pattern": "sauver qqn de + danger",
+        "meaning_en": "save someone from danger",
         "pattern_id": "sauver_cp01",
-        "pattern_type": "de-object",
+        "pattern_type": "combo-de",
         "notes": "LEFFF example: elle m'a sauvé de la noyade",
         "confidence": 0.93,
         "source": "lefff:ad-combo",
@@ -3136,7 +3146,7 @@
     "verb": "sembler",
     "core_patterns": [
       {
-        "pattern": "sembler à qqn / qqch",
+        "pattern": "sembler à qqn",
         "meaning_en": "seem to someone",
         "pattern_id": "sembler_cp01",
         "pattern_type": "a-object",
@@ -3151,7 +3161,7 @@
     "verb": "servir",
     "core_patterns": [
       {
-        "pattern": "servir de qqn / qqch",
+        "pattern": "servir de + nom/rôle",
         "meaning_en": "act as",
         "pattern_id": "servir_cp01",
         "pattern_type": "de-object",
@@ -3161,7 +3171,7 @@
         "status": "candidate"
       },
       {
-        "pattern": "servir à qqn / qqch",
+        "pattern": "servir à + usage/personne",
         "meaning_en": "be useful for; serve to",
         "pattern_id": "servir_cp02",
         "pattern_type": "a-object",
@@ -3176,7 +3186,7 @@
     "verb": "signifier",
     "core_patterns": [
       {
-        "pattern": "signifier à qqn / qqch",
+        "pattern": "signifier à qqn",
         "meaning_en": "notify",
         "pattern_id": "signifier_cp01",
         "pattern_type": "a-object",
@@ -3223,16 +3233,6 @@
         "pattern_type": "intransitive",
         "source": "seed-v1",
         "status": "seed"
-      },
-      {
-        "pattern": "sortir de qqn / qqch",
-        "meaning_en": "come out of; get out of",
-        "pattern_id": "sortir_cp04",
-        "pattern_type": "de-object",
-        "notes": "LEFFF example: le dicovalence est sorti de nos recherches syntaxiques",
-        "confidence": 0.93,
-        "source": "lefff:ad-combo",
-        "status": "candidate"
       }
     ]
   },
@@ -3265,7 +3265,7 @@
     "verb": "souffrir",
     "core_patterns": [
       {
-        "pattern": "souffrir de qqn / qqch",
+        "pattern": "souffrir de + maladie/problème",
         "meaning_en": "suffer from something",
         "pattern_id": "souffrir_cp01",
         "pattern_type": "de-object",
@@ -3295,7 +3295,7 @@
     "verb": "sourire",
     "core_patterns": [
       {
-        "pattern": "sourire à qqn / qqch",
+        "pattern": "sourire à qqn",
         "meaning_en": "smile at someone",
         "pattern_id": "sourire_cp01",
         "pattern_type": "a-object",
@@ -3310,7 +3310,7 @@
     "verb": "suffire",
     "core_patterns": [
       {
-        "pattern": "suffire à qqn / qqch",
+        "pattern": "suffire à + besoin/personne",
         "meaning_en": "be enough for",
         "pattern_id": "suffire_cp01",
         "pattern_type": "a-object",
@@ -3417,7 +3417,7 @@
     "verb": "téléphoner",
     "core_patterns": [
       {
-        "pattern": "téléphoner à qqn / qqch",
+        "pattern": "téléphoner à qqn",
         "meaning_en": "call someone",
         "pattern_id": "telephoner_cp01",
         "pattern_type": "a-object",
@@ -3509,7 +3509,7 @@
     "verb": "vivre",
     "core_patterns": [
       {
-        "pattern": "vivre de qqn / qqch",
+        "pattern": "vivre de + ressources/revenus",
         "meaning_en": "live on; live off",
         "pattern_id": "vivre_cp01",
         "pattern_type": "de-object",

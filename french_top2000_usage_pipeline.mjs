@@ -3,8 +3,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import vm from "node:vm";
+import { fileURLToPath } from "node:url";
 
-const ROOT = "/Users/simeon/Desktop/proj1";
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const VERBS_JS = path.join(ROOT, "js", "verbs.full.generated.js");
 const USAGES_JSON = path.join(ROOT, "verb_usages.json");
 const USAGES_JS = path.join(ROOT, "verb_usages.js");

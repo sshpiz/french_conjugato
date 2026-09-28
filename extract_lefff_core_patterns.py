@@ -13,8 +13,9 @@ from pathlib import Path
 from core_patterns_lib import load_verbs, write_json
 
 DEFAULT_LEFFF_DIR = Path("/private/tmp/lefff-3.4")
-DEFAULT_OUTPUT_JSON = Path("/Users/simeon/Desktop/proj1/_experiments/lefff_core_patterns_top20.json")
-DEFAULT_OUTPUT_MD = Path("/Users/simeon/Desktop/proj1/_experiments/lefff_core_patterns_top20.md")
+ROOT = Path(__file__).resolve().parent
+DEFAULT_OUTPUT_JSON = ROOT / "_experiments" / "lefff_core_patterns_top20.json"
+DEFAULT_OUTPUT_MD = ROOT / "_experiments" / "lefff_core_patterns_top20.md"
 SOURCE_FILES = ("v_new.ilex", "v.ilex")
 
 USAGE_RE = re.compile(r"<usage(?: [^>]*)?>(.*?)</usage>")

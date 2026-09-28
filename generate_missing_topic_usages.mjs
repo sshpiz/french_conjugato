@@ -2,6 +2,10 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
+const REPOS_ROOT = path.dirname(ROOT);
 
 const MODEL = process.env.MODEL || "gpt-5.4";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
@@ -9,26 +13,26 @@ const BATCH_SIZE = Number(process.env.BATCH_SIZE || 8);
 
 const CONFIGS = {
   french: {
-    scriptPath: "/Users/simeon/Desktop/proj1/js/script.js",
+    scriptPath: path.join(ROOT, "js", "script.js"),
     constName: "BUILTIN_VERB_SET_DEFINITIONS",
-    usageJsonPath: "/Users/simeon/Desktop/proj1/verb_usages.json",
-    usageJsPath: "/Users/simeon/Desktop/proj1/verb_usages.js",
+    usageJsonPath: path.join(ROOT, "verb_usages.json"),
+    usageJsPath: path.join(ROOT, "verb_usages.js"),
     languageName: "French",
     exampleField: "example_fr",
   },
   spanish: {
-    scriptPath: "/Users/simeon/Desktop/spanish-verbs/js/script.js",
+    scriptPath: path.join(REPOS_ROOT, "spanish-verbs", "js", "script.js"),
     constName: "SPANISH_BUILTIN_VERB_SET_DEFINITIONS",
-    usageJsonPath: "/Users/simeon/Desktop/spanish-verbs/spanish_usages.json",
-    usageJsPath: "/Users/simeon/Desktop/spanish-verbs/verb_usages.js",
+    usageJsonPath: path.join(REPOS_ROOT, "spanish-verbs", "spanish_usages.json"),
+    usageJsPath: path.join(REPOS_ROOT, "spanish-verbs", "verb_usages.js"),
     languageName: "Spanish",
     exampleField: "example_fr",
   },
   german: {
-    scriptPath: "/Users/simeon/Desktop/german-verbs/js/script.js",
+    scriptPath: path.join(REPOS_ROOT, "german-verbs", "js", "script.js"),
     constName: "GERMAN_BUILTIN_VERB_SET_DEFINITIONS",
     usageJsonPath: null,
-    usageJsPath: "/Users/simeon/Desktop/german-verbs/verb_usages.js",
+    usageJsPath: path.join(REPOS_ROOT, "german-verbs", "verb_usages.js"),
     languageName: "German",
     exampleField: "example_fr",
   },

@@ -23,7 +23,8 @@ from core_patterns_lib import (
     write_review,
 )
 
-DEFAULT_INPUT = Path("/Users/simeon/Desktop/proj1/_experiments/lefff_ad_combo_top100.json")
+ROOT = Path(__file__).resolve().parent
+DEFAULT_INPUT = ROOT / "_experiments" / "lefff_ad_combo_top100.json"
 
 GLOSS_OVERRIDES = {
     "accorder qqch à qqn": "grant something to someone",

@@ -1,0 +1,391 @@
+index	verb	sentence_fr	translation_en	tense	subject	base_score	bonus_label	judge_source	bonus_reason	bonus_points	total_score
+1	être	Je suis en retard ce matin.	I am late this morning.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+2	avoir	On a encore du pain pour le dîner.	We still have some bread for dinner.	present	on	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+3	faire	Je fais les courses après le travail.	I do the grocery shopping after work.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+4	aller	Nous allons à la pharmacie.	We're going to the pharmacy.	present	nous	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+5	venir	Tu viens avec moi au marché?	Are you coming with me to the market?	present	tu	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+6	prendre	Je prends le bus pour rentrer.	I take the bus to get home.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+7	mettre	Elle met son manteau avant de sortir.	She puts on her coat before going out.	present	elle	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+8	parler	On parle souvent avec nos voisins.	We often talk with our neighbors.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+9	aimer	J'aime boire un café le matin.	I like drinking a coffee in the morning.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+10	donner	Tu me donnes la facture, s'il te plaît?	Can you give me the bill, please?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+11	trouver	Je trouve mes clés dans le sac.	I find my keys in the bag.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+12	passer	Je passe à la boulangerie en rentrant.	I stop by the bakery on my way home.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+13	laisser	Il laisse son sac près de la porte.	He leaves his bag near the door.	present	il	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+14	demander	Nous demandons l'heure à un passant.	We ask a passerby for the time.	present	nous	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+15	acheter	J'achète des fruits au supermarché.	I buy fruit at the supermarket.	present	j'	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; à->target_verb:obl:mod:none	0.0	1.0
+16	manger	Les enfants mangent tôt ce soir.	The children are eating early tonight.	present	les enfants	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+17	boire	Je bois de l'eau après la marche.	I drink water after the walk.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+18	regarder	Elle regarde le menu avant de choisir.	She looks at the menu before choosing.	present	elle	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+19	écouter	Nous écoutons la radio dans la voiture.	We listen to the radio in the car.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+20	sortir	Je sors les poubelles ce soir.	I take out the trash tonight.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+21	rentrer	Il rentre tard du travail.	He comes home late from work.	present	il	1.0	de_source_or_location	mechanical	stanza:de->target_verb:obl:arg:de_source_or_location	0.0	1.0
+22	arriver	Le bus arrive à huit heures.	The bus arrives at eight o'clock.	present	le bus	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+23	partir	Nous partons après le déjeuner.	We leave after lunch.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+24	travailler	Je travaille aujourd'hui au centre-ville.	I'm working downtown today.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+25	attendre	On attend le médecin dans la salle.	We're waiting for the doctor in the room.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+26	ouvrir	Tu ouvres la fenêtre, s'il te plaît?	Can you open the window, please?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+27	fermer	Elle ferme la boutique à dix-neuf heures.	She closes the shop at 7 p.m.	present	elle	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+28	porter	Je porte mes courses jusqu'à l'appartement.	I carry my groceries up to the apartment.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+29	poser	Je pose les clés sur la table.	I put the keys on the table.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+30	montrer	Le vendeur nous montre un autre modèle.	The salesperson shows us another model.	present	le vendeur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+31	appeler	J'appelle ma sœur après le dîner.	I call my sister after dinner.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+32	envoyer	Elle envoie un message à son collègue.	She sends a message to her coworker.	present	elle	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+33	payer	Nous payons en carte.	We pay by card.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+34	aider	Tu aides ton père à ranger la cuisine.	You help your father tidy the kitchen.	present	tu	1.0	none	mechanical	stanza:à->verb_child:xcomp:à_selected	0.0	1.0
+35	oublier	J'oublie souvent mes lunettes à la maison.	I often forget my glasses at home.	present	j'	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+36	ramener	Je ramène les enfants à l'école.	I take the children back to school.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+37	ranger	On range la chambre avant de sortir.	We tidy the room before going out.	present	on	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+38	bouger	Les enfants bougent beaucoup après le goûter.	The children move around a lot after snack time.	present	les enfants	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+39	traîner	Je traîne un peu à la maison le dimanche.	I hang around at home a bit on Sundays.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+40	être	La banque est juste en face de la poste.	The bank is right across from the post office.	present	la banque	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+41	avoir	Vous avez un ticket pour le bus?	Do you have a bus ticket?	present	vous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+42	faire	Ils font une pause café au bureau.	They're taking a coffee break at the office.	present	ils	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+43	aller	Je vais chez le médecin cet après-midi.	I'm going to the doctor this afternoon.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+44	venir	Le livreur vient dans dix minutes.	The delivery person is coming in ten minutes.	present	le livreur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+45	prendre	Elle prend son café debout dans la cuisine.	She has her coffee standing in the kitchen.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+46	mettre	Nous mettons le linge dans la machine.	We put the laundry in the machine.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+47	parler	Je parle au comptoir avec la caissière.	I talk to the cashier at the counter.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+48	aimer	Nous aimons faire nos courses le samedi.	We like doing our shopping on Saturdays.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+49	donner	Le voisin donne un coup de main ce matin.	The neighbor is helping out this morning.	present	le voisin	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+50	trouver	Je trouve toujours mes clés dans la poche de ma veste.	I always find my keys in my jacket pocket.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+51	passer	On passe au supermarché après le travail.	We stop by the supermarket after work.	present	on	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+52	laisser	Je laisse mon sac près de la porte.	I leave my bag near the door.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+53	demander	Elle demande son chemin à une passante.	She asks a passerby for directions.	present	elle	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+54	acheter	Nous achetons du pain et des fruits au marché.	We buy bread and fruit at the market.	present	nous	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; à->target_verb:obl:arg:none	0.0	1.0
+55	manger	Il mange un sandwich sur le chemin du travail.	He eats a sandwich on the way to work.	present	il	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+56	boire	Je bois un café avant de partir.	I drink a coffee before leaving.	present	je	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+57	regarder	Tu regardes l'heure sur ton téléphone.	You check the time on your phone.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+58	écouter	Elle écoute la radio en préparant le dîner.	She listens to the radio while making dinner.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+59	sortir	Nous sortons du bureau à six heures.	We leave the office at six o'clock.	present	nous	1.0	de_source_or_location	mechanical	stanza:de->target_verb:obl:arg:de_source_or_location; à->noun_phrase:nmod:noun_internal	0.0	1.0
+60	rentrer	Je rentre tard ce soir.	I'm coming home late tonight.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+61	arriver	Le bus arrive dans cinq minutes.	The bus arrives in five minutes.	present	le bus	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+62	partir	Ils partent en vacances demain matin.	They leave for vacation tomorrow morning.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+63	travailler	Je travaille de chez moi aujourd'hui.	I work from home today.	present	je	1.0	none	mechanical	stanza:de->target_verb:obl:mod:none	0.0	1.0
+64	attendre	On attend le médecin dans la salle d'attente.	We are waiting for the doctor in the waiting room.	present	on	1.0	none	mechanical	stanza:d'->noun_phrase:nmod:noun_internal	0.0	1.0
+65	ouvrir	Elle ouvre la fenêtre pour aérer la pièce.	She opens the window to air out the room.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+66	fermer	Je ferme la porte à clé.	I lock the door.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+67	porter	Mon fils porte son cartable tous les matins.	My son carries his school bag every morning.	present	mon fils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+68	poser	Je pose les courses sur la table.	I put the groceries on the table.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+69	montrer	Le pharmacien me montre la bonne boîte.	The pharmacist shows me the right box.	present	le pharmacien	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+70	appeler	Je t'appelle quand j'arrive.	I'll call you when I arrive.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+71	envoyer	Elle envoie un message à sa sœur.	She sends a message to her sister.	present	elle	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+72	aider	Le voisin aide ma mère avec les sacs.	The neighbor helps my mother with the bags.	present	le voisin	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+73	oublier	J'oublie souvent mon parapluie.	I often forget my umbrella.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+74	ramener	Je ramène les enfants à l'école après le déjeuner.	I bring the children back to school after lunch.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+75	ranger	On range la cuisine après le repas.	We tidy the kitchen after the meal.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+76	bouger	Le bébé bouge beaucoup la nuit.	The baby moves a lot at night.	present	le bébé	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+77	être	Je suis chez moi ce soir.	I'm at home tonight.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+78	avoir	On a rendez-vous chez le dentiste à 14 heures.	We have a dentist appointment at 2 p.m.	present	on	1.0	none	mechanical	stanza:à->noun_phrase:obl:mod:noun_internal	0.0	1.0
+79	faire	Elle fait les courses après le travail.	She does the shopping after work.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+80	aller	Nous allons à la pharmacie juste après le déjeuner.	We are going to the pharmacy right after lunch.	present	nous	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+81	venir	Mon frère vient chercher les enfants.	My brother is coming to pick up the children.	present	mon frère	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+82	prendre	Je prends le métro à huit heures.	I take the subway at eight o'clock.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+83	parler	On parle de nos horaires autour du café.	We talk about our schedules over coffee.	present	on	1.0	de_selected	mechanical	stanza:de->target_verb:obl:arg:de_selected; de->noun_phrase:obl:arg:noun_internal	1.0	2.0
+84	aimer	J'aime marcher jusqu'au bureau quand il fait beau.	I like walking to the office when the weather is nice.	present	j'	1.0	none	mechanical	stanza:à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+85	donner	Le caissier me donne le ticket.	The cashier gives me the receipt.	present	le caissier	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+86	trouver	Nous trouvons une place près de la gare.	We find a parking spot near the station.	present	nous	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+87	passer	Je passe chez ma sœur ce soir.	I'm stopping by my sister's place tonight.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+88	laisser	Tu laisses la lumière allumée dans le couloir.	You leave the light on in the hallway.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+89	demander	Nous demandons une table près de la fenêtre.	We ask for a table near the window.	present	nous	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+90	acheter	J'achète du lait au petit magasin du coin.	I buy milk at the corner store.	present	j'	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; à->target_verb:obl:arg:none; de->noun_phrase:nmod:noun_internal	0.0	1.0
+91	manger	Les enfants mangent tôt le soir.	The children eat early in the evening.	present	les enfants	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+92	boire	Il boit de l'eau pendant la marche.	He drinks water أثناء walking.	present	il	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+93	regarder	Nous regardons un plan avant de partir.	We look at a map before leaving.	present	nous	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+94	écouter	Je t'écoute, vas-y.	I'm listening, go ahead.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+95	sortir	Elle sort avec son chien tous les matins.	She goes out with her dog every morning.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+96	rentrer	Ils rentrent en taxi après la soirée.	They go home by taxi after the evening out.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+97	payer	Je paie les courses à la caisse.	I'm paying for the groceries at the checkout.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+98	arriver	Le bus arrive toujours à l'heure.	The bus always arrives on time.	present	le bus	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+99	partir	Nous partons tôt ce matin.	We're leaving early this morning.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+100	travailler	Elle travaille au bureau toute la journée.	She works at the office all day.	present	elle	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+101	attendre	J'attends mon tour à la pharmacie.	I'm waiting my turn at the pharmacy.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+102	ouvrir	Tu ouvres la porte, s'il te plaît?	Can you open the door, please?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+103	fermer	Il ferme la fenêtre avant de partir.	He closes the window before leaving.	present	il	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+104	porter	Je porte mon sac jusqu'au bureau.	I carry my bag to the office.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+105	poser	Elle pose ses clés sur la table.	She puts her keys on the table.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+106	montrer	Le vendeur montre le modèle au client.	The salesperson shows the model to the customer.	present	le vendeur	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+107	mettre	Je mets mes chaussures avant de sortir.	I put on my shoes before going out.	present	je	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+108	aller	On va au marché après le petit-déjeuner.	We're going to the market after breakfast.	present	on	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+109	venir	Ma sœur vient me chercher à la gare.	My sister is coming to pick me up at the station.	present	ma sœur	1.0	none	mechanical	stanza:à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+110	acheter	Nous achetons du pain en rentrant.	We're buying bread on the way home.	present	nous	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+111	demander	Je demande l'adresse au chauffeur.	I ask the driver for the address.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+112	appeler	Elle appelle sa mère après le travail.	She calls her mother after work.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+113	envoyer	Tu envoies le message tout de suite?	Are you sending the message right away?	present	tu	1.0	none	llm	The verb is envoyer, but the sentence has a direct object “le message” and no a/de complement selected by the verb.	0.0	1.0
+114	aider	Le voisin m'aide à porter les sacs.	The neighbor helps me carry the bags.	present	le voisin	1.0	none	mechanical	stanza:à->verb_child:xcomp:à_selected	0.0	1.0
+115	trouver	Je trouve mes clés dans la poche.	I find my keys in my pocket.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+116	laisser	On laisse les chaussures près de la porte.	We leave the shoes near the door.	present	on	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+117	ramener	Je ramène les enfants à la maison.	I bring the kids back home.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+118	ranger	Elle range la cuisine après le dîner.	She tidies the kitchen after dinner.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+119	traîner	Ils traînent au café après les cours.	They hang around at the café after class.	present	ils	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+120	être	Je suis au supermarché avec ma fille.	I'm at the supermarket with my daughter.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+121	avoir	On a faim après la promenade.	We're hungry after the walk.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+122	faire	Je fais les courses le samedi.	I do the grocery shopping on Saturdays.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+123	parler	Nous parlons au voisin dans l'escalier.	We're talking to the neighbor in the stairwell.	present	nous	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+124	donner	Tu me donnes le ticket?	Can you give me the ticket?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+125	passer	Je passe chez ma mère après le travail.	I stop by my mother's place after work.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+126	faire	Elle fait la vaisselle tous les soirs.	She does the dishes every night.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+127	prendre	Nous prenons le métro pour aller au centre-ville.	We take the subway to go downtown.	present	nous	1.0	none	mechanical	stanza:à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+128	ouvrir	La boutique ouvre à neuf heures.	The shop opens at nine o'clock.	present	la boutique	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+129	fermer	Le magasin ferme à dix-neuf heures.	The store closes at 7 p.m.	present	le magasin	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+130	travailler	Mon frère travaille de nuit cette semaine.	My brother is working nights this week.	present	mon frère	1.0	none	mechanical	stanza:de->target_verb:obl:mod:none	0.0	1.0
+131	attendre	Les clients attendent devant la boulangerie.	The customers are waiting outside the bakery.	present	les clients	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+132	mettre	Il met le lait au frigo.	He puts the milk in the fridge.	present	il	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+133	payer	Nous payons le loyer le premier du mois.	We pay the rent on the first of the month.	present	nous	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+134	arriver	J'arrive au travail vers huit heures.	I arrive at work around eight o'clock.	present	j'	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+135	partir	Le train part dans cinq minutes.	The train leaves in five minutes.	present	le train	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+136	porter	Elle porte un manteau léger aujourd'hui.	She's wearing a light coat today.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+137	montrer	Je montre mes papiers à la réception.	I show my papers at reception.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+138	envoyer	Le médecin envoie l'ordonnance par mail.	The doctor sends the prescription by email.	present	le médecin	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+139	acheter	J'achète du café et du lait au coin de la rue.	I buy coffee and milk at the corner shop.	present	j'	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; de->noun_phrase:conj:noun_internal; à->target_verb:obl:mod:none; de->noun_phrase:nmod:noun_internal	0.0	1.0
+140	parler	Ils parlent du programme de demain.	They're talking about tomorrow's schedule.	present	ils	1.0	de_selected	mechanical	stanza:de->target_verb:obl:arg:de_selected; de->noun_phrase:advmod:noun_internal	1.0	2.0
+141	aller	Je vais chercher du pain avant de rentrer.	I'm going to get some bread before heading home.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; de->non_target_verb:xcomp:mark_other	0.0	1.0
+142	demander	On demande le menu au serveur.	We ask the server for the menu.	present	on	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+143	faire	Vous faites la queue à la caisse.	You're lining up at the checkout.	present	vous	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+144	oublier	J'oublie toujours mes clés quand je sors.	I always forget my keys when I go out.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+145	bouger	Le bébé bouge dans la poussette.	The baby is moving in the stroller.	present	le bébé	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+146	traîner	On traîne un peu au café après le travail.	We hang around at the café after work.	present	on	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+147	aimer	Ma sœur aime faire les courses le samedi.	My sister likes doing the shopping on Saturdays.	present	ma sœur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+148	manger	Nous mangeons vite avant de partir.	We eat quickly before leaving.	present	nous	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+149	boire	Il boit un café en attendant le bus.	He drinks a coffee while waiting for the bus.	present	il	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+150	regarder	Je regarde les horaires sur mon téléphone.	I'm checking the schedules on my phone.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+151	écouter	Elle écoute la radio dans la voiture.	She listens to the radio in the car.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+152	sortir	Nous sortons acheter du pain.	We go out to buy bread.	present	nous	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+153	poser	Je pose mon sac près de la porte.	I put my bag near the door.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+154	appeler	Tu appelles ta mère après le dîner.	You call your mother after dinner.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+155	être	Le magasin est ouvert jusqu'à 20 heures.	The store is open until 8 p.m.	present	le magasin	1.0	none	mechanical	stanza:à->noun_phrase:obl:mod:noun_internal	0.0	1.0
+156	avoir	J'ai un peu faim après la marche.	I'm a little hungry after the walk.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+157	faire	Nous faisons la vaisselle après le repas.	We do the dishes after the meal.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+158	venir	Elle vient avec nous au marché.	She comes with us to the market.	present	elle	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+159	prendre	Je prends le métro tous les matins.	I take the subway every morning.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+160	mettre	Il met son manteau avant de sortir.	He puts on his coat before going out.	present	il	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+161	donner	La caissière me donne le ticket.	The cashier gives me the receipt.	present	la caissière	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+162	trouver	Je trouve une place près de la gare.	I find a spot near the station.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+163	passer	On passe par la boulangerie en rentrant.	We stop by the bakery on the way home.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+164	laisser	Je laisse les courses dans la cuisine.	I leave the groceries in the kitchen.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+165	demander	Nous demandons l'addition au serveur.	We ask the waiter for the bill.	present	nous	1.0	none	mechanical	stanza:à->noun_phrase:nmod:noun_internal	0.0	1.0
+166	travailler	Mon frère travaille près de la gare.	My brother works near the station.	present	mon frère	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+167	attendre	J'attends mon amie devant l'école.	I'm waiting for my friend in front of the school.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+168	porter	Le livreur porte un gros colis.	The delivery person is carrying a big parcel.	present	le livreur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+169	montrer	Je montre ma carte au contrôleur.	I show my card to the inspector.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+170	payer	Nous payons en espèces.	We pay in cash.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+171	aider	Elle aide son voisin à porter les sacs.	She helps her neighbor carry the bags.	present	elle	1.0	none	mechanical	stanza:à->verb_child:xcomp:à_selected	0.0	1.0
+172	ranger	On range la cuisine après le dîner.	We tidy the kitchen after dinner.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+173	partir	Le train part à huit heures.	The train leaves at eight o'clock.	present	le train	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+174	ouvrir	Nous ouvrions la boutique très tôt le samedi.	We used to open the shop very early on Saturdays.	imparfait	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+175	fermer	Elle a fermé les volets avant la pluie.	She closed the shutters before the rain.	passé composé	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+176	acheter	J'ai acheté du lait et du pain.	I bought milk and bread.	passé composé	j'	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; de->noun_phrase:conj:noun_internal	0.0	1.0
+177	faire	Tu fais les valises ce soir?	Are you packing the suitcases tonight?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+178	aller	Nous allons au centre-ville après le déjeuner.	We are going downtown after lunch.	present	nous	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+179	parler	Ils parlent avec la voisine dans l'escalier.	They are talking with the neighbor in the stairwell.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+180	envoyer	Je t'envoie l'adresse par message.	I'm sending you the address by message.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+181	demander	Le client a demandé un reçu.	The customer asked for a receipt.	passé composé	le client	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+182	aimer	J'aimais marcher le soir après le dîner.	I used to like walking in the evening after dinner.	imparfait	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+183	manger	Les enfants mangent une pomme avant l'école.	The children eat an apple before school.	present	les enfants	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+184	boire	Elle boit de l'eau pendant la réunion.	She drinks water during the meeting.	present	elle	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+185	regarder	Nous regardons un film à la maison.	We are watching a movie at home.	present	nous	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+186	écouter	Je vais écouter un podcast dans le bus.	I'm going to listen to a podcast on the bus.	futur proche	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+187	rentrer	Je rentre à la maison vers dix-huit heures.	I get home around 6 p.m.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+188	oublier	J'ai oublié mon badge au bureau.	I forgot my badge at the office.	passé composé	j'	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+189	ramener	Elle ramène les enfants de l'école.	She picks up the children from school and brings them back.	present	elle	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+190	bouger	Le bébé bouge dans son lit.	The baby is moving in its crib.	present	le bébé	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+191	traîner	Nous traînons un peu avant de sortir.	We hang around a bit before going out.	present	nous	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+192	sortir	Je sors acheter du pain.	I'm going out to buy some bread.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+193	arriver	Le bus arrive toujours en retard.	The bus always arrives late.	present	le bus	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+194	poser	Je pose mes clés sur la table.	I put my keys on the table.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+195	appeler	J'appelle ma mère tous les soirs.	I call my mother every evening.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+196	payer	Nous payons la note au restaurant.	We pay the bill at the restaurant.	present	nous	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+197	aider	Mon voisin m'aide avec les courses.	My neighbor helps me with the groceries.	present	mon voisin	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+198	ranger	Je range la cuisine après le repas.	I tidy the kitchen after the meal.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+199	fermer	Elle ferme la porte à clé.	She locks the door.	present	elle	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+200	prendre	Je prends le métro pour aller au travail.	I take the subway to go to work.	present	je	1.0	none	mechanical	stanza:à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+201	acheter	Ils achètent du lait au supermarché.	They buy milk at the supermarket.	present	ils	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; à->target_verb:obl:mod:none	0.0	1.0
+202	demander	Le client demande un sac en plus.	The customer asks for an extra bag.	present	le client	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+203	parler	On parle de nos horaires au téléphone.	We talk about our schedules on the phone.	present	on	1.0	de_selected	mechanical	stanza:de->target_verb:obl:arg:de_selected; à->noun_phrase:nmod:noun_internal	1.0	2.0
+204	aller	Nous allons chez le médecin cet après-midi.	We're going to the doctor this afternoon.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+205	venir	Ma sœur vient dîner ce soir.	My sister is coming for dinner tonight.	present	ma sœur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+206	être	Le magasin est fermé le dimanche.	The shop is closed on Sunday.	present	le magasin	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+207	avoir	J'ai un rendez-vous à neuf heures.	I have an appointment at nine o'clock.	présent	j'	1.0	none	mechanical	stanza:à->noun_phrase:nmod:noun_internal	0.0	1.0
+208	trouver	Je trouve les tickets dans mon sac.	I find the tickets in my bag.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+209	passer	Nous passons chez toi après le dîner.	We'll stop by your place after dinner.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+210	laisser	Elle laisse son manteau dans l'entrée.	She leaves her coat in the entryway.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+211	mettre	Je mets la table avant de manger.	I set the table before eating.	present	je	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+212	donner	Le vendeur me donne la facture.	The seller gives me the receipt.	present	le vendeur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+213	montrer	Je montre mon ticket au contrôleur.	I show my ticket to the inspector.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+214	acheter	Elle achète du pain et des fruits.	She buys bread and fruit.	present	elle	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+215	payer	Tu payes en carte ou en espèces?	Do you pay by card or in cash?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+216	ouvrir	Le café ouvre à sept heures.	The café opens at seven.	present	le café	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+217	fermer	Je ferme les volets avant de partir.	I close the shutters before leaving.	present	je	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+218	sortir	Ils sortent du bureau vers midi.	They leave the office around noon.	present	ils	1.0	de_source_or_location	mechanical	stanza:de->target_verb:obl:arg:de_source_or_location	0.0	1.0
+219	arriver	Je suis arrivé en avance au rendez-vous.	I arrived early for the appointment.	passé composé	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+220	rentrer	Elle rentre tard ce soir.	She is coming home late tonight.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+221	oublier	N'oublie pas le lait en rentrant.	Don't forget the milk on your way home.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+222	ramener	Tu peux ramener les enfants à la maison?	Can you bring the children back home?	present	tu	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+223	bouger	Le camion a bougé pendant la nuit.	The truck moved during the night.	passé composé	le camion	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+224	traîner	Il traîne dans le quartier après le foot.	He hangs around the neighborhood after soccer.	present	il	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+225	aider	Je l'aide à porter les sacs.	I help him carry the bags.	present	je	1.0	none	mechanical	stanza:à->verb_child:xcomp:à_selected	0.0	1.0
+226	appeler	Le restaurant appelle un taxi pour nous.	The restaurant calls a taxi for us.	present	le restaurant	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+227	payer	On a payé la facture hier soir.	We paid the bill last night.	passé composé	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+228	ranger	Nous avons rangé la chambre avant de partir.	We tidied the room before leaving.	passé composé	nous	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+229	poser	Pose ton sac ici.	Put your bag here.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+230	ouvrir	J'ouvre la porte quand quelqu'un sonne.	I open the door when someone rings.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+231	manger	Je mange vite avant de partir au travail.	I eat quickly before leaving for work.	present	je	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other; à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+232	boire	Nous buvons un café en attendant le bus.	We drink a coffee while waiting for the bus.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+233	regarder	Elle regarde les horaires du train sur son téléphone.	She looks at the train schedule on her phone.	present	elle	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+234	écouter	J'écoute les consignes du vendeur.	I listen to the salesperson's instructions.	present	j'	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+235	rentrer	Ils rentrent tôt ce soir.	They are coming home early tonight.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+236	partir	Tu pars à quelle heure demain?	What time are you leaving tomorrow?	present	tu	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+237	attendre	On attend le médecin depuis dix minutes.	We've been waiting for the doctor for ten minutes.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+238	porter	Il porte les courses jusqu'à l'ascenseur.	He carries the groceries to the elevator.	present	il	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+239	aimer	Nous aimons prendre le café au coin de la rue.	We like to have coffee on the corner.	present	nous	1.0	none	mechanical	stanza:à->noun_phrase:obl:mod:noun_internal; de->noun_phrase:nmod:noun_internal	0.0	1.0
+240	aller	Je vais à la pharmacie cet après-midi.	I'm going to the pharmacy this afternoon.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+241	venir	Ma sœur vient avec moi au marché.	My sister is coming with me to the market.	present	ma sœur	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+242	prendre	Nous prenons le métro à sept heures.	We take the subway at seven o'clock.	present	nous	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+243	mettre	Je mets mon téléphone dans mon sac.	I put my phone in my bag.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+244	parler	Le voisin parle avec la boulangère.	The neighbor is talking with the baker.	present	le voisin	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+245	aider	Mon frère aide ma mère à porter les sacs.	My brother helps my mother carry the bags.	present	mon frère	1.0	none	mechanical	stanza:à->verb_child:xcomp:à_selected	0.0	1.0
+246	donner	Je donne le ticket au chauffeur.	I give the ticket to the driver.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+247	trouver	On trouve une boulangerie ouverte près de la gare.	We find an open bakery near the station.	present	on	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+248	passer	Je passe chez ma tante en rentrant.	I stop by my aunt's place on the way home.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+249	laisser	Elle laisse son manteau sur la chaise.	She leaves her coat on the chair.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+250	demander	Je demande un café sans sucre.	I ask for a coffee without sugar.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+251	acheter	Nous achetons du pain et des fruits.	We buy bread and fruit.	present	nous	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+252	ouvrir	Le pharmacien ouvre la porte à huit heures.	The pharmacist opens the door at eight o'clock.	present	le pharmacien	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+253	fermer	Je ferme la fenêtre avant de sortir.	I close the window before going out.	present	je	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+254	sortir	Nous sortons du bureau un peu plus tard.	We're leaving the office a little later.	present	nous	1.0	de_source_or_location	mechanical	stanza:de->target_verb:obl:arg:de_source_or_location	0.0	1.0
+255	être	Je suis en retard pour le rendez-vous.	I'm late for the appointment.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+256	avoir	J'ai encore faim après le dîner.	I'm still hungry after dinner.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+257	faire	Tu fais la vaisselle après le repas.	You do the dishes after the meal.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+258	payer	On paie en carte à la caisse.	We pay by card at the register.	present	on	1.0	none	mechanical	stanza:à->noun_phrase:nmod:noun_internal	0.0	1.0
+259	montrer	Je montre ma carte d'identité à l'entrée.	I show my ID at the entrance.	present	je	1.0	none	mechanical	stanza:d'->noun_phrase:nmod:noun_internal; à->target_verb:obl:mod:none	0.0	1.0
+260	ranger	Elle range les verres dans le placard.	She puts the glasses away in the cupboard.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+261	bouger	Le bébé bouge quand il entend la porte.	The baby moves when he hears the door.	present	le bébé	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+262	traîner	Je traîne un peu devant la gare après le boulot.	I hang around a bit in front of the station after work.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+263	ramener	Tu ramènes les enfants à la maison?	Are you bringing the kids back home?	present	tu	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+264	ouvrir	Nous ouvrons les volets le matin.	We open the shutters in the morning.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+265	fermer	Il ferme sa boutique à dix-neuf heures.	He closes his shop at 7 p.m.	present	il	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+266	appeler	J'appelle ma mère pendant la pause.	I call my mother during the break.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+267	envoyer	Le bureau envoie le reçu par e-mail.	The office sends the receipt by email.	present	le bureau	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+268	payer	Elle paie le parking avec sa carte.	She pays for the parking with her card.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+269	aider	Nous aidons un voisin à porter ses courses.	We help a neighbor carry his groceries.	present	nous	1.0	none	mechanical	stanza:à->verb_child:xcomp:à_selected	0.0	1.0
+270	partir	Le train part à 18 h 20.	The train leaves at 6:20 p.m.	present	le train	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+271	regarder	Je regarde la rue depuis la fenêtre.	I look at the street from the window.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+272	travailler	Je travaille de chez moi ce matin.	I'm working from home this morning.	present	je	1.0	none	mechanical	stanza:de->target_verb:obl:mod:none	0.0	1.0
+273	oublier	J'ai oublié mon badge à la maison.	I forgot my badge at home.	passé composé	j'	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+274	aimer	Nous aimons prendre un café après le travail.	We like to have coffee after work.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+275	manger	Ils mangent souvent sur le pouce entre deux rendez-vous.	They often eat on the go between appointments.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+276	boire	Elle boit un verre d'eau avant de sortir.	She drinks a glass of water before going out.	present	elle	1.0	none	mechanical	stanza:d'->noun_phrase:nmod:noun_internal; de->non_target_verb:xcomp:mark_other	0.0	1.0
+277	écouter	J'écoute la radio en préparant le dîner.	I listen to the radio while making dinner.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+278	rentrer	On rentre à la maison vers dix-huit heures.	We get home around six p.m.	present	on	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+279	attendre	J'attends mon tour à la caisse.	I'm waiting my turn at the checkout.	present	j'	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+280	porter	Elle porte les courses jusqu'à l'appartement.	She carries the groceries up to the apartment.	present	elle	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+281	envoyer	Nous envoyons le message avant de partir.	We send the message before leaving.	present	nous	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+282	travailler	Mon frère travaille dans une boutique du centre.	My brother works in a shop downtown.	present	mon frère	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+283	oublier	N'oublie pas les clés en sortant!	Don't forget the keys when you leave!	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+284	aimer	Tu aimes marcher au marché le samedi.	You like walking around the market on Saturdays.	present	tu	1.0	none	mechanical	stanza:à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+285	manger	Je mange vite avant le cours.	I eat quickly before class.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+286	boire	On boit un café au comptoir.	We have a coffee at the counter.	present	on	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+287	écouter	Le chauffeur écoute les informations à la radio.	The driver listens to the news on the radio.	present	le chauffeur	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+288	rentrer	Je rentre tard quand j'ai beaucoup de travail.	I get home late when I have a lot of work.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:obl:arg:noun_internal	0.0	1.0
+289	arriver	Nous arrivons à l'arrêt juste à temps.	We arrive at the stop just in time.	present	nous	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location; à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+290	attendre	Elle attend le livreur devant l'immeuble.	She is waiting for the delivery person in front of the building.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+291	porter	Je porte un sac lourd jusqu'au métro.	I carry a heavy bag to the metro.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+292	poser	Il pose les factures sur la table.	He puts the bills on the table.	present	il	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+293	envoyer	Elle envoie un mail à sa collègue.	She sends an email to her colleague.	present	elle	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+294	travailler	Nous travaillons un peu ce soir pour finir le dossier.	We're working a bit tonight to finish the file.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+295	oublier	Il oublie souvent de répondre aux messages.	He often forgets to reply to messages.	present	il	1.0	de_selected	mechanical	stanza:de->verb_child:xcomp:de_selected; à->noun_phrase:obl:arg:noun_internal	1.0	2.0
+296	aimer	J'aime faire les courses tôt le matin.	I like doing the shopping early in the morning.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+297	manger	Les enfants mangent à la cantine.	The children eat in the cafeteria.	present	les enfants	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+298	boire	Vous buvez quelque chose avant de repartir?	Would you like to drink something before heading back out?	present	vous	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+299	écouter	Nous écoutons un podcast dans le train.	We listen to a podcast on the train.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+300	rentrer	Elle rentrait à pied quand il a commencé à pleuvoir.	She was walking home when it started to rain.	imparfait	elle	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location; à->non_target_verb:xcomp:mark_other	0.0	1.0
+301	arriver	Je suis arrivé un peu en avance au rendez-vous.	I arrived a little early for the appointment.	passé composé	je	1.0	none	mechanical	stanza:à->noun_phrase:nmod:noun_internal	0.0	1.0
+302	attendre	On attend le médecin depuis vingt minutes.	We've been waiting for the doctor for twenty minutes.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+303	porter	Tu portes encore ton manteau?	Are you still wearing your coat?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+304	poser	Nous posons nos sacs et on se repose un moment.	We put our bags down and rest for a moment.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+305	envoyer	Le magasin envoie la commande demain.	The store sends the order tomorrow.	present	le magasin	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+306	travailler	Je travaille avec mon voisin sur un petit projet.	I'm working with my neighbor on a small project.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+307	oublier	Elle a oublié de fermer la fenêtre.	She forgot to close the window.	passé composé	elle	1.0	de_selected	mechanical	stanza:de->verb_child:xcomp:de_selected	1.0	2.0
+308	aimer	Ils aiment se promener après le dîner.	They like to go for a walk after dinner.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+309	manger	On mange dehors quand il fait beau.	We eat outside when the weather is nice.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+310	boire	Je bois un thé en lisant les mails.	I drink tea while reading emails.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+311	écouter	La voisine écoute de la musique en cuisinant.	The neighbor listens to music while cooking.	present	la voisine	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+312	rentrer	Nous rentrons à la maison avant la nuit.	We get home before nightfall.	present	nous	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+313	arriver	Le colis arrive cet après-midi.	The package arrives this afternoon.	present	le colis	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+314	attendre	J'attendais mon café quand la pluie a commencé.	I was waiting for my coffee when the rain started.	imparfait	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+315	porter	Le livreur porte les pizzas jusqu'à la porte.	The delivery person carries the pizzas to the door.	present	le livreur	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+316	poser	Elle pose la valise dans l'entrée.	She puts the suitcase in the entryway.	present	elle	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+317	envoyer	J'envoie un SMS à mon ami pour le prévenir.	I send a text to my friend to let him know.	present	j'	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+318	être	Je suis en retard pour le travail.	I am late for work.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+319	avoir	On a encore du pain pour ce soir.	We still have bread for tonight.	present	on	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+320	ramener	Je ramène les enfants à l'école après le rendez-vous.	I bring the kids back to school after the appointment.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+321	bouger	Tu bouges un peu pour me laisser passer?	Can you move a bit to let me pass?	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+322	traîner	Les ados traînent au centre commercial le samedi.	The teenagers hang around at the mall on Saturdays.	present	les ados	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+323	venir	Ma sœur vient dîner chez nous ce soir.	My sister is coming to dinner at our place tonight.	present	ma sœur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+324	prendre	Je prends le bus pour aller au bureau.	I take the bus to go to the office.	present	je	1.0	none	mechanical	stanza:à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+325	mettre	Je mets mon téléphone sur la table.	I put my phone on the table.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+326	donner	Le voisin donne un coup de main pour les courses.	The neighbor helps out with the groceries.	present	le voisin	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+327	trouver	Je trouve toujours mes clés dans le sac.	I always find my keys in the bag.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+328	passer	Je passe chez la boulangerie en rentrant.	I stop by the bakery on the way home.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+329	laisser	Je laisse la porte ouverte deux minutes.	I leave the door open for two minutes.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+330	demander	Je demande l'addition au serveur.	I ask the waiter for the bill.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+331	acheter	On achète du café au supermarché.	We buy coffee at the supermarket.	present	on	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; à->target_verb:obl:mod:none	0.0	1.0
+332	manger	Nous mangeons tôt quand on travaille le soir.	We eat early when we work in the evening.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+333	boire	Elle boit un café avant de partir.	She drinks a coffee before leaving.	present	elle	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+334	regarder	Je regarde les horaires du train sur mon téléphone.	I check the train times on my phone.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:nmod:noun_internal	0.0	1.0
+335	écouter	Nous écoutons les infos en faisant le petit déjeuner.	We listen to the news while making breakfast.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+336	sortir	Je sors les poubelles avant huit heures.	I take out the trash before eight o'clock.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+337	rentrer	Les enfants rentrent à la maison vers 18 heures.	The children come home around 6 p.m.	present	les enfants	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+338	arriver	Le colis arrive demain matin.	The package arrives tomorrow morning.	present	le colis	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+339	partir	Nous partons au marché après le café.	We leave for the market after coffee.	present	nous	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+340	travailler	Je travaille à domicile le vendredi.	I work from home on Fridays.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+341	attendre	Ils attendent le bus devant l'école.	They are waiting for the bus in front of the school.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+342	ouvrir	La pharmacie ouvre à neuf heures.	The pharmacy opens at nine o'clock.	present	la pharmacie	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+343	fermer	Je ferme la fenêtre quand il fait froid.	I close the window when it's cold.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+344	montrer	Vous montrez votre carte au contrôleur.	You show your card to the inspector.	present	vous	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+345	appeler	J'appelle ma mère après le travail.	I call my mother after work.	present	j'	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+346	envoyer	Elle envoie un message à son frère.	She sends a message to her brother.	present	elle	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+347	payer	On paie en espèces au marché.	We pay in cash at the market.	present	on	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+348	oublier	J'oublie souvent mon parapluie au bureau.	I often forget my umbrella at the office.	present	j'	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+349	ramener	Tu ramènes le chien après la promenade.	You bring the dog back after the walk.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+350	bouger	Le canapé ne bouge pas d'un centimètre.	The sofa doesn't move a centimeter.	present	le canapé	1.0	none	mechanical	stanza:d'->target_verb:obl:arg:none	0.0	1.0
+351	traîner	Je traîne un peu dans le quartier après le déjeuner.	I hang around a bit in the neighborhood after lunch.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+352	être	Nous sommes chez le médecin ce matin.	We are at the doctor's this morning.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+353	avoir	Tu as le temps de passer au magasin?	Do you have time to stop by the store?	present	tu	1.0	none	mechanical	stanza:de->non_target_verb:acl:mark_other; à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+354	venir	Le facteur vient plus tard aujourd'hui.	The mail carrier is coming later today.	present	le facteur	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+355	prendre	Ils prennent un taxi quand il pleut.	They take a taxi when it rains.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+356	mettre	Je mets le lait au frigo.	I put the milk in the fridge.	present	je	1.0	none	mechanical	stanza:à->target_verb:obl:mod:none	0.0	1.0
+357	donner	Je donne les papiers à la secrétaire.	I give the papers to the secretary.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+358	trouver	On trouve tout ce qu'il faut au coin de la rue.	You can find everything you need at the corner shop.	present	on	1.0	none	mechanical	stanza:à->noun_phrase:obl:mod:noun_internal; de->noun_phrase:nmod:noun_internal	0.0	1.0
+359	passer	Elle passe la journée au téléphone.	She spends the day on the phone.	present	elle	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+360	laisser	Nous laissons les chaussures à l'entrée.	We leave the shoes at the entrance.	present	nous	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+361	demander	Il demande l'heure à un passant.	He asks a passerby for the time.	present	il	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+362	acheter	Je vais acheter du lait après la réunion.	I'm going to buy milk after the meeting.	futur proche	je	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner	0.0	1.0
+363	faire	On fait les courses tous les vendredis.	We do the grocery shopping every Friday.	present	on	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+364	aller	Je vais au marché à pied.	I go to the market on foot.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location; à->target_verb:obl:mod:a_movement_or_location	0.0	1.0
+365	ranger	Je range les courses dans le placard.	I put the groceries away in the cupboard.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+366	parler	On parle du repas pendant qu'on prépare la table.	We talk about the meal while setting the table.	present	on	1.0	de_selected	mechanical	stanza:de->target_verb:obl:arg:de_selected	1.0	2.0
+367	regarder	Je regarde l'heure sur mon téléphone.	I check the time on my phone.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+368	partir	Il part tôt pour aller au travail.	He leaves early to go to work.	present	il	1.0	none	mechanical	stanza:à->noun_phrase:obl:arg:noun_internal	0.0	1.0
+369	montrer	Je montre le message à ma sœur.	I show the message to my sister.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+370	appeler	Ma mère m'appelle après le déjeuner.	My mother calls me after lunch.	present	ma mère	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+371	aider	Tu aides ton voisin à porter les sacs.	You help your neighbor carry the bags.	present	tu	1.0	none	mechanical	stanza:à->verb_child:xcomp:à_selected	0.0	1.0
+372	traîner	On traîne un peu au café après les courses.	We hang around at the café after shopping.	present	on	1.0	none	mechanical	stanza:à->target_verb:obl:arg:none	0.0	1.0
+373	avoir	J'ai faim après la promenade.	I'm hungry after the walk.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+374	prendre	Nous prenons le bus pour rentrer.	We take the bus to go home.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+375	donner	Je donne les clés au voisin.	I give the keys to the neighbor.	present	je	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+376	trouver	Je trouve le magasin fermé.	I find the store closed.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+377	payer	Nous payons en carte à la caisse.	We pay by card at the checkout.	present	nous	1.0	none	mechanical	stanza:à->noun_phrase:nmod:noun_internal	0.0	1.0
+378	ouvrir	Le boulanger ouvre sa boutique à sept heures.	The baker opens his shop at seven o'clock.	present	le boulanger	1.0	a_selected	mechanical	stanza:à->target_verb:obl:arg:a_selected	1.0	2.0
+379	fermer	Je ferme la fenêtre avant de partir.	I close the window before leaving.	present	je	1.0	none	mechanical	stanza:de->non_target_verb:xcomp:mark_other	0.0	1.0
+380	attendre	Ils attendent le bus devant la gare.	They are waiting for the bus in front of the station.	present	ils	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+381	venir	Nous venons chez toi ce soir.	We're coming to your place tonight.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+382	rentrer	Je rentre à pied après le travail.	I walk home after work.	present	je	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0
+383	manger	Les enfants mangent vite avant l'école.	The children eat quickly before school.	present	les enfants	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+384	boire	Je bois un café en attendant le train.	I'm drinking a coffee while waiting for the train.	present	je	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+385	sortir	Je sors acheter du pain au coin de la rue.	I'm going out to buy some bread at the corner shop.	present	je	1.0	none	mechanical	stanza:de->noun_phrase:det:partitive_or_determiner; à->noun_phrase:obl:mod:noun_internal; de->noun_phrase:nmod:noun_internal	0.0	1.0
+386	ramener	Tu ramènes les enfants après l'école.	You bring the children back after school.	present	tu	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+387	ranger	Nous rangeons la cuisine après le dîner.	We tidy the kitchen after dinner.	present	nous	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+388	bouger	Le bus ne bouge pas encore.	The bus isn't moving yet.	present	le bus	1.0	none	mechanical	no_a_de_surface	0.0	1.0
+389	être	Je suis à la maison ce soir.	I'm at home tonight.	present	je	1.0	none	mechanical	stanza:à->noun_phrase:root:noun_internal	0.0	1.0
+390	aller	Ils vont au marché ce matin.	They're going to the market this morning.	present	ils	1.0	a_movement_or_location	mechanical	stanza:à->target_verb:obl:arg:a_movement_or_location	0.0	1.0

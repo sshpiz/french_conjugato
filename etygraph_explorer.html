@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Etymology Explorer</title>
+  <style>
+    :root {
+      --primary-bg: #f4f7f9;
+      --card-bg: #ffffff;
+      --text-color: #2c3e50;
+      --accent-color: #3498db;
+      --meta-color: #2f3c3d;
+      --border-color: #e0e6ed;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      --present: #9fd0b4;
+      --passe: #efc488;
+      --futur: #94c8f1;
+      --subtle-blue: #eaf6fb;
+      --warn: #ea9bb6;
+      --graph-line: rgba(52, 152, 219, 0.42);
+      --graph-soft: rgba(52, 152, 219, 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-bg: #181c1f;
+        --card-bg: #23272b;
+        --text-color: #f4f7f9;
+        --accent-color: #6ec6ff;
+        --meta-color: #b0b8c1;
+        --border-color: #2c3136;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.32);
+        --present: #2e7d5b;
+        --passe: #b77b3a;
+        --futur: #357ca5;
+        --subtle-blue: #1b3344;
+        --warn: #a24d6a;
+        --graph-line: rgba(110, 198, 255, 0.38);
+        --graph-soft: rgba(110, 198, 255, 0.09);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--primary-bg);
+      color: var(--text-color);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 32px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3.2vw, 2.55rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      color: var(--meta-color);
+      font-size: 0.86rem;
+    }
+
+    .pill {
+      min-height: 28px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: color-mix(in srgb, var(--card-bg) 90%, var(--accent-color) 10%);
+      white-space: nowrap;
+    }
+
+    .search-band {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto auto;
+      gap: 10px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    .search-panel {
+      position: relative;
+      min-width: 0;
+      z-index: 5;
+    }
+
+    .search-box {
+      width: 100%;
+      height: 46px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-color);
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+    }
+
+    .search-box {
+      padding: 0 14px;
+    }
+
+    .verb-menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 6px);
+      max-height: min(360px, 54vh);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-bg);
+      box-shadow: 0 18px 42px rgba(24, 44, 70, 0.18);
+      padding: 6px;
+      z-index: 20;
+    }
+
+    .verb-menu.is-open {
+      display: grid;
+      gap: 4px;
+    }
+
+    .verb-option {
+      width: 100%;
+      min-height: 36px;
+      border: 0;
+      border-radius: 7px;
+      padding: 7px 10px;
+      background: transparent;
+      color: var(--text-color);
+      cursor: pointer;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .verb-option:hover,
+    .verb-option.is-highlighted {
+      background: var(--subtle-blue);
+      color: var(--accent-color);
+    }
+
+    .verb-option-meta {
+      color: var(--meta-color);
+      float: right;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .action {
+      height: 46px;
+      min-width: 116px;
+      border: 0;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--accent-color);
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .filter-action {
+      height: 46px;
+      min-width: 104px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--meta-color);
+      cursor: pointer;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .filter-action.is-active {
+      border-color: var(--accent-color);
+      background: var(--subtle-blue);
+      color: var(--accent-color);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .action {
+        color: #181c1f;
+      }
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel,
+    .side {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .side {
+      padding: 16px;
+      max-height: calc(100vh - 148px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .verb-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .verb-title h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 4vw, 2.35rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .pos {
+      background: var(--present);
+      color: #173d2d;
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .pos {
+        color: #ccf5e3;
+      }
+    }
+
+    .gloss {
+      color: var(--meta-color);
+      line-height: 1.45;
+      margin: 0 0 14px;
+    }
+
+    .component-card {
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--card-bg) 92%, var(--accent-color) 8%);
+      padding: 10px;
+      margin-bottom: 14px;
+      color: var(--meta-color);
+      font-size: 0.9rem;
+    }
+
+    .component-card strong {
+      color: var(--text-color);
+    }
+
+    .component-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mini-button {
+      border: 1px solid var(--border-color);
+      border-radius: 7px;
+      background: var(--card-bg);
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 6px 9px;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .candidate-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .edge-filter-panel {
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--card-bg) 94%, var(--accent-color) 6%);
+      padding: 10px;
+      margin-bottom: 14px;
+    }
+
+    .edge-filter-title {
+      margin: 0;
+      color: var(--meta-color);
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .edge-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .edge-chip {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--meta-color);
+      cursor: pointer;
+      padding: 5px 9px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .edge-chip.is-active {
+      border-color: var(--accent-color);
+      background: var(--subtle-blue);
+      color: var(--accent-color);
+    }
+
+    .candidate {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--primary-bg);
+      color: var(--text-color);
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .candidate.is-active {
+      border-color: var(--accent-color);
+      background: var(--subtle-blue);
+    }
+
+    .candidate-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .candidate-word {
+      font-weight: 800;
+      font-size: 1.05rem;
+      overflow-wrap: anywhere;
+    }
+
+    .score {
+      color: var(--accent-color);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .candidate-via {
+      color: var(--meta-color);
+      font-size: 0.87rem;
+      line-height: 1.35;
+      margin-top: 4px;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 8px 0;
+      gap: 6px;
+    }
+
+    .tab {
+      border: 1px solid transparent;
+      border-bottom: 0;
+      border-radius: 8px 8px 0 0;
+      background: transparent;
+      color: var(--meta-color);
+      cursor: pointer;
+      padding: 10px 12px;
+      font-weight: 800;
+    }
+
+    .tab.is-active {
+      color: var(--accent-color);
+      border-color: var(--border-color);
+      background: var(--card-bg);
+    }
+
+    .view {
+      display: none;
+      min-height: 560px;
+    }
+
+    .view.is-active {
+      display: block;
+    }
+
+    .graph-wrap {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .learner-viewer {
+      min-height: 560px;
+      padding: 16px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .latin-path-viewer {
+      min-height: 560px;
+      padding: 16px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .latin-path-summary {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--subtle-blue);
+      color: var(--meta-color);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .latin-path-summary strong {
+      color: var(--text-color);
+    }
+
+    .latin-path-diagram {
+      min-height: 430px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+
+    .descendant-list {
+      display: grid;
+      gap: 8px;
+      max-height: 340px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .descendant-row {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--primary-bg);
+      padding: 9px 10px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .descendant-row strong {
+      color: var(--text-color);
+      font-size: 0.98rem;
+      overflow-wrap: anywhere;
+    }
+
+    .path-line {
+      color: var(--meta-color);
+      font-size: 0.82rem;
+      overflow-wrap: anywhere;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .scenario-card {
+      min-height: 92px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--primary-bg);
+      padding: 10px;
+      color: var(--meta-color);
+      font-size: 0.8rem;
+      line-height: 1.32;
+    }
+
+    .scenario-card.is-active {
+      border-color: var(--accent-color);
+      background: var(--subtle-blue);
+      color: var(--text-color);
+    }
+
+    .scenario-number {
+      color: var(--accent-color);
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 900;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    .scenario-card strong {
+      display: block;
+      color: var(--text-color);
+      font-size: 0.93rem;
+      line-height: 1.12;
+      margin-bottom: 4px;
+    }
+
+    .learner-diagram {
+      min-height: 380px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+
+    .learner-note {
+      color: var(--meta-color);
+      font-size: 0.88rem;
+      line-height: 1.42;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 560px;
+      background:
+        linear-gradient(var(--graph-soft) 1px, transparent 1px),
+        linear-gradient(90deg, var(--graph-soft) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .edge {
+      stroke: var(--graph-line);
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrow);
+    }
+
+    .edge-label {
+      fill: var(--meta-color);
+      font-size: 10px;
+      font-weight: 800;
+      paint-order: stroke;
+      stroke: var(--card-bg);
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      text-anchor: middle;
+    }
+
+    .lane-label {
+      fill: var(--meta-color);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-anchor: middle;
+      text-transform: uppercase;
+    }
+
+    .edge-inherited_from,
+    .edge-descended_from {
+      stroke: var(--present);
+      stroke-width: 2.7;
+    }
+
+    .edge-borrowed_from,
+    .edge-learned_borrowing_from,
+    .edge-semi_learned_borrowing_from,
+    .edge-adapted_borrowing_from,
+    .edge-unadapted_borrowing_from {
+      stroke: var(--accent-color);
+      stroke-width: 2.6;
+    }
+
+    .edge-derived_from {
+      stroke: var(--futur);
+    }
+
+    .edge-composed_of {
+      stroke: var(--passe);
+      stroke-dasharray: 7 5;
+      stroke-width: 2.8;
+    }
+
+    .edge-cognate_with,
+    .edge-mixed,
+    .edge-unknown_etymology_relation {
+      stroke: var(--meta-color);
+      stroke-dasharray: 2 6;
+    }
+
+    .node circle {
+      stroke: var(--border-color);
+      stroke-width: 2;
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.1));
+    }
+
+    .node text {
+      fill: var(--text-color);
+      font-weight: 800;
+      font-size: 13px;
+      text-anchor: middle;
+      paint-order: stroke;
+      stroke: var(--card-bg);
+      stroke-width: 4px;
+      stroke-linejoin: round;
+    }
+
+    .node .sub {
+      fill: var(--meta-color);
+      font-weight: 650;
+      font-size: 11px;
+    }
+
+    .lang-fr circle {
+      fill: var(--accent-color);
+      stroke: color-mix(in srgb, var(--accent-color) 70%, white 30%);
+    }
+
+    .lang-fr text,
+    .lang-fr .sub {
+      fill: #fff;
+      stroke: transparent;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .lang-fr text,
+      .lang-fr .sub {
+        fill: #181c1f;
+      }
+    }
+
+    .lang-la circle {
+      fill: var(--passe);
+    }
+
+    .lang-en circle {
+      fill: var(--card-bg);
+    }
+
+    .lang-fro circle,
+    .lang-frm circle {
+      fill: #bbb7e6;
+    }
+
+    .lang-grc circle {
+      fill: #ea9bb6;
+    }
+
+    .lang-proto circle {
+      fill: #b0b8c1;
+    }
+
+    .lang-other circle {
+      fill: var(--primary-bg);
+    }
+
+    .node.is-selected circle {
+      fill: var(--present);
+      stroke: var(--accent-color);
+      stroke-width: 3;
+    }
+
+    .cluster-node circle {
+      fill: var(--subtle-blue);
+      stroke: var(--accent-color);
+      stroke-dasharray: 5 4;
+    }
+
+    .cluster-node {
+      cursor: pointer;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding: 10px 12px 0;
+      color: var(--meta-color);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .legend-line {
+      width: 26px;
+      border-top: 3px solid var(--accent-color);
+      display: inline-block;
+    }
+
+    .legend-line.composed {
+      border-top-color: var(--passe);
+      border-top-style: dashed;
+    }
+
+    .legend-line.inherited {
+      border-top-color: var(--present);
+    }
+
+    .legend-line.derived {
+      border-top-color: var(--futur);
+    }
+
+    .legend-line.cognate {
+      border-top-color: var(--meta-color);
+      border-top-style: dotted;
+    }
+
+    .empty {
+      min-height: 560px;
+      display: grid;
+      place-items: center;
+      color: var(--meta-color);
+      text-align: center;
+      padding: 24px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      margin-top: 12px;
+    }
+
+    .metric {
+      padding: 11px;
+      border-right: 1px solid var(--border-color);
+      min-width: 0;
+    }
+
+    .metric:last-child {
+      border-right: 0;
+    }
+
+    .metric-label {
+      color: var(--meta-color);
+      display: block;
+      font-size: 0.76rem;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .metric-value {
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .raw {
+      margin: 0;
+      padding: 16px;
+      min-height: 560px;
+      max-height: 72vh;
+      overflow: auto;
+      color: var(--text-color);
+      background: color-mix(in srgb, var(--card-bg) 94%, black 6%);
+      font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .component-viewer {
+      min-height: 560px;
+      padding: 16px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .neighborhood-viewer {
+      min-height: 560px;
+      padding: 16px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .distance-section {
+      display: grid;
+      gap: 8px;
+    }
+
+    .distance-title {
+      margin: 0;
+      color: var(--meta-color);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .component-node-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .component-node-chip {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--primary-bg);
+      color: var(--text-color);
+      padding: 7px 9px;
+      font-size: 0.84rem;
+      line-height: 1.2;
+      max-width: 190px;
+    }
+
+    .component-node-chip strong {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .component-node-chip span {
+      color: var(--meta-color);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .component-edge-list {
+      display: grid;
+      gap: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      border-top: 1px solid var(--border-color);
+      padding-top: 10px;
+    }
+
+    .component-edge {
+      color: var(--meta-color);
+      font-size: 0.82rem;
+      overflow-wrap: anywhere;
+    }
+
+    .neighborhood-summary {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--subtle-blue);
+      color: var(--meta-color);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .status {
+      color: var(--meta-color);
+      min-height: 1.4em;
+      font-size: 0.9rem;
+      margin-top: -6px;
+      margin-bottom: 12px;
+    }
+
+    .status.is-error {
+      color: var(--warn);
+      font-weight: 800;
+    }
+
+    .file-fallback {
+      display: none;
+      margin-top: 8px;
+    }
+
+    .file-fallback.is-visible {
+      display: block;
+    }
+
+    .file-fallback input {
+      width: 100%;
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 10px;
+      color: var(--meta-color);
+      background: var(--card-bg);
+    }
+
+    @media (max-width: 850px) {
+      .topbar,
+      .meta {
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      .topbar {
+        flex-direction: column;
+      }
+
+      .search-band,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .verb-menu {
+        position: static;
+        margin-top: 8px;
+        max-height: 260px;
+      }
+
+      .side {
+        max-height: none;
+      }
+
+      .action {
+        width: 100%;
+      }
+
+      .filter-action {
+        width: 100%;
+      }
+
+      .view,
+      .graph-wrap,
+      .learner-viewer,
+      .latin-path-viewer,
+      .empty,
+      svg,
+      .raw {
+        min-height: 460px;
+      }
+
+      .scenario-grid {
+        grid-template-columns: 1fr;
+      }
+
+      svg {
+        height: 460px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <h1>Etymology Explorer</h1>
+      <div class="meta" aria-live="polite">
+        <span class="pill" id="count-pill">Loading</span>
+        <span class="pill" id="source-pill">kaikki/wiktextract-derived</span>
+      </div>
+    </header>
+
+    <section class="search-band" aria-label="Verb lookup">
+      <div class="search-panel">
+        <input class="search-box" id="search" type="search" autocomplete="off" placeholder="Search a French verb" aria-controls="verb-menu" aria-expanded="false">
+        <div class="verb-menu" id="verb-menu" role="listbox" aria-label="Matching French verbs"></div>
+      </div>
+      <button class="filter-action" id="cc-filter-button" type="button" title="Filter menu to the current connected component">Same CC</button>
+      <button class="action" id="go-button" type="button">Explore</button>
+    </section>
+
+    <div class="status" id="status" aria-live="polite"></div>
+    <div class="file-fallback" id="file-fallback">
+      <input type="file" id="file-input" accept="application/json,.json">
+    </div>
+
+    <section class="layout">
+      <aside class="side">
+        <div class="verb-title">
+          <h2 id="verb-title">...</h2>
+          <span class="pos" id="verb-pos">verb</span>
+        </div>
+        <p class="gloss" id="verb-gloss"></p>
+        <div id="component-info"></div>
+        <div class="edge-filter-panel">
+          <p class="edge-filter-title">Edge Types</p>
+          <div class="edge-filter-row" id="edge-filter-row"></div>
+        </div>
+        <div class="candidate-list" id="candidate-list"></div>
+      </aside>
+
+      <section class="panel">
+        <div class="tabs" role="tablist" aria-label="Explorer views">
+          <button class="tab is-active" id="tab-latin-path" type="button" role="tab" aria-selected="true">Latin Path</button>
+          <button class="tab" id="tab-learner" type="button" role="tab" aria-selected="false">Learner</button>
+          <button class="tab" id="tab-graph" type="button" role="tab" aria-selected="false">Graph</button>
+          <button class="tab" id="tab-neighbors" type="button" role="tab" aria-selected="false">Neighbors</button>
+          <button class="tab" id="tab-component" type="button" role="tab" aria-selected="false">Component</button>
+          <button class="tab" id="tab-json" type="button" role="tab" aria-selected="false">Raw JSON</button>
+        </div>
+        <div class="view is-active" id="latin-path-view" role="tabpanel" aria-labelledby="tab-latin-path">
+          <div class="latin-path-viewer" id="latin-path-viewer"></div>
+        </div>
+        <div class="view" id="learner-view" role="tabpanel" aria-labelledby="tab-learner">
+          <div class="learner-viewer" id="learner-viewer"></div>
+        </div>
+        <div class="view" id="graph-view" role="tabpanel" aria-labelledby="tab-graph">
+          <div class="graph-wrap" id="graph-wrap"></div>
+        </div>
+        <div class="view" id="neighbors-view" role="tabpanel" aria-labelledby="tab-neighbors">
+          <div class="neighborhood-viewer" id="neighborhood-viewer"></div>
+        </div>
+        <div class="view" id="component-view" role="tabpanel" aria-labelledby="tab-component">
+          <div class="component-viewer" id="component-viewer"></div>
+        </div>
+        <div class="view" id="json-view" role="tabpanel" aria-labelledby="tab-json">
+          <pre class="raw" id="raw-json"></pre>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const DATA_URL = "data/french_verbs_related_en.json";
+    const COMPONENT_INDEX_URL = "data/french_verb_component_index.json";
+    const SMALL_COMPONENTS_URL = "data/french_verb_small_components.json";
+    const NEIGHBORHOOD_DIR = "data/french_verb_neighborhoods";
+    const LATIN_PATH_DIR = "data/french_verb_latin_paths";
+    const EDGE_TYPE_OPTIONS = [
+      ["inherited_from", "inherited"],
+      ["descended_from", "descended"],
+      ["borrowed_from", "borrowed"],
+      ["learned_borrowing_from", "learned"],
+      ["semi_learned_borrowing_from", "semi"],
+      ["adapted_borrowing_from", "adapted"],
+      ["unadapted_borrowing_from", "unadapted"],
+      ["derived_from", "derived"],
+      ["composed_of", "composed"],
+      ["cognate_with", "cognate"],
+      ["unknown_etymology_relation", "unknown"]
+    ];
+    const DEFAULT_EDGE_TYPES = new Set([
+      "inherited_from",
+      "descended_from",
+      "borrowed_from",
+      "learned_borrowing_from",
+      "semi_learned_borrowing_from",
+      "adapted_borrowing_from",
+      "unadapted_borrowing_from",
+      "derived_from"
+    ]);
+    const state = {
+      data: null,
+      componentIndex: null,
+      smallComponents: null,
+      neighborhoodShards: {},
+      latinPathShards: {},
+      currentNeighborhood: null,
+      currentLatinPath: null,
+      verbs: [],
+      currentVerb: "",
+      currentCandidateIndex: 0,
+      showOthers: false,
+      menuMatches: [],
+      menuIndex: 0,
+      componentFilter: false,
+      enabledEdgeTypes: new Set(DEFAULT_EDGE_TYPES)
+    };
+
+    const els = {
+      count: document.getElementById("count-pill"),
+      source: document.getElementById("source-pill"),
+      search: document.getElementById("search"),
+      verbMenu: document.getElementById("verb-menu"),
+      ccFilter: document.getElementById("cc-filter-button"),
+      go: document.getElementById("go-button"),
+      status: document.getElementById("status"),
+      fallback: document.getElementById("file-fallback"),
+      fileInput: document.getElementById("file-input"),
+      title: document.getElementById("verb-title"),
+      pos: document.getElementById("verb-pos"),
+      gloss: document.getElementById("verb-gloss"),
+      componentInfo: document.getElementById("component-info"),
+      edgeFilterRow: document.getElementById("edge-filter-row"),
+      candidates: document.getElementById("candidate-list"),
+      latinPathViewer: document.getElementById("latin-path-viewer"),
+      learnerViewer: document.getElementById("learner-viewer"),
+      graphWrap: document.getElementById("graph-wrap"),
+      neighborhoodViewer: document.getElementById("neighborhood-viewer"),
+      componentViewer: document.getElementById("component-viewer"),
+      raw: document.getElementById("raw-json"),
+      tabLatinPath: document.getElementById("tab-latin-path"),
+      tabLearner: document.getElementById("tab-learner"),
+      tabGraph: document.getElementById("tab-graph"),
+      tabNeighbors: document.getElementById("tab-neighbors"),
+      tabComponent: document.getElementById("tab-component"),
+      tabJson: document.getElementById("tab-json"),
+      latinPathView: document.getElementById("latin-path-view"),
+      learnerView: document.getElementById("learner-view"),
+      graphView: document.getElementById("graph-view"),
+      neighborsView: document.getElementById("neighbors-view"),
+      componentView: document.getElementById("component-view"),
+      jsonView: document.getElementById("json-view")
+    };
+
+    init();
+
+    async function init() {
+      bindEvents();
+      renderEdgeFilters();
+      setStatus("Loading data/french_verbs_related_en.json");
+      try {
+        const response = await fetch(DATA_URL, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const data = await response.json();
+        loadData(data);
+        loadComponentData();
+      } catch (error) {
+        setStatus("Could not fetch JSON from this page origin.", true);
+        els.fallback.classList.add("is-visible");
+      }
+    }
+
+    async function loadComponentData() {
+      const [index, small] = await Promise.all([
+        fetchOptionalJson(COMPONENT_INDEX_URL),
+        fetchOptionalJson(SMALL_COMPONENTS_URL)
+      ]);
+      state.componentIndex = index;
+      state.smallComponents = small;
+      updateFilterButton();
+      renderVerbMenu(els.search.value, false);
+      render();
+    }
+
+    async function fetchOptionalJson(url) {
+      try {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        return await response.json();
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function bindEvents() {
+      els.go.addEventListener("click", () => {
+        chooseVerb(els.search.value || state.currentVerb);
+      });
+      els.ccFilter.addEventListener("click", () => {
+        state.componentFilter = !state.componentFilter;
+        updateFilterButton();
+        renderVerbMenu(els.search.value, true);
+      });
+      els.search.addEventListener("focus", () => renderVerbMenu(els.search.value, true));
+      els.search.addEventListener("input", () => renderVerbMenu(els.search.value, true));
+      els.search.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          moveMenuHighlight(1);
+          return;
+        }
+        if (event.key === "ArrowUp") {
+          event.preventDefault();
+          moveMenuHighlight(-1);
+          return;
+        }
+        if (event.key === "Enter") {
+          event.preventDefault();
+          const highlighted = state.menuMatches[state.menuIndex];
+          chooseVerb(highlighted || els.search.value);
+          return;
+        }
+        if (event.key === "Escape") {
+          closeVerbMenu();
+        }
+      });
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".search-panel")) {
+          closeVerbMenu();
+        }
+      });
+      els.fileInput.addEventListener("change", loadFile);
+      els.tabLatinPath.addEventListener("click", () => activateTab("latin-path"));
+      els.tabLearner.addEventListener("click", () => activateTab("learner"));
+      els.tabGraph.addEventListener("click", () => activateTab("graph"));
+      els.tabNeighbors.addEventListener("click", () => activateTab("neighbors"));
+      els.tabComponent.addEventListener("click", () => activateTab("component"));
+      els.tabJson.addEventListener("click", () => activateTab("json"));
+    }
+
+    function loadData(data) {
+      state.data = data;
+      state.verbs = Object.keys(data.verbs || {}).sort((a, b) => a.localeCompare(b, "fr"));
+      const metadata = data.metadata || {};
+      els.count.textContent = `${state.verbs.length.toLocaleString()} exported verbs`;
+      els.source.textContent = metadata.verb_list_source || metadata.source || "etygraph";
+      hydrateOptions();
+      const firstChoice = data.verbs["écrire"] ? "écrire" : state.verbs[0];
+      chooseVerb(firstChoice);
+      setStatus(`${(metadata.verbs_with_related_english || 0).toLocaleString()} verbs have related English candidates`);
+    }
+
+    function hydrateOptions() {
+      const popular = ["écrire", "parler", "demander", "aller", "avoir", "faire", "venir", "voir"];
+      state.menuMatches = unique([...popular.filter((verb) => state.data.verbs[verb]), ...state.verbs.slice(0, 120)]);
+      renderVerbMenu("", false);
+    }
+
+    function renderVerbMenu(query, open = true) {
+      if (!state.data) {
+        return;
+      }
+      const needle = normalize(query);
+      const sourceVerbs = filteredVerbUniverse();
+      const starts = [];
+      const contains = [];
+      for (const verb of sourceVerbs) {
+        const normalizedVerb = normalize(verb);
+        if (!needle || normalizedVerb.startsWith(needle)) {
+          starts.push(verb);
+        } else if (normalizedVerb.includes(needle)) {
+          contains.push(verb);
+        }
+        if (starts.length + contains.length >= 160) {
+          break;
+        }
+      }
+      state.menuMatches = unique([...starts, ...contains]).slice(0, 160);
+      state.menuIndex = Math.min(state.menuIndex, Math.max(0, state.menuMatches.length - 1));
+      els.verbMenu.innerHTML = state.menuMatches.map((verb, index) => {
+        const row = state.data.verbs[verb] || {};
+        const count = (row.english_related || []).length;
+        const component = componentForVerb(verb);
+        const ccText = component ? `cc ${compactNumber(component.component_size)}` : "";
+        const highlighted = index === state.menuIndex ? " is-highlighted" : "";
+        return `
+          <button class="verb-option${highlighted}" type="button" role="option" data-verb="${escapeHtml(verb)}">
+            ${escapeHtml(verb)}
+            <span class="verb-option-meta">${escapeHtml([ccText, count ? `${count} rel.` : ""].filter(Boolean).join(" · "))}</span>
+          </button>
+        `;
+      }).join("") || `<button class="verb-option" type="button" disabled>No matches</button>`;
+      els.verbMenu.querySelectorAll(".verb-option[data-verb]").forEach((button) => {
+        button.addEventListener("click", () => chooseVerb(button.dataset.verb || ""));
+      });
+      els.verbMenu.classList.toggle("is-open", open);
+      els.search.setAttribute("aria-expanded", String(open));
+    }
+
+    function filteredVerbUniverse() {
+      if (!state.componentFilter) {
+        return state.verbs;
+      }
+      const current = componentForVerb(state.currentVerb);
+      if (!current) {
+        return state.verbs;
+      }
+      return state.verbs.filter((verb) => componentForVerb(verb)?.component_id === current.component_id);
+    }
+
+    function moveMenuHighlight(delta) {
+      if (!state.menuMatches.length) {
+        return;
+      }
+      state.menuIndex = (state.menuIndex + delta + state.menuMatches.length) % state.menuMatches.length;
+      renderVerbMenu(els.search.value, true);
+      const active = els.verbMenu.querySelector(".verb-option.is-highlighted");
+      if (active) {
+        active.scrollIntoView({ block: "nearest" });
+      }
+    }
+
+    function closeVerbMenu() {
+      els.verbMenu.classList.remove("is-open");
+      els.search.setAttribute("aria-expanded", "false");
+    }
+
+    function chooseVerb(input) {
+      if (!state.data) {
+        return;
+      }
+      const normalized = normalize(input);
+      const exact = state.verbs.find((verb) => normalize(verb) === normalized);
+      const fuzzy = state.verbs.find((verb) => normalize(verb).startsWith(normalized));
+      const verb = exact || fuzzy;
+      if (!verb) {
+        setStatus(`No exported match for “${input}”`, true);
+        return;
+      }
+      state.currentVerb = verb;
+      state.currentCandidateIndex = 0;
+      state.showOthers = false;
+      state.currentNeighborhood = null;
+      state.currentLatinPath = null;
+      els.search.value = verb;
+      closeVerbMenu();
+      setStatus("");
+      render();
+      loadLatinPathForVerb(verb);
+      loadNeighborhoodForVerb(verb);
+    }
+
+    function render() {
+      const row = currentRow();
+      if (!row) {
+        return;
+      }
+      const related = row.english_related || [];
+      const visibleRelated = filterCandidatesByEdges(related);
+      if (state.currentCandidateIndex >= visibleRelated.length) {
+        state.currentCandidateIndex = 0;
+      }
+      els.title.textContent = row.fr_word || state.currentVerb;
+      els.pos.textContent = row.pos || "verb";
+      els.gloss.textContent = compactGloss(row.glosses);
+      els.raw.textContent = JSON.stringify(row, null, 2);
+      renderComponentInfo(row);
+      renderLatinPathView(row);
+      renderLearnerView(row, related, visibleRelated);
+      renderCandidates(visibleRelated);
+      renderGraph(row, visibleRelated, visibleRelated[Math.min(state.currentCandidateIndex, Math.max(0, visibleRelated.length - 1))]);
+      renderComponentView(row);
+      renderNeighborhoodView(row);
+      updateFilterButton();
+    }
+
+    function renderEdgeFilters() {
+      els.edgeFilterRow.innerHTML = EDGE_TYPE_OPTIONS.map(([type, label]) => `
+        <button class="edge-chip${state.enabledEdgeTypes.has(type) ? " is-active" : ""}" type="button" data-edge-type="${escapeHtml(type)}">
+          ${escapeHtml(label)}
+        </button>
+      `).join("");
+      els.edgeFilterRow.querySelectorAll("[data-edge-type]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const type = button.dataset.edgeType;
+          if (!type) {
+            return;
+          }
+          if (state.enabledEdgeTypes.has(type)) {
+            state.enabledEdgeTypes.delete(type);
+          } else {
+            state.enabledEdgeTypes.add(type);
+          }
+          state.currentCandidateIndex = 0;
+          renderEdgeFilters();
+          render();
+        });
+      });
+    }
+
+    function renderComponentInfo(row) {
+      const component = componentForVerb(row.fr_word || state.currentVerb);
+      if (!component) {
+        els.componentInfo.innerHTML = "";
+        return;
+      }
+      const explorable = component.component_is_explorable ? "full component available" : "too large for full browser view";
+      els.componentInfo.innerHTML = `
+        <div class="component-card">
+          <div>Connected component: <strong>${compactNumber(component.component_size)} nodes</strong> · rank ${compactNumber(component.component_rank)}</div>
+          <div>${escapeHtml(explorable)}</div>
+          <div class="component-actions">
+            <button class="mini-button" type="button" data-action="same-cc">${state.componentFilter ? "Clear CC filter" : "Filter menu to this CC"}</button>
+            <button class="mini-button" type="button" data-action="component-tab">Open component tab</button>
+          </div>
+        </div>
+      `;
+      els.componentInfo.querySelector('[data-action="same-cc"]').addEventListener("click", () => {
+        state.componentFilter = !state.componentFilter;
+        updateFilterButton();
+        renderVerbMenu(els.search.value, true);
+        render();
+      });
+      els.componentInfo.querySelector('[data-action="component-tab"]').addEventListener("click", () => {
+        activateTab("component");
+      });
+    }
+
+    function renderCandidates(related) {
+      if (!related.length) {
+        els.candidates.innerHTML = `<div class="empty" style="min-height:220px;">No candidates with current edge filters</div>`;
+        return;
+      }
+      const shown = state.showOthers ? related.slice(0, 8) : related.slice(0, 2);
+      const hiddenCount = Math.max(0, related.length - 2);
+      els.candidates.innerHTML = shown.map((candidate, index) => {
+        const active = index === state.currentCandidateIndex ? " is-active" : "";
+        return `
+          <button class="candidate${active}" type="button" data-index="${index}">
+            <span class="candidate-row">
+              <span class="candidate-word">${escapeHtml(candidate.word)}</span>
+              <span class="score">${Number(candidate.score || 0).toFixed(0)}</span>
+            </span>
+            <span class="candidate-via">${escapeHtml(candidate.relation_label || "")} · ${escapeHtml(candidate.via || "")}</span>
+          </button>
+        `;
+      }).join("") + (hiddenCount ? `
+        <button class="candidate" type="button" data-action="toggle-others">
+          <span class="candidate-row">
+            <span class="candidate-word">${state.showOthers ? "Hide" : `${hiddenCount} others`}</span>
+            <span class="score">${state.showOthers ? "−" : "+"}</span>
+          </span>
+          <span class="candidate-via">${state.showOthers ? "Collapse extra related words" : "Tap to show the rest"}</span>
+        </button>
+      ` : "");
+      els.candidates.querySelectorAll(".candidate").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (button.dataset.action === "toggle-others") {
+            state.showOthers = !state.showOthers;
+            if (!state.showOthers && state.currentCandidateIndex > 1) {
+              state.currentCandidateIndex = 0;
+            }
+            render();
+            return;
+          }
+          state.currentCandidateIndex = Number(button.dataset.index || 0);
+          render();
+        });
+      });
+    }
+
+    async function loadLatinPathForVerb(verb) {
+      const key = shardKey(verb);
+      try {
+        if (!state.latinPathShards[key]) {
+          const response = await fetch(`${LATIN_PATH_DIR}/${key}.json`, { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          state.latinPathShards[key] = await response.json();
+        }
+        if (verb !== state.currentVerb) {
+          return;
+        }
+        state.currentLatinPath = state.latinPathShards[key]?.verbs?.[verb] || null;
+        renderLatinPathView(currentRow());
+      } catch (error) {
+        if (verb === state.currentVerb) {
+          state.currentLatinPath = null;
+          renderLatinPathView(currentRow(), true);
+        }
+      }
+    }
+
+    function renderLatinPathView(row, failed = false) {
+      if (!row) {
+        return;
+      }
+      if (failed) {
+        els.latinPathViewer.innerHTML = `<div class="empty">Could not load Latin-path shard.</div>`;
+        return;
+      }
+      const data = state.currentLatinPath;
+      const family = latinFamilyForRow(row);
+      if (!family) {
+        els.latinPathViewer.innerHTML = `
+          <div class="empty">
+            No useful Latin ancestor with English verb candidates under the current filters.
+          </div>
+        `;
+        return;
+      }
+      els.latinPathViewer.innerHTML = `
+        <div class="latin-path-summary">
+          Latin ancestor: <strong>${escapeHtml(family.ancestorWord)}</strong>
+          · ${compactNumber(family.candidates.length)} English verb${family.candidates.length === 1 ? "" : "s"}
+          ${data?.french_distance ? `· French distance ${data.french_distance}` : ""}
+        </div>
+        <div class="latin-path-diagram">
+          ${latinPathDiagram(row, data, family)}
+        </div>
+        <div class="descendant-list">
+          ${family.candidates.map(latinCandidateRow).join("")}
+        </div>
+      `;
+    }
+
+    function latinPathDiagram(row, data, family) {
+      const width = 860;
+      const height = 430;
+      const frenchChain = latinFrenchChain(row, data, family);
+      const latin = {
+        ...family.ancestorNode,
+        x: 430,
+        y: 92,
+        r: 58,
+        edgeToParent: null
+      };
+      const frenchPoints = frenchChain.map((item, index) => {
+        if (index === 0) {
+          return latin;
+        }
+        const isTargetVerb = index === frenchChain.length - 1;
+        const isSingleHop = frenchChain.length === 2;
+        return {
+          ...pointFromNode(item.node),
+          x: isTargetVerb ? 115 : 225,
+          y: isSingleHop ? 333 : 190 + (index - 1) * 78,
+          r: isTargetVerb ? 58 : 34,
+          edgeToParent: item.edgeToParent
+        };
+      });
+      const englishShown = family.candidates.slice(0, 4);
+      const english = englishShown.map((candidate, index) => ({
+        id: candidate.node_id || candidate.word,
+        word: candidate.word,
+        lang_code: "en",
+        pos: candidate.pos || "verb",
+        candidate,
+        x: spread(index, Math.max(4, englishShown.length), 405, 795),
+        y: 333,
+        r: sameCandidate(candidate, family.candidates[0]) ? 50 : 44
+      }));
+      const hiddenCount = Math.max(0, family.candidates.length - englishShown.length);
+      const hiddenNode = hiddenCount
+        ? { id: "__hidden_latin_descendants__", word: `${hiddenCount} more`, lang_code: "en", pos: "hidden", x: 800, y: 230, r: 34 }
+        : null;
+      return `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Latin ancestor with English verb relatives" style="height:430px;">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L8,3 z" fill="var(--graph-line)"></path>
+            </marker>
+          </defs>
+          <text class="lane-label" x="150" y="220">French path</text>
+          <text class="lane-label" x="615" y="220">English verbs</text>
+          ${frenchPoints.slice(1).map((point, index) => edge(point, frenchPoints[index], point.edgeToParent?.type || "unknown_etymology_relation", point.edgeToParent?.type || "unknown")).join("")}
+          ${english.map((point) => edge(point, latin, englishEdgeType(point.candidate), null)).join("")}
+          ${hiddenNode ? edge(hiddenNode, latin, "mixed", null) : ""}
+          ${frenchPoints.map((point, index) => node(point, point.word, index === 0 ? "Latin ancestor" : index === frenchPoints.length - 1 ? "this French verb" : `${point.lang_code} · ${point.pos || "word"}`, index === 0 ? langClass("la") : langClass(point.lang_code), point.r)).join("")}
+          ${english.map((point) => node(point, point.word, "English · verb", `${langClass("en")}${sameCandidate(point.candidate, family.candidates[0]) ? " is-selected" : ""}`, point.r)).join("")}
+          ${hiddenNode ? node(hiddenNode, hiddenNode.word, "more verbs below", "cluster-node lang-other", 34) : ""}
+        </svg>
+      `;
+    }
+
+    function latinFamilyForRow(row) {
+      const groups = new Map();
+      const candidates = filterCandidatesByEdges(row.english_related || []).filter((candidate) => {
+        return normalize(candidate.ancestor_lang_code) === "la"
+          && normalize(candidate.pos) === "verb"
+          && normalize(candidate.word) !== normalize(row.fr_word);
+      });
+      candidates.forEach((candidate) => {
+        const key = visualAncestorKey(candidate);
+        if (!groups.has(key)) {
+          groups.set(key, []);
+        }
+        groups.get(key).push(candidate);
+      });
+      const ranked = Array.from(groups.entries()).map(([key, items]) => {
+        const sorted = items.slice().sort(compareLatinCandidate);
+        const top = sorted[0];
+        const directBonus = sorted.some((candidate) => !pathHasOnlyWeakTypes(candidate)) ? 20 : 0;
+        return {
+          key,
+          candidates: sorted,
+          top,
+          rank: sorted.length * 30 + Number(top.score || 0) + directBonus
+        };
+      }).sort((a, b) => b.rank - a.rank || compareLatinCandidate(a.top, b.top));
+      const best = ranked[0];
+      if (!best) {
+        return null;
+      }
+      const top = best.top;
+      return {
+        ancestorWord: ancestorDisplayWord(top.ancestor_word || "Latin", "la"),
+        ancestorNode: {
+          id: top.ancestor_node_id || best.key,
+          word: ancestorDisplayWord(top.ancestor_word || "Latin", "la"),
+          lang_code: "la",
+          pos: "source"
+        },
+        candidates: best.candidates
+      };
+    }
+
+    function compareLatinCandidate(a, b) {
+      return Number(b.score || 0) - Number(a.score || 0)
+        || Number(b.confidence || 0) - Number(a.confidence || 0)
+        || String(a.word || "").localeCompare(String(b.word || ""));
+    }
+
+    function latinFrenchChain(row, data, family) {
+      if (data?.latin_ancestor && visualLatinNodeKey(data.latin_ancestor) === visualLatinNodeKey(family.ancestorNode)) {
+        const chain = frenchChainTopDown(data);
+        if (chain.length) {
+          return [
+            { ...chain[0], node: family.ancestorNode },
+            ...chain.slice(1)
+          ];
+        }
+      }
+      return [
+        { node: family.ancestorNode, edgeToParent: null },
+        {
+          node: {
+            id: row.fr_node_id,
+            word: row.fr_word,
+            lang_code: "fr",
+            pos: row.pos || "verb"
+          },
+          edgeToParent: { type: firstFrenchLatinEdgeType(family.candidates[0]) }
+        }
+      ];
+    }
+
+    function visualLatinNodeKey(nodeRow) {
+      return `la:${normalizeForAncestorDisplay(ancestorDisplayWord(nodeRow?.word || "", "la"))}`;
+    }
+
+    function firstFrenchLatinEdgeType(candidate) {
+      const types = candidate?.relation_types || [];
+      return types.find((type) => [
+        "inherited_from",
+        "descended_from",
+        "borrowed_from",
+        "learned_borrowing_from",
+        "derived_from"
+      ].includes(type)) || types[0] || "unknown_etymology_relation";
+    }
+
+    function descendantChainTopDown(descendant, latinAncestor) {
+      const path = descendant.path || [];
+      if (!path.length) {
+        return [
+          { node: latinAncestor, edgeToParent: null },
+          { node: descendant.node, edgeToParent: null }
+        ];
+      }
+      const bottomUp = [];
+      for (let index = 0; index < path.length; index += 1) {
+        bottomUp.push({
+          node: index === 0 ? path[index].from_node || descendant.node : path[index - 1].to_node,
+          edgeToParent: path[index].edge
+        });
+      }
+      bottomUp.push({ node: path[path.length - 1].to_node || latinAncestor, edgeToParent: null });
+      return bottomUp.reverse();
+    }
+
+    function frenchChainTopDown(data) {
+      const path = data.french_path || [];
+      if (!path.length) {
+        return [{ node: data.fr_node, edgeToParent: null }];
+      }
+      const bottomUp = [];
+      for (let index = 0; index < path.length; index += 1) {
+        bottomUp.push({
+          node: index === 0 ? data.fr_node : path[index - 1].to_node,
+          edgeToParent: path[index].edge
+        });
+      }
+      bottomUp.push({ node: path[path.length - 1].to_node, edgeToParent: null });
+      return bottomUp.reverse();
+    }
+
+    function pointFromNode(nodeRow) {
+      return {
+        id: nodeRow.id,
+        word: nodeRow.word,
+        lang_code: nodeRow.lang_code,
+        pos: nodeRow.pos
+      };
+    }
+
+    function descendantRow(descendant) {
+      return `
+        <div class="descendant-row">
+          <strong>${escapeHtml(descendant.node.word)}</strong>
+          <div class="path-line">${escapeHtml(descendant.node.lang_code)} · ${escapeHtml(descendant.node.pos || "word")} · distance ${descendant.distance} · confidence ${Number(descendant.confidence || 0).toFixed(2)}</div>
+          <div class="path-line">${escapeHtml(pathText(descendant.path))}</div>
+        </div>
+      `;
+    }
+
+    function latinCandidateRow(candidate) {
+      return `
+        <div class="descendant-row">
+          <strong>${escapeHtml(candidate.word)}</strong>
+          <div class="path-line">en · ${escapeHtml(candidate.pos || "verb")} · score ${Number(candidate.score || 0).toFixed(0)} · confidence ${Number(candidate.confidence || 0).toFixed(2)}</div>
+          <div class="path-line">${escapeHtml(candidate.path_summary || candidate.via || "")}</div>
+        </div>
+      `;
+    }
+
+    function pathText(path) {
+      if (!path || !path.length) {
+        return "";
+      }
+      return path.map((step) => `${step.from_node.word} → ${step.to_node.word} (${edgeLabel(step.edge.type)})`).join(" · ");
+    }
+
+    function firstPathEdgeType(path) {
+      return path?.[0]?.edge?.type || "unknown_etymology_relation";
+    }
+
+    function englishDescendantLabel(descendant) {
+      const types = (descendant.relation_types || []).map(edgeLabel);
+      return types.slice(0, 2).join("+") || firstPathEdgeType(descendant.path);
+    }
+
+    function renderLearnerView(row, allRelated, visibleRelated) {
+      const classification = classifyLearnerCase(row, allRelated, visibleRelated);
+      const diagram = learnerDiagram(row, visibleRelated, classification);
+      els.learnerViewer.innerHTML = `
+        <div class="scenario-grid">
+          ${scenarioCard(1, "Lone Verb", "No useful structured family.", classification.active.includes(1))}
+          ${scenarioCard(2, "Latin Father", "Primary path: French to useful Latin source.", classification.active.includes(2))}
+          ${scenarioCard(3, "French Father", "Primary path: Old/Middle French, maybe Latin above.", classification.active.includes(3))}
+          ${scenarioCard(4, "+ English Cluster", "Case 2/3 plus English relatives through similar paths.", classification.active.includes(4))}
+          ${scenarioCard(5, "Uninteresting", "Hidden by filters or weak/distant.", classification.active.includes(5))}
+        </div>
+        <div class="learner-diagram">${diagram}</div>
+        <div class="learner-note">${escapeHtml(classification.note)}</div>
+      `;
+    }
+
+    function scenarioCard(number, title, text, active) {
+      return `
+        <div class="scenario-card${active ? " is-active" : ""}">
+          <span class="scenario-number">Case ${number}</span>
+          <strong>${escapeHtml(title)}</strong>
+          ${escapeHtml(text)}
+        </div>
+      `;
+    }
+
+    function classifyLearnerCase(row, allRelated, visibleRelated) {
+      if (!allRelated.length) {
+        return { active: [1], note: "No structured English-related candidates were exported for this verb." };
+      }
+      if (!visibleRelated.length) {
+        return { active: [5], note: "Candidates exist, but current edge-type filters hide them." };
+      }
+      const active = [];
+      const hasLatin = visibleRelated.some((candidate) => candidate.ancestor_lang_code === "la" && !pathHasOnlyWeakTypes(candidate));
+      const hasFrenchParent = visibleRelated.some((candidate) => ["fro", "frm", "fr"].includes(candidate.ancestor_lang_code) && candidate.ancestor_node_id !== row.fr_node_id);
+      const hasCluster = visibleRelated.length >= 2;
+      const hasWordPart = visibleRelated.some((candidate) => (candidate.relation_types || []).includes("composed_of"));
+      if (hasLatin) {
+        active.push(2);
+      }
+      if (hasFrenchParent) {
+        active.push(3);
+      }
+      if (hasCluster) {
+        active.push(4);
+      }
+      if (!active.length || hasWordPart && !hasLatin && !hasFrenchParent) {
+        active.push(5);
+      }
+      return {
+        active,
+        note: learnerNote(active, visibleRelated, row)
+      };
+    }
+
+    function learnerNote(active, visibleRelated, row) {
+      if (active.includes(5)) {
+        return "This is mostly weak, distant, or word-part evidence under the current filters.";
+      }
+      const top = visibleRelated[0];
+      const primary = active.includes(2)
+        ? "Primary: Latin father"
+        : active.includes(3)
+          ? "Primary: French historical father"
+          : "Primary: related cluster";
+      const overlay = active.includes(4) ? " + English relatives." : ".";
+      return `${primary}${overlay} Best visible path from ${row.fr_word}: ${top.word} via ${top.via}; relation types: ${(top.relation_types || []).map(edgeLabel).join(" + ")}.`;
+    }
+
+    function learnerDiagram(row, visibleRelated) {
+      if (!visibleRelated.length) {
+        return `<div class="empty">No visible learner graph with the current edge filters.</div>`;
+      }
+      const top = visibleRelated.slice(0, state.showOthers ? 8 : 3);
+      const ancestors = uniqueBy(top.map(ancestorFromCandidate), (ancestor) => ancestor.key).slice(0, 3);
+      const width = 860;
+      const height = 380;
+      const fr = { x: 160, y: 295, r: 46, id: row.fr_node_id, langCode: "fr" };
+      const ancestorNodes = ancestors.map((ancestor, index) => ({
+        ...ancestor,
+        x: spread(index, ancestors.length, 285, 575),
+        y: ancestor.langCode === "la" ? 82 : 150,
+        r: 44
+      }));
+      const englishNodes = top.map((candidate, index) => ({
+        candidate,
+        id: candidateKey(candidate),
+        langCode: "en",
+        x: spread(index % 4, Math.min(4, top.length), 420, 735),
+        y: 275 + Math.floor(index / 4) * 68,
+        r: 38
+      }));
+      return `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Learner etymology scenario for ${escapeHtml(row.fr_word)}" style="height:380px;">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L8,3 z" fill="var(--graph-line)"></path>
+            </marker>
+          </defs>
+          ${ancestorNodes.map((ancestor) => edge(fr, ancestor, frenchEdgeTypeForAncestor(top, ancestor.key), frenchEdgeLabelForAncestor(top, ancestor.key))).join("")}
+          ${englishNodes.map((item) => edge(item, ancestorNodeForCandidate(item.candidate, ancestorNodes), englishEdgeType(item.candidate), englishEdgeLabel(item.candidate))).join("")}
+          ${node(fr, row.fr_word || state.currentVerb, "French verb", "lang-fr", 46)}
+          ${ancestorNodes.map((ancestor) => node(ancestor, ancestor.word, ancestor.lang || ancestor.langCode || "source", langClass(ancestor.langCode), 44)).join("")}
+          ${englishNodes.map((item) => node(item, item.candidate.word, `English · ${item.candidate.pos || "word"}`, langClass("en"), 38)).join("")}
+        </svg>
+      `;
+    }
+
+    function renderGraph(row, related, selected) {
+      if (!related.length) {
+        els.graphWrap.innerHTML = `<div class="empty">No graph candidates for ${escapeHtml(row.fr_word || state.currentVerb)}</div>`;
+        return;
+      }
+
+      const chosen = selected || related[0];
+      const top = uniqueBy(
+        state.showOthers ? related.slice(0, 8) : related.slice(0, 2),
+        candidateKey
+      );
+      const hiddenCount = Math.max(0, related.length - 2);
+      const width = 860;
+      const height = 560;
+      const radius = 48;
+      const fr = { x: 160, y: 430, r: radius, id: row.fr_node_id, langCode: "fr" };
+      const ancestorItems = uniqueBy(top.map(ancestorFromCandidate), (ancestor) => ancestor.key);
+      const ancestorNodes = ancestorItems.map((ancestor, index) => ({
+        ...ancestor,
+        x: spread(index, ancestorItems.length, 260, 650),
+        y: 104,
+        r: radius
+      }));
+      const englishNodes = top.map((candidate, index) => {
+        const rowIndex = Math.floor(index / 4);
+        const colIndex = index % 4;
+        const columns = Math.min(4, top.length);
+        return {
+          candidate,
+          id: candidateKey(candidate),
+          langCode: "en",
+          x: spread(colIndex, columns, 420, 740),
+          y: 350 + rowIndex * 105,
+          r: 42
+        };
+      });
+      const clusterNode = (!state.showOthers && hiddenCount > 0)
+        ? { x: 720, y: 470, r: 42, id: "__others__", langCode: "mixed", isCluster: true }
+        : null;
+      const metricHtml = `
+        <div class="detail-grid">
+          <div class="metric">
+            <span class="metric-label">Ancestor</span>
+            <span class="metric-value">${escapeHtml(chosen.ancestor_lang || chosen.ancestor_lang_code || "")} ${escapeHtml(chosen.ancestor_word || "")}</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Path</span>
+            <span class="metric-value">${escapeHtml((chosen.relation_types || []).join(" + "))}</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Confidence</span>
+            <span class="metric-value">${Number(chosen.confidence || 0).toFixed(2)}</span>
+          </div>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-line inherited"></span>inherited / descended</span>
+          <span class="legend-item"><span class="legend-line"></span>borrowed</span>
+          <span class="legend-item"><span class="legend-line derived"></span>derived</span>
+          <span class="legend-item"><span class="legend-line composed"></span>composed</span>
+          <span class="legend-item"><span class="legend-line cognate"></span>cognate / mixed</span>
+        </div>
+      `;
+
+      els.graphWrap.innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Etymology graph for ${escapeHtml(row.fr_word || state.currentVerb)}">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L8,3 z" fill="var(--graph-line)"></path>
+            </marker>
+          </defs>
+          ${ancestorNodes.map((ancestor) => edge(fr, ancestor, frenchEdgeTypeForAncestor(top, ancestor.key), frenchEdgeLabelForAncestor(top, ancestor.key))).join("")}
+          ${englishNodes.map((item) => edge(item, ancestorNodeForCandidate(item.candidate, ancestorNodes), englishEdgeType(item.candidate), englishEdgeLabel(item.candidate))).join("")}
+          ${clusterNode ? edge(clusterNode, ancestorNodes[0], "mixed", "mixed") : ""}
+          ${node(fr, row.fr_word || state.currentVerb, "French", `lang-fr`, radius)}
+          ${ancestorNodes.map((ancestor) => node(
+            ancestor,
+            ancestor.word,
+            ancestor.lang || ancestor.langCode || "source",
+            langClass(ancestor.langCode),
+            radius
+          )).join("")}
+          ${englishNodes.map((item) => node(
+            item,
+            item.candidate.word,
+            `English · ${item.candidate.pos || "word"}`,
+            `${langClass("en")}${sameCandidate(item.candidate, chosen) ? " is-selected" : ""}`,
+            42
+          )).join("")}
+          ${clusterNode ? node(clusterNode, `${hiddenCount} others`, "tap to open", "cluster-node lang-other", 42) : ""}
+        </svg>
+        ${metricHtml}
+      `;
+
+      els.graphWrap.querySelectorAll("[data-node-id]").forEach((svgNode) => {
+        svgNode.addEventListener("click", () => {
+          const id = svgNode.getAttribute("data-node-id");
+          if (id === "__others__") {
+            state.showOthers = true;
+            render();
+            return;
+          }
+          const index = top.findIndex((candidate) => candidateKey(candidate) === id);
+          if (index >= 0) {
+            const globalIndex = related.findIndex((candidate) => candidateKey(candidate) === candidateKey(top[index]));
+            state.currentCandidateIndex = Math.max(0, globalIndex);
+            render();
+          }
+        });
+      });
+    }
+
+    function renderComponentView(row) {
+      const verb = row.fr_word || state.currentVerb;
+      const component = componentForVerb(verb);
+      if (!component) {
+        els.componentViewer.innerHTML = `<div class="empty">Component metadata is not loaded.</div>`;
+        return;
+      }
+      const subgraph = state.smallComponents?.components?.[component.component_id];
+      if (!component.component_is_explorable || !subgraph) {
+        els.componentViewer.innerHTML = `
+          <div>
+            <h2 style="margin:0 0 8px;">Connected Component</h2>
+            <p class="gloss">This verb is in a component with <strong>${compactNumber(component.component_size)} nodes</strong>. That is too large to render as a full browser graph, so the explorer keeps the local related-word view.</p>
+            <p class="gloss">Use <strong>Same CC</strong> to filter the menu to exported French verbs in this component.</p>
+          </div>
+        `;
+        return;
+      }
+      const nodes = subgraph.nodes || [];
+      const edges = subgraph.edges || [];
+      const langCounts = nodes.reduce((counts, node) => {
+        counts[node.lang_code || ""] = (counts[node.lang_code || ""] || 0) + 1;
+        return counts;
+      }, {});
+      els.componentViewer.innerHTML = `
+        <div>
+          <h2 style="margin:0 0 8px;">Connected Component</h2>
+          <p class="gloss">${compactNumber(nodes.length)} nodes · ${compactNumber(edges.length)} edges · ${Object.entries(langCounts).map(([lang, count]) => `${escapeHtml(lang)} ${count}`).join(" · ")}</p>
+        </div>
+        <div class="component-node-cloud">
+          ${nodes.map((nodeRow) => componentNodeChip(nodeRow, row.fr_node_id)).join("")}
+        </div>
+        <div class="component-edge-list">
+          ${edges.slice(0, 180).map(componentEdgeRow).join("")}
+          ${edges.length > 180 ? `<div class="component-edge">…${edges.length - 180} more edges</div>` : ""}
+        </div>
+      `;
+    }
+
+    async function loadNeighborhoodForVerb(verb) {
+      const key = shardKey(verb);
+      try {
+        if (!state.neighborhoodShards[key]) {
+          const response = await fetch(`${NEIGHBORHOOD_DIR}/${key}.json`, { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          state.neighborhoodShards[key] = await response.json();
+        }
+        if (verb !== state.currentVerb) {
+          return;
+        }
+        state.currentNeighborhood = state.neighborhoodShards[key]?.neighborhoods?.[verb] || null;
+        renderNeighborhoodView(currentRow());
+      } catch (error) {
+        if (verb === state.currentVerb) {
+          state.currentNeighborhood = null;
+          renderNeighborhoodView(currentRow(), true);
+        }
+      }
+    }
+
+    function renderNeighborhoodView(row, failed = false) {
+      if (!row) {
+        return;
+      }
+      const neighborhood = state.currentNeighborhood;
+      if (failed) {
+        els.neighborhoodViewer.innerHTML = `<div class="empty">Could not load neighborhood shard.</div>`;
+        return;
+      }
+      if (!neighborhood) {
+        els.neighborhoodViewer.innerHTML = `<div class="empty">Loading capped neighborhood...</div>`;
+        return;
+      }
+      const nodes = neighborhood.nodes || [];
+      const edges = neighborhood.edges || [];
+      const byDistance = new Map();
+      for (const nodeRow of nodes) {
+        const distance = Number(nodeRow.distance || 0);
+        if (!byDistance.has(distance)) {
+          byDistance.set(distance, []);
+        }
+        byDistance.get(distance).push(nodeRow);
+      }
+      const sections = [...byDistance.keys()].sort((a, b) => a - b).map((distance) => {
+        const rows = byDistance.get(distance);
+        return `
+          <section class="distance-section">
+            <h3 class="distance-title">Distance ${distance} · ${rows.length} node${rows.length === 1 ? "" : "s"}</h3>
+            <div class="component-node-cloud">
+              ${rows.map((nodeRow) => componentNodeChip(nodeRow, row.fr_node_id)).join("")}
+            </div>
+          </section>
+        `;
+      }).join("");
+      els.neighborhoodViewer.innerHTML = `
+        <div class="neighborhood-summary">
+          ${compactNumber(nodes.length)} nodes · ${compactNumber(edges.length)} edges · max distance ${neighborhood.max_depth}
+          ${neighborhood.truncated ? " · stopped at cap" : ""}
+        </div>
+        ${sections}
+        <div class="component-edge-list">
+          ${edges.map(componentEdgeRow).join("") || `<div class="component-edge">No edges in capped neighborhood.</div>`}
+        </div>
+      `;
+    }
+
+    function componentNodeChip(nodeRow, currentNodeId) {
+      const active = nodeRow.id === currentNodeId ? " is-selected" : "";
+      return `
+        <div class="component-node-chip ${langClass(nodeRow.lang_code)}${active}">
+          <strong>${escapeHtml(nodeRow.word || nodeRow.id)}</strong>
+          <span>${escapeHtml([nodeRow.lang_code, nodeRow.pos].filter(Boolean).join(" · "))}</span>
+        </div>
+      `;
+    }
+
+    function componentEdgeRow(edgeRow) {
+      return `
+        <div class="component-edge">
+          ${escapeHtml(edgeLabel(edgeRow.type))}: ${escapeHtml(edgeRow.from_id)} → ${escapeHtml(edgeRow.to_id)}
+        </div>
+      `;
+    }
+
+    function node(point, title, subtitle, className, radius) {
+      const lines = wrapLabel(title, radius > 44 ? 12 : 10);
+      const firstLineY = point.y - (lines.length - 1) * 8;
+      return `
+        <g class="node ${className}" transform="translate(${point.x}, ${point.y})" data-node-id="${escapeHtml(point.id || point.candidate?.node_id || point.candidate?.word || title)}">
+          <circle r="${radius}"></circle>
+          ${lines.map((line, index) => `<text y="${firstLineY - point.y + index * 16}">${escapeHtml(line)}</text>`).join("")}
+          <text class="sub" y="${radius + 17}">${escapeHtml(shorten(subtitle, 18))}</text>
+        </g>
+      `;
+    }
+
+    function edge(from, to, type, label) {
+      if (!from || !to) {
+        return "";
+      }
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+      const length = Math.hypot(dx, dy) || 1;
+      const startGap = (from.r || 0) + 3;
+      const endGap = (to.r || 0) + 7;
+      const startX = from.x + dx / length * startGap;
+      const startY = from.y + dy / length * startGap;
+      const endX = to.x - dx / length * endGap;
+      const endY = to.y - dy / length * endGap;
+      const pathDx = endX - startX;
+      const pathDy = endY - startY;
+      const curve = Math.max(-54, Math.min(54, dx * 0.08));
+      const safe = safeEdgeType(type);
+      const midX = startX + pathDx * 0.52;
+      const midY = startY + pathDy * 0.52 + curve * 0.28;
+      const labelMarkup = label === null
+        ? ""
+        : `<text class="edge-label" x="${midX}" y="${midY}">${escapeHtml(edgeLabel(label || type))}</text>`;
+      return `
+        <path class="edge edge-${safe}" marker-end="url(#arrow)" d="M${startX},${startY} C${startX + curve},${startY + pathDy * 0.44} ${endX - curve},${endY - pathDy * 0.44} ${endX},${endY}"></path>
+        ${labelMarkup}
+      `;
+    }
+
+    function filterCandidatesByEdges(candidates) {
+      return candidates.filter((candidate) => {
+        const types = candidate.relation_types || [];
+        return types.length && types.every((type) => state.enabledEdgeTypes.has(type));
+      });
+    }
+
+    function pathHasOnlyWeakTypes(candidate) {
+      const types = candidate.relation_types || [];
+      return types.length > 0 && types.every((type) => ["composed_of", "cognate_with", "unknown_etymology_relation"].includes(type));
+    }
+
+    function candidateKey(candidate) {
+      return candidate.node_id || `${candidate.word}:${candidate.ancestor_node_id || ""}`;
+    }
+
+    function ancestorFromCandidate(candidate) {
+      const langCode = candidate.ancestor_lang_code || "und";
+      const word = ancestorDisplayWord(candidate.ancestor_word || "ancestor", langCode);
+      const key = visualAncestorKey(candidate);
+      return {
+        key,
+        id: key,
+        word,
+        lang: candidate.ancestor_lang || langCode || "source",
+        langCode
+      };
+    }
+
+    function ancestorNodeForCandidate(candidate, ancestors) {
+      const key = ancestorFromCandidate(candidate).key;
+      return ancestors.find((ancestor) => ancestor.key === key) || ancestors[0];
+    }
+
+    function visualAncestorKey(candidate) {
+      const langCode = candidate.ancestor_lang_code || "und";
+      const word = ancestorDisplayWord(candidate.ancestor_word || "", langCode);
+      return `${langCode}:${normalizeForAncestorDisplay(word)}`;
+    }
+
+    function ancestorDisplayWord(word, langCode) {
+      if (shouldFoldAncestorAccents(langCode)) {
+        return stripCombiningMarks(word);
+      }
+      return String(word || "");
+    }
+
+    function normalizeForAncestorDisplay(word) {
+      return String(word || "").trim().toLocaleLowerCase("en");
+    }
+
+    function shouldFoldAncestorAccents(langCode) {
+      const code = String(langCode || "").toLowerCase();
+      return code === "la" || code.endsWith("-pro") || code === "vl.";
+    }
+
+    function stripCombiningMarks(value) {
+      return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function spread(index, count, min, max) {
+      if (count <= 1) {
+        return (min + max) / 2;
+      }
+      return min + (index / (count - 1)) * (max - min);
+    }
+
+    function frenchEdgeTypeForAncestor(candidates, ancestorKey) {
+      const candidate = candidates.find((item) => ancestorFromCandidate(item).key === ancestorKey);
+      return firstRelationType(candidate) || "unknown_etymology_relation";
+    }
+
+    function frenchEdgeLabelForAncestor(candidates, ancestorKey) {
+      const candidate = candidates.find((item) => ancestorFromCandidate(item).key === ancestorKey);
+      return firstRelationType(candidate) || "unknown";
+    }
+
+    function englishEdgeType(candidate) {
+      const types = englishRelationTypes(candidate);
+      const priority = [
+        "composed_of",
+        "cognate_with",
+        "borrowed_from",
+        "learned_borrowing_from",
+        "semi_learned_borrowing_from",
+        "adapted_borrowing_from",
+        "unadapted_borrowing_from",
+        "derived_from",
+        "descended_from",
+        "inherited_from"
+      ];
+      return priority.find((type) => types.includes(type)) || types[0] || "unknown_etymology_relation";
+    }
+
+    function englishEdgeLabel(candidate) {
+      const types = englishRelationTypes(candidate);
+      return types.slice(0, 2).map(edgeLabel).join("+") || "unknown";
+    }
+
+    function englishRelationTypes(candidate) {
+      const types = candidate?.relation_types || [];
+      return types.length > 1 ? types.slice(1) : types;
+    }
+
+    function firstRelationType(candidate) {
+      return (candidate?.relation_types || [])[0];
+    }
+
+    function safeEdgeType(type) {
+      return String(type || "unknown_etymology_relation").replace(/[^a-z0-9_-]/gi, "_");
+    }
+
+    function edgeLabel(type) {
+      const map = {
+        inherited_from: "inherited",
+        descended_from: "descended",
+        borrowed_from: "borrowed",
+        learned_borrowing_from: "learned",
+        semi_learned_borrowing_from: "semi-learned",
+        adapted_borrowing_from: "adapted",
+        unadapted_borrowing_from: "unadapted",
+        derived_from: "derived",
+        cognate_with: "cognate",
+        composed_of: "composed",
+        unknown_etymology_relation: "unknown",
+        mixed: "mixed"
+      };
+      return map[type] || shorten(String(type || "unknown").replace(/_/g, " "), 16);
+    }
+
+    function langClass(langCode) {
+      const code = String(langCode || "").toLowerCase();
+      if (["fr", "en", "la", "fro", "frm", "grc"].includes(code)) {
+        return `lang-${code}`;
+      }
+      if (code.endsWith("-pro") || code === "vl.") {
+        return "lang-proto";
+      }
+      return "lang-other";
+    }
+
+    function activateTab(tab) {
+      const latinPath = tab === "latin-path";
+      const learner = tab === "learner";
+      const graph = tab === "graph";
+      const neighbors = tab === "neighbors";
+      const component = tab === "component";
+      els.tabLatinPath.classList.toggle("is-active", latinPath);
+      els.tabLearner.classList.toggle("is-active", learner);
+      els.tabGraph.classList.toggle("is-active", graph);
+      els.tabNeighbors.classList.toggle("is-active", neighbors);
+      els.tabComponent.classList.toggle("is-active", component);
+      els.tabJson.classList.toggle("is-active", tab === "json");
+      els.latinPathView.classList.toggle("is-active", latinPath);
+      els.learnerView.classList.toggle("is-active", learner);
+      els.graphView.classList.toggle("is-active", graph);
+      els.neighborsView.classList.toggle("is-active", neighbors);
+      els.componentView.classList.toggle("is-active", component);
+      els.jsonView.classList.toggle("is-active", tab === "json");
+      els.tabLatinPath.setAttribute("aria-selected", String(latinPath));
+      els.tabLearner.setAttribute("aria-selected", String(learner));
+      els.tabGraph.setAttribute("aria-selected", String(graph));
+      els.tabNeighbors.setAttribute("aria-selected", String(neighbors));
+      els.tabComponent.setAttribute("aria-selected", String(component));
+      els.tabJson.setAttribute("aria-selected", String(tab === "json"));
+    }
+
+    async function loadFile(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) {
+        return;
+      }
+      try {
+        const text = await file.text();
+        loadData(JSON.parse(text));
+        loadComponentData();
+        els.fallback.classList.remove("is-visible");
+      } catch (error) {
+        setStatus("Selected file is not valid export JSON.", true);
+      }
+    }
+
+    function currentRow() {
+      return state.data?.verbs?.[state.currentVerb] || null;
+    }
+
+    function compactGloss(glosses) {
+      if (!Array.isArray(glosses) || !glosses.length) {
+        return "No gloss in export";
+      }
+      return glosses.slice(0, 2).join(" · ");
+    }
+
+    function componentForVerb(verb) {
+      return state.componentIndex?.verbs?.[verb] || null;
+    }
+
+    function updateFilterButton() {
+      const current = componentForVerb(state.currentVerb);
+      els.ccFilter.classList.toggle("is-active", state.componentFilter);
+      els.ccFilter.disabled = !current;
+      els.ccFilter.textContent = state.componentFilter && current ? `CC ${compactNumber(current.component_size)}` : "Same CC";
+      els.ccFilter.title = current
+        ? `Filter menu to component ${current.component_id} (${current.component_size} nodes)`
+        : "Component index not loaded for this verb";
+    }
+
+    function compactNumber(value) {
+      const number = Number(value || 0);
+      if (number >= 1000000) {
+        return `${(number / 1000000).toFixed(1)}M`;
+      }
+      if (number >= 1000) {
+        return `${(number / 1000).toFixed(number >= 10000 ? 0 : 1)}K`;
+      }
+      return String(number);
+    }
+
+    function shardKey(value) {
+      const text = stripMarks(normalize(value));
+      const first = text.slice(0, 1);
+      return first >= "a" && first <= "z" ? first : "_";
+    }
+
+    function stripMarks(value) {
+      return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function normalize(value) {
+      return String(value || "").trim().toLocaleLowerCase("fr");
+    }
+
+    function setStatus(message, isError = false) {
+      els.status.textContent = message;
+      els.status.classList.toggle("is-error", isError);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function unique(values) {
+      return [...new Set(values)];
+    }
+
+    function uniqueBy(values, keyFn) {
+      const seen = new Set();
+      const out = [];
+      for (const value of values) {
+        const key = keyFn(value);
+        if (!seen.has(key)) {
+          seen.add(key);
+          out.push(value);
+        }
+      }
+      return out;
+    }
+
+    function sameCandidate(a, b) {
+      return (a?.node_id || a?.word) === (b?.node_id || b?.word);
+    }
+
+    function wrapLabel(value, maxChars) {
+      const text = String(value || "");
+      if (text.length <= maxChars) {
+        return [text];
+      }
+      const parts = text.split(/[-_\s]/).filter(Boolean);
+      if (parts.length > 1) {
+        const lines = [];
+        let current = "";
+        for (const part of parts) {
+          const next = current ? `${current} ${part}` : part;
+          if (next.length > maxChars && current) {
+            lines.push(current);
+            current = part;
+          } else {
+            current = next;
+          }
+        }
+        if (current) {
+          lines.push(current);
+        }
+        return lines.slice(0, 2).map((line) => shorten(line, maxChars + 2));
+      }
+      return [shorten(text, maxChars)];
+    }
+
+    function shorten(value, max) {
+      const text = String(value || "");
+      if (text.length <= max) {
+        return text;
+      }
+      return `${text.slice(0, Math.max(1, max - 1))}…`;
+    }
+  </script>
+</body>
+</html>

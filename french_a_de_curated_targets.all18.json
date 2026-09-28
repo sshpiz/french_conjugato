@@ -1,0 +1,921 @@
+[
+  {
+    "category_id": "builtin-art-design",
+    "verb": "exposer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "expose something to the public"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "appeler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "call a service or desk"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "attendre",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "expect from"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "confirmer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "confirm to"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "envoyer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "send to"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "indiquer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "indicate something to someone"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "joindre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "attach something to something"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "laisser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "leave with/at"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "livrer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "deliver to"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "ouvrir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "open something to the public"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "passer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "come by / stop at"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "répondre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "reply to"
+  },
+  {
+    "category_id": "builtin-bureaucracy-delivery",
+    "verb": "venir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "come to"
+  },
+  {
+    "category_id": "builtin-cinema-series",
+    "verb": "couper",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "cut someone off"
+  },
+  {
+    "category_id": "builtin-cinema-series",
+    "verb": "raconter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "tell something to someone"
+  },
+  {
+    "category_id": "builtin-cinema-series",
+    "verb": "tourner",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "turn into"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "goûter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "sample/taste X"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "mélanger",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "mix into/with"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "préparer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "prepare something for someone"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "servir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "serve something to someone"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "servir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "use as / serve as"
+  },
+  {
+    "category_id": "builtin-cooking-food",
+    "verb": "verser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "pour/pay into/to"
+  },
+  {
+    "category_id": "builtin-crafts-making",
+    "verb": "ajuster",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "adjust to"
+  },
+  {
+    "category_id": "builtin-crafts-making",
+    "verb": "coller",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "glue onto"
+  },
+  {
+    "category_id": "builtin-crafts-making",
+    "verb": "coudre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "sew onto"
+  },
+  {
+    "category_id": "builtin-education-learning",
+    "verb": "apprendre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "teach/learn to"
+  },
+  {
+    "category_id": "builtin-education-learning",
+    "verb": "apprendre",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "learn from"
+  },
+  {
+    "category_id": "builtin-education-learning",
+    "verb": "enseigner",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "teach to"
+  },
+  {
+    "category_id": "builtin-education-learning",
+    "verb": "expliquer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "explain to"
+  },
+  {
+    "category_id": "builtin-education-learning",
+    "verb": "présenter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "present to"
+  },
+  {
+    "category_id": "builtin-education-learning",
+    "verb": "écrire",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "write to"
+  },
+  {
+    "category_id": "builtin-history-culture",
+    "verb": "exposer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "show to the public"
+  },
+  {
+    "category_id": "builtin-history-culture",
+    "verb": "raconter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "tell something to someone"
+  },
+  {
+    "category_id": "builtin-history-culture",
+    "verb": "écrire",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "write to an institution"
+  },
+  {
+    "category_id": "builtin-music",
+    "verb": "accorder",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "grant/tune to"
+  },
+  {
+    "category_id": "builtin-music",
+    "verb": "assurer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "guarantee/provide to"
+  },
+  {
+    "category_id": "builtin-music",
+    "verb": "jouer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "play an instrument"
+  },
+  {
+    "category_id": "builtin-music",
+    "verb": "répéter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "repeat to someone"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "verb": "inviter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "invite to"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "verb": "sortir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "go out to"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "verb": "sortir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "reason": "movement/source allowed"
+  },
+  {
+    "category_id": "builtin-nightlife-partying",
+    "verb": "trinquer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "toast to"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "assurer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "assure or guarantee to"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "assurer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "assure of"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "bosser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "work on"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "envoyer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "send to"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "présenter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "present to"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "rappeler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "remind/tell again to"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "répondre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "reply to"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "répondre",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "be responsible for"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "traiter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "deal with / treat of"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "transférer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "transfer to"
+  },
+  {
+    "category_id": "builtin-office-admin",
+    "verb": "travailler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "work on"
+  },
+  {
+    "category_id": "builtin-outdoors-nature",
+    "verb": "grimper",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "climb to"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "accuser",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "accuse of"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "condamner",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "sentence to"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "discuter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "discuss"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "débattre",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "debate about"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "dénoncer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "report to"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "imposer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "impose on"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "promettre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "promise to"
+  },
+  {
+    "category_id": "builtin-politics-current-events",
+    "verb": "traiter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "deal with / treat of"
+  },
+  {
+    "category_id": "builtin-relationship-drama",
+    "verb": "discuter",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "talk about"
+  },
+  {
+    "category_id": "builtin-relationship-drama",
+    "verb": "mentir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "lie to"
+  },
+  {
+    "category_id": "builtin-relationship-drama",
+    "verb": "pardonner",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "forgive someone"
+  },
+  {
+    "category_id": "builtin-relationship-drama",
+    "verb": "reprocher",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "reproach someone for"
+  },
+  {
+    "category_id": "builtin-relationship-drama",
+    "verb": "sortir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "reason": "get out of / leave"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "changer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "change from/of"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "défendre",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "forbid to"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "jouer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "play a sport/game"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "lancer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "throw/pass to"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "marquer",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "mark with"
+  },
+  {
+    "category_id": "builtin-sports-fitness",
+    "verb": "passer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "pass to / movement allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "acheter",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "buy from or for"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "aller",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "go to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "appeler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "call a place or service"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "arriver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "movement allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "attendre",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "expect from"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "demander",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "ask someone"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "donner",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "give to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "envoyer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "send to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "laisser",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "leave to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "montrer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "show to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "parler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "speak to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "parler",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected"
+    ],
+    "reason": "talk about"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "passer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "pass to / movement allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "payer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "pay someone / treat someone"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "sortir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "go out to"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "sortir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "reason": "movement/source allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "travailler",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "work on"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "trouver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "find interest/charm in"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "venir",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "movement allowed"
+  },
+  {
+    "category_id": "builtin-super-everyday",
+    "verb": "venir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "reason": "come from"
+  },
+  {
+    "category_id": "builtin-travel-tourism",
+    "verb": "arriver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected",
+      "a_movement_or_location"
+    ],
+    "reason": "arrive at"
+  },
+  {
+    "category_id": "builtin-travel-tourism",
+    "verb": "louer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "rent to"
+  },
+  {
+    "category_id": "builtin-travel-tourism",
+    "verb": "partir",
+    "family": "de",
+    "accepted_labels": [
+      "de_selected",
+      "de_source_or_location"
+    ],
+    "reason": "leave from"
+  },
+  {
+    "category_id": "builtin-travel-tourism",
+    "verb": "payer",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "pay someone / pay to"
+  },
+  {
+    "category_id": "builtin-travel-tourism",
+    "verb": "réserver",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "reserve for"
+  },
+  {
+    "category_id": "builtin-woodworking",
+    "verb": "ajuster",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "adjust to fit"
+  },
+  {
+    "category_id": "builtin-woodworking",
+    "verb": "coller",
+    "family": "a",
+    "accepted_labels": [
+      "a_selected"
+    ],
+    "reason": "glue onto"
+  }
+]

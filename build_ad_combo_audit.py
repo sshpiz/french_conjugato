@@ -18,7 +18,7 @@ from pathlib import Path
 
 from core_patterns_lib import INPUT_FILE, load_usage_index, load_verbs
 
-ROOT = Path("/Users/simeon/Desktop/proj1")
+ROOT = Path(__file__).resolve().parent
 LEFFF_ALL_JSON = ROOT / "_experiments" / "lefff_ad_combo_all.json"
 OUTPUT_JSON = ROOT / "ad_combo_audit_rollout.json"
 OUTPUT_MD = ROOT / "ad_combo_audit_rollout.md"

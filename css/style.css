@@ -47,6 +47,13 @@ html {
   --idle-prompt-shadow: 0 16px 32px rgba(24, 44, 70, 0.08);
   --idle-nudge-glow: rgba(86, 134, 182, 0.16);
   --idle-next-shadow: 0 10px 24px rgba(44, 62, 80, 0.1);
+  --dictation-diff-color: #cf405d;
+  --dictation-diff-fill: rgba(207, 64, 93, 0.12);
+  --dictation-liaison-color: #3988d9;
+  --dictation-liaison-fill: rgba(57, 136, 217, 0.12);
+  --dictation-elision-color: #8258d6;
+  --dictation-elision-fill: rgba(130, 88, 214, 0.12);
+  --dictation-note-text: rgba(58, 77, 99, 0.92);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,6 +65,13 @@ html {
     --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
     --idle-nudge-glow: rgba(123, 170, 222, 0.18);
     --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    --dictation-diff-color: #ff889d;
+    --dictation-diff-fill: rgba(255, 136, 157, 0.14);
+    --dictation-liaison-color: #82bdff;
+    --dictation-liaison-fill: rgba(130, 189, 255, 0.14);
+    --dictation-elision-color: #baa1ff;
+    --dictation-elision-fill: rgba(186, 161, 255, 0.14);
+    --dictation-note-text: rgba(226, 236, 247, 0.9);
   }
 }
 
@@ -68,6 +82,90 @@ html[data-theme="dark"] {
   --idle-prompt-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
   --idle-nudge-glow: rgba(123, 170, 222, 0.18);
   --idle-next-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  --dictation-diff-color: #ff889d;
+  --dictation-diff-fill: rgba(255, 136, 157, 0.14);
+  --dictation-liaison-color: #82bdff;
+  --dictation-liaison-fill: rgba(130, 189, 255, 0.14);
+  --dictation-elision-color: #baa1ff;
+  --dictation-elision-fill: rgba(186, 161, 255, 0.14);
+  --dictation-note-text: rgba(226, 236, 247, 0.9);
+}
+
+.dictation-result .dictation-phonetic-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.46rem;
+}
+
+.dictation-result {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.dictation-result::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.58rem;
+  width: 1rem;
+  height: 1rem;
+  transform: translateX(-50%) rotate(45deg);
+  background: inherit;
+  border-right: inherit;
+  border-bottom: inherit;
+  border-bottom-right-radius: 0.22rem;
+  opacity: 0.94;
+  pointer-events: none;
+}
+
+.dictation-result .dictation-phonetic-attempt {
+  line-height: 1.45;
+  word-break: break-word;
+  font-size: 1.12em;
+  font-weight: 720;
+}
+
+.dictation-result .dictation-phonetic-score {
+  font-size: 0.86em;
+  font-weight: 700;
+  color: var(--meta-color);
+  letter-spacing: 0.01em;
+}
+
+.dictation-result .vf-stt-diff-mark {
+  display: inline;
+  border-radius: 0.22em;
+  padding: 0 0.04em 0.08em;
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip: none;
+}
+
+.dictation-result .vf-stt-diff-diff {
+  border-bottom: 0.18em solid var(--dictation-diff-color);
+  background: linear-gradient(to top, var(--dictation-diff-fill), transparent 58%);
+}
+
+.dictation-result .vf-stt-diff-missing {
+  color: var(--dictation-diff-color);
+  font-weight: 800;
+  border-bottom: 0.18em dashed var(--dictation-diff-color);
+}
+
+.dictation-result .vf-stt-diff-liaison {
+  border-bottom: 0.18em solid var(--dictation-liaison-color);
+  background: linear-gradient(to top, var(--dictation-liaison-fill), transparent 58%);
+}
+
+.dictation-result .vf-stt-diff-elision {
+  border-bottom: 0.18em solid var(--dictation-elision-color);
+  background: linear-gradient(to top, var(--dictation-elision-fill), transparent 58%);
+}
+
+.dictation-result .vf-stt-diff-zone-both {
+  border-bottom: 0.18em solid var(--dictation-elision-color);
+  background:
+    linear-gradient(to top, var(--dictation-elision-fill), transparent 62%),
+    linear-gradient(135deg, transparent 0 32%, var(--dictation-liaison-fill) 32% 68%, transparent 68% 100%);
 }
 @media (prefers-color-scheme: dark) {
   /* Conjugated verb: dark, bold, easy to read */
@@ -2410,6 +2508,8 @@ html[data-settings-v2="true"] .settings-collapsible[open] > summary {
 }
 
 .daily-goal-celebration-canvas {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;

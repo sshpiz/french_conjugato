@@ -1,0 +1,3386 @@
+[
+  {
+    "verb": "croquer",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "créer",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "dessiner",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "esquisser",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "exposer",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "filmer",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "graver",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "modeler",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "peindre",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "photographier",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "restaurer",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "retoucher",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sculpter",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tracer",
+    "category_id": "builtin-art-design",
+    "category_name": "Art & Design",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "appeler",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "attendre",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "confirmer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "déposer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "envoyer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "fermer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "imprimer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "indiquer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "joindre",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "laisser",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "livrer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "ouvrir",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "passer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "recevoir",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "remplir",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "renvoyer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "récupérer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "répondre",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "signer",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sonner",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "venir",
+    "category_id": "builtin-bureaucracy-delivery",
+    "category_name": "Bureaucracy & Delivery",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "couper",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "diffuser",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "documenter",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "enchaîner",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "enregistrer",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "filmer",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "interpréter",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mater",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "monter",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "raconter",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "regarder",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tourner",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "zapper",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "écouter",
+    "category_id": "builtin-cinema-series",
+    "category_name": "Cinema & Series",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "boire",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bouffer",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "brûler",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "couper",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "cuire",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "cuisiner",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "dresser",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "dévorer",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "frire",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "goûter",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "grignoter",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "manger",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mijoter",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mixer",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mélanger",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "nettoyer",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "préparer",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "rôtir",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "saigner",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "saisir",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "servir",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "verser",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "éplucher",
+    "category_id": "builtin-cooking-food",
+    "category_name": "Cooking & Food",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "ajuster",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "assembler",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bidouiller",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bricoler",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "coller",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "coudre",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "démonter",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "fabriquer",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "foirer",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "merder",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mesurer",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "monter",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "planter",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "poncer",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rafistoler",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rater",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "régler",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "souder",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "tisser",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tricoter",
+    "category_id": "builtin-crafts-making",
+    "category_name": "Crafts & Making",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "analyser",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "apprendre",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "bachoter",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "calculer",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "enseigner",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "expliquer",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "lire",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "potasser",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "présenter",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "réviser",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "survoler",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "traduire",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "écrire",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "étudier",
+    "category_id": "builtin-education-learning",
+    "category_name": "Education & Learning",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "classer",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "collectionner",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "conserver",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "documenter",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "explorer",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "exposer",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "fouiller",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "lire",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "raconter",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "restaurer",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "traduire",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "écrire",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "étudier",
+    "category_id": "builtin-history-culture",
+    "category_name": "History & Culture",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "accorder",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "accélérer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "assurer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "brancher",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "caler",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "chanter",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "chauffer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "composer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "danser",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "enregistrer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "foirer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "improviser",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "interpréter",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "jouer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mixer",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "ralentir",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rater",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "répéter",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "écouter",
+    "category_id": "builtin-music",
+    "category_name": "Music",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "boire",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bouffer",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "brancher",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "cuver",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "danser",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "dormir",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "draguer",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "déconner",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "dépenser",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "flirter",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "fêter",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "inviter",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "kiffer",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mater",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "picoler",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rentrer",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sortir",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "trinquer",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "zoner",
+    "category_id": "builtin-nightlife-partying",
+    "category_name": "Nightlife & Partying",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "annuler",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "archiver",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "assurer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "bosser",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "boucler",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "caler",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "classer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "corriger",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "envoyer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "gérer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "imprimer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "organiser",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "planifier",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "pointer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "présenter",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "ranger",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rappeler",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "relancer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "reporter",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "régler",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "répondre",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "signer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "traiter",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "transférer",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "travailler",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "valider",
+    "category_id": "builtin-office-admin",
+    "category_name": "Office & Admin",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "camper",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "crapahuter",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "escalader",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "explorer",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "galoper",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "grimper",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "marcher",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "naviguer",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "observer",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "pagayer",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "pêcher",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "ramer",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "randonner",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tracer",
+    "category_id": "builtin-outdoors-nature",
+    "category_name": "Outdoors & Nature",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "accuser",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "boycotter",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "condamner",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "discuter",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "débattre",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "démentir",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "dénoncer",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "gouverner",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "gérer",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "imposer",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "manifester",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "militer",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "négocier",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "pointer",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "promettre",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "protester",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "relancer",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "réformer",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "soutenir",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "surveiller",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "traiter",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "voter",
+    "category_id": "builtin-politics-current-events",
+    "category_name": "Politics & Current Events",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "aimer",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "appeler",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "discuter",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "disputer",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "draguer",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "embrasser",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "embrouiller",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "engueuler",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "flirter",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "larguer",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mentir",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "pardonner",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "quitter",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "reprocher",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "rompre",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sortir",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "séduire",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "trahir",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tromper",
+    "category_id": "builtin-relationship-drama",
+    "category_name": "Relationship Drama",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "attraper",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "bander",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "blesser",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bloquer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "boiter",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "centrer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "changer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "contrer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "courir",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "dribbler",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "défendre",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "entraîner",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "frapper",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "gagner",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "glacer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "jouer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "lancer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "marquer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "nager",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "passer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "perdre",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "plaquer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "recevoir",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "saigner",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sauter",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "skier",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "soigner",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sprinter",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "surfer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tirer",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tomber",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tordre",
+    "category_id": "builtin-sports-fitness",
+    "category_name": "Sports & Fitness",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "acheter",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "aider",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "aimer",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "aller",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "appeler",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "arriver",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "attendre",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "avoir",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "boire",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bouger",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "demander",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "donner",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "envoyer",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "faire",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "fermer",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "laisser",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "manger",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mettre",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "montrer",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "oublier",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "ouvrir",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "parler",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "partir",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "passer",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "payer",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "porter",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "poser",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "prendre",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "ramener",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "ranger",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "regarder",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rentrer",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sortir",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "travailler",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "traîner",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "trouver",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "venir",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "écouter",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "être",
+    "category_id": "builtin-super-everyday",
+    "category_name": "Super Everyday",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "analyser",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "archiver",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "automatiser",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bidouiller",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bloquer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "boucler",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "casser",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "cliquer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "coder",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "configurer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "corriger",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "documenter",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "déboguer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "déployer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "fusionner",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "partager",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "planter",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "programmer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "redémarrer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "récupérer",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sauvegarder",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "surveiller",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tester",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "valider",
+    "category_id": "builtin-tech-digital-work",
+    "category_name": "Tech & Digital Work",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "arriver",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "atterrir",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "bouger",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "crapahuter",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "débarquer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "décoller",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "déposer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "embarquer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "errer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "flâner",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "guider",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "louer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "yes",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "louper",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "partir",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "payer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "perdre",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rater",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "rejoindre",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "récupérer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "réserver",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "suivre",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "séjourner",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "trimballer",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "visiter",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "voyager",
+    "category_id": "builtin-travel-tourism",
+    "category_name": "Travel & Tourism",
+    "direct_ok": "no",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "ajuster",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "assembler",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "clouer",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "coller",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "yes",
+    "de_ok": "no",
+    "direct_a_ok": "yes"
+  },
+  {
+    "verb": "démonter",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "fabriquer",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "frapper",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "graver",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "mesurer",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "monter",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "percer",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "poncer",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "raboter",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "régler",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "sculpter",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "tailler",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "vernir",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "yes",
+    "direct_a_ok": "no"
+  },
+  {
+    "verb": "visser",
+    "category_id": "builtin-woodworking",
+    "category_name": "Woodworking",
+    "direct_ok": "yes",
+    "a_ok": "no",
+    "de_ok": "no",
+    "direct_a_ok": "no"
+  }
+]

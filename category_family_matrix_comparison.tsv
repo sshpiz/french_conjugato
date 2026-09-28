@@ -1,0 +1,377 @@
+category_id	category_name	verb	lefff_direct_ok	dicovalence_direct_ok	direct_ok_comparison	lefff_a_ok	dicovalence_a_ok	a_ok_comparison	lefff_de_ok	dicovalence_de_ok	de_ok_comparison	lefff_direct_a_ok	dicovalence_direct_a_ok	direct_a_ok_comparison
+builtin-art-design	Art & Design	croquer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	créer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	dessiner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	esquisser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	exposer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-art-design	Art & Design	filmer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	graver	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	modeler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	peindre	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	photographier	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	restaurer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	retoucher	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	sculpter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-art-design	Art & Design	tracer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	appeler	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	attendre	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	confirmer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	déposer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	envoyer	yes	yes	agree	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	fermer	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	imprimer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	indiquer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	joindre	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	laisser	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	livrer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	ouvrir	yes	yes	agree	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	passer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	recevoir	yes	yes	agree	no	no	agree	no	yes	disagree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	remplir	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	renvoyer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	récupérer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	répondre	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	yes	yes	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	signer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	sonner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-bureaucracy-delivery	Bureaucracy & Delivery	venir	?	no	lefff_unknown	yes	yes	agree	no	yes	disagree	no	no	agree
+builtin-cinema-series	Cinema & Series	couper	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	no	agree
+builtin-cinema-series	Cinema & Series	diffuser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	documenter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	enchaîner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-cinema-series	Cinema & Series	enregistrer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	filmer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	interpréter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	mater	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	monter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	raconter	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-cinema-series	Cinema & Series	regarder	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	tourner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	zapper	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cinema-series	Cinema & Series	écouter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	boire	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	bouffer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	brûler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	couper	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	no	agree
+builtin-cooking-food	Cooking & Food	cuire	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	cuisiner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	dresser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	dévorer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	frire	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	goûter	?	yes	lefff_unknown	yes	yes	agree	yes	yes	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	grignoter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	manger	yes	yes	agree	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	mijoter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	mixer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	mélanger	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-cooking-food	Cooking & Food	nettoyer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	préparer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-cooking-food	Cooking & Food	rôtir	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	saigner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-cooking-food	Cooking & Food	saisir	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-cooking-food	Cooking & Food	servir	?	yes	lefff_unknown	yes	yes	agree	yes	yes	agree	no	yes	disagree
+builtin-cooking-food	Cooking & Food	verser	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-cooking-food	Cooking & Food	éplucher	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	ajuster	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-crafts-making	Crafts & Making	assembler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	bidouiller	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	bricoler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	coller	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-crafts-making	Crafts & Making	coudre	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-crafts-making	Crafts & Making	démonter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	fabriquer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	foirer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	merder	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	mesurer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	monter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	planter	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	poncer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	rafistoler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	rater	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	régler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	souder	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-crafts-making	Crafts & Making	tisser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-crafts-making	Crafts & Making	tricoter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	analyser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	apprendre	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	yes	yes	agree
+builtin-education-learning	Education & Learning	bachoter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	calculer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	enseigner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-education-learning	Education & Learning	expliquer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-education-learning	Education & Learning	lire	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	potasser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	présenter	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-education-learning	Education & Learning	réviser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	survoler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-education-learning	Education & Learning	traduire	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-education-learning	Education & Learning	écrire	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-education-learning	Education & Learning	étudier	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	classer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	collectionner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	conserver	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	documenter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	explorer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	exposer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-history-culture	History & Culture	fouiller	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	lire	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	raconter	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-history-culture	History & Culture	restaurer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-history-culture	History & Culture	traduire	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-history-culture	History & Culture	écrire	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-history-culture	History & Culture	étudier	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	accorder	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-music	Music	accélérer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	assurer	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	yes	disagree
+builtin-music	Music	brancher	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	caler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	chanter	?	yes	lefff_unknown	no	no	agree	no	no	agree	yes	no	disagree
+builtin-music	Music	chauffer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-music	Music	composer	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-music	Music	danser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	enregistrer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	foirer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	improviser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	interpréter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	jouer	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	no	agree
+builtin-music	Music	mixer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	ralentir	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	rater	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-music	Music	répéter	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-music	Music	écouter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	boire	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	bouffer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	brancher	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	cuver	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	danser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	dormir	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	draguer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	déconner	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	dépenser	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-nightlife-partying	Nightlife & Partying	flirter	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	fêter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	inviter	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-nightlife-partying	Nightlife & Partying	kiffer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	mater	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	picoler	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	rentrer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	sortir	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	yes	disagree
+builtin-nightlife-partying	Nightlife & Partying	trinquer	?	no	lefff_unknown	yes	yes	agree	yes	yes	agree	no	no	agree
+builtin-nightlife-partying	Nightlife & Partying	zoner	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	annuler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	archiver	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	assurer	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	yes	disagree
+builtin-office-admin	Office & Admin	bosser	?	no	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	boucler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	caler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	classer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	corriger	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-office-admin	Office & Admin	envoyer	yes	yes	agree	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-office-admin	Office & Admin	gérer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	imprimer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	organiser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	planifier	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	pointer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	présenter	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-office-admin	Office & Admin	ranger	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	rappeler	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-office-admin	Office & Admin	relancer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-office-admin	Office & Admin	reporter	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-office-admin	Office & Admin	régler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	répondre	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	yes	yes	agree
+builtin-office-admin	Office & Admin	signer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-office-admin	Office & Admin	traiter	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-office-admin	Office & Admin	transférer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-office-admin	Office & Admin	travailler	?	yes	lefff_unknown	yes	yes	agree	no	yes	disagree	no	no	agree
+builtin-office-admin	Office & Admin	valider	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	camper	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	crapahuter	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	escalader	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	explorer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	galoper	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	grimper	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	marcher	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	naviguer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	observer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	pagayer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	pêcher	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	ramer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	randonner	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-outdoors-nature	Outdoors & Nature	tracer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	accuser	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	boycotter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	condamner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-politics-current-events	Politics & Current Events	discuter	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	débattre	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	démentir	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	dénoncer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-politics-current-events	Politics & Current Events	gouverner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	gérer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	imposer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-politics-current-events	Politics & Current Events	manifester	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-politics-current-events	Politics & Current Events	militer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	négocier	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	pointer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	promettre	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-politics-current-events	Politics & Current Events	protester	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	relancer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-politics-current-events	Politics & Current Events	réformer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	soutenir	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	surveiller	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	traiter	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-politics-current-events	Politics & Current Events	voter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	aimer	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-relationship-drama	Relationship Drama	appeler	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-relationship-drama	Relationship Drama	discuter	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	disputer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-relationship-drama	Relationship Drama	draguer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	embrasser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	embrouiller	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	engueuler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	flirter	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	larguer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	mentir	?	no	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	pardonner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-relationship-drama	Relationship Drama	quitter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	reprocher	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-relationship-drama	Relationship Drama	rompre	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	sortir	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	yes	disagree
+builtin-relationship-drama	Relationship Drama	séduire	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	trahir	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-relationship-drama	Relationship Drama	tromper	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	attraper	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-sports-fitness	Sports & Fitness	bander	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	blesser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	bloquer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	boiter	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	centrer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	changer	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	yes	disagree
+builtin-sports-fitness	Sports & Fitness	contrer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	courir	yes	yes	agree	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	dribbler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	défendre	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	yes	yes	agree
+builtin-sports-fitness	Sports & Fitness	entraîner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-sports-fitness	Sports & Fitness	frapper	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	gagner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-sports-fitness	Sports & Fitness	glacer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	jouer	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	lancer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-sports-fitness	Sports & Fitness	marquer	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	nager	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	passer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-sports-fitness	Sports & Fitness	perdre	yes	yes	agree	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	plaquer	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	recevoir	yes	yes	agree	no	no	agree	no	yes	disagree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	saigner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	sauter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	skier	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	soigner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	sprinter	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	surfer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	tirer	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	tomber	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-sports-fitness	Sports & Fitness	tordre	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	acheter	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-super-everyday	Super Everyday	aider	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-super-everyday	Super Everyday	aimer	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-super-everyday	Super Everyday	aller	?	no	lefff_unknown	no	yes	disagree	no	yes	disagree	no	no	agree
+builtin-super-everyday	Super Everyday	appeler	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-super-everyday	Super Everyday	arriver	?	no	lefff_unknown	yes	yes	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	attendre	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	no	agree
+builtin-super-everyday	Super Everyday	avoir	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	boire	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	bouger	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	demander	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	yes	yes	agree
+builtin-super-everyday	Super Everyday	donner	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-super-everyday	Super Everyday	envoyer	yes	yes	agree	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-super-everyday	Super Everyday	faire	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	yes	yes	agree
+builtin-super-everyday	Super Everyday	fermer	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-super-everyday	Super Everyday	laisser	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-super-everyday	Super Everyday	manger	yes	yes	agree	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	mettre	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-super-everyday	Super Everyday	montrer	yes	yes	agree	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-super-everyday	Super Everyday	oublier	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	ouvrir	yes	yes	agree	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-super-everyday	Super Everyday	parler	?	yes	lefff_unknown	yes	yes	agree	yes	yes	agree	no	no	agree
+builtin-super-everyday	Super Everyday	partir	?	no	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-super-everyday	Super Everyday	passer	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-super-everyday	Super Everyday	payer	yes	yes	agree	no	yes	disagree	yes	no	disagree	yes	yes	agree
+builtin-super-everyday	Super Everyday	porter	yes	yes	agree	no	yes	disagree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	poser	?	yes	lefff_unknown	no	no	agree	no	no	agree	yes	no	disagree
+builtin-super-everyday	Super Everyday	prendre	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	yes	disagree
+builtin-super-everyday	Super Everyday	ramener	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-super-everyday	Super Everyday	ranger	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	regarder	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	rentrer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	sortir	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	yes	disagree
+builtin-super-everyday	Super Everyday	travailler	?	yes	lefff_unknown	yes	yes	agree	no	yes	disagree	no	no	agree
+builtin-super-everyday	Super Everyday	traîner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	trouver	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	yes	yes	agree
+builtin-super-everyday	Super Everyday	venir	?	no	lefff_unknown	yes	yes	agree	no	yes	disagree	no	no	agree
+builtin-super-everyday	Super Everyday	écouter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-super-everyday	Super Everyday	être	?	yes	lefff_unknown	no	yes	disagree	no	yes	disagree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	analyser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	archiver	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	automatiser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	bidouiller	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	bloquer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	boucler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	casser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	cliquer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	coder	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	configurer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	corriger	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	documenter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	déboguer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	déployer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	fusionner	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	partager	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	planter	?	yes	lefff_unknown	no	no	agree	yes	yes	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	programmer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	redémarrer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	récupérer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	sauvegarder	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	surveiller	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	tester	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-tech-digital-work	Tech & Digital Work	valider	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	arriver	?	no	lefff_unknown	yes	yes	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	atterrir	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	bouger	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	crapahuter	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	débarquer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	décoller	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	déposer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	embarquer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	errer	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	flâner	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	guider	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	louer	?	yes	lefff_unknown	no	yes	disagree	yes	yes	agree	no	yes	disagree
+builtin-travel-tourism	Travel & Tourism	louper	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	partir	?	no	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	payer	yes	yes	agree	no	yes	disagree	yes	no	disagree	yes	yes	agree
+builtin-travel-tourism	Travel & Tourism	perdre	yes	yes	agree	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	rater	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	rejoindre	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	récupérer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	réserver	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	yes	yes	agree
+builtin-travel-tourism	Travel & Tourism	suivre	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	séjourner	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	trimballer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	visiter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-travel-tourism	Travel & Tourism	voyager	?	no	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	ajuster	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-woodworking	Woodworking	assembler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	clouer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	coller	?	yes	lefff_unknown	no	yes	disagree	no	no	agree	no	yes	disagree
+builtin-woodworking	Woodworking	démonter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	fabriquer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	frapper	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-woodworking	Woodworking	graver	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	mesurer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	monter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	percer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	poncer	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	raboter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	régler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	sculpter	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	tailler	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree
+builtin-woodworking	Woodworking	vernir	?	yes	lefff_unknown	no	no	agree	no	yes	disagree	no	no	agree
+builtin-woodworking	Woodworking	visser	?	yes	lefff_unknown	no	no	agree	no	no	agree	no	no	agree

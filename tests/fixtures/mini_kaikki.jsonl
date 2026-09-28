@@ -1,0 +1,21 @@
+{"word":"écrire","lang":"French","lang_code":"fr","pos":"verb","senses":[{"glosses":["to write"]}],"etymology_templates":[{"name":"inh","args":{"1":"fr","2":"la","3":"scribere"}},{"name":"cog","args":{"1":"fr","2":"ine-pro","3":"skreybʰ-"}}]}
+{"word":"scribere","lang":"Latin","lang_code":"la","pos":"verb","senses":[{"glosses":["to write"]}],"descendants":[{"lang":"French","lang_code":"fr","word":"écrire"},{"lang":"English","lang_code":"en","word":"scribe"}]}
+{"word":"scriptum","lang":"Latin","lang_code":"la","pos":"noun","senses":[{"glosses":["something written"]}],"etymology_templates":[{"name":"der","args":{"1":"la","2":"la","3":"scribere"}}]}
+{"word":"scribe","lang":"English","lang_code":"en","pos":"noun","senses":[{"glosses":["a person who writes"]}],"etymology_templates":[{"name":"bor","args":{"1":"en","2":"la","3":"scribere"}}]}
+{"word":"script","lang":"English","lang_code":"en","pos":"noun","senses":[{"glosses":["written characters or text"]}],"etymology_templates":[{"name":"bor","args":{"1":"en","2":"la","3":"scriptum"}}]}
+{"word":"describe","lang":"English","lang_code":"en","pos":"verb","senses":[{"glosses":["to represent in words"]}],"etymology_templates":[{"name":"lbor","args":{"1":"en","2":"la","3":"describere"}}]}
+{"word":"describere","lang":"Latin","lang_code":"la","pos":"verb","senses":[{"glosses":["to write down"]}],"etymology_templates":[{"name":"der","args":{"1":"la","2":"la","3":"scribere"}}]}
+{"word":"scribal-ish","lang":"English","lang_code":"en","pos":"adjective","senses":[{"glosses":["resembling a scribe"]}],"etymology_templates":[{"name":"prefix","args":{"1":"en","2":"la","3":"scribere"}}]}
+{"word":"skreybʰ-","lang":"Proto-Indo-European","lang_code":"ine-pro","pos":"root","senses":[{"glosses":["to scratch, incise"]}]}
+{"word":"shrive","lang":"English","lang_code":"en","pos":"verb","senses":[{"glosses":["to hear confession"]}],"etymology_templates":[{"name":"cog","args":{"1":"en","2":"ine-pro","3":"skreybʰ-"}}]}
+{"word":"parler","lang":"French","lang_code":"fr","pos":"verb","senses":[{"glosses":["to speak"]}],"etymology_templates":[{"name":"etymon","args":{"1":":inh","2":"fro:parler<id:to_speak>"}}]}
+{"word":"parler","lang":"Old French","lang_code":"fro","pos":"verb","senses":[{"glosses":["to speak"]}],"etymology_templates":[{"name":"der","args":{"1":"fro","2":"la","3":"parabolare"}}]}
+{"word":"parabolare","lang":"Latin","lang_code":"la","pos":"verb","senses":[{"glosses":["to tell, to speak"]}]}
+{"word":"parley","lang":"English","lang_code":"en","pos":"noun","senses":[{"glosses":["a discussion between opposing sides"]}],"etymology_templates":[{"name":"bor","args":{"1":"en","2":"fro","3":"parler"}}]}
+{"word":"parliament","lang":"English","lang_code":"en","pos":"noun","senses":[{"glosses":["a legislative assembly"]}],"etymology_templates":[{"name":"der","args":{"1":"en","2":"fro","3":"parlement"}}]}
+{"word":"parlement","lang":"Old French","lang_code":"fro","pos":"noun","senses":[{"glosses":["speaking, discussion"]}],"etymology_templates":[{"name":"der","args":{"1":"fro","2":"fro","3":"parler"}}]}
+{"word":"demander","lang":"French","lang_code":"fr","pos":"verb","senses":[{"glosses":["to ask for"]}],"etymology_templates":[{"name":"der","args":{"1":"fr","2":"la","3":"demandare"}}]}
+{"word":"demandare","lang":"Latin","lang_code":"la","pos":"verb","senses":[{"glosses":["to entrust, command"]}]}
+{"word":"demand","lang":"English","lang_code":"en","pos":"verb","senses":[{"glosses":["to ask firmly"]}],"etymology_templates":[{"name":"bor","args":{"1":"en","2":"fr","3":"demander"}}]}
+{"word":"broken","lang":"English","lang_code":"en","pos":"noun","etymology_templates":[{"name":"der","args":{"1":"en"}}]}
+not valid json

@@ -1,0 +1,404 @@
+[
+  {
+    "verb": "signer",
+    "translation": "to sign",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "Core bureaucracy use is signer un document / un formulaire; the direct object pattern is central and already supported."
+  },
+  {
+    "verb": "remplir",
+    "translation": "to fill",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In forms and paperwork, remplir un formulaire / un champ is the basic learner-facing pattern."
+  },
+  {
+    "verb": "envoyer",
+    "translation": "to send",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object",
+      "combo_a"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "core:envoyer qqn / qqch",
+        "core:envoyer qqn + infinitif"
+      ],
+      "combo_a": [
+        "top500-final:COD+à",
+        "core:envoyer qqch à qqn"
+      ]
+    },
+    "planned_families": [
+      "combo_a",
+      "direct_object"
+    ],
+    "planner_reason": "Both are central here: envoyer un colis / un document and envoyer qqch à qqn are standard for delivery and admin contexts."
+  },
+  {
+    "verb": "recevoir",
+    "translation": "to receive",
+    "hint": "",
+    "frequency": "top-100",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD",
+        "core:recevoir qqn / qqch"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "Core usage is recevoir un colis / un document / un SMS; direct object is the main pattern in this category."
+  },
+  {
+    "verb": "déposer",
+    "translation": "to file",
+    "hint": "",
+    "frequency": "top-1000",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "For filing and drop-offs, déposer un dossier / un colis is the safest core pattern."
+  },
+  {
+    "verb": "livrer",
+    "translation": "to deliver",
+    "hint": "",
+    "frequency": "top-1000",
+    "evidence_families": [
+      "combo_a"
+    ],
+    "evidence_notes": {
+      "combo_a": [
+        "core:livrer qqch à qqn"
+      ]
+    },
+    "planned_families": [
+      "combo_a"
+    ],
+    "planner_reason": "In delivery contexts, livrer qqch à qqn is the most central useful pattern."
+  },
+  {
+    "verb": "laisser",
+    "translation": "to leave",
+    "hint": "",
+    "frequency": "top-100",
+    "evidence_families": [
+      "direct_object",
+      "combo_a"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "core:laisser qqn / qqch",
+        "core:laisser qqn + infinitif"
+      ],
+      "combo_a": [
+        "top500-final:COD+à",
+        "core:laisser qqch à qqn"
+      ]
+    },
+    "planned_families": [
+      "combo_a",
+      "direct_object"
+    ],
+    "planner_reason": "Both fit the category well: laisser un colis / un message and laisser qqch à l'accueil / à quelqu'un."
+  },
+  {
+    "verb": "appeler",
+    "translation": "to call",
+    "hint": "",
+    "frequency": "top-100",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD",
+        "core:appeler qqn",
+        "core:appeler qqch + nom"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "For intercoms and contact, appeler quelqu'un is the core modern learner-facing pattern."
+  },
+  {
+    "verb": "répondre",
+    "translation": "to reply",
+    "hint": "",
+    "frequency": "top-100",
+    "evidence_families": [
+      "a_object",
+      "de_object"
+    ],
+    "evidence_notes": {
+      "a_object": [
+        "top500-final:à",
+        "core:répondre à qqn / qqch"
+      ],
+      "de_object": [
+        "top500-final:de",
+        "core:répondre de qqn / qqch"
+      ]
+    },
+    "planned_families": [
+      "a_object"
+    ],
+    "planner_reason": "In this category, répondre à l'interphone / à un message / à quelqu'un is central; répondre de is a different sense and not suitable here."
+  },
+  {
+    "verb": "attendre",
+    "translation": "to expect",
+    "hint": "",
+    "frequency": "top-50",
+    "evidence_families": [
+      "direct_object",
+      "de_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD",
+        "core:attendre qqn / qqch"
+      ],
+      "de_object": [
+        "core:attendre de qqn / qqch"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "For pickup windows and delivery, attendre quelqu'un / un colis is the most natural core pattern; attendre de is less central here."
+  },
+  {
+    "verb": "ouvrir",
+    "translation": "to open",
+    "hint": "",
+    "frequency": "top-50",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "Core use is ouvrir la porte / le guichet / le colis; direct object is the standard pattern."
+  },
+  {
+    "verb": "fermer",
+    "translation": "to close",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "Core use is fermer la porte / le guichet / l'enveloppe; direct object is the standard pattern."
+  },
+  {
+    "verb": "confirmer",
+    "translation": "to confirm",
+    "hint": "",
+    "frequency": "top-1000",
+    "evidence_families": [
+      "direct_object",
+      "combo_a"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ],
+      "combo_a": [
+        "top500-final:COD+à",
+        "core:confirmer qqch à qqn"
+      ]
+    },
+    "planned_families": [
+      "combo_a",
+      "direct_object"
+    ],
+    "planner_reason": "Both are natural in admin exchanges: confirmer un rendez-vous / une réception and confirmer qqch à qqn."
+  },
+  {
+    "verb": "indiquer",
+    "translation": "to indicate",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "a_object"
+    ],
+    "evidence_notes": {
+      "a_object": [
+        "core:indiquer à qqn"
+      ]
+    },
+    "planned_families": [
+      "a_object",
+      "direct_object"
+    ],
+    "planner_reason": "Indiquer à quelqu'un is established, and indicating a code/number/address directly is also central in forms and pickup instructions."
+  },
+  {
+    "verb": "joindre",
+    "translation": "to join",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In bureaucracy, joindre un document / une pièce jointe is a very common direct-object pattern."
+  },
+  {
+    "verb": "imprimer",
+    "translation": "to print",
+    "hint": "",
+    "frequency": "top-2000",
+    "evidence_families": [],
+    "evidence_notes": {},
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "Core paperwork use is imprimer un formulaire / un reçu / une étiquette."
+  },
+  {
+    "verb": "récupérer",
+    "translation": "to recover",
+    "hint": "",
+    "frequency": "top-1000",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "For pickups, récupérer un colis / un document is the central pattern."
+  },
+  {
+    "verb": "renvoyer",
+    "translation": "to return",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In forms and returns, renvoyer un document / un colis is the safest core pattern."
+  },
+  {
+    "verb": "sonner",
+    "translation": "to ring",
+    "hint": "",
+    "frequency": "top-500",
+    "evidence_families": [
+      "direct_object"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "For intercom and building entry, sonner une adresse / un appartement is a common practical direct-object use."
+  },
+  {
+    "verb": "venir",
+    "translation": "to come",
+    "hint": "",
+    "frequency": "top-20",
+    "evidence_families": [
+      "a_object"
+    ],
+    "evidence_notes": {
+      "a_object": [
+        "core:venir à qqn"
+      ]
+    },
+    "planned_families": [
+      "direct_object"
+    ],
+    "planner_reason": "In this category the useful sense is venir chercher un colis / un document, which behaves as a direct object pattern for learners."
+  },
+  {
+    "verb": "passer",
+    "translation": "to pass",
+    "hint": "",
+    "frequency": "top-20",
+    "evidence_families": [
+      "direct_object",
+      "combo_a"
+    ],
+    "evidence_notes": {
+      "direct_object": [
+        "top500-final:COD",
+        "core:passer chez qqn / à + lieu"
+      ],
+      "combo_a": [
+        "top500-final:COD+à",
+        "core:passer qqch à qqn"
+      ]
+    },
+    "planned_families": [
+      "combo_a",
+      "direct_object"
+    ],
+    "planner_reason": "Both are useful here: passer un coup de fil / une commande and passer qqch à quelqu'un at a counter or window."
+  }
+]

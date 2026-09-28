@@ -1,0 +1,301 @@
+index	verb	sentence_fr	translation_en	tense	subject	base_score	bonus_label	bonus_points	total_score
+1	signer	Je signe le bon de réception à l'accueil.	I sign the delivery receipt at reception.	present	je	1.0	de_selected	1.0	2.0
+2	remplir	Nous remplissons le formulaire avant de passer au guichet.	We fill out the form before going to the window.	present	nous	1.0	none	0.0	1.0
+3	envoyer	J'ai envoyé les pièces justificatives au service client hier matin.	I sent the supporting documents to customer service yesterday morning.	passé composé	je	1.0	a_selected	1.0	2.0
+4	recevoir	Elle a reçu un avis de passage dans sa boîte aux lettres.	She received a delivery notice in her mailbox.	passé composé	elle	1.0	de_selected	1.0	2.0
+5	déposer	Le voisin dépose le colis à l'accueil de l'immeuble.	The neighbor drops off the package at the building reception.	present	le voisin	1.0	a_selected	1.0	2.0
+6	livrer	Le transporteur va livrer le dossier au bureau central cet après-midi.	The carrier is going to deliver the file to the main office this afternoon.	futur proche	le transporteur	1.0	a_selected	1.0	2.0
+7	laisser	Le livreur a laissé le paquet devant la loge.	The delivery driver left the package in front of the caretaker's office.	passé composé	le livreur	1.0	none	0.0	1.0
+8	appeler	J'appelle l'interphone quand j'arrive devant la porte.	I ring the intercom when I arrive at the door.	present	je	1.0	none	0.0	1.0
+9	répondre	Personne ne répond à l'interphone après dix heures.	Nobody answers the intercom after ten o'clock.	present	personne	1.0	a_selected	1.0	2.0
+10	attendre	Vous attendez votre tour près du guichet de retrait.	You wait for your turn near the pickup window.	present	vous	1.0	none	0.0	1.0
+11	ouvrir	La secrétaire ouvre le guichet à neuf heures.	The clerk opens the service window at nine o'clock.	present	la secrétaire	1.0	a_selected	1.0	2.0
+12	fermer	Le bureau ferme plus tôt le vendredi.	The office closes earlier on Fridays.	present	le bureau	1.0	none	0.0	1.0
+13	confirmer	Je confirme mon rendez-vous de retrait par mail.	I confirm my pickup appointment by email.	present	je	1.0	none	0.0	1.0
+14	indiquer	Le formulaire indique la date limite en bas de page.	The form indicates the deadline at the bottom of the page.	present	le formulaire	1.0	none	0.0	1.0
+15	joindre	Merci de joindre une copie de votre pièce d'identité.	Please attach a copy of your ID.	present	merci de	1.0	de_selected	1.0	2.0
+16	imprimer	J'imprime l'étiquette avant de déposer le retour.	I print the label before dropping off the return.	present	je	1.0	none	0.0	1.0
+17	récupérer	Elle récupère son recommandé au guichet 3.	She picks up her registered letter at window 3.	present	elle	1.0	a_selected	1.0	2.0
+18	renvoyer	Nous avons renvoyé le contrat signé ce matin.	We sent back the signed contract this morning.	passé composé	nous	1.0	none	0.0	1.0
+19	sonner	Le livreur a sonné deux fois avant de repartir.	The delivery driver rang twice before leaving.	passé composé	le livreur	1.0	none	0.0	1.0
+20	venir	Vous pouvez venir au point relais avec cette confirmation.	You can come to the pickup point with this confirmation.	present	vous	1.0	a_selected	1.0	2.0
+21	passer	Je passerai au bureau demain pour récupérer le dossier.	I'll stop by the office tomorrow to pick up the file.	future	je	1.0	a_selected	1.0	2.0
+22	signer	Le client a signé le reçu sur la tablette du livreur.	The customer signed the receipt on the delivery driver's tablet.	passé composé	le client	1.0	none	0.0	1.0
+23	remplir	Tu remplis ce champ en lettres majuscules.	You fill in this field in capital letters.	present	tu	1.0	none	0.0	1.0
+24	envoyer	Le service comptable enverra la facture au bon service.	Accounting will send the invoice to the right department.	future	le service comptable	1.0	a_selected	1.0	2.0
+25	recevoir	Nous recevons souvent les colis à l'arrière du bâtiment.	We often receive packages at the back of the building.	present	nous	1.0	a_selected	1.0	2.0
+26	déposer	Je vais déposer les documents signés à l'accueil.	I'm going to drop off the signed documents at reception.	futur proche	je	1.0	a_selected	1.0	2.0
+27	livrer	Ils livrent les badges au service sécurité.	They deliver the badges to the security department.	present	ils	1.0	a_selected	1.0	2.0
+28	laisser	Pouvez-vous laisser le dossier au gardien si je suis absent?	Can you leave the file with the caretaker if I'm away?	present	vous	1.0	a_selected	1.0	2.0
+29	appeler	La réception m'a appelé pour confirmer l'arrivée du colis.	Reception called me to confirm the package had arrived.	passé composé	la réception	1.0	none	0.0	1.0
+30	répondre	Je réponds au message automatique dès que je reçois le code.	I reply to the automated message as soon as I receive the code.	present	je	1.0	a_selected	1.0	2.0
+31	attendre	On a attendu le livreur toute la matinée.	We waited for the delivery driver all morning.	passé composé	on	1.0	none	0.0	1.0
+32	ouvrir	J'ouvre l'enveloppe dès que je sors du bureau de poste.	I open the envelope as soon as I leave the post office.	present	je	1.0	none	0.0	1.0
+33	fermer	Ils ferment la salle d'archives à midi.	They close the archive room at noon.	present	ils	1.0	none	0.0	1.0
+34	confirmer	Le centre a confirmé mon créneau de retrait par SMS.	The center confirmed my pickup time slot by text.	passé composé	le centre	1.0	none	0.0	1.0
+35	indiquer	Veuillez indiquer votre numéro de dossier sur l'enveloppe.	Please indicate your file number on the envelope.	present	veuillez	1.0	none	0.0	1.0
+36	joindre	J'ai joint le bordereau au colis de retour.	I attached the slip to the return package.	passé composé	je	1.0	de_selected	1.0	2.0
+37	imprimer	Le guichet imprime un ticket avec votre numéro.	The counter prints a ticket with your number.	present	le guichet	1.0	none	0.0	1.0
+38	récupérer	Tu peux récupérer ta carte d'accès après 14 heures.	You can pick up your access card after 2 p.m.	present	tu	1.0	a_selected	1.0	2.0
+39	renvoyer	Elle va renvoyer le formulaire corrigé cet après-midi.	She is going to send back the corrected form this afternoon.	futur proche	elle	1.0	none	0.0	1.0
+40	sonner	Ça a sonné à l'interphone pendant la pause déjeuner.	The intercom rang during the lunch break.	passé composé	ça	1.0	a_selected	1.0	2.0
+41	venir	Le technicien vient pour ouvrir la boîte aux lettres collective.	The technician is coming to open the shared mailbox.	present	le technicien	1.0	a_selected	1.0	2.0
+42	passer	Le coursier est passé avant l'ouverture du service.	The courier stopped by before the department opened.	passé composé	le coursier	1.0	a_movement_or_location	0.0	1.0
+43	signer	Vous signerez le registre à l'entrée.	You will sign the register at the entrance.	future	vous	1.0	a_selected	1.0	2.0
+44	remplir	Elle remplissait encore le formulaire quand le guichet a fermé.	She was still filling out the form when the window closed.	imparfait	elle	1.0	none	0.0	1.0
+45	envoyer	On envoie la demande au service des cartes grises.	We send the application to the vehicle registration department.	present	on	1.0	de_selected	1.0	2.0
+46	recevoir	J'ai reçu le code de retrait par e-mail.	I received the pickup code by email.	passé composé	je	1.0	de_selected	1.0	2.0
+47	déposer	Vous déposez votre dossier complet dans la boîte prévue à cet effet.	You drop off your complete file in the box provided for that purpose.	present	vous	1.0	a_movement_or_location	0.0	1.0
+48	livrer	La poste a livré le recommandé ce matin.	The postal service delivered the registered letter this morning.	passé composé	la poste	1.0	none	0.0	1.0
+49	laisser	J'ai laissé un mot sur la porte pour le livreur.	I left a note on the door for the delivery driver.	passé composé	je	1.0	none	0.0	1.0
+50	appeler	Tu appelles le standard si personne ne répond au guichet.	You call the switchboard if nobody answers at the window.	present	tu	1.0	none	0.0	1.0
+51	répondre	Je réponds à l'interphone quand le livreur arrive.	I answer the intercom when the delivery driver arrives.	present	je	1.0	a_selected	1.0	2.0
+52	attendre	Nous attendons notre tour au guichet de retrait.	We are waiting for our turn at the pickup window.	present	nous	1.0	a_movement_or_location	0.0	1.0
+53	ouvrir	La gardienne ouvre la porte après la sonnerie.	The caretaker opens the door after the buzz.	present	la gardienne	1.0	none	0.0	1.0
+54	fermer	Le bureau ferme à midi pour la pause.	The office closes at noon for the break.	present	le bureau	1.0	a_movement_or_location	0.0	1.0
+55	confirmer	Je confirme la réception du colis par mail.	I confirm receipt of the package by email.	present	je	1.0	de_selected	1.0	2.0
+56	indiquer	Le formulaire indique la date limite en haut de page.	The form indicates the deadline at the top of the page.	present	le formulaire	1.0	none	0.0	1.0
+57	joindre	Vous joignez une copie de votre pièce d'identité au dossier.	You attach a copy of your ID to the file.	present	vous	1.0	a_selected	1.0	2.0
+58	imprimer	J'imprime le bon de retrait avant de partir.	I'm printing the pickup slip before leaving.	present	je	1.0	none	0.0	1.0
+59	récupérer	Elle récupère son recommandé au guichet cet après-midi.	She is picking up her registered letter at the counter this afternoon.	present	elle	1.0	a_movement_or_location	0.0	1.0
+60	renvoyer	On renvoie le formulaire signé demain matin.	We are sending back the signed form tomorrow morning.	present	on	1.0	none	0.0	1.0
+61	sonner	Le colis a sonné à l'interphone vers huit heures.	The delivery buzzed the intercom around eight o'clock.	passé composé	le colis	1.0	a_movement_or_location	0.0	1.0
+62	venir	Le technicien vient pour installer l'interphone demain.	The technician is coming tomorrow to install the intercom.	present	le technicien	1.0	a_selected	1.0	2.0
+63	passer	Je passe au bureau de retrait après le travail.	I'm stopping by the pickup office after work.	present	je	1.0	a_movement_or_location	0.0	1.0
+64	signer	Tu signes ici avant de déposer le dossier.	You sign here before dropping off the file.	present	tu	1.0	none	0.0	1.0
+65	remplir	Elle remplit le formulaire en lettres majuscules.	She fills out the form in capital letters.	present	elle	1.0	none	0.0	1.0
+66	répondre	Le gardien a répondu à ma demande ce matin.	The caretaker answered my request this morning.	passé composé	le gardien	1.0	a_selected	1.0	2.0
+67	attendre	J'ai attendu le livreur toute la matinée.	I waited for the delivery driver all morning.	passé composé	je	1.0	none	0.0	1.0
+68	ouvrir	Vous ouvrez le casier avec ce code.	You open the locker with this code.	present	vous	1.0	none	0.0	1.0
+69	fermer	Elle a fermé l'enveloppe juste avant l'envoi.	She sealed the envelope right before sending it.	passé composé	elle	1.0	none	0.0	1.0
+70	confirmer	Le service confirme votre rendez-vous par SMS.	The department confirms your appointment by text message.	present	le service	1.0	de_selected	1.0	2.0
+71	indiquer	Pouvez-vous indiquer votre numéro de dossier sur la feuille?	Can you indicate your file number on the sheet?	present	vous	1.0	none	0.0	1.0
+72	joindre	J'ai joint la facture au colis de retour.	I attached the invoice to the return package.	passé composé	je	1.0	a_selected	1.0	2.0
+73	imprimer	Nous allons imprimer les étiquettes de retour maintenant.	We are going to print the return labels now.	futur proche	nous	1.0	none	0.0	1.0
+74	récupérer	Tu récupéreras les clés à l'accueil.	You'll pick up the keys at reception.	future	tu	1.0	a_selected	1.0	2.0
+75	renvoyer	Le client a renvoyé le colis sans le bon de retour.	The customer sent the package back without the return slip.	passé composé	le client	1.0	none	0.0	1.0
+76	sonner	Quelqu'un sonne à l'interphone depuis cinq minutes.	Someone has been buzzing the intercom for five minutes.	present	quelqu'un	1.0	a_movement_or_location	0.0	1.0
+77	venir	Vous venez au guichet avec une pièce d'identité.	You come to the counter with an ID.	present	vous	1.0	a_movement_or_location	0.0	1.0
+78	passer	Le facteur est passé pendant la réunion.	The mail carrier came by during the meeting.	passé composé	le facteur	1.0	a_movement_or_location	0.0	1.0
+79	signer	Le responsable a signé l'accusé de réception.	The manager signed the acknowledgment of receipt.	passé composé	le responsable	1.0	de_selected	1.0	2.0
+80	remplir	Nous remplissons la demande en ligne ce soir.	We're filling out the application online tonight.	present	nous	1.0	none	0.0	1.0
+81	répondre	Personne ne répond au numéro indiqué sur l'avis de passage.	No one is answering the number listed on the delivery notice.	present	personne	1.0	a_selected	1.0	2.0
+82	attendre	Elle attend une confirmation avant de venir au dépôt.	She is waiting for a confirmation before coming to the depot.	present	elle	1.0	none	0.0	1.0
+83	ouvrir	J'ai ouvert le paquet devant le guichetier.	I opened the package in front of the clerk.	passé composé	je	1.0	none	0.0	1.0
+84	fermer	On ferme le sas à dix-huit heures précises.	We close the entry vestibule at exactly six p.m.	present	on	1.0	a_selected	1.0	2.0
+85	confirmer	Tu confirmes l'adresse de livraison avant de valider.	You confirm the delivery address before validating.	present	tu	1.0	de_selected	1.0	2.0
+86	indiquer	La borne indique où récupérer le pli.	The kiosk shows where to pick up the item.	present	la borne	1.0	none	0.0	1.0
+87	joindre	Merci de joindre votre signature numérique au document.	Please attach your digital signature to the document.	present	vous	1.0	de_selected	1.0	2.0
+88	imprimer	Le secrétariat imprimait les formulaires en double.	The office staff used to print the forms in duplicate.	imparfait	le secrétariat	1.0	none	0.0	1.0
+89	récupérer	Je vais récupérer le colis au point relais à midi.	I'm going to pick up the package at the pickup point at noon.	futur proche	je	1.0	a_movement_or_location	0.0	1.0
+90	renvoyer	Vous renvoyez le contrat après la signature.	You send back the contract after signing.	present	vous	1.0	none	0.0	1.0
+91	sonner	Le livreur a sonné deux fois ce matin.	The delivery driver rang twice this morning.	passé composé	le livreur	1.0	none	0.0	1.0
+92	venir	Je viens au bureau avec les documents originaux.	I'm coming to the office with the original documents.	present	je	1.0	a_movement_or_location	0.0	1.0
+93	passer	Nous passerons à l'accueil pour laisser le dossier.	We'll stop by reception to leave the file.	future	nous	1.0	a_movement_or_location	0.0	1.0
+94	signer	Vous allez signer le reçu sur la tablette.	You're going to sign the receipt on the tablet.	futur proche	vous	1.0	none	0.0	1.0
+95	remplir	Il a rempli le bordereau sans oublier la date.	He filled out the slip without forgetting the date.	passé composé	il	1.0	none	0.0	1.0
+96	répondre	Le service client répondra à votre message demain.	Customer service will reply to your message tomorrow.	future	le service client	1.0	a_selected	1.0	2.0
+97	attendre	On attend encore la facture corrigée.	We're still waiting for the corrected invoice.	present	on	1.0	none	0.0	1.0
+98	ouvrir	Le point relais ouvrira à neuf heures.	The pickup point will open at nine o'clock.	future	le point relais	1.0	none	0.0	1.0
+99	fermer	Le guichet a fermé plus tôt hier.	The counter closed earlier yesterday.	passé composé	le guichet	1.0	none	0.0	1.0
+100	confirmer	J'ai confirmé au gardien que le colis était pour moi.	I confirmed to the caretaker that the package was for me.	passé composé	je	1.0	a_selected	1.0	2.0
+101	envoyer	Je vous envoie le formulaire signé avant midi.	I'm sending you the signed form before noon.	present	je	1.0	none	0.0	1.0
+102	recevoir	Nous avons reçu l'avis de passage ce matin.	We received the delivery notice this morning.	passé composé	nous	1.0	none	0.0	1.0
+103	déposer	La voisine a déposé le colis à l'accueil.	The neighbor dropped off the package at reception.	passé composé	la voisine	1.0	a_selected	1.0	2.0
+104	livrer	Le transporteur livrera les documents au service demain.	The carrier will deliver the documents to the department tomorrow.	future	le transporteur	1.0	a_selected	1.0	2.0
+105	laisser	Le livreur a laissé un avis dans la boîte aux lettres.	The delivery driver left a notice in the mailbox.	passé composé	le livreur	1.0	none	0.0	1.0
+106	appeler	J'appelle l'interphone quand j'arrive devant l'immeuble.	I call on the intercom when I arrive in front of the building.	present	je	1.0	a_movement_or_location	0.0	1.0
+107	indiquer	Le formulaire indique le numéro du guichet de retrait.	The form indicates the pickup window number.	present	le formulaire	1.0	none	0.0	1.0
+108	joindre	Vous devez joindre une copie de votre pièce d'identité.	You must attach a copy of your ID.	present	vous	1.0	de_selected	1.0	2.0
+109	imprimer	J'ai imprimé le bordereau pour le dépôt.	I printed the slip for the drop-off.	passé composé	je	1.0	none	0.0	1.0
+110	renvoyer	On vous renverra le dossier par courrier si besoin.	We'll send the file back to you by mail if needed.	future	on	1.0	de_selected	1.0	2.0
+111	sonner	Le facteur a sonné à l'interphone vers huit heures.	The mail carrier rang the intercom around eight o'clock.	passé composé	le facteur	1.0	a_selected	1.0	2.0
+112	venir	Le livreur va venir entre quatorze et seize heures.	The delivery driver is coming between two and four p.m.	futur proche	le livreur	1.0	a_movement_or_location	0.0	1.0
+113	passer	Je passerai au point relais après le travail.	I'll stop by the pickup point after work.	future	je	1.0	a_movement_or_location	0.0	1.0
+114	envoyer	La mairie nous a envoyé un nouveau formulaire.	The city hall sent us a new form.	passé composé	la mairie	1.0	none	0.0	1.0
+115	recevoir	Tu recevras un code par SMS pour confirmer le retrait.	You'll receive a code by text to confirm the pickup.	future	tu	1.0	de_selected	1.0	2.0
+116	déposer	Je dépose les papiers signés à l'accueil cet après-midi.	I'm dropping off the signed papers at reception this afternoon.	present	je	1.0	a_selected	1.0	2.0
+117	livrer	On a livré le badge au mauvais bureau.	They delivered the badge to the wrong office.	passé composé	on	1.0	a_selected	1.0	2.0
+118	laisser	Vous pouvez laisser le colis chez le gardien.	You can leave the package with the caretaker.	present	vous	1.0	a_selected	1.0	2.0
+119	appeler	Le service m'a appelé pour vérifier l'adresse de livraison.	The office called me to verify the delivery address.	passé composé	le service	1.0	a_selected	1.0	2.0
+120	indiquer	Merci d'indiquer votre nom sur l'enveloppe.	Please indicate your name on the envelope.	present	vous	1.0	none	0.0	1.0
+121	joindre	J'ai joint la facture au dossier de remboursement.	I attached the invoice to the reimbursement file.	passé composé	je	1.0	a_selected	1.0	2.0
+122	imprimer	Nous imprimons les étiquettes juste avant l'envoi.	We print the labels right before shipping.	present	nous	1.0	none	0.0	1.0
+123	récupérer	Ils ont récupéré le colis au guichet avant la fermeture.	They picked up the package at the window before closing.	passé composé	ils	1.0	de_source_or_location	0.0	1.0
+124	renvoyer	Je vais renvoyer le formulaire avec ma signature.	I'm going to send the form back with my signature.	futur proche	je	1.0	none	0.0	1.0
+125	signer	Le directeur a signé le bon de réception hier.	The director signed the receipt slip yesterday.	passé composé	le directeur	1.0	none	0.0	1.0
+126	venir	Vous pouvez venir au guichet sans rendez-vous.	You can come to the service window without an appointment.	present	vous	1.0	a_movement_or_location	0.0	1.0
+127	passer	Le coursier est passé prendre les enveloppes.	The courier stopped by to pick up the envelopes.	passé composé	le coursier	1.0	none	0.0	1.0
+128	envoyer	On enverra les badges aux nouveaux employés lundi.	We'll send the badges to the new employees on Monday.	future	on	1.0	a_selected	1.0	2.0
+129	recevoir	Je reçois toujours mes colis au bureau.	I always receive my packages at the office.	present	je	1.0	a_movement_or_location	0.0	1.0
+130	déposer	Tu as déposé la demande dans la bonne boîte?	Did you drop off the application in the right box?	passé composé	tu	1.0	none	0.0	1.0
+131	livrer	La société nous livre les ramettes chaque mois.	The company delivers paper reams to us every month.	present	la société	1.0	none	0.0	1.0
+132	laisser	J'ai laissé les clés au bureau d'accueil.	I left the keys at the reception desk.	passé composé	je	1.0	a_movement_or_location	0.0	1.0
+133	appeler	Tu peux appeler le dépôt avant de venir?	Can you call the depot before coming?	present	tu	1.0	none	0.0	1.0
+134	indiquer	Le papier indiquait une entrée sur cour.	The paper indicated an entrance in the courtyard.	imparfait	le papier	1.0	none	0.0	1.0
+135	joindre	Veuillez joindre votre numéro de dossier au message.	Please include your file number with the message.	present	vous	1.0	a_selected	1.0	2.0
+136	imprimer	Elle va imprimer le reçu pour le retrait.	She's going to print the receipt for the pickup.	futur proche	elle	1.0	none	0.0	1.0
+137	récupérer	Je récupérerai l'enveloppe à la loge ce soir.	I'll pick up the envelope at the concierge desk tonight.	future	je	1.0	a_movement_or_location	0.0	1.0
+138	renvoyer	Le service a renvoyé mon dossier incomplet.	The office sent back my incomplete file.	passé composé	le service	1.0	none	0.0	1.0
+139	sonner	Le livreur sonne toujours deux fois.	The delivery driver always rings twice.	present	le livreur	1.0	none	0.0	1.0
+140	signer	Nous signerons le registre à l'entrée.	We'll sign the register at the entrance.	future	nous	1.0	a_movement_or_location	0.0	1.0
+141	venir	Elle est venue retirer son passeport ce matin.	She came to pick up her passport this morning.	passé composé	elle	1.0	none	0.0	1.0
+142	passer	Je passe au guichet pendant ma pause déjeuner.	I stop by the service window during my lunch break.	present	je	1.0	a_movement_or_location	0.0	1.0
+143	envoyer	Le greffe m'enverra la copie certifiée par courrier.	The registry office will send me the certified copy by mail.	future	le greffe	1.0	de_source_or_location	0.0	1.0
+144	recevoir	Elle a reçu un message quand le colis est arrivé.	She got a message when the package arrived.	passé composé	elle	1.0	none	0.0	1.0
+145	déposer	Nous allons déposer le contrat signé avant dix heures.	We're going to drop off the signed contract before ten o'clock.	futur proche	nous	1.0	none	0.0	1.0
+146	livrer	Ils ont livré la commande à la mauvaise entrée.	They delivered the order to the wrong entrance.	passé composé	ils	1.0	a_movement_or_location	0.0	1.0
+147	laisser	Le gardien laisse les colis dans la salle du courrier.	The caretaker leaves the packages in the mail room.	present	le gardien	1.0	a_movement_or_location	0.0	1.0
+148	remplir	Je remplis le formulaire de retrait au guichet.	I fill out the pickup form at the counter.	present	je	1.0	a_selected	1.0	2.0
+149	appeler	La gardienne appelle au visiophone avant d'ouvrir la porte.	The caretaker calls on the intercom before opening the door.	present	la gardienne	1.0	none	0.0	1.0
+150	répondre	Je réponds au livreur par l'interphone.	I answer the delivery driver through the intercom.	present	je	1.0	none	0.0	1.0
+151	attendre	Nous attendons notre tour devant le guichet des retraits.	We wait for our turn in front of the pickup window.	present	nous	1.0	a_movement_or_location	0.0	1.0
+152	ouvrir	La réception ouvre à neuf heures pour les dépôts.	The front desk opens at nine for drop-offs.	present	la réception	1.0	a_movement_or_location	0.0	1.0
+153	confirmer	Je confirme mon rendez-vous de signature par mail.	I confirm my signing appointment by email.	present	je	1.0	none	0.0	1.0
+154	signer	Elle a signé le reçu devant le guichetier.	She signed the receipt in front of the clerk.	passé composé	elle	1.0	a_movement_or_location	0.0	1.0
+155	indiquer	Le formulaire indique la case à signer en bas.	The form shows the box to sign at the bottom.	present	le formulaire	1.0	a_selected	1.0	2.0
+156	imprimer	J'imprime l'étiquette avant de déposer le colis.	I print the label before dropping off the package.	present	je	1.0	none	0.0	1.0
+157	récupérer	Tu récupéreras le dossier à l'accueil demain matin.	You'll pick up the file at reception tomorrow morning.	future	tu	1.0	a_movement_or_location	0.0	1.0
+158	renvoyer	Ils ont renvoyé le contrat signé cet après-midi.	They sent back the signed contract this afternoon.	passé composé	ils	1.0	none	0.0	1.0
+159	sonner	Le facteur a sonné deux fois à l'interphone.	The mail carrier rang the intercom twice.	passé composé	le facteur	1.0	none	0.0	1.0
+160	remplir	Vous remplissez cette case seulement si vous changez d'adresse.	You fill in this box only if you're changing address.	present	vous	1.0	none	0.0	1.0
+161	appeler	J'ai appelé le service des livraisons pour confirmer le créneau.	I called the delivery department to confirm the time slot.	passé composé	je	1.0	none	0.0	1.0
+162	répondre	Le gardien n'a pas répondu à l'interphone ce matin.	The caretaker didn't answer the intercom this morning.	passé composé	le gardien	1.0	a_selected	1.0	2.0
+163	attendre	Elle attendait un colis important à la loge.	She was waiting for an important package at the concierge desk.	imparfait	elle	1.0	de_source_or_location	0.0	1.0
+164	ouvrir	Pouvez-vous ouvrir au livreur quand il arrive?	Can you open for the delivery driver when he arrives?	present	vous	1.0	a_movement_or_location	0.0	1.0
+165	fermer	J'ai fermé l'enveloppe après avoir signé les pages.	I sealed the envelope after signing the pages.	passé composé	je	1.0	none	0.0	1.0
+166	confirmer	Le bureau a confirmé la réception de mon dossier.	The office confirmed receipt of my file.	passé composé	le bureau	1.0	de_selected	1.0	2.0
+167	signer	Nous signerons l'accusé de réception à l'accueil.	We will sign the proof of receipt at reception.	future	nous	1.0	a_movement_or_location	0.0	1.0
+168	joindre	Elle joint toujours un justificatif au formulaire.	She always attaches supporting proof to the form.	present	elle	1.0	de_selected	1.0	2.0
+169	indiquer	Le guichetier m'a indiqué la file pour les retraits.	The clerk showed me the line for pickups.	passé composé	le guichetier	1.0	de_selected	1.0	2.0
+170	imprimer	On va imprimer le bordereau de retour tout de suite.	We're going to print the return slip right away.	futur proche	on	1.0	none	0.0	1.0
+171	récupérer	Le voisin récupère souvent mes colis quand je travaille.	My neighbor often picks up my packages when I'm at work.	present	le voisin	1.0	none	0.0	1.0
+172	renvoyer	Je renvoie le formulaire dès que vous me le confirmez.	I'll send back the form as soon as you confirm it for me.	present	je	1.0	none	0.0	1.0
+173	sonner	Quelqu'un sonne encore au portail de livraison.	Someone is ringing again at the delivery gate.	present	quelqu'un	1.0	a_movement_or_location	0.0	1.0
+174	remplir	Il a mal rempli la date sur le bon de dépôt.	He filled in the date wrong on the drop-off slip.	passé composé	il	1.0	none	0.0	1.0
+175	appeler	On appelle ce numéro pour joindre l'accueil après dix-huit heures.	You call this number to reach reception after six p.m.	present	on	1.0	none	0.0	1.0
+176	répondre	Je ne répondrai pas sans le numéro de dossier.	I won't reply without the file number.	future	je	1.0	none	0.0	1.0
+177	attendre	Le livreur attend devant l'entrée depuis dix minutes.	The delivery driver has been waiting in front of the entrance for ten minutes.	present	le livreur	1.0	a_movement_or_location	0.0	1.0
+178	ouvrir	Ils ont ouvert un créneau spécial pour les retraits rapides.	They opened a special slot for quick pickups.	passé composé	ils	1.0	none	0.0	1.0
+179	fermer	La boîte de dépôt fermera à midi aujourd'hui.	The drop box will close at noon today.	future	la boîte de dépôt	1.0	none	0.0	1.0
+180	confirmer	Tu confirmes ton passage au guichet par SMS.	You confirm your visit to the counter by text.	present	tu	1.0	none	0.0	1.0
+181	signer	Le client signe ici avant de récupérer le paquet.	The customer signs here before picking up the parcel.	present	le client	1.0	none	0.0	1.0
+182	joindre	Nous avons joint le bon de retour au colis.	We attached the return slip to the package.	passé composé	nous	1.0	de_selected	1.0	2.0
+183	indiquer	La pancarte indique où déposer les enveloppes.	The sign indicates where to drop off the envelopes.	present	la pancarte	1.0	none	0.0	1.0
+184	imprimer	Elle imprimait les reçus pendant que j'attendais.	She was printing the receipts while I was waiting.	imparfait	elle	1.0	none	0.0	1.0
+185	récupérer	Je vais récupérer ma carte au service administratif.	I'm going to pick up my card at the administrative office.	futur proche	je	1.0	a_movement_or_location	0.0	1.0
+186	renvoyer	Le service m'a renvoyé le dossier pour une signature manquante.	The department sent the file back to me because of a missing signature.	passé composé	le service	1.0	de_source_or_location	0.0	1.0
+187	sonner	Le coursier sonnera chez vous entre quatorze et seize heures.	The courier will ring at your place between two and four p.m.	future	le coursier	1.0	a_movement_or_location	0.0	1.0
+188	venir	Je viens de passer au guichet pour le retrait.	I just stopped by the counter for the pickup.	present	je	1.0	a_movement_or_location	0.0	1.0
+189	remplir	Nous remplirons le bordereau avant la fermeture.	We will fill out the slip before closing.	future	nous	1.0	none	0.0	1.0
+190	appeler	Le standard a appelé mon nom au guichet trois.	The front desk called my name at window three.	passé composé	le standard	1.0	none	0.0	1.0
+191	répondre	Vous répondez au message de confirmation aujourd'hui, s'il vous plaît.	Please reply to the confirmation message today.	present	vous	1.0	a_selected	1.0	2.0
+192	attendre	J'attends toujours la confirmation de retrait.	I'm still waiting for the pickup confirmation.	present	je	1.0	de_selected	1.0	2.0
+193	ouvrir	Le guichet va ouvrir dans cinq minutes.	The counter is going to open in five minutes.	futur proche	le guichet	1.0	none	0.0	1.0
+194	envoyer	J'ai envoyé le formulaire par mail ce matin.	I sent the form by email this morning.	passé composé	je	1.0	none	0.0	1.0
+195	recevoir	Nous recevons le colis à l'accueil avant midi.	We receive the package at reception before noon.	present	nous	1.0	a_movement_or_location	0.0	1.0
+196	déposer	Elle dépose les documents signés à la loge.	She drops off the signed documents at the concierge desk.	present	elle	1.0	a_movement_or_location	0.0	1.0
+197	livrer	Le transporteur livrera les cartons au deuxième étage.	The carrier will deliver the boxes to the second floor.	future	le transporteur	1.0	a_movement_or_location	0.0	1.0
+198	laisser	Je laisse le dossier dans la boîte prévue à cet effet.	I leave the file in the designated box.	present	je	1.0	a_movement_or_location	0.0	1.0
+199	fermer	Le guichet ferme à seize heures trente.	The pickup window closes at four thirty.	present	le guichet	1.0	none	0.0	1.0
+200	passer	Je passerai au guichet demain pour le retrait.	I'll stop by the window tomorrow for pickup.	future	je	1.0	a_movement_or_location	0.0	1.0
+201	confirmer	Le service confirme la réception de ma demande par mail.	The department confirms receipt of my request by email.	present	le service	1.0	de_selected	1.0	2.0
+202	signer	Tu signes ici avant de remettre le dossier.	You sign here before handing in the file.	present	tu	1.0	none	0.0	1.0
+203	indiquer	Le formulaire indique la date limite de dépôt.	The form indicates the submission deadline.	present	le formulaire	1.0	de_selected	1.0	2.0
+204	joindre	J'ai joint une copie de ma pièce d'identité au dossier.	I attached a copy of my ID to the file.	passé composé	je	1.0	a_selected	1.0	2.0
+205	imprimer	Nous imprimons le bordereau avant le passage du livreur.	We print the slip before the courier comes.	present	nous	1.0	none	0.0	1.0
+206	récupérer	Elle récupère son recommandé au guichet de retrait.	She picks up her registered letter at the pickup window.	present	elle	1.0	de_source_or_location	0.0	1.0
+207	renvoyer	Ils ont renvoyé le contrat corrigé cet après-midi.	They sent back the corrected contract this afternoon.	passé composé	ils	1.0	none	0.0	1.0
+208	sonner	L'interphone a sonné pendant la pause déjeuner.	The intercom rang during the lunch break.	passé composé	l'interphone	1.0	none	0.0	1.0
+209	envoyer	Le cabinet envoie les attestations aux clients chaque vendredi.	The office sends the certificates to clients every Friday.	present	le cabinet	1.0	a_selected	1.0	2.0
+210	recevoir	Tu recevras un SMS quand le pli sera disponible.	You'll receive a text when the item is available.	future	tu	1.0	none	0.0	1.0
+211	déposer	Nous avons déposé le colis au point relais hier soir.	We dropped off the package at the pickup point last night.	passé composé	nous	1.0	a_movement_or_location	0.0	1.0
+212	livrer	Le coursier livre les badges au service sécurité.	The courier delivers the badges to the security department.	present	le coursier	1.0	a_selected	1.0	2.0
+213	laisser	Elle a laissé un avis de passage dans la boîte aux lettres.	She left a delivery notice in the mailbox.	passé composé	elle	1.0	a_selected	1.0	2.0
+214	fermer	Nous fermerons la salle d'archives après le dernier dépôt.	We will close the archives room after the last drop-off.	future	nous	1.0	none	0.0	1.0
+215	passer	Le livreur passe entre neuf heures et onze heures.	The delivery driver comes by between nine and eleven.	present	le livreur	1.0	a_movement_or_location	0.0	1.0
+216	confirmer	Je confirme mon rendez-vous de retrait par téléphone.	I confirm my pickup appointment by phone.	present	je	1.0	a_selected	1.0	2.0
+217	signer	Le directeur a signé l'autorisation en bas de la page.	The director signed the authorization at the bottom of the page.	passé composé	le directeur	1.0	none	0.0	1.0
+218	indiquer	Pouvez-vous indiquer votre numéro de dossier sur l'enveloppe?	Can you indicate your file number on the envelope?	present	vous	1.0	a_selected	1.0	2.0
+219	joindre	Tu joins le reçu à la demande, s'il te plaît.	Please attach the receipt to the application.	present	tu	1.0	a_selected	1.0	2.0
+220	imprimer	Le secrétariat imprimera les étiquettes cet après-midi.	The office will print the labels this afternoon.	future	le secrétariat	1.0	none	0.0	1.0
+221	récupérer	Je vais récupérer mon passe au comptoir d'accueil.	I'm going to pick up my pass at the reception desk.	futur proche	je	1.0	a_selected	1.0	2.0
+222	renvoyer	La mairie renvoie les pièces incomplètes aux demandeurs.	The city hall sends incomplete documents back to applicants.	present	la mairie	1.0	a_selected	1.0	2.0
+223	sonner	Quelqu'un a sonné à l'interphone pendant que je remplissais le bordereau.	Someone rang the intercom while I was filling out the slip.	passé composé	quelqu'un	1.0	a_selected	1.0	2.0
+224	envoyer	On enverra la confirmation dès que le dossier sera validé.	We'll send the confirmation as soon as the file is approved.	future	on	1.0	none	0.0	1.0
+225	recevoir	Le service a reçu ma réclamation sans la pièce jointe.	The department received my complaint without the attachment.	passé composé	le service	1.0	none	0.0	1.0
+226	déposer	Tu peux déposer ta demande avant la fermeture du guichet.	You can drop off your application before the window closes.	present	tu	1.0	none	0.0	1.0
+227	livrer	Nous allons livrer les dossiers au bureau central.	We are going to deliver the files to the main office.	futur proche	nous	1.0	a_selected	1.0	2.0
+228	laisser	Le gardien laisse les colis derrière la porte vitrée après dix-huit heures.	The caretaker leaves packages behind the glass door after six p.m.	present	le gardien	1.0	a_selected	1.0	2.0
+229	fermer	La boîte de dépôt a fermé plus tôt ce soir.	The drop box closed earlier tonight.	passé composé	la boîte de dépôt	1.0	none	0.0	1.0
+230	passer	Je passe ce soir pour récupérer l'enveloppe tamponnée.	I'm stopping by tonight to pick up the stamped envelope.	present	je	1.0	none	0.0	1.0
+231	confirmer	Ils ont confirmé l'adresse de livraison avant l'envoi.	They confirmed the delivery address before shipping.	passé composé	ils	1.0	de_selected	1.0	2.0
+232	signer	Nous signerons le reçu à la remise du colis.	We will sign the receipt when the package is handed over.	future	nous	1.0	a_selected	1.0	2.0
+233	indiquer	L'agent indique au visiteur où retirer son badge.	The clerk tells the visitor where to pick up the badge.	present	l'agent	1.0	a_selected	1.0	2.0
+234	joindre	Elle a joint au formulaire une photo récente.	She attached a recent photo to the form.	passé composé	elle	1.0	a_selected	1.0	2.0
+235	imprimer	J'imprime une seconde copie au cas où le guichet la demande.	I'm printing a second copy in case the window asks for it.	present	je	1.0	none	0.0	1.0
+236	récupérer	Le client récupérera son colis avec une pièce d'identité.	The customer will pick up the package with an ID.	future	le client	1.0	a_movement_or_location	0.0	1.0
+237	renvoyer	Vous renvoyez le formulaire si une case manque.	You send the form back if a box is missing.	present	vous	1.0	none	0.0	1.0
+238	sonner	Le livreur sonne toujours deux fois à l'interphone.	The delivery driver always rings the intercom twice.	present	le livreur	1.0	a_selected	1.0	2.0
+239	venir	Le technicien vient demain pour régler l'interphone.	The technician is coming tomorrow to fix the intercom.	present	le technicien	1.0	none	0.0	1.0
+240	passer	La responsable passera au dépôt en fin de matinée.	The supervisor will stop by the drop-off point late in the morning.	future	la responsable	1.0	a_movement_or_location	0.0	1.0
+241	envoyer	Ma banque m'envoie une nouvelle carte à l'agence.	My bank is sending me a new card to the branch.	present	ma banque	1.0	a_selected	1.0	2.0
+242	recevoir	J'ai reçu l'accusé de réception quelques minutes après l'envoi.	I received the acknowledgment a few minutes after sending it.	passé composé	je	1.0	de_source_or_location	0.0	1.0
+243	déposer	Le voisin déposera le paquet à ma place au point relais.	The neighbor will drop off the package for me at the pickup point.	future	le voisin	1.0	a_selected	1.0	2.0
+244	remplir	Je remplis le formulaire avant de monter au guichet.	I fill out the form before going up to the counter.	present	je	1.0	none	0.0	1.0
+245	livrer	Le coursier livre le dossier à l'accueil avant midi.	The courier delivers the file to reception before noon.	present	le coursier	1.0	a_selected	1.0	2.0
+246	laisser	Je laisse le colis chez le gardien quand l'interphone ne marche pas.	I leave the package with the caretaker when the intercom doesn't work.	present	je	1.0	none	0.0	1.0
+247	appeler	La réception m'appelle pour confirmer mon créneau de retrait.	Reception calls me to confirm my pickup slot.	present	la réception	1.0	none	0.0	1.0
+248	répondre	Je réponds au livreur dès que l'interphone sonne.	I answer the delivery person as soon as the intercom rings.	present	je	1.0	a_selected	1.0	2.0
+249	attendre	Nous attendons notre tour devant la fenêtre de retrait.	We wait for our turn in front of the pickup window.	present	nous	1.0	none	0.0	1.0
+250	ouvrir	L'agent ouvre la porte après avoir vérifié mon nom.	The clerk opens the door after checking my name.	present	l'agent	1.0	none	0.0	1.0
+251	fermer	Le bureau ferme à seize heures le vendredi.	The office closes at four p.m. on Fridays.	present	le bureau	1.0	none	0.0	1.0
+252	signer	Vous signez ici avant de récupérer le recommandé.	You sign here before picking up the registered letter.	present	vous	1.0	none	0.0	1.0
+253	confirmer	Je confirme mon adresse sur le bordereau de livraison.	I confirm my address on the delivery slip.	present	je	1.0	none	0.0	1.0
+254	indiquer	La fiche indique le numéro de guichet en haut à droite.	The sheet shows the counter number at the top right.	present	la fiche	1.0	none	0.0	1.0
+255	imprimer	Elle imprime le reçu avant de fermer le guichet.	She prints the receipt before closing the counter.	present	elle	1.0	none	0.0	1.0
+256	récupérer	On récupère les badges à l'accueil du bâtiment B.	We pick up the badges at reception in building B.	present	on	1.0	a_selected	1.0	2.0
+257	renvoyer	Je renvoie le formulaire signé cet après-midi.	I send back the signed form this afternoon.	present	je	1.0	none	0.0	1.0
+258	remplir	Tu as rempli la demande en ligne sans oublier la date?	Did you fill out the online request without forgetting the date?	passé composé	tu	1.0	none	0.0	1.0
+259	livrer	Ils vont livrer les cartons au service des archives demain matin.	They are going to deliver the boxes to the archives department tomorrow morning.	futur proche	ils	1.0	a_selected	1.0	2.0
+260	laisser	Le facteur a laissé un avis de passage dans la boîte aux lettres.	The mail carrier left a delivery notice in the mailbox.	passé composé	le facteur	1.0	none	0.0	1.0
+261	appeler	J'appelle l'accueil pour savoir si le guichet est encore ouvert.	I call reception to find out whether the counter is still open.	present	je	1.0	a_selected	1.0	2.0
+262	répondre	La gardienne n'a pas répondu à l'interphone ce matin.	The caretaker didn't answer the intercom this morning.	passé composé	la gardienne	1.0	de_source_or_location	0.0	1.0
+263	ouvrir	Tu ouvres le sas avec le code reçu par mail.	You open the entry door with the code received by email.	present	tu	1.0	none	0.0	1.0
+264	fermer	Ils ont fermé la salle des retraits plus tôt aujourd'hui.	They closed the pickup room earlier today.	passé composé	ils	1.0	none	0.0	1.0
+265	confirmer	Le service confirme la réception de mon dossier par courriel.	The department confirms receipt of my file by email.	present	le service	1.0	de_selected	1.0	2.0
+266	indiquer	Pouvez-vous indiquer votre étage sur le bon de livraison?	Can you indicate your floor on the delivery slip?	present	vous	1.0	none	0.0	1.0
+267	joindre	Nous joignons le bordereau au colis avant l'envoi.	We attach the slip to the package before shipment.	present	nous	1.0	a_selected	1.0	2.0
+268	imprimer	Je vais imprimer une deuxième étiquette pour le retour.	I'm going to print a second label for the return.	futur proche	je	1.0	none	0.0	1.0
+269	récupérer	Ma collègue récupère les formulaires au guichet central.	My coworker picks up the forms at the main counter.	present	ma collègue	1.0	a_selected	1.0	2.0
+270	renvoyer	Le service m'a renvoyé le contrat parce qu'il manquait une signature.	The department sent the contract back to me because a signature was missing.	passé composé	le service	1.0	de_source_or_location	0.0	1.0
+271	signer	Le directeur signera l'autorisation avant la fin de la journée.	The director will sign the authorization before the end of the day.	future	le directeur	1.0	none	0.0	1.0
+272	remplir	On remplissait encore des formulaires papier l'an dernier.	We were still filling out paper forms last year.	imparfait	on	1.0	none	0.0	1.0
+273	livrer	La société livre aussi les recommandés au service courrier.	The company also delivers registered mail to the mailroom.	present	la société	1.0	a_selected	1.0	2.0
+274	laisser	Vous pouvez laisser le dossier dans la boîte prévue à l'entrée.	You can leave the file in the box provided at the entrance.	present	vous	1.0	none	0.0	1.0
+275	appeler	Le client a appelé trois fois avant d'obtenir quelqu'un au standard.	The client called three times before reaching someone at the switchboard.	passé composé	le client	1.0	a_selected	1.0	2.0
+276	répondre	Nous répondrons à votre demande dès l'ouverture du bureau.	We will respond to your request as soon as the office opens.	future	nous	1.0	a_selected	1.0	2.0
+277	attendre	J'attends une confirmation avant d'imprimer les étiquettes.	I'm waiting for confirmation before printing the labels.	present	je	1.0	none	0.0	1.0
+278	ouvrir	La fenêtre de retrait ouvre à neuf heures pile.	The pickup window opens at exactly nine o'clock.	present	la fenêtre de retrait	1.0	none	0.0	1.0
+279	fermer	Je ferme l'enveloppe après avoir vérifié les pièces jointes.	I close the envelope after checking the attachments.	present	je	1.0	none	0.0	1.0
+280	confirmer	Tu confirms au livreur que quelqu'un sera là cet après-midi?	Are you confirming to the delivery driver that someone will be there this afternoon?	present	tu	1.0	a_selected	1.0	2.0
+281	indiquer	L'interphone indique le nom du service au lieu du numéro de bureau.	The intercom shows the department name instead of the office number.	present	l'interphone	1.0	a_selected	1.0	2.0
+282	joindre	Je joins mon numéro de dossier à chaque message.	I include my file number with every message.	present	je	1.0	a_selected	1.0	2.0
+283	imprimer	Ils imprimaient les bordereaux directement à l'accueil.	They used to print the slips directly at reception.	imparfait	ils	1.0	a_selected	1.0	2.0
+284	récupérer	Tu pourras récupérer ton colis au point retrait avec cette pièce d'identité.	You'll be able to pick up your package at the pickup point with this ID.	future	tu	1.0	a_movement_or_location	0.0	1.0
+285	renvoyer	Nous renverrons les badges par courrier interne demain.	We will send the badges back by internal mail tomorrow.	future	nous	1.0	de_source_or_location	0.0	1.0
+286	signer	J'ai signé le reçu sur la tablette du livreur.	I signed the receipt on the delivery driver's tablet.	passé composé	je	1.0	none	0.0	1.0
+287	laisser	La secrétaire laisse toujours les formulaires vierges près de l'entrée.	The secretary always leaves blank forms near the entrance.	present	la secrétaire	1.0	de_source_or_location	0.0	1.0
+288	attendre	Vous attendez encore la carte d'accès ou vous l'avez déjà reçue?	Are you still waiting for the access card, or have you already received it?	present	vous	1.0	none	0.0	1.0
+289	ouvrir	Le gardien a ouvert au livreur malgré l'heure tardive.	The caretaker opened for the delivery driver despite the late hour.	passé composé	le gardien	1.0	a_selected	1.0	2.0
+290	appeler	On appellera le prochain numéro dans une minute.	We'll call the next number in a minute.	future	on	1.0	a_selected	1.0	2.0
+291	fermer	La poste va fermer le guichet des retraits pendant la pause de midi.	The post office is going to close the pickup counter during the lunch break.	futur proche	la poste	1.0	none	0.0	1.0
+292	venir	Le livreur vient entre 14 h et 16 h pour le dépôt des dossiers.	The delivery person is coming between 2 and 4 p.m. to drop off the files.	present	le livreur	1.0	none	0.0	1.0
+293	envoyer	Je vous envoie le formulaire signé par mail cet après-midi.	I'm sending you the signed form by email this afternoon.	present	je	1.0	de_source_or_location	0.0	1.0
+294	recevoir	Nous avons reçu la confirmation de livraison ce matin.	We received the delivery confirmation this morning.	passé composé	nous	1.0	de_source_or_location	0.0	1.0
+295	déposer	Elle dépose le colis à l'accueil avant midi.	She drops off the package at reception before noon.	present	elle	1.0	a_movement_or_location	0.0	1.0
+296	passer	Je passerai au guichet pour récupérer mon badge.	I'll stop by the counter to pick up my badge.	future	je	1.0	a_movement_or_location	0.0	1.0
+297	remplir	Tu as rempli le bon de retour sans oublier la date?	Did you fill out the return slip without forgetting the date?	passé composé	tu	1.0	none	0.0	1.0
+298	livrer	On va livrer les cartons au service des archives demain matin.	We're going to deliver the boxes to the archives department tomorrow morning.	futur proche	on	1.0	a_movement_or_location	0.0	1.0
+299	répondre	Le gardien a répondu à l'interphone après la deuxième sonnerie.	The caretaker answered the intercom after the second ring.	passé composé	le gardien	1.0	a_selected	1.0	2.0
+300	sonner	Le facteur a sonné, mais personne n'a ouvert la porte du bureau.	The mail carrier rang, but nobody opened the office door.	passé composé	le facteur	1.0	none	0.0	1.0

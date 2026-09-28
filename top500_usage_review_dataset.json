@@ -1,0 +1,6502 @@
+[
+  {
+    "verb": "abandonner",
+    "COD": "Il abandonne son projet",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "abattre",
+    "COD": "Le vent abat l'arbre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "abrutir",
+    "COD": "Ce film abrutit les spectateurs",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:abrutir_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accéder",
+    "COD": "",
+    "à": "J'accède à ce fichier",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accélérer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accepter",
+    "COD": "J'accepte ce cadeau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accompagner",
+    "COD": "J'accompagne ma sœur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accomplir",
+    "COD": "Elle accomplit sa mission",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accorder",
+    "COD": "Il accorde une faveur",
+    "à": "",
+    "de": "",
+    "COD+à": "Elle accorde une faveur à son ami",
+    "sources": {
+      "COD": "usage:accorder_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "accrocher",
+    "COD": "Il accroche le tableau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accueillir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "accuser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "acheter",
+    "COD": "J'achète une voiture",
+    "à": "",
+    "de": "",
+    "COD+à": "J'achète un vélo à mon voisin",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "achever",
+    "COD": "Il achève le projet",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "acquérir",
+    "COD": "Elle acquiert une nouvelle voiture",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "activer",
+    "COD": "J'active l'alarme",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "adapter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "admettre",
+    "COD": "J'admets mon erreur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "adopter",
+    "COD": "Ils adoptent un chien",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "adorer",
+    "COD": "J'adore le chocolat",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:adorer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "adresser",
+    "COD": "Il adresse une lettre",
+    "à": "",
+    "de": "",
+    "COD+à": "Elle adresse une remarque au directeur",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "affamer",
+    "COD": "La guerre affame la population",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:affamer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "affirmer",
+    "COD": "J'affirme mon innocence",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "affronter",
+    "COD": "Il affronte ses peurs",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "agir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "agresser",
+    "COD": "Il agresse un passant",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "aider",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "aimer",
+    "COD": "J'aime le chocolat noir",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:aimer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ajouter",
+    "COD": "J'ajoute du sel",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "aller",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "allonger",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "allumer",
+    "COD": "J'allume la lumière",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:allumer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "améliorer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "amener",
+    "COD": "J'amène mon frère",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "amuser",
+    "COD": "Ce film amuse les enfants",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:amuser_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "analyser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "annoncer",
+    "COD": "J'annonce les résultats",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "annuler",
+    "COD": "J'annule la réunion",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "apparaître",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "appartenir",
+    "COD": "",
+    "à": "Ce livre appartient à Marie",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:appartenir_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "appeler",
+    "COD": "J'appelle Marie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "manual:appeler_direct",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "appliquer",
+    "COD": "Il applique la crème",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "apporter",
+    "COD": "J'apporte un livre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "apprécier",
+    "COD": "J'apprécie ton aide",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:apprécier_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "apprendre",
+    "COD": "J'apprends le français",
+    "à": "",
+    "de": "",
+    "COD+à": "J'apprends la grammaire à mon frère",
+    "sources": {
+      "COD": "usage:apprendre_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "approcher",
+    "COD": "Il approche la chaise",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "approprier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "approuver",
+    "COD": "J'approuve le plan",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "appuyer",
+    "COD": "J'appuie la décision",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "armer",
+    "COD": "Il arme le soldat",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "arracher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "arranger",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "arrêter",
+    "COD": "La police arrête le voleur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:arrêter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "arriver",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "assassiner",
+    "COD": "Le groupe assassine le ministre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "asseoir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "assister",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "associer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "assurer",
+    "COD": "Ils assurent la qualité du produit",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:assurer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "attacher",
+    "COD": "Il attache la corde",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "attaquer",
+    "COD": "Le voleur attaque un passant",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "atteindre",
+    "COD": "Elle atteint le sommet",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "attendre",
+    "COD": "J'attends le train",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "atterrir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "attirer",
+    "COD": "La lumière attire les insectes",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "attraper",
+    "COD": "J'attrape un poisson",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "augmenter",
+    "COD": "J'augmente le budget",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "autopsier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "autoriser",
+    "COD": "Le directeur autorise l'accès",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:autoriser_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "avancer",
+    "COD": "Il avance sa chaise",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:avancer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "avertir",
+    "COD": "J'avertis le voisin",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "avoir",
+    "COD": "J'ai un frère",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "avouer",
+    "COD": "J'avoue mon erreur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "baiser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "baisser",
+    "COD": "Je baisse le volume",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "balancer",
+    "COD": "Je balance le ballon",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "baser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "battre",
+    "COD": "Je bats mon voisin",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "blesser",
+    "COD": "Il blesse son ami",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "bloquer",
+    "COD": "Je bloque la porte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "boire",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "bosser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "botter",
+    "COD": "Je botte le ballon",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "boucher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "boucler",
+    "COD": "Je boucle le dossier",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "bouger",
+    "COD": "Je bouge la table",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "bouleverser",
+    "COD": "La nouvelle bouleverse Marie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "briser",
+    "COD": "Je brise le verre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "brûler",
+    "COD": "Je brûle le papier",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "buter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "cacher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "calmer",
+    "COD": "Elle calme le bébé",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "capturer",
+    "COD": "La police capture le suspect",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "carter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "casser",
+    "COD": "Je casse le verre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "causer",
+    "COD": "Ce retard cause un problème",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "céder",
+    "COD": "Il cède sa place",
+    "à": "Elle cède à son frère",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "célébrer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "cesser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "changer",
+    "COD": "Je change la date du rendez-vous",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:changer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "chanter",
+    "COD": "Elle chante une chanson douce",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:chanter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "charger",
+    "COD": "Je charge la voiture",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "chasser",
+    "COD": "Je chasse le cerf",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "chercher",
+    "COD": "Je cherche mes clés",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "choisir",
+    "COD": "Je choisis ce film",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:choisir_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "choper",
+    "COD": "Je chope le ballon",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "choquer",
+    "COD": "Cette annonce choque tout le monde",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "cingler",
+    "COD": "Le vent cingle le visage",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:cingler_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "circuler",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "citer",
+    "COD": "Je cite cet exemple",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "classer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "cogner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "coincer",
+    "COD": "Je coince la porte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "coller",
+    "COD": "Je colle l'affiche",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "combattre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "commander",
+    "COD": "Je commande une pizza",
+    "à": "Le chef commande aux soldats",
+    "de": "",
+    "COD+à": "Je commande un café à la serveuse",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "usage:commander_02",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "commencer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "commettre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "communiquer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "comparer",
+    "COD": "Je compare deux idées",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "comporter",
+    "COD": "Le livre comporte trois chapitres",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:comporter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "composer",
+    "COD": "Elle compose une chanson",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "comprendre",
+    "COD": "Je comprends ta décision",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:comprendre_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "compromettre",
+    "COD": "Ils compromettent la sécurité",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "compter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "concentrer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "concerner",
+    "COD": "Cette décision concerne les employés",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "concevoir",
+    "COD": "Elle conçoit des vêtements uniques",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:concevoir_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "conclure",
+    "COD": "Je conclus le contrat",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "condamner",
+    "COD": "Le juge condamne le criminel",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "conduire",
+    "COD": "Je conduis une voiture",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "confier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "Je confie mes clés à Marie",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "confirmer",
+    "COD": "Je confirme la réservation",
+    "à": "",
+    "de": "",
+    "COD+à": "Je confirme la nouvelle à Marc",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "connaître",
+    "COD": "Tu connais Marie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:connaître_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "connecter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "consacrer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "Elle consacre beaucoup de temps à ses enfants",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": "usage:consacrer_02"
+    }
+  },
+  {
+    "verb": "conseiller",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "considérer",
+    "COD": "Je considère cette idée",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "construire",
+    "COD": "Ils construisent une maison",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:construire_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "consulter",
+    "COD": "Je consulte le médecin",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "contacter",
+    "COD": "Je contacte le service client",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "contenir",
+    "COD": "La boîte contient des chocolats",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:contenir_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "contenter",
+    "COD": "Elle contente ses parents",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "continuer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "contrarier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "contrôler",
+    "COD": "Je contrôle le moteur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "convaincre",
+    "COD": "Je convaincs mon frère",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "convenir",
+    "COD": "",
+    "à": "Ce travail convient à Marie",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:convenir_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "correspondre",
+    "COD": "",
+    "à": "Ça correspond à notre idée",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "manual:correspondre_a",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "coter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "coucher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "couler",
+    "COD": "Il coule le navire",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "couper",
+    "COD": "Je coupe le pain",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "courir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "coûter",
+    "COD": "Ce livre coûte 20 euros",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:coûter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "couvrir",
+    "COD": "Elle couvre le gâteau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "cracher",
+    "COD": "Je crache le noyau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "craindre",
+    "COD": "Elle craint les serpents",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:craindre_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "créer",
+    "COD": "Je crée une entreprise",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "crémer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "creuser",
+    "COD": "Il creuse un trou",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "crever",
+    "COD": "Je crève le ballon",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "crier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "croire",
+    "COD": "Je crois son histoire",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:croire_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "croiser",
+    "COD": "Je croise un voisin",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "cuisiner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "danser",
+    "COD": "Il danse le tango",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "débarrasser",
+    "COD": "Je débarrasse la table",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "décider",
+    "COD": "Le jury décide le gagnant",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "déclarer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "découvrir",
+    "COD": "Elle découvre un secret",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "défendre",
+    "COD": "Je défends ma sœur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "déjeuner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "demander",
+    "COD": "Je demande un renseignement",
+    "à": "",
+    "de": "",
+    "COD+à": "Je demande un service à mon voisin",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "dépasser",
+    "COD": "Le coureur dépasse la limite",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "dépendre",
+    "COD": "",
+    "à": "",
+    "de": "Tout dépend de la situation",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "déplacer",
+    "COD": "Je déplace la table",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "déposer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "déranger",
+    "COD": "Je dérange le voisin",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "descendre",
+    "COD": "Je descends les valises",
+    "à": "",
+    "de": "Il descend du train",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:descendre_01",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "désoler",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "détendre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "détruire",
+    "COD": "Je détruis le mur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "devenir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "deviner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "devoir",
+    "COD": "Je dois cinquante euros",
+    "à": "",
+    "de": "",
+    "COD+à": "Je dois cent euros à mon frère",
+    "sources": {
+      "COD": "usage:devoir_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "dîner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "dire",
+    "COD": "Je dis la vérité",
+    "à": "",
+    "de": "",
+    "COD+à": "Je dis la vérité à mon frère",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "diriger",
+    "COD": "Elle dirige une grande entreprise",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:diriger_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "discuter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "disparaître",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "donner",
+    "COD": "Je donne un livre",
+    "à": "",
+    "de": "",
+    "COD+à": "Il donne un jouet à sa nièce",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "usage:donner_02"
+    }
+  },
+  {
+    "verb": "douer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "durer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "échapper",
+    "COD": "",
+    "à": "Ça échappe à Paul",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "manual:echapper_a",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "échouer",
+    "COD": "",
+    "à": "Il échoue à l'examen de maths",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "éclater",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "écouter",
+    "COD": "J'écoute cette chanson",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "écraser",
+    "COD": "Il écrase la canette",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "écrire",
+    "COD": "J'écris une lettre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:écrire_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "effrayer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "élever",
+    "COD": "Elle élève ses enfants",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "éliminer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "éloigner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "embrasser",
+    "COD": "Elle embrasse son fils",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "emmener",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "empêcher",
+    "COD": "Elle empêche la fuite",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "enculer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "énerver",
+    "COD": "Tu énerves mon frère",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "enfermer",
+    "COD": "Elle enferme le chien",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "engager",
+    "COD": "J'engage un nouvel employé",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "enlever",
+    "COD": "J'enlève la tache",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "enregistrer",
+    "COD": "J'enregistre la chanson",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "enseigner",
+    "COD": "Elle enseigne les mathématiques",
+    "à": "",
+    "de": "",
+    "COD+à": "Elle enseigne la grammaire à ses élèves",
+    "sources": {
+      "COD": "usage:enseigner_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "entendre",
+    "COD": "J'entends un bruit étrange",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:entendre_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "enterrer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "entraîner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "entrer",
+    "COD": "J'entre ton code PIN",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:entrer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "envoyer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "J'envoie le dossier à mon collègue",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:ai:gpt-5"
+    }
+  },
+  {
+    "verb": "épouser",
+    "COD": "Il épouse une avocate",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "espérer",
+    "COD": "J'espère un cadeau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:espérer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "essayer",
+    "COD": "J'essaie cette veste",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:essayer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "établir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "être",
+    "COD": "",
+    "à": "La voiture est à Paul",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "manual:etre_belong",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "étudier",
+    "COD": "Elle étudie la biologie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "éviter",
+    "COD": "Il évite les embouteillages",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "examiner",
+    "COD": "Le médecin examine le patient",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "excuser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "exister",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "expliquer",
+    "COD": "Le professeur explique la leçon",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "exploser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "exprimer",
+    "COD": "J'exprime mon avis",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "manual:exprimer_direct",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "fâcher",
+    "COD": "Ce bruit fâche ma sœur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "faire",
+    "COD": "Je fais un gâteau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "manual:faire_direct",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "falloir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "fermer",
+    "COD": "Je ferme la porte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "fiancer",
+    "COD": "Le père fiance sa fille",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "filer",
+    "COD": "Elle file la laine",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "finir",
+    "COD": "Elle finit le projet",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "fonctionner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "forcer",
+    "COD": "Il force la porte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "fouiller",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "fournir",
+    "COD": "Ils fournissent les documents",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "foutre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "frapper",
+    "COD": "Il frappe le ballon",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "fumer",
+    "COD": "Il fume une cigarette",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:fumer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "gagner",
+    "COD": "Elle gagne le match",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "garder",
+    "COD": "Je garde ta clé",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "gêner",
+    "COD": "Le bruit gêne Marie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "gérer",
+    "COD": "Je gère cette équipe",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "grandir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "habiller",
+    "COD": "J'habille mon fils",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "habiter",
+    "COD": "J'habite une maison en Bretagne",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:habiter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "habituer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "hâter",
+    "COD": "Elle hâte le processus",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "identifier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ignorer",
+    "COD": "J'ignore la réponse",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "imaginer",
+    "COD": "J'imagine un monde sans guerre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:imaginer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "impliquer",
+    "COD": "Ce projet implique beaucoup de travail",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:impliquer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "importer",
+    "COD": "",
+    "à": "Ce détail importe aux investisseurs",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:importer_02",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "impressionner",
+    "COD": "Ce discours impressionne les invités",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "informer",
+    "COD": "J'informe les voisins",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "inquiéter",
+    "COD": "Cette lettre inquiète Paul",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "insister",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "installer",
+    "COD": "J'installe la tente",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "interdire",
+    "COD": "J'interdis ce jeu",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "intéresser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "interroger",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "inventer",
+    "COD": "Marie invente une nouvelle recette",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "inviter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "jeter",
+    "COD": "Je jette la balle",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "jouer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "juger",
+    "COD": "Elle juge le projet intéressant",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:juger_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "jurer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "lâcher",
+    "COD": "Je lâche la corde",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "laisser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "Je laisse mon sac à mon frère",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "lancer",
+    "COD": "Il lance le ballon",
+    "à": "",
+    "de": "",
+    "COD+à": "Elle lance le frisbee à son ami",
+    "sources": {
+      "COD": "usage:lancer_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "lever",
+    "COD": "Je lève la boîte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "libérer",
+    "COD": "Elle libère les oiseaux",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "lier",
+    "COD": "Elle lie les deux cordes",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "lire",
+    "COD": "Je lis un livre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "louer",
+    "COD": "Je loue un appartement",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "manger",
+    "COD": "Je mange une pomme",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "manquer",
+    "COD": "Je manque le train",
+    "à": "Tu manques à Paul",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "manual:manquer_direct",
+      "à": "manual:manquer_a",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "marcher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "marier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "marquer",
+    "COD": "Je marque la page",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "maudire",
+    "COD": "Je maudis cette injustice",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "menacer",
+    "COD": "Elle menace son voisin",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "mener",
+    "COD": "Elle mène une équipe",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "mentir",
+    "COD": "",
+    "à": "Il ment à ses parents",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:mentir_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "mettre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "monter",
+    "COD": "Je monte une tente",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "montrer",
+    "COD": "Je montre la photo",
+    "à": "",
+    "de": "",
+    "COD+à": "Je montre le message à ma sœur",
+    "sources": {
+      "COD": "usage:montrer_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:ai:gpt-5"
+    }
+  },
+  {
+    "verb": "mourir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "naître",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "nettoyer",
+    "COD": "Je nettoie la cuisine",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "nommer",
+    "COD": "Je nomme ce bébé Luc",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "nourrir",
+    "COD": "Je nourris le chat",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "obliger",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "observer",
+    "COD": "J'observe les oiseaux",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "obtenir",
+    "COD": "Elle obtient le poste",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "occuper",
+    "COD": "Cette armoire occupe tout le mur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:occuper_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "offrir",
+    "COD": "J'offre un cadeau",
+    "à": "",
+    "de": "",
+    "COD+à": "J'offre un café à mon ami",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "opérer",
+    "COD": "Le chirurgien opère le patient",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ordonner",
+    "COD": "Le chef ordonne ses équipes",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "organiser",
+    "COD": "J'organise une réunion",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "oublier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ouvrir",
+    "COD": "J'ouvre la fenêtre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:ouvrir_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "paraître",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "pardonner",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "Je pardonne cette erreur à mon frère",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "parer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "parfaire",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "parler",
+    "COD": "",
+    "à": "Je parle à Paul",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "partager",
+    "COD": "Je partage mon dessert",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "participer",
+    "COD": "",
+    "à": "Elle participe à la réunion",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:participer_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "partir",
+    "COD": "",
+    "à": "",
+    "de": "Le train part de Lyon",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "passer",
+    "COD": "Je passe le café",
+    "à": "",
+    "de": "",
+    "COD+à": "Je passe le sel à mon frère",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "payer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "Je paie la facture à mon plombier",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "peindre",
+    "COD": "Elle peint un tableau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:peindre_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "penser",
+    "COD": "",
+    "à": "Je pense à ce projet",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "perdre",
+    "COD": "Je perds mes clés",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "permettre",
+    "COD": "Le règlement permet cette exception",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "piéger",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "placer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "plaire",
+    "COD": "",
+    "à": "Ce film plaît à Marie",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:plaire_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "planter",
+    "COD": "Elle plante des fleurs",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "pleurer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "porter",
+    "COD": "Elle porte une robe rouge",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:porter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "poser",
+    "COD": "Il pose le livre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "posséder",
+    "COD": "Elle possède une belle maison",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:posséder_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "pourrir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "poursuivre",
+    "COD": "Elle poursuit ses études",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "pousser",
+    "COD": "Je pousse la porte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "pouvoir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "préférer",
+    "COD": "Je préfère le thé",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "prendre",
+    "COD": "Je prends le train",
+    "à": "",
+    "de": "",
+    "COD+à": "Elle prend le ballon à son frère",
+    "sources": {
+      "COD": "manual:prendre_direct",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "préparer",
+    "COD": "Je prépare le dîner",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "présenter",
+    "COD": "Je présente le projet",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "presser",
+    "COD": "Je presse une orange",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "prétendre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "prévenir",
+    "COD": "Je préviens le voisin",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "prévoir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "priver",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "profiter",
+    "COD": "",
+    "à": "",
+    "de": "Elle profite de son expérience",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "proposer",
+    "COD": "Elle propose une idée intéressante",
+    "à": "",
+    "de": "",
+    "COD+à": "Je propose un café à mon voisin",
+    "sources": {
+      "COD": "usage:proposer_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "protéger",
+    "COD": "Je protège mes enfants",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "prouver",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "provoquer",
+    "COD": "Le discours provoque une forte réaction",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "quitter",
+    "COD": "Je quitte la salle",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "raconter",
+    "COD": "Il raconte une histoire drôle",
+    "à": "",
+    "de": "",
+    "COD+à": "Je raconte une histoire à mon frère",
+    "sources": {
+      "COD": "usage:raconter_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "ramener",
+    "COD": "Je ramène le chat",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ranger",
+    "COD": "Je range mes livres",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rappeler",
+    "COD": "Je rappelle le client",
+    "à": "",
+    "de": "",
+    "COD+à": "Je rappelle la règle à Paul",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "rapporter",
+    "COD": "Je rapporte le livre",
+    "à": "",
+    "de": "",
+    "COD+à": "Je rapporte la nouvelle à ma sœur",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "rassembler",
+    "COD": "Je rassemble mes notes",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rater",
+    "COD": "Je rate le train",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "réaliser",
+    "COD": "Elle réalise son projet",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "recevoir",
+    "COD": "Elle reçoit une lettre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rechercher",
+    "COD": "Je recherche un emploi intéressant",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:rechercher_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "recommencer",
+    "COD": "Je recommence le projet",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "reconnaître",
+    "COD": "Je reconnais ce visage",
+    "à": "",
+    "de": "",
+    "COD+à": "Je reconnais un vrai talent à cette actrice",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "reculer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "récupérer",
+    "COD": "Je récupère mon livre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "réfléchir",
+    "COD": "",
+    "à": "Je réfléchis à ce problème",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "refuser",
+    "COD": "Elle refuse l'invitation",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:refuser_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "regarder",
+    "COD": "Je regarde le film",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "régler",
+    "COD": "Je règle le volume",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "regretter",
+    "COD": "Je regrette mon erreur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:regretter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rejeter",
+    "COD": "Je rejette cette idée",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rejoindre",
+    "COD": "Je rejoins le groupe",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "relever",
+    "COD": "Elle relève la chaise tombée",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:relever_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "remarquer",
+    "COD": "Je remarque une erreur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "remercier",
+    "COD": "Je remercie mes parents",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "remettre",
+    "COD": "Je remets ce livre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "remonter",
+    "COD": "Je remonte la montre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "remplacer",
+    "COD": "Je remplace la batterie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "remplir",
+    "COD": "Je remplis la bouteille",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rencontrer",
+    "COD": "Je rencontre Marie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rendre",
+    "COD": "Je rends le parapluie",
+    "à": "Je rends visite à mes parents demain",
+    "de": "",
+    "COD+à": "Il rend le stylo à Lucie",
+    "sources": {
+      "COD": "usage:rendre_01",
+      "à": "usage:rendre_07",
+      "de": "",
+      "COD+à": "ai:combo:seed-v1"
+    }
+  },
+  {
+    "verb": "rentrer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "renvoyer",
+    "COD": "Je renvoie le formulaire",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "réparer",
+    "COD": "Je répare la voiture",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "repartir",
+    "COD": "",
+    "à": "",
+    "de": "Elle repart de zéro",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "repérer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "répéter",
+    "COD": "Elle répète la phrase",
+    "à": "",
+    "de": "",
+    "COD+à": "Je répète la consigne à Paul",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "répondre",
+    "COD": "",
+    "à": "Je réponds à Marie",
+    "de": "Je réponds de mon frère",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "reposer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "reprendre",
+    "COD": "Je reprends le dossier",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "représenter",
+    "COD": "La colombe représente la paix",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:représenter_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "réserver",
+    "COD": "Je réserve une chambre",
+    "à": "",
+    "de": "",
+    "COD+à": "Je réserve cette place à mon frère",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "résoudre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "respecter",
+    "COD": "Je respecte les règles",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "respirer",
+    "COD": "Elle respire l'air frais",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ressembler",
+    "COD": "",
+    "à": "Elle ressemble à sa mère",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:ressembler_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ressentir",
+    "COD": "Je ressens une grande joie",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "restaurer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rester",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "retenir",
+    "COD": "Je retiens son nom",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "retirer",
+    "COD": "Elle retire son manteau",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:retirer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "retourner",
+    "COD": "Je retourne la feuille",
+    "à": "",
+    "de": "",
+    "COD+à": "Je retourne le livre à Paul",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "retrouver",
+    "COD": "Je retrouve ce livre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "réussir",
+    "COD": "Elle réussit son examen",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "réveiller",
+    "COD": "Je réveille mon frère",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "révéler",
+    "COD": "Elle révèle le secret",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "revenir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "revoir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "risquer",
+    "COD": "Il risque son poste",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "rouler",
+    "COD": "Je roule la pâte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "ruiner",
+    "COD": "La pluie ruine notre pique-nique",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'aimer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'amuser",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'appeler",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'asseoir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'ennuyer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'habiller",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'intéresser",
+    "COD": "",
+    "à": "Il s'intéresse à la politique",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:s_intéresser_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "s'occuper",
+    "COD": "",
+    "à": "",
+    "de": "Je m'occupe de mon frère",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "sacrer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "saisir",
+    "COD": "Il saisit le livre",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "sauter",
+    "COD": "Il saute la barrière",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "sauver",
+    "COD": "Le pompier sauve le chien",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "savoir",
+    "COD": "Il sait la réponse",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "manual:savoir_direct",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se battre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se connaître",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se coucher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se demander",
+    "COD": "Ils se demandent plein de trucs",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:se_demander_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se dépêcher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se fâcher",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se faire",
+    "COD": "",
+    "à": "Elle se fait à son nouveau patron",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:se_faire_02",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se laver",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se lever",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se marier",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se mettre",
+    "COD": "Il se met un pull chaud",
+    "à": "Elle se met à ce travail",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:se_mettre_02",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se moquer",
+    "COD": "",
+    "à": "",
+    "de": "Ils se moquent de son accent",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "usage:se_moquer_01",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se parler",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se passer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se plaindre",
+    "COD": "",
+    "à": "Elle se plaint au directeur",
+    "de": "Il se plaint du bruit",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se promener",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se rappeler",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se rendre",
+    "COD": "",
+    "à": "",
+    "de": "Elle se rend compte de son erreur",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se reposer",
+    "COD": "",
+    "à": "",
+    "de": "Elle se repose de cette longue marche",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se retrouver",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se réveiller",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se sentir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se souvenir",
+    "COD": "",
+    "à": "",
+    "de": "Je me souviens de ce voyage",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se taire",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se tromper",
+    "COD": "",
+    "à": "",
+    "de": "Il se trompe de dossier",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se trouver",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "se voir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "sembler",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "sentir",
+    "COD": "Je sens les fleurs",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "séparer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "servir",
+    "COD": "Elle sert le thé",
+    "à": "",
+    "de": "Cette boîte sert de siège",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "signer",
+    "COD": "Elle signe le contrat",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:signer_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "signifier",
+    "COD": "Cette phrase signifie un refus",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "soigner",
+    "COD": "Elle soigne ses plantes",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "sonner",
+    "COD": "Il sonne la cloche",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:sonner_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "sortir",
+    "COD": "Je sors la poubelle",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "souffrir",
+    "COD": "",
+    "à": "",
+    "de": "Elle souffre de migraines fréquentes",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "souhaiter",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "Je souhaite une bonne année à mon voisin",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "sourire",
+    "COD": "",
+    "à": "Elle sourit à son ami",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "usage:sourire_01",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "soutenir",
+    "COD": "Elle soutient cette initiative",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "souvenir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "subir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "suffire",
+    "COD": "",
+    "à": "Cette somme suffit à Marie",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "suivre",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "supporter",
+    "COD": "Je supporte ce bruit",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "supposer",
+    "COD": "Je suppose cette explication",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "surveiller",
+    "COD": "Je surveille les enfants",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "survivre",
+    "COD": "",
+    "à": "Elle survit à son mari",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "taire",
+    "COD": "Je tais mes doutes",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "témoigner",
+    "COD": "",
+    "à": "",
+    "de": "Ça témoigne de son effort",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "manual:temoigner_de",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "tenir",
+    "COD": "Je tiens un livre",
+    "à": "Elle tient à son ami",
+    "de": "Il tient de son père",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:tenir_01",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "tenter",
+    "COD": "Je tente ce problème",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "terminer",
+    "COD": "Je termine le rapport",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "tirer",
+    "COD": "Je tire la corde",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "tomber",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "toucher",
+    "COD": "Il touche le mur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:toucher_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "tourner",
+    "COD": "Il tourne la clé",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "traîner",
+    "COD": "Il traîne une valise",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "traiter",
+    "COD": "Le médecin traite ce patient",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "transformer",
+    "COD": "Je transforme ce texte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "travailler",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "traverser",
+    "COD": "Elle traverse la rue",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:traverser_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "tromper",
+    "COD": "Il trompe ses amis",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "trouver",
+    "COD": "Je trouve cette idée intéressante",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "tuer",
+    "COD": "Je tue le moustique",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "utiliser",
+    "COD": "J'utilise un ordinateur",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "valoir",
+    "COD": "Ce tableau vaut une fortune",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:valoir_01",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "vendre",
+    "COD": "Elle vend sa voiture",
+    "à": "",
+    "de": "",
+    "COD+à": "Elle vend son vélo à son voisin",
+    "sources": {
+      "COD": "usage:vendre_01",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "venir",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "vérifier",
+    "COD": "Je vérifie mon compte",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "violer",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "virer",
+    "COD": "Il vire son assistant",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "vivre",
+    "COD": "Elle vit une aventure incroyable",
+    "à": "",
+    "de": "Il vit de sa pension",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:vivre_01",
+      "à": "",
+      "de": "ai:e2e:gpt-5.4-mini:gemma3:4b:de_object",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "voir",
+    "COD": "Je vois Paul",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "manual:voir_direct",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "voler",
+    "COD": "Il vole un tableau",
+    "à": "",
+    "de": "",
+    "COD+à": "Il vole le portefeuille à son voisin",
+    "sources": {
+      "COD": "ai:e2e:gpt-5.4-mini:gemma3:4b:direct_object",
+      "à": "",
+      "de": "",
+      "COD+à": "ai:combo:lefff:ad-combo"
+    }
+  },
+  {
+    "verb": "vouloir",
+    "COD": "Je veux un café",
+    "à": "Elle en veut à Paul",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "usage:vouloir_01",
+      "à": "ai:e2e:gpt-5.4-mini:gemma3:4b:a_object",
+      "de": "",
+      "COD+à": ""
+    }
+  },
+  {
+    "verb": "voyager",
+    "COD": "",
+    "à": "",
+    "de": "",
+    "COD+à": "",
+    "sources": {
+      "COD": "",
+      "à": "",
+      "de": "",
+      "COD+à": ""
+    }
+  }
+]

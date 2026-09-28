@@ -111,6 +111,16 @@ def clip_cache_key(engine, voice_name, text, tempo):
     return f"{digest}.wav"
 
 
+def verify_nonempty_wav(path):
+    try:
+        params = wav_params(path)
+    except (FileNotFoundError, EOFError, OSError, wave.Error) as exc:
+        raise RuntimeError(f"Generated TTS clip is invalid: {path}") from exc
+    if params["nframes"] <= 0:
+        raise RuntimeError(f"Generated TTS clip is empty: {path}")
+    return params
+
+
 def build_ffmpeg_atempo_chain(tempo):
     factors = []
     remaining = float(tempo)
@@ -137,26 +147,37 @@ def build_clip_filter_chain(tempo):
     return ",".join(filters)
 
 
+def convert_raw_aiff_to_wav(raw_path, output_wav, tempo, *, trimmed):
+    output_wav.unlink(missing_ok=True)
+    cmd = ["ffmpeg", "-y", "-i", str(raw_path)]
+    if trimmed:
+        cmd.extend(["-filter:a", build_clip_filter_chain(tempo)])
+    cmd.append(str(output_wav))
+    run(cmd)
+    verify_nonempty_wav(output_wav)
+
+
 def synthesize_or_reuse_clip(engine, voice_name, item, tempo):
     spoken_text = item["spoken_text"]
     cache_path = CLIP_CACHE_DIR / clip_cache_key(engine, voice_name, spoken_text, tempo)
     if cache_path.exists():
-        return cache_path
+        try:
+            verify_nonempty_wav(cache_path)
+            return cache_path
+        except RuntimeError:
+            print(f"! Regenerating invalid cached clip: {cache_path.name}")
+            cache_path.unlink(missing_ok=True)
 
     raw_path = CLIP_CACHE_DIR / f"{cache_path.stem}.raw.aiff"
     run(["say", "-v", voice_name, "-o", str(raw_path), spoken_text])
-    run(
-        [
-            "ffmpeg",
-            "-y",
-            "-i",
-            str(raw_path),
-            "-filter:a",
-            build_clip_filter_chain(tempo),
-            str(cache_path),
-        ]
-    )
-    raw_path.unlink(missing_ok=True)
+    try:
+        try:
+            convert_raw_aiff_to_wav(raw_path, cache_path, tempo, trimmed=True)
+        except (subprocess.CalledProcessError, RuntimeError):
+            print(f"! Falling back to untrimmed clip for: {spoken_text}")
+            convert_raw_aiff_to_wav(raw_path, cache_path, tempo, trimmed=False)
+    finally:
+        raw_path.unlink(missing_ok=True)
     return cache_path
 
 

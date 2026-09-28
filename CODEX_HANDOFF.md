@@ -1,11 +1,11 @@
 # Codex Handoff
 
 Use this repo, not the stale path:
-- Correct repo: `/Users/simeon/Desktop/proj1`
+- Correct repo: `/Users/simeon/Code/VerbsFirst/proj1`
 - Wrong/stale path that caused confusion before: `/Users/simeon/Documents/ccode/proj1`
 
 ## Current deploy state
-- `gh-pages` worktree: `/Users/simeon/Desktop/proj1/dist-gh`
+- `gh-pages` worktree: `/Users/simeon/Code/VerbsFirst/proj1/dist-gh`
 - Remote `gh-pages` is up to date with local.
 - Latest deploy commit on `gh-pages`: `a25f487`
 - Previous larger multi-app deploy commit: `e94c0c9`
@@ -40,7 +40,7 @@ Use this repo, not the stale path:
   - push `origin gh-pages`
 
 ## If continuing work
-1. Start Codex in `/Users/simeon/Desktop/proj1`.
+1. Start Codex in `/Users/simeon/Code/VerbsFirst/proj1`.
 2. Check `git status` in both repo root and `dist-gh` before changing deploys.
 3. If touching GitHub Pages, remember the published Greek path is `greek-verbs`, not `greek`.
 4. If working on Portuguese packaged audio, the prompt for Claude was already prepared in chat: use Portugal Portuguese voice (`pt-PT`) and packed mode only (`--pack` as the main path).
@@ -50,7 +50,7 @@ Use this repo, not the stale path:
 
 ## Quick sanity commands
 ```bash
-cd /Users/simeon/Desktop/proj1
+cd /Users/simeon/Code/VerbsFirst/proj1
 git status
 
 git -C dist-gh status

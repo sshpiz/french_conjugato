@@ -73,10 +73,11 @@ class LanguageConfig:
 
 
 ROOT = Path(__file__).resolve().parent
+REPOS_ROOT = ROOT.parent
 
 
 def repo(path: str) -> Path:
-    return Path("/Users/simeon/Desktop") / path
+    return REPOS_ROOT / path
 
 
 LANGUAGE_CONFIGS: dict[str, LanguageConfig] = {}
@@ -114,6 +115,7 @@ register_language("greek", "Greek", "greek-verbs", usages=True, compressor=True)
 register_language("ukrainian", "Ukrainian", "ukrainian-verbs", usages=False, compressor=True)
 register_language("latvian", "Latvian", "latvian-verbs", usages=False, compressor=True)
 register_language("german", "German", "german-verbs", usages=True, compressor=True)
+register_language("italian", "Italian", "italian-verbs", usages=True, core_patterns=True, compressor=True)
 
 
 class GlossResponse(BaseModel):
@@ -469,7 +471,13 @@ def write_review(config: LanguageConfig, state: dict) -> None:
     config.review_md.write_text("\n".join(review).rstrip() + "\n", encoding="utf-8")
 
 
-def merge_state_into_verbs(config: LanguageConfig, state: dict, skip_compress: bool) -> None:
+def merge_state_into_verbs(
+    config: LanguageConfig,
+    state: dict,
+    *,
+    skip_compress: bool,
+    output_path: Path | None = None,
+) -> None:
     verbs, original_text = load_verbs(config.verbs_js)
     entries = state.get("entries", {})
     updated = 0
@@ -486,10 +494,12 @@ def merge_state_into_verbs(config: LanguageConfig, state: dict, skip_compress: b
         verb["gloss_needs_review"] = bool(entry.get("needs_review"))
         updated += 1
 
-    save_verbs(config.verbs_js, original_text, verbs)
-    print(f"[{config.key}] merged {updated} gloss entries into {config.verbs_js.name}")
+    out = output_path or config.verbs_js
+    out.parent.mkdir(parents=True, exist_ok=True)
+    save_verbs(out, original_text, verbs)
+    print(f"[{config.key}] merged {updated} gloss entries into {out}")
 
-    if skip_compress:
+    if skip_compress or out != config.verbs_js:
         return
     if config.compressor_script and config.compressor_script.exists():
         subprocess.run(
@@ -516,7 +526,12 @@ def run_language(args: argparse.Namespace, client: OpenAI | None, config: Langua
         return
 
     if args.merge_only:
-        merge_state_into_verbs(config, state, skip_compress=args.skip_compress)
+        merge_state_into_verbs(
+            config,
+            state,
+            skip_compress=args.skip_compress,
+            output_path=args.merge_output,
+        )
         return
 
     assert client is not None
@@ -599,7 +614,12 @@ def run_language(args: argparse.Namespace, client: OpenAI | None, config: Langua
     print(f"[{config.key}] completed {completed} new glosses")
 
     if args.merge:
-        merge_state_into_verbs(config, state, skip_compress=args.skip_compress)
+        merge_state_into_verbs(
+            config,
+            state,
+            skip_compress=args.skip_compress,
+            output_path=args.merge_output,
+        )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -615,6 +635,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-attempts", type=int, default=3)
     parser.add_argument("--merge", action="store_true", help="Merge completed glosses back into each repo's verbs.full.js")
     parser.add_argument("--merge-only", action="store_true", help="Skip API calls; only merge existing gloss artifacts.")
+    parser.add_argument(
+        "--merge-output",
+        type=Path,
+        help="Optional output path for a *preview* merge. If set, do not overwrite verbs.full.js.",
+    )
     parser.add_argument("--skip-compress", action="store_true", help="Do not regenerate verbs.full.generated.js after merge.")
     parser.add_argument("--dry-run", action="store_true", help="Show counts and exit without calling the API.")
     return parser

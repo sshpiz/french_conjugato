@@ -1,0 +1,377 @@
+verb	category_id	category_name	direct_ok	a_ok	de_ok	direct_a_ok
+croquer	builtin-art-design	Art & Design	?	no	no	no
+créer	builtin-art-design	Art & Design	?	no	no	no
+dessiner	builtin-art-design	Art & Design	?	no	no	no
+esquisser	builtin-art-design	Art & Design	?	no	no	no
+exposer	builtin-art-design	Art & Design	?	no	no	no
+filmer	builtin-art-design	Art & Design	?	no	no	no
+graver	builtin-art-design	Art & Design	?	no	no	no
+modeler	builtin-art-design	Art & Design	?	no	no	no
+peindre	builtin-art-design	Art & Design	?	no	no	no
+photographier	builtin-art-design	Art & Design	?	no	no	no
+restaurer	builtin-art-design	Art & Design	?	no	no	no
+retoucher	builtin-art-design	Art & Design	?	no	no	no
+sculpter	builtin-art-design	Art & Design	?	no	no	no
+tracer	builtin-art-design	Art & Design	?	no	no	no
+appeler	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+attendre	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	yes	no
+confirmer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	yes
+déposer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+envoyer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	yes
+fermer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+imprimer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+indiquer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+joindre	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+laisser	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	yes
+livrer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	yes
+ouvrir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	no
+passer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	yes
+recevoir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	yes	no	no	no
+remplir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	yes	no
+renvoyer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+récupérer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+répondre	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	yes	yes
+signer	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+sonner	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	no	no	no
+venir	builtin-bureaucracy-delivery	Bureaucracy & Delivery	?	yes	no	no
+couper	builtin-cinema-series	Cinema & Series	?	no	no	no
+diffuser	builtin-cinema-series	Cinema & Series	?	no	no	no
+documenter	builtin-cinema-series	Cinema & Series	?	no	no	no
+enchaîner	builtin-cinema-series	Cinema & Series	?	no	no	no
+enregistrer	builtin-cinema-series	Cinema & Series	?	no	no	no
+filmer	builtin-cinema-series	Cinema & Series	?	no	no	no
+interpréter	builtin-cinema-series	Cinema & Series	?	no	no	no
+mater	builtin-cinema-series	Cinema & Series	?	no	no	no
+monter	builtin-cinema-series	Cinema & Series	?	no	no	no
+raconter	builtin-cinema-series	Cinema & Series	?	no	no	yes
+regarder	builtin-cinema-series	Cinema & Series	?	no	no	no
+tourner	builtin-cinema-series	Cinema & Series	?	no	no	no
+zapper	builtin-cinema-series	Cinema & Series	?	no	no	no
+écouter	builtin-cinema-series	Cinema & Series	?	no	no	no
+boire	builtin-cooking-food	Cooking & Food	?	no	no	no
+bouffer	builtin-cooking-food	Cooking & Food	?	no	no	no
+brûler	builtin-cooking-food	Cooking & Food	?	no	no	no
+couper	builtin-cooking-food	Cooking & Food	?	no	no	no
+cuire	builtin-cooking-food	Cooking & Food	?	no	no	no
+cuisiner	builtin-cooking-food	Cooking & Food	?	no	no	no
+dresser	builtin-cooking-food	Cooking & Food	?	no	no	no
+dévorer	builtin-cooking-food	Cooking & Food	?	no	no	no
+frire	builtin-cooking-food	Cooking & Food	?	no	no	no
+goûter	builtin-cooking-food	Cooking & Food	?	yes	yes	no
+grignoter	builtin-cooking-food	Cooking & Food	?	no	no	no
+manger	builtin-cooking-food	Cooking & Food	yes	no	no	no
+mijoter	builtin-cooking-food	Cooking & Food	?	no	no	no
+mixer	builtin-cooking-food	Cooking & Food	?	no	no	no
+mélanger	builtin-cooking-food	Cooking & Food	?	no	no	no
+nettoyer	builtin-cooking-food	Cooking & Food	?	no	no	no
+préparer	builtin-cooking-food	Cooking & Food	?	no	no	no
+rôtir	builtin-cooking-food	Cooking & Food	?	no	no	no
+saigner	builtin-cooking-food	Cooking & Food	?	no	no	no
+saisir	builtin-cooking-food	Cooking & Food	?	no	no	no
+servir	builtin-cooking-food	Cooking & Food	?	yes	yes	no
+verser	builtin-cooking-food	Cooking & Food	?	no	no	yes
+éplucher	builtin-cooking-food	Cooking & Food	?	no	no	no
+ajuster	builtin-crafts-making	Crafts & Making	?	no	no	no
+assembler	builtin-crafts-making	Crafts & Making	?	no	no	no
+bidouiller	builtin-crafts-making	Crafts & Making	?	no	no	no
+bricoler	builtin-crafts-making	Crafts & Making	?	no	no	no
+coller	builtin-crafts-making	Crafts & Making	?	no	no	no
+coudre	builtin-crafts-making	Crafts & Making	?	no	no	no
+démonter	builtin-crafts-making	Crafts & Making	?	no	no	no
+fabriquer	builtin-crafts-making	Crafts & Making	?	no	no	no
+foirer	builtin-crafts-making	Crafts & Making	?	no	no	no
+merder	builtin-crafts-making	Crafts & Making	?	no	no	no
+mesurer	builtin-crafts-making	Crafts & Making	?	no	no	no
+monter	builtin-crafts-making	Crafts & Making	?	no	no	no
+planter	builtin-crafts-making	Crafts & Making	?	no	yes	no
+poncer	builtin-crafts-making	Crafts & Making	?	no	no	no
+rafistoler	builtin-crafts-making	Crafts & Making	?	no	no	no
+rater	builtin-crafts-making	Crafts & Making	?	no	no	no
+régler	builtin-crafts-making	Crafts & Making	?	no	no	no
+souder	builtin-crafts-making	Crafts & Making	?	no	no	no
+tisser	builtin-crafts-making	Crafts & Making	?	no	no	no
+tricoter	builtin-crafts-making	Crafts & Making	?	no	no	no
+analyser	builtin-education-learning	Education & Learning	?	no	no	no
+apprendre	builtin-education-learning	Education & Learning	?	no	no	yes
+bachoter	builtin-education-learning	Education & Learning	?	no	no	no
+calculer	builtin-education-learning	Education & Learning	?	no	no	no
+enseigner	builtin-education-learning	Education & Learning	?	no	no	yes
+expliquer	builtin-education-learning	Education & Learning	?	no	no	no
+lire	builtin-education-learning	Education & Learning	?	no	no	no
+potasser	builtin-education-learning	Education & Learning	?	no	no	no
+présenter	builtin-education-learning	Education & Learning	?	no	no	no
+réviser	builtin-education-learning	Education & Learning	?	no	no	no
+survoler	builtin-education-learning	Education & Learning	?	no	no	no
+traduire	builtin-education-learning	Education & Learning	?	no	no	no
+écrire	builtin-education-learning	Education & Learning	?	no	no	no
+étudier	builtin-education-learning	Education & Learning	?	no	no	no
+classer	builtin-history-culture	History & Culture	?	no	no	no
+collectionner	builtin-history-culture	History & Culture	?	no	no	no
+conserver	builtin-history-culture	History & Culture	?	no	no	no
+documenter	builtin-history-culture	History & Culture	?	no	no	no
+explorer	builtin-history-culture	History & Culture	?	no	no	no
+exposer	builtin-history-culture	History & Culture	?	no	no	no
+fouiller	builtin-history-culture	History & Culture	?	no	no	no
+lire	builtin-history-culture	History & Culture	?	no	no	no
+raconter	builtin-history-culture	History & Culture	?	no	no	yes
+restaurer	builtin-history-culture	History & Culture	?	no	no	no
+traduire	builtin-history-culture	History & Culture	?	no	no	no
+écrire	builtin-history-culture	History & Culture	?	no	no	no
+étudier	builtin-history-culture	History & Culture	?	no	no	no
+accorder	builtin-music	Music	?	no	no	yes
+accélérer	builtin-music	Music	?	no	no	no
+assurer	builtin-music	Music	?	no	yes	no
+brancher	builtin-music	Music	?	no	no	no
+caler	builtin-music	Music	?	no	no	no
+chanter	builtin-music	Music	?	no	no	yes
+chauffer	builtin-music	Music	?	no	no	no
+composer	builtin-music	Music	?	no	no	no
+danser	builtin-music	Music	?	no	no	no
+enregistrer	builtin-music	Music	?	no	no	no
+foirer	builtin-music	Music	?	no	no	no
+improviser	builtin-music	Music	?	no	no	no
+interpréter	builtin-music	Music	?	no	no	no
+jouer	builtin-music	Music	?	no	no	no
+mixer	builtin-music	Music	?	no	no	no
+ralentir	builtin-music	Music	?	no	no	no
+rater	builtin-music	Music	?	no	no	no
+répéter	builtin-music	Music	?	no	no	yes
+écouter	builtin-music	Music	?	no	no	no
+boire	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+bouffer	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+brancher	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+cuver	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+danser	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+dormir	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+draguer	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+déconner	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+dépenser	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+flirter	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+fêter	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+inviter	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+kiffer	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+mater	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+picoler	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+rentrer	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+sortir	builtin-nightlife-partying	Nightlife & Partying	?	no	yes	no
+trinquer	builtin-nightlife-partying	Nightlife & Partying	?	yes	yes	no
+zoner	builtin-nightlife-partying	Nightlife & Partying	?	no	no	no
+annuler	builtin-office-admin	Office & Admin	?	no	no	no
+archiver	builtin-office-admin	Office & Admin	?	no	no	no
+assurer	builtin-office-admin	Office & Admin	?	no	yes	no
+bosser	builtin-office-admin	Office & Admin	?	no	no	no
+boucler	builtin-office-admin	Office & Admin	?	no	no	no
+caler	builtin-office-admin	Office & Admin	?	no	no	no
+classer	builtin-office-admin	Office & Admin	?	no	no	no
+corriger	builtin-office-admin	Office & Admin	?	no	yes	no
+envoyer	builtin-office-admin	Office & Admin	yes	no	no	yes
+gérer	builtin-office-admin	Office & Admin	?	no	no	no
+imprimer	builtin-office-admin	Office & Admin	?	no	no	no
+organiser	builtin-office-admin	Office & Admin	?	no	no	no
+planifier	builtin-office-admin	Office & Admin	?	no	no	no
+pointer	builtin-office-admin	Office & Admin	?	no	no	no
+présenter	builtin-office-admin	Office & Admin	?	no	no	no
+ranger	builtin-office-admin	Office & Admin	?	no	no	no
+rappeler	builtin-office-admin	Office & Admin	?	no	no	yes
+relancer	builtin-office-admin	Office & Admin	?	no	no	yes
+reporter	builtin-office-admin	Office & Admin	?	no	no	no
+régler	builtin-office-admin	Office & Admin	?	no	no	no
+répondre	builtin-office-admin	Office & Admin	?	no	yes	yes
+signer	builtin-office-admin	Office & Admin	?	no	no	no
+traiter	builtin-office-admin	Office & Admin	?	no	yes	no
+transférer	builtin-office-admin	Office & Admin	?	no	no	no
+travailler	builtin-office-admin	Office & Admin	?	yes	no	no
+valider	builtin-office-admin	Office & Admin	?	no	no	no
+camper	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+crapahuter	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+escalader	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+explorer	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+galoper	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+grimper	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+marcher	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+naviguer	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+observer	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+pagayer	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+pêcher	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+ramer	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+randonner	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+tracer	builtin-outdoors-nature	Outdoors & Nature	?	no	no	no
+accuser	builtin-politics-current-events	Politics & Current Events	?	no	yes	no
+boycotter	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+condamner	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+discuter	builtin-politics-current-events	Politics & Current Events	?	no	yes	no
+débattre	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+démentir	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+dénoncer	builtin-politics-current-events	Politics & Current Events	?	no	no	yes
+gouverner	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+gérer	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+imposer	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+manifester	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+militer	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+négocier	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+pointer	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+promettre	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+protester	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+relancer	builtin-politics-current-events	Politics & Current Events	?	no	no	yes
+réformer	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+soutenir	builtin-politics-current-events	Politics & Current Events	?	no	yes	no
+surveiller	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+traiter	builtin-politics-current-events	Politics & Current Events	?	no	yes	no
+voter	builtin-politics-current-events	Politics & Current Events	?	no	no	no
+aimer	builtin-relationship-drama	Relationship Drama	?	no	no	no
+appeler	builtin-relationship-drama	Relationship Drama	?	no	no	no
+discuter	builtin-relationship-drama	Relationship Drama	?	no	yes	no
+disputer	builtin-relationship-drama	Relationship Drama	?	no	no	no
+draguer	builtin-relationship-drama	Relationship Drama	?	no	no	no
+embrasser	builtin-relationship-drama	Relationship Drama	?	no	no	no
+embrouiller	builtin-relationship-drama	Relationship Drama	?	no	no	no
+engueuler	builtin-relationship-drama	Relationship Drama	?	no	no	no
+flirter	builtin-relationship-drama	Relationship Drama	?	no	no	no
+larguer	builtin-relationship-drama	Relationship Drama	?	no	no	no
+mentir	builtin-relationship-drama	Relationship Drama	?	no	no	no
+pardonner	builtin-relationship-drama	Relationship Drama	?	no	no	yes
+quitter	builtin-relationship-drama	Relationship Drama	?	no	no	no
+reprocher	builtin-relationship-drama	Relationship Drama	?	no	no	yes
+rompre	builtin-relationship-drama	Relationship Drama	?	no	no	no
+sortir	builtin-relationship-drama	Relationship Drama	?	no	yes	no
+séduire	builtin-relationship-drama	Relationship Drama	?	no	no	no
+trahir	builtin-relationship-drama	Relationship Drama	?	no	no	no
+tromper	builtin-relationship-drama	Relationship Drama	?	no	no	no
+attraper	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+bander	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+blesser	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+bloquer	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+boiter	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+centrer	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+changer	builtin-sports-fitness	Sports & Fitness	?	no	yes	no
+contrer	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+courir	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+dribbler	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+défendre	builtin-sports-fitness	Sports & Fitness	?	no	no	yes
+entraîner	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+frapper	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+gagner	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+glacer	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+jouer	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+lancer	builtin-sports-fitness	Sports & Fitness	?	no	no	yes
+marquer	builtin-sports-fitness	Sports & Fitness	?	no	yes	no
+nager	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+passer	builtin-sports-fitness	Sports & Fitness	?	no	no	yes
+perdre	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+plaquer	builtin-sports-fitness	Sports & Fitness	?	no	yes	no
+recevoir	builtin-sports-fitness	Sports & Fitness	yes	no	no	no
+saigner	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+sauter	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+skier	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+soigner	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+sprinter	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+surfer	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+tirer	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+tomber	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+tordre	builtin-sports-fitness	Sports & Fitness	?	no	no	no
+acheter	builtin-super-everyday	Super Everyday	?	no	no	no
+aider	builtin-super-everyday	Super Everyday	?	no	no	no
+aimer	builtin-super-everyday	Super Everyday	?	no	no	no
+aller	builtin-super-everyday	Super Everyday	?	no	no	no
+appeler	builtin-super-everyday	Super Everyday	?	no	no	no
+arriver	builtin-super-everyday	Super Everyday	?	yes	no	no
+attendre	builtin-super-everyday	Super Everyday	?	no	yes	no
+avoir	builtin-super-everyday	Super Everyday	?	no	no	no
+boire	builtin-super-everyday	Super Everyday	?	no	no	no
+bouger	builtin-super-everyday	Super Everyday	?	no	no	no
+demander	builtin-super-everyday	Super Everyday	?	no	no	yes
+donner	builtin-super-everyday	Super Everyday	?	no	no	yes
+envoyer	builtin-super-everyday	Super Everyday	yes	no	no	yes
+faire	builtin-super-everyday	Super Everyday	?	no	yes	yes
+fermer	builtin-super-everyday	Super Everyday	?	no	no	no
+laisser	builtin-super-everyday	Super Everyday	?	no	no	yes
+manger	builtin-super-everyday	Super Everyday	yes	no	no	no
+mettre	builtin-super-everyday	Super Everyday	?	no	no	no
+montrer	builtin-super-everyday	Super Everyday	yes	no	no	yes
+oublier	builtin-super-everyday	Super Everyday	?	no	no	no
+ouvrir	builtin-super-everyday	Super Everyday	yes	no	no	no
+parler	builtin-super-everyday	Super Everyday	?	yes	yes	no
+partir	builtin-super-everyday	Super Everyday	?	no	no	no
+passer	builtin-super-everyday	Super Everyday	?	no	no	yes
+payer	builtin-super-everyday	Super Everyday	yes	no	yes	yes
+porter	builtin-super-everyday	Super Everyday	yes	no	no	no
+poser	builtin-super-everyday	Super Everyday	?	no	no	yes
+prendre	builtin-super-everyday	Super Everyday	?	no	no	no
+ramener	builtin-super-everyday	Super Everyday	?	no	no	no
+ranger	builtin-super-everyday	Super Everyday	?	no	no	no
+regarder	builtin-super-everyday	Super Everyday	?	no	no	no
+rentrer	builtin-super-everyday	Super Everyday	?	no	no	no
+sortir	builtin-super-everyday	Super Everyday	?	no	yes	no
+travailler	builtin-super-everyday	Super Everyday	?	yes	no	no
+traîner	builtin-super-everyday	Super Everyday	?	no	no	no
+trouver	builtin-super-everyday	Super Everyday	?	no	no	yes
+venir	builtin-super-everyday	Super Everyday	?	yes	no	no
+écouter	builtin-super-everyday	Super Everyday	?	no	no	no
+être	builtin-super-everyday	Super Everyday	?	no	no	no
+analyser	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+archiver	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+automatiser	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+bidouiller	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+bloquer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+boucler	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+casser	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+cliquer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+coder	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+configurer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+corriger	builtin-tech-digital-work	Tech & Digital Work	?	no	yes	no
+documenter	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+déboguer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+déployer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+fusionner	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+partager	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+planter	builtin-tech-digital-work	Tech & Digital Work	?	no	yes	no
+programmer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+redémarrer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+récupérer	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+sauvegarder	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+surveiller	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+tester	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+valider	builtin-tech-digital-work	Tech & Digital Work	?	no	no	no
+arriver	builtin-travel-tourism	Travel & Tourism	?	yes	no	no
+atterrir	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+bouger	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+crapahuter	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+débarquer	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+décoller	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+déposer	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+embarquer	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+errer	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+flâner	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+guider	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+louer	builtin-travel-tourism	Travel & Tourism	?	no	yes	no
+louper	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+partir	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+payer	builtin-travel-tourism	Travel & Tourism	yes	no	yes	yes
+perdre	builtin-travel-tourism	Travel & Tourism	yes	no	no	no
+rater	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+rejoindre	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+récupérer	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+réserver	builtin-travel-tourism	Travel & Tourism	?	no	no	yes
+suivre	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+séjourner	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+trimballer	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+visiter	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+voyager	builtin-travel-tourism	Travel & Tourism	?	no	no	no
+ajuster	builtin-woodworking	Woodworking	?	no	no	no
+assembler	builtin-woodworking	Woodworking	?	no	no	no
+clouer	builtin-woodworking	Woodworking	?	no	no	no
+coller	builtin-woodworking	Woodworking	?	no	no	no
+démonter	builtin-woodworking	Woodworking	?	no	no	no
+fabriquer	builtin-woodworking	Woodworking	?	no	no	no
+frapper	builtin-woodworking	Woodworking	?	no	no	no
+graver	builtin-woodworking	Woodworking	?	no	no	no
+mesurer	builtin-woodworking	Woodworking	?	no	no	no
+monter	builtin-woodworking	Woodworking	?	no	no	no
+percer	builtin-woodworking	Woodworking	?	no	no	no
+poncer	builtin-woodworking	Woodworking	?	no	no	no
+raboter	builtin-woodworking	Woodworking	?	no	no	no
+régler	builtin-woodworking	Woodworking	?	no	no	no
+sculpter	builtin-woodworking	Woodworking	?	no	no	no
+tailler	builtin-woodworking	Woodworking	?	no	no	no
+vernir	builtin-woodworking	Woodworking	?	no	no	no
+visser	builtin-woodworking	Woodworking	?	no	no	no
