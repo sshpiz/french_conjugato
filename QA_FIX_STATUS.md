@@ -183,6 +183,13 @@ Not yet checked on a physical phone or live production after deploy. Other langu
 - Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 44a144c^{commit}` failed, so this commit hash is not present in the `proj1` repo history and the deploy gate cannot verify/rebuild/deploy it.
 - Next step: record a corresponding `proj1` commit hash for the Spanish app wiring (or update the deploy gate rules to verify app commits in their own repos), then rerun; also ensure `proj1/` working tree is clean before any rebuild/deploy.
 
+### Latest Deploy Blocker
+
+- Date: 2026-09-29 01:42 UTC
+- Candidate commit: `44a144c` (intended latest channel: `spanish`)
+- Gate recheck: required `proj1` preflight `git rev-parse --verify 44a144c^{commit}` still fails (`Needed a single revision`), so no verification or deployment was run.
+- Next step: record a deployable `proj1` commit for the Spanish fix before rerunning the latest-only gate.
+
 ## VF-QA-0004
 
 Status: Fixed
