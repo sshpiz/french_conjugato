@@ -311,6 +311,13 @@ Not yet checked on a physical phone or live production after deploy. Existing se
 - Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify a327954a7^{commit}` failed, so this commit hash is not present in the `proj1` repo history and cannot be used as the deploy gate’s provenance for a `proj1/`-based latest build/deploy.
 - Unblock: record the corresponding `proj1` commit hash that incorporates the Portuguese fix (or land the fix into `proj1` in a traceable way), then rerun the latest deploy gate. If a `proj1` commit exists already, update `Commit(s):` to include `proj1 <hash>`.
 
+### Latest Deploy Blocker
+
+- 2026-09-30 21:31 UTC
+- Candidate commit: `a327954a7` (intended latest channel: `portugese`)
+- Gate recheck: required `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify a327954a7^{commit}` fails with `Needed a single revision`; no verification, rebuild, or deployment was run.
+- Next step: record a deployable `proj1` commit containing the Portuguese fix, then rerun the latest-only gate.
+
 ## VF-QA-0006
 
 Status: Fixed
