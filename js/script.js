@@ -7934,6 +7934,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Local Storage for Options ---
     // Use generic localStorageKey for options
     const saveOptions = (options = {}) => {
+        syncPracticeTypeFilter();
         try {
             localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
             setScopedStorageItem('correct-dictation-next-question', cardGenerationOptions.useMicToAnswer ? 'true' : 'false');
@@ -10732,6 +10733,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Options UI Logic ---
     const populateOptions = (options = {}) => {
+        syncPracticeTypeFilter();
         const { preserveAnchorId = null, preserveAnchorSelector = null } = options || {};
         const preservedAnchor = preserveAnchorSelector
             ? document.querySelector(preserveAnchorSelector)
@@ -11616,6 +11618,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Expose so applyPreset (global scope) can re-render the settings UI
     window._populateOptions = populateOptions;
+
+    function syncPracticeTypeFilter() {
+        const selected = getExerciseTypes();
+        document.querySelectorAll('[data-practice-type]').forEach(button => {
+            const pressed = selected.includes(button.dataset.practiceType);
+            button.setAttribute('aria-pressed', String(pressed));
+            button.setAttribute('aria-disabled', String(pressed && selected.length === 1));
+        });
+    }
+
+    document.getElementById('practice-type-filter')?.addEventListener('click', event => {
+        const button = event.target.closest('[data-practice-type]');
+        if (!button || button.getAttribute('aria-disabled') === 'true') return;
+        const selected = getExerciseTypes();
+        const type = button.dataset.practiceType;
+        cardGenerationOptions.exerciseTypes = selected.includes(type)
+            ? selected.filter(value => value !== type)
+            : [...selected, type];
+        saveOptions();
+        populateOptions();
+        pendingExerciseModeCardRefresh = false;
+        history = [];
+        historyIndex = -1;
+        nextCard();
+    });
+    syncPracticeTypeFilter();
 
     // --- Event Listeners ---
     flashcard.addEventListener('click', (event) => {

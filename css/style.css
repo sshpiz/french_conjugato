@@ -5905,6 +5905,39 @@ html[data-theme="dark"] {
 #verb-reference { display: flex; flex-direction: column; gap: 3px; }
 #verb-reference .reference-caption { font-size: 0.7em; font-weight: 400; opacity: .7; }
 
+#practice-type-filter {
+  flex: 0 0 auto;
+  padding: 6px 12px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+}
+.practice-type-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.practice-type-buttons button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 44px;
+  padding: 5px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  background: var(--primary-bg);
+  color: var(--text-color);
+  font: 400 0.72rem 'Inter', sans-serif;
+  line-height: 1.15;
+  cursor: pointer;
+}
+.practice-type-buttons button[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--accent-color) 12%, var(--primary-bg));
+  border-color: color-mix(in srgb, var(--accent-color) 30%, var(--border-color));
+  color: var(--text-color);
+  font-weight: 600;
+}
+.practice-type-buttons button[aria-pressed="true"]::before { content: '✓ '; }
+@media (pointer: coarse) {
+  .practice-type-buttons button { min-height: 44px; }
+}
 .exercise-type-checkboxes { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; }
 .exercise-type-checkboxes legend { font-weight: 650; margin-bottom: 12px; }
 .exercise-type-checkboxes label { display: flex; align-items: center; gap: 10px; cursor: pointer; }

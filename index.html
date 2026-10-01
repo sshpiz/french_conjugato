@@ -683,6 +683,13 @@
         </div>
         <!-- View 1: Flashcard Flow -->
         <div id="flashcard-view">
+            <div id="practice-type-filter" role="group" aria-label="Practice types">
+                <div class="practice-type-buttons">
+                    <button type="button" data-practice-type="verbs" aria-pressed="true">Verbs</button>
+                    <button type="button" data-practice-type="expressions" aria-pressed="false">Expressions</button>
+                    <button type="button" data-practice-type="references" aria-pressed="false"><span>Object<br>pronouns</span></button>
+                </div>
+            </div>
             <div id="flashcard" class="card" style="position:relative;">
                 <!-- Remove tip for tips button -->
                 <button id="tips-btn" title="Show tips" style="position:absolute;top:0.7em;right:3.2em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#f1c40f);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">💡</button>
