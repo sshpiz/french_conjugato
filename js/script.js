@@ -281,7 +281,7 @@ const CARD_TYPE_VALUES = new Set(['conjugation', 'both', 'frame']);
 function expressionSpokenAnswerVariants(card, expected) {
     if (!card?.verb?.verbExpression || card.reference || card.isFrameCard || card.isPhraseMode) return [expected];
     const variants = new Set([expected]);
-    const placeholder = /(?:(?:à|de|pour|avec|sur)\s+)?(?:quelque chose|quelqu['’]un)(?![\p{L}])/gu;
+    const placeholder = /(?:(?:à|de|pour|avec|sur|en)\s+(?:faire\s+)?)?(?:quelque chose|quelqu['’]un)(?![\p{L}])/gu;
     const matches = [...expected.matchAll(placeholder)];
     // Work from right to left so offsets remain valid in every shorter variant.
     for (const match of matches.reverse()) {
@@ -289,7 +289,7 @@ function expressionSpokenAnswerVariants(card, expected) {
             const before = text.slice(0, match.index);
             const after = text.slice(match.index + match[0].length);
             variants.add(before + after);
-            const preposition = match[0].match(/^(à|de|pour|avec|sur)\s+/u);
+            const preposition = match[0].match(/^(à|de|pour|avec|sur|en)\s+/u);
             if (preposition) variants.add(before + preposition[0] + after);
         }
     }
@@ -8984,7 +8984,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             verbPronounEl.textContent = '';
             verbPronounEl.style.display = 'none';
-            verbTenseEl.textContent = tenseKeyToLabel[card.tense] || card.tense;
+            verbTenseEl.textContent = card.tense === 'subjonctifPresent' ? 'subjonctif' : (tenseKeyToLabel[card.tense] || card.tense);
+            verbTenseEl.setAttribute('aria-label', tenseKeyToLabel[card.tense] || card.tense);
             verbTenseEl.className = 'meta-info';
             const frameTenseClassMap = {
                 'present': 'tense-present',
@@ -9060,7 +9061,8 @@ document.addEventListener('DOMContentLoaded', () => {
             pronounDisplay = (pronounEmojiMap[pronounDisplay] || '') + ' ' + pronounDisplay;
         }
         verbPronounEl.textContent = pronounDisplay.trim();
-        verbTenseEl.textContent = tenseKeyToLabel[card.tense] || card.tense;
+        verbTenseEl.textContent = card.tense === 'subjonctifPresent' ? 'subjonctif' : (tenseKeyToLabel[card.tense] || card.tense);
+            verbTenseEl.setAttribute('aria-label', tenseKeyToLabel[card.tense] || card.tense);
         verbTenseEl.className = 'meta-info';
         const tenseClassMap = {
             'present': 'tense-present',

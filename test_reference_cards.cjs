@@ -57,3 +57,13 @@ console.log(`PASS: ${cases.length} independently specified pronoun/tense/agreeme
 
 assert.equal(prepare({verb:{infinitive:'parler'},tense:'present',pronoun:'je',conjugated:'je parle'},'cette femme').referenceLabel,'parler à');
 assert(context.window.referenceCards.referencesFor('penser').includes('cet homme'));
+
+for (const [verb, tense, pronoun, conjugated, reference, expected] of [
+ ['acheter','present','je',"j'achète",'cette chose',"je l'achète"],
+ ['résoudre','passeCompose','nous','nous avons résolu','ces choses','nous les avons résolues'],
+ ['détruire','passeCompose','elle','elle a détruit','cette chose',"elle l'a détruite"],
+ ['dépendre','present','je','je dépends','cette chose',"j'en dépends"],
+ ['participer','imparfait','vous','vous participiez','ces choses','vous y participiez']
+]) assert.equal(prepare({verb:{infinitive:verb},tense,pronoun,conjugated},reference).conjugated,expected);
+assert(Object.keys(context.window.referenceCards.specs).length >= 130);
+console.log('PASS expanded direct, en/y and participle agreement cases');

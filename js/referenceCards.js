@@ -26,6 +26,16 @@
     'avoir envie': { type: 'en', label: 'avoir envie de', strip: ' de quelque chose' },
     'faire attention': { type: 'y', label: 'faire attention à', people: true, peopleType: 'tonic', strip: ' à quelque chose' },
   };
+  // Explicit transitive thing-object constructions, using existing paradigms.
+  for (const verb of ["acheter", "apporter", "apprendre", "attendre", "boire", "changer", "choisir", "commencer", "connaître", "construire", "continuer", "couper", "croire", "décider", "demander", "décrire", "découvrir", "défendre", "dépenser", "détruire", "développer", "dire", "donner", "écouter", "écrire", "expliquer", "faire", "fermer", "finir", "garder", "imaginer", "laisser", "lire", "manger", "mettre", "montrer", "nettoyer", "obtenir", "oublier", "ouvrir", "payer", "perdre", "porter", "poser", "préparer", "présenter", "produire", "proposer", "raconter", "recevoir", "reconnaître", "refuser", "rendre", "réparer", "répéter", "reprendre", "réserver", "résoudre", "retrouver", "savoir", "sentir", "suivre", "supprimer", "tenir", "terminer", "toucher", "transformer", "transmettre", "utiliser", "vendre", "vérifier", "visiter", "accepter", "ajouter", "améliorer", "annoncer", "arrêter", "atteindre", "comprendre", "conserver", "considérer", "consulter", "corriger", "créer", "dessiner", "éviter", "examiner", "essayer", "fabriquer", "gagner", "installer", "jeter", "laver", "livrer", "organiser", "partager", "protéger", "remplacer", "remplir", "retirer", "sauver", "soutenir", "traduire", "transporter"]) {
+    if (!specs[verb]) specs[verb] = { type: 'direct' };
+  }
+  for (const verb of ['dépendre', 'profiter', 'rêver', 'douter', 'manquer', 'bénéficier', 'disposer', 'souffrir']) {
+    if (!specs[verb]) specs[verb] = { type: 'en', label: verb + ' de' };
+  }
+  for (const verb of ['participer', 'contribuer', 'réfléchir', 'assister']) {
+    if (!specs[verb]) specs[verb] = { type: 'y', label: verb + ' à' };
+  }
   function referencesFor(verb) {
     const spec = specs[verb];
     if (!spec) return [];
@@ -70,12 +80,14 @@
     element.hidden = !card?.reference;
     element.replaceChildren();
     if (!card?.reference) return;
-    const label = document.createElement('span');
-    label.className = 'reference-caption';
-    label.textContent = 'Reference';
+    const icons = { 'ce truc': '📦', 'cette chose': '🔹', 'ces choses': '📦📦', 'cet endroit': '📍', 'cet homme': '👨', 'cette femme': '👩', 'ces hommes': '👨👨', 'ces femmes': '👩👩' };
+    const icon = document.createElement('span');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = icons[card.reference] || '📦';
     const value = document.createElement('strong');
     value.textContent = card.reference;
-    element.append(label, value);
+    element.setAttribute('aria-label', 'Reference: ' + card.reference);
+    element.append(icon, value);
   }
   window.referenceCards = { specs, prepare, render, referencesFor, supports: verb => Boolean(specs[verb]) };
 })();
