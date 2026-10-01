@@ -11,7 +11,7 @@ const assert=require('assert/strict');
  await p.locator('#back-to-flashcard-from-options-btn').click();
  for(let i=0;i<6;i++){
   assert(await p.locator('#verb-reference').isVisible());
-  assert.match(await p.locator('#verb-reference').innerText(),/ce truc|cette chose|ces choses|cet endroit/);
+  assert.match(await p.locator('#verb-reference').innerText(),/ce truc|cette chose|ces choses|cet endroit|cet homme|cette femme|ces hommes|ces femmes/);
   assert.equal(await p.locator('#conjugated-verb').getAttribute('data-audio-id'),'');
   console.log(await p.locator('#verb-infinitive').innerText(),await p.locator('#conjugated-verb').textContent());
   await p.getByRole('button',{name:'Skip',exact:true}).filter({visible:true}).first().click();
@@ -25,7 +25,7 @@ const assert=require('assert/strict');
      for (const name of Object.keys(window.referenceCards.specs)) {
        if (!rows[name]) throw new Error('Missing reference verb: '+name);
        for (const [pronoun, conjugated] of Object.entries(rows[name])) {
-         for (const reference of (name === 'aller' ? ['cet endroit'] : ['ce truc','cette chose','ces choses'])) {
+         for (const reference of window.referenceCards.referencesFor(name)) {
            const c = window.referenceCards.prepare({verb:{infinitive:name}, tense, pronoun, conjugated},reference);
            if (/quelque chose|undefined/.test(c.conjugated)) throw new Error(c.conjugated);
            count++;

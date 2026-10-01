@@ -296,6 +296,12 @@ function expressionSpokenAnswerVariants(card, expected) {
     return [...new Set([...variants].map(text => text.replace(/\s+/g, ' ').trim()).filter(Boolean))];
 }
 
+// Argument placeholders belong to the pattern, not the conjugation answer.
+function expressionAnswerText(card, text) {
+    return expressionSpokenAnswerVariants(card, text).reduce(
+        (shortest, candidate) => candidate.length < shortest.length ? candidate : shortest, text);
+}
+
 function normalizeCardTypeMode(value) {
     return CARD_TYPE_VALUES.has(String(value || '').trim()) ? String(value || '').trim() : 'conjugation';
 }
@@ -924,6 +930,7 @@ function renderVerbCorePatterns(container, infinitive, options = {}) {
         if (entry.example_fr && entry.example_en) {
             const example = document.createElement('details');
             example.className = 'core-pattern-example';
+            example.addEventListener('click', event => event.stopPropagation());
             const summary = document.createElement('summary');
             summary.textContent = "Par exemple";
             const sentence = document.createElement('p');
@@ -3337,7 +3344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const infinitiveAudioBtn = document.getElementById('infinitive-audio-btn');
-    const goToVerbBtn = document.getElementById('go-to-verb-btn');
+    const goToVerbBtn = document.getElementById('verb-details-dock-btn');
     const conjugatedAudioBtn = document.getElementById('conjugated-audio-btn');
     const packagedTtsEnabledToggle = document.getElementById('packaged-tts-enabled');
     const packagedTtsDownloadTop20Btn = document.getElementById('packaged-tts-download-top20-btn');
@@ -4321,7 +4328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const syncUsageNuggetVisibility = () => {
         if (!usageNuggetEl) return;
         const availability = getUsageAvailability();
-        const showUsageNugget = currentCard?._patternEntry ? !!currentCard._patternUsagesExpanded : !!window.cardGenerationOptions?.showUsageNugget;
+        const showUsageNugget = document.body.classList.contains('inline-usage-enabled') || (currentCard?._patternEntry ? !!currentCard._patternUsagesExpanded : !!window.cardGenerationOptions?.showUsageNugget);
         const shouldShow = !!(
             isAnswerVisible &&
             currentCard &&
@@ -4370,7 +4377,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isInteractiveFlashcardTarget = (target) => {
         if (!(target instanceof Element)) return false;
         return !!target.closest(
-            'button, input, label, select, textarea, a, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner, #app-update-pill, #app-install-pill'
+            'button, input, label, select, textarea, a, details, summary, .tappable-audio, #usage-nugget, #go-to-verb-btn-container, #tts-warning-banner, #app-update-pill, #app-install-pill'
         );
     };
 
@@ -4590,7 +4597,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (card.isFrameCard) {
             return String(getFrameDisplayCloze(card).answer || card.conjugated || '').trim();
         }
-        return window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated).trim();
+        return expressionAnswerText(card, window.handleLanguageSpecificLastChange(card.pronoun, card.conjugated).trim());
     };
 
     const getExpectedDictationText = (card = currentCard) => {
@@ -8394,8 +8401,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const available = getExerciseTypes(options).filter(type =>
                 getFilteredVerbUniverse({ ...options, _exerciseType: type }).length > 0);
             if (available.length) {
-                const type = available[exerciseTypeTurn++ % available.length];
-                return generateNewCard({ ...options, _exerciseType: type });
+                const start = exerciseTypeTurn++ % available.length;
+                for (let offset = 0; offset < available.length; offset++) {
+                    const type = available[(start + offset) % available.length];
+                    const card = generateNewCard({ ...options, _exerciseType: type, _probe: true });
+                    if (card) return card;
+                }
             }
         }
         options = resolveVerbEntryOptions(options);
@@ -8688,6 +8699,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!newCard) {
+            if (options._probe) return null;
             console.error("No cards available with the current weight settings. Please adjust the options.");
             verbInfinitiveEl.textContent = "Error";
             verbTranslationEl.textContent = options.referencePractice ? "No compatible reference cards. Broaden your topic or frequency selection." : "No cards available for current options.";
@@ -8791,6 +8803,10 @@ document.addEventListener('DOMContentLoaded', () => {
         finalizeStudyStatsCardSession('card-replaced');
         if (!tutorialState.active) card = window.constructionCards.prepare(card, getVerbCorePatternsIndex()[card?.verb?.infinitive] || []);
         currentCard = card;
+        const sourceDeck = card.reference ? 'references' : card.verb?.verbExpression ? 'expressions' : 'verbs';
+        document.querySelectorAll('[data-practice-type]').forEach(button => {
+            button.classList.toggle('current-deck', button.dataset.practiceType === sourceDeck);
+        });
         window.constructionCards.clear();
         window.referenceCards.render(card);
         currentCardShownAtMs = performance.now();
@@ -9081,7 +9097,7 @@ document.addEventListener('DOMContentLoaded', () => {
         conjugatedVerbEl.textContent = answerText;
         conjugatedVerbEl.classList.add('tappable-audio');
         conjugatedVerbEl.dataset.audioId = conjugationAudioId(card.verb.infinitive, card.tense, card.pronounKey || card.pronoun);
-        conjugatedVerbEl.dataset.speak = card.conjugated;
+        conjugatedVerbEl.dataset.speak = answerText;
         verbPhraseEl.innerHTML = '';
         questionPhraseEl.innerHTML = '';
         verbPhraseEl.classList.remove('tappable-audio');
@@ -9202,6 +9218,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const nextCard = () => {
+        if (pendingExerciseModeCardRefresh) {
+            history = history.slice(0, historyIndex + 1);
+            pendingExerciseModeCardRefresh = false;
+        }
         autoskipLock = false;
         stopActiveDictation({ abort: true, silent: true });
         if (isTutorialDeferredForSharedEntry()) {
@@ -9298,6 +9318,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hasLoggedFirstViewShown = false;
     function showView(viewId, pushState = true) {
+        if (viewId === 'options-view') {
+            activeSettingsTab = 'practice';
+            updateSettingsV2NavState();
+        }
         if (!hasLoggedFirstViewShown) {
             hasLoggedFirstViewShown = true;
             startupMark('first-view-shown', `view=${viewId}`);
@@ -10190,24 +10214,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return panel;
     };
 
+    let activeSettingsTab = 'practice';
     const updateSettingsV2NavState = () => {
-        if (!isSettingsV2Enabled || !settingsV2Nav || settingsV2Nav.classList.contains('hidden')) return;
-        const sections = Array.from(document.querySelectorAll('.settings-v2-section, .settings-v2-section-shell'))
-            .filter((section) => !section.classList.contains('hidden'));
-        if (!sections.length) return;
-        const targetOffset = 150;
-        let activeId = sections[0].id;
-        let bestScore = Number.POSITIVE_INFINITY;
-        sections.forEach((section) => {
-            const rect = section.getBoundingClientRect();
-            const score = Math.abs(rect.top - targetOffset);
-            if (score < bestScore) {
-                bestScore = score;
-                activeId = section.id;
-            }
+        if (!isSettingsV2Enabled || !settingsV2Nav) return;
+        settingsV2Nav.querySelectorAll('[role="tab"]').forEach((button) => {
+            const selected = button.dataset.tab === activeSettingsTab;
+            button.classList.toggle('active', selected);
+            button.setAttribute('aria-selected', String(selected));
+            button.tabIndex = selected ? 0 : -1;
         });
-        settingsV2Nav.querySelectorAll('.mode-toggle-btn').forEach((btn) => {
-            btn.classList.toggle('active', btn.dataset.target === activeId);
+        optionsContainerEl?.querySelectorAll(':scope > [role="tabpanel"]').forEach((panel) => {
+            panel.hidden = panel.id !== `settings-panel-${activeSettingsTab}`;
         });
     };
 
@@ -10219,45 +10236,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (helpNavBtn) helpNavBtn.classList.add('hidden');
         const hasFillBlanks = hasFillBlankExerciseCapability();
 
-        const createUtilityBtn = (label, className, onClick) => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = className;
-            btn.textContent = label;
-            btn.addEventListener('click', onClick);
-            settingsV2Nav.appendChild(btn);
-        };
-        const sections = [
-            { id: 'settings-v2-conjugation-setup', label: 'Conjugation' },
-            { id: 'tts-voice-group', label: 'Audio' },
-            { id: 'app-group', label: 'App' },
-        ];
-        if (hasFillBlanks) {
-            sections.splice(1, 0, { id: 'settings-v2-fill-setup', label: 'Fill Blanks' });
-        }
-        settingsV2Nav.innerHTML = '';
-        createUtilityBtn('Back', 'settings-v2-nav-utility-btn settings-v2-nav-back-btn', () => {
-            backToFlashcardFromOptionsBtn?.click();
-        });
-        sections.forEach(({ id, label }) => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'mode-toggle-btn';
-            btn.dataset.target = id;
-            btn.textContent = label;
-            btn.addEventListener('click', () => {
-                const target = document.getElementById(id);
-                if (target instanceof HTMLDetailsElement) {
-                    target.open = true;
-                }
-                target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                window.requestAnimationFrame(updateSettingsV2NavState);
+        if (!settingsV2Nav.dataset.tabsInitialized) {
+            settingsV2Nav.dataset.tabsInitialized = 'true';
+            settingsV2Nav.replaceChildren();
+            settingsV2Nav.setAttribute('role', 'tablist');
+            [['practice', 'Practice'], ['audio', 'Audio'], ['app', 'App']].forEach(([id, label]) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'mode-toggle-btn';
+                button.id = `settings-tab-${id}`;
+                button.dataset.tab = id;
+                button.setAttribute('role', 'tab');
+                button.setAttribute('aria-controls', `settings-panel-${id}`);
+                button.textContent = label;
+                button.addEventListener('click', () => {
+                    activeSettingsTab = id;
+                    updateSettingsV2NavState();
+                    document.getElementById('options-view').scrollTo({ top: 0, behavior: 'instant' });
+                });
+                button.addEventListener('keydown', (event) => {
+                    const tabs = Array.from(settingsV2Nav.querySelectorAll('[role="tab"]'));
+                    let next = tabs.indexOf(button);
+                    if (event.key === 'ArrowRight') next = (next + 1) % tabs.length;
+                    else if (event.key === 'ArrowLeft') next = (next + tabs.length - 1) % tabs.length;
+                    else if (event.key === 'Home') next = 0;
+                    else if (event.key === 'End') next = tabs.length - 1;
+                    else return;
+                    event.preventDefault();
+                    tabs[next].click();
+                    tabs[next].focus();
+                });
+                settingsV2Nav.appendChild(button);
             });
-            settingsV2Nav.appendChild(btn);
-        });
-        if (!settingsV2Nav.dataset.initialized) {
-            settingsV2Nav.dataset.initialized = 'true';
-            window.addEventListener('scroll', updateSettingsV2NavState, { passive: true });
         }
 
         const ensureShell = (id, title, summaryId, bodyId) => {
@@ -10577,6 +10587,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (balancedPronounsToggle) {
             balancedPronounsToggle.checked = !!cardGenerationOptions.balancedPronouns;
         }
+
+        // Reuse the existing controls and listeners; only their grouping changes.
+        const panels = {};
+        ['practice', 'audio', 'app'].forEach((id) => {
+            let panel = document.getElementById(`settings-panel-${id}`);
+            if (!panel) {
+                panel = document.createElement('section');
+                panel.id = `settings-panel-${id}`;
+                panel.className = 'settings-tab-panel';
+                panel.setAttribute('role', 'tabpanel');
+                panel.setAttribute('aria-labelledby', `settings-tab-${id}`);
+                panel.tabIndex = 0;
+                optionsContainerEl.appendChild(panel);
+            }
+            panels[id] = panel;
+        });
+        const practiceSection = document.getElementById('settings-v2-practice-section');
+        panels.practice.append(conjugationSetupDetails, practiceSection, fillBlankSetupDetails);
+        if (drillsGroup) conjugationSetupBody.prepend(drillsGroup);
+        if (balancedPronounsToggleRow) conjugationSetupBody.appendChild(balancedPronounsToggleRow);
+        if (micGroup) panels.audio.appendChild(micGroup);
+        if (pressToDictateRow) micToggleRows.appendChild(pressToDictateRow);
+        if (micHeading) micHeading.hidden = false;
+        if (ttsGroup) panels.audio.appendChild(ttsGroup);
+        if (appGroup) panels.app.appendChild(appGroup);
+        if (tutorialQuickToggleRow) appToggleRows.appendChild(tutorialQuickToggleRow);
+        [conjugationSetupDetails, ttsGroup, appGroup].filter(Boolean).forEach((details) => {
+            details.open = true;
+            details.classList.add('settings-tab-content');
+        });
 
         updateSettingsV2NavState();
         return {
@@ -11638,10 +11678,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : [...selected, type];
         saveOptions();
         populateOptions();
-        pendingExerciseModeCardRefresh = false;
-        history = [];
-        historyIndex = -1;
-        nextCard();
+        pendingExerciseModeCardRefresh = true;
     });
     syncPracticeTypeFilter();
 
@@ -11729,8 +11766,71 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // A discreet alternate action, available on touch and with keyboard/right-click.
+    const detailsMenu = document.createElement('div');
+    detailsMenu.id = 'details-usage-menu';
+    detailsMenu.hidden = true;
+    detailsMenu.setAttribute('role', 'menu');
+    const usageAction = document.createElement('button');
+    usageAction.type = 'button';
+    usageAction.setAttribute('role', 'menuitem');
+    detailsMenu.appendChild(usageAction);
+    goToVerbBtn.parentElement.appendChild(detailsMenu);
+    goToVerbBtn.setAttribute('aria-haspopup', 'menu');
+    goToVerbBtn.setAttribute('aria-expanded', 'false');
+    let detailsHoldTimer = null;
+    let suppressDetailsClickUntil = 0;
+    let detailsPointerStart = null;
+    const stopDetailsHold = () => { clearTimeout(detailsHoldTimer); detailsHoldTimer = null; };
+    const closeDetailsMenu = () => {
+        detailsMenu.hidden = true;
+        goToVerbBtn.setAttribute('aria-expanded', 'false');
+    };
+    const openDetailsMenu = () => {
+        stopDetailsHold();
+        suppressDetailsClickUntil = performance.now() + 1000;
+        usageAction.textContent = document.body.classList.contains('inline-usage-enabled') ? 'Hide usage' : 'Usage';
+        detailsMenu.hidden = false;
+        goToVerbBtn.setAttribute('aria-expanded', 'true');
+        usageAction.focus();
+    };
+    goToVerbBtn.addEventListener('pointerdown', event => {
+        if (event.button !== 0) return;
+        detailsPointerStart = { x: event.clientX, y: event.clientY };
+        stopDetailsHold();
+        detailsHoldTimer = setTimeout(openDetailsMenu, 500);
+    });
+    goToVerbBtn.addEventListener('pointermove', event => {
+        if (detailsPointerStart && Math.hypot(event.clientX - detailsPointerStart.x, event.clientY - detailsPointerStart.y) > 10) stopDetailsHold();
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(name => goToVerbBtn.addEventListener(name, stopDetailsHold));
+    goToVerbBtn.addEventListener('contextmenu', event => { event.preventDefault(); openDetailsMenu(); });
+    goToVerbBtn.addEventListener('keydown', event => {
+        if (event.key === 'ArrowDown' || (event.shiftKey && event.key === 'F10')) {
+            event.preventDefault(); openDetailsMenu();
+        }
+    });
+    document.addEventListener('pointerdown', event => {
+        if (!detailsMenu.contains(event.target) && !goToVerbBtn.contains(event.target)) closeDetailsMenu();
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !detailsMenu.hidden) { closeDetailsMenu(); goToVerbBtn.focus(); }
+    });
+    usageAction.addEventListener('click', event => {
+        event.stopPropagation();
+        const enabled = document.body.classList.toggle('inline-usage-enabled');
+        cardGenerationOptions.showUsageNugget = enabled;
+        if (currentCard?._patternEntry) currentCard._patternUsagesExpanded = enabled;
+        closeDetailsMenu();
+        if (enabled && !isAnswerVisible) showAnswer();
+        syncUsageNuggetVisibility();
+        if (enabled && usageNuggetEl) focusUsageExamplesInPanel(usageNuggetEl);
+        goToVerbBtn.focus();
+    });
     goToVerbBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        if (!detailsMenu.hidden || performance.now() < suppressDetailsClickUntil) { e.preventDefault(); return; }
+        closeDetailsMenu();
         if (currentCard && currentCard.verb) {
             showVerbDetail(currentCard.verb.infinitive, currentCard.tense, { card: currentCard });
         }
@@ -12062,18 +12162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // These buttons should now act like the browser's back button
     backToFlashcardBtn.addEventListener('click', () => window.history.back());
-    backToFlashcardFromOptionsBtn.addEventListener('click', () => {
-        if (!pendingExerciseModeCardRefresh) {
-            window.history.back();
-            return;
-        }
-        pendingExerciseModeCardRefresh = false;
-        history = [];
-        historyIndex = -1;
-        window.history.replaceState({ view: 'flashcard-view' }, '', '#');
-        showView('flashcard-view', false);
-        nextCard();
-    });
+    backToFlashcardFromOptionsBtn.addEventListener('click', () => window.history.back());
     backToListBtn.addEventListener('click', () => window.history.back());
     // Mnemonics back button
     const backToOptionsBtn = document.getElementById('back-to-options-btn');
@@ -14480,8 +14569,8 @@ if (loader) {
 }
 startupMark('app-ready');
 if (window.appLog) window.appLog('app-ready');
-// Load card from URL hash on initial load
-loadCardFromHash();
+// initializeApp already handles shared routes and the initial random card.
+// A second load can overwrite it, especially for reference cards with no hash.
 
 
 });

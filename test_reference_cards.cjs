@@ -17,6 +17,36 @@ const cases = [
  ['faire attention','subjonctifPresent','tu','tu fasses attention à quelque chose','ce truc','tu y fasses attention'],
  ['aller','present','je','je vais','cet endroit',"j'y vais"],
  ['aller','passeCompose','elles','elles sont allées','cet endroit','elles y sont allées'],
+ ['parler','present','je','je parle','cet homme','je lui parle'],
+ ['parler','present','je','je parle','cette femme','je lui parle'],
+ ['parler','present','je','je parle','ces hommes','je leur parle'],
+ ['parler','present','je','je parle','ces femmes','je leur parle'],
+ ['répondre','present','je','je réponds','cette chose',"j'y réponds"],
+ ['répondre','present','je','je réponds','cette femme','je lui réponds'],
+ ['répondre','passeCompose','elle','elle a répondu','ces femmes','elle leur a répondu'],
+ ['écrire','passeCompose','je',"j'ai écrit",'cette femme',"je lui ai écrit"],
+ ['écrire','plusQueParfait','nous','nous avions écrit','ces femmes','nous leur avions écrit'],
+ ['téléphoner','futurSimple','tu','tu téléphoneras','ces hommes','tu leur téléphoneras'],
+ ['sourire','subjonctifPresent','nous','nous souriions','cet homme','nous lui souriions'],
+ ['penser','present','je','je pense','cet homme','je pense à lui'],
+ ['penser','present','je','je pense','cette femme','je pense à elle'],
+ ['penser','present','je','je pense','ces hommes','je pense à eux'],
+ ['penser','present','je','je pense','ces femmes','je pense à elles'],
+ ['penser','passeCompose','je',"j'ai pensé",'cette femme',"j'ai pensé à elle"],
+ ['penser','plusQueParfait','je',"j'avais pensé",'ces femmes',"j'avais pensé à elles"],
+ ['penser','futurSimple','nous','nous penserons','ces hommes','nous penserons à eux'],
+ ['penser','conditionnelPresent','tu','tu penserais','cette femme','tu penserais à elle'],
+ ['penser','subjonctifPresent','elle','elle pense','cet homme','elle pense à lui'],
+ ['faire attention','present','je','je fais attention à quelque chose','cette femme','je fais attention à elle'],
+ ['faire attention','passeCompose','je',"j'ai fait attention à quelque chose",'ces hommes',"j'ai fait attention à eux"],
+ ['songer','present','je','je songe','cette femme','je songe à elle'],
+ ['songer','present','je','je songe','ce truc',"j'y songe"],
+ ['tenir','present','je','je tiens','ces hommes','je tiens à eux'],
+ ['tenir','imparfait','tu','tu tenais','cette chose','tu y tenais'],
+ ['renoncer','passeCompose','je',"j'ai renoncé",'cette femme',"j'ai renoncé à elle"],
+ ['renoncer','present','nous','nous renonçons','ces choses','nous y renonçons'],
+ ['recourir','present','nous','nous recourons','cet homme','nous recourons à lui'],
+ ['recourir','futurSimple','je','je recourrai','ce truc',"j'y recourrai"],
 ];
 for(const [infinitive,tense,pronoun,conjugated,reference,expected] of cases) {
  const card = {verb:{infinitive},tense,pronoun,conjugated};
@@ -24,3 +54,6 @@ for(const [infinitive,tense,pronoun,conjugated,reference,expected] of cases) {
  assert.equal(prepare(result),result);
 }
 console.log(`PASS: ${cases.length} independently specified pronoun/tense/agreement cases.`);
+
+assert.equal(prepare({verb:{infinitive:'parler'},tense:'present',pronoun:'je',conjugated:'je parle'},'cette femme').referenceLabel,'parler à');
+assert(context.window.referenceCards.referencesFor('penser').includes('cet homme'));

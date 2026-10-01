@@ -5942,3 +5942,78 @@ html[data-theme="dark"] {
 .exercise-type-checkboxes legend { font-weight: 650; margin-bottom: 12px; }
 .exercise-type-checkboxes label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .exercise-type-checkboxes input { width: 20px; height: 20px; accent-color: var(--primary-color, #329add); }
+
+/* Settings tabs keep deck controls together and secondary preferences separate. */
+#settings-v2-nav[role="tablist"] {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+#settings-v2-nav[role="tablist"] .mode-toggle-btn {
+  min-height: 44px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+.settings-tab-panel[hidden] { display: none !important; }
+.settings-tab-panel { min-width: 0; }
+.settings-tab-content > summary { display: none !important; }
+#options-container.settings-v2-enabled .settings-tab-panel > .option-group,
+#options-container.settings-v2-enabled .settings-tab-panel > .settings-v2-section-shell {
+  margin-bottom: 1rem;
+}
+.settings-tab-panel:focus-visible,
+#settings-v2-nav [role="tab"]:focus-visible {
+  outline: 2px solid var(--primary-color, #5297dc);
+  outline-offset: 3px;
+}
+
+#settings-v2-nav[role="tablist"] .mode-toggle-btn.active {
+  color: #102b40;
+  background: #83c9fa;
+  border-color: #5297dc;
+}
+
+/* Small selectable stacks show which decks feed practice. */
+#options-view #settings-v2-nav[role="tablist"] { gap: .85rem; padding-inline: .35rem; }
+#practice-type-filter { padding: 12px 14px 16px; }
+.practice-type-buttons { gap: 16px; }
+.practice-type-buttons button {
+  position: relative;
+  min-width: 85px;
+  min-height: 44px;
+  border-radius: 8px;
+  box-shadow: 0 3px 0 -1px var(--card-bg), 0 4px 0 0 var(--border-color), 0 7px 0 -1px var(--card-bg), 0 8px 0 0 var(--border-color);
+}
+.practice-type-buttons button.current-deck { border-color: var(--accent-color); }
+.practice-type-buttons button[aria-pressed="true"] { background: color-mix(in srgb, var(--accent-color) 18%, var(--card-bg)); }
+@media (max-width: 360px) {
+  .practice-type-buttons { gap: 12px; }
+  .practice-type-buttons button { min-width: 76px; padding-inline: 7px; }
+}
+
+/* A quiet, stationary glow marks the current card's source. */
+.practice-type-buttons button.current-deck {
+  box-shadow: 0 3px 0 -1px var(--card-bg), 0 4px 0 var(--border-color),
+    0 7px 0 -1px var(--card-bg), 0 8px 0 var(--border-color),
+    0 0 12px 2px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+
+/* Details use the shared action-dock styling. */
+#usage-visibility-btn, body:not(.inline-usage-enabled) #flashcard #usage-nugget { display: none !important; }
+#flashcard .infinitive-line::before { content: none; }
+
+#go-to-verb-btn-container { position: relative; }
+#details-usage-menu {
+  position: absolute; bottom: calc(100% + 8px); left: 0;
+  z-index: 30; padding: 6px; border-radius: 14px;
+  background: var(--card-bg); border: 1px solid var(--control-btn-border);
+  box-shadow: 0 5px 18px rgba(0,0,0,.15);
+}
+#details-usage-menu[hidden] { display: none; }
+#details-usage-menu button {
+  min-width: 120px; min-height: 44px; padding: 10px 16px;
+  border: 0; border-radius: 9px; font: inherit;
+  background: var(--control-btn-bg); color: var(--control-btn-color);
+}
+#verb-details-dock-btn { -webkit-touch-callout: none; user-select: none; }

@@ -18,3 +18,11 @@ for(const other of [{verb:{}},{verb:{verbExpression:true},reference:'cette chose
  assert.deepEqual(Array.from(context.expressionSpokenAnswerVariants(other,"j'ai besoin de quelque chose")),["j'ai besoin de quelque chose"]);
 }
 console.log('PASS: optional generic arguments; prepositions, idiom words, pronouns and tense remain constrained.');
+
+assert.equal(context.expressionAnswerText(card, "j'ai peur de quelque chose"), "j'ai peur");
+assert.equal(context.expressionAnswerText(card, "tu fais attention à quelqu'un"), "tu fais attention");
+assert.equal(context.expressionAnswerText(card, "nous mettons quelque chose au point"), "nous mettons au point");
+assert.equal(context.expressionAnswerText(card, "elle en veut à quelqu’un"), "elle en veut");
+assert.equal(context.expressionAnswerText(card, "tu as vingt ans"), "tu as vingt ans");
+assert.equal(context.expressionAnswerText({...card, reference: 'cette chose'}, "il a besoin de quelque chose"), "il a besoin de quelque chose");
+console.log('PASS: concise expression answers retain essential idiom words and reference cards.');

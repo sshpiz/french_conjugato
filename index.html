@@ -687,7 +687,7 @@
                 <div class="practice-type-buttons">
                     <button type="button" data-practice-type="verbs" aria-pressed="true">Verbs</button>
                     <button type="button" data-practice-type="expressions" aria-pressed="false">Expressions</button>
-                    <button type="button" data-practice-type="references" aria-pressed="false"><span>Object<br>pronouns</span></button>
+                    <button type="button" data-practice-type="references" aria-pressed="false">Pronouns</button>
                 </div>
             </div>
             <div id="flashcard" class="card" style="position:relative;">
@@ -719,17 +719,7 @@
                         <button id="infinitive-audio-btn" class="audio-btn">🔊</button>
                         <!-- Remove tip for verb-infinitive -->
                         <h1 id="verb-infinitive" tabindex="0" role="button" aria-label="Hear infinitive" title="Tap to hear" class="tappable-audio"></h1>
-                        <!-- Book icon: go to verb detail, inline with verb -->
-                        <button id="go-to-verb-btn" class="verb-detail-book-btn" title="Go to verb detail">
-                          <svg viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                            <!-- open book -->
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                            <!-- magnifying glass overlaid bottom-right -->
-                            <circle cx="19.5" cy="17.5" r="3" stroke-width="1.7"/>
-                            <line x1="21.6" y1="19.6" x2="24" y2="22" stroke-width="1.9"/>
-                          </svg>
-                        </button>
+
                     </div>
                     
                     <!-- Hidden English infinitive line -->
@@ -754,9 +744,9 @@
                 <div class="meta-container">
                     <!-- Remove tip for pronoun -->
                     <p id="verb-pronoun" class="meta-info"></p>
+                    <p id="verb-reference" class="meta-info" hidden></p>
                     <!-- Remove tip for tense -->
                     <p id="verb-tense" class="meta-info"></p>
-                    <p id="verb-reference" class="meta-info" hidden></p>
                 </div>
 
                 <!-- Preset badge -->
@@ -812,6 +802,16 @@
 
             <!-- Action buttons row: mic + autosay -->
             <div id="go-to-verb-btn-container">
+              <button id="verb-details-dock-btn" class="action-icon-btn control-dock-btn" aria-label="Verb details" title="Go to verb detail">
+                          <svg viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- open book -->
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            <!-- magnifying glass overlaid bottom-right -->
+                            <circle cx="19.5" cy="17.5" r="3" stroke-width="1.7"/>
+                            <line x1="21.6" y1="19.6" x2="24" y2="22" stroke-width="1.9"/>
+                          </svg>
+                        <span class="control-dock-label">Details</span></button>
               <button id="usage-visibility-btn" class="action-icon-btn control-dock-btn usage-toggle-btn" type="button" title="Hide verb usage" aria-label="Hide verb usage" aria-pressed="true">
                 <svg class="usage-visibility-icon usage-visible-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M7 6h13"></path>
