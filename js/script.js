@@ -10376,12 +10376,12 @@ document.addEventListener('DOMContentLoaded', () => {
             fillFocusContainer.className = 'option-group settings-v2-fill-focus-group';
         }
 
-        practiceBody.appendChild(exerciseControlsContainer);
         if (micGroup) practiceBody.appendChild(micGroup);
         optionsContainerEl.appendChild(conjugationSetupDetails);
         optionsContainerEl.appendChild(fillBlankSetupDetails);
         const conjugationSetupBody = document.getElementById('settings-v2-conjugation-setup-body');
         const fillSetupBody = document.getElementById('settings-v2-fill-setup-body');
+        if (conjugationSetupBody) conjugationSetupBody.appendChild(exerciseControlsContainer);
         if (verbSourceContainer && conjugationSetupBody) conjugationSetupBody.appendChild(verbSourceContainer);
         if (drillsGroup && conjugationSetupBody) conjugationSetupBody.appendChild(drillsGroup);
         if (tenseGroup && conjugationSetupBody) conjugationSetupBody.appendChild(tenseGroup);
