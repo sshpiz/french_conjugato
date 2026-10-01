@@ -949,6 +949,76 @@ function renderVerbCorePatterns(container, infinitive, options = {}) {
     return patterns.length;
 }
 
+
+// Group presentation records without changing the source inventories.
+function groupUsageEntries(entries) {
+    const normalize = value => String(value || '').normalize('NFC').toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, ' ').trim().replace(/[.!?]+$/, '');
+    const groups = [];
+    // Reviewed alias: the legacy exam example is the same sense as the
+    // specific exam construction, despite its broader English gloss.
+    const reviewedAliases = { 'échouer + à + object': 'échouer à un examen' };
+    for (const original of entries.filter(Boolean)) {
+        const alias = reviewedAliases[normalize(original.pattern)];
+        const canonical = alias && entries.find(e => normalize(e.pattern) === alias && normalize(e.example_fr) === normalize(original.example_fr));
+        const entry = canonical ? { ...original, pattern: canonical.pattern, meaning_en: canonical.meaning_en, core_pattern_id: canonical.pattern_id || canonical.core_pattern_id } : original;
+        const pattern = normalize(entry.pattern || entry.text);
+        const meaning = normalize(entry.meaning_en);
+        const id = entry.core_pattern_id || entry.pattern_id;
+        let group = groups.find(g => (id && g.ids.has(id)) || (g.pattern === pattern && g.meaning === meaning));
+        if (!group) {
+            group = { entry, pattern, meaning, ids: new Set(), examples: [], notes: new Set() };
+            groups.push(group);
+        }
+        if (id) group.ids.add(id);
+        if (entry.notes) group.notes.add(entry.notes);
+        if (entry.example_fr) {
+            const key = normalize(entry.example_fr);
+            const existing = group.examples.find(e => e.key === key);
+            if (!existing) group.examples.push({ ...entry, key });
+            else {
+                if (!existing.sense_id && entry.sense_id) existing.sense_id = entry.sense_id;
+                if (!existing.example_en) existing.example_en = entry.example_en;
+            }
+        }
+    }
+    // Legacy generic frame aliases with no meaning/notes add no information when
+    // every example already belongs to a specific, documented construction.
+    return groups.filter(group => !(!group.meaning && !group.notes.size && /\b(object|objet|infinitif|infinitivo|infinitiu)\b/.test(group.pattern) && group.examples.length && group.examples.every(example => groups.some(other => other !== group && other.meaning && other.examples.some(e => e.key === example.key)))));
+}
+
+function renderGroupedUsages(container, entries, options = {}) {
+    container.replaceChildren();
+    if (options.sectionClass) container.className = options.sectionClass;
+    const groups = groupUsageEntries(entries);
+    for (const group of groups) {
+        const item = document.createElement('div'); item.className = 'usage-item unified-usage-item';
+        const pattern = document.createElement('span'); pattern.className = 'usage-pattern';
+        pattern.textContent = window.constructionCards.label(group.entry);
+        window.constructionCards.decorate(item, group.entry); item.appendChild(pattern);
+        if (group.entry.meaning_en) {
+            const meaning = document.createElement('span'); meaning.className = 'usage-meaning';
+            meaning.textContent = ' — ' + group.entry.meaning_en; item.appendChild(meaning);
+        }
+        for (const note of group.notes) {
+            const el = document.createElement('p'); el.className = 'core-pattern-notes'; el.textContent = note; item.appendChild(el);
+        }
+        for (const example of group.examples) {
+            const line = document.createElement('p'); line.className = 'unified-usage-example';
+            const text = document.createElement('span'); text.className = 'usage-fr tappable-audio';
+            text.textContent = example.example_fr; text.dataset.speak = example.example_fr;
+            if (example.sense_id) text.dataset.audioId = `usage:${example.sense_id}`;
+            line.appendChild(text);
+            if (example.example_en) {
+                const translation = document.createElement('span'); translation.className = 'usage-en';
+                translation.textContent = example.example_en; line.appendChild(translation);
+            }
+            item.appendChild(line);
+        }
+        container.appendChild(item);
+    }
+    return groups.length;
+}
+
 function renderVerbUsages(container, infinitive, options = {}) {
     if (!container) return 0;
 
@@ -1054,52 +1124,7 @@ function renderVerbSetUsages(container, infinitive, options = {}) {
 
 function renderVerbUsagePanel(container, infinitive, options = {}) {
     if (!container) return 0;
-
-    const {
-        sectionClass = '',
-        coreHeading = 'Core patterns',
-        verbSetUsageHeading = 'Set-specific usages',
-        usageHeading = 'Usages & examples',
-        headingClass = 'verb-context-heading',
-        verbSetOptions = getCurrentVerbSetOptions(),
-    } = options;
-
-    container.innerHTML = '';
-    if (sectionClass) container.className = sectionClass;
-    const activeVerbSet = getResolvedVerbSetSelectionBridge(verbSetOptions);
-
-    const coreSection = document.createElement('section');
-    const coreCount = renderVerbCorePatterns(coreSection, infinitive, {
-        sectionClass: 'verb-context-subsection verb-core-patterns-subsection',
-        heading: coreHeading,
-        headingClass,
-    });
-    if (coreCount > 0) {
-        container.appendChild(coreSection);
-    }
-
-    const verbSetUsageSection = document.createElement('section');
-    const verbSetUsageCount = renderVerbSetUsages(verbSetUsageSection, infinitive, {
-        sectionClass: 'verb-context-subsection verb-set-usages-subsection',
-        heading: '',
-        headingClass,
-        verbSetOptions,
-    });
-    if (verbSetUsageCount > 0) {
-        container.appendChild(verbSetUsageSection);
-    }
-
-    const usageSection = document.createElement('section');
-    const usageCount = renderVerbUsages(usageSection, infinitive, {
-        sectionClass: 'verb-context-subsection verb-usages-subsection',
-        heading: coreCount > 0 || verbSetUsageCount > 0 ? usageHeading : '',
-        headingClass,
-    });
-    if (usageCount > 0) {
-        container.appendChild(usageSection);
-    }
-
-    return coreCount + verbSetUsageCount + usageCount;
+    return renderGroupedUsages(container, [...(getVerbCorePatternsIndex()[infinitive] || []), ...getVerbSetUsageEntries(infinitive, { verbSetOptions: options.verbSetOptions || getCurrentVerbSetOptions() }), ...(getVerbUsagesIndex()[infinitive] || []),], options);
 }
 
 function focusUsageExamplesInPanel(container, options = {}) {
@@ -3885,7 +3910,7 @@ document.addEventListener('DOMContentLoaded', () => {
             note = 'After that, open Les Verbes from your Home Screen for the best app-like behavior.';
         } else {
             title = 'Install this app';
-            text = 'This browser did not expose a direct install prompt just now, but it may still offer install from its menu.';
+            text = 'No install prompt is available right now. If you already added this app, open it from your Home Screen or app drawer.';
             steps = [
                 'Open the browser menu.',
                 'Look for Install app, Add to Home Screen, or a similar option.',
@@ -4006,6 +4031,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openSettingsForUpdate = () => {
         showOptions();
+        document.querySelector('#settings-tab-app')?.click();
         if (appUpdateActionBtn) {
             window.setTimeout(() => {
                 appUpdateActionBtn.focus({ preventScroll: true });
@@ -10773,8 +10799,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window._updateSettingsV2LayoutState = updateSettingsV2LayoutState;
 
+    // Reversible presentation experiment; the original controls remain authoritative.
+    const refreshCompactPractice = () => {
+        const panel = document.getElementById('settings-panel-practice');
+        if (!panel) return;
+        let toolbar = document.getElementById('practice-layout-choice');
+        if (!toolbar) {
+            toolbar = document.createElement('div');
+            toolbar.id = 'practice-layout-choice';
+            toolbar.innerHTML = '<span>Practice layout</span><button type="button">Compact</button><button type="button">Original</button>';
+            const buttons = toolbar.querySelectorAll('button');
+            buttons.forEach((button, index) => button.addEventListener('click', () => {
+                localStorage.setItem('vf:compact-practice:v1', index === 0 ? 'true' : 'false');
+                refreshCompactPractice();
+            }));
+            panel.prepend(toolbar);
+        }
+        const compact = localStorage.getItem('vf:compact-practice:v1') !== 'false';
+        panel.classList.toggle('compact-practice', compact);
+        toolbar.querySelectorAll('button').forEach((button, index) => button.setAttribute('aria-pressed', String(compact === (index === 0))));
+        let select = document.getElementById('compact-preset-select');
+        const presets = document.getElementById('presets-container');
+        if (presets && !select) {
+            select = document.createElement('select');
+            select.id = 'compact-preset-select'; select.setAttribute('aria-label', 'Exercise preset');
+            presets.before(select);
+            select.addEventListener('change', () => {
+                const button = Array.from(presets.querySelectorAll('button')).find(b => b.dataset.presetKey === select.value);
+                button?.click();
+            });
+        }
+        if (select) {
+            select.replaceChildren(new Option('Choose a preset…', ''));
+            presets.querySelectorAll('button').forEach(button => {
+                select.add(new Option(button.querySelector('.preset-name')?.textContent || button.textContent, button.dataset.presetKey, false, button.classList.contains('active')));
+            });
+        }
+    };
+    window._refreshCompactPractice = refreshCompactPractice;
+
     // --- Options UI Logic ---
     const populateOptions = (options = {}) => {
+        queueMicrotask(refreshCompactPractice);
         syncPracticeTypeFilter();
         const { preserveAnchorId = null, preserveAnchorSelector = null } = options || {};
         const preservedAnchor = preserveAnchorSelector
@@ -11500,7 +11566,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 checkbox.value = type;
                 checkbox.checked = selectedTypes.includes(type);
                 checkbox.disabled = checkbox.checked && selectedTypes.length === 1;
-                row.append(checkbox, document.createTextNode(label));
+                const caption = document.createElement('span');
+                caption.className = 'exercise-type-full-label'; caption.textContent = label;
+                row.append(checkbox, caption);
+                if (type === 'references') {
+                    const short = document.createElement('span'); short.className = 'exercise-type-compact-label';
+                    short.textContent = 'le / la / y / en…'; row.appendChild(short);
+                }
                 checkbox.addEventListener('change', () => {
                     cardGenerationOptions.exerciseTypes = [...cardFamilyRow.querySelectorAll('input:checked')].map(input => input.value);
                     pendingExerciseModeCardRefresh = true;
@@ -14185,6 +14257,7 @@ function renderPresets() {
     container.appendChild(btn);
   });
   renderSavedDrills();
+  window._refreshCompactPractice?.();
 }
 
 function highlightActivePreset() {

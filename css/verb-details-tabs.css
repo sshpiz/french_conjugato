@@ -1,5 +1,7 @@
 /* Deliberately scoped to the experimental detail view; no flashcard selectors. */
 #verb-detail-container.vf-details-tabs-enabled {
+    --vf-detail-pad-y: 24px;
+    --vf-detail-pad-x: 24px;
     --vf-detail-line: var(--border-color, #e0e6ed);
     --vf-detail-muted: var(--meta-color, #667788);
     --vf-detail-link: var(--button-bg, #3498db);
@@ -36,6 +38,12 @@
     cursor: pointer;
 }
 .vf-details-tabs {
+    position: sticky;
+    top: calc(-1 * var(--vf-detail-pad-y));
+    margin-inline: calc(-1 * var(--vf-detail-pad-x));
+    padding: 12px var(--vf-detail-pad-x) 0;
+    z-index: 5;
+    background: var(--card-bg, #fff);
     display: flex;
     gap: 20px;
     border-bottom: 1px solid var(--vf-detail-line);
@@ -70,7 +78,7 @@
 .vf-details-empty { color: var(--vf-detail-muted); padding: 12px 0; font-size: .95rem; }
 .vf-details-tabs button:focus-visible, .vf-family-verb:focus-visible, .vf-details-classic:focus-visible { outline: 2px solid var(--text-color); outline-offset: 4px; }
 @media (max-width: 480px) {
-    #verb-detail-container.vf-details-tabs-enabled { padding: 18px 16px; }
+    #verb-detail-container.vf-details-tabs-enabled { --vf-detail-pad-y: 18px; --vf-detail-pad-x: 16px; padding: 18px 16px; }
     .vf-details-tabs { gap: 0; justify-content: space-between; }
     .vf-details-tabs > button { font-size: .8rem; }
     .vf-family-words { gap: 8px 16px; }

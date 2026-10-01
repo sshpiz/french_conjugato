@@ -5764,7 +5764,7 @@ html[data-theme="dark"] {
 #options-view .setting-helper-text { font-size: .8rem; line-height: 1.45; margin-top: .1rem; }
 #options-view .toggle-control, #options-view .toggle-switch { min-height: 44px; }
 /* Extend the switch's hit area without increasing its visual weight. */
-#options-view .toggle-label::after { content: ''; position: absolute; inset: -6px 0; }
+#options-view .toggle-switch .toggle-label::after { content: ''; position: absolute; inset: -6px 0; }
 #options-view [data-settings-row-key="exercise-type"] { flex-direction: column; align-items: stretch; margin-top: 0 !important; gap: .5rem; }
 #options-view [data-settings-row-key="exercise-type"] .reflexive-mode-pills { width: 100%; }
 #options-view .reflexive-mode-pills { border-radius: 12px; }
@@ -6076,3 +6076,58 @@ html[data-theme="dark"] {
 @media (max-width: 430px) {
   #flashcard .meta-container:has(#verb-reference:not([hidden])) { min-height: calc(2.3rem + 10px) !important; }
 }
+
+/* French Practice density experiment. Original layout remains one click away. */
+#practice-layout-choice { display:flex; align-items:center; justify-content:flex-end; gap:6px; margin:0 0 12px; font-size:.78rem; }
+#practice-layout-choice span { margin-right:auto; color:var(--meta-color); }
+#practice-layout-choice button { min-height:36px; padding:6px 10px; border:1px solid var(--border-color); border-radius:8px; background:transparent; color:var(--text-color); font:inherit; cursor:pointer; }
+#practice-layout-choice button[aria-pressed="true"] { background:var(--accent-color); color:#fff; }
+#compact-preset-select { display:none; }
+#options-view .compact-practice #compact-preset-select { display:block; width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--border-color); border-radius:8px; background:var(--card-bg); color:var(--text-color); font:inherit; font-size:.9rem; }
+#options-view .compact-practice #presets-container { display:none; }
+#options-view .compact-practice .option-group,
+#options-view .compact-practice .settings-v2-section-shell,
+#options-view .compact-practice .settings-v2-subsetup { background:transparent; box-shadow:none; border:0; border-radius:0; padding:0; margin:0 0 12px !important; }
+#options-view .compact-practice .settings-v2-subsetup-body,
+#options-view .compact-practice .settings-v2-section-body { padding:0; gap:8px; }
+#options-view .compact-practice h3 { font-size:.85rem; margin:0 0 6px; padding:0; border:0; }
+#options-view .compact-practice .option-desc,
+#options-view .compact-practice .setting-helper-text,
+#options-view .compact-practice .settings-v2-section-header { display:none; }
+#options-view .compact-practice .toggle-row { padding:4px 0; gap:8px; margin:0; }
+#options-view .compact-practice .reflexive-pill,
+#options-view .compact-practice .tense-weight-pill,
+#options-view .compact-practice .verb-pool-pill { min-height:40px; padding:6px 10px; font-size:.85rem; border-radius:8px; }
+#options-view .compact-practice #tense-weights-container,
+#options-view .compact-practice .verb-pool-range { gap:6px; }
+#options-view .compact-practice .verb-pool-panel { padding:0; background:none; border:0; box-shadow:none; }
+#options-view .compact-practice .verb-pool-summary { font-size:.78rem; margin-top:6px; }
+#options-view .compact-practice .settings-collapsible > summary { padding:8px 0; min-height:40px; }
+#options-view .compact-practice .settings-v2-collapsible-title { font-size:.9rem; }
+#options-view .compact-practice .settings-v2-collapsible-meta { font-size:.75rem; }
+#options-view .compact-practice .current-drill-card { padding:8px 10px; margin:6px 0; box-shadow:none; }
+#options-view .compact-practice #settings-v2-conjugation-setup-body { display:flex; flex-direction:column; }
+#options-view .compact-practice #settings-v2-exercise-controls { order:-3; }
+#options-view .compact-practice #settings-drills-group { order:-2; }
+#options-view .compact-practice #settings-topn-group { order:-1; }
+.exercise-type-compact-label { display:none; }
+#options-view .compact-practice .exercise-type-checkboxes { display:flex; flex-wrap:wrap; gap:0 12px; padding:0; margin:0; }
+#options-view .compact-practice .exercise-type-checkboxes legend { font-size:.85rem; margin-bottom:4px; }
+#options-view .compact-practice .exercise-type-checkboxes label { display:flex; align-items:center; gap:5px; min-height:40px; margin:0; font-size:.82rem; }
+#options-view .compact-practice label:has(.exercise-type-compact-label) .exercise-type-full-label { display:none; }
+#options-view .compact-practice .exercise-type-compact-label { display:inline; }
+#options-view .compact-practice #current-drill-card { border:0; background:none; padding:0; }
+#options-view .compact-practice .current-drill-label { display:none; }
+#options-view .compact-practice .current-drill-name { font-size:.85rem; }
+#options-view .compact-practice .current-drill-desc { font-size:.78rem; }
+#options-view .compact-practice .verb-pool-panel { gap:4px; }
+#options-view .compact-practice #settings-v2-conjugation-setup-body > .option-group { margin:0 0 8px !important; padding:0; }
+#options-view .compact-practice #settings-v2-verb-source-group { order:-1; }
+#options-view .compact-practice #settings-topn-group { order:0; }
+
+/* One construction followed by its examples, shared by inline and detail usage. */
+.unified-usage-item .usage-meaning { color:var(--meta-color); font-size:.95em; }
+.unified-usage-example { margin:8px 0 0; }
+.unified-usage-example .usage-fr, .unified-usage-example .usage-en { display:block; }
+.unified-usage-example .usage-en { margin-top:4px; }
+.unified-usage-example .usage-en::before { content:none; }
