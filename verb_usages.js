@@ -37,6 +37,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -77,6 +81,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -117,6 +125,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -157,6 +169,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -199,6 +215,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -241,6 +261,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -283,6 +307,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -325,6 +353,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -367,6 +399,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -409,6 +445,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -451,6 +491,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -493,6 +537,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -535,6 +583,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -577,6 +629,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -619,6 +675,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -661,6 +721,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -703,6 +767,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -745,6 +813,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -787,6 +859,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -829,6 +905,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -871,6 +951,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -913,6 +997,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -955,6 +1043,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -997,6 +1089,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1039,6 +1135,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1081,6 +1181,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1123,6 +1227,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1165,6 +1273,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1207,6 +1319,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1249,6 +1365,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1291,6 +1411,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1333,6 +1457,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1375,6 +1503,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1417,6 +1549,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1459,6 +1595,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1501,6 +1641,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1543,6 +1687,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1585,6 +1733,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1627,6 +1779,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1669,6 +1825,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1711,6 +1871,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1753,6 +1917,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1795,6 +1963,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1837,6 +2009,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1879,6 +2055,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1921,6 +2101,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -1963,6 +2147,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2005,6 +2193,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2047,6 +2239,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2089,6 +2285,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2131,6 +2331,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2173,6 +2377,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2215,6 +2423,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2257,6 +2469,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2299,6 +2515,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2341,6 +2561,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2383,6 +2607,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2425,6 +2653,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2467,6 +2699,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2509,6 +2745,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2551,6 +2791,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2593,6 +2837,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2635,6 +2883,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2677,6 +2929,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2719,6 +2975,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2761,6 +3021,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2803,6 +3067,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2845,6 +3113,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2887,6 +3159,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2929,6 +3205,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -2971,6 +3251,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3013,6 +3297,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3055,6 +3343,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3097,6 +3389,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3139,6 +3435,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3181,6 +3481,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3223,6 +3527,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3265,6 +3573,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3307,6 +3619,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3349,6 +3665,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3391,6 +3711,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3433,6 +3757,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3475,6 +3803,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3517,6 +3849,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3559,6 +3895,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3601,6 +3941,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3643,6 +3987,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3685,6 +4033,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3727,6 +4079,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3769,6 +4125,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3811,6 +4171,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3853,6 +4217,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3895,6 +4263,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3937,6 +4309,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -3979,6 +4355,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4021,6 +4401,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4063,6 +4447,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4105,6 +4493,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4147,6 +4539,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4189,6 +4585,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4231,6 +4631,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4273,6 +4677,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4315,6 +4723,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4357,6 +4769,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4399,6 +4815,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4441,6 +4861,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4483,6 +4907,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4525,6 +4953,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4567,6 +4999,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4609,6 +5045,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4651,6 +5091,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4693,6 +5137,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4735,6 +5183,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4777,6 +5229,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4819,6 +5275,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4861,6 +5321,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4903,6 +5367,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4945,6 +5413,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -4987,6 +5459,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5029,6 +5505,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5071,6 +5551,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5113,6 +5597,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5155,6 +5643,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5197,6 +5689,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5239,6 +5735,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5281,6 +5781,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5323,6 +5827,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5365,6 +5873,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5407,6 +5919,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5449,6 +5965,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5491,6 +6011,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5533,6 +6057,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5575,6 +6103,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5617,6 +6149,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5659,6 +6195,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5701,6 +6241,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5743,6 +6287,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5785,6 +6333,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5827,6 +6379,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5869,6 +6425,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5911,6 +6471,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5953,6 +6517,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -5995,6 +6563,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6037,6 +6609,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6079,6 +6655,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6121,6 +6701,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6163,6 +6747,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6205,6 +6793,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6247,6 +6839,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6289,6 +6885,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6331,6 +6931,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6373,6 +6977,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6415,6 +7023,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6457,6 +7069,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6499,6 +7115,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6541,6 +7161,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6583,6 +7207,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6625,6 +7253,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6667,6 +7299,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6709,6 +7345,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6751,6 +7391,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6793,6 +7437,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6835,6 +7483,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6877,6 +7529,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6919,6 +7575,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -6961,6 +7621,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7003,6 +7667,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7045,6 +7713,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7087,6 +7759,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7129,6 +7805,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7171,6 +7851,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7213,6 +7897,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7255,6 +7943,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7297,6 +7989,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7339,6 +8035,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7381,6 +8081,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7423,6 +8127,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7465,6 +8173,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7507,6 +8219,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7549,6 +8265,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7591,6 +8311,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7633,6 +8357,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7675,6 +8403,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7717,6 +8449,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7759,6 +8495,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7801,6 +8541,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7843,6 +8587,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7885,6 +8633,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7927,6 +8679,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -7969,6 +8725,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8011,6 +8771,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8053,6 +8817,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8095,6 +8863,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8137,6 +8909,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8179,6 +8955,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8221,6 +9001,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8263,6 +9047,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8305,6 +9093,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8347,6 +9139,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8389,6 +9185,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8431,6 +9231,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8473,6 +9277,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8515,6 +9323,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8557,6 +9369,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8599,6 +9415,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8641,6 +9461,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8683,6 +9507,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8725,6 +9553,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8767,6 +9599,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8809,6 +9645,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8851,6 +9691,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8893,6 +9737,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8935,6 +9783,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -8977,6 +9829,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9019,6 +9875,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9061,6 +9921,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9103,6 +9967,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9145,6 +10013,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9187,6 +10059,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9229,6 +10105,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9271,6 +10151,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9313,6 +10197,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9355,6 +10243,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9397,6 +10289,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9439,6 +10335,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9481,6 +10381,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9523,6 +10427,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9565,6 +10473,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9607,6 +10519,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9649,6 +10565,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9691,6 +10611,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9733,6 +10657,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9775,6 +10703,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9817,6 +10749,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9859,6 +10795,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9901,6 +10841,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9943,6 +10887,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -9985,6 +10933,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10027,6 +10979,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10069,6 +11025,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10111,6 +11071,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10153,6 +11117,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10195,6 +11163,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10237,6 +11209,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10279,6 +11255,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10321,6 +11301,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10363,6 +11347,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10405,6 +11393,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10447,6 +11439,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10489,6 +11485,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10531,6 +11531,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10573,6 +11577,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10615,6 +11623,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10657,6 +11669,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10699,6 +11715,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10741,6 +11761,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10783,6 +11807,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10825,6 +11853,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10867,6 +11899,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10909,6 +11945,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10951,6 +11991,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -10993,6 +12037,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11035,6 +12083,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11077,6 +12129,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11119,6 +12175,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11161,6 +12221,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11203,6 +12267,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11245,6 +12313,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11287,6 +12359,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11329,6 +12405,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11371,6 +12451,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11413,6 +12497,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11455,6 +12543,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11497,6 +12589,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11539,6 +12635,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11581,6 +12681,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11623,6 +12727,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11665,6 +12773,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11707,6 +12819,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11749,6 +12865,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11791,6 +12911,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11833,6 +12957,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11875,6 +13003,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11917,6 +13049,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -11959,6 +13095,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12001,6 +13141,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12043,6 +13187,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12085,6 +13233,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12127,6 +13279,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12169,6 +13325,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12211,6 +13371,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12253,6 +13417,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12295,6 +13463,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12337,6 +13509,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12379,6 +13555,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12421,6 +13601,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12463,6 +13647,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12505,6 +13693,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12547,6 +13739,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12589,6 +13785,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12631,6 +13831,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12673,6 +13877,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12715,6 +13923,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12757,6 +13969,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12799,6 +14015,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12841,6 +14061,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12883,6 +14107,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12925,6 +14153,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -12967,6 +14199,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13009,6 +14245,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13051,6 +14291,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13093,6 +14337,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13135,6 +14383,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13177,6 +14429,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13219,6 +14475,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13261,6 +14521,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13303,6 +14567,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13345,6 +14613,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13387,6 +14659,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13429,6 +14705,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13471,6 +14751,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13513,6 +14797,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13555,6 +14843,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13597,6 +14889,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13639,6 +14935,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13681,6 +14981,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13723,6 +15027,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13765,6 +15073,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13807,6 +15119,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13849,6 +15165,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss; not completeness"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13879,6 +15199,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13909,6 +15233,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13939,6 +15267,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13969,6 +15301,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -13999,6 +15335,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14029,6 +15369,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14059,6 +15403,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14089,6 +15437,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14119,6 +15471,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14149,6 +15505,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14179,6 +15539,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14209,6 +15573,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14239,6 +15607,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14269,6 +15641,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14299,6 +15675,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14329,6 +15709,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14359,6 +15743,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14389,6 +15777,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14419,6 +15811,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14449,6 +15845,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14479,6 +15879,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14509,6 +15913,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14539,6 +15947,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14569,6 +15981,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14599,6 +16015,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14629,6 +16049,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14659,6 +16083,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14689,6 +16117,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14719,6 +16151,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14749,6 +16185,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14779,6 +16219,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14809,6 +16253,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14839,6 +16287,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14869,6 +16321,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14899,6 +16355,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14929,6 +16389,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14959,6 +16423,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -14989,6 +16457,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15019,6 +16491,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15049,6 +16525,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15079,6 +16559,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15109,6 +16593,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15139,6 +16627,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15169,6 +16661,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15199,6 +16695,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15229,6 +16729,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15259,6 +16763,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15289,6 +16797,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15319,6 +16831,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15349,6 +16865,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15379,6 +16899,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15409,6 +16933,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15439,6 +16967,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15469,6 +17001,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15499,6 +17035,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15529,6 +17069,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15559,6 +17103,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15589,6 +17137,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15619,6 +17171,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15649,6 +17205,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15679,6 +17239,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15709,6 +17273,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15739,6 +17307,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15769,6 +17341,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15799,6 +17375,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15829,6 +17409,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15859,6 +17443,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15889,6 +17477,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15919,6 +17511,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15949,6 +17545,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -15979,6 +17579,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16009,6 +17613,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16039,6 +17647,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16069,6 +17681,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16099,6 +17715,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16129,6 +17749,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16159,6 +17783,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16189,6 +17817,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16219,6 +17851,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16249,6 +17885,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16279,6 +17919,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16309,6 +17953,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16339,6 +17987,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16369,6 +18021,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16399,6 +18055,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16429,6 +18089,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16459,6 +18123,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16489,6 +18157,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16519,6 +18191,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16549,6 +18225,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16579,6 +18259,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16609,6 +18293,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16639,6 +18327,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16669,6 +18361,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16699,6 +18395,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16729,6 +18429,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16759,6 +18463,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16789,6 +18497,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16819,6 +18531,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16849,6 +18565,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16879,6 +18599,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16909,6 +18633,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16939,6 +18667,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16969,6 +18701,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -16999,6 +18735,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17029,6 +18769,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17059,6 +18803,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17089,6 +18837,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17119,6 +18871,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17149,6 +18905,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17179,6 +18939,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17209,6 +18973,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17239,6 +19007,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17269,6 +19041,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17299,6 +19075,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17329,6 +19109,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17359,6 +19143,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17389,6 +19177,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17419,6 +19211,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17449,6 +19245,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17479,6 +19279,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17509,6 +19313,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17539,6 +19347,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17569,6 +19381,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17599,6 +19415,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17629,6 +19449,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17659,6 +19483,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17689,6 +19517,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17719,6 +19551,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17749,6 +19585,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17779,6 +19619,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -17809,6 +19653,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -18111,6 +19959,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -18151,6 +20003,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -18409,6 +20265,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -18513,6 +20373,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -18563,7 +20427,11 @@ window.verbUsages = [
     "example_fr": "J'admire son calme dans les moments difficiles.",
     "example_en": "I admire his calm in difficult moments.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "adonner",
@@ -19000,6 +20868,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -19370,6 +21242,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -19777,6 +21653,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -19866,6 +21746,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -19968,6 +21852,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -20302,6 +22190,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -20340,6 +22232,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -20589,6 +22485,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -20629,6 +22529,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -20669,6 +22573,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -20699,6 +22607,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -21019,6 +22931,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -21194,6 +23110,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -21687,6 +23607,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -22026,6 +23950,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -22847,6 +24775,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23004,6 +24936,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23088,6 +25024,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23230,6 +25170,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23404,6 +25348,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23475,6 +25423,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23557,6 +25509,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23694,6 +25650,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23734,6 +25694,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23831,6 +25795,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -23925,6 +25893,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24052,6 +26024,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24100,6 +26076,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24195,6 +26175,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24330,6 +26314,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24525,6 +26513,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24582,6 +26574,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24710,6 +26706,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24786,6 +26786,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -24985,6 +26989,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -25114,6 +27122,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -25770,6 +27782,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -25991,6 +28007,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -26245,6 +28265,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -26447,6 +28471,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -26592,6 +28620,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -26716,6 +28748,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -27325,6 +29361,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -27473,6 +29513,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -27570,6 +29614,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -27612,7 +29660,11 @@ window.verbUsages = [
     "example_fr": "La ville dote l'école de nouveaux ordinateurs.",
     "example_en": "The city is equipping the school with new computers.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "doubler",
@@ -27671,6 +29723,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -27823,6 +29879,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -27984,6 +30044,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -28165,6 +30229,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -28265,6 +30333,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -28346,7 +30418,11 @@ window.verbUsages = [
     "example_fr": "On éloigne les vélos de l'entrée.",
     "example_en": "They move the bikes away from the entrance.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "éluder",
@@ -28450,6 +30526,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -28535,6 +30615,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -28613,6 +30697,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -28695,7 +30783,11 @@ window.verbUsages = [
     "example_fr": "La pluie empêche les enfants de jouer dehors.",
     "example_en": "The rain prevents the children from playing outside.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "empiffrer",
@@ -28881,7 +30973,11 @@ window.verbUsages = [
     "example_fr": "J'emprunte un livre à la bibliothèque.",
     "example_en": "I'm borrowing a book from the library.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "encaisser",
@@ -29023,6 +31119,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -29099,6 +31199,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -29211,6 +31315,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -29249,6 +31357,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -29355,6 +31467,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -29685,6 +31801,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -29801,7 +31921,11 @@ window.verbUsages = [
     "example_fr": "J'envie mon frère pour ses longues vacances.",
     "example_en": "I envy my brother for his long vacation.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "envisager",
@@ -29839,6 +31963,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -29973,6 +32101,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -30033,6 +32165,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -30267,6 +32403,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -30395,6 +32535,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -30744,6 +32888,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -30794,6 +32942,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -30935,6 +33087,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -31042,6 +33198,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -31158,6 +33318,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -31228,6 +33392,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -31392,6 +33560,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -31595,6 +33767,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -31627,6 +33803,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -31677,6 +33857,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -32023,6 +34207,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -32155,6 +34343,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -32203,6 +34395,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -32482,6 +34678,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -32632,6 +34832,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -32826,6 +35030,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -32873,6 +35081,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -33160,6 +35372,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -33198,6 +35414,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -33228,6 +35448,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -33268,6 +35492,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -33427,6 +35655,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -34147,6 +36379,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -34221,6 +36457,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -34557,6 +36797,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -34666,6 +36910,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -34732,6 +36980,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -34786,6 +37038,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -35007,7 +37263,11 @@ window.verbUsages = [
     "example_fr": "Je me lave avant de sortir.",
     "example_en": "I wash before going out.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "lécher",
@@ -35327,6 +37587,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -35570,6 +37834,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -35610,6 +37878,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -35784,6 +38056,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36045,6 +38321,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36121,6 +38401,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36167,6 +38451,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36273,6 +38561,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36373,6 +38665,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36405,6 +38701,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36587,6 +38887,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36678,6 +38982,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36708,6 +39016,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -36788,7 +39100,11 @@ window.verbUsages = [
     "example_fr": "Les enfants obéissent à leur mère.",
     "example_en": "The children obey their mother.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "objecter",
@@ -36840,6 +39156,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -37113,6 +39433,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -37202,7 +39526,11 @@ window.verbUsages = [
     "example_fr": "J'ôte mes chaussures devant la porte.",
     "example_en": "I take off my shoes in front of the door.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "oublier",
@@ -37368,6 +39696,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -37466,6 +39798,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -37836,6 +40172,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -37982,6 +40322,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38042,6 +40386,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38215,6 +40563,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38253,6 +40605,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38472,6 +40828,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38512,6 +40872,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38602,6 +40966,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38640,6 +41008,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -38921,6 +41293,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -39155,6 +41531,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -39258,6 +41638,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -39300,7 +41684,11 @@ window.verbUsages = [
     "example_fr": "Je prête mon vélo à mon voisin.",
     "example_en": "I lend my bike to my neighbor.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "prévenir",
@@ -39338,6 +41726,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -39368,6 +41760,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -39595,6 +41991,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -39690,6 +42090,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -40418,6 +42822,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -40761,6 +43169,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -41325,6 +43737,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -41406,6 +43822,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -41454,6 +43874,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -41656,6 +44080,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -41712,6 +44140,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -41864,6 +44296,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -42072,6 +44508,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -42341,6 +44781,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -42393,7 +44837,11 @@ window.verbUsages = [
     "example_fr": "Je reprends un café après le déjeuner.",
     "example_en": "I'm having another coffee after lunch.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "représenter",
@@ -42469,7 +44917,11 @@ window.verbUsages = [
     "example_fr": "Je reproche souvent son retard à Paul.",
     "example_en": "I often reproach Paul for being late.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "reproduire",
@@ -42571,6 +45023,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -42847,6 +45303,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -42980,6 +45440,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -43060,6 +45524,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -43351,6 +45819,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -43516,6 +45988,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -43710,6 +46186,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -43797,6 +46277,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -44517,6 +47001,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -44886,6 +47374,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -44955,6 +47447,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -45144,6 +47640,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -45356,6 +47856,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -45705,7 +48209,11 @@ window.verbUsages = [
     "example_fr": "Je le supplie de rester.",
     "example_en": "I'm begging him to stay.",
     "source": "ai:gpt-5.4:french-top2000-usage",
-    "family": "general"
+    "family": "general",
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
+    }
   },
   {
     "verb": "supporter",
@@ -45743,6 +48251,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -45781,6 +48293,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -46733,6 +49249,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -46773,6 +49293,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -46950,6 +49474,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -47147,6 +49675,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -47205,6 +49737,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -47269,6 +49805,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -47745,6 +50285,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -47882,6 +50426,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -47955,6 +50503,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -48059,6 +50611,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -48184,6 +50740,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -48495,6 +51055,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -48682,6 +51246,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -48745,6 +51313,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49180,6 +51752,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49212,6 +51788,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49306,6 +51886,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49338,6 +51922,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49370,6 +51958,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49526,6 +52118,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49558,6 +52154,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49590,6 +52190,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49653,6 +52257,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -49747,6 +52355,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -50089,6 +52701,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -50152,6 +52768,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -50339,6 +52959,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
@@ -50867,6 +53491,10 @@ window.verbUsages = [
         }
       ],
       "scope": "infinitive construction and English gloss"
+    },
+    "example_provenance": {
+      "source": "linked-reviewed-core-example",
+      "release": "pattern-examples-20261001"
     }
   },
   {
