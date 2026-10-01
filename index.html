@@ -651,6 +651,7 @@
 })();
 </script>
 
+    <link rel="stylesheet" href="css/verb-details-tabs.css">
 </head>
 <body>
 
@@ -748,6 +749,7 @@
                     <p id="verb-pronoun" class="meta-info"></p>
                     <!-- Remove tip for tense -->
                     <p id="verb-tense" class="meta-info"></p>
+                    <p id="verb-reference" class="meta-info" hidden></p>
                 </div>
 
                 <!-- Preset badge -->
@@ -1090,6 +1092,17 @@
                                 <div class="toggle-control">
                                     <input type="checkbox" id="idle-nudge-toggle" class="toggle-input">
                                     <label for="idle-nudge-toggle" class="toggle-label"></label>
+                                </div>
+                            </div>
+
+                            <div class="toggle-row">
+                                <div class="settings-row-copy">
+                                    <label for="show-usage-pattern-toggle">Show usage pattern</label>
+                                    <p class="setting-helper-text">See how the verb connects to other words.</p>
+                                </div>
+                                <div class="toggle-control">
+                                    <input type="checkbox" id="show-usage-pattern-toggle" class="toggle-input" checked>
+                                    <label for="show-usage-pattern-toggle" class="toggle-label"></label>
                                 </div>
                             </div>
 
@@ -1506,9 +1519,9 @@
         }
         const tenseMap = window.frenchTenseKeyToLabel;
         const pronoun = card.pronoun;
-        const verb = card.verb.infinitive;
+        const verb = (card.referenceLabel || card.verb.infinitive) + (card._construction ? ' ' + card._construction.suffix : '');
         const tense = tenseMap[card.tense] || card.tense;
-        return `Comment dire « ${verb} » au ${tense} pour « ${pronoun} » ?`;
+        return `Comment dire « ${verb} » au ${tense} pour « ${pronoun} »${card.reference ? `, en remplaçant « ${card.reference} » par un pronom` : ''} ?`;
     };
 
     window.frenchUIStrings = {
@@ -1580,7 +1593,12 @@
     <script src="js/pronounFillRows.passeCompose.js?v=20260429a" onerror="window.pronounFillRows=window.pronounFillRows||[]"></script>
     <script src="js/preRenderedTts.js?v=20260411b"></script>
     <script src="js/frenchHomophoneGroups.js?v=20260420a" onerror="window.frenchHomophoneGroupByAnswer={};window.frenchHomophoneGroupMeta=null;"></script>
-    <script src="js/script.js?v=20260429b"></script>
+    <script src="js/constructionCards.js"></script>
+    <script src="js/referenceCards.js"></script>
+    <script src="js/wordFamilies.fr.js"></script>
+    <script src="js/wordFamilyDefinitions.fr.js"></script>
+    <script src="js/verbDetailsTabs.js"></script>
+    <script src="js/script.js?v=20261001expressions"></script>
     <script>
 function getFrenchVoices() {
     if (!window.speechSynthesis || typeof window.speechSynthesis.getVoices !== 'function') {

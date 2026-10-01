@@ -62,7 +62,7 @@ EXPRESSIONS = [
     # Core expression deck.
     {"expression": "s'en aller", "base": "aller", "kind": "reflexive_en", "gloss": "to go away; leave", "usage": "Je m'en vais avant la pluie.", "usage_en": "I'm leaving before the rain."},
     {"expression": "s'en foutre", "base": "foutre", "kind": "reflexive_en", "gloss": "not to give a damn", "usage": "Il s'en fout complètement.", "usage_en": "He really doesn't give a damn.", "hint": "vulgar; very informal"},
-    {"expression": "s'en fiche", "base": "ficher", "kind": "reflexive_en", "gloss": "not to care", "usage": "Elle s'en fiche du regard des autres.", "usage_en": "She doesn't care what others think.", "hint": "informal"},
+    {"expression": "s'en ficher", "base": "ficher", "kind": "reflexive_en", "participle": "fichu", "gloss": "not to care", "usage": "Elle s'en fiche du regard des autres.", "usage_en": "She doesn't care what others think.", "hint": "informal"},
     {"expression": "s'en sortir", "base": "sortir", "kind": "reflexive_en", "gloss": "to manage; get through it", "usage": "On s'en sort avec un peu d'aide.", "usage_en": "We're managing with a little help."},
     {"expression": "s'en tirer", "base": "tirer", "kind": "reflexive_en", "gloss": "to get away with it; manage", "usage": "Tu t'en tires bien cette fois.", "usage_en": "You get out of it well this time."},
     {"expression": "s'en occuper", "base": "occuper", "kind": "reflexive_en", "gloss": "to take care of it", "usage": "Je m'en occupe après le déjeuner.", "usage_en": "I'll take care of it after lunch."},
@@ -70,7 +70,7 @@ EXPRESSIONS = [
     {"expression": "s'en servir", "base": "servir", "kind": "reflexive_en", "gloss": "to use it", "usage": "Elle s'en sert pour réparer son vélo.", "usage_en": "She uses it to fix her bike."},
     {"expression": "s'en passer", "base": "passer", "kind": "reflexive_en", "gloss": "to do without it", "usage": "Je m'en passe très bien.", "usage_en": "I do perfectly well without it."},
     {"expression": "s'en souvenir", "base": "souvenir", "kind": "reflexive_en", "gloss": "to remember it", "usage": "Tu t'en souviens encore ?", "usage_en": "Do you still remember it?"},
-    {"expression": "s'en rappeler", "base": "rappeler", "kind": "reflexive_en", "gloss": "to remember it", "usage": "Il s'en rappelle soudain.", "usage_en": "He suddenly remembers it."},
+    {"expression": "se rappeler", "usage_count": 4, "base": "rappeler", "kind": "reflexive", "agree": False, "gloss": "to remember", "usage": "Il se rappelle cette journée.", "usage_en": "He remembers that day."},
     {"expression": "s'en rendre compte", "base": "rendre", "kind": "reflexive_en", "tail": "compte", "gloss": "to realize it", "usage": "Je m'en rends compte trop tard.", "usage_en": "I realize it too late."},
     {"expression": "s'en apercevoir", "base": "apercevoir", "kind": "reflexive_en", "gloss": "to notice it", "usage": "Elle s'en aperçoit en relisant le message.", "usage_en": "She notices it while rereading the message."},
     {"expression": "s'en douter", "base": "douter", "kind": "reflexive_en", "gloss": "to suspect it", "usage": "Je m'en doutais depuis hier.", "usage_en": "I suspected it since yesterday."},
@@ -89,7 +89,7 @@ EXPRESSIONS = [
     {"expression": "s'en vouloir", "base": "vouloir", "kind": "reflexive_en", "gloss": "to blame oneself", "usage": "Elle s'en veut beaucoup.", "usage_en": "She blames herself a lot."},
     {"expression": "en avoir assez", "base": "avoir", "kind": "en", "tail": "assez", "gloss": "to have had enough", "usage": "J'en ai assez de ces excuses.", "usage_en": "I've had enough of these excuses."},
     {"expression": "en avoir marre", "base": "avoir", "kind": "en", "tail": "marre", "gloss": "to be fed up", "usage": "On en a marre du bruit.", "usage_en": "We're fed up with the noise.", "hint": "informal"},
-    {"expression": "en avoir ras-le-bol", "base": "avoir", "kind": "en", "tail": "ras-le-bol", "gloss": "to be totally fed up", "usage": "Ils en ont ras-le-bol des retards.", "usage_en": "They're completely fed up with the delays.", "hint": "informal"},
+    {"expression": "en avoir ras le bol", "base": "avoir", "kind": "en", "tail": "ras le bol", "gloss": "to be totally fed up", "usage": "Ils en ont ras le bol des retards.", "usage_en": "They're completely fed up with the delays.", "hint": "informal"},
     {"expression": "en avoir besoin", "base": "avoir", "kind": "en", "tail": "besoin", "gloss": "to need it", "usage": "J'en ai besoin pour travailler.", "usage_en": "I need it for work."},
     {"expression": "en avoir envie", "base": "avoir", "kind": "en", "tail": "envie", "gloss": "to feel like it; want some", "usage": "Tu en as vraiment envie ?", "usage_en": "Do you really feel like it?"},
     {"expression": "en avoir peur", "base": "avoir", "kind": "en", "tail": "peur", "gloss": "to be afraid of it", "usage": "Elle en a peur depuis l'accident.", "usage_en": "She's been afraid of it since the accident."},
@@ -129,10 +129,10 @@ EXPRESSIONS = [
     {"expression": "s'en faire tout un monde", "base": "faire", "kind": "reflexive_en", "tail": "tout un monde", "gloss": "to make a huge deal of it", "usage": "Elle s'en fait tout un monde.", "usage_en": "She's making a huge deal of it.", "level": "idiom"},
     {"expression": "s'en faire une montagne", "base": "faire", "kind": "reflexive_en", "tail": "une montagne", "gloss": "to make a mountain out of it", "usage": "Tu t'en fais une montagne.", "usage_en": "You're making a mountain out of it.", "level": "idiom"},
     {"expression": "s'en payer une tranche", "base": "payer", "kind": "reflexive_en", "tail": "une tranche", "gloss": "to have a good laugh", "usage": "Ils s'en paient une tranche.", "usage_en": "They're having a good laugh.", "level": "idiom", "hint": "informal"},
-    {"expression": "s'en payer une bonne", "base": "payer", "kind": "reflexive_en", "tail": "une bonne", "gloss": "to have a good laugh", "usage": "On s'en paie une bonne.", "usage_en": "We're having a good laugh.", "level": "idiom", "hint": "informal"},
+    {"expression": "s'en payer une bonne tranche", "base": "payer", "kind": "reflexive_en", "tail": "une bonne tranche", "gloss": "to have a great time", "usage": "On s'en paie une bonne tranche.", "usage_en": "We're having a great time.", "level": "idiom", "hint": "informal"},
     {"expression": "s'en jeter un derrière la cravate", "base": "jeter", "kind": "reflexive_en", "tail": "un derrière la cravate", "gloss": "to knock back a drink", "usage": "Il s'en jette un derrière la cravate.", "usage_en": "He knocks back a drink.", "level": "idiom", "hint": "old-fashioned; informal"},
     {"expression": "s'en mettre jusque-là", "base": "mettre", "kind": "reflexive_en", "tail": "jusque-là", "gloss": "to stuff oneself; overdo it", "usage": "Au buffet, ils s'en mettent jusque-là.", "usage_en": "At the buffet, they really stuff themselves.", "level": "idiom", "hint": "informal"},
-    {"expression": "s'en mettre plein la vue", "base": "mettre", "kind": "reflexive_en", "tail": "plein la vue", "gloss": "to dazzle oneself; show off", "usage": "Ils s'en mettent plein la vue avec ce décor.", "usage_en": "They dazzle themselves with that decor.", "level": "idiom"},
+    {"expression": "en mettre plein la vue", "base": "mettre", "kind": "en", "tail": "plein la vue", "gloss": "to dazzle; to impress", "usage": "Ce spectacle nous en met plein la vue.", "usage_en": "This show dazzles us.", "level": "idiom"},
     {"expression": "en faire trop", "base": "faire", "kind": "en", "tail": "trop", "gloss": "to overdo it", "usage": "Tu en fais trop avec cette histoire.", "usage_en": "You're overdoing it with this story.", "level": "idiom"},
     {"expression": "en faire des tonnes", "base": "faire", "kind": "en", "tail": "des tonnes", "gloss": "to lay it on thick", "usage": "Il en fait des tonnes pour impressionner.", "usage_en": "He lays it on thick to impress people.", "level": "idiom", "hint": "informal"},
     {"expression": "en faire tout un plat", "base": "faire", "kind": "en", "tail": "tout un plat", "gloss": "to make a big fuss about it", "usage": "N'en fais pas tout un plat.", "usage_en": "Don't make a big fuss about it.", "level": "idiom", "hint": "informal"},
@@ -152,11 +152,15 @@ EXPRESSIONS = [
     {"expression": "en rester là", "base": "rester", "kind": "en", "tail": "là", "gloss": "to leave it there", "usage": "On en reste là pour ce soir.", "usage_en": "We'll leave it there for tonight.", "level": "idiom"},
     {"expression": "en venir aux mains", "base": "venir", "kind": "en", "tail": "aux mains", "gloss": "to come to blows", "usage": "Les voisins en viennent aux mains.", "usage_en": "The neighbors come to blows.", "level": "idiom"},
     {"expression": "en venir au fait", "base": "venir", "kind": "en", "tail": "au fait", "gloss": "to get to the point", "usage": "Venons-en au fait.", "usage_en": "Let's get to the point.", "level": "idiom"},
-    {"expression": "en revenir à ses moutons", "base": "revenir", "kind": "en", "tail": "à ses moutons", "gloss": "to get back to the subject", "usage": "Revenons-en à nos moutons.", "usage_en": "Let's get back to the subject.", "level": "idiom"},
+    {"expression": "revenir à ses moutons", "base": "revenir", "kind": "plain", "tail": "à ses moutons", "gloss": "to get back to the subject", "usage": "Revenons à nos moutons.", "usage_en": "Let's get back to the subject.", "level": "idiom"},
     {"expression": "en dire long", "base": "dire", "kind": "en", "tail": "long", "gloss": "to say a lot about it", "usage": "Son silence en dit long.", "usage_en": "His silence says a lot.", "level": "idiom"},
     {"expression": "en savoir long", "base": "savoir", "kind": "en", "tail": "long", "gloss": "to know a lot about it", "usage": "Elle en sait long sur l'affaire.", "usage_en": "She knows a lot about the matter.", "level": "idiom"},
     {"expression": "en vouloir toujours plus", "base": "vouloir", "kind": "en", "tail": "toujours plus", "gloss": "to always want more", "usage": "Il en veut toujours plus.", "usage_en": "He always wants more.", "level": "idiom"},
 ]
+
+
+# Keep the everyday inventory editable separately from the clitic morphology code.
+EXPRESSIONS += json.loads((ROOT / "data/expressions/everyday.json").read_text(encoding="utf-8"))
 
 
 def extract_const(script: str, name: str):
@@ -335,7 +339,7 @@ def conjugate_reflexive_en_compound(tenses, spec, pronoun: str, tense: str) -> s
     base = spec["base"]
     tail = agree_tail(spec.get("tail"), pronoun)
     aux = ETRE_PRESENT[pronoun] if tense == "passeCompose" else ETRE_IMPARFAIT[pronoun]
-    participle = past_participle(tenses, base, pronoun)
+    participle = spec.get("participle") or past_participle(tenses, base, pronoun)
     if should_agree_reflexive_participle(spec):
         participle = agree_participle(participle, pronoun)
     return f"{SUBJECT[pronoun]} {REFLEXIVE_EN[pronoun]} {aux} {participle}{phrase_tail(tail)}"
@@ -366,15 +370,31 @@ def build_expression_forms(tenses, spec):
         if base not in tense_data:
             raise KeyError(f"{base} missing from {tense_name}")
         expression_forms[tense_name] = {}
-        for pronoun in PRONOUNS:
+        for pronoun in spec.get("subjects", PRONOUNS):
             base_form = tense_data[base][pronoun]
-            if kind == "en":
-                value = conjugate_en(base_form, pronoun, tail)
-            elif kind == "reflexive_en":
+            if kind == "plain":
+                if spec.get("auxiliary") == "avoir" and tense_name in {"passeCompose", "plusQueParfait"}:
+                    aux_tense = "present" if tense_name == "passeCompose" else "imparfait"
+                    base_form = tenses[aux_tense]["avoir"][pronoun] + " " + past_participle(tenses, base)
+                value = base_form + phrase_tail(agree_tail(tail, pronoun))
+            elif kind == "reflexive":
                 if tense_name in {"passeCompose", "plusQueParfait"}:
                     value = conjugate_reflexive_en_compound(tenses, spec, pronoun, tense_name)
                 else:
                     value = conjugate_reflexive_en(base_form, pronoun, tail)
+                # The existing helper supplies the subject and reflexive pronoun;
+                # this construction has no complement pronoun en.
+                value = value.replace("m'en ", "me ").replace("t'en ", "te ").replace("s'en ", "se ").replace("nous en ", "nous ").replace("vous en ", "vous ")
+                value = re.sub(r"\b(me|te|se) ([aeiouhàâéèêëîïôùûü])", lambda m: m[1][0] + "'" + m[2], value)
+            elif kind == "en":
+                value = conjugate_en(base_form, pronoun, tail)
+            elif kind in {"reflexive_en", "reflexive_y"}:
+                if tense_name in {"passeCompose", "plusQueParfait"}:
+                    value = conjugate_reflexive_en_compound(tenses, spec, pronoun, tense_name)
+                else:
+                    value = conjugate_reflexive_en(base_form, pronoun, tail)
+                if kind == "reflexive_y":
+                    value = value.replace("'en ", "'y ").replace(" en ", " y ")
             elif kind == "negative_reflexive_en":
                 if tense_name in {"passeCompose", "plusQueParfait"}:
                     value = conjugate_negative_reflexive_en_compound(tenses, spec, pronoun, tense_name)
@@ -383,6 +403,22 @@ def build_expression_forms(tenses, spec):
             else:
                 raise ValueError(f"Unknown expression kind: {kind}")
             expression_forms[tense_name][pronoun] = value
+        # Store feminine variants explicitly. The generic UI's être heuristic
+        # cannot distinguish se rendre compte from s'y prendre.
+        for source_pronoun, feminine in [("il/elle/on", "elle"), ("ils/elles", "elles")]:
+            value = expression_forms[tense_name].get(source_pronoun)
+            if not value:
+                continue
+            value = re.sub(r"^ils?\b", feminine, value)
+            if tense_name in {"passeCompose", "plusQueParfait"}:
+                reflexive = kind in {"reflexive", "reflexive_en", "reflexive_y", "negative_reflexive_en"}
+                agrees = should_agree_reflexive_participle(spec) if reflexive else spec.get("auxiliary") != "avoir" and bool(re.match(r"il (?:est|était) ", tense_data[base][source_pronoun]))
+                if agrees:
+                    pp = spec.get("participle") or past_participle(tenses, base)
+                    masculine = agree_participle(pp, source_pronoun)
+                    feminine_pp = pp + ("" if pp.endswith("e") else "e") + ("s" if feminine == "elles" else "")
+                    value = re.sub(r"(?<= )" + re.escape(masculine) + r"(?= |$)", feminine_pp, value, count=1)
+            expression_forms[tense_name][feminine] = value
     return expression_forms
 
 
@@ -397,6 +433,7 @@ def main() -> None:
     pronouns = extract_const(source, "pronouns")
     by_infinitive = {verb["infinitive"]: verb for verb in verbs}
 
+    expression_ranks = json.loads((ROOT / "data/expressions/frequency.json").read_text())["ranks"]
     expression_count = 0
     for raw_spec in EXPRESSIONS:
         spec = {**raw_spec, "expression": canonical(raw_spec["expression"])}
@@ -408,16 +445,19 @@ def main() -> None:
         metadata = {
             "infinitive": expression,
             "translation": spec["gloss"],
-            # Expressions should follow their base verb's conjugation, not its
-            # core-frequency priority. Keep them discoverable without crowding
-            # the Top 20 drills when the base verb is avoir/être/faire/etc.
-            "frequency": spec.get("frequency", EXPRESSION_FREQUENCY),
-            "usage_count": 1,
-            "hint": spec.get("hint", "verb expression with en"),
+            **({"translationBySubject": spec["gloss_by_subject"]} if spec.get("gloss_by_subject") else {}),
+            # Approximate editorial ranks within the expression inventory.
+            "expressionRank": expression_ranks[expression],
+            "frequency": next("top" + str(n) for n in [20, 50, 100, 500, 1000] if expression_ranks[expression] <= n),
+            "usage_count": spec.get("usage_count", 1 + len(spec.get("usages", []))),
+            "hint": spec.get("hint", "verb expression with en" if "en" in spec["kind"] else "verb expression"),
             "verbExpression": True,
             "expressionOf": base,
             "expressionLevel": spec.get("level", "core"),
-            "reflexive": spec["kind"] in {"reflexive_en", "negative_reflexive_en"},
+            "expressionFamily": spec.get("family", "idiom" if spec.get("level") == "idiom" else "pronoun"),
+            "expressionPattern": spec.get("pattern", expression),
+            "expressionSubjects": ["il", "elle", "ils", "elles"] if spec.get("subjects") == ["il/elle/on", "ils/elles"] else None,
+            "reflexive": spec["kind"] in {"reflexive", "reflexive_en", "reflexive_y", "negative_reflexive_en"},
         }
         if expression in by_infinitive:
             by_infinitive[expression].update(metadata)
@@ -438,13 +478,38 @@ def main() -> None:
         entry = {
             "verb": spec["expression"],
             "sense_id": sense_id,
-            "pattern": spec["expression"],
+            "pattern": spec.get("pattern", spec["expression"]),
             "meaning_en": spec["gloss"],
             "example_fr": spec["usage"],
             "example_en": spec["usage_en"],
             "source": "curated:french-verb-expressions",
             "family": "verb_expression",
         }
+        if sense_id in usage_by_sense:
+            # Construction review may intentionally remove an unsuitable example.
+            # Never replace reviewed patterns/glosses with the older seed text.
+            if not usage_by_sense[sense_id].get("construction_review"):
+                usage_by_sense[sense_id].update(entry)
+        else:
+            usages.append(entry)
+            usage_by_sense[sense_id] = entry
+        for index, example in enumerate(spec.get("usages", []), 2):
+            extra_id = f"expr_{slug(spec['expression'])}_{index:02}"
+            extra = {**entry, **example, "sense_id": extra_id}
+            if extra_id in usage_by_sense:
+                usage_by_sense[extra_id].update(extra)
+            else:
+                usages.append(extra)
+                usage_by_sense[extra_id] = extra
+
+    # Additional examples are separate editorial records. Never reinstate an
+    # example deliberately removed from a construction-reviewed source record.
+    for example in json.loads((ROOT / "data/expressions/examples.json").read_text(encoding="utf-8")):
+        reviewed = next(row for row in usages if row["verb"] == example["verb"] and row.get("construction_review"))
+        sense_id = f"expr_{slug(example['verb'])}_example01"
+        entry = {**example, "sense_id": sense_id, "pattern": reviewed["pattern"],
+                 "meaning_en": reviewed["meaning_en"], "family": "verb_expression",
+                 "core_pattern_id": reviewed.get("core_pattern_id")}
         if sense_id in usage_by_sense:
             usage_by_sense[sense_id].update(entry)
         else:
@@ -456,6 +521,65 @@ def main() -> None:
         "window.verbUsages = " + json.dumps(usages, ensure_ascii=False, indent=2) + ";\n",
         encoding="utf-8",
     )
+    # Expressions are already complete conjugation prompts. Register their
+    # complement patterns for lookup without adding another prompt to the card.
+    core_path = ROOT / "verb_core_patterns.json"
+    core = json.loads(core_path.read_text(encoding="utf-8"))
+    known = {row["verb"] for row in core}
+    for spec in EXPRESSIONS:
+        expression = canonical(spec["expression"])
+        if expression in known:
+            continue
+        core.append({"verb": expression, "core_patterns": [{
+            "pattern_id": f"expr_{slug(expression)}_cp01",
+            "pattern": spec.get("pattern", expression),
+            "meaning_en": spec["gloss"],
+            "source": "editorial:expression-inventory",
+            "reference_pattern": {"reason": "Complete expression is practised as its own conjugation card."},
+        }]})
+        known.add(expression)
+    core_path.write_text(json.dumps(core, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "verb_core_patterns.js").write_text("window.verbCorePatterns = " + json.dumps(core, ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
+    coverage_path = ROOT / "CONSTRUCTION_COVERAGE.json"
+    if coverage_path.exists():
+        coverage = json.loads(coverage_path.read_text(encoding="utf-8"))
+        coverage["verbs"] = sorted(v["infinitive"] for v in verbs if v.get("frequency") in {"top20", "top-20", "top50", "top-50", "top100", "top-100", "top500", "top-500"})
+        coverage["covered"] = len(coverage["verbs"])
+        coverage_path.write_text(json.dumps(coverage, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    inventory = [{"expression": canonical(s["expression"]), "base": s["base"],
+                  "family": s.get("family", "idiom" if s.get("level") == "idiom" else "pronoun"),
+                  "pattern": s.get("pattern", s["expression"]),
+                  "register": s.get("hint", "neutral"),
+                  "meaning_en": s["gloss"]} for s in EXPRESSIONS]
+    (ROOT / "data/expressions/coverage.json").write_text(json.dumps({
+        "scope": "French everyday multiword predicates, existing pronoun constructions and idioms. Editorial inventory; not an exhaustive dictionary of French idioms.",
+        "count": len(inventory), "expressions": inventory,
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    family_path = ROOT / "js/wordFamilies.fr.js"
+    definitions_path = ROOT / "js/wordFamilyDefinitions.fr.js"
+    if family_path.exists() and definitions_path.exists():
+        def read_window(path, name):
+            return json.loads(path.read_text(encoding="utf-8").split(f"window.{name} = ", 1)[1].strip().removesuffix(";"))
+        families = read_window(family_path, "VF_WORD_FAMILIES")
+        definitions = read_window(definitions_path, "VF_FAMILY_DEFINITIONS")
+        family_by_lemma = {r["lemma"]: r for r in families["records"] if not r.get("familyOf")}
+        families["records"] = list(family_by_lemma.values())
+        for spec in EXPRESSIONS:
+            expression, base = canonical(spec["expression"]), spec["base"]
+            if expression in family_by_lemma and any(family_by_lemma[expression].get(g) for g in ("verbs", "nouns", "adjectives", "adverbs")):
+                continue
+            families["records"] = [r for r in families["records"] if r["lemma"] != expression]
+            parent = family_by_lemma.get(base, {})
+            record = {"lemma": expression, "familyOf": base,
+                      **{group: list(parent.get(group, [])) for group in ("verbs", "nouns", "adjectives", "adverbs")}}
+            record["verbs"] = list(dict.fromkeys([base] + record["verbs"]))
+            families["records"].append(record)
+            definitions.setdefault("verbs", {}).setdefault(base, {
+                "definition": by_infinitive[base].get("translation", base),
+                "status": "existing_app_base_verb_gloss",
+            })
+        for path, name, data in [(family_path, "VF_WORD_FAMILIES", families), (definitions_path, "VF_FAMILY_DEFINITIONS", definitions)]:
+            path.write_text("/* Dictionary-derived families; expression records link explicitly to their base. See data/word-families/DEFINITIONS.txt. */\nwindow." + name + " = " + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
     print(f"Added/updated {expression_count} French verb expressions.")
 
 

@@ -1,0 +1,104 @@
+[
+  {
+    "verb": "s'en tirer",
+    "example_fr": "Malgré les difficultés, nous nous en sommes tirés.",
+    "example_en": "Despite the difficulties, we managed.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en moquer",
+    "example_fr": "Les autres critiquent son choix, mais elle s'en moque.",
+    "example_en": "Others criticize her choice, but she does not care.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en remettre",
+    "example_fr": "Cette rupture l'a bouleversée ; elle s'en remet peu à peu.",
+    "example_en": "The breakup devastated her; she is gradually recovering from it.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en tenir à",
+    "example_fr": "Pour cette réunion, nous nous en tenons aux faits.",
+    "example_en": "For this meeting, we are sticking to the facts.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "en revenir",
+    "example_fr": "La nouvelle l'a bouleversé ; il n'en est toujours pas revenu.",
+    "example_en": "The news shook him; he still hasn't got over it.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "en finir avec",
+    "example_fr": "Nous voulons en finir avec ces disputes.",
+    "example_en": "We want to put an end to these arguments.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "en rire",
+    "example_fr": "Cette erreur nous inquiétait ; maintenant, nous en rions.",
+    "example_en": "That mistake worried us; now we laugh about it.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "en pleurer",
+    "example_fr": "La nouvelle l'a tellement émue qu'elle en pleure.",
+    "example_en": "The news moved her so much that she is crying because of it.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "en mourir",
+    "example_fr": "Cette maladie est grave : on peut en mourir.",
+    "example_en": "This illness is serious: it can be fatal.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en mordre les doigts",
+    "example_fr": "Il a refusé cette offre et s'en mord les doigts aujourd'hui.",
+    "example_en": "He turned down that offer and now bitterly regrets it.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en mettre plein les poches",
+    "example_fr": "Les dirigeants s'en sont mis plein les poches pendant que les salariés perdaient leur emploi.",
+    "example_en": "The executives lined their pockets while employees lost their jobs.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en laver les mains",
+    "example_fr": "Il connaît le problème, mais il s'en lave les mains.",
+    "example_en": "He knows about the problem, but washes his hands of it.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en donner les moyens",
+    "example_fr": "Elle veut réussir ce projet et s'en donne les moyens.",
+    "example_en": "She wants this project to succeed and is giving herself the means to do it.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en prendre plein la figure",
+    "example_fr": "Après son discours, il s'en est pris plein la figure sur les réseaux sociaux.",
+    "example_en": "After his speech, he was harshly criticized on social media.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en payer une tranche",
+    "example_fr": "Pendant la soirée, nous avons bien ri : nous nous en sommes payé une tranche.",
+    "example_en": "We laughed a lot that evening: we had a great time.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "s'en mettre jusque-là",
+    "example_fr": "Au buffet, il a tellement mangé qu'il s'en est mis jusque-là.",
+    "example_en": "He ate so much at the buffet that he stuffed himself.",
+    "source": "editorial:expression-example-completion"
+  },
+  {
+    "verb": "en avoir jusqu'au cou",
+    "example_fr": "Les réunions inutiles, j'en ai jusqu'au cou !",
+    "example_en": "I've had it up to here with pointless meetings!",
+    "source": "editorial:expression-example-completion"
+  }
+]

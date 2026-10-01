@@ -1,0 +1,90 @@
+/* Deliberately scoped to the experimental detail view; no flashcard selectors. */
+#verb-detail-container.vf-details-tabs-enabled {
+    --vf-detail-line: var(--border-color, #e0e6ed);
+    --vf-detail-muted: var(--meta-color, #667788);
+    --vf-detail-link: var(--button-bg, #3498db);
+    padding: 24px;
+}
+.vf-details-tabs-enabled .verb-detail-header {
+    position: relative;
+    text-align: left;
+    margin: 0 0 20px;
+    padding: 0 0 12px;
+    border: 0;
+}
+.vf-details-tabs-enabled .verb-detail-header .infinitive {
+    display: block;
+    padding-right: 100px;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    line-height: 1.25;
+    margin: 0 0 6px;
+}
+.vf-details-tabs-enabled .verb-detail-header .translation {
+    margin: 0;
+    text-align: left;
+    color: var(--vf-detail-muted);
+}
+.vf-details-classic {
+    padding: 8px 0;
+    margin-top: 10px;
+    border: 0;
+    background: none;
+    color: var(--vf-detail-muted);
+    font-size: .78rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+.vf-details-tabs {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid var(--vf-detail-line);
+    margin-bottom: 24px;
+}
+.vf-details-tabs > button {
+    appearance: none;
+    background: transparent;
+    color: var(--vf-detail-muted);
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: 12px 0;
+    min-height: 44px;
+    font: inherit;
+    font-size: .88rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.vf-details-tabs > button[aria-selected="true"] {
+    color: var(--text-color);
+    border-bottom-color: var(--text-color);
+}
+.vf-details-panel[hidden] { display: none !important; }
+.vf-details-tabs-enabled .tense-block { margin-top: 0; }
+.vf-details-tabs-enabled .verb-usages-detail-section { margin: 0; }
+.vf-family-group { margin: 0 0 28px; }
+.vf-family-label { margin: 0 0 12px; font-size: .8rem; font-weight: 500; color: var(--vf-detail-muted); }
+.vf-family-words { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 0; margin: 0; list-style: none; }
+.vf-family-words > li { font-size: 1rem; line-height: 1.7; overflow-wrap: anywhere; }
+.vf-family-verb { appearance: none; font: inherit; color: var(--vf-detail-link); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.vf-details-empty { color: var(--vf-detail-muted); padding: 12px 0; font-size: .95rem; }
+.vf-details-tabs button:focus-visible, .vf-family-verb:focus-visible, .vf-details-classic:focus-visible { outline: 2px solid var(--text-color); outline-offset: 4px; }
+@media (max-width: 480px) {
+    #verb-detail-container.vf-details-tabs-enabled { padding: 18px 16px; }
+    .vf-details-tabs { gap: 0; justify-content: space-between; }
+    .vf-details-tabs > button { font-size: .8rem; }
+    .vf-family-words { gap: 8px 16px; }
+}
+@media (pointer: coarse) { .vf-family-verb { min-height: 44px; } }
+
+.vf-family-word { appearance: none; font: inherit; color: inherit; background: none; border: 0; border-radius: 0; padding: 3px 0; cursor: pointer; text-align: left; }
+.vf-family-word:hover, .vf-family-word[aria-expanded="true"] { text-decoration: underline; text-underline-offset: 4px; }
+.vf-family-word:focus-visible, .vf-family-definition button:focus-visible { outline: 2px solid var(--text-color); outline-offset: 3px; }
+.vf-family-definition { margin-top: 12px; padding: 14px 16px; border: 1px solid var(--vf-detail-line); border-radius: 10px; font-size: .9rem; line-height: 1.5; }
+.vf-family-definition[hidden] { display: none; }
+.vf-family-definition p { margin: 6px 0 10px; color: var(--vf-detail-muted); }
+.vf-family-definition button { font: inherit; background: none; border: 0; padding: 6px 0; cursor: pointer; color: var(--text-color); text-decoration: underline; text-underline-offset: 3px; }
+.vf-family-definition .vf-family-open { margin-right: 20px; }
+@media (pointer: coarse) { .vf-family-word, .vf-family-definition button { min-height: 44px; } }
+
+.vf-family-hint { margin: 0 0 20px; color: var(--vf-detail-muted); font-size: .78rem; }

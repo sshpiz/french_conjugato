@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "verbs": 501,
+  "memberships": 1899,
+  "checks": [
+    "exact_inventory_coverage",
+    "word_only_groups",
+    "no_duplicates",
+    "source_revision_evidence",
+    "French_lexical_POS",
+    "source_family_membership",
+    "user_chier_example"
+  ],
+  "limitation": "Structural and dictionary checks do not certify every semantic relation or usefulness judgment."
+}

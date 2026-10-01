@@ -1,0 +1,25 @@
+Word-family definitions and gender — dictionary-linked draft
+
+English Wiktionary contributors: https://en.wiktionary.org/
+French Wiktionnaire contributors: https://fr.wiktionary.org/
+Dictionary-derived material is licensed CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/
+Source URLs and revision IDs are retained in definitions.*.json and evidence.*.json.
+View a snapshot with https://en.wiktionary.org/w/index.php?oldid=REVISION_ID
+(or fr.wiktionary.org for French Wiktionnaire evidence).
+
+English definitions are selected from dictionary senses. Missing or long senses
+are translated/summarized with local gemma3:12b and targeted editorial corrections.
+Statuses distinguish dictionary, model-assisted and editorially corrected entries.
+Gender comes from dictionary headwords where available; inferred values are marked.
+The dataset is a draft and has not had exhaustive human linguistic review.
+
+Spanish/Catalan: up to 12 highest-frequency dictionary-linked candidates per
+source verb, excluding ordinary inflected forms, archaic/obsolete-only entries
+and unsupported parts of speech. Source coverage is incomplete; empty records
+mean no retained dictionary family, not that no family exists.
+
+Approximate word-form frequencies: wordfreq 3.1.1, not sense-specific counts.
+https://github.com/rspeer/wordfreq — accompanying attribution and license retained.
+
+UI: words remain untranslated until tapped; nouns show m/f gender markers.

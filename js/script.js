@@ -277,6 +277,25 @@ function prepareTextForSpeech(text) {
 
 const CARD_TYPE_VALUES = new Set(['conjugation', 'both', 'frame']);
 
+// Generic argument placeholders are cues, not required spoken answer words.
+function expressionSpokenAnswerVariants(card, expected) {
+    if (!card?.verb?.verbExpression || card.reference || card.isFrameCard || card.isPhraseMode) return [expected];
+    const variants = new Set([expected]);
+    const placeholder = /(?:(?:à|de|pour|avec|sur)\s+)?(?:quelque chose|quelqu['’]un)(?![\p{L}])/gu;
+    const matches = [...expected.matchAll(placeholder)];
+    // Work from right to left so offsets remain valid in every shorter variant.
+    for (const match of matches.reverse()) {
+        for (const text of [...variants]) {
+            const before = text.slice(0, match.index);
+            const after = text.slice(match.index + match[0].length);
+            variants.add(before + after);
+            const preposition = match[0].match(/^(à|de|pour|avec|sur)\s+/u);
+            if (preposition) variants.add(before + preposition[0] + after);
+        }
+    }
+    return [...new Set([...variants].map(text => text.replace(/\s+/g, ' ').trim()).filter(Boolean))];
+}
+
 function normalizeCardTypeMode(value) {
     return CARD_TYPE_VALUES.has(String(value || '').trim()) ? String(value || '').trim() : 'conjugation';
 }
@@ -883,13 +902,14 @@ function renderVerbCorePatterns(container, infinitive, options = {}) {
 
         const patternEl = document.createElement('span');
         patternEl.className = 'core-pattern-pattern';
-        patternEl.textContent = entry.pattern || '';
+        patternEl.textContent = window.constructionCards.label(entry);
+        window.constructionCards.decorate(item, entry);
         item.appendChild(patternEl);
 
         if (entry.meaning_en) {
             const meaningEl = document.createElement('span');
             meaningEl.className = 'core-pattern-meaning';
-            meaningEl.textContent = entry.meaning_en;
+            meaningEl.textContent = window.constructionCards.meaning(entry);
             item.appendChild(meaningEl);
         }
 
@@ -898,6 +918,22 @@ function renderVerbCorePatterns(container, infinitive, options = {}) {
             notesEl.className = 'core-pattern-notes';
             notesEl.textContent = entry.notes;
             item.appendChild(notesEl);
+        }
+
+        // Every construction carries its own concrete example and translation.
+        if (entry.example_fr && entry.example_en) {
+            const example = document.createElement('details');
+            example.className = 'core-pattern-example';
+            const summary = document.createElement('summary');
+            summary.textContent = "Par exemple";
+            const sentence = document.createElement('p');
+            sentence.className = 'usage-example-fr';
+            sentence.textContent = entry.example_fr;
+            const translation = document.createElement('p');
+            translation.className = 'usage-example-en';
+            translation.textContent = entry.example_en;
+            example.append(summary, sentence, translation);
+            item.appendChild(example);
         }
 
         container.appendChild(item);
@@ -942,15 +978,28 @@ function renderUsageEntries(container, usages, options = {}) {
 
         const pattern = document.createElement('span');
         pattern.className = 'usage-pattern';
-        pattern.textContent = u.pattern || '';
+        const sharedPattern = u.core_pattern_id
+            ? (getVerbCorePatternsIndex()[u.verb] || []).find(p => p.pattern_id === u.core_pattern_id) || u
+            : u;
+        pattern.textContent = window.constructionCards.label(sharedPattern);
+        window.constructionCards.decorate(item, sharedPattern);
         item.appendChild(pattern);
 
-        const exampleFr = document.createElement('span');
-        exampleFr.className = 'usage-fr tappable-audio';
-        exampleFr.dataset.speak = u.example_fr || '';
-        if (u.sense_id) exampleFr.dataset.audioId = `usage:${u.sense_id}`;
-        exampleFr.textContent = u.example_fr || '';
-        item.appendChild(exampleFr);
+        if (u.construction_reference && u.meaning_en) {
+            const meaning = document.createElement('span');
+            meaning.className = 'usage-en';
+            meaning.textContent = u.meaning_en;
+            item.appendChild(meaning);
+        }
+
+        if (u.example_fr) {
+            const exampleFr = document.createElement('span');
+            exampleFr.className = 'usage-fr tappable-audio';
+            exampleFr.dataset.speak = u.example_fr;
+            if (u.sense_id) exampleFr.dataset.audioId = `usage:${u.sense_id}`;
+            exampleFr.textContent = u.example_fr;
+            item.appendChild(exampleFr);
+        }
 
         if (u.example_en) {
             const exampleEn = document.createElement('span');
@@ -1181,7 +1230,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return !tense || tense === 'present';
         })
         .filter((entry) => uniqueVerbByInfinitive.has(String(entry.verb || '').trim()));
-    const hasFillBlankExerciseCapability = () => !debugDisableFillBlanks
+    // Keep the decks and implementation available, but hide this feature.
+    const FILL_BLANKS_VISIBLE = false;
+    const hasFillBlankExerciseCapability = () => FILL_BLANKS_VISIBLE && !debugDisableFillBlanks
         && (playableVerbFrames.length > 0 || playablePronounFillRows.length > 0);
     const getAvailableExerciseModes = () => hasFillBlankExerciseCapability()
         ? ['conjugation', 'both', 'frame']
@@ -3105,14 +3156,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const entries = [];
+        const allowedSubjects = uniqueVerbByInfinitive.get(verbInfinitive)?.expressionSubjects;
         const availablePronouns = pronouns.filter((pronounKey) => conjugations[pronounKey]);
         for (const pronounKey of availablePronouns) {
             if (options.balancedPronouns && pronounKey.includes('/')) {
                 for (const pronoun of pronounKey.split('/')) {
+                    if (allowedSubjects && !allowedSubjects.includes(pronoun)) continue;
                     entries.push({
                         pronoun,
                         pronounKey,
-                        conjugated: conjugations[pronounKey],
+                        conjugated: conjugations[pronoun] || conjugations[pronounKey],
                     });
                 }
                 continue;
@@ -3120,13 +3173,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let pronoun = pronounKey;
             if (pronounKey.includes('/')) {
-                const variants = pronounKey.split('/');
+                const variants = pronounKey.split('/').filter(p => !allowedSubjects || allowedSubjects.includes(p));
+                if (!variants.length) continue;
                 pronoun = variants[Math.floor(Math.random() * variants.length)];
             }
             entries.push({
                 pronoun,
                 pronounKey,
-                conjugated: conjugations[pronounKey],
+                conjugated: conjugations[pronoun] || conjugations[pronounKey],
             });
         }
 
@@ -3144,6 +3198,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }];
         }
 
+        if (uniqueVerbByInfinitive.get(verbInfinitive)?.verbExpression) {
+            return ['je', 'tu', 'il', 'elle', 'on', 'nous', 'vous', 'ils', 'elles'].map(pronoun => {
+                const key = ['il', 'on'].includes(pronoun) ? 'il/elle/on' : pronoun === 'ils' ? 'ils/elles' : pronoun;
+                const allowed = uniqueVerbByInfinitive.get(verbInfinitive)?.expressionSubjects;
+                const form = !allowed || allowed.includes(pronoun) ? conjugations?.[key] : null;
+                return { pronounLabel: pronoun, pronounAudio: pronoun, pronounKey: pronoun,
+                    conjugated: form ? window.handleLanguageSpecificLastChange(pronoun, form) : '—' };
+            });
+        }
         return pronouns.map((pronoun) => ({
             pronounLabel: pronoun,
             pronounAudio: pronoun,
@@ -3164,14 +3227,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const tenseAudioId = (tenseKey) => `shared:tense:${tenseKey}`;
     const pronounAudioId = (pronoun) => `shared:pronoun:${canonicalPronounKey(pronoun)}`;
     const lemmaAudioId = (infinitive) => `lemma:${infinitive}`;
-    const conjugationAudioId = (infinitive, tenseKey, pronoun) => `conj:${infinitive}:${tenseKey}:${canonicalPronounKey(pronoun)}`;
+    const conjugationAudioId = (infinitive, tenseKey, pronoun) => {
+        const exactFemale = uniqueVerbByInfinitive.get(infinitive)?.verbExpression && ['elle', 'elles'].includes(pronoun);
+        return `conj:${infinitive}:${tenseKey}:${exactFemale ? pronoun : canonicalPronounKey(pronoun)}`;
+    };
 
     const playAudioTarget = (audioId, text) => {
+        ({ audioId, text } = window.constructionCards.audio(currentCard, audioId, text));
+        if (currentCard?.reference && (audioId?.startsWith('conj:') || text === currentCard.conjugated)) {
+            audioId = null;
+            text = currentCard.conjugated;
+        }
         void (async () => {
             let packagedFallbackReason = null;
             if (audioId && PACKAGED_TTS && PACKAGED_TTS.isEnabled()) {
                 try {
-                    const played = await PACKAGED_TTS.playAudioId(audioId);
+                    const played = await PACKAGED_TTS.playAudioId(audioId, text);
                     if (played) return;
                     packagedFallbackReason = 'missing-pack';
                 } catch (error) {
@@ -4250,7 +4321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const syncUsageNuggetVisibility = () => {
         if (!usageNuggetEl) return;
         const availability = getUsageAvailability();
-        const showUsageNugget = !!window.cardGenerationOptions?.showUsageNugget;
+        const showUsageNugget = currentCard?._patternEntry ? !!currentCard._patternUsagesExpanded : !!window.cardGenerationOptions?.showUsageNugget;
         const shouldShow = !!(
             isAnswerVisible &&
             currentCard &&
@@ -4277,7 +4348,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (availability === 'no-content') {
                 usageTitle = 'No usage notes for this verb yet';
             } else if (availability === 'phase-disabled') {
-                usageTitle = 'Usage is only available on verb cards';
+                usageTitle = currentCard?._patternEntry ? 'Reveal the answer to explore usages' : 'Usage is only available on verb cards';
             }
 
             usageVisibilityBtn.setAttribute('aria-label', usageTitle);
@@ -4512,6 +4583,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getCardAnswerText = (card = currentCard) => {
         if (!card) return '';
+        if (card.reference) return card.conjugated;
         if (card.isPhraseMode || !card.verb) {
             return (card.phrase || '').trim();
         }
@@ -4687,7 +4759,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (candidates.includes(text)) return;
             candidates.push(text);
         };
-        pushCandidate(getExpectedDictationText(card));
+        expressionSpokenAnswerVariants(card, getExpectedDictationText(card)).forEach(pushCandidate);
         if (card.isFrameCard && card.frameFullAnswer) {
             pushCandidate(card.frameFullAnswer);
         }
@@ -4818,6 +4890,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const phoneticPhraseMatch = await getFrenchPhoneticDictationResult(transcript, card);
             return phoneticPhraseMatch || phraseMatch;
+        }
+
+        const expressionAlternatives = expressionSpokenAnswerVariants(card, getExpectedDictationText(card));
+        if (expressionAlternatives.some(answer => normalizeDictationText(answer) === heard)) {
+            return { matched: true };
         }
 
         if (heard.includes(expected)) {
@@ -7040,6 +7117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getUsageAvailability = () => {
+        if (currentCard?._patternEntry && !isAnswerVisible) return 'phase-disabled';
         if (!FRENCH_FLASHCARD_FEATURES.usageNuggetVisibilityToggle) return 'hidden';
         if (tutorialState.active && !isTutorialDeferredForSharedEntry()) return 'tutorial-locked';
         if (!currentCard || currentCard.isPhraseMode) return 'phase-disabled';
@@ -7261,49 +7339,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getIdleGuidancePromptText = (card) => {
         if (!card || !card.verb) return '';
-        const rawPrompt = typeof getPrompt === 'function' ? String(getPrompt(card) || '') : '';
-        const normalizedPrompt = rawPrompt
-            .replace(/<br\s*\/?>/gi, ' ')
-            .replace(/<[^>]+>/g, ' ')
-            .replace(/\s+/g, ' ')
-            .trim();
-        const promptWithoutReveal = normalizedPrompt
-            .replace(/\s*(tap|click)\s+show\s+to\s+reveal(?:\s+the\s+answer)?\.?$/i, '')
-            .replace(/\s*think\s+of\s+the\s+answer.*$/i, '')
-            .trim();
-        const tenseLabels = {
-            passeCompose: 'passé composé',
-            imparfait: 'imperfect',
-            futurSimple: 'future',
-            plusQueParfait: 'pluperfect',
-            subjonctifPresent: 'present subjunctive',
-            conditionnelPresent: 'conditional',
-            preterite: 'preterite',
-            imperfect: 'imperfect',
-            future: 'future',
-            conditional: 'conditional',
-            imperative: 'imperative',
-            presentSubjunctive: 'present subjunctive',
-            pastSubjunctive: 'past subjunctive',
-            activePresent: 'present',
-            activePast: 'past',
-            activeFuture: 'future',
-            aorist: 'aorist'
-        };
-        const verb = String(card.verb.infinitive || '').trim();
-        const pronoun = String(card.pronoun || '').trim();
-        const tenseKey = String(card.tense || '').trim();
-        const tense = tenseLabels[tenseKey] || tenseKey.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ').toLowerCase();
-        const fallbackPrompt = (
-            (verb && pronoun && tense) ? `Conjugate "${verb}" for "${pronoun}" in ${tense}.`
-                : (verb && pronoun) ? `Conjugate "${verb}" for "${pronoun}".`
-                    : verb ? `Conjugate "${verb}".`
-                        : ''
-        );
-        const basePrompt = promptWithoutReveal || fallbackPrompt;
-        if (!basePrompt) return '';
-        const lead = /[.?!]$/.test(basePrompt) ? basePrompt : `${basePrompt}.`;
-        return `${lead} Think of the answer, then tap Show or tap anywhere to reveal.`;
+        return 'Tap the card to reveal the answer.';
     };
 
     const syncTaskPromptVisibility = () => {
@@ -7515,6 +7551,9 @@ document.addEventListener('DOMContentLoaded', () => {
         fillDifficultyMode: 'easy', // 'easy' | 'medium' | 'hard'
         reflexiveMode: 'include', // 'include' = both, 'only' = reflexive only, 'exclude' = no reflexive
         includeVerbExpressions: true,
+        verbEntryMode: 'all',
+        referencePractice: false,
+        exerciseTypes: ['verbs'],
         prepositionalVerbMode: 'all', // 'all' | 'only'
         tenseWeights,
         frequencyWeights,
@@ -7949,6 +7988,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     // migrate old boolean
                     cardGenerationOptions.reflexiveMode = savedOptions.includeReflexive ? 'include' : 'exclude';
                 }
+                cardGenerationOptions.verbEntryMode = getVerbEntryMode(savedOptions);
+                cardGenerationOptions.referencePractice = savedOptions.referencePractice === true;
+                cardGenerationOptions.exerciseTypes = getExerciseTypes(savedOptions);
                 if (typeof savedOptions.includeVerbExpressions === 'boolean') {
                     cardGenerationOptions.includeVerbExpressions = savedOptions.includeVerbExpressions;
                 }
@@ -8345,9 +8387,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return weightedPool[weightedPool.length - 1].card;
     };
 
+    let exerciseTypeTurn = 0;
     const generateNewCard = (options = {}) => {
+        if (!options._exerciseType) {
+            const available = getExerciseTypes(options).filter(type =>
+                getFilteredVerbUniverse({ ...options, _exerciseType: type }).length > 0);
+            if (available.length) {
+                const type = available[exerciseTypeTurn++ % available.length];
+                return generateNewCard({ ...options, _exerciseType: type });
+            }
+        }
+        options = resolveVerbEntryOptions(options);
         const activeVerbSet = getResolvedVerbSetSelection(options);
-        const baseVerbUniverse = getResolvedVerbUniverse(options);
+        const baseVerbUniverse = getResolvedVerbUniverse(options).filter(v =>
+            !options.referencePractice || window.referenceCards.supports(v.infinitive));
         const {
             hierarchical = false,
             tenseWeights = {},
@@ -8636,7 +8689,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!newCard) {
             console.error("No cards available with the current weight settings. Please adjust the options.");
             verbInfinitiveEl.textContent = "Error";
-            verbTranslationEl.textContent = "No cards available for current options.";
+            verbTranslationEl.textContent = options.referencePractice ? "No compatible reference cards. Broaden your topic or frequency selection." : "No cards available for current options.";
+            window.referenceCards.render(null);
+            window.constructionCards.clear();
             verbPronounEl.textContent = "";
             verbTenseEl.textContent = "";
             verbFrequencyEl.textContent = "";
@@ -8646,7 +8701,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return null;
         }
 
-        return newCard;
+        return options.referencePractice && !newCard.isFrameCard
+            ? window.referenceCards.prepare(newCard) : newCard;
     };
     function maybeWhisperMolodez(probability = null) {
         console.log("maybeWhisperMolodez called");
@@ -8710,13 +8766,13 @@ document.addEventListener('DOMContentLoaded', () => {
         'conditionnelPresent': 'conditionnel présent'
       };
       const pronoun = card.pronoun;
-      const verb = card.verb.infinitive;
+      const verb = (card.referenceLabel || card.verb.infinitive) + (card._construction ? ' ' + card._construction.suffix : '');
       const tense = tenseMap[card.tense] || card.tense;
-      return `Comment dire « ${verb} » au ${tense} pour « ${pronoun} » ?`;
+      return `Comment dire « ${verb} » au ${tense} pour « ${pronoun} »${card.reference ? `, en remplaçant « ${card.reference} » par un pronom` : ''} ?`;
     }
 
     const updateHashParams = (card) => {
-        if (card?.isFrameCard) {
+        if (card?.isFrameCard || card?.reference) {
             window.location.hash = '';
         } else if (card.verb) {
             const params = new URLSearchParams();
@@ -8732,7 +8788,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasLoggedFirstCardDisplay = false;
     const displayCard = (card) => {
         finalizeStudyStatsCardSession('card-replaced');
+        if (!tutorialState.active) card = window.constructionCards.prepare(card, getVerbCorePatternsIndex()[card?.verb?.infinitive] || []);
         currentCard = card;
+        window.constructionCards.clear();
+        window.referenceCards.render(card);
         currentCardShownAtMs = performance.now();
         beginStudyStatsCardSession(card);
         if (!hasLoggedFirstCardDisplay) {
@@ -8960,7 +9019,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // --- VERB CARD LOGIC ---
         const verbFrequency = card.verb.frequency || 'common'; 
-        const translation = formatVerbTranslationForDisplay(card.verb);
+        const translation = card.verb.translationBySubject?.[card.pronoun] || formatVerbTranslationForDisplay(card.verb);
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
         verbInfinitiveEl.dataset.audioId = lemmaAudioId(card.verb.infinitive);
@@ -9028,6 +9087,11 @@ document.addEventListener('DOMContentLoaded', () => {
         questionPhraseEl.classList.remove('tappable-audio', 'frame-card-question');
         questionPhraseEl.style.display = 'none';
         currentCard.chosenPhrase = null;
+
+        if (card.reference) {
+            verbInfinitiveEl.textContent = card.referenceLabel;
+            conjugatedVerbEl.dataset.audioId = '';
+        } else window.constructionCards.render(card, () => displayCard(card));
 
         // ── Usage nugget — core patterns first, then usages/examples ─────────────
         const nuggetEl = document.getElementById('usage-nugget');
@@ -9743,6 +9807,13 @@ document.addEventListener('DOMContentLoaded', () => {
             translationEl.textContent = detailTranslation;
             header.appendChild(translationEl);
         }
+        if (verb.verbExpression) {
+            const familyLabels = { everyday: 'Everyday expression', pronoun: 'Pronoun construction', idiom: 'Idiom' };
+            const info = document.createElement('p');
+            info.className = 'setting-helper-text';
+            info.textContent = `${familyLabels[verb.expressionFamily] || 'Expression'} · ${verb.expressionOf}`;
+            header.appendChild(info);
+        }
         // TODO(Detail): Show verb.category in the header (chip next to infinitive) and make it clickable to filter Explorer
         // by this category (navigates back to list with category pre-selected).
         verbDetailContainer.appendChild(header);
@@ -9802,6 +9873,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (usagePanelCount > 0) {
             verbDetailContainer.appendChild(usagePanelSection);
         }
+
+        window.VerbDetailsTabs?.enhance({
+            container: verbDetailContainer, verb, tenseToFocus,
+            hasVerb: (word) => uniqueVerbs.some(item => item.infinitive === word),
+            openVerb: (word) => showVerbDetail(word),
+            rerender: () => populateVerbDetail(verb, tenseToFocus),
+        });
 
         // After populating, scroll to the focused tense if provided
         highlightAndScrollToTense(tenseToFocus);
@@ -9911,7 +9989,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mode = normalizeCardTypeModeForCapabilities(mode);
         if (mode === 'frame') return 'Fill Blanks';
         if (mode === 'both') return 'Mixed';
-        return 'Conjugation';
+        return exerciseTypeLabel();
     };
 
     const getCardTopicBadgeLabel = (card) => {
@@ -10150,7 +10228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         const sections = [
             { id: 'settings-v2-conjugation-setup', label: 'Conjugation' },
-            { id: 'tts-voice-group', label: 'Text To Speech' },
+            { id: 'tts-voice-group', label: 'Audio' },
             { id: 'app-group', label: 'App' },
         ];
         if (hasFillBlanks) {
@@ -10259,7 +10337,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const conjugationSetupDetails = ensureSubsetupDetails(
             'settings-v2-conjugation-setup',
-            'Conjugation Setup',
+            'Conjugation',
             'settings-v2-conjugation-setup-body',
             'settings-v2-conjugation-setup-summary'
         );
@@ -10339,7 +10417,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const topNHeading = topNGroup?.querySelector('h3');
         if (topNHeading) topNHeading.textContent = 'By frequency';
         const topNDesc = topNGroup?.querySelector('.option-desc');
-        if (topNDesc) topNDesc.textContent = 'Use frequency bands when you want a popularity-based verb pool.';
+        if (topNDesc) topNDesc.textContent = 'Top N applies within each selected type. Expression ranks are approximate.';
         const tenseDesc = tenseGroup?.querySelector('.option-desc');
         if (tenseDesc) tenseDesc.textContent = 'Choose which tenses to practice for conjugation cards.';
 
@@ -10409,6 +10487,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const supportRow = document.getElementById('support-email-link')?.closest('.toggle-row') || null;
         const idleNudgeRow = document.getElementById('idle-nudge-toggle')?.closest('.toggle-row') || null;
         const showTipsRow = document.getElementById('show-tips-toggle')?.closest('.toggle-row') || null;
+        const usagePatternRow = document.getElementById('show-usage-pattern-toggle')?.closest('.toggle-row') || null;
         const themeRow = document.getElementById('theme-pills')?.closest('.toggle-row') || null;
         const textSizeRow = document.getElementById('font-size-slider')?.closest('.toggle-row') || null;
         const inventoryPanel = appToggleRows ? ensureSettingsInventoryPanel() : null;
@@ -10443,6 +10522,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 supportRow,
                 idleNudgeRow,
                 showTipsRow,
+                usagePatternRow,
                 tutorialActionRow,
                 pressToDictateRow,
             ].filter(Boolean).forEach((row) => {
@@ -10457,7 +10537,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tutorialQuickToggleRow.className = 'toggle-row';
             tutorialQuickToggleRow.innerHTML = `
                 <div class="settings-row-copy">
-                    <label for="hide-tutorial-quick-btn-toggle">Hide tutorial button in main screen</label>
+                    <label for="hide-tutorial-quick-btn-toggle">Hide tutorial shortcut</label>
                 </div>
                 <div class="toggle-switch">
                     <input type="checkbox" id="hide-tutorial-quick-btn-toggle" class="toggle-input">
@@ -10541,7 +10621,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (sourceMode === 'topic' && activeVerbSet) {
                     return `Custom · ${topicCount > 1 ? `${topicCount} topics` : activeVerbSet.name}`;
                 }
-                const parts = [`${getCurrentDrillDisplayLabel()} drill`, `${tenseCount} ${tenseCount === 1 ? 'tense' : 'tenses'}`];
+                const parts = [getVerbEntryMode() === 'expressions' ? `${currentVerbCount} expressions` : `${getCurrentDrillDisplayLabel()} drill`, `${tenseCount} ${tenseCount === 1 ? 'tense' : 'tenses'}`];
                 if (filterCount > 0) {
                     parts.push(`${filterCount} ${filterCount === 1 ? 'filter' : 'filters'}`);
                 }
@@ -10562,7 +10642,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 } else {
                     practiceSummary.innerHTML = `
-                        <span class="settings-v2-summary-primary">Conjugation</span><br>
+                        <span class="settings-v2-summary-primary">${escapeHtml(exerciseTypeLabel())}</span><br>
                         <span class="settings-v2-summary-detail">${escapeHtml(conjugationSummary)}</span>
                     `;
                 }
@@ -10586,13 +10666,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (conjugationSetupSummary) {
                 conjugationSetupSummary.textContent = currentExerciseMode === 'frame'
-                    ? 'Configure conjugation questions (currently disabled)'
-                    : 'Configure conjugation questions (currently enabled)';
+                    ? 'Verbs and tenses · Not in this exercise'
+                    : 'Verbs and tenses';
             }
             if (fillSetupSummary) {
                 fillSetupSummary.textContent = currentExerciseMode === 'conjugation'
-                    ? 'Configure fill-in-the-blank questions (currently disabled)'
-                    : 'Configure fill-in-the-blank questions (currently enabled)';
+                    ? 'Sentence practice · Not in this exercise'
+                    : 'Sentence practice';
             }
 
             const balancedPronounsRow = document.getElementById('settings-balanced-pronouns-row');
@@ -11228,16 +11308,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 freqCard.appendChild(detailedFrequencyContainer);
                 freqCard.appendChild(freqHelper);
                 const practiceCard = createAdvancedCard('Verb traits');
-                practiceCard.appendChild(createToggleRow(
-                    'Verb expressions',
-                    "Includes common expression cards like s'en aller and en avoir marre when the base verb is in your pool.",
-                    cardGenerationOptions.includeVerbExpressions !== false,
-                    (checked) => {
-                        cardGenerationOptions.includeVerbExpressions = !!checked;
-                        saveOptions();
-                        updateVerbFiltersCountLabel();
-                    }
-                ));
                 const reflexiveRow = createSegmentedPillRow(
                     'Reflexive verbs',
                     'Limit the drill to reflexives, exclude them, or mix both.',
@@ -11373,32 +11443,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 conjugationAdvancedBody?.appendChild(freqCard);
             }
 
-            const cardFamilyRow = createSegmentedPillRow(
-                'Exercise type',
-                '',
-                hasFillBlanks
-                    ? [
-                        { value: 'conjugation', label: 'Conjugation' },
-                        { value: 'both', label: 'Mixed' },
-                        { value: 'frame', label: 'Fill Blanks' }
-                    ]
-                    : [
-                        { value: 'conjugation', label: 'Conjugation' }
-                    ],
-                currentExerciseMode,
-                (value) => {
-                    const nextExerciseMode = normalizeCardTypeModeForCapabilities(value);
-                    pendingExerciseModeCardRefresh = pendingExerciseModeCardRefresh || nextExerciseMode !== currentExerciseMode;
-                    cardGenerationOptions.cardTypeMode = nextExerciseMode;
+            const cardFamilyRow = document.createElement('fieldset');
+            cardFamilyRow.className = 'exercise-type-checkboxes';
+            const legend = document.createElement('legend');
+            legend.textContent = 'Exercise types';
+            cardFamilyRow.appendChild(legend);
+            const selectedTypes = getExerciseTypes();
+            for (const [type, label] of Object.entries(EXERCISE_TYPE_LABELS)) {
+                const row = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = type;
+                checkbox.checked = selectedTypes.includes(type);
+                checkbox.disabled = checkbox.checked && selectedTypes.length === 1;
+                row.append(checkbox, document.createTextNode(label));
+                checkbox.addEventListener('change', () => {
+                    cardGenerationOptions.exerciseTypes = [...cardFamilyRow.querySelectorAll('input:checked')].map(input => input.value);
+                    pendingExerciseModeCardRefresh = true;
                     saveOptions();
                     populateOptions();
                     updateVerbFiltersCountLabel();
                     updateSettingsV2LayoutState();
-                }
-            );
-            if (settingsV2ExerciseControls && hasFillBlanks) {
-                settingsV2ExerciseControls.appendChild(cardFamilyRow);
+                });
+                cardFamilyRow.appendChild(row);
             }
+            settingsV2ExerciseControls?.appendChild(cardFamilyRow);
 
             const fillPracticeCard = hasFillBlanks ? createAdvancedCard('Question filter') : null;
             if (fillPracticeCard) {
@@ -11949,6 +12018,11 @@ document.addEventListener('DOMContentLoaded', () => {
         usageVisibilityBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (usageVisibilityBtn.disabled) return;
+            if (currentCard?._patternEntry) {
+                currentCard._patternUsagesExpanded = !currentCard._patternUsagesExpanded;
+                syncUsageNuggetVisibility();
+                return;
+            }
             const wasShowing = !!cardGenerationOptions.showUsageNugget;
             cardGenerationOptions.showUsageNugget = !cardGenerationOptions.showUsageNugget;
             saveOptions();
@@ -12388,17 +12462,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- URL Parameter Support ---
     const parseHashParams = () => {
-        const hash = window.location.hash.substring(1); // Remove the # symbol
-        const params = {};
-        if (hash) {
-            hash.split('&').forEach(param => {
-                const [key, value] = param.split('=');
-                if (key && value) {
-                    params[decodeURIComponent(key)] = decodeURIComponent(value);
-                }
-            });
-        }
-        return params;
+        // Card links are written with URLSearchParams, which encodes spaces as +.
+        return Object.fromEntries(new URLSearchParams(window.location.hash.slice(1)));
     };
 
     const generateCardFromParams = (pronoun, verb, tense) => {
@@ -12666,6 +12731,9 @@ const DRILL_OPTION_KEYS = [
     'fillDifficultyMode',
     'reflexiveMode',
     'includeVerbExpressions',
+    'verbEntryMode',
+    'referencePractice',
+    'exerciseTypes',
     'prepositionalVerbMode',
     'regularityFilter',
     'endingFilter',
@@ -12874,8 +12942,37 @@ function getResolvedVerbSetSelection(options = cardGenerationOptions) {
 }
 window.getResolvedVerbSetSelection = getResolvedVerbSetSelection;
 
+const EXERCISE_TYPE_LABELS = {
+    verbs: 'Verbs', expressions: 'Expressions', references: 'Verbs with pronoun replacement'
+};
+function getExerciseTypes(options = cardGenerationOptions) {
+    if (Array.isArray(options.exerciseTypes)) {
+        const selected = ['verbs', 'expressions', 'references'].filter(type => options.exerciseTypes.includes(type));
+        return selected.length ? selected : ['verbs'];
+    }
+    if (options.referencePractice) return ['references'];
+    if (options.verbEntryMode === 'expressions') return ['expressions'];
+    if (options.verbEntryMode === 'all') return ['verbs', 'expressions'];
+    return ['verbs'];
+}
+function exerciseTypeLabel(options = cardGenerationOptions) {
+    return getExerciseTypes(options).map(type => EXERCISE_TYPE_LABELS[type]).join(' + ');
+}
+function getVerbEntryMode(options = cardGenerationOptions) {
+    if (options._exerciseType) return options._exerciseType === 'expressions' ? 'expressions' : options._exerciseType === 'verbs' ? 'single' : 'all';
+    const types = getExerciseTypes(options);
+    return types.length === 1 && types[0] === 'expressions' ? 'expressions'
+        : !types.includes('expressions') && !types.includes('references') ? 'single' : 'all';
+}
+function resolveVerbEntryOptions(options) {
+    const mode = getVerbEntryMode(options);
+    const types = getExerciseTypes(options);
+    return { ...options, cardTypeMode: 'conjugation', includeVerbExpressions: mode !== 'single',
+        referencePractice: options._exerciseType ? options._exerciseType === 'references' : types.length === 1 && types[0] === 'references' };
+}
+
 function shouldIncludeVerbExpressions(options = cardGenerationOptions) {
-    return options?.includeVerbExpressions !== false;
+    return getVerbEntryMode(options) !== 'single';
 }
 
 function getVerbFilterInfinitive(verbInfo) {
@@ -12906,7 +13003,7 @@ function expandVerbUniverseWithExpressions(candidateVerbs, options = cardGenerat
             }
         });
     }
-    return [...output.values()];
+    return [...output.values()].filter(v => getVerbEntryMode(options) !== 'expressions' || v.verbExpression);
 }
 
 function getResolvedVerbUniverse(options = cardGenerationOptions) {
@@ -12919,6 +13016,7 @@ function getResolvedVerbUniverse(options = cardGenerationOptions) {
 }
 
 function getFilteredVerbUniverse(options = cardGenerationOptions) {
+    options = resolveVerbEntryOptions(options);
     const activeVerbSet = getResolvedVerbSetSelection(options);
     const candidateVerbs = getResolvedVerbUniverse(options);
     const {
@@ -12979,6 +13077,7 @@ function getFilteredVerbUniverse(options = cardGenerationOptions) {
     };
 
     return candidateVerbs.filter((verbInfo) => {
+        if (options.referencePractice && !window.referenceCards.supports(verbInfo.infinitive)) return false;
         if (verbInfo.verbExpression && includeVerbExpressions === false) return false;
         if (!activeVerbSet && reflexiveMode !== 'only') {
             const freq = verbInfo.frequency || 'common';
@@ -13181,6 +13280,7 @@ function buildDrillCardOptions(overrides = {}) {
         selectedVerbSetIds: [],
         sharedVerbSet: null,
         ...overrides,
+        exerciseTypes: getExerciseTypes(overrides),
         tenseWeights: { ...baseTenseWeights, ...(overrides.tenseWeights || {}) },
         frequencyWeights: { ...baseFrequencyWeights, ...normalizedFrequencyWeights },
         regularityFilter: { regular: true, irregular: true, ...(overrides.regularityFilter || {}) },
@@ -13323,6 +13423,21 @@ const defaultPresets = [
         reflexiveMode: 'only',
       }),
     },
+  },
+  {
+    id: 'expressions-20', emoji: '💬', name: 'Everyday Expressions',
+    desc: 'expressions · présent · top 20',
+    config: { cardGenerationOptions: buildDrillCardOptions({ exerciseTypes: ['expressions'], tenseWeights: { present: 1 }, frequencyWeights: buildRangeFrequencyWeights('top20') }) }
+  },
+  {
+    id: 'verbs-expressions-50', emoji: '🔀', name: 'Verbs + Expressions',
+    desc: 'verbs + expressions · présent · top 50 each',
+    config: { cardGenerationOptions: buildDrillCardOptions({ exerciseTypes: ['verbs', 'expressions'], tenseWeights: { present: 1 }, frequencyWeights: buildRangeFrequencyWeights('top50') }) }
+  },
+  {
+    id: 'pronoun-replacement', emoji: '🔄', name: 'Pronoun Replacement',
+    desc: 'reference cards · présent · top 50',
+    config: { cardGenerationOptions: buildDrillCardOptions({ exerciseTypes: ['references'], tenseWeights: { present: 1 }, frequencyWeights: buildRangeFrequencyWeights('top50') }) }
   },
   {
     id: 'custom',
@@ -13658,6 +13773,7 @@ function describeDrillConfig(config = {}) {
 
     const activeVerbSet = getResolvedVerbSetSelection(options);
     const parts = [tenseSummary || 'mixed tenses'];
+    parts.push(exerciseTypeLabel(options));
     if (activeVerbSet) {
         parts.push(
             activeVerbSet.selectionCount && activeVerbSet.selectionCount > 1
@@ -13665,7 +13781,7 @@ function describeDrillConfig(config = {}) {
                 : `${activeVerbSet.name} · ${activeVerbSet.count} verbs`
         );
     } else {
-        parts.push(summarizeFrequencyWeights(options.frequencyWeights || {}));
+        parts.push(getVerbEntryMode(options) === 'expressions' ? 'expressions only' : summarizeFrequencyWeights(options.frequencyWeights || {}));
     }
     if (!activeVerbSet && options.regularityFilter && options.regularityFilter.regular === false && options.regularityFilter.irregular !== false) {
         parts.push('irregular focus');
@@ -13732,6 +13848,7 @@ function getSelectedVerbPoolRangeKey(frequencyWeights = cardGenerationOptions.fr
 }
 
 function getVerbPoolSummary() {
+    if (getVerbEntryMode() === 'expressions') return `${computeActiveVerbPoolCount()} expressions · ${formatFrequencyLabel(getSelectedVerbPoolRangeKey() || 'custom')} · approximate frequency`;
     const activeVerbSet = getResolvedVerbSetSelection();
     if (activeVerbSet) {
         const categoryCount = activeVerbSet.selectionCount || 1;
@@ -13752,7 +13869,7 @@ function getSelectedTenseCount(options = cardGenerationOptions) {
 
 function getActiveVerbFilterCount(options = cardGenerationOptions) {
     let count = 0;
-    if (options.includeVerbExpressions === false) count += 1;
+
     if (options.reflexiveMode && options.reflexiveMode !== 'include') count += 1;
     if (options.regularityFilter && (options.regularityFilter.regular === false || options.regularityFilter.irregular === false)) count += 1;
     if (options.endingFilter && Object.values(options.endingFilter).some((value) => value === false)) count += 1;
@@ -13763,7 +13880,7 @@ function getExerciseModeLabel(cardTypeMode = normalizeCardTypeMode(cardGeneratio
     cardTypeMode = normalizeCardTypeModeForCapabilities(cardTypeMode);
     if (cardTypeMode === 'frame') return 'Fill Blanks';
     if (cardTypeMode === 'both') return 'Mixed';
-    return 'Conjugation';
+    return exerciseTypeLabel();
 }
 
 function applyDrillCardOptions(config = {}) {
@@ -13777,7 +13894,10 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.fillFocusMode = getEffectiveFillFocusMode(resolved);
     cardGenerationOptions.fillDifficultyMode = normalizeFillDifficultyMode(resolved.fillDifficultyMode);
     cardGenerationOptions.reflexiveMode = resolved.reflexiveMode;
-    cardGenerationOptions.includeVerbExpressions = resolved.includeVerbExpressions !== false;
+    cardGenerationOptions.verbEntryMode = getVerbEntryMode(resolved);
+    cardGenerationOptions.referencePractice = resolved.referencePractice === true;
+    cardGenerationOptions.exerciseTypes = getExerciseTypes(resolved);
+    cardGenerationOptions.includeVerbExpressions = getVerbEntryMode(resolved) !== 'single';
     cardGenerationOptions.prepositionalVerbMode = resolved.prepositionalVerbMode === 'only' ? 'only' : 'all';
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
     cardGenerationOptions.endingFilter = deepClone(resolved.endingFilter);
@@ -13844,6 +13964,9 @@ function resetTutorialPracticeBaseline() {
   cardGenerationOptions.fillDifficultyMode = 'easy';
   cardGenerationOptions.reflexiveMode = 'include';
   cardGenerationOptions.includeVerbExpressions = true;
+  cardGenerationOptions.verbEntryMode = 'all';
+  cardGenerationOptions.referencePractice = false;
+  cardGenerationOptions.exerciseTypes = ['verbs'];
   cardGenerationOptions.prepositionalVerbMode = 'all';
   cardGenerationOptions.regularityFilter = { regular: true, irregular: true };
   cardGenerationOptions.endingFilter = { er: true, ir: true, re: true, other: true };
@@ -13880,12 +14003,17 @@ function refreshCurrentDrillCard() {
     `;
 }
 
+function isHiddenFillDrill(preset) {
+    const options = preset?.config?.cardGenerationOptions || preset?.config || {};
+    return ['frame', 'both'].includes(options.cardTypeMode);
+}
+
 function renderSavedDrills() {
     if (!savedDrillsContainer || !savedDrillsGroup) return;
     savedDrillsContainer.innerHTML = '';
-    savedDrillsGroup.classList.toggle('hidden', savedDrills.length === 0);
+    savedDrillsGroup.classList.toggle('hidden', !savedDrills.some(preset => !isHiddenFillDrill(preset)));
 
-    savedDrills.forEach((preset) => {
+    savedDrills.filter(preset => !isHiddenFillDrill(preset)).forEach((preset) => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'preset-btn';
@@ -14250,7 +14378,7 @@ if (importedSharedDrill) {
 
   if (lastDrill) {
     found = presets.find((preset) => getPresetKey(preset, 'builtin') === lastDrill)
-      || savedDrills.find((preset) => getPresetKey(preset, 'saved') === lastDrill);
+      || savedDrills.find((preset) => !isHiddenFillDrill(preset) && getPresetKey(preset, 'saved') === lastDrill);
     if (found) {
       applyPreset(found, { source: savedDrills.includes(found) ? 'saved' : 'builtin' });
     }

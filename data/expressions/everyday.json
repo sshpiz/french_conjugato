@@ -1,0 +1,2057 @@
+[
+  {
+    "expression": "avoir besoin",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "besoin de quelque chose",
+    "gloss": "to need",
+    "complement": "de quelque chose",
+    "usage": "J'ai besoin de repos.",
+    "usage_en": "I need rest.",
+    "family": "everyday",
+    "pattern": "avoir besoin de quelque chose",
+    "usages": [
+      {
+        "example_fr": "Nous avons besoin de partir tôt.",
+        "example_en": "We need to leave early.",
+        "pattern": "avoir besoin de faire quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "avoir envie",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "envie de quelque chose",
+    "gloss": "to feel like; want",
+    "complement": "de quelque chose",
+    "usage": "J'ai envie de sortir.",
+    "usage_en": "I feel like going out.",
+    "family": "everyday",
+    "pattern": "avoir envie de quelque chose",
+    "usages": [
+      {
+        "example_fr": "Elle a envie d'un café.",
+        "example_en": "She feels like a coffee.",
+        "pattern": "avoir envie de quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "avoir peur",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "peur de quelque chose",
+    "gloss": "to be afraid",
+    "complement": "de quelque chose",
+    "usage": "J'ai peur du noir.",
+    "usage_en": "I'm afraid of the dark.",
+    "family": "everyday",
+    "pattern": "avoir peur de quelque chose",
+    "usages": [
+      {
+        "example_fr": "Il a peur de se tromper.",
+        "example_en": "He's afraid of making a mistake.",
+        "pattern": "avoir peur de faire quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "avoir honte",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "honte de quelque chose",
+    "gloss": "to be ashamed",
+    "complement": "de quelque chose",
+    "usage": "J'ai honte de mon erreur.",
+    "usage_en": "I'm ashamed of my mistake.",
+    "family": "everyday",
+    "pattern": "avoir honte de quelque chose"
+  },
+  {
+    "expression": "avoir faim",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "faim",
+    "gloss": "to be hungry",
+    "complement": "",
+    "usage": "J'ai faim.",
+    "usage_en": "I'm hungry.",
+    "family": "everyday",
+    "pattern": "avoir faim",
+    "usages": [
+      {
+        "example_fr": "Les enfants avaient faim après la promenade.",
+        "example_en": "The children were hungry after the walk.",
+        "pattern": "avoir faim"
+      }
+    ]
+  },
+  {
+    "expression": "avoir soif",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "soif",
+    "gloss": "to be thirsty",
+    "complement": "",
+    "usage": "J'ai soif.",
+    "usage_en": "I'm thirsty.",
+    "family": "everyday",
+    "pattern": "avoir soif",
+    "usages": [
+      {
+        "example_fr": "Tu auras soif après la course.",
+        "example_en": "You'll be thirsty after the run.",
+        "pattern": "avoir soif"
+      }
+    ]
+  },
+  {
+    "expression": "avoir chaud",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "chaud",
+    "gloss": "to feel hot",
+    "complement": "",
+    "usage": "J'ai chaud.",
+    "usage_en": "I feel hot.",
+    "family": "everyday",
+    "pattern": "avoir chaud"
+  },
+  {
+    "expression": "avoir froid",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "froid",
+    "gloss": "to feel cold",
+    "complement": "",
+    "usage": "J'ai froid.",
+    "usage_en": "I feel cold.",
+    "family": "everyday",
+    "pattern": "avoir froid"
+  },
+  {
+    "expression": "avoir sommeil",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "sommeil",
+    "gloss": "to be sleepy",
+    "complement": "",
+    "usage": "J'ai sommeil.",
+    "usage_en": "I'm sleepy.",
+    "family": "everyday",
+    "pattern": "avoir sommeil"
+  },
+  {
+    "expression": "avoir raison",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "raison",
+    "gloss": "to be right",
+    "complement": "",
+    "usage": "Tu as raison.",
+    "usage_en": "You're right.",
+    "family": "everyday",
+    "pattern": "avoir raison",
+    "usages": [
+      {
+        "example_fr": "Vous avez raison de demander.",
+        "example_en": "You're right to ask.",
+        "pattern": "avoir raison de faire quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "avoir tort",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "tort",
+    "gloss": "to be wrong",
+    "complement": "",
+    "usage": "Tu as tort.",
+    "usage_en": "You're wrong.",
+    "family": "everyday",
+    "pattern": "avoir tort",
+    "usages": [
+      {
+        "example_fr": "J'avais tort de m'inquiéter.",
+        "example_en": "I was wrong to worry.",
+        "pattern": "avoir tort de faire quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "avoir lieu",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "lieu",
+    "gloss": "to take place",
+    "complement": "",
+    "usage": "La réunion a lieu demain.",
+    "usage_en": "The meeting takes place tomorrow.",
+    "family": "everyday",
+    "pattern": "avoir lieu",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ],
+    "usages": [
+      {
+        "example_fr": "Les réunions ont eu lieu lundi.",
+        "example_en": "The meetings took place on Monday.",
+        "pattern": "avoir lieu + moment"
+      }
+    ]
+  },
+  {
+    "expression": "avoir mal",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "mal au dos",
+    "gloss": "to hurt; be in pain",
+    "complement": "à un endroit du corps",
+    "usage": "J'ai mal au dos.",
+    "usage_en": "My back hurts.",
+    "family": "everyday",
+    "pattern": "avoir mal à un endroit du corps"
+  },
+  {
+    "expression": "avoir du mal",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "du mal à faire quelque chose",
+    "gloss": "to have difficulty",
+    "complement": "à faire quelque chose",
+    "usage": "J'ai du mal à dormir.",
+    "usage_en": "I have trouble sleeping.",
+    "family": "everyday",
+    "pattern": "avoir du mal à faire quelque chose"
+  },
+  {
+    "expression": "avoir l'habitude",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "l'habitude de faire quelque chose",
+    "gloss": "to be used to",
+    "complement": "de faire quelque chose",
+    "usage": "J'ai l'habitude de marcher.",
+    "usage_en": "I'm used to walking.",
+    "family": "everyday",
+    "pattern": "avoir l'habitude de faire quelque chose"
+  },
+  {
+    "expression": "avoir l'intention",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "l'intention de faire quelque chose",
+    "gloss": "to intend",
+    "complement": "de faire quelque chose",
+    "usage": "J'ai l'intention de rester.",
+    "usage_en": "I intend to stay.",
+    "family": "everyday",
+    "pattern": "avoir l'intention de faire quelque chose"
+  },
+  {
+    "expression": "avoir l'occasion",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "l'occasion de faire quelque chose",
+    "gloss": "to have the opportunity",
+    "complement": "de faire quelque chose",
+    "usage": "J'ai l'occasion de voyager.",
+    "usage_en": "I have the opportunity to travel.",
+    "family": "everyday",
+    "pattern": "avoir l'occasion de faire quelque chose"
+  },
+  {
+    "expression": "avoir le temps",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "le temps de faire quelque chose",
+    "gloss": "to have time",
+    "complement": "de faire quelque chose",
+    "usage": "J'ai le temps de finir.",
+    "usage_en": "I have time to finish.",
+    "family": "everyday",
+    "pattern": "avoir le temps de faire quelque chose"
+  },
+  {
+    "expression": "avoir le droit",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "le droit de faire quelque chose",
+    "gloss": "to be allowed",
+    "complement": "de faire quelque chose",
+    "usage": "Tu as le droit de partir.",
+    "usage_en": "You're allowed to leave.",
+    "family": "everyday",
+    "pattern": "avoir le droit de faire quelque chose"
+  },
+  {
+    "expression": "avoir la chance",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "la chance de faire quelque chose",
+    "gloss": "to be lucky",
+    "complement": "de faire quelque chose",
+    "usage": "J'ai la chance de te connaître.",
+    "usage_en": "I'm lucky to know you.",
+    "family": "everyday",
+    "pattern": "avoir la chance de faire quelque chose"
+  },
+  {
+    "expression": "avoir de la chance",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "de la chance",
+    "gloss": "to be lucky",
+    "complement": "",
+    "usage": "Tu as de la chance.",
+    "usage_en": "You're lucky.",
+    "family": "everyday",
+    "pattern": "avoir de la chance"
+  },
+  {
+    "expression": "avoir l'air",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "l'air calme",
+    "gloss": "to seem; look",
+    "complement": "+ adjectif",
+    "usage": "Tu as l'air calme.",
+    "usage_en": "You look calm.",
+    "family": "everyday",
+    "pattern": "avoir l'air + adjectif"
+  },
+  {
+    "expression": "avoir hâte",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "hâte de faire quelque chose",
+    "gloss": "to look forward",
+    "complement": "de faire quelque chose",
+    "usage": "J'ai hâte de rentrer.",
+    "usage_en": "I can't wait to go home.",
+    "family": "everyday",
+    "pattern": "avoir hâte de faire quelque chose"
+  },
+  {
+    "expression": "avoir confiance",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "confiance en quelqu'un",
+    "gloss": "to trust",
+    "complement": "en quelqu'un",
+    "usage": "J'ai confiance en toi.",
+    "usage_en": "I trust you.",
+    "family": "everyday",
+    "pattern": "avoir confiance en quelqu'un"
+  },
+  {
+    "expression": "avoir conscience",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "conscience de quelque chose",
+    "gloss": "to be aware",
+    "complement": "de quelque chose",
+    "usage": "J'ai conscience du risque.",
+    "usage_en": "I'm aware of the risk.",
+    "family": "everyday",
+    "pattern": "avoir conscience de quelque chose"
+  },
+  {
+    "expression": "avoir le choix",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "le choix",
+    "gloss": "to have a choice",
+    "complement": "",
+    "usage": "Tu as le choix.",
+    "usage_en": "You have a choice.",
+    "family": "everyday",
+    "pattern": "avoir le choix"
+  },
+  {
+    "expression": "avoir une idée",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "une idée",
+    "gloss": "to have an idea",
+    "complement": "",
+    "usage": "J'ai une idée.",
+    "usage_en": "I have an idea.",
+    "family": "everyday",
+    "pattern": "avoir une idée"
+  },
+  {
+    "expression": "avoir vingt ans",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "vingt ans",
+    "gloss": "to be twenty years old",
+    "complement": "",
+    "usage": "J'ai vingt ans.",
+    "usage_en": "I'm twenty years old.",
+    "family": "everyday",
+    "hint": "Age construction: avoir + number + ans",
+    "pattern": "avoir + nombre + ans"
+  },
+  {
+    "expression": "faire attention",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "attention à quelque chose",
+    "gloss": "to pay attention",
+    "complement": "à quelque chose",
+    "usage": "Je fais attention au bruit.",
+    "usage_en": "I pay attention to the noise.",
+    "family": "everyday",
+    "pattern": "faire attention à quelque chose",
+    "usages": [
+      {
+        "example_fr": "Faites attention à ne pas glisser.",
+        "example_en": "Be careful not to slip.",
+        "pattern": "faire attention à ne pas faire quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "faire confiance",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "confiance à quelqu'un",
+    "gloss": "to trust",
+    "complement": "à quelqu'un",
+    "usage": "Je fais confiance à Léa.",
+    "usage_en": "I trust Léa.",
+    "family": "everyday",
+    "pattern": "faire confiance à quelqu'un",
+    "usages": [
+      {
+        "example_fr": "Nous lui faisons confiance.",
+        "example_en": "We trust her.",
+        "pattern": "faire confiance à quelqu'un → lui faire confiance"
+      }
+    ]
+  },
+  {
+    "expression": "faire partie",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "partie de quelque chose",
+    "gloss": "to be part",
+    "complement": "de quelque chose",
+    "usage": "Je fais partie du groupe.",
+    "usage_en": "I'm part of the group.",
+    "family": "everyday",
+    "pattern": "faire partie de quelque chose",
+    "usages": [
+      {
+        "example_fr": "Ces détails font partie du problème.",
+        "example_en": "These details are part of the problem.",
+        "pattern": "faire partie de quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "faire face",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "face à quelque chose",
+    "gloss": "to face; cope",
+    "complement": "à quelque chose",
+    "usage": "Nous faisons face au problème.",
+    "usage_en": "We're facing the problem.",
+    "family": "everyday",
+    "pattern": "faire face à quelque chose"
+  },
+  {
+    "expression": "faire semblant",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "semblant de faire quelque chose",
+    "gloss": "to pretend",
+    "complement": "de faire quelque chose",
+    "usage": "Il fait semblant de dormir.",
+    "usage_en": "He pretends to sleep.",
+    "family": "everyday",
+    "pattern": "faire semblant de faire quelque chose",
+    "usages": [
+      {
+        "example_fr": "Nous avons fait semblant de ne rien entendre.",
+        "example_en": "We pretended not to hear anything.",
+        "pattern": "faire semblant de faire quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "faire exprès",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "exprès",
+    "gloss": "to do something deliberately",
+    "complement": "",
+    "usage": "Tu fais exprès.",
+    "usage_en": "You're doing it deliberately.",
+    "family": "everyday",
+    "pattern": "faire exprès"
+  },
+  {
+    "expression": "faire la queue",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "la queue",
+    "gloss": "to queue; wait in line",
+    "complement": "",
+    "usage": "Nous faisons la queue.",
+    "usage_en": "We're waiting in line.",
+    "family": "everyday",
+    "pattern": "faire la queue"
+  },
+  {
+    "expression": "faire les courses",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "les courses",
+    "gloss": "to do the shopping",
+    "complement": "",
+    "usage": "Je fais les courses.",
+    "usage_en": "I'm doing the shopping.",
+    "family": "everyday",
+    "pattern": "faire les courses"
+  },
+  {
+    "expression": "faire le ménage",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "le ménage",
+    "gloss": "to do the housework",
+    "complement": "",
+    "usage": "Je fais le ménage.",
+    "usage_en": "I'm doing the housework.",
+    "family": "everyday",
+    "pattern": "faire le ménage"
+  },
+  {
+    "expression": "faire la cuisine",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "la cuisine",
+    "gloss": "to cook",
+    "complement": "",
+    "usage": "Je fais la cuisine.",
+    "usage_en": "I'm cooking.",
+    "family": "everyday",
+    "pattern": "faire la cuisine"
+  },
+  {
+    "expression": "faire la vaisselle",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "la vaisselle",
+    "gloss": "to wash the dishes",
+    "complement": "",
+    "usage": "Je fais la vaisselle.",
+    "usage_en": "I'm washing the dishes.",
+    "family": "everyday",
+    "pattern": "faire la vaisselle"
+  },
+  {
+    "expression": "faire une pause",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "une pause",
+    "gloss": "to take a break",
+    "complement": "",
+    "usage": "Je fais une pause.",
+    "usage_en": "I'm taking a break.",
+    "family": "everyday",
+    "pattern": "faire une pause"
+  },
+  {
+    "expression": "faire un effort",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "un effort",
+    "gloss": "to make an effort",
+    "complement": "",
+    "usage": "Tu fais un effort.",
+    "usage_en": "You're making an effort.",
+    "family": "everyday",
+    "pattern": "faire un effort"
+  },
+  {
+    "expression": "faire des progrès",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "des progrès",
+    "gloss": "to make progress",
+    "complement": "",
+    "usage": "Tu fais des progrès.",
+    "usage_en": "You're making progress.",
+    "family": "everyday",
+    "pattern": "faire des progrès"
+  },
+  {
+    "expression": "faire un choix",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "un choix",
+    "gloss": "to make a choice",
+    "complement": "",
+    "usage": "Je fais un choix.",
+    "usage_en": "I'm making a choice.",
+    "family": "everyday",
+    "pattern": "faire un choix"
+  },
+  {
+    "expression": "faire le point",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "le point",
+    "gloss": "to take stock",
+    "complement": "",
+    "usage": "Nous faisons le point.",
+    "usage_en": "We're taking stock.",
+    "family": "everyday",
+    "pattern": "faire le point"
+  },
+  {
+    "expression": "faire demi-tour",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "demi-tour",
+    "gloss": "to turn around",
+    "complement": "",
+    "usage": "Je fais demi-tour.",
+    "usage_en": "I'm turning around.",
+    "family": "everyday",
+    "pattern": "faire demi-tour"
+  },
+  {
+    "expression": "faire appel",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "appel à quelqu'un",
+    "gloss": "to call on; appeal",
+    "complement": "à quelqu'un",
+    "usage": "Nous faisons appel à un expert.",
+    "usage_en": "We're calling on an expert.",
+    "family": "everyday",
+    "pattern": "faire appel à quelqu'un"
+  },
+  {
+    "expression": "faire référence",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "référence à quelque chose",
+    "gloss": "to refer",
+    "complement": "à quelque chose",
+    "usage": "Je fais référence au texte.",
+    "usage_en": "I'm referring to the text.",
+    "family": "everyday",
+    "pattern": "faire référence à quelque chose"
+  },
+  {
+    "expression": "faire preuve",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "preuve de quelque chose",
+    "gloss": "to show; demonstrate",
+    "complement": "de quelque chose",
+    "usage": "Tu fais preuve de patience.",
+    "usage_en": "You're showing patience.",
+    "family": "everyday",
+    "pattern": "faire preuve de quelque chose"
+  },
+  {
+    "expression": "faire part",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "part de quelque chose à quelqu'un",
+    "gloss": "to inform; share",
+    "complement": "de quelque chose à quelqu'un",
+    "usage": "Je fais part de ma décision à Léa.",
+    "usage_en": "I tell Léa about my decision.",
+    "family": "everyday",
+    "pattern": "faire part de quelque chose à quelqu'un"
+  },
+  {
+    "expression": "faire signe",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "signe à quelqu'un",
+    "gloss": "to signal",
+    "complement": "à quelqu'un",
+    "usage": "Je fais signe à Léa.",
+    "usage_en": "I signal to Léa.",
+    "family": "everyday",
+    "pattern": "faire signe à quelqu'un"
+  },
+  {
+    "expression": "faire peur",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "peur à quelqu'un",
+    "gloss": "to frighten",
+    "complement": "à quelqu'un",
+    "usage": "Le bruit fait peur aux enfants.",
+    "usage_en": "The noise frightens the children.",
+    "family": "everyday",
+    "pattern": "faire peur à quelqu'un"
+  },
+  {
+    "expression": "faire plaisir",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "plaisir à quelqu'un",
+    "gloss": "to please",
+    "complement": "à quelqu'un",
+    "usage": "Ta visite fait plaisir à Léa.",
+    "usage_en": "Your visit makes Léa happy.",
+    "family": "everyday",
+    "pattern": "faire plaisir à quelqu'un"
+  },
+  {
+    "expression": "faire mal",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "mal à quelqu'un",
+    "gloss": "to hurt",
+    "complement": "à quelqu'un",
+    "usage": "Ces mots font mal.",
+    "usage_en": "These words hurt.",
+    "family": "everyday",
+    "pattern": "faire mal à quelqu'un"
+  },
+  {
+    "expression": "faire du bien",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "du bien à quelqu'un",
+    "gloss": "to do good; help someone feel better",
+    "complement": "à quelqu'un",
+    "usage": "Le repos fait du bien.",
+    "usage_en": "Rest helps you feel better.",
+    "family": "everyday",
+    "pattern": "faire du bien à quelqu'un"
+  },
+  {
+    "expression": "faire la connaissance",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "la connaissance de quelqu'un",
+    "gloss": "to meet for the first time",
+    "complement": "de quelqu'un",
+    "usage": "Je fais la connaissance de Léa.",
+    "usage_en": "I'm meeting Léa for the first time.",
+    "family": "everyday",
+    "pattern": "faire la connaissance de quelqu'un"
+  },
+  {
+    "expression": "faire la différence",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "la différence",
+    "gloss": "to make a difference",
+    "complement": "",
+    "usage": "Ton aide fait la différence.",
+    "usage_en": "Your help makes a difference.",
+    "family": "everyday",
+    "pattern": "faire la différence"
+  },
+  {
+    "expression": "faire une promenade",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "une promenade",
+    "gloss": "to go for a walk",
+    "complement": "",
+    "usage": "Je fais une promenade.",
+    "usage_en": "I'm going for a walk.",
+    "family": "everyday",
+    "pattern": "faire une promenade"
+  },
+  {
+    "expression": "prendre soin",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "soin de quelqu'un",
+    "gloss": "to take care",
+    "complement": "de quelqu'un",
+    "usage": "Je prends soin de ma sœur.",
+    "usage_en": "I take care of my sister.",
+    "family": "everyday",
+    "pattern": "prendre soin de quelqu'un",
+    "usages": [
+      {
+        "example_fr": "Elle prend soin de ses affaires.",
+        "example_en": "She takes care of her belongings.",
+        "pattern": "prendre soin de quelque chose"
+      }
+    ]
+  },
+  {
+    "expression": "prendre conscience",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "conscience de quelque chose",
+    "gloss": "to become aware",
+    "complement": "de quelque chose",
+    "usage": "Je prends conscience du danger.",
+    "usage_en": "I'm becoming aware of the danger.",
+    "family": "everyday",
+    "pattern": "prendre conscience de quelque chose"
+  },
+  {
+    "expression": "prendre connaissance",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "connaissance de quelque chose",
+    "gloss": "to read; acquaint oneself",
+    "complement": "de quelque chose",
+    "usage": "Je prends connaissance du dossier.",
+    "usage_en": "I'm reading through the file.",
+    "family": "everyday",
+    "pattern": "prendre connaissance de quelque chose"
+  },
+  {
+    "expression": "prendre part",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "part à quelque chose",
+    "gloss": "to take part",
+    "complement": "à quelque chose",
+    "usage": "Je prends part au débat.",
+    "usage_en": "I'm taking part in the debate.",
+    "family": "everyday",
+    "pattern": "prendre part à quelque chose"
+  },
+  {
+    "expression": "prendre une décision",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "une décision",
+    "gloss": "to make a decision",
+    "complement": "",
+    "usage": "Je prends une décision.",
+    "usage_en": "I'm making a decision.",
+    "family": "everyday",
+    "pattern": "prendre une décision",
+    "usages": [
+      {
+        "example_fr": "Nous avons pris une décision ensemble.",
+        "example_en": "We made a decision together.",
+        "pattern": "prendre une décision"
+      }
+    ]
+  },
+  {
+    "expression": "prendre rendez-vous",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "rendez-vous",
+    "gloss": "to make an appointment",
+    "complement": "",
+    "usage": "Je prends rendez-vous.",
+    "usage_en": "I'm making an appointment.",
+    "family": "everyday",
+    "pattern": "prendre rendez-vous"
+  },
+  {
+    "expression": "prendre contact",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "contact avec quelqu'un",
+    "gloss": "to get in touch",
+    "complement": "avec quelqu'un",
+    "usage": "Je prends contact avec Léa.",
+    "usage_en": "I'm getting in touch with Léa.",
+    "family": "everyday",
+    "pattern": "prendre contact avec quelqu'un"
+  },
+  {
+    "expression": "prendre place",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "place",
+    "gloss": "to take a seat",
+    "complement": "",
+    "usage": "Je prends place près de la fenêtre.",
+    "usage_en": "I take a seat near the window.",
+    "family": "everyday",
+    "pattern": "prendre place"
+  },
+  {
+    "expression": "prendre le temps",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "le temps de faire quelque chose",
+    "gloss": "to take the time",
+    "complement": "de faire quelque chose",
+    "usage": "Je prends le temps de lire.",
+    "usage_en": "I take the time to read.",
+    "family": "everyday",
+    "pattern": "prendre le temps de faire quelque chose"
+  },
+  {
+    "expression": "prendre l'habitude",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "l'habitude de faire quelque chose",
+    "gloss": "to get into the habit",
+    "complement": "de faire quelque chose",
+    "usage": "Je prends l'habitude de marcher.",
+    "usage_en": "I'm getting into the habit of walking.",
+    "family": "everyday",
+    "pattern": "prendre l'habitude de faire quelque chose"
+  },
+  {
+    "expression": "prendre quelque chose au sérieux",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "quelque chose au sérieux",
+    "gloss": "to take seriously",
+    "complement": "quelque chose",
+    "usage": "Je prends ce problème au sérieux.",
+    "usage_en": "I take this problem seriously.",
+    "family": "everyday",
+    "pattern": "prendre quelque chose au sérieux"
+  },
+  {
+    "expression": "prendre quelque chose en compte",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "quelque chose en compte",
+    "gloss": "to take into account",
+    "complement": "quelque chose",
+    "usage": "Je prends ton avis en compte.",
+    "usage_en": "I take your opinion into account.",
+    "family": "everyday",
+    "pattern": "prendre quelque chose en compte"
+  },
+  {
+    "expression": "prendre quelque chose en charge",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "quelque chose en charge",
+    "gloss": "to take responsibility for",
+    "complement": "quelque chose",
+    "usage": "Je prends le dossier en charge.",
+    "usage_en": "I'm taking responsibility for the file.",
+    "family": "everyday",
+    "pattern": "prendre quelque chose en charge"
+  },
+  {
+    "expression": "prendre des nouvelles",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "des nouvelles de quelqu'un",
+    "gloss": "to ask how someone is",
+    "complement": "de quelqu'un",
+    "usage": "Je prends des nouvelles de Léa.",
+    "usage_en": "I ask how Léa is doing.",
+    "family": "everyday",
+    "pattern": "prendre des nouvelles de quelqu'un"
+  },
+  {
+    "expression": "prendre la parole",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "la parole",
+    "gloss": "to speak; take the floor",
+    "complement": "",
+    "usage": "Je prends la parole.",
+    "usage_en": "I take the floor.",
+    "family": "everyday",
+    "pattern": "prendre la parole"
+  },
+  {
+    "expression": "prendre une douche",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "une douche",
+    "gloss": "to take a shower",
+    "complement": "",
+    "usage": "Je prends une douche.",
+    "usage_en": "I'm taking a shower.",
+    "family": "everyday",
+    "pattern": "prendre une douche"
+  },
+  {
+    "expression": "prendre un risque",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "un risque",
+    "gloss": "to take a risk",
+    "complement": "",
+    "usage": "Je prends un risque.",
+    "usage_en": "I'm taking a risk.",
+    "family": "everyday",
+    "pattern": "prendre un risque"
+  },
+  {
+    "expression": "prendre froid",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "froid",
+    "gloss": "to catch a chill",
+    "complement": "",
+    "usage": "Tu prends froid.",
+    "usage_en": "You're catching a chill.",
+    "family": "everyday",
+    "pattern": "prendre froid"
+  },
+  {
+    "expression": "mettre fin",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "fin à quelque chose",
+    "gloss": "to put an end",
+    "complement": "à quelque chose",
+    "usage": "Je mets fin au débat.",
+    "usage_en": "I put an end to the debate.",
+    "family": "everyday",
+    "pattern": "mettre fin à quelque chose"
+  },
+  {
+    "expression": "mettre quelque chose en place",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "quelque chose en place",
+    "gloss": "to put in place; set up",
+    "complement": "quelque chose",
+    "usage": "Je mets un système en place.",
+    "usage_en": "I'm setting up a system.",
+    "family": "everyday",
+    "pattern": "mettre quelque chose en place"
+  },
+  {
+    "expression": "mettre quelque chose en œuvre",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "quelque chose en œuvre",
+    "gloss": "to implement",
+    "complement": "quelque chose",
+    "usage": "Nous mettons le plan en œuvre.",
+    "usage_en": "We're implementing the plan.",
+    "family": "everyday",
+    "pattern": "mettre quelque chose en œuvre"
+  },
+  {
+    "expression": "mettre quelque chose au point",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "quelque chose au point",
+    "gloss": "to develop; work out",
+    "complement": "quelque chose",
+    "usage": "Je mets une méthode au point.",
+    "usage_en": "I'm developing a method.",
+    "family": "everyday",
+    "pattern": "mettre quelque chose au point"
+  },
+  {
+    "expression": "mettre quelque chose à jour",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "quelque chose à jour",
+    "gloss": "to update",
+    "complement": "quelque chose",
+    "usage": "Je mets le dossier à jour.",
+    "usage_en": "I'm updating the file.",
+    "family": "everyday",
+    "pattern": "mettre quelque chose à jour"
+  },
+  {
+    "expression": "mettre quelque chose en doute",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "quelque chose en doute",
+    "gloss": "to question; doubt",
+    "complement": "quelque chose",
+    "usage": "Je mets cette version en doute.",
+    "usage_en": "I question this version.",
+    "family": "everyday",
+    "pattern": "mettre quelque chose en doute"
+  },
+  {
+    "expression": "mettre quelque chose de côté",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "quelque chose de côté",
+    "gloss": "to set aside",
+    "complement": "quelque chose",
+    "usage": "Je mets de l'argent de côté.",
+    "usage_en": "I'm saving money.",
+    "family": "everyday",
+    "pattern": "mettre quelque chose de côté"
+  },
+  {
+    "expression": "mettre quelque chose en valeur",
+    "base": "mettre",
+    "kind": "plain",
+    "tail": "quelque chose en valeur",
+    "gloss": "to highlight; enhance",
+    "complement": "quelque chose",
+    "usage": "Cette lumière met le tableau en valeur.",
+    "usage_en": "This lighting enhances the painting.",
+    "family": "everyday",
+    "pattern": "mettre quelque chose en valeur"
+  },
+  {
+    "expression": "donner lieu",
+    "base": "donner",
+    "kind": "plain",
+    "tail": "lieu à quelque chose",
+    "gloss": "to give rise",
+    "complement": "à quelque chose",
+    "usage": "La décision donne lieu à un débat.",
+    "usage_en": "The decision gives rise to a debate.",
+    "family": "everyday",
+    "pattern": "donner lieu à quelque chose"
+  },
+  {
+    "expression": "donner raison",
+    "base": "donner",
+    "kind": "plain",
+    "tail": "raison à quelqu'un",
+    "gloss": "to agree with; prove right",
+    "complement": "à quelqu'un",
+    "usage": "Je donne raison à Léa.",
+    "usage_en": "I agree with Léa.",
+    "family": "everyday",
+    "pattern": "donner raison à quelqu'un"
+  },
+  {
+    "expression": "donner tort",
+    "base": "donner",
+    "kind": "plain",
+    "tail": "tort à quelqu'un",
+    "gloss": "to rule against; prove wrong",
+    "complement": "à quelqu'un",
+    "usage": "Les faits donnent tort à Léa.",
+    "usage_en": "The facts prove Léa wrong.",
+    "family": "everyday",
+    "pattern": "donner tort à quelqu'un"
+  },
+  {
+    "expression": "donner un coup de main",
+    "base": "donner",
+    "kind": "plain",
+    "tail": "un coup de main à quelqu'un",
+    "gloss": "to lend a hand",
+    "complement": "à quelqu'un",
+    "usage": "Je donne un coup de main à Léa.",
+    "usage_en": "I'm giving Léa a hand.",
+    "family": "everyday",
+    "pattern": "donner un coup de main à quelqu'un"
+  },
+  {
+    "expression": "donner rendez-vous",
+    "base": "donner",
+    "kind": "plain",
+    "tail": "rendez-vous à quelqu'un",
+    "gloss": "to arrange to meet",
+    "complement": "à quelqu'un",
+    "usage": "Je donne rendez-vous à Léa.",
+    "usage_en": "I arrange to meet Léa.",
+    "family": "everyday",
+    "pattern": "donner rendez-vous à quelqu'un"
+  },
+  {
+    "expression": "donner l'impression",
+    "base": "donner",
+    "kind": "plain",
+    "tail": "l'impression de faire quelque chose",
+    "gloss": "to give the impression",
+    "complement": "de faire quelque chose",
+    "usage": "Il donne l'impression de dormir.",
+    "usage_en": "He gives the impression of sleeping.",
+    "family": "everyday",
+    "pattern": "donner l'impression de faire quelque chose"
+  },
+  {
+    "expression": "rendre service",
+    "base": "rendre",
+    "kind": "plain",
+    "tail": "service à quelqu'un",
+    "gloss": "to do a favour",
+    "complement": "à quelqu'un",
+    "usage": "Je rends service à Léa.",
+    "usage_en": "I'm doing Léa a favour.",
+    "family": "everyday",
+    "pattern": "rendre service à quelqu'un"
+  },
+  {
+    "expression": "rendre visite",
+    "base": "rendre",
+    "kind": "plain",
+    "tail": "visite à quelqu'un",
+    "gloss": "to visit",
+    "complement": "à quelqu'un",
+    "usage": "Je rends visite à Léa.",
+    "usage_en": "I'm visiting Léa.",
+    "family": "everyday",
+    "pattern": "rendre visite à quelqu'un"
+  },
+  {
+    "expression": "rendre hommage",
+    "base": "rendre",
+    "kind": "plain",
+    "tail": "hommage à quelqu'un",
+    "gloss": "to pay tribute",
+    "complement": "à quelqu'un",
+    "usage": "Nous rendons hommage à Léa.",
+    "usage_en": "We're paying tribute to Léa.",
+    "family": "everyday",
+    "pattern": "rendre hommage à quelqu'un"
+  },
+  {
+    "expression": "tenir compte",
+    "base": "tenir",
+    "kind": "plain",
+    "tail": "compte de quelque chose",
+    "gloss": "to take into account",
+    "complement": "de quelque chose",
+    "usage": "Je tiens compte de ton avis.",
+    "usage_en": "I take your opinion into account.",
+    "family": "everyday",
+    "pattern": "tenir compte de quelque chose",
+    "usages": [
+      {
+        "example_fr": "Il faut en tenir compte.",
+        "example_en": "It must be taken into account.",
+        "pattern": "tenir compte de quelque chose → en tenir compte"
+      }
+    ]
+  },
+  {
+    "expression": "tenir parole",
+    "base": "tenir",
+    "kind": "plain",
+    "tail": "parole",
+    "gloss": "to keep one's word",
+    "complement": "",
+    "usage": "Je tiens parole.",
+    "usage_en": "I keep my word.",
+    "family": "everyday",
+    "pattern": "tenir parole"
+  },
+  {
+    "expression": "tenir compagnie",
+    "base": "tenir",
+    "kind": "plain",
+    "tail": "compagnie à quelqu'un",
+    "gloss": "to keep company",
+    "complement": "à quelqu'un",
+    "usage": "Je tiens compagnie à Léa.",
+    "usage_en": "I'm keeping Léa company.",
+    "family": "everyday",
+    "pattern": "tenir compagnie à quelqu'un"
+  },
+  {
+    "expression": "tenir quelqu'un au courant",
+    "base": "tenir",
+    "kind": "plain",
+    "tail": "quelqu'un au courant",
+    "gloss": "to keep informed",
+    "complement": "quelqu'un au courant",
+    "usage": "Je tiens Léa au courant.",
+    "usage_en": "I keep Léa informed.",
+    "family": "everyday",
+    "pattern": "tenir quelqu'un au courant"
+  },
+  {
+    "expression": "porter plainte",
+    "base": "porter",
+    "kind": "plain",
+    "tail": "plainte",
+    "gloss": "to file a complaint",
+    "complement": "",
+    "usage": "Je porte plainte.",
+    "usage_en": "I'm filing a complaint.",
+    "family": "everyday",
+    "pattern": "porter plainte"
+  },
+  {
+    "expression": "porter secours",
+    "base": "porter",
+    "kind": "plain",
+    "tail": "secours à quelqu'un",
+    "gloss": "to come to the aid",
+    "complement": "à quelqu'un",
+    "usage": "Je porte secours à Léa.",
+    "usage_en": "I come to Léa's aid.",
+    "family": "everyday",
+    "pattern": "porter secours à quelqu'un"
+  },
+  {
+    "expression": "porter atteinte",
+    "base": "porter",
+    "kind": "plain",
+    "tail": "atteinte à quelque chose",
+    "gloss": "to undermine; harm",
+    "complement": "à quelque chose",
+    "usage": "Cette mesure porte atteinte à nos droits.",
+    "usage_en": "This measure undermines our rights.",
+    "family": "everyday",
+    "pattern": "porter atteinte à quelque chose"
+  },
+  {
+    "expression": "perdre patience",
+    "base": "perdre",
+    "kind": "plain",
+    "tail": "patience",
+    "gloss": "to lose patience",
+    "complement": "",
+    "usage": "Je perds patience.",
+    "usage_en": "I'm losing patience.",
+    "family": "everyday",
+    "pattern": "perdre patience"
+  },
+  {
+    "expression": "perdre connaissance",
+    "base": "perdre",
+    "kind": "plain",
+    "tail": "connaissance",
+    "gloss": "to lose consciousness",
+    "complement": "",
+    "usage": "Il perd connaissance.",
+    "usage_en": "He loses consciousness.",
+    "family": "everyday",
+    "pattern": "perdre connaissance"
+  },
+  {
+    "expression": "perdre quelqu'un de vue",
+    "base": "perdre",
+    "kind": "plain",
+    "tail": "quelqu'un de vue",
+    "gloss": "to lose sight",
+    "complement": "quelqu'un",
+    "usage": "Je perds Léa de vue.",
+    "usage_en": "I lose sight of Léa.",
+    "family": "everyday",
+    "pattern": "perdre quelqu'un de vue"
+  },
+  {
+    "expression": "garder le silence",
+    "base": "garder",
+    "kind": "plain",
+    "tail": "le silence",
+    "gloss": "to remain silent",
+    "complement": "",
+    "usage": "Je garde le silence.",
+    "usage_en": "I remain silent.",
+    "family": "everyday",
+    "pattern": "garder le silence"
+  },
+  {
+    "expression": "garder contact",
+    "base": "garder",
+    "kind": "plain",
+    "tail": "contact avec quelqu'un",
+    "gloss": "to keep in touch",
+    "complement": "avec quelqu'un",
+    "usage": "Je garde contact avec Léa.",
+    "usage_en": "I keep in touch with Léa.",
+    "family": "everyday",
+    "pattern": "garder contact avec quelqu'un"
+  },
+  {
+    "expression": "passer du temps",
+    "base": "passer",
+    "kind": "plain",
+    "tail": "du temps à faire quelque chose",
+    "gloss": "to spend time",
+    "complement": "à faire quelque chose",
+    "usage": "Je passe du temps à lire.",
+    "usage_en": "I spend time reading.",
+    "family": "everyday",
+    "pattern": "passer du temps à faire quelque chose",
+    "auxiliary": "avoir"
+  },
+  {
+    "expression": "passer un examen",
+    "base": "passer",
+    "kind": "plain",
+    "tail": "un examen",
+    "gloss": "to take an exam",
+    "complement": "",
+    "usage": "Je passe un examen.",
+    "usage_en": "I'm taking an exam.",
+    "family": "everyday",
+    "pattern": "passer un examen",
+    "auxiliary": "avoir",
+    "usages": [
+      {
+        "example_fr": "Elle a passé son examen hier.",
+        "example_en": "She took her exam yesterday.",
+        "pattern": "passer un examen"
+      }
+    ]
+  },
+  {
+    "expression": "passer un coup de fil",
+    "base": "passer",
+    "kind": "plain",
+    "tail": "un coup de fil à quelqu'un",
+    "gloss": "to make a phone call",
+    "complement": "à quelqu'un",
+    "usage": "Je passe un coup de fil à Léa.",
+    "usage_en": "I phone Léa.",
+    "family": "everyday",
+    "pattern": "passer un coup de fil à quelqu'un",
+    "auxiliary": "avoir"
+  },
+  {
+    "expression": "valoir la peine",
+    "base": "valoir",
+    "kind": "plain",
+    "tail": "la peine",
+    "gloss": "to be worth the effort",
+    "complement": "",
+    "usage": "Ce livre vaut la peine d'être lu.",
+    "usage_en": "This book is worth reading.",
+    "family": "everyday",
+    "pattern": "valoir la peine",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  },
+  {
+    "expression": "valoir le coup",
+    "base": "valoir",
+    "kind": "plain",
+    "tail": "le coup",
+    "gloss": "to be worth it",
+    "complement": "",
+    "usage": "Ce voyage vaut le coup.",
+    "usage_en": "This trip is worth it.",
+    "family": "everyday",
+    "pattern": "valoir le coup",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  },
+  {
+    "expression": "se rendre compte",
+    "base": "rendre",
+    "kind": "reflexive",
+    "tail": "compte de quelque chose",
+    "agree": false,
+    "gloss": "to realize",
+    "complement": "de quelque chose",
+    "pattern": "se rendre compte de quelque chose",
+    "usage": "Je me rends compte de mon erreur.",
+    "usage_en": "I realize my mistake.",
+    "family": "everyday",
+    "usages": [
+      {
+        "example_fr": "Elle s'est rendu compte qu'elle avait oublié ses clés.",
+        "example_en": "She realized that she had forgotten her keys.",
+        "pattern": "se rendre compte que + proposition"
+      }
+    ]
+  },
+  {
+    "expression": "s'y prendre",
+    "base": "prendre",
+    "kind": "reflexive_y",
+    "gloss": "to go about it",
+    "usage": "Je m'y prends autrement.",
+    "usage_en": "I go about it differently.",
+    "family": "pronoun",
+    "usages": [
+      {
+        "example_fr": "Elles s'y sont prises trop tard.",
+        "example_en": "They went about it too late.",
+        "pattern": "s'y prendre + manière ou moment"
+      }
+    ]
+  },
+  {
+    "expression": "être en train de lire",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en train de lire",
+    "gloss": "to be reading; be in the process of reading",
+    "pattern": "être en train de lire",
+    "usage": "Je suis en train de lire.",
+    "usage_en": "I'm reading.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être sur le point de partir",
+    "base": "être",
+    "kind": "plain",
+    "tail": "sur le point de partir",
+    "gloss": "to be about to leave",
+    "pattern": "être sur le point de partir",
+    "usage": "Je suis sur le point de partir.",
+    "usage_en": "I'm about to leave.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être en retard",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en retard",
+    "gloss": "to be late",
+    "pattern": "être en retard",
+    "usage": "Je suis en retard.",
+    "usage_en": "I'm late.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être en avance",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en avance",
+    "gloss": "to be early",
+    "pattern": "être en avance",
+    "usage": "Je suis en avance.",
+    "usage_en": "I'm early.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être à l'heure",
+    "base": "être",
+    "kind": "plain",
+    "tail": "à l'heure",
+    "gloss": "to be on time",
+    "pattern": "être à l'heure",
+    "usage": "Je suis à l'heure.",
+    "usage_en": "I'm on time.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être d'accord",
+    "base": "être",
+    "kind": "plain",
+    "tail": "d'accord",
+    "gloss": "to agree",
+    "pattern": "être d'accord",
+    "usage": "Je suis d'accord.",
+    "usage_en": "I agree.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être au courant",
+    "base": "être",
+    "kind": "plain",
+    "tail": "au courant",
+    "gloss": "to be aware; know about it",
+    "pattern": "être au courant",
+    "usage": "Je suis au courant.",
+    "usage_en": "I know about it.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être en mesure de répondre",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en mesure de répondre",
+    "gloss": "to be able to respond",
+    "pattern": "être en mesure de répondre",
+    "usage": "Je suis en mesure de répondre.",
+    "usage_en": "I'm able to respond.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être à l'aise",
+    "base": "être",
+    "kind": "plain",
+    "tail": "à l'aise",
+    "gloss": "to feel comfortable",
+    "pattern": "être à l'aise",
+    "usage": "Je suis à l'aise.",
+    "usage_en": "I feel comfortable.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être en panne",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en panne",
+    "gloss": "to be broken down",
+    "pattern": "être en panne",
+    "usage": "La voiture est en panne.",
+    "usage_en": "The car has broken down.",
+    "family": "everyday",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  },
+  {
+    "expression": "être en colère",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en colère",
+    "gloss": "to be angry",
+    "pattern": "être en colère",
+    "usage": "Je suis en colère.",
+    "usage_en": "I'm angry.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être de retour",
+    "base": "être",
+    "kind": "plain",
+    "tail": "de retour",
+    "gloss": "to be back",
+    "pattern": "être de retour",
+    "usage": "Je suis de retour.",
+    "usage_en": "I'm back.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être en congé",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en congé",
+    "gloss": "to be on leave",
+    "pattern": "être en congé",
+    "usage": "Je suis en congé.",
+    "usage_en": "I'm on leave.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être à court d'argent",
+    "base": "être",
+    "kind": "plain",
+    "tail": "à court d'argent",
+    "gloss": "to be short of money",
+    "pattern": "être à court d'argent",
+    "usage": "Je suis à court d'argent.",
+    "usage_en": "I'm short of money.",
+    "family": "everyday"
+  },
+  {
+    "expression": "être en route",
+    "base": "être",
+    "kind": "plain",
+    "tail": "en route",
+    "gloss": "to be on the way",
+    "pattern": "être en route",
+    "usage": "Je suis en route.",
+    "usage_en": "I'm on the way.",
+    "family": "everyday"
+  },
+  {
+    "expression": "se donner la peine",
+    "base": "donner",
+    "kind": "reflexive",
+    "tail": "la peine de répondre",
+    "gloss": "to take the trouble",
+    "pattern": "se donner la peine",
+    "usage": "Je me donne la peine de répondre.",
+    "usage_en": "I take the trouble to answer.",
+    "agree": false,
+    "family": "everyday"
+  },
+  {
+    "expression": "se faire du souci",
+    "base": "faire",
+    "kind": "reflexive",
+    "tail": "du souci",
+    "gloss": "to worry",
+    "pattern": "se faire du souci",
+    "usage": "Je me fais du souci.",
+    "usage_en": "I worry.",
+    "agree": false,
+    "family": "everyday"
+  },
+  {
+    "expression": "se faire mal",
+    "base": "faire",
+    "kind": "reflexive",
+    "tail": "mal",
+    "gloss": "to hurt oneself or one another",
+    "pattern": "se faire mal",
+    "usage": "Je me fais mal.",
+    "usage_en": "I hurt myself.",
+    "agree": false,
+    "family": "everyday",
+    "gloss_by_subject": {
+      "je": "to hurt oneself",
+      "tu": "to hurt oneself",
+      "il": "to hurt oneself",
+      "elle": "to hurt oneself"
+    }
+  },
+  {
+    "expression": "se mettre en colère",
+    "base": "mettre",
+    "kind": "reflexive",
+    "tail": "en colère",
+    "gloss": "to get angry",
+    "pattern": "se mettre en colère",
+    "usage": "Je me mets en colère.",
+    "usage_en": "I get angry.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se mettre d'accord",
+    "base": "mettre",
+    "kind": "reflexive",
+    "tail": "d'accord",
+    "gloss": "to agree with someone; reach an agreement",
+    "pattern": "se mettre d'accord",
+    "usage": "Nous nous mettons d'accord.",
+    "usage_en": "We reach an agreement.",
+    "agree": true,
+    "family": "everyday",
+    "usages": [
+      {
+        "pattern": "se mettre d'accord avec quelqu'un",
+        "meaning_en": "to reach an agreement with someone",
+        "example_fr": "Je me mets d'accord avec elle sur la date.",
+        "example_en": "I reach an agreement with her on the date."
+      }
+    ]
+  },
+  {
+    "expression": "se mettre à lire",
+    "base": "mettre",
+    "kind": "reflexive",
+    "tail": "à lire",
+    "gloss": "to start reading",
+    "pattern": "se mettre à lire",
+    "usage": "Je me mets à lire.",
+    "usage_en": "I start reading.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se mettre au travail",
+    "base": "mettre",
+    "kind": "reflexive",
+    "tail": "au travail",
+    "gloss": "to get to work",
+    "pattern": "se mettre au travail",
+    "usage": "Je me mets au travail.",
+    "usage_en": "I get to work.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se mettre à la place de quelqu'un",
+    "base": "mettre",
+    "kind": "reflexive",
+    "tail": "à la place de quelqu'un",
+    "gloss": "to put oneself in someone's place",
+    "pattern": "se mettre à la place de quelqu'un",
+    "usage": "Je me mets à ta place.",
+    "usage_en": "I put myself in your place.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se poser une question",
+    "base": "poser",
+    "kind": "reflexive",
+    "tail": "une question",
+    "gloss": "to ask oneself or one another a question",
+    "pattern": "se poser une question",
+    "usage": "Je me pose une question.",
+    "usage_en": "I ask myself a question.",
+    "agree": false,
+    "family": "everyday",
+    "gloss_by_subject": {
+      "je": "to wonder; ask oneself a question",
+      "tu": "to wonder; ask oneself a question",
+      "il": "to wonder; ask oneself a question",
+      "elle": "to wonder; ask oneself a question"
+    }
+  },
+  {
+    "expression": "se passer de quelque chose",
+    "base": "passer",
+    "kind": "reflexive",
+    "tail": "de quelque chose",
+    "gloss": "to do without something",
+    "pattern": "se passer de quelque chose",
+    "usage": "Je me passe de sucre.",
+    "usage_en": "I do without sugar.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se servir de quelque chose",
+    "base": "servir",
+    "kind": "reflexive",
+    "tail": "de quelque chose",
+    "gloss": "to use something",
+    "pattern": "se servir de quelque chose",
+    "usage": "Je me sers de cet outil.",
+    "usage_en": "I use this tool.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se tromper de chemin",
+    "base": "tromper",
+    "kind": "reflexive",
+    "tail": "de chemin",
+    "gloss": "to take the wrong way",
+    "pattern": "se tromper de chemin",
+    "usage": "Je me trompe de chemin.",
+    "usage_en": "I take the wrong way.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se faire des idées",
+    "base": "faire",
+    "kind": "reflexive",
+    "tail": "des idées",
+    "gloss": "to imagine things",
+    "pattern": "se faire des idées",
+    "usage": "Tu te fais des idées.",
+    "usage_en": "You're imagining things.",
+    "agree": false,
+    "family": "everyday"
+  },
+  {
+    "expression": "se faire plaisir",
+    "base": "faire",
+    "kind": "reflexive",
+    "tail": "plaisir",
+    "gloss": "to treat oneself",
+    "pattern": "se faire plaisir",
+    "usage": "Je me fais plaisir.",
+    "usage_en": "I treat myself.",
+    "agree": false,
+    "family": "everyday"
+  },
+  {
+    "expression": "se rendre à un endroit",
+    "base": "rendre",
+    "kind": "reflexive",
+    "tail": "à un endroit",
+    "gloss": "to go to a place",
+    "pattern": "se rendre à un endroit",
+    "usage": "Je me rends au bureau.",
+    "usage_en": "I go to the office.",
+    "agree": true,
+    "family": "everyday"
+  },
+  {
+    "expression": "se rendre service",
+    "base": "rendre",
+    "kind": "reflexive",
+    "tail": "service",
+    "gloss": "to do oneself or one another a favour",
+    "pattern": "se rendre service",
+    "usage": "Nous nous rendons service.",
+    "usage_en": "We help each other.",
+    "agree": false,
+    "family": "everyday",
+    "gloss_by_subject": {
+      "je": "to do oneself a favour",
+      "tu": "to do oneself a favour",
+      "il": "to do oneself a favour",
+      "elle": "to do oneself a favour"
+    },
+    "usages": [
+      {
+        "pattern": "se rendre service",
+        "meaning_en": "to do oneself a favour",
+        "example_fr": "En prenant une pause, elle se rend service.",
+        "example_en": "By taking a break, she is doing herself a favour."
+      }
+    ]
+  },
+  {
+    "expression": "s'y connaître",
+    "base": "connaître",
+    "kind": "reflexive_y",
+    "gloss": "to know about it",
+    "usage": "Je m'y connais en cuisine.",
+    "usage_en": "I know about cooking.",
+    "family": "pronoun"
+  },
+  {
+    "expression": "s'y retrouver",
+    "base": "retrouver",
+    "kind": "reflexive_y",
+    "gloss": "to find one's way; make sense of it",
+    "usage": "Je m'y retrouve maintenant.",
+    "usage_en": "I can find my way now.",
+    "family": "pronoun"
+  },
+  {
+    "expression": "s'y faire",
+    "base": "faire",
+    "kind": "reflexive_y",
+    "gloss": "to get used to it",
+    "usage": "Je m'y fais peu à peu.",
+    "usage_en": "I'm getting used to it gradually.",
+    "family": "pronoun"
+  },
+  {
+    "expression": "s'y mettre",
+    "base": "mettre",
+    "kind": "reflexive_y",
+    "gloss": "to get started on it",
+    "usage": "Je m'y mets demain.",
+    "usage_en": "I'll get started on it tomorrow.",
+    "family": "pronoun"
+  },
+  {
+    "expression": "avoir beau essayer",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "beau essayer",
+    "gloss": "to try in vain",
+    "pattern": "avoir beau essayer",
+    "usage": "J'ai beau essayer, rien ne change.",
+    "usage_en": "I keep trying, but nothing changes.",
+    "family": "everyday"
+  },
+  {
+    "expression": "avoir affaire à quelqu'un",
+    "base": "avoir",
+    "kind": "plain",
+    "tail": "affaire à quelqu'un",
+    "gloss": "to be dealing with someone",
+    "pattern": "avoir affaire à quelqu'un",
+    "usage": "J'ai affaire à un expert.",
+    "usage_en": "I'm dealing with an expert.",
+    "family": "everyday"
+  },
+  {
+    "expression": "faire le nécessaire",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "le nécessaire",
+    "gloss": "to do what is needed",
+    "pattern": "faire le nécessaire",
+    "usage": "Je fais le nécessaire.",
+    "usage_en": "I do what is needed.",
+    "family": "everyday"
+  },
+  {
+    "expression": "faire le tour",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "le tour de quelque chose",
+    "gloss": "to go around; review",
+    "pattern": "faire le tour",
+    "usage": "Je fais le tour du quartier.",
+    "usage_en": "I go around the neighbourhood.",
+    "family": "everyday"
+  },
+  {
+    "expression": "faire défaut",
+    "base": "faire",
+    "kind": "plain",
+    "tail": "défaut",
+    "gloss": "to be lacking",
+    "pattern": "faire défaut",
+    "usage": "Le temps fait défaut.",
+    "usage_en": "Time is lacking.",
+    "family": "everyday",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  },
+  {
+    "expression": "prendre fin",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "fin",
+    "gloss": "to end",
+    "pattern": "prendre fin",
+    "usage": "La réunion prend fin.",
+    "usage_en": "The meeting ends.",
+    "family": "everyday",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  },
+  {
+    "expression": "prendre effet",
+    "base": "prendre",
+    "kind": "plain",
+    "tail": "effet",
+    "gloss": "to take effect",
+    "pattern": "prendre effet",
+    "usage": "La décision prend effet demain.",
+    "usage_en": "The decision takes effect tomorrow.",
+    "family": "everyday",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  },
+  {
+    "expression": "tomber en panne",
+    "base": "tomber",
+    "kind": "plain",
+    "tail": "en panne",
+    "gloss": "to break down",
+    "pattern": "tomber en panne",
+    "usage": "La voiture tombe en panne.",
+    "usage_en": "The car breaks down.",
+    "family": "everyday",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  },
+  {
+    "expression": "tomber malade",
+    "base": "tomber",
+    "kind": "plain",
+    "tail": "malade",
+    "gloss": "to fall ill",
+    "pattern": "tomber malade",
+    "usage": "Je tombe malade.",
+    "usage_en": "I fall ill.",
+    "family": "everyday"
+  },
+  {
+    "expression": "venir à bout",
+    "base": "venir",
+    "kind": "plain",
+    "tail": "à bout de quelque chose",
+    "gloss": "to overcome; finish",
+    "pattern": "venir à bout",
+    "usage": "Je viens à bout du travail.",
+    "usage_en": "I finish the work.",
+    "family": "everyday"
+  },
+  {
+    "expression": "venir en aide",
+    "base": "venir",
+    "kind": "plain",
+    "tail": "en aide à quelqu'un",
+    "gloss": "to come to someone's aid",
+    "pattern": "venir en aide",
+    "usage": "Je viens en aide à Léa.",
+    "usage_en": "I come to Léa's aid.",
+    "family": "everyday"
+  },
+  {
+    "expression": "aller de soi",
+    "base": "aller",
+    "kind": "plain",
+    "tail": "de soi",
+    "gloss": "to go without saying",
+    "pattern": "aller de soi",
+    "usage": "Cela va de soi.",
+    "usage_en": "That goes without saying.",
+    "family": "everyday",
+    "subjects": [
+      "il/elle/on",
+      "ils/elles"
+    ]
+  }
+]

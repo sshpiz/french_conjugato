@@ -5724,3 +5724,188 @@ html[data-theme="dark"] {
 .navigation button:disabled svg {
   color: var(--bottom-nav-btn-disabled-color) !important;
 }
+
+/* Private pattern preview: one shared usage pattern, separate from the answer. */
+.construction-pattern { margin:.6rem auto .4rem; max-width:34rem; padding:0 .5rem; text-align:center; }
+.construction-pattern-text { font-size:clamp(1rem, 2.6vw, 1.25rem); line-height:1.45; color:var(--text-color, inherit); font-weight:450; text-wrap:balance; }
+.construction-pattern-text strong { color:var(--accent-color, #397bb9); font-weight:750; }
+.construction-pattern-meaning { margin-top:.15rem; font-size:.86rem; line-height:1.4; opacity:.7; text-wrap:balance; }
+
+
+/* Settings polish: compact groups, readable hierarchy, generous touch targets. */
+#options-view .options-header { margin-bottom: .5rem; padding: 0 0 .5rem; }
+#options-view .options-header .back-nav-btn { min-width: 44px; min-height: 44px; }
+#options-view .options-header-spacer { width: 44px; }
+#options-view #options-container { padding: 0 0 1.5rem !important; background: transparent !important; box-shadow: none; }
+#options-view #settings-v2-nav { gap: .4rem; padding: .4rem 0 .7rem; margin-bottom: .75rem; background: var(--bg-color); border: 0; }
+#options-view #settings-v2-nav .mode-toggle-btn { min-height: 44px; flex-shrink: 0; padding: .5rem .75rem; font-size: .8rem; }
+#options-view #settings-v2-nav .settings-v2-nav-back-btn { display: none; }
+#options-view .settings-v2-section-shell { padding: 1rem; gap: .65rem; box-shadow: none; border-radius: 16px; }
+#options-view .settings-v2-section-body { gap: 0; }
+#options-view .settings-v2-section-body > .option-group { margin-bottom: 0 !important; }
+#options-view .settings-v2-section-copy h3,
+#options-view .option-group h3,
+#options-view .settings-collapsible > summary,
+#options-view .settings-v2-collapsible-title { text-transform: none !important; letter-spacing: 0 !important; }
+#options-view .settings-v2-section-copy h3 { font-size: .8rem; font-weight: 600; color: var(--meta-color); }
+#options-view .settings-v2-section-summary { font-size: .86rem; margin-top: .25rem; }
+#options-view .settings-v2-summary-primary { font-size: 1.15rem; }
+#options-view .settings-v2-collapsible-title { font-size: 1rem; }
+#options-view .settings-v2-collapsible-meta { font-size: .8rem; font-weight: 400; }
+#options-view .settings-collapsible > summary { padding: 1rem; box-shadow: none; min-height: 60px; }
+#options-view .settings-v2-subsetup > summary::after { display: block; content: '+'; position: static; font-size: 1.25rem; color: var(--meta-color); }
+#options-view .settings-v2-subsetup[open] > summary::after { content: '−'; }
+#options-view .settings-v2-subsetup-body { padding: 0 1rem 1rem; }
+#options-view .settings-v2-subsetup-body > .option-group { padding: 1rem 0 0; margin-bottom: .75rem !important; border: 0; border-top: 1px solid var(--settings-elevated-border); border-radius: 0; background: transparent; box-shadow: none; }
+#options-view .settings-v2-subsetup-body > .option-group:first-child { border-top: 0; }
+#options-view .settings-v2-subsetup-body > .option-group > h3 { font-size: .9rem; padding-bottom: 0; border: 0; margin-bottom: .4rem; }
+#options-view .toggle-row { gap: 1rem; padding: .8rem 0; }
+#options-view .toggle-row label:not(.toggle-label) { font-size: .9rem; line-height: 1.4; }
+#options-view .setting-helper-text { font-size: .8rem; line-height: 1.45; margin-top: .1rem; }
+#options-view .toggle-control, #options-view .toggle-switch { min-height: 44px; }
+/* Extend the switch's hit area without increasing its visual weight. */
+#options-view .toggle-label::after { content: ''; position: absolute; inset: -6px 0; }
+#options-view [data-settings-row-key="exercise-type"] { flex-direction: column; align-items: stretch; margin-top: 0 !important; gap: .5rem; }
+#options-view [data-settings-row-key="exercise-type"] .reflexive-mode-pills { width: 100%; }
+#options-view .reflexive-mode-pills { border-radius: 12px; }
+#options-view .reflexive-pill { min-height: 44px; padding: .5rem .6rem; flex: 1 1 auto; white-space: normal; line-height: 1.25; }
+#options-view .reflexive-pill.active { color: #102b40 !important; background: #83c9fa !important; }
+@media (max-width: 480px) {
+  #options-view .settings-v2-section-shell { padding: .85rem; }
+  #options-view .settings-collapsible > summary { padding: .85rem; }
+  #options-view .settings-v2-subsetup-body { padding: 0 .85rem .85rem; }
+  #options-view .toggle-row:has(> .reflexive-mode-pills) { flex-direction: column; align-items: stretch; gap: .5rem; }
+  #options-view .toggle-row > .reflexive-mode-pills { width: 100%; }
+  #options-view .settings-inline-actions { gap: .35rem; }
+}
+
+/* Subtle settings scrollbar; follow the app theme, including System mode. */
+#options-view {
+  scrollbar-width: thin;
+  scrollbar-color: var(--meta-color) transparent;
+}
+#options-view::-webkit-scrollbar { width: 6px; }
+#options-view::-webkit-scrollbar-track { background: transparent; }
+#options-view::-webkit-scrollbar-thumb {
+  background: var(--meta-color);
+  border-radius: 999px;
+}
+#options-view::-webkit-scrollbar-corner { background: transparent; }
+@media (forced-colors: active) {
+  #options-view { scrollbar-color: auto; }
+}
+
+/* Keep the morphology prompt primary; examples are quiet supporting context. */
+#flashcard .construction-pattern {
+  order: 3;
+  flex: 0 0 auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: .7rem;
+  row-gap: .08rem;
+  width: min(88%, 28rem);
+  margin: .72rem auto .2rem;
+  padding: .5rem .72rem;
+  box-sizing: border-box;
+  border: 1px solid color-mix(in srgb, var(--text-color) 7%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--text-color) 3%, transparent);
+  text-align: left;
+}
+.construction-example-label {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  justify-self: start;
+  padding: .28rem .44rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-color, #397bb9) 11%, transparent);
+  font-size: .62rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent-color, #397bb9) 82%, var(--text-color));
+}
+#flashcard .construction-pattern-text { grid-column: 2; grid-row: 1; font-size: .92rem; line-height: 1.32; color: var(--text-color); font-weight: 520; }
+#flashcard .construction-pattern-text strong { color: inherit; font-weight: 700; }
+#flashcard .construction-pattern-meaning { grid-column: 2; grid-row: 2; margin-top: 0; font-size: .77rem; line-height: 1.3; color: var(--meta-color); opacity: .88; }
+#flashcard .construction-pattern.has-example { cursor: pointer; padding-right: 2rem; }
+#flashcard .construction-pattern.has-example::after {
+  content: '⌄';
+  position: absolute;
+  top: 50%;
+  right: .72rem;
+  color: var(--meta-color);
+  font-size: 1rem;
+  line-height: 1;
+  transform: translateY(-55%);
+  transition: transform .18s ease;
+}
+#flashcard .construction-pattern.has-example[aria-expanded="true"]::after { transform: translateY(-45%) rotate(180deg); }
+#flashcard .construction-pattern-sample {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  column-gap: .7rem;
+  row-gap: .12rem;
+  margin-top: .42rem;
+  padding-top: .48rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
+}
+#flashcard .construction-pattern-sample[hidden] { display: none; }
+#flashcard .construction-pattern-sample-label { grid-column: 1; grid-row: 1 / 3; align-self: start; font-size: .68rem; line-height: 1.3; color: var(--meta-color); }
+#flashcard .construction-pattern-sample-target { grid-column: 2; font-size: .86rem; line-height: 1.35; color: var(--text-color); font-weight: 560; }
+#flashcard .construction-pattern-sample-english { grid-column: 2; font-size: .76rem; line-height: 1.3; color: var(--meta-color); }
+@media (max-width: 430px) {
+  #flashcard .construction-pattern-sample { grid-template-columns: 4.15rem minmax(0, 1fr); column-gap: .55rem; }
+}
+
+/* The four morphology signals share one responsive type scale. Layout caps keep
+   the largest accessibility setting usable on narrow phones. */
+#flashcard .card-content-before h1 {
+  font-size: clamp(3.2rem, calc(3.2rem * var(--font-scale, 1)), 5rem);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+#flashcard #verb-pronoun {
+  font-size: clamp(1.25rem, calc(1.25rem * var(--font-scale, 1)), 1.85rem);
+  font-weight: 730;
+  line-height: 1.15;
+  color: var(--text-color);
+}
+#flashcard #verb-tense {
+  font-size: clamp(1.15rem, calc(1.15rem * var(--font-scale, 1)), 1.7rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+#flashcard #conjugated-verb:not(.frame-card-inline-text) {
+  font-size: clamp(2.75rem, calc(2.75rem * var(--font-scale, 1)), 4.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+
+@media (max-width: 430px) {
+  #flashcard .construction-pattern {
+    grid-template-columns: 4.15rem minmax(0, 1fr);
+    width: min(92%, 28rem);
+    column-gap: .55rem;
+    padding-inline: .68rem;
+  }
+}
+
+/* Original pattern presentation, placed below the answer. */
+#flashcard .construction-pattern { order: 10; }
+
+/* Reference cues share the subject/tense area. */
+#verb-reference[hidden] { display: none; }
+#verb-reference { display: flex; flex-direction: column; gap: 3px; }
+#verb-reference .reference-caption { font-size: 0.7em; font-weight: 400; opacity: .7; }
+
+.exercise-type-checkboxes { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; }
+.exercise-type-checkboxes legend { font-weight: 650; margin-bottom: 12px; }
+.exercise-type-checkboxes label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.exercise-type-checkboxes input { width: 20px; height: 20px; accent-color: var(--primary-color, #329add); }

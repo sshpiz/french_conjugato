@@ -255,7 +255,7 @@
     return bufferPromises.get(cacheKey);
   }
 
-  async function playAudioId(itemId) {
+  async function playAudioId(itemId, expectedText = null) {
     if (!isEnabled()) return false;
     const manifest = await loadManifest();
     const packId = packIndex.get(itemId);
@@ -269,6 +269,16 @@
     if (!item) {
       appLog(`item-miss id=${itemId} pack=${packId}`);
       return false;
+    }
+
+    // A content correction can retain the same ID. Never play an older
+    // recording that says a different conjugation or example.
+    if (expectedText && ['conjugation', 'usage_example', 'usage'].includes(item.kind)) {
+      const normalize = value => String(value || '').normalize('NFC').replace(/’/g, "'").replace(/\s+/g, ' ').trim();
+      if (normalize(item.display_text) !== normalize(expectedText)) {
+        appLog(`text-mismatch id=${itemId}`);
+        return false;
+      }
     }
 
     let buffer;

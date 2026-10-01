@@ -1,0 +1,85 @@
+{
+  "scope": "253 French expression entries: 95 existing specifications plus 158 additions. Editorial common-expression inventory, not a claim of every French idiom.",
+  "integration": {
+    "exercise": "Checkboxes: Verbs / Expressions / Verbs with pronoun replacement. Multiple selections rotate through compatible families. Choices are included in saved/shared presets.",
+    "groups": "Editorial metadata only; not exercise modes",
+    "topic_selection": "A selected base verb admits its expressions; selected expression headwords are also accepted. Topic membership is inherited, not separately semantically curated.",
+    "frequency": "Expressions have independent approximate editorial ranks in frequency.json and use the same cumulative Top N controls as verbs.",
+    "word_families": "Each expression has a record explicitly linked to the base verb family. This is not a claim that every listed derivative shares the full idiom meaning.",
+    "conjugation": "All seven existing app tenses. Explicit feminine forms; subject restrictions for nonpersonal constructions; avoir override for transitive passer expressions.",
+    "filter_verification": "Browser check passed after crash recovery: expression-only cards, Conjugation label, reload persistence and single-verb filtering.",
+    "fill_blanks": "Hidden by FILL_BLANKS_VISIBLE; implementation, decks and saved legacy drills retained."
+  },
+  "verification_sources": [
+    {
+      "url": "https://www.dictionnaire-academie.fr/article/A9P4070?history=0",
+      "check": "s’y prendre, including elle s’y est prise"
+    },
+    {
+      "url": "https://www.academie-francaise.fr/sites/academie-francaise.fr/files/dae_20140806_0006_0001.pdf",
+      "check": "se rendre compte: unchanged rendu"
+    },
+    {
+      "url": "https://www.dictionnaire-academie.fr/article/A9P0853?history=0",
+      "check": "passer: transitive uses and auxiliaries"
+    },
+    {
+      "url": "https://www.dictionnaire-academie.fr/article/A9A3040",
+      "check": "faire attention constructions"
+    }
+  ],
+  "limitations": [
+    "Not an independent linguistic review of all legacy expression senses.",
+    "Word-family links currently follow the base verb; component-noun families are not separately curated.",
+    "New audio uses the existing fallback because no new prerecorded audio corpus was generated."
+  ],
+  "pronoun_reference_proposal": {
+    "status": "Local preview: Exercise types > Verbs with pronoun replacement",
+    "fields": [
+      "verb/construction",
+      "subject",
+      "tense",
+      "reference"
+    ],
+    "references": [
+      "ce truc",
+      "cette chose",
+      "ces choses",
+      "cet endroit"
+    ],
+    "examples": [
+      {
+        "verb": "chercher",
+        "subject": "je",
+        "tense": "présent",
+        "reference": "cette chose",
+        "answer": "je la cherche"
+      },
+      {
+        "verb": "avoir besoin de",
+        "subject": "je",
+        "tense": "présent",
+        "reference": "cette chose",
+        "answer": "j’en ai besoin"
+      },
+      {
+        "verb": "aller à",
+        "subject": "je",
+        "tense": "présent",
+        "reference": "cet endroit",
+        "answer": "j’y vais"
+      }
+    ],
+    "coverage": "14 explicit verb/construction mappings across the seven app tenses; compatible entries respect existing verb filters.",
+    "verification": "14 explicit expected-answer cases and 1806 loaded reference/subject/tense combinations; browser reveal, reload persistence, and return to verb-only mode passed."
+  },
+  "excluded_from_expansion": {
+    "aller bien / aller mal": "Bare adverbial uses of aller; not included as separate fixed-expression entries."
+  },
+  "parallel_merge": {
+    "pattern": "Newer Par exemple presentation beneath the answer",
+    "source": "outputs/verb-details-tabs/source/constructionCards.js and style.css",
+    "preserved": "Tabbed details, word-family definitions, expression entries, explicit feminine forms, subject restrictions and auxiliary corrections",
+    "usages": "All 2966 prior usage records retained exactly, including 17 reviewed expression records repaired; generator now preserves construction-reviewed text."
+  }
+}

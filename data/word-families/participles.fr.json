@@ -1,0 +1,6581 @@
+{
+  "impressionner": {
+    "language": "fr",
+    "lemma": "impressionner",
+    "present": [
+      "impressionnant"
+    ],
+    "past": [
+      "impressionné"
+    ],
+    "adjectives": [
+      {
+        "word": "impressionnable",
+        "definition": "easily impressed"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "organiser": {
+    "language": "fr",
+    "lemma": "organiser",
+    "present": [
+      "organisant"
+    ],
+    "past": [
+      "organisé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "diriger": {
+    "language": "fr",
+    "lemma": "diriger",
+    "present": [
+      "dirigeant"
+    ],
+    "past": [
+      "dirigé"
+    ],
+    "adjectives": [
+      {
+        "word": "dirigeant",
+        "definition": "leading, managing"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "commander": {
+    "language": "fr",
+    "lemma": "commander",
+    "present": [
+      "commandant"
+    ],
+    "past": [
+      "commandé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "détruire": {
+    "language": "fr",
+    "lemma": "détruire",
+    "present": [
+      "détruisant"
+    ],
+    "past": [
+      "détruit"
+    ],
+    "adjectives": [
+      {
+        "word": "détruit",
+        "definition": "destroyed; ruined"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "baiser": {
+    "language": "fr",
+    "lemma": "baiser",
+    "present": [
+      "baisant"
+    ],
+    "past": [
+      "baisé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "s'amuser": {
+    "language": "fr",
+    "lemma": "s'amuser",
+    "present": [
+      "s'amusant"
+    ],
+    "past": [
+      "amusé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "être": {
+    "language": "fr",
+    "lemma": "être",
+    "present": [
+      "étant"
+    ],
+    "past": [
+      "été"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "connecter": {
+    "language": "fr",
+    "lemma": "connecter",
+    "present": [
+      "connectant"
+    ],
+    "past": [
+      "connecté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se plaindre": {
+    "language": "fr",
+    "lemma": "se plaindre",
+    "present": [
+      "se plaignant"
+    ],
+    "past": [
+      "plaint"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ranger": {
+    "language": "fr",
+    "lemma": "ranger",
+    "present": [
+      "rangeant"
+    ],
+    "past": [
+      "rangé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "atteindre": {
+    "language": "fr",
+    "lemma": "atteindre",
+    "present": [
+      "atteignant"
+    ],
+    "past": [
+      "atteint"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "autoriser": {
+    "language": "fr",
+    "lemma": "autoriser",
+    "present": [
+      "autorisant"
+    ],
+    "past": [
+      "autorisé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "insister": {
+    "language": "fr",
+    "lemma": "insister",
+    "present": [
+      "insistant"
+    ],
+    "past": [
+      "insisté"
+    ],
+    "adjectives": [
+      {
+        "word": "insistant",
+        "definition": "persistent, insistent"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "aller": {
+    "language": "fr",
+    "lemma": "aller",
+    "present": [
+      "allant"
+    ],
+    "past": [
+      "allé"
+    ],
+    "adjectives": [
+      {
+        "word": "allant",
+        "definition": "dynamic, energetic (of a person or style)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "ressentir": {
+    "language": "fr",
+    "lemma": "ressentir",
+    "present": [
+      "ressentant"
+    ],
+    "past": [
+      "ressenti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se retrouver": {
+    "language": "fr",
+    "lemma": "se retrouver",
+    "present": [
+      "se retrouvant"
+    ],
+    "past": [
+      "retrouvé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "laisser": {
+    "language": "fr",
+    "lemma": "laisser",
+    "present": [
+      "laissant"
+    ],
+    "past": [
+      "laissé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "coucher": {
+    "language": "fr",
+    "lemma": "coucher",
+    "present": [
+      "couchant"
+    ],
+    "past": [
+      "couché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "subir": {
+    "language": "fr",
+    "lemma": "subir",
+    "present": [
+      "subissant"
+    ],
+    "past": [
+      "subi"
+    ],
+    "adjectives": [
+      {
+        "word": "subi",
+        "definition": "undergone, suffered (passive)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "fonctionner": {
+    "language": "fr",
+    "lemma": "fonctionner",
+    "present": [
+      "fonctionnant"
+    ],
+    "past": [
+      "fonctionné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "garder": {
+    "language": "fr",
+    "lemma": "garder",
+    "present": [
+      "gardant"
+    ],
+    "past": [
+      "gardé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "accompagner": {
+    "language": "fr",
+    "lemma": "accompagner",
+    "present": [
+      "accompagnant"
+    ],
+    "past": [
+      "accompagné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "apprendre": {
+    "language": "fr",
+    "lemma": "apprendre",
+    "present": [
+      "apprenant"
+    ],
+    "past": [
+      "appris"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "mentir": {
+    "language": "fr",
+    "lemma": "mentir",
+    "present": [
+      "mentant"
+    ],
+    "past": [
+      "menti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "regretter": {
+    "language": "fr",
+    "lemma": "regretter",
+    "present": [
+      "regrettant"
+    ],
+    "past": [
+      "regretté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rassembler": {
+    "language": "fr",
+    "lemma": "rassembler",
+    "present": [
+      "rassemblant"
+    ],
+    "past": [
+      "rassemblé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "échapper": {
+    "language": "fr",
+    "lemma": "échapper",
+    "present": [
+      "échappant"
+    ],
+    "past": [
+      "échappé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "sourire": {
+    "language": "fr",
+    "lemma": "sourire",
+    "present": [
+      "souriant"
+    ],
+    "past": [
+      "souri"
+    ],
+    "adjectives": [
+      {
+        "word": "souriant",
+        "definition": "smiling, cheerful"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "suivre": {
+    "language": "fr",
+    "lemma": "suivre",
+    "present": [
+      "suivant"
+    ],
+    "past": [
+      "suivi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "entendre": {
+    "language": "fr",
+    "lemma": "entendre",
+    "present": [
+      "entendant"
+    ],
+    "past": [
+      "entendu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "vivre": {
+    "language": "fr",
+    "lemma": "vivre",
+    "present": [
+      "vivant"
+    ],
+    "past": [
+      "vécu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "contrôler": {
+    "language": "fr",
+    "lemma": "contrôler",
+    "present": [
+      "contrôlant"
+    ],
+    "past": [
+      "contrôlé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "grandir": {
+    "language": "fr",
+    "lemma": "grandir",
+    "present": [
+      "grandissant"
+    ],
+    "past": [
+      "grandi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "capturer": {
+    "language": "fr",
+    "lemma": "capturer",
+    "present": [
+      "capturant"
+    ],
+    "past": [
+      "capturé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "foutre": {
+    "language": "fr",
+    "lemma": "foutre",
+    "present": [
+      "foutant"
+    ],
+    "past": [
+      "foutu"
+    ],
+    "adjectives": [
+      {
+        "word": "foutu",
+        "definition": "ruined or in very bad condition"
+      },
+      {
+        "word": "je-m'en-foutiste",
+        "definition": "careless, indifferent to everything"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "libérer": {
+    "language": "fr",
+    "lemma": "libérer",
+    "present": [
+      "libérant"
+    ],
+    "past": [
+      "libéré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "choquer": {
+    "language": "fr",
+    "lemma": "choquer",
+    "present": [
+      "choquant"
+    ],
+    "past": [
+      "choqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se mettre": {
+    "language": "fr",
+    "lemma": "se mettre",
+    "present": [
+      "se mettant"
+    ],
+    "past": [
+      "mis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "faire": {
+    "language": "fr",
+    "lemma": "faire",
+    "present": [
+      "faisant"
+    ],
+    "past": [
+      "fait"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "porter": {
+    "language": "fr",
+    "lemma": "porter",
+    "present": [
+      "portant"
+    ],
+    "past": [
+      "porté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "s'aimer": {
+    "language": "fr",
+    "lemma": "s'aimer",
+    "present": [
+      "s'aimant"
+    ],
+    "past": [
+      "aimé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "accrocher": {
+    "language": "fr",
+    "lemma": "accrocher",
+    "present": [
+      "accrochant"
+    ],
+    "past": [
+      "accroché"
+    ],
+    "adjectives": [
+      {
+        "word": "accroché",
+        "definition": "hooked; addicted (fam.)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se souvenir": {
+    "language": "fr",
+    "lemma": "se souvenir",
+    "present": [
+      "se souvenant"
+    ],
+    "past": [
+      "souvenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "profiter": {
+    "language": "fr",
+    "lemma": "profiter",
+    "present": [
+      "profitant"
+    ],
+    "past": [
+      "profité"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "inquiéter": {
+    "language": "fr",
+    "lemma": "inquiéter",
+    "present": [
+      "inquiétant"
+    ],
+    "past": [
+      "inquiété"
+    ],
+    "adjectives": [
+      {
+        "word": "inquiétant",
+        "definition": "worrying, alarming"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "baisser": {
+    "language": "fr",
+    "lemma": "baisser",
+    "present": [
+      "baissant"
+    ],
+    "past": [
+      "baissé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "abrutir": {
+    "language": "fr",
+    "lemma": "abrutir",
+    "present": [
+      "abrutissant"
+    ],
+    "past": [
+      "abruti"
+    ],
+    "adjectives": [
+      {
+        "word": "abruti",
+        "definition": "stunned; dazed; very stupid"
+      },
+      {
+        "word": "abrutissant",
+        "definition": "mind-numbing; stupefying"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "buter": {
+    "language": "fr",
+    "lemma": "buter",
+    "present": [
+      "butant"
+    ],
+    "past": [
+      "buté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "mettre": {
+    "language": "fr",
+    "lemma": "mettre",
+    "present": [
+      "mettant"
+    ],
+    "past": [
+      "mis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "amener": {
+    "language": "fr",
+    "lemma": "amener",
+    "present": [
+      "amenant"
+    ],
+    "past": [
+      "amené"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "entraîner": {
+    "language": "fr",
+    "lemma": "entraîner",
+    "present": [
+      "entraînant"
+    ],
+    "past": [
+      "entraîné"
+    ],
+    "adjectives": [
+      {
+        "word": "entraînant",
+        "definition": "lively, catchy (music, rhythm); engaging"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "traîner": {
+    "language": "fr",
+    "lemma": "traîner",
+    "present": [
+      "traînant"
+    ],
+    "past": [
+      "traîné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "retrouver": {
+    "language": "fr",
+    "lemma": "retrouver",
+    "present": [
+      "retrouvant"
+    ],
+    "past": [
+      "retrouvé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "armer": {
+    "language": "fr",
+    "lemma": "armer",
+    "present": [
+      "armant"
+    ],
+    "past": [
+      "armé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "aimer": {
+    "language": "fr",
+    "lemma": "aimer",
+    "present": [
+      "aimant"
+    ],
+    "past": [
+      "aimé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "filer": {
+    "language": "fr",
+    "lemma": "filer",
+    "present": [
+      "filant"
+    ],
+    "past": [
+      "filé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "chercher": {
+    "language": "fr",
+    "lemma": "chercher",
+    "present": [
+      "cherchant"
+    ],
+    "past": [
+      "cherché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "fermer": {
+    "language": "fr",
+    "lemma": "fermer",
+    "present": [
+      "fermant"
+    ],
+    "past": [
+      "fermé"
+    ],
+    "adjectives": [
+      {
+        "word": "fermé",
+        "definition": "not open; closed-minded"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "agir": {
+    "language": "fr",
+    "lemma": "agir",
+    "present": [
+      "agissant"
+    ],
+    "past": [
+      "agi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "forcer": {
+    "language": "fr",
+    "lemma": "forcer",
+    "present": [
+      "forçant"
+    ],
+    "past": [
+      "forcé"
+    ],
+    "adjectives": [
+      {
+        "word": "forcé",
+        "definition": "not natural; forced"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "attraper": {
+    "language": "fr",
+    "lemma": "attraper",
+    "present": [
+      "attrapant"
+    ],
+    "past": [
+      "attrapé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "briser": {
+    "language": "fr",
+    "lemma": "briser",
+    "present": [
+      "brisant"
+    ],
+    "past": [
+      "brisé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "vérifier": {
+    "language": "fr",
+    "lemma": "vérifier",
+    "present": [
+      "vérifiant"
+    ],
+    "past": [
+      "vérifié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "confirmer": {
+    "language": "fr",
+    "lemma": "confirmer",
+    "present": [
+      "confirmant"
+    ],
+    "past": [
+      "confirmé"
+    ],
+    "adjectives": [
+      {
+        "word": "confirmé",
+        "definition": "experienced or established in a field"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "rendre": {
+    "language": "fr",
+    "lemma": "rendre",
+    "present": [
+      "rendant"
+    ],
+    "past": [
+      "rendu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "énerver": {
+    "language": "fr",
+    "lemma": "énerver",
+    "present": [
+      "énervant"
+    ],
+    "past": [
+      "énervé"
+    ],
+    "adjectives": [
+      {
+        "word": "énervant",
+        "definition": "annoying; irritating"
+      },
+      {
+        "word": "énervé",
+        "definition": "irritated; nervous"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "payer": {
+    "language": "fr",
+    "lemma": "payer",
+    "present": [
+      "payant"
+    ],
+    "past": [
+      "payé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "empêcher": {
+    "language": "fr",
+    "lemma": "empêcher",
+    "present": [
+      "empêchant"
+    ],
+    "past": [
+      "empêché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "convaincre": {
+    "language": "fr",
+    "lemma": "convaincre",
+    "present": [
+      "convainquant"
+    ],
+    "past": [
+      "convaincu"
+    ],
+    "adjectives": [
+      {
+        "word": "convaincant",
+        "definition": "persuasive, able to convince"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "bosser": {
+    "language": "fr",
+    "lemma": "bosser",
+    "present": [
+      "bossant"
+    ],
+    "past": [
+      "bossé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "condamner": {
+    "language": "fr",
+    "lemma": "condamner",
+    "present": [
+      "condamnant"
+    ],
+    "past": [
+      "condamné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "intéresser": {
+    "language": "fr",
+    "lemma": "intéresser",
+    "present": [
+      "intéressant"
+    ],
+    "past": [
+      "intéressé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "s'intéresser": {
+    "language": "fr",
+    "lemma": "s'intéresser",
+    "present": [
+      "s'intéressant"
+    ],
+    "past": [
+      "intéressé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "acheter": {
+    "language": "fr",
+    "lemma": "acheter",
+    "present": [
+      "achetant"
+    ],
+    "past": [
+      "acheté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "adresser": {
+    "language": "fr",
+    "lemma": "adresser",
+    "present": [
+      "adressant"
+    ],
+    "past": [
+      "adressé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se rappeler": {
+    "language": "fr",
+    "lemma": "se rappeler",
+    "present": [
+      "se rappelant"
+    ],
+    "past": [
+      "rappelé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "sembler": {
+    "language": "fr",
+    "lemma": "sembler",
+    "present": [
+      "semblant"
+    ],
+    "past": [
+      "semblé"
+    ],
+    "adjectives": [
+      {
+        "word": "semblable",
+        "definition": "similar; alike"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "sacrer": {
+    "language": "fr",
+    "lemma": "sacrer",
+    "present": [
+      "sacrant"
+    ],
+    "past": [
+      "sacré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "convenir": {
+    "language": "fr",
+    "lemma": "convenir",
+    "present": [
+      "convenant"
+    ],
+    "past": [
+      "convenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se faire": {
+    "language": "fr",
+    "lemma": "se faire",
+    "present": [
+      "se faisant"
+    ],
+    "past": [
+      "fait"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "casser": {
+    "language": "fr",
+    "lemma": "casser",
+    "present": [
+      "cassant"
+    ],
+    "past": [
+      "cassé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "presser": {
+    "language": "fr",
+    "lemma": "presser",
+    "present": [
+      "pressant"
+    ],
+    "past": [
+      "pressé"
+    ],
+    "adjectives": [
+      {
+        "word": "pressant",
+        "definition": "urgent, requiring immediate attention"
+      },
+      {
+        "word": "pressé",
+        "definition": "in a hurry; squeezed (fruit, etc.)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "comparer": {
+    "language": "fr",
+    "lemma": "comparer",
+    "present": [
+      "comparant"
+    ],
+    "past": [
+      "comparé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "confier": {
+    "language": "fr",
+    "lemma": "confier",
+    "present": [
+      "confiant"
+    ],
+    "past": [
+      "confié"
+    ],
+    "adjectives": [
+      {
+        "word": "confiant",
+        "definition": "showing trust or self-assurance"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "monter": {
+    "language": "fr",
+    "lemma": "monter",
+    "present": [
+      "montant"
+    ],
+    "past": [
+      "monté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "pouvoir": {
+    "language": "fr",
+    "lemma": "pouvoir",
+    "present": [
+      "pouvant"
+    ],
+    "past": [
+      "pu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "obtenir": {
+    "language": "fr",
+    "lemma": "obtenir",
+    "present": [
+      "obtenant"
+    ],
+    "past": [
+      "obtenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "réfléchir": {
+    "language": "fr",
+    "lemma": "réfléchir",
+    "present": [
+      "réfléchissant"
+    ],
+    "past": [
+      "réfléchi"
+    ],
+    "adjectives": [
+      {
+        "word": "réfléchi",
+        "definition": "thoughtful, considered"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "dépasser": {
+    "language": "fr",
+    "lemma": "dépasser",
+    "present": [
+      "dépassant"
+    ],
+    "past": [
+      "dépassé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "gérer": {
+    "language": "fr",
+    "lemma": "gérer",
+    "present": [
+      "gérant"
+    ],
+    "past": [
+      "géré"
+    ],
+    "adjectives": [
+      {
+        "word": "gérable",
+        "definition": "manageable"
+      },
+      {
+        "word": "ingérable",
+        "definition": "unmanageable"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "posséder": {
+    "language": "fr",
+    "lemma": "posséder",
+    "present": [
+      "possédant"
+    ],
+    "past": [
+      "possédé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "tromper": {
+    "language": "fr",
+    "lemma": "tromper",
+    "present": [
+      "trompant"
+    ],
+    "past": [
+      "trompé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "boucher": {
+    "language": "fr",
+    "lemma": "boucher",
+    "present": [
+      "bouchant"
+    ],
+    "past": [
+      "bouché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se demander": {
+    "language": "fr",
+    "lemma": "se demander",
+    "present": [
+      "se demandant"
+    ],
+    "past": [
+      "demandé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "décider": {
+    "language": "fr",
+    "lemma": "décider",
+    "present": [
+      "décidant"
+    ],
+    "past": [
+      "décidé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "marier": {
+    "language": "fr",
+    "lemma": "marier",
+    "present": [
+      "mariant"
+    ],
+    "past": [
+      "marié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "avancer": {
+    "language": "fr",
+    "lemma": "avancer",
+    "present": [
+      "avançant"
+    ],
+    "past": [
+      "avancé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "activer": {
+    "language": "fr",
+    "lemma": "activer",
+    "present": [
+      "activant"
+    ],
+    "past": [
+      "activé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "récupérer": {
+    "language": "fr",
+    "lemma": "récupérer",
+    "present": [
+      "récupérant"
+    ],
+    "past": [
+      "récupéré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "éclater": {
+    "language": "fr",
+    "lemma": "éclater",
+    "present": [
+      "éclatant"
+    ],
+    "past": [
+      "éclaté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "déplacer": {
+    "language": "fr",
+    "lemma": "déplacer",
+    "present": [
+      "déplaçant"
+    ],
+    "past": [
+      "déplacé"
+    ],
+    "adjectives": [
+      {
+        "word": "déplacé",
+        "definition": "inappropriate or out of place"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "devenir": {
+    "language": "fr",
+    "lemma": "devenir",
+    "present": [
+      "devenant"
+    ],
+    "past": [
+      "devenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "affirmer": {
+    "language": "fr",
+    "lemma": "affirmer",
+    "present": [
+      "affirmant"
+    ],
+    "past": [
+      "affirmé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se trouver": {
+    "language": "fr",
+    "lemma": "se trouver",
+    "present": [
+      "se trouvant"
+    ],
+    "past": [
+      "trouvé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "pousser": {
+    "language": "fr",
+    "lemma": "pousser",
+    "present": [
+      "poussant"
+    ],
+    "past": [
+      "poussé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "souffrir": {
+    "language": "fr",
+    "lemma": "souffrir",
+    "present": [
+      "souffrant"
+    ],
+    "past": [
+      "souffert"
+    ],
+    "adjectives": [
+      {
+        "word": "souffrant",
+        "definition": "ailing, unwell"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "préférer": {
+    "language": "fr",
+    "lemma": "préférer",
+    "present": [
+      "préférant"
+    ],
+    "past": [
+      "préféré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "interdire": {
+    "language": "fr",
+    "lemma": "interdire",
+    "present": [
+      "interdisant"
+    ],
+    "past": [
+      "interdit"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "correspondre": {
+    "language": "fr",
+    "lemma": "correspondre",
+    "present": [
+      "correspondant"
+    ],
+    "past": [
+      "correspondu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "contrarier": {
+    "language": "fr",
+    "lemma": "contrarier",
+    "present": [
+      "contrariant"
+    ],
+    "past": [
+      "contrarié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "imaginer": {
+    "language": "fr",
+    "lemma": "imaginer",
+    "present": [
+      "imaginant"
+    ],
+    "past": [
+      "imaginé"
+    ],
+    "adjectives": [
+      {
+        "word": "imaginaire",
+        "definition": "imaginary, not real"
+      },
+      {
+        "word": "imaginatif",
+        "definition": "imaginative, creative"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "recommencer": {
+    "language": "fr",
+    "lemma": "recommencer",
+    "present": [
+      "recommençant"
+    ],
+    "past": [
+      "recommencé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "associer": {
+    "language": "fr",
+    "lemma": "associer",
+    "present": [
+      "associant"
+    ],
+    "past": [
+      "associé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "pardonner": {
+    "language": "fr",
+    "lemma": "pardonner",
+    "present": [
+      "pardonnant"
+    ],
+    "past": [
+      "pardonné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "obliger": {
+    "language": "fr",
+    "lemma": "obliger",
+    "present": [
+      "obligeant"
+    ],
+    "past": [
+      "obligé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "identifier": {
+    "language": "fr",
+    "lemma": "identifier",
+    "present": [
+      "identifiant"
+    ],
+    "past": [
+      "identifié"
+    ],
+    "adjectives": [
+      {
+        "word": "identifiable",
+        "definition": "able to be identified"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "répondre": {
+    "language": "fr",
+    "lemma": "répondre",
+    "present": [
+      "répondant"
+    ],
+    "past": [
+      "répondu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "discuter": {
+    "language": "fr",
+    "lemma": "discuter",
+    "present": [
+      "discutant"
+    ],
+    "past": [
+      "discuté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "toucher": {
+    "language": "fr",
+    "lemma": "toucher",
+    "present": [
+      "touchant"
+    ],
+    "past": [
+      "touché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se dépêcher": {
+    "language": "fr",
+    "lemma": "se dépêcher",
+    "present": [
+      "se dépêchant"
+    ],
+    "past": [
+      "dépêché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "craindre": {
+    "language": "fr",
+    "lemma": "craindre",
+    "present": [
+      "craignant"
+    ],
+    "past": [
+      "craint"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "réparer": {
+    "language": "fr",
+    "lemma": "réparer",
+    "present": [
+      "réparant"
+    ],
+    "past": [
+      "réparé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "durer": {
+    "language": "fr",
+    "lemma": "durer",
+    "present": [
+      "durant"
+    ],
+    "past": [
+      "duré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "protéger": {
+    "language": "fr",
+    "lemma": "protéger",
+    "present": [
+      "protégeant"
+    ],
+    "past": [
+      "protégé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "blesser": {
+    "language": "fr",
+    "lemma": "blesser",
+    "present": [
+      "blessant"
+    ],
+    "past": [
+      "blessé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "entrer": {
+    "language": "fr",
+    "lemma": "entrer",
+    "present": [
+      "entrant"
+    ],
+    "past": [
+      "entré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ordonner": {
+    "language": "fr",
+    "lemma": "ordonner",
+    "present": [
+      "ordonnant"
+    ],
+    "past": [
+      "ordonné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se taire": {
+    "language": "fr",
+    "lemma": "se taire",
+    "present": [
+      "se taisant"
+    ],
+    "past": [
+      "tu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "parler": {
+    "language": "fr",
+    "lemma": "parler",
+    "present": [
+      "parlant"
+    ],
+    "past": [
+      "parlé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "bloquer": {
+    "language": "fr",
+    "lemma": "bloquer",
+    "present": [
+      "bloquant"
+    ],
+    "past": [
+      "bloqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "échouer": {
+    "language": "fr",
+    "lemma": "échouer",
+    "present": [
+      "échouant"
+    ],
+    "past": [
+      "échoué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "violer": {
+    "language": "fr",
+    "lemma": "violer",
+    "present": [
+      "violant"
+    ],
+    "past": [
+      "violé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "représenter": {
+    "language": "fr",
+    "lemma": "représenter",
+    "present": [
+      "représentant"
+    ],
+    "past": [
+      "représenté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "s'occuper": {
+    "language": "fr",
+    "lemma": "s'occuper",
+    "present": [
+      "s'occupant"
+    ],
+    "past": [
+      "occupé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "juger": {
+    "language": "fr",
+    "lemma": "juger",
+    "present": [
+      "jugeant"
+    ],
+    "past": [
+      "jugé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "traiter": {
+    "language": "fr",
+    "lemma": "traiter",
+    "present": [
+      "traitant"
+    ],
+    "past": [
+      "traité"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "voir": {
+    "language": "fr",
+    "lemma": "voir",
+    "present": [
+      "voyant"
+    ],
+    "past": [
+      "vu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "s'habiller": {
+    "language": "fr",
+    "lemma": "s'habiller",
+    "present": [
+      "s'habillant"
+    ],
+    "past": [
+      "habillé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "carter": {
+    "language": "fr",
+    "lemma": "carter",
+    "present": [
+      "cartant"
+    ],
+    "past": [
+      "carté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "poursuivre": {
+    "language": "fr",
+    "lemma": "poursuivre",
+    "present": [
+      "poursuivant"
+    ],
+    "past": [
+      "poursuivi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "marquer": {
+    "language": "fr",
+    "lemma": "marquer",
+    "present": [
+      "marquant"
+    ],
+    "past": [
+      "marqué"
+    ],
+    "adjectives": [
+      {
+        "word": "marquant",
+        "definition": "memorable, striking"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "nettoyer": {
+    "language": "fr",
+    "lemma": "nettoyer",
+    "present": [
+      "nettoyant"
+    ],
+    "past": [
+      "nettoyé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "soigner": {
+    "language": "fr",
+    "lemma": "soigner",
+    "present": [
+      "soignant"
+    ],
+    "past": [
+      "soigné"
+    ],
+    "adjectives": [
+      {
+        "word": "soigné",
+        "definition": "neat, well-groomed"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "enculer": {
+    "language": "fr",
+    "lemma": "enculer",
+    "present": [
+      "enculant"
+    ],
+    "past": [
+      "enculé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "appeler": {
+    "language": "fr",
+    "lemma": "appeler",
+    "present": [
+      "appelant"
+    ],
+    "past": [
+      "appelé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "raconter": {
+    "language": "fr",
+    "lemma": "raconter",
+    "present": [
+      "racontant"
+    ],
+    "past": [
+      "raconté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se fâcher": {
+    "language": "fr",
+    "lemma": "se fâcher",
+    "present": [
+      "se fâchant"
+    ],
+    "past": [
+      "fâché"
+    ],
+    "adjectives": [
+      {
+        "word": "fâché",
+        "definition": "angry, upset"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "louer": {
+    "language": "fr",
+    "lemma": "louer",
+    "present": [
+      "louant"
+    ],
+    "past": [
+      "loué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "risquer": {
+    "language": "fr",
+    "lemma": "risquer",
+    "present": [
+      "risquant"
+    ],
+    "past": [
+      "risqué"
+    ],
+    "adjectives": [
+      {
+        "word": "risqué",
+        "definition": "daring or involving risk"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "causer": {
+    "language": "fr",
+    "lemma": "causer",
+    "present": [
+      "causant"
+    ],
+    "past": [
+      "causé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "apprécier": {
+    "language": "fr",
+    "lemma": "apprécier",
+    "present": [
+      "appréciant"
+    ],
+    "past": [
+      "apprécié"
+    ],
+    "adjectives": [
+      {
+        "word": "apprécié",
+        "definition": "valued, well-liked"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "enfermer": {
+    "language": "fr",
+    "lemma": "enfermer",
+    "present": [
+      "enfermant"
+    ],
+    "past": [
+      "enfermé"
+    ],
+    "adjectives": [
+      {
+        "word": "enfermé",
+        "definition": "locked up; shut in"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "assassiner": {
+    "language": "fr",
+    "lemma": "assassiner",
+    "present": [
+      "assassinant"
+    ],
+    "past": [
+      "assassiné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "engager": {
+    "language": "fr",
+    "lemma": "engager",
+    "present": [
+      "engageant"
+    ],
+    "past": [
+      "engagé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "vouloir": {
+    "language": "fr",
+    "lemma": "vouloir",
+    "present": [
+      "voulant"
+    ],
+    "past": [
+      "voulu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "saisir": {
+    "language": "fr",
+    "lemma": "saisir",
+    "present": [
+      "saisissant"
+    ],
+    "past": [
+      "saisi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "citer": {
+    "language": "fr",
+    "lemma": "citer",
+    "present": [
+      "citant"
+    ],
+    "past": [
+      "cité"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "repérer": {
+    "language": "fr",
+    "lemma": "repérer",
+    "present": [
+      "repérant"
+    ],
+    "past": [
+      "repéré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "arriver": {
+    "language": "fr",
+    "lemma": "arriver",
+    "present": [
+      "arrivant"
+    ],
+    "past": [
+      "arrivé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "placer": {
+    "language": "fr",
+    "lemma": "placer",
+    "present": [
+      "plaçant"
+    ],
+    "past": [
+      "placé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "opérer": {
+    "language": "fr",
+    "lemma": "opérer",
+    "present": [
+      "opérant"
+    ],
+    "past": [
+      "opéré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "nommer": {
+    "language": "fr",
+    "lemma": "nommer",
+    "present": [
+      "nommant"
+    ],
+    "past": [
+      "nommé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "couper": {
+    "language": "fr",
+    "lemma": "couper",
+    "present": [
+      "coupant"
+    ],
+    "past": [
+      "coupé"
+    ],
+    "adjectives": [
+      {
+        "word": "coupant",
+        "definition": "sharp, able to cut"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "respecter": {
+    "language": "fr",
+    "lemma": "respecter",
+    "present": [
+      "respectant"
+    ],
+    "past": [
+      "respecté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "menacer": {
+    "language": "fr",
+    "lemma": "menacer",
+    "present": [
+      "menaçant"
+    ],
+    "past": [
+      "menacé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "remercier": {
+    "language": "fr",
+    "lemma": "remercier",
+    "present": [
+      "remerciant"
+    ],
+    "past": [
+      "remercié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "nourrir": {
+    "language": "fr",
+    "lemma": "nourrir",
+    "present": [
+      "nourrissant"
+    ],
+    "past": [
+      "nourri"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "coincer": {
+    "language": "fr",
+    "lemma": "coincer",
+    "present": [
+      "coinçant"
+    ],
+    "past": [
+      "coincé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "disparaître": {
+    "language": "fr",
+    "lemma": "disparaître",
+    "present": [
+      "disparaissant"
+    ],
+    "past": [
+      "disparu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "consulter": {
+    "language": "fr",
+    "lemma": "consulter",
+    "present": [
+      "consultant"
+    ],
+    "past": [
+      "consulté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "arranger": {
+    "language": "fr",
+    "lemma": "arranger",
+    "present": [
+      "arrangeant"
+    ],
+    "past": [
+      "arrangé"
+    ],
+    "adjectives": [
+      {
+        "word": "arrangeant",
+        "definition": "helpful, accommodating"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se sentir": {
+    "language": "fr",
+    "lemma": "se sentir",
+    "present": [
+      "se sentant"
+    ],
+    "past": [
+      "senti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "bouger": {
+    "language": "fr",
+    "lemma": "bouger",
+    "present": [
+      "bougeant"
+    ],
+    "past": [
+      "bougé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "surveiller": {
+    "language": "fr",
+    "lemma": "surveiller",
+    "present": [
+      "surveillant"
+    ],
+    "past": [
+      "surveillé"
+    ],
+    "adjectives": [
+      {
+        "word": "surveillant",
+        "definition": "supervising, monitoring"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se rendre": {
+    "language": "fr",
+    "lemma": "se rendre",
+    "present": [
+      "se rendant"
+    ],
+    "past": [
+      "rendu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "calmer": {
+    "language": "fr",
+    "lemma": "calmer",
+    "present": [
+      "calmant"
+    ],
+    "past": [
+      "calmé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "abattre": {
+    "language": "fr",
+    "lemma": "abattre",
+    "present": [
+      "abattant"
+    ],
+    "past": [
+      "abattu"
+    ],
+    "adjectives": [
+      {
+        "word": "abattu",
+        "definition": "dejected; knocked down"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "approcher": {
+    "language": "fr",
+    "lemma": "approcher",
+    "present": [
+      "approchant"
+    ],
+    "past": [
+      "approché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se lever": {
+    "language": "fr",
+    "lemma": "se lever",
+    "present": [
+      "se levant"
+    ],
+    "past": [
+      "levé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "deviner": {
+    "language": "fr",
+    "lemma": "deviner",
+    "present": [
+      "devinant"
+    ],
+    "past": [
+      "deviné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "témoigner": {
+    "language": "fr",
+    "lemma": "témoigner",
+    "present": [
+      "témoignant"
+    ],
+    "past": [
+      "témoigné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "appartenir": {
+    "language": "fr",
+    "lemma": "appartenir",
+    "present": [
+      "appartenant"
+    ],
+    "past": [
+      "appartenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "affamer": {
+    "language": "fr",
+    "lemma": "affamer",
+    "present": [
+      "affamant"
+    ],
+    "past": [
+      "affamé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "commencer": {
+    "language": "fr",
+    "lemma": "commencer",
+    "present": [
+      "commençant"
+    ],
+    "past": [
+      "commencé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "prévenir": {
+    "language": "fr",
+    "lemma": "prévenir",
+    "present": [
+      "prévenant"
+    ],
+    "past": [
+      "prévenu"
+    ],
+    "adjectives": [
+      {
+        "word": "prévenant",
+        "definition": "thoughtful, considerate of others"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "douer": {
+    "language": "fr",
+    "lemma": "douer",
+    "present": [
+      "douant"
+    ],
+    "past": [
+      "doué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1",
+    "note": "Douer is uncommon; doué is widely used as an adjective meaning gifted."
+  },
+  "aider": {
+    "language": "fr",
+    "lemma": "aider",
+    "present": [
+      "aidant"
+    ],
+    "past": [
+      "aidé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "souvenir": {
+    "language": "fr",
+    "lemma": "souvenir",
+    "present": [
+      "se souvenant"
+    ],
+    "past": [
+      "souvenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "priver": {
+    "language": "fr",
+    "lemma": "priver",
+    "present": [
+      "privant"
+    ],
+    "past": [
+      "privé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "essayer": {
+    "language": "fr",
+    "lemma": "essayer",
+    "present": [
+      "essayant"
+    ],
+    "past": [
+      "essayé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "régler": {
+    "language": "fr",
+    "lemma": "régler",
+    "present": [
+      "réglant"
+    ],
+    "past": [
+      "réglé"
+    ],
+    "adjectives": [
+      {
+        "word": "réglé",
+        "definition": "settled, regulated"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "augmenter": {
+    "language": "fr",
+    "lemma": "augmenter",
+    "present": [
+      "augmentant"
+    ],
+    "past": [
+      "augmenté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "croire": {
+    "language": "fr",
+    "lemma": "croire",
+    "present": [
+      "croyant"
+    ],
+    "past": [
+      "cru"
+    ],
+    "adjectives": [
+      {
+        "word": "croyant",
+        "definition": "believing, religious (practicing faith)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "renvoyer": {
+    "language": "fr",
+    "lemma": "renvoyer",
+    "present": [
+      "renvoyant"
+    ],
+    "past": [
+      "renvoyé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "conduire": {
+    "language": "fr",
+    "lemma": "conduire",
+    "present": [
+      "conduisant"
+    ],
+    "past": [
+      "conduit"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "terminer": {
+    "language": "fr",
+    "lemma": "terminer",
+    "present": [
+      "terminant"
+    ],
+    "past": [
+      "terminé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "désoler": {
+    "language": "fr",
+    "lemma": "désoler",
+    "present": [
+      "désolant"
+    ],
+    "past": [
+      "désolé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "perdre": {
+    "language": "fr",
+    "lemma": "perdre",
+    "present": [
+      "perdant"
+    ],
+    "past": [
+      "perdu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "crever": {
+    "language": "fr",
+    "lemma": "crever",
+    "present": [
+      "crevant"
+    ],
+    "past": [
+      "crevé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "survivre": {
+    "language": "fr",
+    "lemma": "survivre",
+    "present": [
+      "survivant"
+    ],
+    "past": [
+      "survécu"
+    ],
+    "adjectives": [
+      {
+        "word": "survivant",
+        "definition": "surviving"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "boucler": {
+    "language": "fr",
+    "lemma": "boucler",
+    "present": [
+      "bouclant"
+    ],
+    "past": [
+      "bouclé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "frapper": {
+    "language": "fr",
+    "lemma": "frapper",
+    "present": [
+      "frappant"
+    ],
+    "past": [
+      "frappé"
+    ],
+    "adjectives": [
+      {
+        "word": "frappant",
+        "definition": "striking, impressive"
+      },
+      {
+        "word": "frappé",
+        "definition": "hit, affected (by something)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "allumer": {
+    "language": "fr",
+    "lemma": "allumer",
+    "present": [
+      "allumant"
+    ],
+    "past": [
+      "allumé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "préparer": {
+    "language": "fr",
+    "lemma": "préparer",
+    "present": [
+      "préparant"
+    ],
+    "past": [
+      "préparé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "crémer": {
+    "language": "fr",
+    "lemma": "crémer",
+    "present": [
+      "crémant"
+    ],
+    "past": [
+      "crémé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "hâter": {
+    "language": "fr",
+    "lemma": "hâter",
+    "present": [
+      "hâtant"
+    ],
+    "past": [
+      "hâté"
+    ],
+    "adjectives": [
+      {
+        "word": "hâtif",
+        "definition": "hasty, done too quickly"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se passer": {
+    "language": "fr",
+    "lemma": "se passer",
+    "present": [
+      "se passant"
+    ],
+    "past": [
+      "passé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "mener": {
+    "language": "fr",
+    "lemma": "mener",
+    "present": [
+      "menant"
+    ],
+    "past": [
+      "mené"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "accepter": {
+    "language": "fr",
+    "lemma": "accepter",
+    "present": [
+      "acceptant"
+    ],
+    "past": [
+      "accepté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "gêner": {
+    "language": "fr",
+    "lemma": "gêner",
+    "present": [
+      "gênant"
+    ],
+    "past": [
+      "gêné"
+    ],
+    "adjectives": [
+      {
+        "word": "gênant",
+        "definition": "embarrassing, awkward"
+      },
+      {
+        "word": "gêné",
+        "definition": "embarrassed, bothered"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "prendre": {
+    "language": "fr",
+    "lemma": "prendre",
+    "present": [
+      "prenant"
+    ],
+    "past": [
+      "pris"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "admettre": {
+    "language": "fr",
+    "lemma": "admettre",
+    "present": [
+      "admettant"
+    ],
+    "past": [
+      "admis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "habituer": {
+    "language": "fr",
+    "lemma": "habituer",
+    "present": [
+      "habituant"
+    ],
+    "past": [
+      "habitué"
+    ],
+    "adjectives": [
+      {
+        "word": "habitué",
+        "definition": "accustomed, used to"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "autopsier": {
+    "language": "fr",
+    "lemma": "autopsier",
+    "present": [
+      "autopsiant"
+    ],
+    "past": [
+      "autopsié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "remarquer": {
+    "language": "fr",
+    "lemma": "remarquer",
+    "present": [
+      "remarquant"
+    ],
+    "past": [
+      "remarqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rouler": {
+    "language": "fr",
+    "lemma": "rouler",
+    "present": [
+      "roulant"
+    ],
+    "past": [
+      "roulé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "regarder": {
+    "language": "fr",
+    "lemma": "regarder",
+    "present": [
+      "regardant"
+    ],
+    "past": [
+      "regardé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "s'asseoir": {
+    "language": "fr",
+    "lemma": "s'asseoir",
+    "present": [
+      "s'asseyant"
+    ],
+    "past": [
+      "assis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "éliminer": {
+    "language": "fr",
+    "lemma": "éliminer",
+    "present": [
+      "éliminant"
+    ],
+    "past": [
+      "éliminé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "croiser": {
+    "language": "fr",
+    "lemma": "croiser",
+    "present": [
+      "croisant"
+    ],
+    "past": [
+      "croisé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "écouter": {
+    "language": "fr",
+    "lemma": "écouter",
+    "present": [
+      "écoutant"
+    ],
+    "past": [
+      "écouté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "peindre": {
+    "language": "fr",
+    "lemma": "peindre",
+    "present": [
+      "peignant"
+    ],
+    "past": [
+      "peint"
+    ],
+    "adjectives": [
+      {
+        "word": "peint",
+        "definition": "decorated or covered with paint"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "consacrer": {
+    "language": "fr",
+    "lemma": "consacrer",
+    "present": [
+      "consacrant"
+    ],
+    "past": [
+      "consacré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "contenir": {
+    "language": "fr",
+    "lemma": "contenir",
+    "present": [
+      "contenant"
+    ],
+    "past": [
+      "contenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "descendre": {
+    "language": "fr",
+    "lemma": "descendre",
+    "present": [
+      "descendant"
+    ],
+    "past": [
+      "descendu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "tirer": {
+    "language": "fr",
+    "lemma": "tirer",
+    "present": [
+      "tirant"
+    ],
+    "past": [
+      "tiré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "avoir": {
+    "language": "fr",
+    "lemma": "avoir",
+    "present": [
+      "ayant"
+    ],
+    "past": [
+      "eu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "venir": {
+    "language": "fr",
+    "lemma": "venir",
+    "present": [
+      "venant"
+    ],
+    "past": [
+      "venu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "communiquer": {
+    "language": "fr",
+    "lemma": "communiquer",
+    "present": [
+      "communiquant"
+    ],
+    "past": [
+      "communiqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "maudire": {
+    "language": "fr",
+    "lemma": "maudire",
+    "present": [
+      "maudissant"
+    ],
+    "past": [
+      "maudit"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "montrer": {
+    "language": "fr",
+    "lemma": "montrer",
+    "present": [
+      "montrant"
+    ],
+    "past": [
+      "montré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "expliquer": {
+    "language": "fr",
+    "lemma": "expliquer",
+    "present": [
+      "expliquant"
+    ],
+    "past": [
+      "expliqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "contacter": {
+    "language": "fr",
+    "lemma": "contacter",
+    "present": [
+      "contactant"
+    ],
+    "past": [
+      "contacté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "éloigner": {
+    "language": "fr",
+    "lemma": "éloigner",
+    "present": [
+      "éloignant"
+    ],
+    "past": [
+      "éloigné"
+    ],
+    "adjectives": [
+      {
+        "word": "éloigné",
+        "definition": "distant; far away"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "annoncer": {
+    "language": "fr",
+    "lemma": "annoncer",
+    "present": [
+      "annonçant"
+    ],
+    "past": [
+      "annoncé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "révéler": {
+    "language": "fr",
+    "lemma": "révéler",
+    "present": [
+      "révélant"
+    ],
+    "past": [
+      "révélé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "coller": {
+    "language": "fr",
+    "lemma": "coller",
+    "present": [
+      "collant"
+    ],
+    "past": [
+      "collé"
+    ],
+    "adjectives": [
+      {
+        "word": "collant",
+        "definition": "sticky; clingy (of a person or substance)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "choper": {
+    "language": "fr",
+    "lemma": "choper",
+    "present": [
+      "chopant"
+    ],
+    "past": [
+      "chopé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "comporter": {
+    "language": "fr",
+    "lemma": "comporter",
+    "present": [
+      "comportant"
+    ],
+    "past": [
+      "comporté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "coter": {
+    "language": "fr",
+    "lemma": "coter",
+    "present": [
+      "cotant"
+    ],
+    "past": [
+      "coté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ouvrir": {
+    "language": "fr",
+    "lemma": "ouvrir",
+    "present": [
+      "ouvrant"
+    ],
+    "past": [
+      "ouvert"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "revenir": {
+    "language": "fr",
+    "lemma": "revenir",
+    "present": [
+      "revenant"
+    ],
+    "past": [
+      "revenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "tomber": {
+    "language": "fr",
+    "lemma": "tomber",
+    "present": [
+      "tombant"
+    ],
+    "past": [
+      "tombé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "s'ennuyer": {
+    "language": "fr",
+    "lemma": "s'ennuyer",
+    "present": [
+      "s'ennuyant"
+    ],
+    "past": [
+      "ennuyé"
+    ],
+    "adjectives": [
+      {
+        "word": "ennuyé",
+        "definition": "bored, annoyed"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "rejoindre": {
+    "language": "fr",
+    "lemma": "rejoindre",
+    "present": [
+      "rejoignant"
+    ],
+    "past": [
+      "rejoint"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "proposer": {
+    "language": "fr",
+    "lemma": "proposer",
+    "present": [
+      "proposant"
+    ],
+    "past": [
+      "proposé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "couvrir": {
+    "language": "fr",
+    "lemma": "couvrir",
+    "present": [
+      "couvrant"
+    ],
+    "past": [
+      "couvert"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "allonger": {
+    "language": "fr",
+    "lemma": "allonger",
+    "present": [
+      "allongeant"
+    ],
+    "past": [
+      "allongé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "signifier": {
+    "language": "fr",
+    "lemma": "signifier",
+    "present": [
+      "signifiant"
+    ],
+    "past": [
+      "signifié"
+    ],
+    "adjectives": [
+      {
+        "word": "signifiant",
+        "definition": "meaningful, significant"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "jurer": {
+    "language": "fr",
+    "lemma": "jurer",
+    "present": [
+      "jurant"
+    ],
+    "past": [
+      "juré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "cesser": {
+    "language": "fr",
+    "lemma": "cesser",
+    "present": [
+      "cessant"
+    ],
+    "past": [
+      "cessé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "paraître": {
+    "language": "fr",
+    "lemma": "paraître",
+    "present": [
+      "paraissant"
+    ],
+    "past": [
+      "paru"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "tenir": {
+    "language": "fr",
+    "lemma": "tenir",
+    "present": [
+      "tenant"
+    ],
+    "past": [
+      "tenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rejeter": {
+    "language": "fr",
+    "lemma": "rejeter",
+    "present": [
+      "rejetant"
+    ],
+    "past": [
+      "rejeté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "taire": {
+    "language": "fr",
+    "lemma": "taire",
+    "present": [
+      "taisant"
+    ],
+    "past": [
+      "tu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "approuver": {
+    "language": "fr",
+    "lemma": "approuver",
+    "present": [
+      "approuvant"
+    ],
+    "past": [
+      "approuvé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "plaire": {
+    "language": "fr",
+    "lemma": "plaire",
+    "present": [
+      "plaisant"
+    ],
+    "past": [
+      "plu"
+    ],
+    "adjectives": [
+      {
+        "word": "plaisant",
+        "definition": "pleasant, enjoyable"
+      },
+      {
+        "word": "déplaisant",
+        "definition": "unpleasant, disagreeable"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "quitter": {
+    "language": "fr",
+    "lemma": "quitter",
+    "present": [
+      "quittant"
+    ],
+    "past": [
+      "quitté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "avertir": {
+    "language": "fr",
+    "lemma": "avertir",
+    "present": [
+      "avertissant"
+    ],
+    "past": [
+      "averti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "crier": {
+    "language": "fr",
+    "lemma": "crier",
+    "present": [
+      "criant"
+    ],
+    "past": [
+      "crié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "améliorer": {
+    "language": "fr",
+    "lemma": "améliorer",
+    "present": [
+      "améliorant"
+    ],
+    "past": [
+      "amélioré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "repartir": {
+    "language": "fr",
+    "lemma": "repartir",
+    "present": [
+      "repartant"
+    ],
+    "past": [
+      "reparti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "amuser": {
+    "language": "fr",
+    "lemma": "amuser",
+    "present": [
+      "amusant"
+    ],
+    "past": [
+      "amusé"
+    ],
+    "adjectives": [
+      {
+        "word": "amusant",
+        "definition": "funny, entertaining"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "dire": {
+    "language": "fr",
+    "lemma": "dire",
+    "present": [
+      "disant"
+    ],
+    "past": [
+      "dit"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "affronter": {
+    "language": "fr",
+    "lemma": "affronter",
+    "present": [
+      "affrontant"
+    ],
+    "past": [
+      "affronté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "respirer": {
+    "language": "fr",
+    "lemma": "respirer",
+    "present": [
+      "respirant"
+    ],
+    "past": [
+      "respiré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "pleurer": {
+    "language": "fr",
+    "lemma": "pleurer",
+    "present": [
+      "pleurant"
+    ],
+    "past": [
+      "pleuré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "conclure": {
+    "language": "fr",
+    "lemma": "conclure",
+    "present": [
+      "concluant"
+    ],
+    "past": [
+      "conclu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "appliquer": {
+    "language": "fr",
+    "lemma": "appliquer",
+    "present": [
+      "appliquant"
+    ],
+    "past": [
+      "appliqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "réussir": {
+    "language": "fr",
+    "lemma": "réussir",
+    "present": [
+      "réussissant"
+    ],
+    "past": [
+      "réussi"
+    ],
+    "adjectives": [
+      {
+        "word": "réussi",
+        "definition": "successful, well done"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "accélérer": {
+    "language": "fr",
+    "lemma": "accélérer",
+    "present": [
+      "accélérant"
+    ],
+    "past": [
+      "accéléré"
+    ],
+    "adjectives": [
+      {
+        "word": "accéléré",
+        "definition": "fast; sped up"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "attirer": {
+    "language": "fr",
+    "lemma": "attirer",
+    "present": [
+      "attirant"
+    ],
+    "past": [
+      "attiré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "analyser": {
+    "language": "fr",
+    "lemma": "analyser",
+    "present": [
+      "analysant"
+    ],
+    "past": [
+      "analysé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "inventer": {
+    "language": "fr",
+    "lemma": "inventer",
+    "present": [
+      "inventant"
+    ],
+    "past": [
+      "inventé"
+    ],
+    "adjectives": [
+      {
+        "word": "inventif",
+        "definition": "creative, able to invent new things"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se voir": {
+    "language": "fr",
+    "lemma": "se voir",
+    "present": [
+      "se voyant"
+    ],
+    "past": [
+      "vu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ressembler": {
+    "language": "fr",
+    "lemma": "ressembler",
+    "present": [
+      "ressemblant"
+    ],
+    "past": [
+      "ressemblé"
+    ],
+    "adjectives": [
+      {
+        "word": "ressemblant",
+        "definition": "having a similar appearance"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "détendre": {
+    "language": "fr",
+    "lemma": "détendre",
+    "present": [
+      "détendant"
+    ],
+    "past": [
+      "détendu"
+    ],
+    "adjectives": [
+      {
+        "word": "détendu",
+        "definition": "relaxed; not tense"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "brûler": {
+    "language": "fr",
+    "lemma": "brûler",
+    "present": [
+      "brûlant"
+    ],
+    "past": [
+      "brûlé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "arracher": {
+    "language": "fr",
+    "lemma": "arracher",
+    "present": [
+      "arrachant"
+    ],
+    "past": [
+      "arraché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "devoir": {
+    "language": "fr",
+    "lemma": "devoir",
+    "present": [
+      "devant"
+    ],
+    "past": [
+      "dû"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "informer": {
+    "language": "fr",
+    "lemma": "informer",
+    "present": [
+      "informant"
+    ],
+    "past": [
+      "informé"
+    ],
+    "adjectives": [
+      {
+        "word": "informé",
+        "definition": "well-informed, knowledgeable"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "interroger": {
+    "language": "fr",
+    "lemma": "interroger",
+    "present": [
+      "interrogeant"
+    ],
+    "past": [
+      "interrogé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "assurer": {
+    "language": "fr",
+    "lemma": "assurer",
+    "present": [
+      "assurant"
+    ],
+    "past": [
+      "assuré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "naître": {
+    "language": "fr",
+    "lemma": "naître",
+    "present": [
+      "naissant"
+    ],
+    "past": [
+      "né"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "défendre": {
+    "language": "fr",
+    "lemma": "défendre",
+    "present": [
+      "défendant"
+    ],
+    "past": [
+      "défendu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "balancer": {
+    "language": "fr",
+    "lemma": "balancer",
+    "present": [
+      "balançant"
+    ],
+    "past": [
+      "balancé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "valoir": {
+    "language": "fr",
+    "lemma": "valoir",
+    "present": [
+      "valant"
+    ],
+    "past": [
+      "valu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "adapter": {
+    "language": "fr",
+    "lemma": "adapter",
+    "present": [
+      "adaptant"
+    ],
+    "past": [
+      "adapté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se coucher": {
+    "language": "fr",
+    "lemma": "se coucher",
+    "present": [
+      "se couchant"
+    ],
+    "past": [
+      "couché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "compromettre": {
+    "language": "fr",
+    "lemma": "compromettre",
+    "present": [
+      "compromettant"
+    ],
+    "past": [
+      "compromis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "accueillir": {
+    "language": "fr",
+    "lemma": "accueillir",
+    "present": [
+      "accueillant"
+    ],
+    "past": [
+      "accueilli"
+    ],
+    "adjectives": [
+      {
+        "word": "accueillant",
+        "definition": "welcoming; friendly"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "rapporter": {
+    "language": "fr",
+    "lemma": "rapporter",
+    "present": [
+      "rapportant"
+    ],
+    "past": [
+      "rapporté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "battre": {
+    "language": "fr",
+    "lemma": "battre",
+    "present": [
+      "battant"
+    ],
+    "past": [
+      "battu"
+    ],
+    "adjectives": [
+      {
+        "word": "battant",
+        "definition": "energetic, dynamic; competitive, go‑getter"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "élever": {
+    "language": "fr",
+    "lemma": "élever",
+    "present": [
+      "élevant"
+    ],
+    "past": [
+      "élevé"
+    ],
+    "adjectives": [
+      {
+        "word": "élevé",
+        "definition": "high; raised; advanced"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "utiliser": {
+    "language": "fr",
+    "lemma": "utiliser",
+    "present": [
+      "utilisant"
+    ],
+    "past": [
+      "utilisé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "provoquer": {
+    "language": "fr",
+    "lemma": "provoquer",
+    "present": [
+      "provoquant"
+    ],
+    "past": [
+      "provoqué"
+    ],
+    "adjectives": [
+      {
+        "word": "provocant",
+        "definition": "provoking, challenging"
+      },
+      {
+        "word": "provocateur",
+        "definition": "provocative, inciting"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "combattre": {
+    "language": "fr",
+    "lemma": "combattre",
+    "present": [
+      "combattant"
+    ],
+    "past": [
+      "combattu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "classer": {
+    "language": "fr",
+    "lemma": "classer",
+    "present": [
+      "classant"
+    ],
+    "past": [
+      "classé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "suffire": {
+    "language": "fr",
+    "lemma": "suffire",
+    "present": [
+      "suffisant"
+    ],
+    "past": [
+      "suffi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "choisir": {
+    "language": "fr",
+    "lemma": "choisir",
+    "present": [
+      "choisissant"
+    ],
+    "past": [
+      "choisi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "importer": {
+    "language": "fr",
+    "lemma": "importer",
+    "present": [
+      "important"
+    ],
+    "past": [
+      "importé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "accomplir": {
+    "language": "fr",
+    "lemma": "accomplir",
+    "present": [
+      "accomplissant"
+    ],
+    "past": [
+      "accompli"
+    ],
+    "adjectives": [
+      {
+        "word": "accompli",
+        "definition": "accomplished; achieved"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "occuper": {
+    "language": "fr",
+    "lemma": "occuper",
+    "present": [
+      "occupant"
+    ],
+    "past": [
+      "occupé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "déjeuner": {
+    "language": "fr",
+    "lemma": "déjeuner",
+    "present": [
+      "déjeunant"
+    ],
+    "past": [
+      "déjeuné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "tuer": {
+    "language": "fr",
+    "lemma": "tuer",
+    "present": [
+      "tuant"
+    ],
+    "past": [
+      "tué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se moquer": {
+    "language": "fr",
+    "lemma": "se moquer",
+    "present": [
+      "se moquant"
+    ],
+    "past": [
+      "moqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "adopter": {
+    "language": "fr",
+    "lemma": "adopter",
+    "present": [
+      "adoptant"
+    ],
+    "past": [
+      "adopté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "revoir": {
+    "language": "fr",
+    "lemma": "revoir",
+    "present": [
+      "revoyant"
+    ],
+    "past": [
+      "revu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "embrasser": {
+    "language": "fr",
+    "lemma": "embrasser",
+    "present": [
+      "embrassant"
+    ],
+    "past": [
+      "embrassé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rappeler": {
+    "language": "fr",
+    "lemma": "rappeler",
+    "present": [
+      "rappelant"
+    ],
+    "past": [
+      "rappelé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se connaître": {
+    "language": "fr",
+    "lemma": "se connaître",
+    "present": [
+      "se connaissant"
+    ],
+    "past": [
+      "connu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "partir": {
+    "language": "fr",
+    "lemma": "partir",
+    "present": [
+      "partant"
+    ],
+    "past": [
+      "parti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "manger": {
+    "language": "fr",
+    "lemma": "manger",
+    "present": [
+      "mangeant"
+    ],
+    "past": [
+      "mangé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "assister": {
+    "language": "fr",
+    "lemma": "assister",
+    "present": [
+      "assistant"
+    ],
+    "past": [
+      "assisté"
+    ],
+    "adjectives": [
+      {
+        "word": "assistant",
+        "definition": "helping, supporting"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "oublier": {
+    "language": "fr",
+    "lemma": "oublier",
+    "present": [
+      "oubliant"
+    ],
+    "past": [
+      "oublié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "cuisiner": {
+    "language": "fr",
+    "lemma": "cuisiner",
+    "present": [
+      "cuisinant"
+    ],
+    "past": [
+      "cuisiné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "fâcher": {
+    "language": "fr",
+    "lemma": "fâcher",
+    "present": [
+      "fâchant"
+    ],
+    "past": [
+      "fâché"
+    ],
+    "adjectives": [
+      {
+        "word": "fâché",
+        "definition": "angry, upset"
+      },
+      {
+        "word": "fâcheux",
+        "definition": "unfortunate, annoying"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se réveiller": {
+    "language": "fr",
+    "lemma": "se réveiller",
+    "present": [
+      "se réveillant"
+    ],
+    "past": [
+      "réveillé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "fumer": {
+    "language": "fr",
+    "lemma": "fumer",
+    "present": [
+      "fumant"
+    ],
+    "past": [
+      "fumé"
+    ],
+    "adjectives": [
+      {
+        "word": "fumant",
+        "definition": "smoking, giving off smoke"
+      },
+      {
+        "word": "fumé",
+        "definition": "smoked (as in food), smoky"
+      },
+      {
+        "word": "fumable",
+        "definition": "suitable for smoking"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "accéder": {
+    "language": "fr",
+    "lemma": "accéder",
+    "present": [
+      "accédant"
+    ],
+    "past": [
+      "accédé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "reprendre": {
+    "language": "fr",
+    "lemma": "reprendre",
+    "present": [
+      "reprenant"
+    ],
+    "past": [
+      "repris"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "vendre": {
+    "language": "fr",
+    "lemma": "vendre",
+    "present": [
+      "vendant"
+    ],
+    "past": [
+      "vendu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "changer": {
+    "language": "fr",
+    "lemma": "changer",
+    "present": [
+      "changeant"
+    ],
+    "past": [
+      "changé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "lâcher": {
+    "language": "fr",
+    "lemma": "lâcher",
+    "present": [
+      "lâchant"
+    ],
+    "past": [
+      "lâché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "arrêter": {
+    "language": "fr",
+    "lemma": "arrêter",
+    "present": [
+      "arrêtant"
+    ],
+    "past": [
+      "arrêté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "prétendre": {
+    "language": "fr",
+    "lemma": "prétendre",
+    "present": [
+      "prétendant"
+    ],
+    "past": [
+      "prétendu"
+    ],
+    "adjectives": [
+      {
+        "word": "prétendu",
+        "definition": "so-called; alleged (supposed)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "manquer": {
+    "language": "fr",
+    "lemma": "manquer",
+    "present": [
+      "manquant"
+    ],
+    "past": [
+      "manqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "atterrir": {
+    "language": "fr",
+    "lemma": "atterrir",
+    "present": [
+      "atterrissant"
+    ],
+    "past": [
+      "atterri"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "annuler": {
+    "language": "fr",
+    "lemma": "annuler",
+    "present": [
+      "annulant"
+    ],
+    "past": [
+      "annulé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se marier": {
+    "language": "fr",
+    "lemma": "se marier",
+    "present": [
+      "se mariant"
+    ],
+    "past": [
+      "marié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "contenter": {
+    "language": "fr",
+    "lemma": "contenter",
+    "present": [
+      "contentant"
+    ],
+    "past": [
+      "contenté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "abandonner": {
+    "language": "fr",
+    "lemma": "abandonner",
+    "present": [
+      "abandonnant"
+    ],
+    "past": [
+      "abandonné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "espérer": {
+    "language": "fr",
+    "lemma": "espérer",
+    "present": [
+      "espérant"
+    ],
+    "past": [
+      "espéré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "voyager": {
+    "language": "fr",
+    "lemma": "voyager",
+    "present": [
+      "voyageant"
+    ],
+    "past": [
+      "voyagé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "parer": {
+    "language": "fr",
+    "lemma": "parer",
+    "present": [
+      "parant"
+    ],
+    "past": [
+      "paré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "cracher": {
+    "language": "fr",
+    "lemma": "cracher",
+    "present": [
+      "crachant"
+    ],
+    "past": [
+      "craché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se reposer": {
+    "language": "fr",
+    "lemma": "se reposer",
+    "present": [
+      "se reposant"
+    ],
+    "past": [
+      "reposé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "exister": {
+    "language": "fr",
+    "lemma": "exister",
+    "present": [
+      "existant"
+    ],
+    "past": [
+      "existé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "sauter": {
+    "language": "fr",
+    "lemma": "sauter",
+    "present": [
+      "sautant"
+    ],
+    "past": [
+      "sauté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "résoudre": {
+    "language": "fr",
+    "lemma": "résoudre",
+    "present": [
+      "résolvant"
+    ],
+    "past": [
+      "résolu"
+    ],
+    "adjectives": [
+      {
+        "word": "résolu",
+        "definition": "determined, resolved"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "reconnaître": {
+    "language": "fr",
+    "lemma": "reconnaître",
+    "present": [
+      "reconnaissant"
+    ],
+    "past": [
+      "reconnu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "prouver": {
+    "language": "fr",
+    "lemma": "prouver",
+    "present": [
+      "prouvant"
+    ],
+    "past": [
+      "prouvé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se tromper": {
+    "language": "fr",
+    "lemma": "se tromper",
+    "present": [
+      "se trompant"
+    ],
+    "past": [
+      "trompé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "écrire": {
+    "language": "fr",
+    "lemma": "écrire",
+    "present": [
+      "écrivant"
+    ],
+    "past": [
+      "écrit"
+    ],
+    "adjectives": [
+      {
+        "word": "écrit",
+        "definition": "written; set down in writing"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "écraser": {
+    "language": "fr",
+    "lemma": "écraser",
+    "present": [
+      "écrasant"
+    ],
+    "past": [
+      "écrasé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "adorer": {
+    "language": "fr",
+    "lemma": "adorer",
+    "present": [
+      "adorant"
+    ],
+    "past": [
+      "adoré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "épouser": {
+    "language": "fr",
+    "lemma": "épouser",
+    "present": [
+      "épousant"
+    ],
+    "past": [
+      "épousé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "avouer": {
+    "language": "fr",
+    "lemma": "avouer",
+    "present": [
+      "avouant"
+    ],
+    "past": [
+      "avoué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "examiner": {
+    "language": "fr",
+    "lemma": "examiner",
+    "present": [
+      "examinant"
+    ],
+    "past": [
+      "examiné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "emmener": {
+    "language": "fr",
+    "lemma": "emmener",
+    "present": [
+      "emmenant"
+    ],
+    "past": [
+      "emmené"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "voler": {
+    "language": "fr",
+    "lemma": "voler",
+    "present": [
+      "volant"
+    ],
+    "past": [
+      "volé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "chasser": {
+    "language": "fr",
+    "lemma": "chasser",
+    "present": [
+      "chassant"
+    ],
+    "past": [
+      "chassé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "attaquer": {
+    "language": "fr",
+    "lemma": "attaquer",
+    "present": [
+      "attaquant"
+    ],
+    "past": [
+      "attaqué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "reculer": {
+    "language": "fr",
+    "lemma": "reculer",
+    "present": [
+      "reculant"
+    ],
+    "past": [
+      "reculé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "travailler": {
+    "language": "fr",
+    "lemma": "travailler",
+    "present": [
+      "travaillant"
+    ],
+    "past": [
+      "travaillé"
+    ],
+    "adjectives": [
+      {
+        "word": "travailleur",
+        "definition": "hard-working; diligent"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se parler": {
+    "language": "fr",
+    "lemma": "se parler",
+    "present": [
+      "se parlant"
+    ],
+    "past": [
+      "parlé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "finir": {
+    "language": "fr",
+    "lemma": "finir",
+    "present": [
+      "finissant"
+    ],
+    "past": [
+      "fini"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "célébrer": {
+    "language": "fr",
+    "lemma": "célébrer",
+    "present": [
+      "célébrant"
+    ],
+    "past": [
+      "célébré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "retenir": {
+    "language": "fr",
+    "lemma": "retenir",
+    "present": [
+      "retenant"
+    ],
+    "past": [
+      "retenu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "recevoir": {
+    "language": "fr",
+    "lemma": "recevoir",
+    "present": [
+      "recevant"
+    ],
+    "past": [
+      "reçu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "achever": {
+    "language": "fr",
+    "lemma": "achever",
+    "present": [
+      "achevant"
+    ],
+    "past": [
+      "achevé"
+    ],
+    "adjectives": [
+      {
+        "word": "achevé",
+        "definition": "completed; finished"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "rechercher": {
+    "language": "fr",
+    "lemma": "rechercher",
+    "present": [
+      "recherchant"
+    ],
+    "past": [
+      "recherché"
+    ],
+    "adjectives": [
+      {
+        "word": "recherché",
+        "definition": "sophisticated or sought-after"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "dépendre": {
+    "language": "fr",
+    "lemma": "dépendre",
+    "present": [
+      "dépendant"
+    ],
+    "past": [
+      "dépendu"
+    ],
+    "adjectives": [
+      {
+        "word": "dépendant",
+        "definition": "not independent; needing support"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "remplir": {
+    "language": "fr",
+    "lemma": "remplir",
+    "present": [
+      "remplissant"
+    ],
+    "past": [
+      "rempli"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "cacher": {
+    "language": "fr",
+    "lemma": "cacher",
+    "present": [
+      "cachant"
+    ],
+    "past": [
+      "caché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "débarrasser": {
+    "language": "fr",
+    "lemma": "débarrasser",
+    "present": [
+      "débarrassant"
+    ],
+    "past": [
+      "débarrassé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "coûter": {
+    "language": "fr",
+    "lemma": "coûter",
+    "present": [
+      "coûtant"
+    ],
+    "past": [
+      "coûté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "déclarer": {
+    "language": "fr",
+    "lemma": "déclarer",
+    "present": [
+      "déclarant"
+    ],
+    "past": [
+      "déclaré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "traverser": {
+    "language": "fr",
+    "lemma": "traverser",
+    "present": [
+      "traversant"
+    ],
+    "past": [
+      "traversé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "attendre": {
+    "language": "fr",
+    "lemma": "attendre",
+    "present": [
+      "attendant"
+    ],
+    "past": [
+      "attendu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "charger": {
+    "language": "fr",
+    "lemma": "charger",
+    "present": [
+      "chargeant"
+    ],
+    "past": [
+      "chargé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "restaurer": {
+    "language": "fr",
+    "lemma": "restaurer",
+    "present": [
+      "restaurant"
+    ],
+    "past": [
+      "restauré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "commettre": {
+    "language": "fr",
+    "lemma": "commettre",
+    "present": [
+      "commettant"
+    ],
+    "past": [
+      "commis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "demander": {
+    "language": "fr",
+    "lemma": "demander",
+    "present": [
+      "demandant"
+    ],
+    "past": [
+      "demandé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "cogner": {
+    "language": "fr",
+    "lemma": "cogner",
+    "present": [
+      "cognant"
+    ],
+    "past": [
+      "cogné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "découvrir": {
+    "language": "fr",
+    "lemma": "découvrir",
+    "present": [
+      "découvrant"
+    ],
+    "past": [
+      "découvert"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "excuser": {
+    "language": "fr",
+    "lemma": "excuser",
+    "present": [
+      "excusant"
+    ],
+    "past": [
+      "excusé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "virer": {
+    "language": "fr",
+    "lemma": "virer",
+    "present": [
+      "virant"
+    ],
+    "past": [
+      "viré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "réserver": {
+    "language": "fr",
+    "lemma": "réserver",
+    "present": [
+      "réservant"
+    ],
+    "past": [
+      "réservé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "circuler": {
+    "language": "fr",
+    "lemma": "circuler",
+    "present": [
+      "circulant"
+    ],
+    "past": [
+      "circulé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "exploser": {
+    "language": "fr",
+    "lemma": "exploser",
+    "present": [
+      "explosant"
+    ],
+    "past": [
+      "explosé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "poser": {
+    "language": "fr",
+    "lemma": "poser",
+    "present": [
+      "posant"
+    ],
+    "past": [
+      "posé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "planter": {
+    "language": "fr",
+    "lemma": "planter",
+    "present": [
+      "plantant"
+    ],
+    "past": [
+      "planté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "lancer": {
+    "language": "fr",
+    "lemma": "lancer",
+    "present": [
+      "lançant"
+    ],
+    "past": [
+      "lancé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "installer": {
+    "language": "fr",
+    "lemma": "installer",
+    "present": [
+      "installant"
+    ],
+    "past": [
+      "installé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ajouter": {
+    "language": "fr",
+    "lemma": "ajouter",
+    "present": [
+      "ajoutant"
+    ],
+    "past": [
+      "ajouté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "supporter": {
+    "language": "fr",
+    "lemma": "supporter",
+    "present": [
+      "supportant"
+    ],
+    "past": [
+      "supporté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "refuser": {
+    "language": "fr",
+    "lemma": "refuser",
+    "present": [
+      "refusant"
+    ],
+    "past": [
+      "refusé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "sonner": {
+    "language": "fr",
+    "lemma": "sonner",
+    "present": [
+      "sonnant"
+    ],
+    "past": [
+      "sonné"
+    ],
+    "adjectives": [
+      {
+        "word": "sonné",
+        "definition": "dazed, stunned"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "gagner": {
+    "language": "fr",
+    "lemma": "gagner",
+    "present": [
+      "gagnant"
+    ],
+    "past": [
+      "gagné"
+    ],
+    "adjectives": [
+      {
+        "word": "gagnant",
+        "definition": "winning, successful"
+      },
+      {
+        "word": "gagnable",
+        "definition": "able to be won"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "concentrer": {
+    "language": "fr",
+    "lemma": "concentrer",
+    "present": [
+      "concentrant"
+    ],
+    "past": [
+      "concentré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "danser": {
+    "language": "fr",
+    "lemma": "danser",
+    "present": [
+      "dansant"
+    ],
+    "past": [
+      "dansé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rester": {
+    "language": "fr",
+    "lemma": "rester",
+    "present": [
+      "restant"
+    ],
+    "past": [
+      "resté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "étudier": {
+    "language": "fr",
+    "lemma": "étudier",
+    "present": [
+      "étudiant"
+    ],
+    "past": [
+      "étudié"
+    ],
+    "adjectives": [
+      {
+        "word": "étudié",
+        "definition": "studied; deliberate"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "établir": {
+    "language": "fr",
+    "lemma": "établir",
+    "present": [
+      "établissant"
+    ],
+    "past": [
+      "établi"
+    ],
+    "adjectives": [
+      {
+        "word": "établi",
+        "definition": "established; set up"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se promener": {
+    "language": "fr",
+    "lemma": "se promener",
+    "present": [
+      "se promenant"
+    ],
+    "past": [
+      "promené"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "reposer": {
+    "language": "fr",
+    "lemma": "reposer",
+    "present": [
+      "reposant"
+    ],
+    "past": [
+      "reposé"
+    ],
+    "adjectives": [
+      {
+        "word": "reposant",
+        "definition": "relaxing, calming"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "courir": {
+    "language": "fr",
+    "lemma": "courir",
+    "present": [
+      "courant"
+    ],
+    "past": [
+      "couru"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "fouiller": {
+    "language": "fr",
+    "lemma": "fouiller",
+    "present": [
+      "fouillant"
+    ],
+    "past": [
+      "fouillé"
+    ],
+    "adjectives": [
+      {
+        "word": "fouillé",
+        "definition": "thorough, detailed (work, analysis)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "répéter": {
+    "language": "fr",
+    "lemma": "répéter",
+    "present": [
+      "répétant"
+    ],
+    "past": [
+      "répété"
+    ],
+    "adjectives": [
+      {
+        "word": "répété",
+        "definition": "repeated, done again"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "composer": {
+    "language": "fr",
+    "lemma": "composer",
+    "present": [
+      "composant"
+    ],
+    "past": [
+      "composé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "enlever": {
+    "language": "fr",
+    "lemma": "enlever",
+    "present": [
+      "enlevant"
+    ],
+    "past": [
+      "enlevé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "penser": {
+    "language": "fr",
+    "lemma": "penser",
+    "present": [
+      "pensant"
+    ],
+    "past": [
+      "pensé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "enterrer": {
+    "language": "fr",
+    "lemma": "enterrer",
+    "present": [
+      "enterrant"
+    ],
+    "past": [
+      "enterré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "approprier": {
+    "language": "fr",
+    "lemma": "approprier",
+    "present": [
+      "appropriant"
+    ],
+    "past": [
+      "approprié"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "appuyer": {
+    "language": "fr",
+    "lemma": "appuyer",
+    "present": [
+      "appuyant"
+    ],
+    "past": [
+      "appuyé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "trouver": {
+    "language": "fr",
+    "lemma": "trouver",
+    "present": [
+      "trouvant"
+    ],
+    "past": [
+      "trouvé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "retourner": {
+    "language": "fr",
+    "lemma": "retourner",
+    "present": [
+      "retournant"
+    ],
+    "past": [
+      "retourné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ramener": {
+    "language": "fr",
+    "lemma": "ramener",
+    "present": [
+      "ramenant"
+    ],
+    "past": [
+      "ramené"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "habiter": {
+    "language": "fr",
+    "lemma": "habiter",
+    "present": [
+      "habitant"
+    ],
+    "past": [
+      "habité"
+    ],
+    "adjectives": [
+      {
+        "word": "habité",
+        "definition": "inhabited, lived-in"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "souhaiter": {
+    "language": "fr",
+    "lemma": "souhaiter",
+    "present": [
+      "souhaitant"
+    ],
+    "past": [
+      "souhaité"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "lever": {
+    "language": "fr",
+    "lemma": "lever",
+    "present": [
+      "levant"
+    ],
+    "past": [
+      "levé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "sauver": {
+    "language": "fr",
+    "lemma": "sauver",
+    "present": [
+      "sauvant"
+    ],
+    "past": [
+      "sauvé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "chier": {
+    "language": "fr",
+    "lemma": "chier",
+    "present": [
+      "chiant"
+    ],
+    "past": [
+      "chié"
+    ],
+    "adjectives": [
+      {
+        "word": "chiant",
+        "definition": "annoying, a pain"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "créer": {
+    "language": "fr",
+    "lemma": "créer",
+    "present": [
+      "créant"
+    ],
+    "past": [
+      "créé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "envoyer": {
+    "language": "fr",
+    "lemma": "envoyer",
+    "present": [
+      "envoyant"
+    ],
+    "past": [
+      "envoyé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "jouer": {
+    "language": "fr",
+    "lemma": "jouer",
+    "present": [
+      "jouant"
+    ],
+    "past": [
+      "joué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "couler": {
+    "language": "fr",
+    "lemma": "couler",
+    "present": [
+      "coulant"
+    ],
+    "past": [
+      "coulé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "baser": {
+    "language": "fr",
+    "lemma": "baser",
+    "present": [
+      "basant"
+    ],
+    "past": [
+      "basé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "habiller": {
+    "language": "fr",
+    "lemma": "habiller",
+    "present": [
+      "habillant"
+    ],
+    "past": [
+      "habillé"
+    ],
+    "adjectives": [
+      {
+        "word": "habillé",
+        "definition": "dressed; wearing clothes"
+      },
+      {
+        "word": "habillant",
+        "definition": "flattering (of clothing or color); that enhances appearance"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "enseigner": {
+    "language": "fr",
+    "lemma": "enseigner",
+    "present": [
+      "enseignant"
+    ],
+    "past": [
+      "enseigné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "réveiller": {
+    "language": "fr",
+    "lemma": "réveiller",
+    "present": [
+      "réveillant"
+    ],
+    "past": [
+      "réveillé"
+    ],
+    "adjectives": [
+      {
+        "word": "réveillé",
+        "definition": "awake, alert"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "tenter": {
+    "language": "fr",
+    "lemma": "tenter",
+    "present": [
+      "tentant"
+    ],
+    "past": [
+      "tenté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "retirer": {
+    "language": "fr",
+    "lemma": "retirer",
+    "present": [
+      "retirant"
+    ],
+    "past": [
+      "retiré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "attacher": {
+    "language": "fr",
+    "lemma": "attacher",
+    "present": [
+      "attachant"
+    ],
+    "past": [
+      "attaché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "sortir": {
+    "language": "fr",
+    "lemma": "sortir",
+    "present": [
+      "sortant"
+    ],
+    "past": [
+      "sorti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "savoir": {
+    "language": "fr",
+    "lemma": "savoir",
+    "present": [
+      "sachant"
+    ],
+    "past": [
+      "su"
+    ],
+    "adjectives": [
+      {
+        "word": "sachant",
+        "definition": "knowledgeable, knowing (having knowledge)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "apparaître": {
+    "language": "fr",
+    "lemma": "apparaître",
+    "present": [
+      "apparaissant"
+    ],
+    "past": [
+      "apparu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "mourir": {
+    "language": "fr",
+    "lemma": "mourir",
+    "present": [
+      "mourant"
+    ],
+    "past": [
+      "mort"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "donner": {
+    "language": "fr",
+    "lemma": "donner",
+    "present": [
+      "donnant"
+    ],
+    "past": [
+      "donné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rentrer": {
+    "language": "fr",
+    "lemma": "rentrer",
+    "present": [
+      "rentrant"
+    ],
+    "past": [
+      "rentré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "effrayer": {
+    "language": "fr",
+    "lemma": "effrayer",
+    "present": [
+      "effrayant"
+    ],
+    "past": [
+      "effrayé"
+    ],
+    "adjectives": [
+      {
+        "word": "effrayant",
+        "definition": "frightening; scary"
+      },
+      {
+        "word": "effrayé",
+        "definition": "frightened; scared"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "se battre": {
+    "language": "fr",
+    "lemma": "se battre",
+    "present": [
+      "se battant"
+    ],
+    "past": [
+      "battu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "lier": {
+    "language": "fr",
+    "lemma": "lier",
+    "present": [
+      "liant"
+    ],
+    "past": [
+      "lié"
+    ],
+    "adjectives": [
+      {
+        "word": "liant",
+        "definition": "sociable, easy to get along with"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "apporter": {
+    "language": "fr",
+    "lemma": "apporter",
+    "present": [
+      "apportant"
+    ],
+    "past": [
+      "apporté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "enregistrer": {
+    "language": "fr",
+    "lemma": "enregistrer",
+    "present": [
+      "enregistrant"
+    ],
+    "past": [
+      "enregistré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "exprimer": {
+    "language": "fr",
+    "lemma": "exprimer",
+    "present": [
+      "exprimant"
+    ],
+    "past": [
+      "exprimé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "éviter": {
+    "language": "fr",
+    "lemma": "éviter",
+    "present": [
+      "évitant"
+    ],
+    "past": [
+      "évité"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "participer": {
+    "language": "fr",
+    "lemma": "participer",
+    "present": [
+      "participant"
+    ],
+    "past": [
+      "participé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "présenter": {
+    "language": "fr",
+    "lemma": "présenter",
+    "present": [
+      "présentant"
+    ],
+    "past": [
+      "présenté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "acquérir": {
+    "language": "fr",
+    "lemma": "acquérir",
+    "present": [
+      "acquérant"
+    ],
+    "past": [
+      "acquis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "connaître": {
+    "language": "fr",
+    "lemma": "connaître",
+    "present": [
+      "connaissant"
+    ],
+    "past": [
+      "connu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "supposer": {
+    "language": "fr",
+    "lemma": "supposer",
+    "present": [
+      "supposant"
+    ],
+    "past": [
+      "supposé"
+    ],
+    "adjectives": [
+      {
+        "word": "supposé",
+        "definition": "supposed, assumed"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "remplacer": {
+    "language": "fr",
+    "lemma": "remplacer",
+    "present": [
+      "remplaçant"
+    ],
+    "past": [
+      "remplacé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "céder": {
+    "language": "fr",
+    "lemma": "céder",
+    "present": [
+      "cédant"
+    ],
+    "past": [
+      "cédé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "falloir": {
+    "language": "fr",
+    "lemma": "falloir",
+    "present": [],
+    "past": [
+      "fallu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "accuser": {
+    "language": "fr",
+    "lemma": "accuser",
+    "present": [
+      "accusant"
+    ],
+    "past": [
+      "accusé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ruiner": {
+    "language": "fr",
+    "lemma": "ruiner",
+    "present": [
+      "ruinant"
+    ],
+    "past": [
+      "ruiné"
+    ],
+    "adjectives": [
+      {
+        "word": "ruiné",
+        "definition": "financially destroyed or in ruins"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "creuser": {
+    "language": "fr",
+    "lemma": "creuser",
+    "present": [
+      "creusant"
+    ],
+    "past": [
+      "creusé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "agresser": {
+    "language": "fr",
+    "lemma": "agresser",
+    "present": [
+      "agressant"
+    ],
+    "past": [
+      "agressé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "transformer": {
+    "language": "fr",
+    "lemma": "transformer",
+    "present": [
+      "transformant"
+    ],
+    "past": [
+      "transformé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "passer": {
+    "language": "fr",
+    "lemma": "passer",
+    "present": [
+      "passant"
+    ],
+    "past": [
+      "passé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "observer": {
+    "language": "fr",
+    "lemma": "observer",
+    "present": [
+      "observant"
+    ],
+    "past": [
+      "observé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "séparer": {
+    "language": "fr",
+    "lemma": "séparer",
+    "present": [
+      "séparant"
+    ],
+    "past": [
+      "séparé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "se laver": {
+    "language": "fr",
+    "lemma": "se laver",
+    "present": [
+      "se lavant"
+    ],
+    "past": [
+      "lavé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "considérer": {
+    "language": "fr",
+    "lemma": "considérer",
+    "present": [
+      "considérant"
+    ],
+    "past": [
+      "considéré"
+    ],
+    "adjectives": [
+      {
+        "word": "considéré",
+        "definition": "respected or esteemed"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "concerner": {
+    "language": "fr",
+    "lemma": "concerner",
+    "present": [
+      "concernant"
+    ],
+    "past": [
+      "concerné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "réaliser": {
+    "language": "fr",
+    "lemma": "réaliser",
+    "present": [
+      "réalisant"
+    ],
+    "past": [
+      "réalisé"
+    ],
+    "adjectives": [
+      {
+        "word": "réalisé",
+        "definition": "accomplished or carried out"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "soutenir": {
+    "language": "fr",
+    "lemma": "soutenir",
+    "present": [
+      "soutenant"
+    ],
+    "past": [
+      "soutenu"
+    ],
+    "adjectives": [
+      {
+        "word": "soutenu",
+        "definition": "sustained, formal"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "s'appeler": {
+    "language": "fr",
+    "lemma": "s'appeler",
+    "present": [
+      "s'appelant"
+    ],
+    "past": [
+      "appelé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "conseiller": {
+    "language": "fr",
+    "lemma": "conseiller",
+    "present": [
+      "conseillant"
+    ],
+    "past": [
+      "conseillé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "cingler": {
+    "language": "fr",
+    "lemma": "cingler",
+    "present": [
+      "cinglant"
+    ],
+    "past": [
+      "cinglé"
+    ],
+    "adjectives": [
+      {
+        "word": "cinglant",
+        "definition": "biting or scathing (as in a remark or wind)"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "compter": {
+    "language": "fr",
+    "lemma": "compter",
+    "present": [
+      "comptant"
+    ],
+    "past": [
+      "compté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "botter": {
+    "language": "fr",
+    "lemma": "botter",
+    "present": [
+      "bottant"
+    ],
+    "past": [
+      "botté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "permettre": {
+    "language": "fr",
+    "lemma": "permettre",
+    "present": [
+      "permettant"
+    ],
+    "past": [
+      "permis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "prévoir": {
+    "language": "fr",
+    "lemma": "prévoir",
+    "present": [
+      "prévoyant"
+    ],
+    "past": [
+      "prévu"
+    ],
+    "adjectives": [
+      {
+        "word": "prévoyant",
+        "definition": "able to foresee or plan ahead"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "servir": {
+    "language": "fr",
+    "lemma": "servir",
+    "present": [
+      "servant"
+    ],
+    "past": [
+      "servi"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "asseoir": {
+    "language": "fr",
+    "lemma": "asseoir",
+    "present": [
+      "asseyant",
+      "assoyant"
+    ],
+    "past": [
+      "assis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "déposer": {
+    "language": "fr",
+    "lemma": "déposer",
+    "present": [
+      "déposant"
+    ],
+    "past": [
+      "déposé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "relever": {
+    "language": "fr",
+    "lemma": "relever",
+    "present": [
+      "relevant"
+    ],
+    "past": [
+      "relevé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "signer": {
+    "language": "fr",
+    "lemma": "signer",
+    "present": [
+      "signant"
+    ],
+    "past": [
+      "signé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "boire": {
+    "language": "fr",
+    "lemma": "boire",
+    "present": [
+      "buvant"
+    ],
+    "past": [
+      "bu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "concevoir": {
+    "language": "fr",
+    "lemma": "concevoir",
+    "present": [
+      "concevant"
+    ],
+    "past": [
+      "conçu"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "ignorer": {
+    "language": "fr",
+    "lemma": "ignorer",
+    "present": [
+      "ignorant"
+    ],
+    "past": [
+      "ignoré"
+    ],
+    "adjectives": [
+      {
+        "word": "ignorant",
+        "definition": "not knowing, unaware"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "fiancer": {
+    "language": "fr",
+    "lemma": "fiancer",
+    "present": [
+      "fiançant"
+    ],
+    "past": [
+      "fiancé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "dîner": {
+    "language": "fr",
+    "lemma": "dîner",
+    "present": [
+      "dînant"
+    ],
+    "past": [
+      "dîné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "pourrir": {
+    "language": "fr",
+    "lemma": "pourrir",
+    "present": [
+      "pourrissant"
+    ],
+    "past": [
+      "pourri"
+    ],
+    "adjectives": [
+      {
+        "word": "pourri",
+        "definition": "rotten, decayed"
+      },
+      {
+        "word": "pourrissant",
+        "definition": "rotting, decaying"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "inviter": {
+    "language": "fr",
+    "lemma": "inviter",
+    "present": [
+      "invitant"
+    ],
+    "past": [
+      "invité"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "construire": {
+    "language": "fr",
+    "lemma": "construire",
+    "present": [
+      "construisant"
+    ],
+    "past": [
+      "construit"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "accorder": {
+    "language": "fr",
+    "lemma": "accorder",
+    "present": [
+      "accordant"
+    ],
+    "past": [
+      "accordé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "bouleverser": {
+    "language": "fr",
+    "lemma": "bouleverser",
+    "present": [
+      "bouleversant"
+    ],
+    "past": [
+      "bouleversé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "remonter": {
+    "language": "fr",
+    "lemma": "remonter",
+    "present": [
+      "remontant"
+    ],
+    "past": [
+      "remonté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "comprendre": {
+    "language": "fr",
+    "lemma": "comprendre",
+    "present": [
+      "comprenant"
+    ],
+    "past": [
+      "compris"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rencontrer": {
+    "language": "fr",
+    "lemma": "rencontrer",
+    "present": [
+      "rencontrant"
+    ],
+    "past": [
+      "rencontré"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "lire": {
+    "language": "fr",
+    "lemma": "lire",
+    "present": [
+      "lisant"
+    ],
+    "past": [
+      "lu"
+    ],
+    "adjectives": [
+      {
+        "word": "lisible",
+        "definition": "easy to read"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "remettre": {
+    "language": "fr",
+    "lemma": "remettre",
+    "present": [
+      "remettant"
+    ],
+    "past": [
+      "remis"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "déranger": {
+    "language": "fr",
+    "lemma": "déranger",
+    "present": [
+      "dérangeant"
+    ],
+    "past": [
+      "dérangé"
+    ],
+    "adjectives": [
+      {
+        "word": "dérangeant",
+        "definition": "disturbing or bothersome"
+      },
+      {
+        "word": "dérangé",
+        "definition": "mentally disturbed; not sane"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "sentir": {
+    "language": "fr",
+    "lemma": "sentir",
+    "present": [
+      "sentant"
+    ],
+    "past": [
+      "senti"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "offrir": {
+    "language": "fr",
+    "lemma": "offrir",
+    "present": [
+      "offrant"
+    ],
+    "past": [
+      "offert"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "impliquer": {
+    "language": "fr",
+    "lemma": "impliquer",
+    "present": [
+      "impliquant"
+    ],
+    "past": [
+      "impliqué"
+    ],
+    "adjectives": [
+      {
+        "word": "impliqué",
+        "definition": "involved, engaged"
+      }
+    ],
+    "model": "gpt-4.1"
+  },
+  "parfaire": {
+    "language": "fr",
+    "lemma": "parfaire",
+    "present": [
+      "parfaisant"
+    ],
+    "past": [
+      "parfait"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "piéger": {
+    "language": "fr",
+    "lemma": "piéger",
+    "present": [
+      "piégeant"
+    ],
+    "past": [
+      "piégé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "tourner": {
+    "language": "fr",
+    "lemma": "tourner",
+    "present": [
+      "tournant"
+    ],
+    "past": [
+      "tourné"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "jeter": {
+    "language": "fr",
+    "lemma": "jeter",
+    "present": [
+      "jetant"
+    ],
+    "past": [
+      "jeté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "partager": {
+    "language": "fr",
+    "lemma": "partager",
+    "present": [
+      "partageant"
+    ],
+    "past": [
+      "partagé"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "continuer": {
+    "language": "fr",
+    "lemma": "continuer",
+    "present": [
+      "continuant"
+    ],
+    "past": [
+      "continué"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "rater": {
+    "language": "fr",
+    "lemma": "rater",
+    "present": [
+      "ratant"
+    ],
+    "past": [
+      "raté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "chanter": {
+    "language": "fr",
+    "lemma": "chanter",
+    "present": [
+      "chantant"
+    ],
+    "past": [
+      "chanté"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "marcher": {
+    "language": "fr",
+    "lemma": "marcher",
+    "present": [
+      "marchant"
+    ],
+    "past": [
+      "marché"
+    ],
+    "adjectives": [],
+    "model": "gpt-4.1"
+  },
+  "fournir": {
+    "language": "fr",
+    "lemma": "fournir",
+    "present": [
+      "fournissant"
+    ],
+    "past": [
+      "fourni"
+    ],
+    "adjectives": [
+      {
+        "word": "fourni",
+        "definition": "well-stocked, abundant"
+      }
+    ],
+    "model": "gpt-4.1"
+  }
+}

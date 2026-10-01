@@ -1,0 +1,2030 @@
+{
+  "scope": "French everyday multiword predicates, existing pronoun constructions and idioms. Editorial inventory; not an exhaustive dictionary of French idioms.",
+  "count": 253,
+  "expressions": [
+    {
+      "expression": "s'en aller",
+      "base": "aller",
+      "family": "pronoun",
+      "pattern": "s'en aller",
+      "register": "neutral",
+      "meaning_en": "to go away; leave"
+    },
+    {
+      "expression": "s'en foutre",
+      "base": "foutre",
+      "family": "pronoun",
+      "pattern": "s'en foutre",
+      "register": "vulgar; very informal",
+      "meaning_en": "not to give a damn"
+    },
+    {
+      "expression": "s'en ficher",
+      "base": "ficher",
+      "family": "pronoun",
+      "pattern": "s'en ficher",
+      "register": "informal",
+      "meaning_en": "not to care"
+    },
+    {
+      "expression": "s'en sortir",
+      "base": "sortir",
+      "family": "pronoun",
+      "pattern": "s'en sortir",
+      "register": "neutral",
+      "meaning_en": "to manage; get through it"
+    },
+    {
+      "expression": "s'en tirer",
+      "base": "tirer",
+      "family": "pronoun",
+      "pattern": "s'en tirer",
+      "register": "neutral",
+      "meaning_en": "to get away with it; manage"
+    },
+    {
+      "expression": "s'en occuper",
+      "base": "occuper",
+      "family": "pronoun",
+      "pattern": "s'en occuper",
+      "register": "neutral",
+      "meaning_en": "to take care of it"
+    },
+    {
+      "expression": "s'en charger",
+      "base": "charger",
+      "family": "pronoun",
+      "pattern": "s'en charger",
+      "register": "neutral",
+      "meaning_en": "to handle it; take charge of it"
+    },
+    {
+      "expression": "s'en servir",
+      "base": "servir",
+      "family": "pronoun",
+      "pattern": "s'en servir",
+      "register": "neutral",
+      "meaning_en": "to use it"
+    },
+    {
+      "expression": "s'en passer",
+      "base": "passer",
+      "family": "pronoun",
+      "pattern": "s'en passer",
+      "register": "neutral",
+      "meaning_en": "to do without it"
+    },
+    {
+      "expression": "s'en souvenir",
+      "base": "souvenir",
+      "family": "pronoun",
+      "pattern": "s'en souvenir",
+      "register": "neutral",
+      "meaning_en": "to remember it"
+    },
+    {
+      "expression": "se rappeler",
+      "base": "rappeler",
+      "family": "pronoun",
+      "pattern": "se rappeler",
+      "register": "neutral",
+      "meaning_en": "to remember"
+    },
+    {
+      "expression": "s'en rendre compte",
+      "base": "rendre",
+      "family": "pronoun",
+      "pattern": "s'en rendre compte",
+      "register": "neutral",
+      "meaning_en": "to realize it"
+    },
+    {
+      "expression": "s'en apercevoir",
+      "base": "apercevoir",
+      "family": "pronoun",
+      "pattern": "s'en apercevoir",
+      "register": "neutral",
+      "meaning_en": "to notice it"
+    },
+    {
+      "expression": "s'en douter",
+      "base": "douter",
+      "family": "pronoun",
+      "pattern": "s'en douter",
+      "register": "neutral",
+      "meaning_en": "to suspect it"
+    },
+    {
+      "expression": "s'en méfier",
+      "base": "méfier",
+      "family": "pronoun",
+      "pattern": "s'en méfier",
+      "register": "neutral",
+      "meaning_en": "to be wary of it"
+    },
+    {
+      "expression": "s'en moquer",
+      "base": "moquer",
+      "family": "pronoun",
+      "pattern": "s'en moquer",
+      "register": "neutral",
+      "meaning_en": "not to care about it; mock it"
+    },
+    {
+      "expression": "s'en plaindre",
+      "base": "plaindre",
+      "family": "pronoun",
+      "pattern": "s'en plaindre",
+      "register": "neutral",
+      "meaning_en": "to complain about it"
+    },
+    {
+      "expression": "s'en réjouir",
+      "base": "réjouir",
+      "family": "pronoun",
+      "pattern": "s'en réjouir",
+      "register": "neutral",
+      "meaning_en": "to be delighted about it"
+    },
+    {
+      "expression": "s'en étonner",
+      "base": "étonner",
+      "family": "pronoun",
+      "pattern": "s'en étonner",
+      "register": "neutral",
+      "meaning_en": "to be surprised by it"
+    },
+    {
+      "expression": "s'en inquiéter",
+      "base": "inquiéter",
+      "family": "pronoun",
+      "pattern": "s'en inquiéter",
+      "register": "neutral",
+      "meaning_en": "to worry about it"
+    },
+    {
+      "expression": "s'en lasser",
+      "base": "lasser",
+      "family": "pronoun",
+      "pattern": "s'en lasser",
+      "register": "neutral",
+      "meaning_en": "to get tired of it"
+    },
+    {
+      "expression": "s'en remettre",
+      "base": "remettre",
+      "family": "pronoun",
+      "pattern": "s'en remettre",
+      "register": "neutral",
+      "meaning_en": "to recover from it"
+    },
+    {
+      "expression": "s'en remettre à quelqu'un",
+      "base": "remettre",
+      "family": "pronoun",
+      "pattern": "s'en remettre à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to rely on someone"
+    },
+    {
+      "expression": "s'en tenir à",
+      "base": "tenir",
+      "family": "pronoun",
+      "pattern": "s'en tenir à",
+      "register": "neutral",
+      "meaning_en": "to stick to it"
+    },
+    {
+      "expression": "s'en prendre à quelqu'un",
+      "base": "prendre",
+      "family": "pronoun",
+      "pattern": "s'en prendre à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to take it out on someone"
+    },
+    {
+      "expression": "en vouloir à quelqu'un",
+      "base": "vouloir",
+      "family": "pronoun",
+      "pattern": "en vouloir à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to be mad at someone"
+    },
+    {
+      "expression": "s'en vouloir",
+      "base": "vouloir",
+      "family": "pronoun",
+      "pattern": "s'en vouloir",
+      "register": "neutral",
+      "meaning_en": "to blame oneself"
+    },
+    {
+      "expression": "en avoir assez",
+      "base": "avoir",
+      "family": "pronoun",
+      "pattern": "en avoir assez",
+      "register": "neutral",
+      "meaning_en": "to have had enough"
+    },
+    {
+      "expression": "en avoir marre",
+      "base": "avoir",
+      "family": "pronoun",
+      "pattern": "en avoir marre",
+      "register": "informal",
+      "meaning_en": "to be fed up"
+    },
+    {
+      "expression": "en avoir ras le bol",
+      "base": "avoir",
+      "family": "pronoun",
+      "pattern": "en avoir ras le bol",
+      "register": "informal",
+      "meaning_en": "to be totally fed up"
+    },
+    {
+      "expression": "en avoir besoin",
+      "base": "avoir",
+      "family": "pronoun",
+      "pattern": "en avoir besoin",
+      "register": "neutral",
+      "meaning_en": "to need it"
+    },
+    {
+      "expression": "en avoir envie",
+      "base": "avoir",
+      "family": "pronoun",
+      "pattern": "en avoir envie",
+      "register": "neutral",
+      "meaning_en": "to feel like it; want some"
+    },
+    {
+      "expression": "en avoir peur",
+      "base": "avoir",
+      "family": "pronoun",
+      "pattern": "en avoir peur",
+      "register": "neutral",
+      "meaning_en": "to be afraid of it"
+    },
+    {
+      "expression": "en avoir honte",
+      "base": "avoir",
+      "family": "pronoun",
+      "pattern": "en avoir honte",
+      "register": "neutral",
+      "meaning_en": "to be ashamed of it"
+    },
+    {
+      "expression": "en être sûr",
+      "base": "être",
+      "family": "pronoun",
+      "pattern": "en être sûr",
+      "register": "neutral",
+      "meaning_en": "to be sure of it"
+    },
+    {
+      "expression": "en être capable",
+      "base": "être",
+      "family": "pronoun",
+      "pattern": "en être capable",
+      "register": "neutral",
+      "meaning_en": "to be capable of it"
+    },
+    {
+      "expression": "en parler",
+      "base": "parler",
+      "family": "pronoun",
+      "pattern": "en parler",
+      "register": "neutral",
+      "meaning_en": "to talk about it"
+    },
+    {
+      "expression": "en discuter",
+      "base": "discuter",
+      "family": "pronoun",
+      "pattern": "en discuter",
+      "register": "neutral",
+      "meaning_en": "to discuss it"
+    },
+    {
+      "expression": "en revenir",
+      "base": "revenir",
+      "family": "pronoun",
+      "pattern": "en revenir",
+      "register": "neutral",
+      "meaning_en": "to get over it; come back from it"
+    },
+    {
+      "expression": "en finir avec",
+      "base": "finir",
+      "family": "pronoun",
+      "pattern": "en finir avec",
+      "register": "neutral",
+      "meaning_en": "to be done with it"
+    },
+    {
+      "expression": "en profiter",
+      "base": "profiter",
+      "family": "pronoun",
+      "pattern": "en profiter",
+      "register": "neutral",
+      "meaning_en": "to take advantage of it; enjoy it"
+    },
+    {
+      "expression": "en dépendre",
+      "base": "dépendre",
+      "family": "pronoun",
+      "pattern": "en dépendre",
+      "register": "neutral",
+      "meaning_en": "to depend on it"
+    },
+    {
+      "expression": "en rire",
+      "base": "rire",
+      "family": "pronoun",
+      "pattern": "en rire",
+      "register": "neutral",
+      "meaning_en": "to laugh about it"
+    },
+    {
+      "expression": "en pleurer",
+      "base": "pleurer",
+      "family": "pronoun",
+      "pattern": "en pleurer",
+      "register": "neutral",
+      "meaning_en": "to cry about it"
+    },
+    {
+      "expression": "en mourir",
+      "base": "mourir",
+      "family": "pronoun",
+      "pattern": "en mourir",
+      "register": "neutral",
+      "meaning_en": "to die from it; be dying for it"
+    },
+    {
+      "expression": "s'en approcher",
+      "base": "approcher",
+      "family": "pronoun",
+      "pattern": "s'en approcher",
+      "register": "neutral",
+      "meaning_en": "to approach it"
+    },
+    {
+      "expression": "s'en éloigner",
+      "base": "éloigner",
+      "family": "pronoun",
+      "pattern": "s'en éloigner",
+      "register": "neutral",
+      "meaning_en": "to move away from it"
+    },
+    {
+      "expression": "s'en échapper",
+      "base": "échapper",
+      "family": "pronoun",
+      "pattern": "s'en échapper",
+      "register": "neutral",
+      "meaning_en": "to escape from it"
+    },
+    {
+      "expression": "s'en débarrasser",
+      "base": "débarrasser",
+      "family": "pronoun",
+      "pattern": "s'en débarrasser",
+      "register": "neutral",
+      "meaning_en": "to get rid of it"
+    },
+    {
+      "expression": "s'en mordre les doigts",
+      "base": "mordre",
+      "family": "idiom",
+      "pattern": "s'en mordre les doigts",
+      "register": "neutral",
+      "meaning_en": "to kick oneself; regret it"
+    },
+    {
+      "expression": "s'en mettre plein les poches",
+      "base": "mettre",
+      "family": "idiom",
+      "pattern": "s'en mettre plein les poches",
+      "register": "neutral",
+      "meaning_en": "to make a lot of money dishonestly"
+    },
+    {
+      "expression": "s'en laver les mains",
+      "base": "laver",
+      "family": "idiom",
+      "pattern": "s'en laver les mains",
+      "register": "neutral",
+      "meaning_en": "to wash one's hands of it"
+    },
+    {
+      "expression": "s'en donner à cœur joie",
+      "base": "donner",
+      "family": "idiom",
+      "pattern": "s'en donner à cœur joie",
+      "register": "neutral",
+      "meaning_en": "to have a field day"
+    },
+    {
+      "expression": "s'en donner les moyens",
+      "base": "donner",
+      "family": "idiom",
+      "pattern": "s'en donner les moyens",
+      "register": "neutral",
+      "meaning_en": "to give oneself the means"
+    },
+    {
+      "expression": "s'en sortir haut la main",
+      "base": "sortir",
+      "family": "idiom",
+      "pattern": "s'en sortir haut la main",
+      "register": "neutral",
+      "meaning_en": "to come through with flying colors"
+    },
+    {
+      "expression": "s'en tirer à bon compte",
+      "base": "tirer",
+      "family": "idiom",
+      "pattern": "s'en tirer à bon compte",
+      "register": "neutral",
+      "meaning_en": "to get off lightly"
+    },
+    {
+      "expression": "s'en prendre plein la figure",
+      "base": "prendre",
+      "family": "idiom",
+      "pattern": "s'en prendre plein la figure",
+      "register": "informal",
+      "meaning_en": "to take a beating; get blasted"
+    },
+    {
+      "expression": "s'en prendre à plus faible que soi",
+      "base": "prendre",
+      "family": "idiom",
+      "pattern": "s'en prendre à plus faible que soi",
+      "register": "neutral",
+      "meaning_en": "to pick on someone weaker"
+    },
+    {
+      "expression": "s'en remettre au hasard",
+      "base": "remettre",
+      "family": "idiom",
+      "pattern": "s'en remettre au hasard",
+      "register": "neutral",
+      "meaning_en": "to leave it to chance"
+    },
+    {
+      "expression": "s'en remettre à Dieu",
+      "base": "remettre",
+      "family": "idiom",
+      "pattern": "s'en remettre à Dieu",
+      "register": "neutral",
+      "meaning_en": "to leave it to God"
+    },
+    {
+      "expression": "s'en tenir là",
+      "base": "tenir",
+      "family": "idiom",
+      "pattern": "s'en tenir là",
+      "register": "neutral",
+      "meaning_en": "to leave it at that"
+    },
+    {
+      "expression": "s'en tenir aux faits",
+      "base": "tenir",
+      "family": "idiom",
+      "pattern": "s'en tenir aux faits",
+      "register": "neutral",
+      "meaning_en": "to stick to the facts"
+    },
+    {
+      "expression": "s'en tenir à sa version",
+      "base": "tenir",
+      "family": "idiom",
+      "pattern": "s'en tenir à sa version",
+      "register": "neutral",
+      "meaning_en": "to stick to one's version"
+    },
+    {
+      "expression": "s'en faire pour rien",
+      "base": "faire",
+      "family": "idiom",
+      "pattern": "s'en faire pour rien",
+      "register": "neutral",
+      "meaning_en": "to worry for nothing"
+    },
+    {
+      "expression": "ne pas s'en faire",
+      "base": "faire",
+      "family": "idiom",
+      "pattern": "ne pas s'en faire",
+      "register": "neutral",
+      "meaning_en": "not to worry"
+    },
+    {
+      "expression": "s'en faire tout un monde",
+      "base": "faire",
+      "family": "idiom",
+      "pattern": "s'en faire tout un monde",
+      "register": "neutral",
+      "meaning_en": "to make a huge deal of it"
+    },
+    {
+      "expression": "s'en faire une montagne",
+      "base": "faire",
+      "family": "idiom",
+      "pattern": "s'en faire une montagne",
+      "register": "neutral",
+      "meaning_en": "to make a mountain out of it"
+    },
+    {
+      "expression": "s'en payer une tranche",
+      "base": "payer",
+      "family": "idiom",
+      "pattern": "s'en payer une tranche",
+      "register": "informal",
+      "meaning_en": "to have a good laugh"
+    },
+    {
+      "expression": "s'en payer une bonne tranche",
+      "base": "payer",
+      "family": "idiom",
+      "pattern": "s'en payer une bonne tranche",
+      "register": "informal",
+      "meaning_en": "to have a great time"
+    },
+    {
+      "expression": "s'en jeter un derrière la cravate",
+      "base": "jeter",
+      "family": "idiom",
+      "pattern": "s'en jeter un derrière la cravate",
+      "register": "old-fashioned; informal",
+      "meaning_en": "to knock back a drink"
+    },
+    {
+      "expression": "s'en mettre jusque-là",
+      "base": "mettre",
+      "family": "idiom",
+      "pattern": "s'en mettre jusque-là",
+      "register": "informal",
+      "meaning_en": "to stuff oneself; overdo it"
+    },
+    {
+      "expression": "en mettre plein la vue",
+      "base": "mettre",
+      "family": "idiom",
+      "pattern": "en mettre plein la vue",
+      "register": "neutral",
+      "meaning_en": "to dazzle; to impress"
+    },
+    {
+      "expression": "en faire trop",
+      "base": "faire",
+      "family": "idiom",
+      "pattern": "en faire trop",
+      "register": "neutral",
+      "meaning_en": "to overdo it"
+    },
+    {
+      "expression": "en faire des tonnes",
+      "base": "faire",
+      "family": "idiom",
+      "pattern": "en faire des tonnes",
+      "register": "informal",
+      "meaning_en": "to lay it on thick"
+    },
+    {
+      "expression": "en faire tout un plat",
+      "base": "faire",
+      "family": "idiom",
+      "pattern": "en faire tout un plat",
+      "register": "informal",
+      "meaning_en": "to make a big fuss about it"
+    },
+    {
+      "expression": "en avoir gros sur le cœur",
+      "base": "avoir",
+      "family": "idiom",
+      "pattern": "en avoir gros sur le cœur",
+      "register": "neutral",
+      "meaning_en": "to have a heavy heart about it"
+    },
+    {
+      "expression": "en avoir par-dessus la tête",
+      "base": "avoir",
+      "family": "idiom",
+      "pattern": "en avoir par-dessus la tête",
+      "register": "neutral",
+      "meaning_en": "to be sick of it"
+    },
+    {
+      "expression": "en avoir jusqu'au cou",
+      "base": "avoir",
+      "family": "idiom",
+      "pattern": "en avoir jusqu'au cou",
+      "register": "neutral",
+      "meaning_en": "to be up to one's neck in it"
+    },
+    {
+      "expression": "en avoir jusque-là",
+      "base": "avoir",
+      "family": "idiom",
+      "pattern": "en avoir jusque-là",
+      "register": "informal",
+      "meaning_en": "to have had it up to here"
+    },
+    {
+      "expression": "en avoir pour son argent",
+      "base": "avoir",
+      "family": "idiom",
+      "pattern": "en avoir pour son argent",
+      "register": "neutral",
+      "meaning_en": "to get one's money's worth"
+    },
+    {
+      "expression": "en voir de toutes les couleurs",
+      "base": "voir",
+      "family": "idiom",
+      "pattern": "en voir de toutes les couleurs",
+      "register": "neutral",
+      "meaning_en": "to go through a lot"
+    },
+    {
+      "expression": "en prendre de la graine",
+      "base": "prendre",
+      "family": "idiom",
+      "pattern": "en prendre de la graine",
+      "register": "neutral",
+      "meaning_en": "to learn from it; take a lesson"
+    },
+    {
+      "expression": "en perdre son latin",
+      "base": "perdre",
+      "family": "idiom",
+      "pattern": "en perdre son latin",
+      "register": "neutral",
+      "meaning_en": "to be completely baffled"
+    },
+    {
+      "expression": "en baver",
+      "base": "baver",
+      "family": "idiom",
+      "pattern": "en baver",
+      "register": "informal",
+      "meaning_en": "to have a hard time"
+    },
+    {
+      "expression": "en chier",
+      "base": "chier",
+      "family": "idiom",
+      "pattern": "en chier",
+      "register": "vulgar",
+      "meaning_en": "to struggle badly"
+    },
+    {
+      "expression": "en suer",
+      "base": "suer",
+      "family": "idiom",
+      "pattern": "en suer",
+      "register": "informal",
+      "meaning_en": "to sweat over it; struggle"
+    },
+    {
+      "expression": "en découdre",
+      "base": "découdre",
+      "family": "idiom",
+      "pattern": "en découdre",
+      "register": "neutral",
+      "meaning_en": "to fight it out"
+    },
+    {
+      "expression": "en rester bouche bée",
+      "base": "rester",
+      "family": "idiom",
+      "pattern": "en rester bouche bée",
+      "register": "neutral",
+      "meaning_en": "to be left speechless"
+    },
+    {
+      "expression": "en rester là",
+      "base": "rester",
+      "family": "idiom",
+      "pattern": "en rester là",
+      "register": "neutral",
+      "meaning_en": "to leave it there"
+    },
+    {
+      "expression": "en venir aux mains",
+      "base": "venir",
+      "family": "idiom",
+      "pattern": "en venir aux mains",
+      "register": "neutral",
+      "meaning_en": "to come to blows"
+    },
+    {
+      "expression": "en venir au fait",
+      "base": "venir",
+      "family": "idiom",
+      "pattern": "en venir au fait",
+      "register": "neutral",
+      "meaning_en": "to get to the point"
+    },
+    {
+      "expression": "revenir à ses moutons",
+      "base": "revenir",
+      "family": "idiom",
+      "pattern": "revenir à ses moutons",
+      "register": "neutral",
+      "meaning_en": "to get back to the subject"
+    },
+    {
+      "expression": "en dire long",
+      "base": "dire",
+      "family": "idiom",
+      "pattern": "en dire long",
+      "register": "neutral",
+      "meaning_en": "to say a lot about it"
+    },
+    {
+      "expression": "en savoir long",
+      "base": "savoir",
+      "family": "idiom",
+      "pattern": "en savoir long",
+      "register": "neutral",
+      "meaning_en": "to know a lot about it"
+    },
+    {
+      "expression": "en vouloir toujours plus",
+      "base": "vouloir",
+      "family": "idiom",
+      "pattern": "en vouloir toujours plus",
+      "register": "neutral",
+      "meaning_en": "to always want more"
+    },
+    {
+      "expression": "avoir besoin",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir besoin de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to need"
+    },
+    {
+      "expression": "avoir envie",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir envie de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to feel like; want"
+    },
+    {
+      "expression": "avoir peur",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir peur de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to be afraid"
+    },
+    {
+      "expression": "avoir honte",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir honte de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to be ashamed"
+    },
+    {
+      "expression": "avoir faim",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir faim",
+      "register": "neutral",
+      "meaning_en": "to be hungry"
+    },
+    {
+      "expression": "avoir soif",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir soif",
+      "register": "neutral",
+      "meaning_en": "to be thirsty"
+    },
+    {
+      "expression": "avoir chaud",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir chaud",
+      "register": "neutral",
+      "meaning_en": "to feel hot"
+    },
+    {
+      "expression": "avoir froid",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir froid",
+      "register": "neutral",
+      "meaning_en": "to feel cold"
+    },
+    {
+      "expression": "avoir sommeil",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir sommeil",
+      "register": "neutral",
+      "meaning_en": "to be sleepy"
+    },
+    {
+      "expression": "avoir raison",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir raison",
+      "register": "neutral",
+      "meaning_en": "to be right"
+    },
+    {
+      "expression": "avoir tort",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir tort",
+      "register": "neutral",
+      "meaning_en": "to be wrong"
+    },
+    {
+      "expression": "avoir lieu",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir lieu",
+      "register": "neutral",
+      "meaning_en": "to take place"
+    },
+    {
+      "expression": "avoir mal",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir mal à un endroit du corps",
+      "register": "neutral",
+      "meaning_en": "to hurt; be in pain"
+    },
+    {
+      "expression": "avoir du mal",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir du mal à faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to have difficulty"
+    },
+    {
+      "expression": "avoir l'habitude",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir l'habitude de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to be used to"
+    },
+    {
+      "expression": "avoir l'intention",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir l'intention de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to intend"
+    },
+    {
+      "expression": "avoir l'occasion",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir l'occasion de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to have the opportunity"
+    },
+    {
+      "expression": "avoir le temps",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir le temps de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to have time"
+    },
+    {
+      "expression": "avoir le droit",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir le droit de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to be allowed"
+    },
+    {
+      "expression": "avoir la chance",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir la chance de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to be lucky"
+    },
+    {
+      "expression": "avoir de la chance",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir de la chance",
+      "register": "neutral",
+      "meaning_en": "to be lucky"
+    },
+    {
+      "expression": "avoir l'air",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir l'air + adjectif",
+      "register": "neutral",
+      "meaning_en": "to seem; look"
+    },
+    {
+      "expression": "avoir hâte",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir hâte de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to look forward"
+    },
+    {
+      "expression": "avoir confiance",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir confiance en quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to trust"
+    },
+    {
+      "expression": "avoir conscience",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir conscience de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to be aware"
+    },
+    {
+      "expression": "avoir le choix",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir le choix",
+      "register": "neutral",
+      "meaning_en": "to have a choice"
+    },
+    {
+      "expression": "avoir une idée",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir une idée",
+      "register": "neutral",
+      "meaning_en": "to have an idea"
+    },
+    {
+      "expression": "avoir vingt ans",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir + nombre + ans",
+      "register": "Age construction: avoir + number + ans",
+      "meaning_en": "to be twenty years old"
+    },
+    {
+      "expression": "faire attention",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire attention à quelque chose",
+      "register": "neutral",
+      "meaning_en": "to pay attention"
+    },
+    {
+      "expression": "faire confiance",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire confiance à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to trust"
+    },
+    {
+      "expression": "faire partie",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire partie de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to be part"
+    },
+    {
+      "expression": "faire face",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire face à quelque chose",
+      "register": "neutral",
+      "meaning_en": "to face; cope"
+    },
+    {
+      "expression": "faire semblant",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire semblant de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to pretend"
+    },
+    {
+      "expression": "faire exprès",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire exprès",
+      "register": "neutral",
+      "meaning_en": "to do something deliberately"
+    },
+    {
+      "expression": "faire la queue",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire la queue",
+      "register": "neutral",
+      "meaning_en": "to queue; wait in line"
+    },
+    {
+      "expression": "faire les courses",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire les courses",
+      "register": "neutral",
+      "meaning_en": "to do the shopping"
+    },
+    {
+      "expression": "faire le ménage",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire le ménage",
+      "register": "neutral",
+      "meaning_en": "to do the housework"
+    },
+    {
+      "expression": "faire la cuisine",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire la cuisine",
+      "register": "neutral",
+      "meaning_en": "to cook"
+    },
+    {
+      "expression": "faire la vaisselle",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire la vaisselle",
+      "register": "neutral",
+      "meaning_en": "to wash the dishes"
+    },
+    {
+      "expression": "faire une pause",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire une pause",
+      "register": "neutral",
+      "meaning_en": "to take a break"
+    },
+    {
+      "expression": "faire un effort",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire un effort",
+      "register": "neutral",
+      "meaning_en": "to make an effort"
+    },
+    {
+      "expression": "faire des progrès",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire des progrès",
+      "register": "neutral",
+      "meaning_en": "to make progress"
+    },
+    {
+      "expression": "faire un choix",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire un choix",
+      "register": "neutral",
+      "meaning_en": "to make a choice"
+    },
+    {
+      "expression": "faire le point",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire le point",
+      "register": "neutral",
+      "meaning_en": "to take stock"
+    },
+    {
+      "expression": "faire demi-tour",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire demi-tour",
+      "register": "neutral",
+      "meaning_en": "to turn around"
+    },
+    {
+      "expression": "faire appel",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire appel à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to call on; appeal"
+    },
+    {
+      "expression": "faire référence",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire référence à quelque chose",
+      "register": "neutral",
+      "meaning_en": "to refer"
+    },
+    {
+      "expression": "faire preuve",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire preuve de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to show; demonstrate"
+    },
+    {
+      "expression": "faire part",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire part de quelque chose à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to inform; share"
+    },
+    {
+      "expression": "faire signe",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire signe à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to signal"
+    },
+    {
+      "expression": "faire peur",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire peur à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to frighten"
+    },
+    {
+      "expression": "faire plaisir",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire plaisir à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to please"
+    },
+    {
+      "expression": "faire mal",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire mal à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to hurt"
+    },
+    {
+      "expression": "faire du bien",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire du bien à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to do good; help someone feel better"
+    },
+    {
+      "expression": "faire la connaissance",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire la connaissance de quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to meet for the first time"
+    },
+    {
+      "expression": "faire la différence",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire la différence",
+      "register": "neutral",
+      "meaning_en": "to make a difference"
+    },
+    {
+      "expression": "faire une promenade",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire une promenade",
+      "register": "neutral",
+      "meaning_en": "to go for a walk"
+    },
+    {
+      "expression": "prendre soin",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre soin de quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to take care"
+    },
+    {
+      "expression": "prendre conscience",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre conscience de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to become aware"
+    },
+    {
+      "expression": "prendre connaissance",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre connaissance de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to read; acquaint oneself"
+    },
+    {
+      "expression": "prendre part",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre part à quelque chose",
+      "register": "neutral",
+      "meaning_en": "to take part"
+    },
+    {
+      "expression": "prendre une décision",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre une décision",
+      "register": "neutral",
+      "meaning_en": "to make a decision"
+    },
+    {
+      "expression": "prendre rendez-vous",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre rendez-vous",
+      "register": "neutral",
+      "meaning_en": "to make an appointment"
+    },
+    {
+      "expression": "prendre contact",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre contact avec quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to get in touch"
+    },
+    {
+      "expression": "prendre place",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre place",
+      "register": "neutral",
+      "meaning_en": "to take a seat"
+    },
+    {
+      "expression": "prendre le temps",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre le temps de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to take the time"
+    },
+    {
+      "expression": "prendre l'habitude",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre l'habitude de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to get into the habit"
+    },
+    {
+      "expression": "prendre quelque chose au sérieux",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre quelque chose au sérieux",
+      "register": "neutral",
+      "meaning_en": "to take seriously"
+    },
+    {
+      "expression": "prendre quelque chose en compte",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre quelque chose en compte",
+      "register": "neutral",
+      "meaning_en": "to take into account"
+    },
+    {
+      "expression": "prendre quelque chose en charge",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre quelque chose en charge",
+      "register": "neutral",
+      "meaning_en": "to take responsibility for"
+    },
+    {
+      "expression": "prendre des nouvelles",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre des nouvelles de quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to ask how someone is"
+    },
+    {
+      "expression": "prendre la parole",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre la parole",
+      "register": "neutral",
+      "meaning_en": "to speak; take the floor"
+    },
+    {
+      "expression": "prendre une douche",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre une douche",
+      "register": "neutral",
+      "meaning_en": "to take a shower"
+    },
+    {
+      "expression": "prendre un risque",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre un risque",
+      "register": "neutral",
+      "meaning_en": "to take a risk"
+    },
+    {
+      "expression": "prendre froid",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre froid",
+      "register": "neutral",
+      "meaning_en": "to catch a chill"
+    },
+    {
+      "expression": "mettre fin",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre fin à quelque chose",
+      "register": "neutral",
+      "meaning_en": "to put an end"
+    },
+    {
+      "expression": "mettre quelque chose en place",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre quelque chose en place",
+      "register": "neutral",
+      "meaning_en": "to put in place; set up"
+    },
+    {
+      "expression": "mettre quelque chose en œuvre",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre quelque chose en œuvre",
+      "register": "neutral",
+      "meaning_en": "to implement"
+    },
+    {
+      "expression": "mettre quelque chose au point",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre quelque chose au point",
+      "register": "neutral",
+      "meaning_en": "to develop; work out"
+    },
+    {
+      "expression": "mettre quelque chose à jour",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre quelque chose à jour",
+      "register": "neutral",
+      "meaning_en": "to update"
+    },
+    {
+      "expression": "mettre quelque chose en doute",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre quelque chose en doute",
+      "register": "neutral",
+      "meaning_en": "to question; doubt"
+    },
+    {
+      "expression": "mettre quelque chose de côté",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre quelque chose de côté",
+      "register": "neutral",
+      "meaning_en": "to set aside"
+    },
+    {
+      "expression": "mettre quelque chose en valeur",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "mettre quelque chose en valeur",
+      "register": "neutral",
+      "meaning_en": "to highlight; enhance"
+    },
+    {
+      "expression": "donner lieu",
+      "base": "donner",
+      "family": "everyday",
+      "pattern": "donner lieu à quelque chose",
+      "register": "neutral",
+      "meaning_en": "to give rise"
+    },
+    {
+      "expression": "donner raison",
+      "base": "donner",
+      "family": "everyday",
+      "pattern": "donner raison à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to agree with; prove right"
+    },
+    {
+      "expression": "donner tort",
+      "base": "donner",
+      "family": "everyday",
+      "pattern": "donner tort à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to rule against; prove wrong"
+    },
+    {
+      "expression": "donner un coup de main",
+      "base": "donner",
+      "family": "everyday",
+      "pattern": "donner un coup de main à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to lend a hand"
+    },
+    {
+      "expression": "donner rendez-vous",
+      "base": "donner",
+      "family": "everyday",
+      "pattern": "donner rendez-vous à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to arrange to meet"
+    },
+    {
+      "expression": "donner l'impression",
+      "base": "donner",
+      "family": "everyday",
+      "pattern": "donner l'impression de faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to give the impression"
+    },
+    {
+      "expression": "rendre service",
+      "base": "rendre",
+      "family": "everyday",
+      "pattern": "rendre service à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to do a favour"
+    },
+    {
+      "expression": "rendre visite",
+      "base": "rendre",
+      "family": "everyday",
+      "pattern": "rendre visite à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to visit"
+    },
+    {
+      "expression": "rendre hommage",
+      "base": "rendre",
+      "family": "everyday",
+      "pattern": "rendre hommage à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to pay tribute"
+    },
+    {
+      "expression": "tenir compte",
+      "base": "tenir",
+      "family": "everyday",
+      "pattern": "tenir compte de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to take into account"
+    },
+    {
+      "expression": "tenir parole",
+      "base": "tenir",
+      "family": "everyday",
+      "pattern": "tenir parole",
+      "register": "neutral",
+      "meaning_en": "to keep one's word"
+    },
+    {
+      "expression": "tenir compagnie",
+      "base": "tenir",
+      "family": "everyday",
+      "pattern": "tenir compagnie à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to keep company"
+    },
+    {
+      "expression": "tenir quelqu'un au courant",
+      "base": "tenir",
+      "family": "everyday",
+      "pattern": "tenir quelqu'un au courant",
+      "register": "neutral",
+      "meaning_en": "to keep informed"
+    },
+    {
+      "expression": "porter plainte",
+      "base": "porter",
+      "family": "everyday",
+      "pattern": "porter plainte",
+      "register": "neutral",
+      "meaning_en": "to file a complaint"
+    },
+    {
+      "expression": "porter secours",
+      "base": "porter",
+      "family": "everyday",
+      "pattern": "porter secours à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to come to the aid"
+    },
+    {
+      "expression": "porter atteinte",
+      "base": "porter",
+      "family": "everyday",
+      "pattern": "porter atteinte à quelque chose",
+      "register": "neutral",
+      "meaning_en": "to undermine; harm"
+    },
+    {
+      "expression": "perdre patience",
+      "base": "perdre",
+      "family": "everyday",
+      "pattern": "perdre patience",
+      "register": "neutral",
+      "meaning_en": "to lose patience"
+    },
+    {
+      "expression": "perdre connaissance",
+      "base": "perdre",
+      "family": "everyday",
+      "pattern": "perdre connaissance",
+      "register": "neutral",
+      "meaning_en": "to lose consciousness"
+    },
+    {
+      "expression": "perdre quelqu'un de vue",
+      "base": "perdre",
+      "family": "everyday",
+      "pattern": "perdre quelqu'un de vue",
+      "register": "neutral",
+      "meaning_en": "to lose sight"
+    },
+    {
+      "expression": "garder le silence",
+      "base": "garder",
+      "family": "everyday",
+      "pattern": "garder le silence",
+      "register": "neutral",
+      "meaning_en": "to remain silent"
+    },
+    {
+      "expression": "garder contact",
+      "base": "garder",
+      "family": "everyday",
+      "pattern": "garder contact avec quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to keep in touch"
+    },
+    {
+      "expression": "passer du temps",
+      "base": "passer",
+      "family": "everyday",
+      "pattern": "passer du temps à faire quelque chose",
+      "register": "neutral",
+      "meaning_en": "to spend time"
+    },
+    {
+      "expression": "passer un examen",
+      "base": "passer",
+      "family": "everyday",
+      "pattern": "passer un examen",
+      "register": "neutral",
+      "meaning_en": "to take an exam"
+    },
+    {
+      "expression": "passer un coup de fil",
+      "base": "passer",
+      "family": "everyday",
+      "pattern": "passer un coup de fil à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to make a phone call"
+    },
+    {
+      "expression": "valoir la peine",
+      "base": "valoir",
+      "family": "everyday",
+      "pattern": "valoir la peine",
+      "register": "neutral",
+      "meaning_en": "to be worth the effort"
+    },
+    {
+      "expression": "valoir le coup",
+      "base": "valoir",
+      "family": "everyday",
+      "pattern": "valoir le coup",
+      "register": "neutral",
+      "meaning_en": "to be worth it"
+    },
+    {
+      "expression": "se rendre compte",
+      "base": "rendre",
+      "family": "everyday",
+      "pattern": "se rendre compte de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to realize"
+    },
+    {
+      "expression": "s'y prendre",
+      "base": "prendre",
+      "family": "pronoun",
+      "pattern": "s'y prendre",
+      "register": "neutral",
+      "meaning_en": "to go about it"
+    },
+    {
+      "expression": "être en train de lire",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en train de lire",
+      "register": "neutral",
+      "meaning_en": "to be reading; be in the process of reading"
+    },
+    {
+      "expression": "être sur le point de partir",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être sur le point de partir",
+      "register": "neutral",
+      "meaning_en": "to be about to leave"
+    },
+    {
+      "expression": "être en retard",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en retard",
+      "register": "neutral",
+      "meaning_en": "to be late"
+    },
+    {
+      "expression": "être en avance",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en avance",
+      "register": "neutral",
+      "meaning_en": "to be early"
+    },
+    {
+      "expression": "être à l'heure",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être à l'heure",
+      "register": "neutral",
+      "meaning_en": "to be on time"
+    },
+    {
+      "expression": "être d'accord",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être d'accord",
+      "register": "neutral",
+      "meaning_en": "to agree"
+    },
+    {
+      "expression": "être au courant",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être au courant",
+      "register": "neutral",
+      "meaning_en": "to be aware; know about it"
+    },
+    {
+      "expression": "être en mesure de répondre",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en mesure de répondre",
+      "register": "neutral",
+      "meaning_en": "to be able to respond"
+    },
+    {
+      "expression": "être à l'aise",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être à l'aise",
+      "register": "neutral",
+      "meaning_en": "to feel comfortable"
+    },
+    {
+      "expression": "être en panne",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en panne",
+      "register": "neutral",
+      "meaning_en": "to be broken down"
+    },
+    {
+      "expression": "être en colère",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en colère",
+      "register": "neutral",
+      "meaning_en": "to be angry"
+    },
+    {
+      "expression": "être de retour",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être de retour",
+      "register": "neutral",
+      "meaning_en": "to be back"
+    },
+    {
+      "expression": "être en congé",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en congé",
+      "register": "neutral",
+      "meaning_en": "to be on leave"
+    },
+    {
+      "expression": "être à court d'argent",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être à court d'argent",
+      "register": "neutral",
+      "meaning_en": "to be short of money"
+    },
+    {
+      "expression": "être en route",
+      "base": "être",
+      "family": "everyday",
+      "pattern": "être en route",
+      "register": "neutral",
+      "meaning_en": "to be on the way"
+    },
+    {
+      "expression": "se donner la peine",
+      "base": "donner",
+      "family": "everyday",
+      "pattern": "se donner la peine",
+      "register": "neutral",
+      "meaning_en": "to take the trouble"
+    },
+    {
+      "expression": "se faire du souci",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "se faire du souci",
+      "register": "neutral",
+      "meaning_en": "to worry"
+    },
+    {
+      "expression": "se faire mal",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "se faire mal",
+      "register": "neutral",
+      "meaning_en": "to hurt oneself"
+    },
+    {
+      "expression": "se mettre en colère",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "se mettre en colère",
+      "register": "neutral",
+      "meaning_en": "to get angry"
+    },
+    {
+      "expression": "se mettre d'accord",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "se mettre d'accord",
+      "register": "neutral",
+      "meaning_en": "to reach an agreement"
+    },
+    {
+      "expression": "se mettre à lire",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "se mettre à lire",
+      "register": "neutral",
+      "meaning_en": "to start reading"
+    },
+    {
+      "expression": "se mettre au travail",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "se mettre au travail",
+      "register": "neutral",
+      "meaning_en": "to get to work"
+    },
+    {
+      "expression": "se mettre à la place de quelqu'un",
+      "base": "mettre",
+      "family": "everyday",
+      "pattern": "se mettre à la place de quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to put oneself in someone's place"
+    },
+    {
+      "expression": "se poser une question",
+      "base": "poser",
+      "family": "everyday",
+      "pattern": "se poser une question",
+      "register": "neutral",
+      "meaning_en": "to wonder; ask oneself a question"
+    },
+    {
+      "expression": "se passer de quelque chose",
+      "base": "passer",
+      "family": "everyday",
+      "pattern": "se passer de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to do without something"
+    },
+    {
+      "expression": "se servir de quelque chose",
+      "base": "servir",
+      "family": "everyday",
+      "pattern": "se servir de quelque chose",
+      "register": "neutral",
+      "meaning_en": "to use something"
+    },
+    {
+      "expression": "se tromper de chemin",
+      "base": "tromper",
+      "family": "everyday",
+      "pattern": "se tromper de chemin",
+      "register": "neutral",
+      "meaning_en": "to take the wrong way"
+    },
+    {
+      "expression": "se faire des idées",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "se faire des idées",
+      "register": "neutral",
+      "meaning_en": "to imagine things"
+    },
+    {
+      "expression": "se faire plaisir",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "se faire plaisir",
+      "register": "neutral",
+      "meaning_en": "to treat oneself"
+    },
+    {
+      "expression": "se rendre à un endroit",
+      "base": "rendre",
+      "family": "everyday",
+      "pattern": "se rendre à un endroit",
+      "register": "neutral",
+      "meaning_en": "to go to a place"
+    },
+    {
+      "expression": "se rendre service",
+      "base": "rendre",
+      "family": "everyday",
+      "pattern": "se rendre service",
+      "register": "neutral",
+      "meaning_en": "to help each other"
+    },
+    {
+      "expression": "s'y connaître",
+      "base": "connaître",
+      "family": "pronoun",
+      "pattern": "s'y connaître",
+      "register": "neutral",
+      "meaning_en": "to know about it"
+    },
+    {
+      "expression": "s'y retrouver",
+      "base": "retrouver",
+      "family": "pronoun",
+      "pattern": "s'y retrouver",
+      "register": "neutral",
+      "meaning_en": "to find one's way; make sense of it"
+    },
+    {
+      "expression": "s'y faire",
+      "base": "faire",
+      "family": "pronoun",
+      "pattern": "s'y faire",
+      "register": "neutral",
+      "meaning_en": "to get used to it"
+    },
+    {
+      "expression": "s'y mettre",
+      "base": "mettre",
+      "family": "pronoun",
+      "pattern": "s'y mettre",
+      "register": "neutral",
+      "meaning_en": "to get started on it"
+    },
+    {
+      "expression": "avoir beau essayer",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir beau essayer",
+      "register": "neutral",
+      "meaning_en": "to try in vain"
+    },
+    {
+      "expression": "avoir affaire à quelqu'un",
+      "base": "avoir",
+      "family": "everyday",
+      "pattern": "avoir affaire à quelqu'un",
+      "register": "neutral",
+      "meaning_en": "to be dealing with someone"
+    },
+    {
+      "expression": "faire le nécessaire",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire le nécessaire",
+      "register": "neutral",
+      "meaning_en": "to do what is needed"
+    },
+    {
+      "expression": "faire le tour",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire le tour",
+      "register": "neutral",
+      "meaning_en": "to go around; review"
+    },
+    {
+      "expression": "faire défaut",
+      "base": "faire",
+      "family": "everyday",
+      "pattern": "faire défaut",
+      "register": "neutral",
+      "meaning_en": "to be lacking"
+    },
+    {
+      "expression": "prendre fin",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre fin",
+      "register": "neutral",
+      "meaning_en": "to end"
+    },
+    {
+      "expression": "prendre effet",
+      "base": "prendre",
+      "family": "everyday",
+      "pattern": "prendre effet",
+      "register": "neutral",
+      "meaning_en": "to take effect"
+    },
+    {
+      "expression": "tomber en panne",
+      "base": "tomber",
+      "family": "everyday",
+      "pattern": "tomber en panne",
+      "register": "neutral",
+      "meaning_en": "to break down"
+    },
+    {
+      "expression": "tomber malade",
+      "base": "tomber",
+      "family": "everyday",
+      "pattern": "tomber malade",
+      "register": "neutral",
+      "meaning_en": "to fall ill"
+    },
+    {
+      "expression": "venir à bout",
+      "base": "venir",
+      "family": "everyday",
+      "pattern": "venir à bout",
+      "register": "neutral",
+      "meaning_en": "to overcome; finish"
+    },
+    {
+      "expression": "venir en aide",
+      "base": "venir",
+      "family": "everyday",
+      "pattern": "venir en aide",
+      "register": "neutral",
+      "meaning_en": "to come to someone's aid"
+    },
+    {
+      "expression": "aller de soi",
+      "base": "aller",
+      "family": "everyday",
+      "pattern": "aller de soi",
+      "register": "neutral",
+      "meaning_en": "to go without saying"
+    }
+  ]
+}

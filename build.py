@@ -52,6 +52,11 @@ FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS = [
     "js/frenchHomophoneGroups.js",
     "js/french-phonetic-diff-v3.js",
     "js/vendor/espeak-ng.js",
+    "js/constructionCards.js",
+    "js/referenceCards.js",
+    "js/wordFamilies.fr.js",
+    "js/wordFamilyDefinitions.fr.js",
+    "js/verbDetailsTabs.js",
     "js/script.js",
 ]
 FRENCH_WEB_EXTERNAL_NON_SCRIPT_ASSETS = [
@@ -595,6 +600,10 @@ def build_french_app(force_jpeg=False):
         else:
             print(f"⚠️  Warning: {src_path} does not exist, skipping French web asset copy.")
 
+    family_provenance = os.path.join(ROOT_DIR, "data", "word-families")
+    if os.path.isdir(family_provenance):
+        shutil.copytree(family_provenance, os.path.join(APP_DIST_DIR, "data", "word-families"), dirs_exist_ok=True)
+
     if os.path.isdir(GENERATED_TTS_DIR):
         if os.path.exists(APP_DIST_TTS_DIR):
             remove_tree(APP_DIST_TTS_DIR)
@@ -730,11 +739,17 @@ WATCHED_FILES = [
     "site_manifest.json",
     "site_sw.js",
     "css/style.css",
+    "css/verb-details-tabs.css",
     "css/dictate-btn.css",
     "js/verbs.full.generated.js",
     "verb_usages.js",
     "js/practicePhrases.js",
     "js/preRenderedTts.js",
+    "js/constructionCards.js",
+    "js/referenceCards.js",
+    "js/wordFamilies.fr.js",
+    "js/wordFamilyDefinitions.fr.js",
+    "js/verbDetailsTabs.js",
     "js/script.js",
     "generated_tts/manifest.json",
     "manifest.json",
