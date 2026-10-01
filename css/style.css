@@ -6131,3 +6131,9 @@ html[data-theme="dark"] {
 .unified-usage-example .usage-fr, .unified-usage-example .usage-en { display:block; }
 .unified-usage-example .usage-en { margin-top:4px; }
 .unified-usage-example .usage-en::before { content:none; }
+
+/* Two explicit replacement cues, in the existing reference column. */
+#flashcard .meta-container #verb-reference.double-reference { flex-direction:column; gap:3px; font-size:clamp(.7rem,2.5vw,.95rem); line-height:1.25; }
+#flashcard #verb-reference.double-reference strong { display:block; overflow-wrap:anywhere; }
+.reference-count-control { display:flex; align-items:center; gap:10px; font-size:.85rem; margin:8px 0; }
+.reference-count-control select { min-height:40px; padding:6px 10px; border:1px solid var(--border-color); border-radius:8px; color:var(--text-color); background:var(--card-bg); }

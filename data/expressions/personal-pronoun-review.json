@@ -1,0 +1,29 @@
+{
+  "language": "French",
+  "single_person_verbs": 65,
+  "double_person_verbs": 44,
+  "worked_examples": 436,
+  "inventory": "js/referenceCards.js: personalConfig, personalExamples, doubleExamples",
+  "scope": [
+    "First and second person direct objects on explicitly selected human-object verbs.",
+    "First and second person indirect objects on explicitly selected recipient verbs.",
+    "First and second person recipients in every existing double-object construction.",
+    "Existing finite tenses; new personal forms exclude imperative.",
+    "French compound direct objects specify gender and plural vous; indirect objects do not trigger agreement.",
+    "Conservatively exclude first-person subjects with first-person objects, and second-person subjects with second-person objects, to avoid reflexive and group-overlap ambiguity.",
+    "Catalan formal general forms; Spanish vosotros/os for informal plural you."
+  ],
+  "validation": [
+    "Independently specified output fixtures and full cluster tables in proj1/test_personal_pronouns.cjs.",
+    "Enumerate all supported loaded finite paradigms and admissible personal references. This checks structural coverage, not an independent linguistic review of every source conjugation.",
+    "Existing single and double reference regression suites.",
+    "Mobile browser rendering and ordinary generation checks."
+  ],
+  "sources": [
+    "https://www.laits.utexas.edu/tex/gr/pro5.html",
+    "https://www.laits.utexas.edu/tex/gr/pro9.html",
+    "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos",
+    "https://www.cpnl.cat/gramatica/59/38-la-combinacio-de-pronoms/nivell/basic-2"
+  ],
+  "follow_up": "Balance by grammatical construction and pronoun target rather than raw card counts; not implemented in this expansion."
+}

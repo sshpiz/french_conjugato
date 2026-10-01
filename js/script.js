@@ -1124,7 +1124,7 @@ function renderVerbSetUsages(container, infinitive, options = {}) {
 
 function renderVerbUsagePanel(container, infinitive, options = {}) {
     if (!container) return 0;
-    return renderGroupedUsages(container, [...(getVerbCorePatternsIndex()[infinitive] || []), ...getVerbSetUsageEntries(infinitive, { verbSetOptions: options.verbSetOptions || getCurrentVerbSetOptions() }), ...(getVerbUsagesIndex()[infinitive] || []),], options);
+    return renderGroupedUsages(container, [...(window.referenceCards?.doubleUsageEntries?.(infinitive) || []), ...(window.referenceCards?.personalUsageEntries?.(infinitive) || []), ...(getVerbCorePatternsIndex()[infinitive] || []), ...getVerbSetUsageEntries(infinitive, { verbSetOptions: options.verbSetOptions || getCurrentVerbSetOptions() }), ...(getVerbUsagesIndex()[infinitive] || []),], options);
 }
 
 function focusUsageExamplesInPanel(container, options = {}) {
@@ -7587,6 +7587,7 @@ document.addEventListener('DOMContentLoaded', () => {
         verbEntryMode: 'all',
         referencePractice: false,
         exerciseTypes: ['verbs'],
+        referenceObjects: 'mixed',
         prepositionalVerbMode: 'all', // 'all' | 'only'
         tenseWeights,
         frequencyWeights,
@@ -8025,6 +8026,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardGenerationOptions.verbEntryMode = getVerbEntryMode(savedOptions);
                 cardGenerationOptions.referencePractice = savedOptions.referencePractice === true;
                 cardGenerationOptions.exerciseTypes = getExerciseTypes(savedOptions);
+    cardGenerationOptions.referenceObjects = ['one','two','mixed'].includes(savedOptions.referenceObjects) ? savedOptions.referenceObjects : 'mixed';
                 if (typeof savedOptions.includeVerbExpressions === 'boolean') {
                     cardGenerationOptions.includeVerbExpressions = savedOptions.includeVerbExpressions;
                 }
@@ -11584,6 +11586,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardFamilyRow.appendChild(row);
             }
             settingsV2ExerciseControls?.appendChild(cardFamilyRow);
+            if (selectedTypes.includes('references')) window.referenceCards.controls(settingsV2ExerciseControls, cardGenerationOptions, () => { saveOptions(); populateOptions(); updateVerbFiltersCountLabel(); });
 
             const fillPracticeCard = hasFillBlanks ? createAdvancedCard('Question filter') : null;
             if (fillPracticeCard) {
@@ -12925,6 +12928,7 @@ const DRILL_OPTION_KEYS = [
     'verbEntryMode',
     'referencePractice',
     'exerciseTypes',
+    'referenceObjects',
     'prepositionalVerbMode',
     'regularityFilter',
     'endingFilter',
@@ -14088,6 +14092,7 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.verbEntryMode = getVerbEntryMode(resolved);
     cardGenerationOptions.referencePractice = resolved.referencePractice === true;
     cardGenerationOptions.exerciseTypes = getExerciseTypes(resolved);
+    cardGenerationOptions.referenceObjects = ['one','two','mixed'].includes(resolved.referenceObjects) ? resolved.referenceObjects : 'mixed';
     cardGenerationOptions.includeVerbExpressions = getVerbEntryMode(resolved) !== 'single';
     cardGenerationOptions.prepositionalVerbMode = resolved.prepositionalVerbMode === 'only' ? 'only' : 'all';
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
