@@ -512,6 +512,13 @@ Not yet checked on a physical Android device or live production after deploy. Di
 - Blocker: required preflight `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 2bb2397^{commit}` fails, so this commit hash is not present in the `proj1` git history and the deploy gate cannot verify/build from it as currently specified.
 - Next step: record a corresponding `proj1` commit hash (if one exists) for the Spanish deploy wiring, or update the deploy gate rules to verify app commits in their own repos (e.g., `/Users/simeon/Code/VerbsFirst/spanish-verbs`) before running `LATEST_CHANNEL_LANGS=spanish LATEST_ONLY=1 zsh /Users/simeon/Code/VerbsFirst/proj1/deploy_cloudflare_latest.sh`.
 
+### Latest Deploy Blocker
+
+- Date: 2026-10-03 20:02 UTC
+- Candidate commit: `2bb2397` (intended latest channel: `spanish`)
+- Gate recheck: required `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify 2bb2397^{commit}` fails with `Needed a single revision`; no verification, rebuild, or deployment was run.
+- Next step: record a deployable `proj1` commit containing the Spanish fix before rerunning the latest-only gate.
+
 ## VF-QA-0008
 
 Status: Fixed
