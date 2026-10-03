@@ -388,6 +388,13 @@ Not yet checked on a physical phone or live production after deploy. Existing se
 - Gate recheck: required `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify a327954a7^{commit}` fails with `Needed a single revision`; no verification, rebuild, or deployment was run.
 - Next step: record a deployable `proj1` commit containing the Portuguese fix, then rerun the latest-only gate.
 
+### Latest Deploy Blocker
+
+- 2026-10-03 19:52 UTC
+- Candidate commit: `a327954a7` (intended latest channel: `portugese`)
+- Gate recheck: required `git -C /Users/simeon/Code/VerbsFirst/proj1 rev-parse --verify a327954a7^{commit}` fails with `Needed a single revision`; no verification, rebuild, or deployment was run.
+- Next step: record a deployable `proj1` commit containing the Portuguese fix, then rerun the latest-only gate.
+
 ## VF-QA-0006
 
 Status: Fixed
