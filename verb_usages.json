@@ -55523,5 +55523,125 @@
     "sense_id": "expr_se_mettre_d_accord_02",
     "source": "curated:french-verb-expressions",
     "family": "verb_expression"
+  },
+  {
+    "verb": "avoir du mal",
+    "sense_id": "expr_avoir_du_mal_02",
+    "pattern": "avoir du mal à faire quelque chose",
+    "meaning_en": "to have difficulty",
+    "family": "verb_expression",
+    "example_fr": "J'ai du mal à suivre la conversation quand tout le monde parle en même temps.",
+    "example_en": "I find it hard to follow the conversation when everyone talks at once.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "avoir l'habitude",
+    "sense_id": "expr_avoir_l_habitude_02",
+    "pattern": "avoir l'habitude de faire quelque chose",
+    "meaning_en": "to be used to",
+    "family": "verb_expression",
+    "example_fr": "Nous avons l'habitude de faire les courses à pied.",
+    "example_en": "We usually walk to do the grocery shopping.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "avoir l'occasion",
+    "sense_id": "expr_avoir_l_occasion_02",
+    "pattern": "avoir l'occasion de faire quelque chose",
+    "meaning_en": "to have the opportunity",
+    "family": "verb_expression",
+    "example_fr": "Tu auras l'occasion de lui poser la question demain.",
+    "example_en": "You'll have a chance to ask her the question tomorrow.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "avoir hâte",
+    "sense_id": "expr_avoir_h_te_02",
+    "pattern": "avoir hâte de faire quelque chose",
+    "meaning_en": "to look forward",
+    "family": "verb_expression",
+    "example_fr": "J'ai hâte de découvrir votre nouveau quartier.",
+    "example_en": "I can't wait to explore your new neighbourhood.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "avoir l'air",
+    "sense_id": "expr_avoir_l_air_02",
+    "pattern": "avoir l'air + adjectif",
+    "meaning_en": "to seem; look",
+    "family": "verb_expression",
+    "example_fr": "Ce restaurant a l'air sympa; on essaie ?",
+    "example_en": "This restaurant looks nice; shall we try it?",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "faire le point",
+    "sense_id": "expr_faire_le_point_02",
+    "pattern": "faire le point",
+    "meaning_en": "to take stock",
+    "family": "verb_expression",
+    "example_fr": "On fait le point sur le projet vendredi matin.",
+    "example_en": "We'll review progress on the project on Friday morning.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "faire demi-tour",
+    "sense_id": "expr_faire_demi_tour_02",
+    "pattern": "faire demi-tour",
+    "meaning_en": "to turn around",
+    "family": "verb_expression",
+    "example_fr": "La route est fermée; nous devons faire demi-tour.",
+    "example_en": "The road is closed; we have to turn back.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "faire signe",
+    "sense_id": "expr_faire_signe_02",
+    "pattern": "faire signe à quelqu'un",
+    "meaning_en": "to signal",
+    "family": "verb_expression",
+    "example_fr": "Fais-moi signe quand tu arrives, je descendrai t'ouvrir.",
+    "example_en": "Let me know when you arrive; I'll come down and let you in.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "faire du bien",
+    "sense_id": "expr_faire_du_bien_02",
+    "pattern": "faire du bien à quelqu'un",
+    "meaning_en": "to do good; help someone feel better",
+    "family": "verb_expression",
+    "example_fr": "Cette promenade au bord de l'eau m'a fait du bien.",
+    "example_en": "That walk by the water did me good.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "faire part",
+    "sense_id": "expr_faire_part_02",
+    "pattern": "faire part de quelque chose à quelqu'un",
+    "meaning_en": "to inform; share",
+    "family": "verb_expression",
+    "example_fr": "Elle nous a fait part de ses inquiétudes avant la réunion.",
+    "example_en": "She shared her concerns with us before the meeting.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "faire des progrès",
+    "sense_id": "expr_faire_des_progr_s_02",
+    "pattern": "faire des progrès",
+    "meaning_en": "to make progress",
+    "family": "verb_expression",
+    "example_fr": "Tu as fait beaucoup de progrès depuis le début du cours.",
+    "example_en": "You've made a lot of progress since the start of the course.",
+    "source": "editorial:enrichment-20261003"
+  },
+  {
+    "verb": "faire face",
+    "sense_id": "expr_faire_face_02",
+    "pattern": "faire face à quelque chose",
+    "meaning_en": "to face; cope",
+    "family": "verb_expression",
+    "example_fr": "Nous devons faire face à une dépense imprévue.",
+    "example_en": "We have to deal with an unexpected expense.",
+    "source": "editorial:enrichment-20261003"
   }
 ]

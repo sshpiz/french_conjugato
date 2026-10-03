@@ -225,7 +225,14 @@
     "usage": "J'ai du mal à dormir.",
     "usage_en": "I have trouble sleeping.",
     "family": "everyday",
-    "pattern": "avoir du mal à faire quelque chose"
+    "pattern": "avoir du mal à faire quelque chose",
+    "usages": [
+      {
+        "example_fr": "J'ai du mal à suivre la conversation quand tout le monde parle en même temps.",
+        "example_en": "I find it hard to follow the conversation when everyone talks at once.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "avoir l'habitude",
@@ -237,7 +244,14 @@
     "usage": "J'ai l'habitude de marcher.",
     "usage_en": "I'm used to walking.",
     "family": "everyday",
-    "pattern": "avoir l'habitude de faire quelque chose"
+    "pattern": "avoir l'habitude de faire quelque chose",
+    "usages": [
+      {
+        "example_fr": "Nous avons l'habitude de faire les courses à pied.",
+        "example_en": "We usually walk to do the grocery shopping.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "avoir l'intention",
@@ -261,7 +275,14 @@
     "usage": "J'ai l'occasion de voyager.",
     "usage_en": "I have the opportunity to travel.",
     "family": "everyday",
-    "pattern": "avoir l'occasion de faire quelque chose"
+    "pattern": "avoir l'occasion de faire quelque chose",
+    "usages": [
+      {
+        "example_fr": "Tu auras l'occasion de lui poser la question demain.",
+        "example_en": "You'll have a chance to ask her the question tomorrow.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "avoir le temps",
@@ -321,7 +342,14 @@
     "usage": "Tu as l'air calme.",
     "usage_en": "You look calm.",
     "family": "everyday",
-    "pattern": "avoir l'air + adjectif"
+    "pattern": "avoir l'air + adjectif",
+    "usages": [
+      {
+        "example_fr": "Ce restaurant a l'air sympa; on essaie ?",
+        "example_en": "This restaurant looks nice; shall we try it?",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "avoir hâte",
@@ -333,7 +361,14 @@
     "usage": "J'ai hâte de rentrer.",
     "usage_en": "I can't wait to go home.",
     "family": "everyday",
-    "pattern": "avoir hâte de faire quelque chose"
+    "pattern": "avoir hâte de faire quelque chose",
+    "usages": [
+      {
+        "example_fr": "J'ai hâte de découvrir votre nouveau quartier.",
+        "example_en": "I can't wait to explore your new neighbourhood.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "avoir confiance",
@@ -463,7 +498,14 @@
     "usage": "Nous faisons face au problème.",
     "usage_en": "We're facing the problem.",
     "family": "everyday",
-    "pattern": "faire face à quelque chose"
+    "pattern": "faire face à quelque chose",
+    "usages": [
+      {
+        "example_fr": "Nous devons faire face à une dépense imprévue.",
+        "example_en": "We have to deal with an unexpected expense.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "faire semblant",
@@ -590,7 +632,14 @@
     "usage": "Tu fais des progrès.",
     "usage_en": "You're making progress.",
     "family": "everyday",
-    "pattern": "faire des progrès"
+    "pattern": "faire des progrès",
+    "usages": [
+      {
+        "example_fr": "Tu as fait beaucoup de progrès depuis le début du cours.",
+        "example_en": "You've made a lot of progress since the start of the course.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "faire un choix",
@@ -614,7 +663,14 @@
     "usage": "Nous faisons le point.",
     "usage_en": "We're taking stock.",
     "family": "everyday",
-    "pattern": "faire le point"
+    "pattern": "faire le point",
+    "usages": [
+      {
+        "example_fr": "On fait le point sur le projet vendredi matin.",
+        "example_en": "We'll review progress on the project on Friday morning.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "faire demi-tour",
@@ -626,7 +682,14 @@
     "usage": "Je fais demi-tour.",
     "usage_en": "I'm turning around.",
     "family": "everyday",
-    "pattern": "faire demi-tour"
+    "pattern": "faire demi-tour",
+    "usages": [
+      {
+        "example_fr": "La route est fermée; nous devons faire demi-tour.",
+        "example_en": "The road is closed; we have to turn back.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "faire appel",
@@ -674,7 +737,14 @@
     "usage": "Je fais part de ma décision à Léa.",
     "usage_en": "I tell Léa about my decision.",
     "family": "everyday",
-    "pattern": "faire part de quelque chose à quelqu'un"
+    "pattern": "faire part de quelque chose à quelqu'un",
+    "usages": [
+      {
+        "example_fr": "Elle nous a fait part de ses inquiétudes avant la réunion.",
+        "example_en": "She shared her concerns with us before the meeting.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "faire signe",
@@ -686,7 +756,14 @@
     "usage": "Je fais signe à Léa.",
     "usage_en": "I signal to Léa.",
     "family": "everyday",
-    "pattern": "faire signe à quelqu'un"
+    "pattern": "faire signe à quelqu'un",
+    "usages": [
+      {
+        "example_fr": "Fais-moi signe quand tu arrives, je descendrai t'ouvrir.",
+        "example_en": "Let me know when you arrive; I'll come down and let you in.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "faire peur",
@@ -734,7 +811,14 @@
     "usage": "Le repos fait du bien.",
     "usage_en": "Rest helps you feel better.",
     "family": "everyday",
-    "pattern": "faire du bien à quelqu'un"
+    "pattern": "faire du bien à quelqu'un",
+    "usages": [
+      {
+        "example_fr": "Cette promenade au bord de l'eau m'a fait du bien.",
+        "example_en": "That walk by the water did me good.",
+        "source": "editorial:enrichment-20261003"
+      }
+    ]
   },
   {
     "expression": "faire la connaissance",
