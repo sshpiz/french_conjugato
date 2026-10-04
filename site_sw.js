@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'landing-cache-';
-const CACHE_NAME = CACHE_PREFIX + 'prelaunch-20261004-171534';
+const CACHE_NAME = CACHE_PREFIX + 'homepage-native-reveal-20261004';
 const LOG_PATH = '/__sw-log';
 const ROOT_PATHS = new Set(['/', '/index.html', '/manifest.json', '/favicon_big.png']);
 const APP_ROUTE_PREFIXES = [
