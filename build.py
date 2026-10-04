@@ -85,6 +85,8 @@ ROOT_FILES_TO_COPY = [
     "robots.txt",
     "llms.txt",
     "_headers",
+    "landing-practice.png",
+    "landing-practice-answer.png",
     "landing-greek.png",
     "landing-portugese.png",
     "landing-french.png",
