@@ -21,6 +21,7 @@
 .demo-answer{display:flex;flex-direction:column;gap:3px;padding-top:18px}.demo-answer strong{font-size:2rem;color:#226eaa;line-height:1.25}.demo-answer>span{color:var(--muted);font-size:15px}
 @media(max-width:350px){.demo-card{padding:22px 16px}.demo-question{font-size:17px}}
 .motivation{padding-top:0;border-top:1px solid var(--line);scroll-margin-top:24px}.motivation-intro{margin-top:12px;max-width:700px;color:var(--muted)}.motivation .features{border:0;padding-top:24px}.more{border-top:1px solid var(--line)}.more>summary{font-size:18px;min-height:44px}.more>summary span{font-weight:400;color:var(--muted)}
+.demo-toolbar:not([hidden]){display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.demo-languages{display:flex;gap:2px}.demo-toolbar button{font:600 12px/1.2 sans-serif;font-family:inherit;border:0;background:transparent;color:var(--muted);min-height:44px;padding:8px;border-radius:8px}.demo-languages button[aria-pressed="true"]{background:var(--wash);color:var(--blue)}#demo-pause{font-size:11px;text-decoration:underline;text-underline-offset:3px}.demo-app-name{font-size:14px;font-weight:600;text-align:center;margin-bottom:12px;color:var(--muted)}.demo-card{background:linear-gradient(170deg,#f0f5fa 0%,#e8eff6 100%);border:0;box-shadow:0 5px 14px rgba(44,62,80,.07);padding-top:32px}.demo-verb{font-size:48px;color:#2c3e50}.demo-cues{grid-template-columns:1fr auto 1.4fr;gap:6px}.demo-cues span:first-child{background:#f5f8fa;border-radius:999px}.demo-cues span:last-child{background:#a0d1b8}.demo-toggle{background:#216d82;border-color:#216d82;border-radius:16px;min-height:58px;text-transform:uppercase;letter-spacing:.03em}.demo-toggle:hover{background:#19586a}.demo-answer{min-height:90px}.demo-answer strong{color:#2c3e50}.demo-instruction{min-height:44px}.demo figcaption a{white-space:normal}
 </style>
 </head>
 <body>
@@ -37,16 +38,18 @@
 <a class="language-link" href="/portugese/"><span class="language-code" aria-hidden="true">PT</span><span><strong>Portuguese</strong><small lang="pt">Os Verbos</small></span><span class="arrow" aria-hidden="true">↗</span></a>
 </div></section>
 <figure class="demo" aria-label="Try a French conjugation">
+<div class="demo-toolbar" hidden><div class="demo-languages" role="group" aria-label="Demo language"><button type="button" data-demo="0" aria-label="French" aria-pressed="true">FR</button><button type="button" data-demo="1" aria-label="Spanish" aria-pressed="false">ES</button><button type="button" data-demo="2" aria-label="Catalan" aria-pressed="false">CA</button><button type="button" data-demo="3" aria-label="Portuguese" aria-pressed="false">PT</button></div><button type="button" id="demo-pause" aria-pressed="false">Pause rotation</button></div>
+<p class="demo-app-name">Les Verbes · French</p>
 <div class="demo-card">
 <p class="demo-verb" lang="fr">parler</p><p class="demo-meaning">to speak</p>
-<div class="demo-cues" lang="fr"><span>je</span><span aria-hidden="true">+</span><span>présent</span></div>
-<p class="demo-question">How do you say “I speak”?</p><p class="demo-instruction">Think of your answer, then check.</p>
+<div class="demo-cues" lang="fr"><span>👨 je</span><span aria-hidden="true">+</span><span>présent</span></div>
+<p class="demo-question">How do you say “I speak”?</p><p class="demo-instruction">Think of your answer. No typing needed.</p>
 <details class="demo-reveal" id="demo-reveal">
 <summary class="demo-toggle"><span class="when-closed">Show answer</span><span class="when-open">Hide answer</span></summary>
 <div class="demo-answer" id="demo-answer"><strong lang="fr">je parle</strong><span>I speak</span></div>
 </details>
 </div>
-<figcaption>Your first conjugation. <a href="/french/">Try another in French →</a></figcaption>
+<figcaption>Your first conjugation. <a id="demo-link" href="/french/">Try another in French →</a></figcaption>
 </figure>
 </section>
 <section class="motivation" id="why" aria-label="Why practise verbs?">
@@ -72,6 +75,30 @@
 <footer class="footer"><p>VerbsFirst</p><p><a href="mailto:lesverbes.support@gmail.com">Support / report an issue</a></p></footer>
 </div>
 <script>
+(function(){
+const demo=document.querySelector('.demo'), reveal=document.getElementById('demo-reveal');
+const examples=[
+{code:'fr',name:'French',app:'Les Verbes',verb:'parler',person:'👨 je',tense:'présent',answer:'je parle',path:'french'},
+{code:'es',name:'Spanish',app:'Verbos',verb:'hablar',person:'👨 yo',tense:'presente',answer:'yo hablo',path:'spanish'},
+{code:'ca',name:'Catalan',app:'Verbs',verb:'parlar',person:'👨 jo',tense:'present',answer:'jo parlo',path:'catalan'},
+{code:'pt',name:'Portuguese',app:'Os Verbos',verb:'falar',person:'👨 eu',tense:'presente',answer:'eu falo',path:'portugese'}
+];
+let index=0,paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const pause=document.getElementById('demo-pause');
+function pauseLabel(){pause.textContent=paused?'Resume rotation':'Pause rotation';pause.setAttribute('aria-pressed',String(paused));}
+function show(n){index=n;const e=examples[n];reveal.open=false;demo.setAttribute('aria-label','Try a '+e.name+' conjugation');demo.querySelector('.demo-app-name').textContent=e.app+' · '+e.name;
+const verb=demo.querySelector('.demo-verb');verb.textContent=e.verb;verb.lang=e.code;
+const cues=demo.querySelector('.demo-cues');cues.lang=e.code;cues.children[0].textContent=e.person;cues.children[2].textContent=e.tense;
+const answer=demo.querySelector('.demo-answer strong');answer.textContent=e.answer;answer.lang=e.code;
+const link=document.getElementById('demo-link');link.href='/'+e.path+'/';link.textContent='Try another in '+e.name+' →';
+demo.querySelectorAll('[data-demo]').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===n)));}
+demo.querySelector('.demo-toolbar').hidden=false;pauseLabel();
+demo.querySelectorAll('[data-demo]').forEach(b=>b.addEventListener('click',()=>{paused=true;pauseLabel();show(Number(b.dataset.demo));}));
+pause.addEventListener('click',()=>{paused=!paused;if(!paused)reveal.open=false;pauseLabel();});
+reveal.addEventListener('toggle',()=>{if(reveal.open){paused=true;pauseLabel();}});
+setInterval(()=>{if(!paused&&!document.hidden&&!demo.matches(':hover')&&!demo.contains(document.activeElement)&&!reveal.open)show((index+1)%examples.length);},7000);
+})();
+
 if(location.hash==='#literature'||location.hash==='#privacy'){document.querySelector(location.hash).open=true;}
 if(location.protocol!=='file:'&&'serviceWorker'in navigator){navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(function(){});}
 </script>
