@@ -41,6 +41,23 @@
   if(type!=='tonic')lines.push('Le pronom se place avant le verbe ; à un temps composé, avant l’auxiliaire.');
   return lines;
  }
+ // Agreement follows explicit generator roles, not the spelling of the answer.
+ function agreement(lines,card,type,cue,indirectCue){
+  if(!['passeCompose','plusQueParfait'].includes(card.tense))return lines;
+  const result=[...(lines||[])];
+  if(['direct','person','double','directY','personY','directEn'].includes(type)){
+   result.push(`Avec « avoir », le participe passé s’accorde avec « ${cue} », complément direct placé avant le verbe, et non avec le sujet.`);
+   if(indirectCue)result.push(`« ${indirectCue} » est un complément indirect : il ne commande pas cet accord.`);
+  }else if(['indirect','tonic'].includes(type)){
+   result.push(`« ${cue} » est un complément indirect : le participe passé ne s’accorde pas avec lui, même s’il désigne une femme ou plusieurs personnes.`);
+  }else if(['quantity','quantityY','recipientEn'].includes(type)){
+   result.push('Quand « en » reprend une quantité, le participe passé avec « avoir » reste invariable.');
+   if(indirectCue)result.push(`« ${indirectCue} » est indirect et ne commande pas d’accord non plus.`);
+  }else if(type==='indirectEn'){
+   result.push('Ni le complément indirect de personne ni « en » ne commandent l’accord du participe passé.');
+  }
+  return result;
+ }
  function render(card){
   const panel=document.getElementById('pronoun-explanation');if(!panel)return;
   panel.open=false;
@@ -49,5 +66,5 @@
   const list=panel.querySelector('ul');list.replaceChildren();
   for(const line of lines){const li=document.createElement('li');li.textContent=line;list.append(li);}
  }
- window.pronounExplanation={double,enY,single,render};
+ window.pronounExplanation={double,enY,single,agreement,render};
 })();

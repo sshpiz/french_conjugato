@@ -70,7 +70,7 @@
     }
     const answer = (subject === 'je' && ['y','en'].includes(cluster) ? "j'" : subject + ' ') + cluster + (cluster.endsWith("'") ? '' : ' ') + body;
     return { ...card, verb: { ...card.verb, translation: record.gloss }, conjugated: answer, _practiceAnswer: answer,
-      reference, explanation, ...(references ? { references, doublePronoun: true } : {}),
+      reference, explanation:window.pronounExplanation?.agreement(explanation||window.pronounExplanation?.single(type,reference,cluster,record.verb),card,type,references?references[0]:reference,references?.[1]), ...(references ? { references, doublePronoun: true } : {}),
       referenceLabel: record.verb + (type === 'y' || type === 'indirect' ? ' à' : type === 'en' ? ' de' : ''),
       personalPronoun: type === 'person' || type === 'indirect', constructionId: record.sourceId + ':' + type };
   }

@@ -931,7 +931,7 @@
   if(compound&&!indirect)cue+=' ('+(index>=4?'fém.':'masc.')+')';
   if(indirect||lang!=='fr')cue=(lang==='fr'?'à ':'a ')+cue;
   const answer=card.pronoun.split('/')[0]+' '+object+(object.endsWith("'")?'':' ')+body;
-  return {...card,verb:{...card.verb,translation:'to '+(personalConfig.indirect[v]||personalConfig.direct[v])+' someone'},conjugated:answer,_practiceAnswer:answer,reference:cue,referenceLabel:v+(indirect?(lang==='fr'?' à':' a'):''),personalPronoun:true};
+  return {...card,verb:{...card.verb,translation:'to '+(personalConfig.indirect[v]||personalConfig.direct[v])+' someone'},conjugated:answer,_practiceAnswer:answer,reference:cue,explanation:window.pronounExplanation?.agreement(window.pronounExplanation?.single(indirect?'indirect':'direct',cue,object,v),card,indirect?'indirect':'person',cue),referenceLabel:v+(indirect?(lang==='fr'?' à':' a'):''),personalPronoun:true};
  }
  function randomPersonal(card) {
   const choices=personalIndices(card);return choices.length?personalReference(card,choices[Math.floor(Math.random()*choices.length)]):null;
@@ -974,7 +974,7 @@
     const cluster=personal?personal+' '+d:direct+' '+indirect;
     const answer = subject + ' ' + cluster + (cluster.endsWith("'")?'':' ') + body;
     const references = [objectCue, 'à ' + recipient];
-    return { ...card, verb: {...card.verb, translation: doubleExamples.find(row => row[0] === card.verb.infinitive)[1]}, conjugated: answer, reference: references.join(' + '), references, explanation: window.pronounExplanation?.double(references,direct,personal||indirect,!!personal), referenceLabel: card.verb.infinitive, doublePronoun: true };
+    return { ...card, verb: {...card.verb, translation: doubleExamples.find(row => row[0] === card.verb.infinitive)[1]}, conjugated: answer, reference: references.join(' + '), references, explanation: window.pronounExplanation?.agreement(window.pronounExplanation?.double(references,direct,personal||indirect,!!personal),card,'double',references[0],references[1]), referenceLabel: card.verb.infinitive, doublePronoun: true };
   }
   function choiceControls(container, options, onChange, key, title, choices, fallback) {
     const group=document.createElement('fieldset');group.className='practice-choice-group';
@@ -1041,7 +1041,7 @@
     const elideSubject = tonic ? /^[aàâäeéèêëiîïoôöuùûüyœ]/iu.test(body) : ['en', 'y'].includes(object);
     const answer = (subject === 'je' && elideSubject ? "j'" : subject + ' ') + predicate;
     return { ...card, conjugated: answer, reference,
-      explanation: window.pronounExplanation?.single(tonic?'tonic':person?'indirect':spec.place?'location':spec.type,reference,tonic?tonicPronouns[reference]:object,(person&&spec.peopleLabel)||spec.label||card.verb.infinitive),
+      explanation: window.pronounExplanation?.agreement(window.pronounExplanation?.single(tonic?'tonic':person?'indirect':spec.place?'location':spec.type,reference,tonic?tonicPronouns[reference]:object,(person&&spec.peopleLabel)||spec.label||card.verb.infinitive),card,tonic?'tonic':person?'indirect':spec.type,reference),
       referenceLabel: (person && spec.peopleLabel) || spec.label || card.verb.infinitive };
   }
   function render(card) {

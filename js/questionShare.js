@@ -24,7 +24,7 @@
       result[key] = [...data[key]];
     }
     if(data.explanation !== undefined) {
-      if(!Array.isArray(data.explanation)||data.explanation.length>4||!data.explanation.every(line=>text(line,300)))throw Error('Invalid explanation');
+      if(!Array.isArray(data.explanation)||data.explanation.length>6||!data.explanation.every(line=>text(line,300)))throw Error('Invalid explanation');
       result.explanation=[...data.explanation];
     }
     return result;
