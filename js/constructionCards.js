@@ -49,10 +49,25 @@
       node.appendChild(child);
     }
   }
+  // A bare conjugation adds nothing beneath the same expression and answer.
+  // Keep richer examples and distinct construction patterns available here.
+  const comparable = text => String(text || '').normalize('NFC').toLocaleLowerCase('fr')
+    .replace(/[’‘]/gu, "'").replace(/[.!?…]+$/gu, '').replace(/\s+/gu, ' ').trim();
+  function redundantExample(card, entry) {
+    if (!card?.verb?.verbExpression || comparable(label(entry)) !== comparable(card.verb.infinitive)) return false;
+    const sample = example(entry);
+    if (!sample) return true;
+    const target = comparable(sample.target);
+    if (target === comparable(card._practiceAnswer || card.conjugated)) return true;
+    // Changing only person or tense is still a bare demonstration of the drill.
+    const tables = typeof tenses === 'undefined' ? {} : tenses;
+    return Object.values(tables).some(table => Object.values(table[card.verb.infinitive] || {})
+      .some(form => comparable(form) === target));
+  }
   function render(card) {
     active = card?._patternEntry || null;
     displayedCard = card;
-    if (!active) return;
+    if (!active || redundantExample(card, active)) return;
     const translation = document.getElementById('verb-translation');
     if (!translation) return;
     const panel = document.createElement('div');
@@ -135,5 +150,5 @@
 
   }
   const audio = (_card, audioId, text) => ({ audioId, text });
-  window.constructionCards = { prepare, render, clear, audio, label, meaning, example, decorate };
+  window.constructionCards = { prepare, render, clear, audio, label, meaning, example, decorate, redundantExample };
 })();

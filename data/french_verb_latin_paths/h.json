@@ -1,0 +1,3680 @@
+{
+  "metadata": {
+    "shard": "h",
+    "verbs": 74
+  },
+  "verbs": {
+    "habiliter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To enable one to function in a given manner; to make one capable of performing a given function or of conducting something; to make one fit to fulfill a given purpose or competent to act within a particular role.",
+              "(transitive) To enable one to function in a given manner; to make one capable of performing a given function or of conducting something; to make one fit to fulfill a given purpose or competent to act within a particular role."
+            ],
+            "id": "en:habilitate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "habilitate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:habilitate:verb:0",
+                "id": "edge:d181f0ceec6a36f0",
+                "source_template": null,
+                "to_id": "la:habilito:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To enable one to function in a given manner; to make one capable of performing a given function or of conducting something; to make one fit to fulfill a given purpose or competent to act within a particular role.",
+                  "(transitive) To enable one to function in a given manner; to make one capable of performing a given function or of conducting something; to make one fit to fulfill a given purpose or competent to act within a particular role."
+                ],
+                "id": "en:habilitate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "habilitate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to habilitate",
+                  "to enable, to make able"
+                ],
+                "id": "la:habilito:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "habilito"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to habilitate"
+        ],
+        "id": "fr:habiliter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "habiliter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:habiliter:verb:0",
+            "id": "edge:77f1f4d522d1ad02",
+            "source_template": null,
+            "to_id": "la:habilito:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to habilitate"
+            ],
+            "id": "fr:habiliter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "habiliter"
+          },
+          "to_node": {
+            "glosses": [
+              "to habilitate",
+              "to enable, to make able"
+            ],
+            "id": "la:habilito:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "habilito"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to habilitate",
+          "to enable, to make able"
+        ],
+        "id": "la:habilito:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "habilito"
+      }
+    },
+    "habiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to dress",
+          "(transitive) to dress"
+        ],
+        "id": "fr:habiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "habiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "habiter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To clothe.",
+              "(transitive) To clothe."
+            ],
+            "id": "en:habit:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "habit"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:habit:verb:2",
+                "id": "edge:d317fb544f4c4725",
+                "source_template": null,
+                "to_id": "la:habito:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To clothe.",
+                  "(transitive) To clothe."
+                ],
+                "id": "en:habit:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "habit"
+              },
+              "to_node": {
+                "glosses": [
+                  "to reside, inhabit, remain, dwell, live",
+                  "to linger"
+                ],
+                "id": "la:habito:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "habito"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To inhabit",
+              "(transitive) To inhabit"
+            ],
+            "id": "en:habitate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "habitate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:habitate:verb:0",
+                "id": "edge:046e4007262338ee",
+                "source_template": null,
+                "to_id": "la:habito:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To inhabit",
+                  "(transitive) To inhabit"
+                ],
+                "id": "en:habitate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "habitate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to reside, inhabit, remain, dwell, live",
+                  "to linger"
+                ],
+                "id": "la:habito:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "habito"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to live in, to occupy (to have as a home.)",
+          "(transitive) to live in, to occupy (to have as a home.)"
+        ],
+        "id": "fr:habiter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "habiter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:habiter:verb:0",
+            "id": "edge:bceddb3946a7c461",
+            "source_template": null,
+            "to_id": "la:habito:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to live in, to occupy (to have as a home.)",
+              "(transitive) to live in, to occupy (to have as a home.)"
+            ],
+            "id": "fr:habiter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "habiter"
+          },
+          "to_node": {
+            "glosses": [
+              "to reside, inhabit, remain, dwell, live",
+              "to linger"
+            ],
+            "id": "la:habito:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "habito"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to reside, inhabit, remain, dwell, live",
+          "to linger"
+        ],
+        "id": "la:habito:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "habito"
+      }
+    },
+    "habituer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to get someone in the habit (of)",
+          "(transitive) to get someone in the habit (of)"
+        ],
+        "id": "fr:habituer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "habituer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hacher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to chop up, mince",
+          "to split with an axe"
+        ],
+        "id": "fr:hacher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hacher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hachurer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hachure"
+        ],
+        "id": "fr:hachurer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hachurer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "haler": {
+      "english_descendants": [
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To transport by drawing or pulling, as with horses or oxen, or a motor vehicle.",
+              "(transitive) To transport by drawing or pulling, as with horses or oxen, or a motor vehicle."
+            ],
+            "id": "en:haul:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "haul"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:haler:unknown:0",
+                "id": "edge:49f52718072a536f",
+                "source_template": null,
+                "to_id": "la:halo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [],
+                "id": "fro:haler:unknown:0",
+                "lang": null,
+                "lang_code": "fro",
+                "pos": null,
+                "word": "haler"
+              },
+              "to_node": {
+                "glosses": [
+                  "to breathe",
+                  "to emit, exhale, release (gas or fragrance)"
+                ],
+                "id": "la:halo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "halo"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:haul:verb:0",
+                "id": "edge:0697be6e4d1d34d1",
+                "source_template": "der",
+                "to_id": "fro:haler:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To transport by drawing or pulling, as with horses or oxen, or a motor vehicle.",
+                  "(transitive) To transport by drawing or pulling, as with horses or oxen, or a motor vehicle."
+                ],
+                "id": "en:haul:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "haul"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "fro:haler:unknown:0",
+                "lang": null,
+                "lang_code": "fro",
+                "pos": null,
+                "word": "haler"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to haul, tow"
+        ],
+        "id": "fr:haler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "haler"
+      },
+      "french_confidence": 0.765,
+      "french_distance": 2,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:haler:verb:0",
+            "id": "edge:4775f621d166b8b4",
+            "source_template": "uder",
+            "to_id": "fro:haler:unknown:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to haul, tow"
+            ],
+            "id": "fr:haler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "haler"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "fro:haler:unknown:0",
+            "lang": null,
+            "lang_code": "fro",
+            "pos": null,
+            "word": "haler"
+          }
+        },
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fro:haler:unknown:0",
+            "id": "edge:49f52718072a536f",
+            "source_template": null,
+            "to_id": "la:halo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [],
+            "id": "fro:haler:unknown:0",
+            "lang": null,
+            "lang_code": "fro",
+            "pos": null,
+            "word": "haler"
+          },
+          "to_node": {
+            "glosses": [
+              "to breathe",
+              "to emit, exhale, release (gas or fragrance)"
+            ],
+            "id": "la:halo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "halo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to breathe",
+          "to emit, exhale, release (gas or fragrance)"
+        ],
+        "id": "la:halo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "halo"
+      }
+    },
+    "haleter": {
+      "english_descendants": [
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To transport by drawing or pulling, as with horses or oxen, or a motor vehicle.",
+              "(transitive) To transport by drawing or pulling, as with horses or oxen, or a motor vehicle."
+            ],
+            "id": "en:haul:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "haul"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:haler:unknown:0",
+                "id": "edge:49f52718072a536f",
+                "source_template": null,
+                "to_id": "la:halo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [],
+                "id": "fro:haler:unknown:0",
+                "lang": null,
+                "lang_code": "fro",
+                "pos": null,
+                "word": "haler"
+              },
+              "to_node": {
+                "glosses": [
+                  "to breathe",
+                  "to emit, exhale, release (gas or fragrance)"
+                ],
+                "id": "la:halo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "halo"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:haul:verb:0",
+                "id": "edge:0697be6e4d1d34d1",
+                "source_template": "der",
+                "to_id": "fro:haler:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To transport by drawing or pulling, as with horses or oxen, or a motor vehicle.",
+                  "(transitive) To transport by drawing or pulling, as with horses or oxen, or a motor vehicle."
+                ],
+                "id": "en:haul:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "haul"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "fro:haler:unknown:0",
+                "lang": null,
+                "lang_code": "fro",
+                "pos": null,
+                "word": "haler"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to pant (To breathe heavily)"
+        ],
+        "id": "fr:haleter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "haleter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:haleter:verb:0",
+            "id": "edge:578192c0c75bd12e",
+            "source_template": null,
+            "to_id": "la:halo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to pant (To breathe heavily)"
+            ],
+            "id": "fr:haleter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "haleter"
+          },
+          "to_node": {
+            "glosses": [
+              "to breathe",
+              "to emit, exhale, release (gas or fragrance)"
+            ],
+            "id": "la:halo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "halo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to breathe",
+          "to emit, exhale, release (gas or fragrance)"
+        ],
+        "id": "la:halo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "halo"
+      }
+    },
+    "halluciner": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To seem to perceive things (with one or more of one's senses) which are not really present; to have visions; to experience a hallucination.",
+              "(ambitransitive) To seem to perceive things (with one or more of one's senses) which are not really present; to have visions; to experience a hallucination."
+            ],
+            "id": "en:hallucinate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "hallucinate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hallucinate:verb:0",
+                "id": "edge:e1901f7aa697863e",
+                "source_template": null,
+                "to_id": "la:alucinor:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To seem to perceive things (with one or more of one's senses) which are not really present; to have visions; to experience a hallucination.",
+                  "(ambitransitive) To seem to perceive things (with one or more of one's senses) which are not really present; to have visions; to experience a hallucination."
+                ],
+                "id": "en:hallucinate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "hallucinate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to wander in mind, talk idly, prate, dream"
+                ],
+                "id": "la:alucinor:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "alucinor"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hallucinate",
+          "to be flabbergasted"
+        ],
+        "id": "fr:halluciner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "halluciner"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:halluciner:verb:0",
+            "id": "edge:093182e900edf63c",
+            "source_template": null,
+            "to_id": "la:alucinor:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to hallucinate",
+              "to be flabbergasted"
+            ],
+            "id": "fr:halluciner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "halluciner"
+          },
+          "to_node": {
+            "glosses": [
+              "to wander in mind, talk idly, prate, dream"
+            ],
+            "id": "la:alucinor:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "alucinor"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to wander in mind, talk idly, prate, dream"
+        ],
+        "id": "la:alucinor:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "alucinor"
+      }
+    },
+    "hameçonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to attract and seduce by a deceptive appearance",
+          "to phish"
+        ],
+        "id": "fr:hameçonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hameçonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "handicaper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to handicap (to encumber with a handicap)"
+        ],
+        "id": "fr:handicaper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "handicaper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hanter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to haunt",
+          "to frequent"
+        ],
+        "id": "fr:hanter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hanter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "happer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to snatch by the mouth, to snap up (typically of animals)",
+          "to grab, to seize"
+        ],
+        "id": "fr:happer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "happer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "haranguer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to harangue",
+          "to excite, to rile up (especially a crowd)"
+        ],
+        "id": "fr:haranguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "haranguer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "harasser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to exhaust, to wear out"
+        ],
+        "id": "fr:harasser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "harasser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "harceler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hassle; to bother; to disrupt; to harass"
+        ],
+        "id": "fr:harceler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "harceler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "harder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to harness together (hunting dogs etc)"
+        ],
+        "id": "fr:harder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "harder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "harmoniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to harmonize"
+        ],
+        "id": "fr:harmoniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "harmoniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "harnacher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to harness",
+          "(transitive) to harness"
+        ],
+        "id": "fr:harnacher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "harnacher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "harper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grasp forcefully",
+          "(ambitransitive) to grasp forcefully"
+        ],
+        "id": "fr:harper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "harper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "harponner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to harpoon"
+        ],
+        "id": "fr:harponner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "harponner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hasarder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hazard"
+        ],
+        "id": "fr:hasarder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hasarder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hausser": {
+      "english_descendants": [
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A thick or heavy-duty cable or rope used to tow or moor a ship.",
+              "(nautical) A thick or heavy-duty cable or rope used to tow or moor a ship."
+            ],
+            "id": "en:hawser:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "hawser"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:haucier:verb:0",
+                "id": "edge:950bada57d3fb311",
+                "source_template": null,
+                "to_id": "la:altiare:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to raise; to lift"
+                ],
+                "id": "fro:haucier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "haucier"
+              },
+              "to_node": {
+                "glosses": [
+                  "to hoist"
+                ],
+                "id": "la:altiare:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "altiare"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hawser:noun:0",
+                "id": "edge:7f6130694e08e7ae",
+                "source_template": null,
+                "to_id": "fro:haucier:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A thick or heavy-duty cable or rope used to tow or moor a ship.",
+                  "(nautical) A thick or heavy-duty cable or rope used to tow or moor a ship."
+                ],
+                "id": "en:hawser:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "hawser"
+              },
+              "to_node": {
+                "glosses": [
+                  "to raise; to lift"
+                ],
+                "id": "fro:haucier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "haucier"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to raise",
+          "to shrug"
+        ],
+        "id": "fr:hausser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hausser"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:hausser:verb:0",
+            "id": "edge:34d975e754952e26",
+            "source_template": null,
+            "to_id": "la:altiare:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to raise",
+              "to shrug"
+            ],
+            "id": "fr:hausser:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hausser"
+          },
+          "to_node": {
+            "glosses": [
+              "to hoist"
+            ],
+            "id": "la:altiare:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "altiare"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to hoist"
+        ],
+        "id": "la:altiare:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "altiare"
+      }
+    },
+    "havir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to singe"
+        ],
+        "id": "fr:havir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "havir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "haïr": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hate",
+          "(transitive) to hate"
+        ],
+        "id": "fr:haïr:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "haïr"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "helléniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to Hellenize"
+        ],
+        "id": "fr:helléniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "helléniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hennir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to neigh or whinny",
+          "(intransitive) to neigh or whinny"
+        ],
+        "id": "fr:hennir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hennir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "herboriser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to herborize, to collect herbs for medicinal uses"
+        ],
+        "id": "fr:herboriser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "herboriser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "herser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to harrow (drag a harrow over)",
+          "(transitive) to harrow (drag a harrow over)"
+        ],
+        "id": "fr:herser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "herser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "heurter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to strike, hit",
+          "to clash, conflict with"
+        ],
+        "id": "fr:heurter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "heurter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hiberner": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep.",
+              "(intransitive, biology) To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep."
+            ],
+            "id": "en:hibernate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "hibernate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hibernate:verb:0",
+                "id": "edge:865deff9ae4bcf95",
+                "source_template": null,
+                "to_id": "la:hiberno:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep.",
+                  "(intransitive, biology) To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep."
+                ],
+                "id": "en:hibernate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "hibernate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to winter; to pass the winter",
+                  "to keep to a winter encampment"
+                ],
+                "id": "la:hiberno:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "hiberno"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Obsolete form of hibernate.",
+              "(rare, intransitive) Obsolete form of hibernate."
+            ],
+            "id": "en:hivernate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "hivernate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hivernate:verb:0",
+                "id": "edge:dc8980fd28a1e13e",
+                "source_template": null,
+                "to_id": "la:hiberno:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Obsolete form of hibernate.",
+                  "(rare, intransitive) Obsolete form of hibernate."
+                ],
+                "id": "en:hivernate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "hivernate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to winter; to pass the winter",
+                  "to keep to a winter encampment"
+                ],
+                "id": "la:hiberno:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "hiberno"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hibernate (to spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep)"
+        ],
+        "id": "fr:hiberner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hiberner"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:hiberner:verb:0",
+            "id": "edge:b04b0229bcaa55a7",
+            "source_template": null,
+            "to_id": "la:hiberno:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to hibernate (to spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep)"
+            ],
+            "id": "fr:hiberner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hiberner"
+          },
+          "to_node": {
+            "glosses": [
+              "to winter; to pass the winter",
+              "to keep to a winter encampment"
+            ],
+            "id": "la:hiberno:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "hiberno"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to winter; to pass the winter",
+          "to keep to a winter encampment"
+        ],
+        "id": "la:hiberno:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "hiberno"
+      }
+    },
+    "hisser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hoist, to raise",
+          "to rise through the ranks"
+        ],
+        "id": "fr:hisser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hisser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hiverner": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep.",
+              "(intransitive, biology) To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep."
+            ],
+            "id": "en:hibernate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "hibernate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hibernate:verb:0",
+                "id": "edge:865deff9ae4bcf95",
+                "source_template": null,
+                "to_id": "la:hiberno:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep.",
+                  "(intransitive, biology) To spend the winter in a dormant or inactive state of minimal activity, low body temperature, slow breathing and heart rate, and low metabolic rate; to go through a winter sleep."
+                ],
+                "id": "en:hibernate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "hibernate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to winter; to pass the winter",
+                  "to keep to a winter encampment"
+                ],
+                "id": "la:hiberno:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "hiberno"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Obsolete form of hibernate.",
+              "(rare, intransitive) Obsolete form of hibernate."
+            ],
+            "id": "en:hivernate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "hivernate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hivernate:verb:0",
+                "id": "edge:dc8980fd28a1e13e",
+                "source_template": null,
+                "to_id": "la:hiberno:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Obsolete form of hibernate.",
+                  "(rare, intransitive) Obsolete form of hibernate."
+                ],
+                "id": "en:hivernate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "hivernate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to winter; to pass the winter",
+                  "to keep to a winter encampment"
+                ],
+                "id": "la:hiberno:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "hiberno"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to winter, hibernate (to spend the winter in a certain place, especially for warmth)",
+          "(intransitive, of a boat, or animal) to winter, hibernate (to spend the winter in a certain place, especially for warmth)"
+        ],
+        "id": "fr:hiverner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hiverner"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:hiverner:verb:0",
+            "id": "edge:57375351c4cda96f",
+            "source_template": null,
+            "to_id": "la:hiberno:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to winter, hibernate (to spend the winter in a certain place, especially for warmth)",
+              "(intransitive, of a boat, or animal) to winter, hibernate (to spend the winter in a certain place, especially for warmth)"
+            ],
+            "id": "fr:hiverner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hiverner"
+          },
+          "to_node": {
+            "glosses": [
+              "to winter; to pass the winter",
+              "to keep to a winter encampment"
+            ],
+            "id": "la:hiberno:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "hiberno"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to winter; to pass the winter",
+          "to keep to a winter encampment"
+        ],
+        "id": "la:hiberno:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "hiberno"
+      }
+    },
+    "hiérarchiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hierarchize",
+          "to prioritize"
+        ],
+        "id": "fr:hiérarchiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hiérarchiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hocher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nod (move one's head)"
+        ],
+        "id": "fr:hocher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hocher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "homogénéifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to homogenize"
+        ],
+        "id": "fr:homogénéifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "homogénéifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "homogénéiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to homogenize"
+        ],
+        "id": "fr:homogénéiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "homogénéiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "homologuer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To confirm, ratify or approve, especially officially or legally.",
+              "(transitive) To confirm, ratify or approve, especially officially or legally."
+            ],
+            "id": "en:homologate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "homologate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:homologate:verb:0",
+                "id": "edge:4e57822adfbf39a3",
+                "source_template": null,
+                "to_id": "la:homologo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To confirm, ratify or approve, especially officially or legally.",
+                  "(transitive) To confirm, ratify or approve, especially officially or legally."
+                ],
+                "id": "en:homologate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "homologate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to homologate",
+                  "(Medieval Latin) to homologate"
+                ],
+                "id": "la:homologo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "homologo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to officially recognize, ratify"
+        ],
+        "id": "fr:homologuer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "homologuer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:homologuer:verb:0",
+            "id": "edge:36cbd4a9162c7981",
+            "source_template": null,
+            "to_id": "la:homologo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to officially recognize, ratify"
+            ],
+            "id": "fr:homologuer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "homologuer"
+          },
+          "to_node": {
+            "glosses": [
+              "to homologate",
+              "(Medieval Latin) to homologate"
+            ],
+            "id": "la:homologo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "homologo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to homologate",
+          "(Medieval Latin) to homologate"
+        ],
+        "id": "la:homologo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "homologo"
+      }
+    },
+    "honnir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to shame; to disgrace; to dishonor",
+          "(archaic, literary, transitive) to shame; to disgrace; to dishonor"
+        ],
+        "id": "fr:honnir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "honnir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "honorer": {
+      "english_descendants": [
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To think of highly, to respect highly; to show respect for; to recognise the importance or spiritual value of.",
+              "(transitive) To think of highly, to respect highly; to show respect for; to recognise the importance or spiritual value of."
+            ],
+            "id": "en:honor:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "honor"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:honorer:verb:0",
+                "id": "edge:e652160634ea370b",
+                "source_template": "bor",
+                "to_id": "la:honoro:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to honor"
+                ],
+                "id": "fro:honorer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "honorer"
+              },
+              "to_node": {
+                "glosses": [
+                  "to honor, respect",
+                  "to clothe with honor, decorate"
+                ],
+                "id": "la:honoro:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "honoro"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:honor:verb:0",
+                "id": "edge:f087d9023f162917",
+                "source_template": null,
+                "to_id": "fro:honorer:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To think of highly, to respect highly; to show respect for; to recognise the importance or spiritual value of.",
+                  "(transitive) To think of highly, to respect highly; to show respect for; to recognise the importance or spiritual value of."
+                ],
+                "id": "en:honor:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "honor"
+              },
+              "to_node": {
+                "glosses": [
+                  "to honor"
+                ],
+                "id": "fro:honorer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "honorer"
+              }
+            }
+          ],
+          "relation_types": [
+            "borrowed_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "British, Canadian, Commonwealth, and Ireland standard spelling of honor."
+            ],
+            "id": "en:honour:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "honour"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:honorer:verb:0",
+                "id": "edge:e652160634ea370b",
+                "source_template": "bor",
+                "to_id": "la:honoro:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to honor"
+                ],
+                "id": "fro:honorer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "honorer"
+              },
+              "to_node": {
+                "glosses": [
+                  "to honor, respect",
+                  "to clothe with honor, decorate"
+                ],
+                "id": "la:honoro:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "honoro"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:honour:verb:0",
+                "id": "edge:d1530bfc1606ff06",
+                "source_template": null,
+                "to_id": "fro:honorer:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "British, Canadian, Commonwealth, and Ireland standard spelling of honor."
+                ],
+                "id": "en:honour:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "honour"
+              },
+              "to_node": {
+                "glosses": [
+                  "to honor"
+                ],
+                "id": "fro:honorer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "honorer"
+              }
+            }
+          ],
+          "relation_types": [
+            "borrowed_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to honor, to honour"
+        ],
+        "id": "fr:honorer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "honorer"
+      },
+      "french_confidence": 0.855,
+      "french_distance": 2,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:honorer:verb:0",
+            "id": "edge:3efd947f1ab6ae4f",
+            "source_template": "inh",
+            "to_id": "fro:honorer:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to honor, to honour"
+            ],
+            "id": "fr:honorer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "honorer"
+          },
+          "to_node": {
+            "glosses": [
+              "to honor"
+            ],
+            "id": "fro:honorer:verb:0",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "honorer"
+          }
+        },
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fro:honorer:verb:0",
+            "id": "edge:e652160634ea370b",
+            "source_template": "bor",
+            "to_id": "la:honoro:verb:0",
+            "type": "borrowed_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to honor"
+            ],
+            "id": "fro:honorer:verb:0",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "honorer"
+          },
+          "to_node": {
+            "glosses": [
+              "to honor, respect",
+              "to clothe with honor, decorate"
+            ],
+            "id": "la:honoro:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "honoro"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to honor, respect",
+          "to clothe with honor, decorate"
+        ],
+        "id": "la:honoro:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "honoro"
+      }
+    },
+    "hoqueter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hiccup"
+        ],
+        "id": "fr:hoqueter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hoqueter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "horrifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to horrify",
+          "(transitive) to horrify"
+        ],
+        "id": "fr:horrifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "horrifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "horripiler": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To bristle in fear or horror; to have goose bumps or goose pimples.",
+              "(ambitransitive) To bristle in fear or horror; to have goose bumps or goose pimples."
+            ],
+            "id": "en:horripilate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "horripilate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:horripilate:verb:0",
+                "id": "edge:2365112434b26f7e",
+                "source_template": null,
+                "to_id": "la:horripilo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To bristle in fear or horror; to have goose bumps or goose pimples.",
+                  "(ambitransitive) To bristle in fear or horror; to have goose bumps or goose pimples."
+                ],
+                "id": "en:horripilate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "horripilate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to bristle with hairs, to be shaggy",
+                  "(intransitive, Late Latin) to bristle with hairs, to be shaggy"
+                ],
+                "id": "la:horripilo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "horripilo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to exasperate, infuriate",
+          "(transitive) to exasperate, infuriate"
+        ],
+        "id": "fr:horripiler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "horripiler"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:horripiler:verb:0",
+            "id": "edge:581f2e14a28b0350",
+            "source_template": null,
+            "to_id": "la:horripilo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to exasperate, infuriate",
+              "(transitive) to exasperate, infuriate"
+            ],
+            "id": "fr:horripiler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "horripiler"
+          },
+          "to_node": {
+            "glosses": [
+              "to bristle with hairs, to be shaggy",
+              "(intransitive, Late Latin) to bristle with hairs, to be shaggy"
+            ],
+            "id": "la:horripilo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "horripilo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to bristle with hairs, to be shaggy",
+          "(intransitive, Late Latin) to bristle with hairs, to be shaggy"
+        ],
+        "id": "la:horripilo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "horripilo"
+      }
+    },
+    "hospitaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hospitalise"
+        ],
+        "id": "fr:hospitaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hospitaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "houblonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "To hop (add hops to)"
+        ],
+        "id": "fr:houblonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "houblonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "houer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hoe"
+        ],
+        "id": "fr:houer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "houer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "houspiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to chide or scold someone harshly, usually accompanied by pulling and shaking, berate",
+          "to criticise"
+        ],
+        "id": "fr:houspiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "houspiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "housser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cover with a dustsheet",
+          "(rare) to cover with a dustsheet"
+        ],
+        "id": "fr:housser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "housser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hucher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cry out"
+        ],
+        "id": "fr:hucher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hucher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "huer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to boo"
+        ],
+        "id": "fr:huer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "huer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "huiler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to oil, oil up (cover or coat with oil)"
+        ],
+        "id": "fr:huiler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "huiler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hululer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To howl loudly or prolongedly in lamentation or joy.",
+              "To produce a rapid and prolonged series of sharp noises with one's voice."
+            ],
+            "id": "en:ululate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "ululate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:ululate:verb:0",
+                "id": "edge:a55b28dc54115991",
+                "source_template": null,
+                "to_id": "la:ululo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To howl loudly or prolongedly in lamentation or joy.",
+                  "To produce a rapid and prolonged series of sharp noises with one's voice."
+                ],
+                "id": "en:ululate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "ululate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to howl"
+                ],
+                "id": "la:ululo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "ululo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hoot (to make the cry of an owl)",
+          "(intransitive) to hoot (to make the cry of an owl)"
+        ],
+        "id": "fr:hululer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hululer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:hululer:verb:0",
+            "id": "edge:c06d2cf324b0bfe0",
+            "source_template": null,
+            "to_id": "la:ululo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to hoot (to make the cry of an owl)",
+              "(intransitive) to hoot (to make the cry of an owl)"
+            ],
+            "id": "fr:hululer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hululer"
+          },
+          "to_node": {
+            "glosses": [
+              "to howl"
+            ],
+            "id": "la:ululo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "ululo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to howl"
+        ],
+        "id": "la:ululo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "ululo"
+      }
+    },
+    "humaniser": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To behave as or become, or to cause to behave as or become, a human.",
+              "(rare) To behave as or become, or to cause to behave as or become, a human."
+            ],
+            "id": "en:human:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "human"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:human:verb:0",
+                "id": "edge:8cd5251ab236a525",
+                "source_template": null,
+                "to_id": "la:humanus:adj:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To behave as or become, or to cause to behave as or become, a human.",
+                  "(rare) To behave as or become, or to cause to behave as or become, a human."
+                ],
+                "id": "en:human:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "human"
+              },
+              "to_node": {
+                "glosses": [
+                  "human (of man, people)",
+                  "humane, kind, philanthropic"
+                ],
+                "id": "la:humanus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "humanus"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Having or showing concern for the pain or suffering of another; compassionate.",
+              "Pertaining to branches of learning concerned with human affairs or the humanities, especially classical literature or rhetoric."
+            ],
+            "id": "en:humane:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "humane"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:humane:adj:0",
+                "id": "edge:812b107c8f1f6b4d",
+                "source_template": null,
+                "to_id": "la:humanus:adj:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Having or showing concern for the pain or suffering of another; compassionate.",
+                  "Pertaining to branches of learning concerned with human affairs or the humanities, especially classical literature or rhetoric."
+                ],
+                "id": "en:humane:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "humane"
+              },
+              "to_node": {
+                "glosses": [
+                  "human (of man, people)",
+                  "humane, kind, philanthropic"
+                ],
+                "id": "la:humanus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "humanus"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to humanise; to civilise",
+          "(transitive) to humanise; to civilise"
+        ],
+        "id": "fr:humaniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "humaniser"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:humaniser:verb:0",
+            "id": "edge:c8f776376344730a",
+            "source_template": "der",
+            "to_id": "la:humanus:adj:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to humanise; to civilise",
+              "(transitive) to humanise; to civilise"
+            ],
+            "id": "fr:humaniser:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "humaniser"
+          },
+          "to_node": {
+            "glosses": [
+              "human (of man, people)",
+              "humane, kind, philanthropic"
+            ],
+            "id": "la:humanus:adj:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "adj",
+            "word": "humanus"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "human (of man, people)",
+          "humane, kind, philanthropic"
+        ],
+        "id": "la:humanus:adj:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "adj",
+        "word": "humanus"
+      }
+    },
+    "humecter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to moisten (make slightly wet)"
+        ],
+        "id": "fr:humecter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "humecter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "humer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to smell",
+          "(transitive) to smell"
+        ],
+        "id": "fr:humer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "humer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "humidifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to humidify"
+        ],
+        "id": "fr:humidifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "humidifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "humilier": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To cause to be ashamed; to injure the dignity and self-respect of.",
+              "(transitive) To cause to be ashamed; to injure the dignity and self-respect of."
+            ],
+            "id": "en:humiliate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "humiliate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:humiliate:verb:0",
+                "id": "edge:1256dc824706b43a",
+                "source_template": null,
+                "to_id": "la:humilio:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To cause to be ashamed; to injure the dignity and self-respect of.",
+                  "(transitive) To cause to be ashamed; to injure the dignity and self-respect of."
+                ],
+                "id": "en:humiliate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "humiliate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to humble, to abase",
+                  "to humiliate"
+                ],
+                "id": "la:humilio:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "humilio"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to humiliate"
+        ],
+        "id": "fr:humilier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "humilier"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:humilier:verb:0",
+            "id": "edge:9e91a635359539fa",
+            "source_template": null,
+            "to_id": "la:humilio:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to humiliate"
+            ],
+            "id": "fr:humilier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "humilier"
+          },
+          "to_node": {
+            "glosses": [
+              "to humble, to abase",
+              "to humiliate"
+            ],
+            "id": "la:humilio:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "humilio"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to humble, to abase",
+          "to humiliate"
+        ],
+        "id": "la:humilio:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "humilio"
+      }
+    },
+    "hurler": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Being or relating to a ululation."
+            ],
+            "id": "en:ululatory:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "ululatory"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:ululatory:adj:0",
+                "id": "edge:e64ec8a37e608a94",
+                "source_template": "der",
+                "to_id": "la:ululō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Being or relating to a ululation."
+                ],
+                "id": "en:ululatory:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "ululatory"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ululō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ululō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.722,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "An owl; an owlet."
+            ],
+            "id": "en:howlet:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "howlet"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fr:hulotte:noun:0",
+                "id": "edge:bb1c4c9cd83c64b7",
+                "source_template": "der",
+                "to_id": "la:ululō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "tawny owl (Strix aluco)",
+                  "lesser yellow underwing (Noctua comes)"
+                ],
+                "id": "fr:hulotte:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "hulotte"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ululō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ululō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:howlet:noun:0",
+                "id": "edge:f4d7d2b6fe52d631",
+                "source_template": "der",
+                "to_id": "fr:hulotte:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "An owl; an owlet."
+                ],
+                "id": "en:howlet:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "howlet"
+              },
+              "to_node": {
+                "glosses": [
+                  "tawny owl (Strix aluco)",
+                  "lesser yellow underwing (Noctua comes)"
+                ],
+                "id": "fr:hulotte:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "hulotte"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to shout, to yell",
+          "to howl"
+        ],
+        "id": "fr:hurler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hurler"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:hurler:verb:0",
+            "id": "edge:a6795e51269c101a",
+            "source_template": "inh",
+            "to_id": "la:ululō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to shout, to yell",
+              "to howl"
+            ],
+            "id": "fr:hurler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hurler"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:ululō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "ululō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:ululō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "ululō"
+      }
+    },
+    "hybrider": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hybridize",
+          "(transitive) to hybridize"
+        ],
+        "id": "fr:hybrider:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hybrider"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hydrater": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hydrate",
+          "(transitive) to hydrate"
+        ],
+        "id": "fr:hydrater:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hydrater"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hydrogéner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hydrogenate",
+          "(transitive, chemistry) to hydrogenate"
+        ],
+        "id": "fr:hydrogéner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hydrogéner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hydrolyser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hydrolyze",
+          "(transitive, chemistry) to hydrolyze"
+        ],
+        "id": "fr:hydrolyser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hydrolyser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hypnotiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hypnotize",
+          "to mesmerize"
+        ],
+        "id": "fr:hypnotiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hypnotiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hypostasier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hypostasize"
+        ],
+        "id": "fr:hypostasier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hypostasier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hypothéquer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hypothecate",
+          "(transitive) to hypothecate"
+        ],
+        "id": "fr:hypothéquer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hypothéquer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hâler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to tan (cause skin to go brown)",
+          "(transitive) to tan (cause skin to go brown)"
+        ],
+        "id": "fr:hâler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hâler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hâter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to speed up, hasten",
+          "(transitive) to speed up, hasten"
+        ],
+        "id": "fr:hâter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hâter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "héberger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to house, accommodate"
+        ],
+        "id": "fr:héberger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "héberger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hébraïser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "Hebraize, Hebraicize (to give a Hebrew influence or form)",
+          "(transitive) Hebraize, Hebraicize (to give a Hebrew influence or form)"
+        ],
+        "id": "fr:hébraïser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hébraïser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hébéter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To render obtuse; to dull; to blunt.",
+              "(transitive) To render obtuse; to dull; to blunt."
+            ],
+            "id": "en:hebetate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "hebetate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hebetate:verb:0",
+                "id": "edge:61285a1d0876dee3",
+                "source_template": null,
+                "to_id": "la:hebeto:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To render obtuse; to dull; to blunt.",
+                  "(transitive) To render obtuse; to dull; to blunt."
+                ],
+                "id": "en:hebetate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "hebetate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to make something blunt, dull, dim",
+                  "to dull, blunt, make stupid"
+                ],
+                "id": "la:hebeto:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "hebeto"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to stupefy"
+        ],
+        "id": "fr:hébéter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hébéter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:hébéter:verb:0",
+            "id": "edge:16b9cb28efbc070f",
+            "source_template": null,
+            "to_id": "la:hebeto:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to stupefy"
+            ],
+            "id": "fr:hébéter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hébéter"
+          },
+          "to_node": {
+            "glosses": [
+              "to make something blunt, dull, dim",
+              "to dull, blunt, make stupid"
+            ],
+            "id": "la:hebeto:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "hebeto"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to make something blunt, dull, dim",
+          "to dull, blunt, make stupid"
+        ],
+        "id": "la:hebeto:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "hebeto"
+      }
+    },
+    "héler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hail (call out loudly)"
+        ],
+        "id": "fr:héler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "héler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hérisser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to bristle, ruffle (feathers, fur etc.)",
+          "(of an animal) to bristle, ruffle (feathers, fur etc.)"
+        ],
+        "id": "fr:hérisser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hérisser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "hériter": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Synonym of inherit.",
+              "(transitive, rare) Synonym of inherit."
+            ],
+            "id": "en:herit:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "herit"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:herit:verb:0",
+                "id": "edge:cc6687d75a2f6b54",
+                "source_template": "der",
+                "to_id": "la:hērēditō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Synonym of inherit.",
+                  "(transitive, rare) Synonym of inherit."
+                ],
+                "id": "en:herit:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "herit"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:hērēditō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "hērēditō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to inherit (to receive property or a title by legal succession etc.)"
+        ],
+        "id": "fr:hériter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hériter"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:hériter:verb:0",
+            "id": "edge:db5ce1465247cc42",
+            "source_template": "inh",
+            "to_id": "la:hērēditō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to inherit (to receive property or a title by legal succession etc.)"
+            ],
+            "id": "fr:hériter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hériter"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:hērēditō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "hērēditō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:hērēditō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "hērēditō"
+      }
+    },
+    "hésiter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To stop or pause respecting decision or action; to be in suspense or uncertainty as to a determination.",
+              "(intransitive) To stop or pause respecting decision or action; to be in suspense or uncertainty as to a determination."
+            ],
+            "id": "en:hesitate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "hesitate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:hesitate:verb:0",
+                "id": "edge:80db59727d6bb6bf",
+                "source_template": null,
+                "to_id": "la:haesito:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To stop or pause respecting decision or action; to be in suspense or uncertainty as to a determination.",
+                  "(intransitive) To stop or pause respecting decision or action; to be in suspense or uncertainty as to a determination."
+                ],
+                "id": "en:hesitate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "hesitate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to remain fixed in place",
+                  "to hesitate; to be uncertain"
+                ],
+                "id": "la:haesito:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "haesito"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hesitate"
+        ],
+        "id": "fr:hésiter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "hésiter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:hésiter:verb:0",
+            "id": "edge:6c6d43db7941b38f",
+            "source_template": null,
+            "to_id": "la:haesito:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to hesitate"
+            ],
+            "id": "fr:hésiter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "hésiter"
+          },
+          "to_node": {
+            "glosses": [
+              "to remain fixed in place",
+              "to hesitate; to be uncertain"
+            ],
+            "id": "la:haesito:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "haesito"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to remain fixed in place",
+          "to hesitate; to be uncertain"
+        ],
+        "id": "la:haesito:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "haesito"
+      }
+    }
+  }
+}

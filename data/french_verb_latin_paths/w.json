@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "shard": "w",
+    "verbs": 1
+  },
+  "verbs": {
+    "warranter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to guarantee (with a warrant)"
+        ],
+        "id": "fr:warranter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "warranter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    }
+  }
+}

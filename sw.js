@@ -78,11 +78,36 @@ const swLog = (() => {
   return { add };
 })();
 
+// Strip redirect metadata from cached HTML before it is used for navigation.
+// Chrome rejects redirected responses for navigation requests with redirect=manual.
+function navigationSafeResponse(response) {
+  if (!response || !response.redirected) return response;
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers
+  });
+}
+
+async function repairRedirectedDocuments(cache) {
+  for (const request of await cache.keys()) {
+    const response = await cache.match(request);
+    if (response?.redirected && /text\/html/i.test(response.headers.get('Content-Type') || '')) {
+      await cache.put(request, navigationSafeResponse(response));
+    }
+  }
+}
+
 self.addEventListener('install', event => {
   swLog.add(`install ${CACHE_NAME}`);
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
+      // Repair existing document caches before any network-dependent warmup.
+      // Older active workers can then keep serving them while this update installs.
+      for (const name of await caches.keys()) {
+        if (name.startsWith(CACHE_PREFIX)) await repairRedirectedDocuments(await caches.open(name));
+      }
       await preCacheIndexAndBuildAssets(cache, 'install', { requireBuildAssets: true });
       for (const url of PRECACHE_URLS.filter(url => url !== INDEX_PATH)) {
         await preCacheUrl(cache, url);
@@ -99,6 +124,7 @@ self.addEventListener('activate', event => {
       const isUpgrade = old.length > 0;
       swLog.add(`old caches: [${old.join(', ')}] isUpgrade=${isUpgrade}`);
       await Promise.all(old.map(k => caches.delete(k)));
+      await repairRedirectedDocuments(await caches.open(CACHE_NAME));
       await self.clients.claim();
       swLog.add('claimed clients');
       if (isUpgrade) {
@@ -122,11 +148,14 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // Optional voice assets belong only to the dedicated voice cache.
+  if (url.pathname.includes('/js/offline-voice-runtime/')) return;
   if (url.origin !== self.location.origin) return;
   if (!inScopePath(url.pathname)) return;
 
   event.respondWith(
-    serveWithSWR(event.request, url)
+    serveWithSWR(event.request, url, event)
+      .then(response => isNavigationRequest(event.request, url) ? navigationSafeResponse(response) : response)
       .catch(error => serveAfterUnhandledError(event.request, url, error))
   );
 });
@@ -201,9 +230,9 @@ async function cacheIndexResponseAndBuildAssets(cache, response, reason = 'unkno
     swLog.add(`index-cache skipped reason=${reason} asset-count=${stats.count} failed=${stats.failed}`);
     return false;
   }
-  await cache.put(INDEX_PATH, response.clone());
+  await cache.put(INDEX_PATH, navigationSafeResponse(response.clone()));
   if (options.cacheRequest) {
-    await cache.put(options.cacheRequest, response.clone());
+    await cache.put(options.cacheRequest, navigationSafeResponse(response.clone()));
   }
   return true;
 }
@@ -384,11 +413,11 @@ async function serveAfterUnhandledError(request, url, error) {
   return new Response('Offline - open once with internet to cache the app', { status: 503 });
 }
 
-async function serveWithSWR(request, url) {
+async function serveWithSWR(request, url, event) {
   const isNav = isNavigationRequest(request, url);
   const isTtsAsset = url.pathname.startsWith(TTS_PREFIX);
   const isVersionRequest = url.pathname === VERSION_PATH;
-  const forceRefresh = isNav && url.searchParams.has('__refresh');
+  const forceRefresh = isNav && (url.searchParams.has('__refresh') || url.searchParams.has('question'));
 
   const cache = await caches.open(CACHE_NAME);
 
@@ -463,6 +492,9 @@ async function serveWithSWR(request, url) {
       if (isNav) swLog.add(`bg-refresh failed ${url.pathname}: ${e.message}`);
       return undefined;
     });
+
+  // Keep refresh/cache writes alive after returning the cached response.
+  event?.waitUntil(refresh);
 
   if (cached) {
     if (isNav) swLog.add(`nav CACHE-HIT ${url.pathname} (refreshing in bg)`);

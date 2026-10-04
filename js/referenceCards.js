@@ -207,14 +207,6 @@
     "I ask her for them."
   ],
   [
-    "répondre",
-    "to give someone an answer",
-    "Elle répond la même chose aux journalistes.",
-    "Elle la leur répond.",
-    "She gives the journalists the same answer.",
-    "She gives it to them."
-  ],
-  [
     "rappeler",
     "to remind someone of something",
     "Je rappelle la date à mon frère.",
@@ -835,10 +827,6 @@
   {"verb":"demander","pattern_id":"personal-double:demander","pattern":"demander + quelque chose + à quelqu’un","meaning_en":"to ask someone for something","example_fr":"Ils te la demandent.","example_en":"They ask you for it."},
   {"verb":"demander","pattern_id":"personal-double:demander","pattern":"demander + quelque chose + à quelqu’un","meaning_en":"to ask someone for something","example_fr":"Ils nous les demandent.","example_en":"They ask us for them."},
   {"verb":"demander","pattern_id":"personal-double:demander","pattern":"demander + quelque chose + à quelqu’un","meaning_en":"to ask someone for something","example_fr":"Ils vous le demandent.","example_en":"They ask you all for it."},
-  {"verb":"répondre","pattern_id":"personal-double:répondre","pattern":"répondre + quelque chose + à quelqu’un","meaning_en":"to give someone an answer","example_fr":"Ils me le répondent.","example_en":"They give me an answer."},
-  {"verb":"répondre","pattern_id":"personal-double:répondre","pattern":"répondre + quelque chose + à quelqu’un","meaning_en":"to give someone an answer","example_fr":"Ils te la répondent.","example_en":"They give you an answer."},
-  {"verb":"répondre","pattern_id":"personal-double:répondre","pattern":"répondre + quelque chose + à quelqu’un","meaning_en":"to give someone an answer","example_fr":"Ils nous les répondent.","example_en":"They give us an answer."},
-  {"verb":"répondre","pattern_id":"personal-double:répondre","pattern":"répondre + quelque chose + à quelqu’un","meaning_en":"to give someone an answer","example_fr":"Ils vous le répondent.","example_en":"They give you all an answer."},
   {"verb":"rappeler","pattern_id":"personal-double:rappeler","pattern":"rappeler + quelque chose + à quelqu’un","meaning_en":"to remind someone of something","example_fr":"Ils me le rappellent.","example_en":"They remind me of it."},
   {"verb":"rappeler","pattern_id":"personal-double:rappeler","pattern":"rappeler + quelque chose + à quelqu’un","meaning_en":"to remind someone of something","example_fr":"Ils te la rappellent.","example_en":"They remind you of it."},
   {"verb":"rappeler","pattern_id":"personal-double:rappeler","pattern":"rappeler + quelque chose + à quelqu’un","meaning_en":"to remind someone of something","example_fr":"Ils nous les rappellent.","example_en":"They remind us of them."},
@@ -949,6 +937,8 @@
   const choices=personalIndices(card);return choices.length?personalReference(card,choices[Math.floor(Math.random()*choices.length)]):null;
  }
 
+ // Generic thing cues do not identify reply content. Keep répondre in the
+ // indirect/y drills; do not generate le/la/les + recipient drills for it.
  const doubleVerbs = doubleExamples.map(row => row[0]);
   for (const verb of ['donner', 'montrer', 'apporter', 'envoyer', 'prêter', 'expliquer', 'raconter', 'rendre']) if (!specs[verb]) specs[verb] = { type: 'direct' };
   const doubleTenses = ['present', 'imparfait', 'futurSimple', 'conditionnelPresent', 'subjonctifPresent', 'passeCompose', 'plusQueParfait'];
@@ -984,16 +974,28 @@
     const cluster=personal?personal+' '+d:direct+' '+indirect;
     const answer = subject + ' ' + cluster + (cluster.endsWith("'")?'':' ') + body;
     const references = [objectCue, 'à ' + recipient];
-    return { ...card, verb: {...card.verb, translation: doubleExamples.find(row => row[0] === card.verb.infinitive)[1]}, conjugated: answer, reference: references.join(' + '), references, referenceLabel: card.verb.infinitive, doublePronoun: true };
+    return { ...card, verb: {...card.verb, translation: doubleExamples.find(row => row[0] === card.verb.infinitive)[1]}, conjugated: answer, reference: references.join(' + '), references, explanation: window.pronounExplanation?.double(references,direct,personal||indirect,!!personal), referenceLabel: card.verb.infinitive, doublePronoun: true };
+  }
+  function choiceControls(container, options, onChange, key, title, choices, fallback) {
+    const group=document.createElement('fieldset');group.className='practice-choice-group';
+    const legend=document.createElement('legend');legend.textContent=title;group.append(legend);
+    const grid=document.createElement('div');grid.className='practice-choice-grid';grid.style.setProperty('--choice-columns',choices.length===3?'3':'2');
+    const selected=choices.some(([value])=>value===options[key])?options[key]:fallback;
+    for(const [value,text,description] of choices){
+      const label=document.createElement('label');label.className='practice-choice';
+      const input=document.createElement('input');input.type='radio';input.name='practice-'+key;input.value=value;input.checked=value===selected;
+      const content=document.createElement('span');content.className='practice-choice-content';
+      const heading=document.createElement('strong');heading.textContent=text;
+      const detail=document.createElement('small');detail.textContent=description;content.append(heading,detail);
+      input.addEventListener('change',()=>{if(!input.checked)return;options[key]=value;onChange();container.querySelector('input[name="practice-'+key+'"][value="'+value+'"]')?.focus({preventScroll:true});});
+      label.append(input,content);grid.append(label);
+    }
+    group.append(grid);container.append(group);
   }
   function controls(container, options, onChange) {
-    const label = document.createElement('label'); label.className = 'reference-count-control';
-    label.textContent = 'Pronouns per answer ';
-    const select = document.createElement('select'); select.setAttribute('aria-label', 'Pronouns per answer');
-    for (const [value, text] of [['one','One'],['two','Two'],['mixed','Mixed']]) select.add(new Option(text,value));
-    select.value = options.referenceObjects || 'mixed';
-    select.onchange = () => { options.referenceObjects = select.value; onChange(); };
-    label.append(select); container.append(label);
+    choiceControls(container,options,onChange,'referenceObjects','Pronouns per answer',[
+      ['one','One','le · y · en'],['two','Two','le lui · lui en'],['mixed','Mixed','One or two']
+    ],'mixed');
   }
   function referencesFor(verb) {
     const spec = specs[verb];
@@ -1048,17 +1050,17 @@
     element.classList.toggle('double-reference', Boolean(card?.doublePronoun));
     if (!card?.reference) return;
     if (card.references) {
-      card.references.forEach((text, index) => { const line = document.createElement('strong'); line.textContent = (index ? '👤 ' : '📦 ') + text; element.appendChild(line); });
+      card.references.forEach((text, index) => { const line = document.createElement('strong'); line.textContent = (card.referenceIcons?.[index] ? card.referenceIcons[index]+' ' : index ? '👤 ' : '📦 ') + text; element.appendChild(line); });
       element.setAttribute('aria-label', 'Replace both: ' + card.reference); return;
     }
     const icons = { 'ce truc': '📦', 'cette chose': '🔹', 'ces choses': '📦📦', 'cet endroit': '📍', 'cet homme': '👨', 'cette femme': '👩', 'ces hommes': '👨👨', 'ces femmes': '👩👩' };
     const icon = document.createElement('span');
     icon.setAttribute('aria-hidden', 'true');
-    icon.textContent = icons[card.reference] || (card.personalPronoun?'👤':'📦');
+    icon.textContent = card.referenceIcon || icons[card.reference] || (card.personalPronoun?'👤':'📦');
     const value = document.createElement('strong');
     value.textContent = card.reference;
     element.setAttribute('aria-label', 'Reference: ' + card.reference);
     element.append(icon, value);
   }
-  window.referenceCards = { specs, prepare, render, referencesFor, doubleReference, doubleVerbs, doubleUsageEntries, personalReference, personalIndices, personalConfig, personalUsageEntries, controls, supports: verb => window.cardGenerationOptions?.referenceObjects === 'two' ? doubleVerbs.includes(verb) : Boolean(specs[verb] || personalConfig.direct[verb] || personalConfig.indirect[verb]) || (window.cardGenerationOptions?.referenceObjects !== 'one' && doubleVerbs.includes(verb)) };
+  window.referenceCards = { specs, prepare, render, referencesFor, doubleReference, doubleVerbs, doubleUsageEntries, personalReference, personalIndices, personalConfig, personalUsageEntries, controls, choiceControls, supports: verb => window.cardGenerationOptions?.referenceObjects === 'two' ? doubleVerbs.includes(verb) : Boolean(specs[verb] || personalConfig.direct[verb] || personalConfig.indirect[verb]) || (window.cardGenerationOptions?.referenceObjects !== 'one' && doubleVerbs.includes(verb)) };
 })();

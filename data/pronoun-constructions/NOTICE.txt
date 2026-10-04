@@ -1,0 +1,35 @@
+French pronoun construction data — sources and redistribution
+
+DICOVALENCE 2.0 (2010)
+Authors: Karel van den Eynde and Piet Mertens, University of Leuven, Belgium.
+Distributed under the Lesser General Public License for Linguistic Resources
+(LGPL-LR). See LGPLLR.txt in this directory. No warranty is provided.
+
+Modified on 2026-10-01 for VerbsFirst: selected and classified constructions,
+linked independently reviewed patterns, supplied practice cues and examples,
+and generated compact runtime inventories. These modified linguistic-resource
+files are distributed under LGPL-LR, with the original attribution preserved.
+The application's program code is separate from these linguistic resources.
+
+Available source data (relative URLs):
+source/dicovalence_100625_utf8.txt — original unmodified source
+source/audit_french_pronoun_inventory.py — extraction and intersection recipe
+source/build_french_en_y.py — editorial selection and generation recipe
+source/en_y_examples.cjs — worked-example generator
+source/verb_core_patterns.json — input construction records with source provenance
+source/verbs.full.generated.js — input conjugation paradigms
+source/referenceCards.js — original reference engine used to generate examples
+source/referenceExpansion.js — expanded reference engine
+source/referenceEnY.js — en/y construction engine
+source/referenceInventory.js — compact original generated inventory
+source/referenceEnYInventory.js — compact en/y generated inventory
+enabled.json — original source-intersection records and provenance
+en-y-editorial.json — editorial en/y records and provenance
+
+Grammar references:
+https://www.laits.utexas.edu/tex/gr/pro6.html
+https://www.laits.utexas.edu/tex/gr/pro7.html
+https://www.laits.utexas.edu/tex/gr/pro9.html
+
+The labels describing review scope in the data should be read literally;
+automated combination checks are not a claim of human review of every answer.

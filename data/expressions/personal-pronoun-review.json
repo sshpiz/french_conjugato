@@ -1,8 +1,8 @@
 {
   "language": "French",
   "single_person_verbs": 65,
-  "double_person_verbs": 44,
-  "worked_examples": 436,
+  "double_person_verbs": 43,
+  "worked_examples": 432,
   "inventory": "js/referenceCards.js: personalConfig, personalExamples, doubleExamples",
   "scope": [
     "First and second person direct objects on explicitly selected human-object verbs.",

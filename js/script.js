@@ -3270,28 +3270,12 @@ document.addEventListener('DOMContentLoaded', () => {
             audioId = null;
             text = currentCard.conjugated;
         }
-        void (async () => {
-            let packagedFallbackReason = null;
-            if (audioId && PACKAGED_TTS && PACKAGED_TTS.isEnabled()) {
-                try {
-                    const played = await PACKAGED_TTS.playAudioId(audioId, text);
-                    if (played) return;
-                    packagedFallbackReason = 'missing-pack';
-                } catch (error) {
-                    packagedFallbackReason = 'play-error';
-                    if (window.appLog) {
-                        window.appLog(`packed-tts play-error id=${audioId} message="${error.message}"`);
-                    }
-                    if (typeof window.showFrenchTtsFeedback === 'function') {
-                        window.showFrenchTtsFeedback('Packaged French audio failed. Falling back if browser French audio exists.', { persistent: false });
-                    }
-                }
-            }
-            if (audioId && packagedFallbackReason && window.appLog) {
-                window.appLog(`packed-tts fallback reason=${packagedFallbackReason} id=${audioId}`);
-            }
-            if (text) speak(text);
-        })();
+        if (SAFE_MODE || !text) return;
+        if (window.offlineFrenchVoice?.intercept(prepareTextForSpeech(text))) return;
+        void window.frenchVoice.play(prepareTextForSpeech(text), {
+            audioId, voiceName: getScopedStorageItem('ttsVoiceName') || '',
+            rate: window.getConfiguredTtsRate?.() || 1
+        });
     };
 
     const flashcardView = document.getElementById('flashcard-view'); // Main flashcard view
@@ -3486,14 +3470,26 @@ document.addEventListener('DOMContentLoaded', () => {
     let packagedTtsAutoStarted = false;
     let longPressCopyTimer = null;
     let suppressTapAudioUntil = 0;
-    const TUTORIAL_STORAGE_KEY = 'frenchInlineTutorialStateV1';
+    // Focused onboarding is the default; ?onboarding=classic retains the rollback path.
+    const FOCUSED_ONBOARDING = new URLSearchParams(location.search).get('onboarding') !== 'classic';
+    const sharedQuestionParam = new URLSearchParams(location.search).get('question');
+    let focusedSharedDetailEntry = false;
+    let focusedRevealGlowsRemaining = 0;
+    const ONBOARDING_REPLAY = new URLSearchParams(location.search).get('intro') === '1';
+    document.body.classList.toggle('focused-onboarding', FOCUSED_ONBOARDING);
+    const TUTORIAL_STORAGE_KEY = FOCUSED_ONBOARDING ? 'frenchFocusedTutorialPreviewV1' : 'frenchInlineTutorialStateV1';
     const escapeHtml = (value) => String(value ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
-    const TUTORIAL_STEPS = [
+    const TUTORIAL_STEPS = FOCUSED_ONBOARDING ? [{
+        headingBefore: 'Try your first French verb',
+        headingAfter: '',
+        before: '<strong class="first-question">How do you say “I speak”?</strong><span class="first-instruction">Think of your answer. No typing needed.</span><span class="first-tap-cue">Tap to see the answer.</span>',
+        after: '<strong class="first-question">Did you get it right?</strong><span class="first-instruction">Tap Try another to keep practising.</span>'
+    }] : [
         {
             headingBefore: "Welcome! Let's start!",
             headingAfter: 'Tutorial',
@@ -3503,17 +3499,17 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             heading: 'Tutorial',
             before: (card) => `The goal is to conjugate the verb correctly for the pronoun shown. Can you conjugate "<strong>${escapeHtml(card?.verb?.infinitive || '')}</strong>" for "<strong>${escapeHtml(card?.pronoun || '')}</strong>"?`,
-            after: 'You can tap the verb or the answer to hear it spoken aloud. Use Hear any time you want to listen again.'
+            after: 'You can tap the verb or the answer to hear it spoken aloud. Use Hear after revealing the answer to listen again.'
         },
         {
             heading: 'Tutorial',
-            before: 'Almost done. Can you conjugate this?',
-            after: 'After reveal, the mic lets you practice saying the answer aloud.'
+            before: 'Use the subject and tense shown on the card to form your answer.',
+            after: 'Say lets you practise aloud. You can also practise silently with Show and Next.'
         },
         {
             heading: 'Tutorial',
-            before: 'To search for a verb, use Search at the bottom. To drill into the current verb, use the book icon next to the verb.',
-            after: 'Master the common verbs in the present first. Then explore more tenses and verbs in Settings.'
+            before: 'Open Details below the card for conjugations, usage and word families. Use Search to find another verb.',
+            after: 'In Settings → Practice, choose a drill or adjust exercise types, verbs and tenses. Your choices are saved automatically.'
         },
         {
             heading: 'Tutorial',
@@ -3564,7 +3560,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             badge: '',
-            body: '💡 Tap any word or phrase in French to hear how it sounds.'
+            body: '💡 Tap the verb or revealed answer to hear it.'
         }
     ];
     let hideTutorialQuickButton = getScopedStorageItem(HIDE_TUTORIAL_QUICK_BUTTON_KEY) === 'true';
@@ -3582,6 +3578,7 @@ document.addEventListener('DOMContentLoaded', () => {
         shownCardKey: null
     };
     let idleNudgeEnabled = getScopedStorageItem(IDLE_NUDGE_ENABLED_KEY) !== 'false';
+    let dictationSessionId = 0;
     let pressToDictateEnabled = getScopedStorageItem(PRESS_TO_DICTATE_ENABLED_KEY) === 'true';
     let showTipsEnabled = getScopedStorageItem(SHOW_TIPS_ENABLED_KEY) !== 'false';
     const installState = {
@@ -3685,6 +3682,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyReopenMessagePrompt = () => {
+        if (FOCUSED_ONBOARDING) {
+            reopenMessageState.badge = 'Welcome back';
+            reopenMessageState.body = 'Think of the answer, then tap Show.';
+            return;
+        }
         const prompt = showTipsEnabled
             ? (reopenMessageState.prompt || getElapsedOnlyReopenPrompt())
             : getElapsedOnlyReopenPrompt();
@@ -3711,7 +3713,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const extra = REOPEN_MESSAGE_EXTRA_PROMPTS[Math.floor(Math.random() * REOPEN_MESSAGE_EXTRA_PROMPTS.length)];
         const isLongGap = elapsed >= REOPEN_MESSAGE_WELCOME_BACK_THRESHOLD_MS;
-        if (!isLongGap && Math.random() > REOPEN_MESSAGE_SHORT_GAP_CHANCE) {
+        if (!FOCUSED_ONBOARDING && !isLongGap && Math.random() > REOPEN_MESSAGE_SHORT_GAP_CHANCE) {
             console.log('[reopen-debug] short-gap reopen prompt skipped by chance gate');
             return;
         }
@@ -4040,51 +4042,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    let appUpdateCheckInFlight = false;
     const checkForAppUpdates = async () => {
+        if (appUpdateCheckInFlight) return;
         if (location.protocol === 'file:' || !('serviceWorker' in navigator)) {
             setAppUpdateState({ status: 'unsupported', updateAvailable: false });
             return;
         }
-
-        setAppUpdateState({
-            status: 'checking',
-            checkedAt: Date.now()
-        });
-
+        appUpdateCheckInFlight = true;
+        setAppUpdateState({ status: 'checking', checkedAt: Date.now() });
         try {
             const registration = appUpdateState.registration || await navigator.serviceWorker.getRegistration('./');
             if (!registration) {
                 setAppUpdateState({ status: 'unsupported', updateAvailable: false });
                 return;
             }
-
             setAppUpdateState({ registration });
             await registration.update();
-
-            if (registration.waiting) {
-                setAppUpdateState({ status: 'ready', updateAvailable: true, registration });
-                return;
-            }
-
-            const latestVersion = await fetchLatestAppVersion();
-            if (latestVersion && latestVersion !== APP_VERSION) {
-                setAppUpdateState({
-                    status: 'ready',
-                    updateAvailable: true,
-                    latestVersion,
-                    registration
-                });
-                return;
-            }
-
-            window.setTimeout(() => {
-                if (!appUpdateState.updateAvailable && appUpdateState.status === 'checking') {
-                    setAppUpdateState({ status: 'idle', latestVersion: APP_VERSION });
-                }
-            }, 3800);
+            await window.__checkAppUpdateVersion();
         } catch (error) {
             console.warn('App update check failed:', error);
             setAppUpdateState({ status: 'error' });
+        } finally {
+            appUpdateCheckInFlight = false;
         }
     };
 
@@ -4328,7 +4308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (pressToDictateEnabled) {
             title = micMode === 'answerByVoice'
                 ? 'Hold the mic to answer before reveal, or practice after reveal'
-                : 'Hold the mic while speaking, then release to transcribe';
+                : 'Hold the mic, speak, then release';
         } else if (micMode === 'answerByVoice') {
             title = 'Use the mic to answer before reveal, or practice after reveal';
         }
@@ -4344,7 +4324,9 @@ document.addEventListener('DOMContentLoaded', () => {
         answerFlowBtn.dataset.mode = mode;
         answerFlowBtn.disabled = !hasCard;
         if (answerFlowLabelEl) {
-            answerFlowLabelEl.textContent = isAnswerVisible ? 'Next' : 'Show';
+            answerFlowLabelEl.textContent = FOCUSED_ONBOARDING && tutorialState.active
+                ? (isAnswerVisible ? 'Try another' : 'Show answer')
+                : (isAnswerVisible ? 'Next' : 'Show');
         }
         const label = isAnswerVisible ? 'Go to the next flashcard' : 'Show the answer';
         answerFlowBtn.setAttribute('title', label);
@@ -4470,7 +4452,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scheduleDictationPostResultTimeout = () => {
         clearTimeout(dictationPostResultTimeout);
-        if (pressToDictateEnabled) return;
+        if (pressToDictateEnabled && activeDictationPointerId !== null) return;
         if (!isDictating || !recognition) return;
         dictationPostResultTimeout = setTimeout(() => {
             if (isDictating && recognition) {
@@ -4481,7 +4463,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scheduleDictationLongTimeout = () => {
         clearTimeout(dictationLongTimeout);
-        if (pressToDictateEnabled) return;
+        if (pressToDictateEnabled && activeDictationPointerId !== null) return;
         if (!isDictating || !recognition) return;
         dictationLongTimeout = setTimeout(() => {
             if (isDictating && recognition) {
@@ -4493,6 +4475,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const stopActiveDictation = (options = {}) => {
         const { abort = false, silent = true } = options;
         const activeRecognition = recognition;
+        if (activeRecognition) activeRecognition._vfStopped = true;
+        if (silent) dictationSessionId += 1;
         clearDictationListeningTimers();
         clearDictationOverlayTimeout();
         recognition = null;
@@ -4616,7 +4600,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getCardAnswerText = (card = currentCard) => {
         if (!card) return '';
-        if (card.reference) return card.conjugated;
+        if (card.reference || card.negationStyle) return card.conjugated;
         if (card.isPhraseMode || !card.verb) {
             return (card.phrase || '').trim();
         }
@@ -4981,7 +4965,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (shouldAutoAdvanceOnMicSuccess) {
             pendingPressToDictateRestart = !!(pressToDictateEnabled && activeDictationPointerId !== null);
             showAnswer();
+            const successCard = currentCard, successSession = dictationSessionId;
             window.setTimeout(() => {
+                if (currentCard !== successCard || dictationSessionId !== successSession) return;
                 if (recognition) {
                     try { recognition.stop(); } catch (error) {}
                 }
@@ -4990,7 +4976,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const successSession = dictationSessionId;
         window.setTimeout(() => {
+            if (dictationSessionId !== successSession) return;
             if (recognition) {
                 try { recognition.stop(); } catch (error) {}
             }
@@ -5032,60 +5020,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateMainAudioSetupBanner = async () => {
-        if (!ttsWarningBanner || !ttsWarningText) return;
-
-        const browserStatus = typeof window.getFrenchTtsStatus === 'function'
-            ? window.getFrenchTtsStatus()
-            : { available: false, state: 'unsupported' };
-
-        let packagedStatus = null;
-        if (PACKAGED_TTS) {
-            try {
-                packagedStatus = await PACKAGED_TTS.getStatus();
-            } catch (error) {
-                packagedStatus = {
-                    error: error.message,
-                    enabled: PACKAGED_TTS.isEnabled ? PACKAGED_TTS.isEnabled() : false,
-                    cachedPacks: 0,
-                };
-            }
-        }
-
-        const browserReady = !!browserStatus.available;
-        const packagedEnabled = !!(packagedStatus && packagedStatus.enabled);
-        const packagedReady = !!(packagedStatus && packagedStatus.cachedPacks > 0);
-        const packagedFull = !!(packagedStatus && packagedStatus.totalPacks > 0 && packagedStatus.cachedPacks >= packagedStatus.totalPacks);
-        const packagedLayout = packagedStatus && packagedStatus.layout;
-        const needsGuidance = !browserReady && !packagedReady;
-
-        if (packagedTtsBusy) {
-            const total = packagedStatus && packagedStatus.totalPacks ? packagedStatus.totalPacks : '?';
-            const cached = packagedStatus && typeof packagedStatus.cachedPacks === 'number' ? packagedStatus.cachedPacks : 0;
-            ttsWarningText.textContent = `Downloading French audio for offline playback... ${cached}/${total} packs cached so far.`;
-            ttsWarningBanner.classList.remove('hidden');
-            return;
-        }
-
-        if (!needsGuidance && (browserReady || packagedFull)) {
-            ttsWarningBanner.classList.add('hidden');
-            return;
-        }
-
-        let message = 'Audio is not ready on this device yet. French audio can be downloaded for offline playback.';
-        if (packagedEnabled && !packagedReady) {
-            message = packagedLayout === 'clips'
-                ? 'Packaged French audio is enabled in clip-debug mode. Audio files will be fetched as needed.'
-                : 'Packaged French audio is enabled, but nothing is downloaded yet on this device.';
-        } else if (location.protocol === 'file:') {
-            message = 'You opened the app directly from disk. Packaged French audio needs the hosted site or a local server, not file://.';
-        } else if (packagedStatus && packagedStatus.error) {
-            message = 'This build does not include packaged French audio files yet. Open Settings > Audio Voice after the audio packs are generated and deployed.';
-        } else if (browserStatus.state === 'checking') {
-            message = 'French browser audio is still being checked.';
-        }
-
-        ttsWarningText.textContent = message;
-        ttsWarningBanner.classList.remove('hidden');
+        window.renderFrenchTtsStatus?.();
     };
 
     const getNativeTtsAvailability = () => {
@@ -5106,7 +5041,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const shouldGraduallyPrefetchPackagedTts = () => {
         if (!PACKAGED_TTS) return false;
-        return !!(PACKAGED_TTS.isEnabled && PACKAGED_TTS.isEnabled());
+        return !!(PACKAGED_TTS.isEnabled && PACKAGED_TTS.isEnabled()) && PACKAGED_TTS.getDownloadMode() !== 'none';
     };
 
     const ensureAutomaticPackagedTtsDownload = async () => {
@@ -5128,7 +5063,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             await runPackagedTtsJob('Downloading French audio for the top 20...', async () => {
                 await PACKAGED_TTS.prefetchTop20(({ completed, total }) => {
-                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                    setPackagedTtsStatus(`Downloading French recordings... ${completed}/${total} packs`);
                 });
             });
         } catch (error) {
@@ -5164,7 +5099,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshPackagedTtsUi = async () => {
         if (!PACKAGED_TTS) {
             if (packagedTtsEnabledToggle) packagedTtsEnabledToggle.checked = false;
-            setPackagedTtsStatus('Packaged French audio runtime is unavailable in this build.');
+            setPackagedTtsStatus('French recordings runtime is unavailable in this build.');
             setPackagedTtsBusy(false);
             await updateMainAudioSetupBanner();
             if (typeof window.renderFrenchTtsStatus === 'function') window.renderFrenchTtsStatus();
@@ -5175,29 +5110,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const status = await PACKAGED_TTS.getStatus();
             if (packagedTtsEnabledToggle) packagedTtsEnabledToggle.checked = !!status.enabled;
 
-            let message = 'Packaged French audio is not enabled.';
+            let message = 'French recordings is not enabled.';
             if (location.protocol === 'file:') {
                 message = 'Packaged audio cannot load from file://. Use a local server or the hosted site to test offline audio packs.';
             } else if (status.error) {
                 message = 'Packaged audio files were not found. Run build_french_tts.py and then build.py.';
             } else if (status.layout === 'clips') {
-                message = `Clip-debug layout active. ${status.cachedPacks}/${status.totalPacks} groups are fully cached. Disable packaged audio to force browser TTS instead.`;
+                message = `Clip-debug layout active. ${status.cachedPacks}/${status.totalPacks} groups are fully cached. Disable recordings to force your device voice instead.`;
             } else if (status.cachedPacks > 0 && status.mode === 'full' && status.cachedPacks >= status.totalPacks) {
-                message = 'French audio ready offline for the full set.';
+                message = 'All available recordings downloaded. Generated answers use your device voice; offline availability depends on that voice.';
             } else if (status.cachedPacks > 0 && [...getStandardFrequencyKeys(), 'rare'].includes(status.mode)) {
                 const tierLabel = status.mode === 'rare'
                     ? `verbs ${describeRareFrequencyBucket()}`
                     : formatFrequencyLabel(status.mode);
-                message = `French audio ready offline for ${tierLabel} (${status.cachedPacks}/${status.totalPacks} packs cached).`;
+                message = `French recordings downloaded for ${tierLabel} (${status.cachedPacks}/${status.totalPacks} packs cached). Generated answers use your device voice.`;
             } else if (status.cachedPacks > 0) {
                 message = `French audio cached for ${status.cachedPacks}/${status.totalPacks} packs.`;
             } else if (status.enabled) {
-                message = 'Packaged French audio is enabled. Missing packs will download on demand.';
+                message = 'French recordings is enabled. Missing packs will download on demand.';
             }
 
             setPackagedTtsStatus(message);
         } catch (error) {
-            setPackagedTtsStatus(`Packaged French audio error: ${error.message}`);
+            setPackagedTtsStatus(`French recordings error: ${error.message}`);
         }
 
         setPackagedTtsBusy(false);
@@ -5217,7 +5152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.appLog) {
                 window.appLog(`packed-tts ui-error message="${error.message}"`);
             }
-            setPackagedTtsStatus(`Packaged French audio failed: ${error.message}`);
+            setPackagedTtsStatus(`French recordings failed: ${error.message}`);
         } finally {
             await refreshPackagedTtsUi();
         }
@@ -5423,6 +5358,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const beginDictationSession = () => {
+            window.offlineFrenchVoice?.cancel();
+            window.frenchVoice?.stop();
             const availability = getMicAvailability();
             const micMode = getEffectiveMicMode();
             if (availability !== 'enabled') {
@@ -5446,11 +5383,23 @@ document.addEventListener('DOMContentLoaded', () => {
             activeDictationPromptText = getDictationPromptText();
             showDictationOverlay(activeDictationPromptText, 'prompt', 0, false, false);
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            recognition = new SpeechRecognition();
+            const sessionId = ++dictationSessionId;
+            try { recognition = new SpeechRecognition(); }
+            catch (_) {
+                stopActiveDictation({ abort: true, silent: true });
+                activeDictationPointerId = null;
+                showDictationOverlay('The microphone could not start. Try again.', 'error', 2200, false, true);
+                return false;
+            }
+            const session = recognition;
             recognition.lang = speechLang;
             recognition.interimResults = true;
             recognition.continuous = true;
             recognition.onstart = () => {
+                if (sessionId !== dictationSessionId || session._vfStopped) {
+                    try { session.abort(); } catch (_) {}
+                    return;
+                }
                 noteDailyActiveWorkInteraction('dictation-start');
                 isDictating = true;
                 setDictating(true);
@@ -5462,7 +5411,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 scheduleDictationLongTimeout();
             };
             recognition.onend = () => {
-                const wasStopRequested = dictationStopRequested;
+                if (sessionId !== dictationSessionId) return;
+                const wasStopRequested = !!session._vfStopped || dictationStopRequested;
                 const shouldPersistAfterEnd = isPronunciationPracticeMode();
                 const shouldRestartWhileHeld = !!(
                     pressToDictateEnabled &&
@@ -5504,6 +5454,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
             recognition.onerror = (event) => {
+                if (sessionId !== dictationSessionId) return;
                 if (dictationStopRequested) {
                     return;
                 }
@@ -5513,9 +5464,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 setDictating(false);
                 refreshDictationButton();
                 clearDictationListeningTimers();
-                showDictationOverlay(`${UIStrings.error}: ${event.error || UIStrings.unknown}`, 'error', 2200, false, true);
+                dictationSessionId += 1; // Ignore the onend callback that follows an error.
+                const messages = {
+                    'not-allowed': 'Allow microphone access in your browser, then try again.',
+                    'service-not-allowed': 'Voice input is unavailable in this browser.',
+                    'audio-capture': 'No microphone found. Check your microphone and try again.',
+                    'network': 'Voice input could not connect. Check your connection and try again.',
+                    'no-speech': 'Nothing heard. Hold the mic and try again.',
+                    'aborted': 'Listening stopped. You can try again.'
+                };
+                showDictationOverlay(messages[event.error] || 'Voice input stopped. Try again.', 'error', 2200, false, true);
             };
             recognition.onresult = async (event) => {
+                if (sessionId !== dictationSessionId) return;
                 noteDailyActiveWorkInteraction('dictation-result');
                 let html = '';
                 let bestTranscript = '';
@@ -5548,7 +5509,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         let opacity = 0.4 + 0.6 * (alt.confidence || 0);
                         if (opacity > 1) opacity = 1;
                         if (opacity < 0.4) opacity = 0.4;
-                        html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${alt.transcript}</div>`;
+                        html += `<div style=\"opacity:${opacity};font-weight:${j === 0 ? 700 : 400};margin-bottom:0.1em;\">${escapeHtml(alt.transcript)}</div>`;
 
                         if (j === 0 && (!bestTranscript || (alt.confidence || 0) > bestConfidence)) {
                             bestTranscript = alt.transcript.trim();
@@ -5571,6 +5532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const matchResult = currentCard && !autoskipLock
                     ? await getDictationMatchResult(transcriptForMatch, currentCard)
                     : { matched: false };
+                if (sessionId !== dictationSessionId) return;
                 if (matchResult.matched) {
                     clearDictationListeningTimers();
                     const practiceMode = isPronunciationPracticeMode();
@@ -5619,7 +5581,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 showDictationOverlay(html, 'normal', 0, true, false);
             };
-            recognition.start();
+            try { recognition.start(); }
+            catch (_) {
+                stopActiveDictation({ abort: true, silent: true });
+                activeDictationPointerId = null;
+                showDictationOverlay('The microphone could not start. Try again.', 'error', 2200, false, true);
+                return false;
+            }
             scheduleDictationLongTimeout();
             return true;
         };
@@ -5671,6 +5639,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dictateBtn.addEventListener('pointercancel', (event) => {
                 if (!pressToDictateEnabled) return;
                 endPressToDictateSession(event.pointerId);
+            });
+            dictateBtn.addEventListener('lostpointercapture', (event) => {
+                if (pressToDictateEnabled) endPressToDictateSession(event.pointerId);
             });
             dictateBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -7063,13 +7034,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             finalizeStudyStatsCardSession('hidden');
+            activeDictationPointerId = null;
+            pendingPressToDictateRestart = false;
+            stopActiveDictation({ abort: true, silent: true });
         }
     });
     window.addEventListener('pagehide', () => {
         finalizeStudyStatsCardSession('pagehide');
+        activeDictationPointerId = null;
+        pendingPressToDictateRestart = false;
+        stopActiveDictation({ abort: true, silent: true });
     });
 
     const loadTutorialState = () => {
+        if (ONBOARDING_REPLAY) {
+            Object.assign(tutorialState, {active: true, completed: false, stepIndex: 0});
+            const url = new URL(location.href);
+            url.searchParams.delete('intro');
+            window.history.replaceState(window.history.state, '', url);
+            return;
+        }
         try {
             const saved = localStorage.getItem(TUTORIAL_STORAGE_KEY);
             if (saved) {
@@ -7096,7 +7080,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 completed: tutorialState.completed,
                 stepIndex: tutorialState.stepIndex
             }));
-            if (tutorialState.completed) {
+            if (tutorialState.completed && !FOCUSED_ONBOARDING) {
                 setScopedStorageItem('ftue-shown', 'true');
                 setScopedStorageItem('tutorial_seen', 'yes');
             }
@@ -7175,6 +7159,8 @@ document.addEventListener('DOMContentLoaded', () => {
         pressToDictateEnabled = !!enabled;
         setScopedStorageItem(PRESS_TO_DICTATE_ENABLED_KEY, pressToDictateEnabled ? 'true' : 'false');
         if (!pressToDictateEnabled) {
+            stopActiveDictation({ abort: true, silent: true });
+            pendingPressToDictateRestart = false;
             activeDictationPointerId = null;
             suppressNextDictationClick = false;
         }
@@ -7252,8 +7238,8 @@ document.addEventListener('DOMContentLoaded', () => {
         correctDictationToggle.disabled = tutorialLocksMicMode;
         if (correctDictationHelperEl) {
             correctDictationHelperEl.textContent = tutorialLocksMicMode
-                ? 'Finish the tutorial to use this.'
-                : 'Use the mic before reveal.';
+                ? 'Finish the introduction to use this.'
+                : 'On: say your answer before revealing it. Off: practise after revealing it.';
         }
     };
 
@@ -7272,16 +7258,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const getCurrentTutorialHint = () => {
-        if (isTutorialDeferredForSharedEntry()) return '';
+        if (isTutorialDeferredForSharedEntry() && !FOCUSED_ONBOARDING) return '';
         if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
         const step = TUTORIAL_STEPS[tutorialState.stepIndex];
         if (!step) return '';
+        if (FOCUSED_ONBOARDING && !isAnswerVisible && (currentCard._sharedDetailEntryCard || currentCard.verb.infinitive !== 'parler' || currentCard.pronoun !== 'je' || currentCard.tense !== 'present')) {
+            return '<strong class="first-question">' + (currentCard.reference ? 'Replace with pronouns' : 'Try this conjugation') + '</strong><span class="first-instruction">Use the subject and tense above.<br>Think of your answer.</span><span class="first-tap-cue">Tap to see the answer.</span>';
+        }
         const rawHint = isAnswerVisible ? step.after : step.before;
         return typeof rawHint === 'function' ? rawHint(currentCard) : rawHint;
     };
 
     const getCurrentTutorialHeading = () => {
-        if (isTutorialDeferredForSharedEntry()) return '';
+        if (isTutorialDeferredForSharedEntry() && !FOCUSED_ONBOARDING) return '';
         if (!tutorialState.active || !currentCard || currentCard.isPhraseMode || !currentCard.verb) return '';
         const step = TUTORIAL_STEPS[tutorialState.stepIndex];
         if (!step) return '';
@@ -7297,6 +7286,12 @@ document.addEventListener('DOMContentLoaded', () => {
         tutorialInlineHintEl.classList.toggle('tutorial-after', !!hint && isAnswerVisible);
         tutorialInlineHeadingEl.textContent = hint && heading ? heading : '';
         tutorialInlineBodyEl.innerHTML = hint || '';
+        const shareControl = document.getElementById('question-share');
+        if (shareControl) shareControl.hidden = !currentCard?.verb || !!currentCard.isPhraseMode || (tutorialState.active && !currentCard._sharedQuestion);
+        if (currentCard?._sharedQuestion && hint) tutorialInlineHeadingEl.textContent = 'Shared French question';
+        document.body.classList.toggle('focused-intro-active', FOCUSED_ONBOARDING && !!hint);
+        document.body.classList.toggle('focused-intro-revealed', FOCUSED_ONBOARDING && !!hint && isAnswerVisible);
+        if (FOCUSED_ONBOARDING && tutorialInlineSkipBtn) tutorialInlineSkipBtn.textContent = 'Skip introduction';
         renderReopenMessage();
         refreshIdleGuidance();
     };
@@ -7505,9 +7500,10 @@ document.addEventListener('DOMContentLoaded', () => {
         tutorialState.active = true;
         tutorialState.completed = false;
         tutorialState.stepIndex = 0;
-        if (typeof resetTutorialPracticeBaseline === 'function') {
+        if (FOCUSED_ONBOARDING) focusedRevealGlowsRemaining = 2;
+        if (!FOCUSED_ONBOARDING && typeof resetTutorialPracticeBaseline === 'function') {
             resetTutorialPracticeBaseline();
-        } else {
+        } else if (!FOCUSED_ONBOARDING) {
             setMicAnswerMode(false, { persist: false });
         }
         saveTutorialState();
@@ -7588,6 +7584,7 @@ document.addEventListener('DOMContentLoaded', () => {
         referencePractice: false,
         exerciseTypes: ['verbs'],
         referenceObjects: 'mixed',
+        referenceNegation: 'affirmative',
         prepositionalVerbMode: 'all', // 'all' | 'only'
         tenseWeights,
         frequencyWeights,
@@ -7967,7 +7964,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Local Storage for Options ---
     // Use generic localStorageKey for options
+    let savedGenerationConfig = null;
     const saveOptions = (options = {}) => {
+        // Apply practice changes on Next, even after going Back into card history.
+        // Keep the card on screen intact while settings are edited.
+        const generationConfig = JSON.stringify(DRILL_OPTION_KEYS
+            .filter(key => key !== 'useMicToAnswer')
+            .map(key => cardGenerationOptions[key]));
+        if (savedGenerationConfig !== generationConfig) pendingExerciseModeCardRefresh = true;
+        savedGenerationConfig = generationConfig;
         syncPracticeTypeFilter();
         try {
             localStorage.setItem(localStorageKey, JSON.stringify(cardGenerationOptions));
@@ -8027,6 +8032,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardGenerationOptions.referencePractice = savedOptions.referencePractice === true;
                 cardGenerationOptions.exerciseTypes = getExerciseTypes(savedOptions);
     cardGenerationOptions.referenceObjects = ['one','two','mixed'].includes(savedOptions.referenceObjects) ? savedOptions.referenceObjects : 'mixed';
+    cardGenerationOptions.referenceNegation = ['affirmative','mixed','standard','spoken'].includes(savedOptions.referenceNegation) ? savedOptions.referenceNegation : 'affirmative';
                 if (typeof savedOptions.includeVerbExpressions === 'boolean') {
                     cardGenerationOptions.includeVerbExpressions = savedOptions.includeVerbExpressions;
                 }
@@ -8279,76 +8285,27 @@ document.addEventListener('DOMContentLoaded', () => {
             ? `In play: ${n} verbs from ${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'}`
             : `In play: ${n} verbs`;
     };
-    let explorerVerbScopeMode = 'filtered';
-
-    const getCurrentVerbSelectionSummary = (filteredCount, totalCount) => {
-        const activeVerbSet = getResolvedVerbSetSelection();
-        if (activeVerbSet) {
-            const categoryCount = activeVerbSet.selectionCount || 1;
-            return `Showing ${filteredCount} verbs from ${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'}`;
-        }
-        if (filteredCount >= totalCount) {
-            return `Showing all ${totalCount} verbs`;
-        }
-        return `Showing ${filteredCount} verbs from the current drill filters`;
-    };
+    let explorerVerbScopeMode = 'all';
+    let explorerVisibleLimit = 150;
+    let explorerLastQueryKey = '';
+    let explorerSearchLoadPromise = null;
 
     const refreshExplorerScopeUi = () => {
-        if (!explorerScopeRow || !explorerScopeFilteredBtn || !explorerScopeAllBtn || !explorerScopeSummary) return;
-        const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
-        const hasNarrowedPool = filteredUniverse.length > 0 && filteredUniverse.length < uniqueVerbs.length;
-        explorerScopeRow.classList.toggle('hidden', !hasNarrowedPool);
-        if (!hasNarrowedPool) {
-            explorerScopeSummary.textContent = '';
-            explorerScopeFilteredBtn.classList.remove('active');
-            explorerScopeAllBtn.classList.remove('active');
-            return;
-        }
-        const effectiveMode = explorerVerbScopeMode === 'all' ? 'all' : 'filtered';
-        explorerScopeFilteredBtn.classList.toggle('active', effectiveMode === 'filtered');
-        explorerScopeAllBtn.classList.toggle('active', effectiveMode === 'all');
-        explorerScopeSummary.textContent = effectiveMode === 'filtered'
-            ? getCurrentVerbSelectionSummary(filteredUniverse.length, uniqueVerbs.length)
-            : `Showing all ${uniqueVerbs.length} verbs`;
+        explorerScopeRow.classList.remove('hidden');
+        document.querySelectorAll('[data-search-scope]').forEach(button => {
+            const active = button.dataset.searchScope === explorerVerbScopeMode;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
     };
     // --- Audio Synthesis ---
     // Use generic speechLang for speech synthesis, and allow user-selected voice
-    const synth = window.speechSynthesis;
     const speak = (text) => {
-        // In Safe Mode, avoid invoking speech synthesis on potentially fragile devices
-        if (SAFE_MODE) return;
-        // Replace placeholders with "blanc" for speech
-        const textToSpeak = prepareTextForSpeech(text);
-        const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.lang = speechLang;
-        const configuredRate = typeof window.getConfiguredTtsRate === 'function' ? window.getConfiguredTtsRate() : 1;
-        
-        // Cancel current speech only if different text
-        if (synth.speaking) {
-            synth.cancel();
-            // Small delay to ensure cancellation completes
-            setTimeout(() => {
-                // Use user-selected voice if set
-                const voiceName = getScopedStorageItem('ttsVoiceName');
-                if (voiceName) {
-                    const voices = synth.getVoices();
-                    const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
-                    if (matches.length > 0) utterance.voice = matches[0];
-                }
-                utterance.rate = configuredRate;
-                synth.speak(utterance);
-            }, 100);
-        } else {
-            // Use user-selected voice if set
-            const voiceName = getScopedStorageItem('ttsVoiceName');
-            if (voiceName) {
-                const voices = synth.getVoices();
-                const matches = voices.filter(v => v.name === voiceName && v.lang && v.lang.startsWith('fr-FR') && !v.name.toLowerCase().includes('english'));
-                if (matches.length > 0) utterance.voice = matches[0];
-            }
-            utterance.rate = configuredRate;
-            synth.speak(utterance);
-        }
+        if (SAFE_MODE || !text) return;
+        if (window.offlineFrenchVoice?.intercept(prepareTextForSpeech(text))) return;
+        void window.frenchVoice.play(prepareTextForSpeech(text), {
+            voiceName: getScopedStorageItem('ttsVoiceName') || '', rate: window.getConfiguredTtsRate?.() || 1
+        });
     };
 
     // Helper function to check if two pronouns are equivalent (same person/number)
@@ -8439,7 +8396,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         options = resolveVerbEntryOptions(options);
         const activeVerbSet = getResolvedVerbSetSelection(options);
-        const baseVerbUniverse = getResolvedVerbUniverse(options).filter(v =>
+        const baseVerbUniverse = getFilteredVerbUniverse(options).filter(v =>
             !options.referencePractice || window.referenceCards.supports(v.infinitive));
         const {
             hierarchical = false,
@@ -8728,22 +8685,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!newCard) {
             if (options._probe) return null;
-            console.error("No cards available with the current weight settings. Please adjust the options.");
-            verbInfinitiveEl.textContent = "Error";
-            verbTranslationEl.textContent = options.referencePractice ? "No compatible reference cards. Broaden your topic or frequency selection." : "No cards available for current options.";
+            finalizeStudyStatsCardSession('empty-selection');
+            currentCard = null;
+            flashcard.classList.add('empty-selection');
+            verbInfinitiveEl.setAttribute('aria-disabled', 'true');
+            verbInfinitiveEl.setAttribute('aria-label', 'No matching cards');
             window.referenceCards.render(null);
             window.constructionCards.clear();
-            verbPronounEl.textContent = "";
-            verbTenseEl.textContent = "";
-            verbFrequencyEl.textContent = "";
-            conjugatedVerbEl.textContent = "Please adjust options";
-            answerContainer.classList.add('is-visible');
-            isAnswerVisible = true;
+            document.querySelectorAll('[data-practice-type]').forEach(button => button.classList.remove('current-deck'));
+            verbInfinitiveEl.textContent = 'No matching cards';
+            verbTranslationEl.textContent = !Object.values(tenseWeights).some(weight => weight > 0)
+                ? 'Choose at least one tense in Settings to continue.'
+                : 'Broaden your frequency or topic selection, or adjust the filters in Settings.';
+            verbTranslationEl.style.display = 'block';
+            for (const el of [verbPronounEl, verbTenseEl, verbFrequencyEl, conjugatedVerbEl, verbPhraseEl, englishVerbPhraseEl, verbHintEl]) {
+                if (el) el.textContent = '';
+            }
+            if (verbCategoryEl) verbCategoryEl.style.display = 'none';
+            if (verbIrregularEl) verbIrregularEl.style.display = 'none';
+            answerContainer.classList.remove('is-visible', 'frame-card-revealed');
+            isAnswerVisible = false;
+            goToVerbBtn.disabled = true;
+            backBtn.disabled = historyIndex < 0 || !history.length;
+            refreshContextAudioButton();
+            refreshAnswerFlowButton();
+            refreshDictationButton();
+            syncUsageNuggetVisibility();
+            renderTutorialHint();
             return null;
         }
 
-        return options.referencePractice && !newCard.isFrameCard
+        const prepared = options.referencePractice && !newCard.isFrameCard
             ? window.referenceCards.prepare(newCard) : newCard;
+        return window.referenceCards.prepareNegation(prepared);
     };
     function maybeWhisperMolodez(probability = null) {
         console.log("maybeWhisperMolodez called");
@@ -8829,14 +8803,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasLoggedFirstCardDisplay = false;
     const displayCard = (card) => {
         finalizeStudyStatsCardSession('card-replaced');
-        if (!tutorialState.active) card = window.constructionCards.prepare(card, getVerbCorePatternsIndex()[card?.verb?.infinitive] || []);
+        if (!tutorialState.active && !card._sharedQuestion) card = window.constructionCards.prepare(card, getVerbCorePatternsIndex()[card?.verb?.infinitive] || []);
         currentCard = card;
+        setTimeout(() => {
+            if (currentCard !== card) return;
+            let text = card.isFrameCard ? (card.frameFullAnswer || getCardAnswerText(card)) : getCardAnswerText(card);
+            ({ text } = window.constructionCards.audio(card, null, text));
+            if (card.reference) text = card.conjugated;
+            window.offlineFrenchVoice?.prepare(prepareTextForSpeech(text));
+        }, 0);
+        flashcard.scrollTop = 0;
+        conjugatedVerbEl.classList.remove('long-answer');
+        document.getElementById('question-share')?.removeAttribute('open');
+        flashcard.classList.remove('empty-selection');
+        verbInfinitiveEl.removeAttribute('aria-disabled');
+        verbInfinitiveEl.setAttribute('aria-label', 'Hear infinitive');
+        goToVerbBtn.disabled = false;
         const sourceDeck = card.reference ? 'references' : card.verb?.verbExpression ? 'expressions' : 'verbs';
         document.querySelectorAll('[data-practice-type]').forEach(button => {
             button.classList.toggle('current-deck', button.dataset.practiceType === sourceDeck);
         });
         window.constructionCards.clear();
         window.referenceCards.render(card);
+        window.pronounExplanation.render(card);
         currentCardShownAtMs = performance.now();
         beginStudyStatsCardSession(card);
         if (!hasLoggedFirstCardDisplay) {
@@ -9012,7 +9001,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             verbPronounEl.textContent = '';
             verbPronounEl.style.display = 'none';
-            verbTenseEl.textContent = card.tense === 'subjonctifPresent' ? 'subjonctif' : (tenseKeyToLabel[card.tense] || card.tense);
+            verbTenseEl.textContent = ({ subjonctifPresent: 'subjonctif', conditionnelPresent: 'conditionnel' }[card.tense] || tenseKeyToLabel[card.tense] || card.tense);
             verbTenseEl.setAttribute('aria-label', tenseKeyToLabel[card.tense] || card.tense);
             verbTenseEl.className = 'meta-info';
             const frameTenseClassMap = {
@@ -9089,7 +9078,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pronounDisplay = (pronounEmojiMap[pronounDisplay] || '') + ' ' + pronounDisplay;
         }
         verbPronounEl.textContent = pronounDisplay.trim();
-        verbTenseEl.textContent = card.tense === 'subjonctifPresent' ? 'subjonctif' : (tenseKeyToLabel[card.tense] || card.tense);
+        verbTenseEl.textContent = ({ subjonctifPresent: 'subjonctif', conditionnelPresent: 'conditionnel' }[card.tense] || tenseKeyToLabel[card.tense] || card.tense);
             verbTenseEl.setAttribute('aria-label', tenseKeyToLabel[card.tense] || card.tense);
         verbTenseEl.className = 'meta-info';
         const tenseClassMap = {
@@ -9125,6 +9114,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         let answerText = getCardAnswerText(card);
         conjugatedVerbEl.textContent = answerText;
+        conjugatedVerbEl.classList.toggle('long-answer', answerText.length > 28);
+        window.liaisonClues?.render(conjugatedVerbEl, answerText, card, getFrenchPhoneticDiffEngine);
         conjugatedVerbEl.classList.add('tappable-audio');
         conjugatedVerbEl.dataset.audioId = conjugationAudioId(card.verb.infinitive, card.tense, card.pronounKey || card.pronoun);
         conjugatedVerbEl.dataset.speak = answerText;
@@ -9137,8 +9128,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (card.reference) {
             verbInfinitiveEl.textContent = card.referenceLabel;
+
             conjugatedVerbEl.dataset.audioId = '';
         } else window.constructionCards.render(card, () => displayCard(card));
+        window.referenceCards.renderNegationHeading?.(verbInfinitiveEl, card);
+        if (card.negationStyle) conjugatedVerbEl.dataset.audioId = '';
 
         // ── Usage nugget — core patterns first, then usages/examples ─────────────
         const nuggetEl = document.getElementById('usage-nugget');
@@ -9165,6 +9159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     const showAnswer = () => {
+        if (!currentCard) return;
         if (!isAnswerVisible) {
             stopActiveDictation({ abort: true, silent: true });
             if (currentCard && currentCard.verb) {
@@ -9174,6 +9169,12 @@ document.addEventListener('DOMContentLoaded', () => {
             dismissReopenMessage();
             answerContainer.classList.add('is-visible');
             isAnswerVisible = true;
+            if (FOCUSED_ONBOARDING && focusedRevealGlowsRemaining > 0) {
+                conjugatedVerbEl.classList.remove('onboarding-answer-glow');
+                void conjugatedVerbEl.offsetWidth;
+                conjugatedVerbEl.classList.add('onboarding-answer-glow');
+                focusedRevealGlowsRemaining -= 1;
+            }
             recordStudyStatsReveal(currentCard);
             const previousDailyRewardStage = getCurrentDailyRewardStage();
             if (window.incrementDailyCount) window.incrementDailyCount();
@@ -9198,6 +9199,16 @@ document.addEventListener('DOMContentLoaded', () => {
             refreshAnswerFlowButton();
             refreshDictationButton();
             renderTutorialHint();
+            // Reveal the start of an overflowing answer without moving the control rows.
+            // A short card retains its existing position.
+            requestAnimationFrame(() => {
+                if (!isAnswerVisible) return;
+                const answerRect = conjugatedVerbEl.getBoundingClientRect();
+                const cardRect = flashcard.getBoundingClientRect();
+                if (answerRect.bottom > cardRect.bottom || answerRect.top < cardRect.top) {
+                    flashcard.scrollTop += answerRect.top - cardRect.top - 16;
+                }
+            });
             // Do NOT speak the answer automatically
         }
     };
@@ -9208,6 +9219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             answerContainer.classList.toggle('frame-card-transitioning', !!(suppressFramePrompt && currentCard?.isFrameCard));
         }
         answerContainer.classList.remove('is-visible');
+        conjugatedVerbEl.classList.remove('onboarding-answer-glow');
         // Show question phrase again if it was visible before (now they are siblings)
         if (ENABLE_GAP_SENTENCES && currentCard && currentCard.chosenPhrase && currentCard.chosenPhrase.gap_sentence) {
             questionPhraseEl.style.display = 'block';
@@ -9248,6 +9260,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const nextCard = () => {
+        if (currentCard?._sharedQuestion) {
+            const url = new URL(location.href);
+            url.searchParams.delete('question');
+            window.history.replaceState(window.history.state, '', url);
+        }
         if (pendingExerciseModeCardRefresh) {
             history = history.slice(0, historyIndex + 1);
             pendingExerciseModeCardRefresh = false;
@@ -9256,7 +9273,7 @@ document.addEventListener('DOMContentLoaded', () => {
         stopActiveDictation({ abort: true, silent: true });
         if (isTutorialDeferredForSharedEntry()) {
             sharedEntryTutorialPending = false;
-            if (showTutorialIntroCard()) {
+            if (!FOCUSED_ONBOARDING && showTutorialIntroCard()) {
                 refreshTutorialAwareUi();
                 return;
             }
@@ -9277,20 +9294,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayCard(newCard);
                 backBtn.disabled = historyIndex === 0;
             } else {
-                // No card could be generated — show a hint on the card face
-                const activeVerbSet = getResolvedVerbSetSelection(cardGenerationOptions);
-                if (verbInfinitiveEl) {
-                    verbInfinitiveEl.textContent = activeVerbSet
-                        ? `No verbs match "${activeVerbSet.name}"`
-                        : 'No verbs match current filters';
-                }
-                if (verbTranslationEl) {
-                    verbTranslationEl.textContent = activeVerbSet
-                        ? 'Try different tenses or switch verb sets'
-                        : 'Adjust settings to continue';
-                    verbTranslationEl.style.display = 'block';
-                }
-                console.warn('generateNewCard returned null — check frequency weights and filters');
+                // generateNewCard has rendered the actionable empty state.
+                backBtn.disabled = historyIndex < 0 || !history.length;
             }
         }
         // Do NOT start dictation automatically
@@ -9300,7 +9305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleNext = () => {
         if (isAnswerVisible) {
-            if (tutorialState.active && !isTutorialDeferredForSharedEntry()) {
+            if (tutorialState.active && (FOCUSED_ONBOARDING || !isTutorialDeferredForSharedEntry())) {
                 completeTutorialIfNeeded();
             }
             if (currentCard?.isFrameCard) {
@@ -9335,7 +9340,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const prevCard = () => {
         stopActiveDictation({ abort: true, silent: true });
-        if (historyIndex > 0) {
+        if (!currentCard && history[historyIndex]) {
+            displayCard(history[historyIndex]);
+        } else if (historyIndex > 0) {
             historyIndex--;
             displayCard(history[historyIndex]);
         }
@@ -9357,6 +9364,8 @@ document.addEventListener('DOMContentLoaded', () => {
             startupMark('first-view-shown', `view=${viewId}`);
         }
         if (viewId !== 'flashcard-view') {
+            activeDictationPointerId = null;
+            pendingPressToDictateRestart = false;
             stopActiveDictation({ abort: true, silent: true });
             clearIdleGuidanceState();
         }
@@ -9403,6 +9412,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const openSearchFromFlashcard = () => {
         showView('explorer-list-view');
         searchBar.value = '';
+        explorerVerbScopeMode = 'all';
+        ensureExtraFrenchVerbDataLoaded('search-open').then(() => {
+            if (!explorerListView.classList.contains('hidden')) populateExplorerList(searchBar.value);
+        });
         populateExplorerList('');
         focusSearchBarForEntry({ clear: true });
     };
@@ -9507,6 +9520,56 @@ document.addEventListener('DOMContentLoaded', () => {
         backBtn.disabled = true;
         return true;
     };
+
+    const hydrateSharedQuestion = () => {
+        const data = window.QuestionShare.decode(sharedQuestionParam);
+        if (data.frame) {
+            const card = cloneFrameRouteCard(data.frame);
+            if (!card) throw Error('Unknown shared question');
+            return {...card, _sharedQuestion: true, _sharedDetailEntryCard: true};
+        }
+        const verb = uniqueVerbs.find(item => item.infinitive === data.verb);
+        if (!verb) throw Error('Unknown shared verb');
+        const {v, lang, answer, translation, ...details} = data;
+        delete details.verb;
+        return {...details, verb: {...verb, ...(translation ? {translation} : {})},
+            conjugated: answer, _practiceAnswer: answer,
+            _sharedQuestion: true, _sharedDetailEntryCard: true};
+    };
+    document.getElementById('pronoun-explanation')?.addEventListener('click', event => event.stopPropagation());
+    const questionLink = () => {
+        const url = new URL(location.href);
+        url.search = ''; url.hash = '';
+        url.searchParams.set('question', window.QuestionShare.encode(currentCard));
+        // Older installed workers understand this flag even before question sharing.
+        url.searchParams.set('__refresh', 'share');
+        return url.toString();
+    };
+    document.getElementById('copy-question-link-btn')?.addEventListener('click', async event => {
+        event.stopPropagation();
+        try {
+            const copied = await copyTextToClipboard(questionLink(), {successMessage: 'Question link copied'});
+            if (copied) showTransientFeedback('Question link copied');
+        } catch (_) { showTransientFeedback('Could not share this question'); }
+        document.getElementById('question-share').open = false;
+    });
+    document.getElementById('share-question-btn')?.addEventListener('click', async event => {
+        event.stopPropagation();
+        try {
+            const url = questionLink();
+            if (navigator.share) await navigator.share({title:'French question · VerbsFirst',text:'Can you answer this French question?',url});
+            else { await copyTextToClipboard(url, {successMessage: 'Question link copied'}); }
+        } catch (error) { if (error.name !== 'AbortError') showTransientFeedback('Could not share this question'); }
+        document.getElementById('question-share').open = false;
+    });
+    document.addEventListener('click', event => {
+        const menu = document.getElementById('question-share');
+        if (menu?.open && !menu.contains(event.target)) menu.open = false;
+    });
+    document.addEventListener('keydown', event => {
+        const menu = document.getElementById('question-share');
+        if (event.key === 'Escape' && menu?.open) { menu.open = false; menu.querySelector('summary').focus({preventScroll:true}); }
+    });
 
     const buildVerbDetailShareUrl = (route = currentDetailRouteState) => {
         const routeState = resolveVerbDetailRouteState(route || {});
@@ -9658,37 +9721,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Verb List Modes (no modules, file:// compatible) ---
-    // (Mode toggle functionality removed; always show frequency mode)
-    function groupVerbsByFrequency(verbs) {
-        const groups = {};
-        // Initialize groups for all frequencies found in the data
-        allFrequencies.forEach(freq => {
-            groups[freq] = [];
-        });
-        
-        verbs.forEach(v => {
-            const freq = v.frequency || 'common';
-            if (groups[freq]) {
-                groups[freq].push(v);
-            } else {
-                // Handle any frequency not in our list (shouldn't happen)
-                if (!groups[freq]) groups[freq] = [];
-                groups[freq].push(v);
-            }
-        });
-        return groups;
-    }
+    const getEntryFrequencyBadge = verb => {
+        const type = verb.verbExpression ? 'Expression' : 'Verb';
+        const frequency = formatFrequencyLabel(verb.frequency);
+        return frequency ? `${type} · ${frequency}` : type;
+    };
 
     function populateExplorerList(filter = '') {
+        const queryKey = explorerVerbScopeMode + ':' + filter;
+        if (queryKey !== explorerLastQueryKey) {
+            explorerVisibleLimit = 150;
+            verbListContainer.scrollTop = 0;
+            explorerLastQueryKey = queryKey;
+        }
         verbListContainer.innerHTML = '';
         refreshExplorerScopeUi();
         const normalizedFilter = normalizeSearchText(filter);
-        const filteredUniverse = getFilteredVerbUniverse(cardGenerationOptions);
-        const useFilteredScope = filteredUniverse.length > 0
-            && filteredUniverse.length < uniqueVerbs.length
-            && explorerVerbScopeMode !== 'all';
-        const sourceVerbs = useFilteredScope ? filteredUniverse : uniqueVerbs;
+        const filteredUniverse = explorerVerbScopeMode === 'filtered'
+            ? [...new Map(getExerciseTypes(cardGenerationOptions).flatMap(type =>
+                getFilteredVerbUniverse({ ...cardGenerationOptions, _exerciseType: type })
+            ).map(verb => [verb.infinitive, verb])).values()]
+            : [];
+        const useFilteredScope = explorerVerbScopeMode === 'filtered';
+        const sourceVerbs = (useFilteredScope ? filteredUniverse : uniqueVerbs).filter(v =>
+            explorerVerbScopeMode === 'expressions' ? v.verbExpression :
+            explorerVerbScopeMode === 'verbs' ? !v.verbExpression : true);
         const filteredVerbs = sourceVerbs.filter(v => {
             if (!normalizedFilter) return true;
             // Match French infinitive
@@ -9710,50 +9767,69 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return false;
         });
-        const groups = groupVerbsByFrequency(filteredVerbs);
-
-        // TODO(Explorer): Add a category chip next to each verb (use verb.category) and consider an Explorer-level
-        // category filter (single-select aligned with Options) to narrow the list. Keep search and Active-only in sync.
-        
-        // Create labels by capitalizing frequency names
-        const freqLabels = {};
-        allFrequencies.forEach(freq => {
-            freqLabels[freq] = freq.charAt(0).toUpperCase() + freq.slice(1);
-        });
-        
-        // Calculate basic group sizes from the full verb list
-        const groupSizes = {};
-        allFrequencies.forEach(freq => {
-            groupSizes[freq] = uniqueVerbs.filter(v => v.frequency === freq).length;
-        });
-
-        // Sort frequencies by basic group size (smallest first)
-        const sortedBySize = [...allFrequencies].sort((a, b) => groupSizes[a] - groupSizes[b]);
-
-        // Use the sorted frequency order to display sections
-        sortedBySize.forEach(freq => {
-            if (groups[freq] && groups[freq].length) {
-                const section = document.createElement('div');
-                section.innerHTML = `<div class="frequency-section-header">${freqLabels[freq]}</div>`;
-                // Sort verbs alphabetically within each group
-                groups[freq].sort((a, b) => a.infinitive.localeCompare(b.infinitive));
-                groups[freq].forEach(verb => {
-                    const item = document.createElement('div');
-                    item.className = 'verb-list-item';
-                    item.dataset.infinitive = verb.infinitive;
-                    const listTranslation = cleanTranslation(verb.infinitive, verb.translation);
-                    item.innerHTML = `
-                        <div class="verb-list-item-text">
-                            <span class="infinitive">${verb.infinitive}</span>
-                            <span class="translation">${listTranslation}</span>
-                        </div>
-                        <button class="audio-btn" data-speak="${verb.infinitive}" data-audio-id="${lemmaAudioId(verb.infinitive)}">🔊</button>
-                    `;
-                    section.appendChild(item);
-                });
-                verbListContainer.appendChild(section);
+        const safe = text => String(text || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        // Keep original character offsets when accents/apostrophes are normalized.
+        const highlight = text => {
+            const value = String(text || '');
+            let normalized = '', offset = 0;
+            const positions = [];
+            for (const char of value) {
+                const fragment = removeAccents(char.toLowerCase()).replace(/[^a-z0-9]/g, ' ');
+                for (const letter of fragment) {
+                    if (letter !== ' ' || (normalized && !normalized.endsWith(' '))) {
+                        normalized += letter;
+                        positions.push([offset, offset + char.length]);
+                    }
+                }
+                offset += char.length;
             }
+            const i = normalized.indexOf(normalizedFilter);
+            if (!normalizedFilter || i < 0) return safe(value);
+            const start = positions[i][0], end = positions[i + normalizedFilter.length - 1][1];
+            return safe(value.slice(0,start)) + '<mark>' + safe(value.slice(start,end)) + '</mark>' + safe(value.slice(end));
+        };
+        const rank = verb => {
+            const fr = normalizeSearchText(verb.infinitive);
+            const en = normalizeSearchText(cleanTranslation(verb.infinitive, verb.translation || '')).replace(/^to /,'');
+            return fr === normalizedFilter ? 0 : en === normalizedFilter ? 1 : fr.startsWith(normalizedFilter) ? 2 : fr.includes(normalizedFilter) ? 3 : 4;
+        };
+        if(normalizedFilter) filteredVerbs.sort((a,b) => rank(a)-rank(b) || a.infinitive.localeCompare(b.infinitive,'fr'));
+        explorerScopeSummary.textContent = filteredVerbs.length + (filteredVerbs.length === 1 ? ' result · ' : ' results · ') + (explorerVerbScopeMode === 'filtered' ? 'Your current practice selection' : 'Entire library') + (normalizedFilter ? ' · Best matches first' : '');
+        document.getElementById('search-clear').hidden = !filter;
+        if(!filteredVerbs.length) {
+            verbListContainer.innerHTML = '<div class="search-empty"><strong>No matches</strong><p>Try a French word or an English meaning.' + (explorerVerbScopeMode === 'filtered' ? ' Switch to All to search outside your practice selection.' : '') + '</p></div>';
+        }
+        filteredVerbs.slice(0,explorerVisibleLimit).forEach(verb => {
+            const item = document.createElement('div');
+            item.className = 'verb-list-item';item.dataset.infinitive = verb.infinitive;
+            item.innerHTML = `<div class="verb-list-item-text"><button type="button" class="search-result-open"><span class="search-result-title"><span class="infinitive">${highlight(verb.infinitive)}</span><span class="entry-frequency-badge${verb.verbExpression ? ' search-expression-label' : ''}" title="${verb.verbExpression ? 'Approximate frequency tier among expressions' : 'Frequency tier among verbs'}">${safe(verb.verbExpression ? getEntryFrequencyBadge(verb) : formatFrequencyLabel(verb.frequency))}</span></span><span class="translation">${highlight(cleanTranslation(verb.infinitive,verb.translation))}</span></button></div><button class="audio-btn" aria-label="Listen to ${safe(verb.infinitive)}" data-speak="${safe(verb.infinitive)}" data-audio-id="${safe(lemmaAudioId(verb.infinitive))}">🔊</button><span class="search-result-arrow" aria-hidden="true">›</span>`;
+            verbListContainer.appendChild(item);
         });
+        if (filteredVerbs.length > explorerVisibleLimit) {
+            const more = document.createElement('button');
+            more.type = 'button'; more.className = 'search-more';
+            more.textContent = 'Show more (' + (filteredVerbs.length - explorerVisibleLimit) + ' remaining)';
+            more.addEventListener('click', () => {
+                const previousLimit = explorerVisibleLimit;
+                explorerVisibleLimit += 150;
+                populateExplorerList(searchBar.value);
+                verbListContainer.querySelectorAll('.search-result-open')[previousLimit]?.focus({preventScroll:true});
+            });
+            verbListContainer.appendChild(more);
+        }
+        if (FRENCH_VERB_DATA_SPLIT?.extraUrl && frenchExtraVerbDataState.status !== 'loaded') {
+            const notice = document.createElement('div');notice.className='search-loading';
+            notice.textContent = frenchExtraVerbDataState.status === 'error'
+                ? 'Some entries are unavailable offline. Reconnect and reopen Search to load the full library.'
+                : 'Loading the rest of the library…';
+            verbListContainer.appendChild(notice);
+            if (frenchExtraVerbDataState.status !== 'error' && !explorerSearchLoadPromise) {
+                explorerSearchLoadPromise = ensureExtraFrenchVerbDataLoaded('search').then(() => {
+                    explorerSearchLoadPromise = null;
+                    if (!explorerListView.classList.contains('hidden')) populateExplorerList(searchBar.value);
+                });
+            }
+        }
     }
 
     const populateVerbDetail = (verb, tenseToFocus = null) => {
@@ -9862,6 +9938,13 @@ document.addEventListener('DOMContentLoaded', () => {
             translationEl.textContent = detailTranslation;
             header.appendChild(translationEl);
         }
+        const frequencyBadge = document.createElement('span');
+        frequencyBadge.className = 'entry-frequency-badge detail-frequency-badge';
+        frequencyBadge.textContent = getEntryFrequencyBadge(verb);
+        frequencyBadge.title = verb.verbExpression
+            ? 'Approximate frequency tier among expressions'
+            : 'Frequency tier among verbs';
+        header.appendChild(frequencyBadge);
         if (verb.verbExpression) {
             const familyLabels = { everyday: 'Everyday expression', pronoun: 'Pronoun construction', idiom: 'Idiom' };
             const info = document.createElement('p');
@@ -10270,7 +10353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             settingsV2Nav.dataset.tabsInitialized = 'true';
             settingsV2Nav.replaceChildren();
             settingsV2Nav.setAttribute('role', 'tablist');
-            [['practice', 'Practice'], ['audio', 'Audio'], ['app', 'App']].forEach(([id, label]) => {
+            [['practice', 'Practice'], ['audio', 'Voice'], ['app', 'App']].forEach(([id, label]) => {
                 const button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'mode-toggle-btn';
@@ -10801,25 +10884,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window._updateSettingsV2LayoutState = updateSettingsV2LayoutState;
 
-    // Reversible presentation experiment; the original controls remain authoritative.
+    // Compact is the standard Practice presentation; the underlying controls remain authoritative.
     const refreshCompactPractice = () => {
         const panel = document.getElementById('settings-panel-practice');
         if (!panel) return;
-        let toolbar = document.getElementById('practice-layout-choice');
-        if (!toolbar) {
-            toolbar = document.createElement('div');
-            toolbar.id = 'practice-layout-choice';
-            toolbar.innerHTML = '<span>Practice layout</span><button type="button">Compact</button><button type="button">Original</button>';
-            const buttons = toolbar.querySelectorAll('button');
-            buttons.forEach((button, index) => button.addEventListener('click', () => {
-                localStorage.setItem('vf:compact-practice:v1', index === 0 ? 'true' : 'false');
-                refreshCompactPractice();
-            }));
-            panel.prepend(toolbar);
+        document.getElementById('practice-layout-choice')?.remove();
+        panel.classList.add('compact-practice');
+        const body = document.getElementById('settings-v2-conjugation-setup-body');
+        if (body) {
+            const orderedGroups = [
+                'settings-drills-group', 'settings-v2-exercise-controls',
+                'settings-v2-verb-source-group', 'settings-topn-group', 'verb-set-group',
+                'settings-tenses-group', 'settings-sentence-form',
+                'settings-v2-shared-advanced', 'settings-v2-conjugation-advanced', 'settings-v2-drill-actions'
+            ].map(id => document.getElementById(id)).filter(Boolean);
+            // Moving an already placed section can reset its scroll container and focus.
+            // Reorder only when population actually changed the section structure.
+            const existingOrder = [...body.children].filter(element => orderedGroups.includes(element));
+            if (orderedGroups.some((element, index) => element.parentElement !== body || existingOrder[index] !== element)) {
+                orderedGroups.forEach(element => body.appendChild(element));
+            }
+            const balanced = document.getElementById('settings-balanced-pronouns-row');
+            let advancedBody = document.querySelector('#settings-v2-conjugation-advanced-details > .collapsible-body');
+            if (!advancedBody) {
+                const advanced = document.createElement('details');
+                advanced.id = 'settings-v2-conjugation-advanced-details';
+                advanced.className = 'option-group settings-collapsible settings-v2-advanced-details';
+                advanced.innerHTML = '<summary>Advanced</summary><div class="collapsible-body"></div>';
+                document.getElementById('settings-v2-conjugation-advanced')?.appendChild(advanced);
+                advancedBody = advanced.querySelector('.collapsible-body');
+            }
+            if (balanced && advancedBody && balanced.parentElement !== advancedBody) advancedBody.appendChild(balanced);
         }
-        const compact = localStorage.getItem('vf:compact-practice:v1') !== 'false';
-        panel.classList.toggle('compact-practice', compact);
-        toolbar.querySelectorAll('button').forEach((button, index) => button.setAttribute('aria-pressed', String(compact === (index === 0))));
+
+        queueMicrotask(() => {
+            // Frequency and topics are additive sources, not mutually exclusive modes.
+            document.getElementById('settings-v2-verb-source-group')?.classList.add('hidden');
+            const frequency = document.getElementById('verb-pool-basic-container');
+            frequency?.closest('.option-group')?.classList.remove('hidden');
+            document.getElementById('settings-topn-group')?.classList.remove('hidden');
+            document.getElementById('settings-drills-group')?.classList.remove('hidden');
+            const topics = document.getElementById('verb-set-group');
+            topics?.classList.remove('hidden');
+            const selection = getResolvedVerbSetSelection();
+            let only = document.getElementById('topics-only-pool-btn');
+            if (frequency && !only) {
+                only = document.createElement('button');
+                only.id = 'topics-only-pool-btn';
+                only.type = 'button'; only.className = 'verb-pool-pill';
+                only.textContent = 'Topics only';
+                only.addEventListener('click', () => {
+                    cardGenerationOptions.frequencyWeights = Object.fromEntries(Object.keys(cardGenerationOptions.frequencyWeights).map(key => [key, 0]));
+                    saveOptions(); populateOptions();
+                });
+                frequency.appendChild(only);
+            }
+            if (only) {
+                only.disabled = !selection;
+                only.classList.toggle('active', !!selection && !Object.values(cardGenerationOptions.frequencyWeights).some(weight => weight > 0));
+                only.setAttribute('aria-pressed', String(only.classList.contains('active')));
+            }
+            const summary = topics?.querySelector('.verb-set-summary');
+            if (summary) summary.textContent = selection
+                ? `${selection.count} topic entries added to the frequency pool. Duplicates appear once; tenses and exercise types still apply.`
+                : 'Optional: add topic verbs, including rare ones, to your frequency pool.';
+        });
         let select = document.getElementById('compact-preset-select');
         const presets = document.getElementById('presets-container');
         if (presets && !select) {
@@ -10842,6 +10971,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Options UI Logic ---
     const populateOptions = (options = {}) => {
+        const previousSettingsScrollTop = optionsView.scrollTop;
         queueMicrotask(refreshCompactPractice);
         syncPracticeTypeFilter();
         const { preserveAnchorId = null, preserveAnchorSelector = null } = options || {};
@@ -10886,15 +11016,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.textContent = tenseDisplayNames[key] || key;
                 btn.dataset.key = key;
                 const tc = tenseClasses[key] || '';
-                if (value > 0) btn.classList.add('active', tc);
+                if (value > 0) btn.classList.add('active', ...([tc].filter(Boolean)));
                 btn.addEventListener('click', () => {
+                    const controlTop = btn.getBoundingClientRect().top;
                     const cur = cardGenerationOptions.tenseWeights[key] || 0;
                     const newVal = cur > 0 ? 0 : 1;
                     cardGenerationOptions.tenseWeights[key] = newVal;
-                    if (newVal > 0) { btn.classList.add('active', tc); }
-                    else { btn.classList.remove('active', tc); }
+                    if (newVal > 0) { btn.classList.add('active', ...([tc].filter(Boolean))); }
+                    else { btn.classList.remove('active', ...([tc].filter(Boolean))); }
                     saveOptions();
                     updateVerbFiltersCountLabel();
+
+                    queueMicrotask(() => queueMicrotask(() => {
+                        if (!optionsView.classList.contains('hidden') && btn.isConnected) {
+                            optionsView.scrollTop += btn.getBoundingClientRect().top - controlTop;
+                        }
+                    }));
                 });
                 container.appendChild(btn);
                 return;
@@ -11076,7 +11213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     effectiveVerbSourceMode,
                     (value) => {
                         if (value === 'frequency' && getResolvedVerbSetSelection()) {
-                            clearVerbSetSelection({ preserveActiveDrill: true });
+                            clearVerbSetSelection();
                         }
                         setSettingsVerbSourceMode(value, {
                             repopulate: true,
@@ -11248,11 +11385,11 @@ document.addEventListener('DOMContentLoaded', () => {
             allCard.type = 'button';
             allCard.className = `verb-set-card${activeVerbSetSelection ? '' : ' active'}`;
             allCard.innerHTML = `
-                <span class="verb-set-card-title">All verbs</span>
-                <span class="verb-set-card-meta">Leave topic mode and go back to the frequency pool.</span>
+                <span class="verb-set-card-title">No topics</span>
+                <span class="verb-set-card-meta">Use the frequency pool without extra topic verbs.</span>
             `;
             allCard.addEventListener('click', () => {
-                clearVerbSetSelection({ preserveActiveDrill: true });
+                clearVerbSetSelection();
                 setSettingsVerbSourceMode('frequency', {
                     repopulate: true,
                     repopulateOptions: { preserveAnchorId: 'verb-set-group' }
@@ -11558,7 +11695,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardFamilyRow = document.createElement('fieldset');
             cardFamilyRow.className = 'exercise-type-checkboxes';
             const legend = document.createElement('legend');
-            legend.textContent = 'Exercise types';
+            legend.textContent = 'What to practise';
             cardFamilyRow.appendChild(legend);
             const selectedTypes = getExerciseTypes();
             for (const [type, label] of Object.entries(EXERCISE_TYPE_LABELS)) {
@@ -11587,6 +11724,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             settingsV2ExerciseControls?.appendChild(cardFamilyRow);
             if (selectedTypes.includes('references')) window.referenceCards.controls(settingsV2ExerciseControls, cardGenerationOptions, () => { saveOptions(); populateOptions(); updateVerbFiltersCountLabel(); });
+            let sentenceForm = document.getElementById('settings-sentence-form');
+            if (!sentenceForm) {
+                sentenceForm = document.createElement('div');
+                sentenceForm.id = 'settings-sentence-form';
+                conjugationSetupBody?.appendChild(sentenceForm);
+            }
+            sentenceForm.replaceChildren();
+            sentenceForm.hidden = !selectedTypes.some(type => ['verbs','references'].includes(type));
+            if (!sentenceForm.hidden) window.referenceCards.negationControls(sentenceForm, cardGenerationOptions, () => { saveOptions(); populateOptions(); updateVerbFiltersCountLabel(); });
 
             const fillPracticeCard = hasFillBlanks ? createAdvancedCard('Question filter') : null;
             if (fillPracticeCard) {
@@ -11719,18 +11865,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         updateSettingsV2LayoutState();
-        if ((preserveAnchorSelector || preserveAnchorId) && preservedAnchorTop !== null) {
+        // Restore after both compact-layout microtasks, before the next paint.
+        queueMicrotask(() => queueMicrotask(() => {
+            if (optionsView.classList.contains('hidden')) return;
+            optionsView.scrollTop = previousSettingsScrollTop;
             const nextAnchor = preserveAnchorSelector
                 ? document.querySelector(preserveAnchorSelector)
-                : document.getElementById(preserveAnchorId);
-            if (nextAnchor) {
-                const nextTop = nextAnchor.getBoundingClientRect().top;
-                const delta = nextTop - preservedAnchorTop;
-                if (Math.abs(delta) > 1) {
-                    window.scrollBy(0, delta);
-                }
+                : (preserveAnchorId ? document.getElementById(preserveAnchorId) : null);
+            if (nextAnchor && preservedAnchorTop !== null) {
+                optionsView.scrollTop += nextAnchor.getBoundingClientRect().top - preservedAnchorTop;
             }
-        }
+        }));
     };
 
     // Expose so applyPreset (global scope) can re-render the settings UI
@@ -11783,7 +11928,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     infinitiveAudioBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        playAudioTarget(lemmaAudioId(currentCard.verb.infinitive), currentCard.verb.infinitive);
+        if (currentCard?.verb) playAudioTarget(lemmaAudioId(currentCard.verb.infinitive), currentCard.verb.infinitive);
     });
 
     function playCurrentAnswerAudio() {
@@ -11969,9 +12114,9 @@ document.addEventListener('DOMContentLoaded', () => {
         packagedTtsDownloadTop20Btn.addEventListener('click', () => {
             if (!PACKAGED_TTS) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob('Downloading packaged French audio for the top 20...', async () => {
+            void runPackagedTtsJob('Downloading French recordings for the top 20...', async () => {
                 await PACKAGED_TTS.prefetchTop20(({ completed, total }) => {
-                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                    setPackagedTtsStatus(`Downloading French recordings... ${completed}/${total} packs`);
                 });
             });
         });
@@ -11981,9 +12126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         packagedTtsDownloadTop100Btn.addEventListener('click', () => {
             if (!PACKAGED_TTS) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob('Downloading packaged French audio for the top 100...', async () => {
+            void runPackagedTtsJob('Downloading French recordings for the top 100...', async () => {
                 await PACKAGED_TTS.downloadTier('top100', ({ completed, total }) => {
-                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                    setPackagedTtsStatus(`Downloading French recordings... ${completed}/${total} packs`);
                 });
             });
         });
@@ -11992,11 +12137,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (packagedTtsDownloadTop500Btn) {
         packagedTtsDownloadTop500Btn.addEventListener('click', () => {
             if (!PACKAGED_TTS) return;
-            if (!window.confirm('Download packaged French audio through the top 500 verbs?')) return;
+            if (!window.confirm('Download French recordings through the top 500 verbs?')) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob('Downloading packaged French audio for the top 500...', async () => {
+            void runPackagedTtsJob('Downloading French recordings for the top 500...', async () => {
                 await PACKAGED_TTS.downloadTier('top500', ({ completed, total }) => {
-                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                    setPackagedTtsStatus(`Downloading French recordings... ${completed}/${total} packs`);
                 });
             });
         });
@@ -12007,11 +12152,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!PACKAGED_TTS) return;
             const refinedMainPoolKey = getRefinedMainPoolMaxKey();
             const refinedMainPoolLabel = formatFrequencyLabel(refinedMainPoolKey);
-            if (!refinedMainPoolKey || !window.confirm(`Download packaged French audio through ${refinedMainPoolLabel}?`)) return;
+            if (!refinedMainPoolKey || !window.confirm(`Download French recordings through ${refinedMainPoolLabel}?`)) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob(`Downloading packaged French audio through ${refinedMainPoolLabel}...`, async () => {
+            void runPackagedTtsJob(`Downloading French recordings through ${refinedMainPoolLabel}...`, async () => {
                 await PACKAGED_TTS.downloadTier(refinedMainPoolKey, ({ completed, total }) => {
-                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                    setPackagedTtsStatus(`Downloading French recordings... ${completed}/${total} packs`);
                 });
             });
         });
@@ -12020,11 +12165,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (packagedTtsDownloadRareBtn) {
         packagedTtsDownloadRareBtn.addEventListener('click', () => {
             if (!PACKAGED_TTS) return;
-            if (!window.confirm(`Download packaged French audio for verbs ${describeRareFrequencyBucket()}?`)) return;
+            if (!window.confirm(`Download French recordings for verbs ${describeRareFrequencyBucket()}?`)) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob(`Downloading packaged French audio for verbs ${describeRareFrequencyBucket()}...`, async () => {
+            void runPackagedTtsJob(`Downloading French recordings for verbs ${describeRareFrequencyBucket()}...`, async () => {
                 await PACKAGED_TTS.downloadTier('rare', ({ completed, total }) => {
-                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                    setPackagedTtsStatus(`Downloading French recordings... ${completed}/${total} packs`);
                 });
             });
         });
@@ -12035,9 +12180,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!PACKAGED_TTS) return;
             if (!window.confirm('This may download a sizable French audio set for offline playback. Continue?')) return;
             PACKAGED_TTS.setEnabled(true);
-            void runPackagedTtsJob('Downloading the full packaged French audio set...', async () => {
+            void runPackagedTtsJob('Downloading the full French recordings set...', async () => {
                 await PACKAGED_TTS.downloadAllAudio(({ completed, total }) => {
-                    setPackagedTtsStatus(`Downloading packaged French audio... ${completed}/${total} packs`);
+                    setPackagedTtsStatus(`Downloading French recordings... ${completed}/${total} packs`);
                 });
             });
         });
@@ -12046,8 +12191,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (packagedTtsRemoveBtn) {
         packagedTtsRemoveBtn.addEventListener('click', () => {
             if (!PACKAGED_TTS) return;
-            if (!window.confirm('Remove all downloaded packaged French audio from this device?')) return;
-            void runPackagedTtsJob('Removing packaged French audio...', async () => {
+            if (!window.confirm('Remove all downloaded French recordings from this device?')) return;
+            void runPackagedTtsJob('Removing French recordings...', async () => {
                 await PACKAGED_TTS.removeAllAudio();
             });
         });
@@ -12240,7 +12385,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // These buttons should now act like the browser's back button
     backToFlashcardBtn.addEventListener('click', () => window.history.back());
     backToFlashcardFromOptionsBtn.addEventListener('click', () => window.history.back());
-    backToListBtn.addEventListener('click', () => window.history.back());
+    backToListBtn.addEventListener('click', () => {
+        if (focusedSharedDetailEntry) {
+            focusedSharedDetailEntry = false;
+            backToListBtn.textContent = '← Back';
+            backToListBtn.removeAttribute('aria-label');
+            showFlashcards();
+        }
+        else window.history.back();
+    });
+    if (FOCUSED_ONBOARDING) {
+        const refresher = document.createElement('button');
+        refresher.type = 'button';
+        refresher.className = 'focused-refresher';
+        refresher.textContent = 'Quick refresher';
+        refresher.addEventListener('click', event => {
+            event.stopPropagation();
+            dismissReopenMessage();
+            restartTutorialFlow();
+        });
+        returnInlineMessageEl?.querySelector('.return-inline-card')?.append(refresher);
+    }
     // Mnemonics back button
     const backToOptionsBtn = document.getElementById('back-to-options-btn');
     if (backToOptionsBtn) {
@@ -12332,6 +12497,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Explorer Search and Audio
+    ['expressions','verbs'].forEach(scope => document.querySelector('[data-search-scope="'+scope+'"]').addEventListener('click', () => {explorerVerbScopeMode=scope;populateExplorerList(searchBar.value);}));
+    document.getElementById('search-clear').addEventListener('click',()=>{searchBar.value='';populateExplorerList('');searchBar.focus();});
     searchBar.addEventListener('input', (e) => populateExplorerList(e.target.value));
     if (explorerScopeFilteredBtn) {
         explorerScopeFilteredBtn.addEventListener('click', () => {
@@ -12474,6 +12641,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startupMark('initialize-app-start');
         loadOptions();
         loadTutorialState();
+        if (FOCUSED_ONBOARDING && tutorialState.active) focusedRevealGlowsRemaining = 2;
         if (dictateBtn) setupDictation();
         populateOptions();
         syncAppVersionUi();
@@ -12491,6 +12659,11 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTutorialHint();
         const detailRoute = getVerbDetailRouteParams();
         const sharedDetailCard = detailRoute ? hydrateDetailRouteCard(detailRoute) : null;
+        if (FOCUSED_ONBOARDING && sharedDetailCard) {
+            focusedSharedDetailEntry = true;
+            backToListBtn.textContent = 'Practise this verb';
+            backToListBtn.setAttribute('aria-label', 'Practise this verb');
+        }
         const shouldDeferTutorialForSharedEntry = !!(
             sharedDetailCard
             && tutorialState.active
@@ -12522,7 +12695,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         };
         
-        if (sharedDetailCard && seedFlashcardHistoryWithCard(sharedDetailCard, {
+        let sharedQuestionCard = null;
+        if (sharedQuestionParam) {
+            try { sharedQuestionCard = hydrateSharedQuestion(); }
+            catch (_) {
+                const error = document.getElementById('shared-question-error');
+                error.hidden = false;
+                error.textContent = 'This shared question could not be opened. You can practise normally below.';
+            }
+        }
+        if (sharedQuestionCard) {
+            seedFlashcardHistoryWithCard(sharedQuestionCard, {deferTutorial: tutorialState.active});
+            hideAnswer();
+        } else if (sharedDetailCard && seedFlashcardHistoryWithCard(sharedDetailCard, {
             deferTutorial: shouldDeferTutorialForSharedEntry,
         })) {
             // Shared detail routes keep their exact source card underneath the detail view.
@@ -12754,7 +12939,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Shared verb-detail links already hydrate the underlying flashcard during
         // initializeApp(); re-running the legacy hash startup here would replace it
         // with tutorial or random fallback state before Back can reveal the right card.
-        if (getVerbDetailRouteParams()) {
+        if (sharedQuestionParam || getVerbDetailRouteParams()) {
             return;
         }
         const params = parseHashParams();
@@ -12929,6 +13114,7 @@ const DRILL_OPTION_KEYS = [
     'referencePractice',
     'exerciseTypes',
     'referenceObjects',
+    'referenceNegation',
     'prepositionalVerbMode',
     'regularityFilter',
     'endingFilter',
@@ -13207,12 +13393,23 @@ function getResolvedVerbUniverse(options = cardGenerationOptions) {
     const selectedVerbs = selection.verbs
         .map((verb) => uniqueVerbByInfinitive.get(verb))
         .filter(Boolean);
-    return expandVerbUniverseWithExpressions(selectedVerbs, options);
+    return selectedVerbs.filter(verb => verb.verbExpression
+        ? shouldIncludeVerbExpressions(options)
+        : getVerbEntryMode(options) !== 'expressions');
 }
 
 function getFilteredVerbUniverse(options = cardGenerationOptions) {
     options = resolveVerbEntryOptions(options);
     const activeVerbSet = getResolvedVerbSetSelection(options);
+    if (activeVerbSet && !options._topicOnlySelection) {
+        // Union: ordinary frequency-filtered material plus explicitly selected topic entries.
+        // Clearing all frequency weights gives topic-only practice.
+        const topicPool = getFilteredVerbUniverse({ ...options, _topicOnlySelection: true });
+        const frequencyPool = Object.values(options.frequencyWeights || {}).some(weight => weight > 0)
+            ? getFilteredVerbUniverse({ ...options, selectedVerbSetIds: [], selectedVerbSetId: null, sharedVerbSet: null })
+            : [];
+        return [...new Map([...frequencyPool, ...topicPool].map(verb => [verb.infinitive, verb])).values()];
+    }
     const candidateVerbs = getResolvedVerbUniverse(options);
     const {
         frequencyWeights = {},
@@ -13309,6 +13506,9 @@ function buildSharedVerbSetPayloadFromOptions(options = cardGenerationOptions) {
 function clearVerbSetSelection(options = {}) {
     cardGenerationOptions.selectedVerbSetIds = [];
     cardGenerationOptions.sharedVerbSet = null;
+    if (!cardGenerationOptions.selectedVerbSetIds.length && !Object.values(cardGenerationOptions.frequencyWeights || {}).some(weight => weight > 0)) {
+        cardGenerationOptions.frequencyWeights = buildRangeFrequencyWeights('top20');
+    }
     saveOptions(options);
     populateOptions({ preserveAnchorId: 'verb-set-group' });
 }
@@ -13327,6 +13527,9 @@ function toggleVerbSetSelection(setId) {
         ? currentIds.filter((id) => id !== target.id)
         : [...currentIds, target.id];
     cardGenerationOptions.sharedVerbSet = null;
+    if (!cardGenerationOptions.selectedVerbSetIds.length && !Object.values(cardGenerationOptions.frequencyWeights || {}).some(weight => weight > 0)) {
+        cardGenerationOptions.frequencyWeights = buildRangeFrequencyWeights('top20');
+    }
     saveOptions();
     populateOptions({ preserveAnchorId: 'verb-set-group' });
 }
@@ -13964,19 +14167,21 @@ function describeDrillConfig(config = {}) {
         ? 'all tenses'
         : tenseLabels.length === 1
             ? tenseLabels[0]
-            : tenseLabels.slice(0, 2).join(' + ');
+            : tenseLabels.slice(0, 2).join(' + ') + (tenseLabels.length > 2 ? ` + ${tenseLabels.length - 2} more` : '');
 
     const activeVerbSet = getResolvedVerbSetSelection(options);
-    const parts = [tenseSummary || 'mixed tenses'];
+    const parts = [tenseSummary || 'no tenses selected'];
     parts.push(exerciseTypeLabel(options));
     if (activeVerbSet) {
+        if (Object.values(options.frequencyWeights || {}).some(weight => weight > 0)) parts.push(summarizeFrequencyWeights(options.frequencyWeights || {}) + " + topics");
+        else parts.push("topics only");
         parts.push(
             activeVerbSet.selectionCount && activeVerbSet.selectionCount > 1
                 ? `${activeVerbSet.selectionCount} topics · ${activeVerbSet.count} verbs`
                 : `${activeVerbSet.name} · ${activeVerbSet.count} verbs`
         );
     } else {
-        parts.push(getVerbEntryMode(options) === 'expressions' ? 'expressions only' : summarizeFrequencyWeights(options.frequencyWeights || {}));
+        parts.push(summarizeFrequencyWeights(options.frequencyWeights || {}));
     }
     if (!activeVerbSet && options.regularityFilter && options.regularityFilter.regular === false && options.regularityFilter.irregular !== false) {
         parts.push('irregular focus');
@@ -13984,9 +14189,7 @@ function describeDrillConfig(config = {}) {
     if (!activeVerbSet && options.reflexiveMode === 'only') {
         parts.push('reflexive only');
     }
-    if (options.includeVerbExpressions === false) {
-        parts.push('expressions off');
-    }
+    // Exercise types above already describe expression selection; the legacy flag can be stale.
     const exerciseMode = normalizeCardTypeModeForCapabilities(options.cardTypeMode);
     const fillFocusMode = getEffectiveFillFocusMode(options);
     if (
@@ -14013,6 +14216,13 @@ function describeDrillConfig(config = {}) {
         } else {
             parts.push('mixed with frames + pronouns');
         }
+    }
+    const selectedTypes = getExerciseTypes(options);
+    if (selectedTypes.includes('references')) {
+        parts.push({one: 'one object pronoun', two: 'two object pronouns', mixed: 'one or two object pronouns'}[options.referenceObjects] || 'one or two object pronouns');
+    }
+    if (selectedTypes.some(type => type === 'verbs' || type === 'references')) {
+        parts.push({affirmative: 'affirmative', mixed: '25% negative · standard + spoken', standard: 'negative · ne…pas', spoken: 'negative · without ne'}[options.referenceNegation] || 'affirmative');
     }
     return parts.join(' · ');
 }
@@ -14047,7 +14257,7 @@ function getVerbPoolSummary() {
     const activeVerbSet = getResolvedVerbSetSelection();
     if (activeVerbSet) {
         const categoryCount = activeVerbSet.selectionCount || 1;
-        return `Exact pool from ${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'} · ${activeVerbSet.count} verbs · Top N and other verb filters are ignored`;
+        return `Selected ${categoryCount} ${categoryCount === 1 ? 'topic' : 'topics'} · ${activeVerbSet.count} verbs · added to the frequency pool; duplicates removed`;
     }
     const selectedRange = getSelectedVerbPoolRangeKey();
     const parts = [];
@@ -14093,6 +14303,7 @@ function applyDrillCardOptions(config = {}) {
     cardGenerationOptions.referencePractice = resolved.referencePractice === true;
     cardGenerationOptions.exerciseTypes = getExerciseTypes(resolved);
     cardGenerationOptions.referenceObjects = ['one','two','mixed'].includes(resolved.referenceObjects) ? resolved.referenceObjects : 'mixed';
+    cardGenerationOptions.referenceNegation = ['affirmative','mixed','standard','spoken'].includes(resolved.referenceNegation) ? resolved.referenceNegation : 'affirmative';
     cardGenerationOptions.includeVerbExpressions = getVerbEntryMode(resolved) !== 'single';
     cardGenerationOptions.prepositionalVerbMode = resolved.prepositionalVerbMode === 'only' ? 'only' : 'all';
     cardGenerationOptions.regularityFilter = deepClone(resolved.regularityFilter);
@@ -14191,11 +14402,11 @@ function refreshCurrentDrillCard() {
     const active = getActiveDrill();
     const currentPreset = active?.preset || getCustomPreset();
     if (!currentPreset) return;
-    const currentConfig = currentPreset.isCustom ? snapshotCurrentDrillConfig() : currentPreset.config;
+    const currentConfig = snapshotCurrentDrillConfig();
     currentDrillCard.innerHTML = `
         <div class="current-drill-label">Current drill</div>
         <div class="current-drill-name">${currentPreset.emoji || '📚'} ${currentPreset.name}</div>
-        <div class="current-drill-desc">${currentPreset.desc || describeDrillConfig(currentConfig)}</div>
+        <div class="current-drill-desc">${describeDrillConfig(currentConfig)}</div>
     `;
 }
 
@@ -14567,7 +14778,7 @@ const importedSharedDrill = importSharedDrillFromHash();
 if (importedSharedDrill) {
   applyPreset(importedSharedDrill, { source: 'saved' });
 } else if (tutorialState.active) {
-  resetTutorialPracticeBaseline();
+  if (!FOCUSED_ONBOARDING) resetTutorialPracticeBaseline();
 } else {
   const lastDrill = getScopedStorageItem(LAST_DRILL_STORAGE_KEY);
   const lastPreset = getScopedStorageItem("lastPreset");

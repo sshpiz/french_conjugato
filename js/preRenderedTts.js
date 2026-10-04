@@ -255,7 +255,7 @@
     return bufferPromises.get(cacheKey);
   }
 
-  async function playAudioId(itemId, expectedText = null) {
+  async function playAudioId(itemId, expectedText = null, isCurrent = () => true) {
     if (!isEnabled()) return false;
     const manifest = await loadManifest();
     const packId = packIndex.get(itemId);
@@ -297,6 +297,7 @@
     }
 
     const ctx = await getAudioContext();
+    if (!isCurrent()) return false;
     if (currentSource) {
       try {
         currentSource.stop();

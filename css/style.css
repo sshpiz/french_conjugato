@@ -280,7 +280,12 @@ html[data-theme="dark"] {
   .tense-futurSimple        { color: #cbe6f6 !important; }
   .tense-plusQueParfait     { color: #3e1422 !important; }
   .tense-subjonctifPresent  { color: #e4cff2 !important; }
-  .tense-conditionnelPresent { color: #2c3e14 !important; }
+  .tense-conditionnelPresent { color: #152307 !important; }
+  /* Match the badge specificity so generic dark meta-info ink cannot win. */
+  #verb-tense.tense-conditionnelPresent {
+    background: var(--tense-conditionnel-present) !important;
+    color: #152307 !important;
+  }
   body {
     background-color: var(--primary-bg);
     color: var(--text-color);
@@ -3285,7 +3290,7 @@ html {
   .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
   .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
   .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
-  .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+  .tense-weight-pill.active.tense-conditionnelPresent { color: #152307; }
 }
 
 /* ── Reflexive mode pill selector ────────────────────────── */
@@ -4758,7 +4763,7 @@ html[data-theme="dark"] .tense-imparfait          { color: #d6d5ec !important; }
 html[data-theme="dark"] .tense-futurSimple        { color: #cbe6f6 !important; }
 html[data-theme="dark"] .tense-plusQueParfait     { color: #3e1422 !important; }
 html[data-theme="dark"] .tense-subjonctifPresent  { color: #e4cff2 !important; }
-html[data-theme="dark"] .tense-conditionnelPresent { color: #2c3e14 !important; }
+html[data-theme="dark"] .tense-conditionnelPresent { color: #152307 !important; }
 html[data-theme="dark"] #verb-detail-container,
 html[data-theme="dark"] #options-container,
 html[data-theme="dark"] .mnemonic-card,
@@ -4839,14 +4844,14 @@ html[data-theme="dark"] .tense-weight-pill.active.tense-imparfait         { colo
 html[data-theme="dark"] .tense-weight-pill.active.tense-futurSimple       { color: #cbe6f6; }
 html[data-theme="dark"] .tense-weight-pill.active.tense-plusQueParfait    { color: #3e1422; }
 html[data-theme="dark"] .tense-weight-pill.active.tense-subjonctifPresent { color: #e4cff2; }
-html[data-theme="dark"] .tense-weight-pill.active.tense-conditionnelPresent { color: #2c3e14; }
+html[data-theme="dark"] .tense-weight-pill.active.tense-conditionnelPresent { color: #152307; }
 html[data-theme="dark"] #verb-tense.tense-present { background: var(--tense-present) !important; color: #ccf5e3 !important; }
 html[data-theme="dark"] #verb-tense.tense-passeCompose { background: var(--tense-passe-compose) !important; color: #442a0d !important; }
 html[data-theme="dark"] #verb-tense.tense-imparfait { background: var(--tense-imparfait) !important; color: #d6d5ec !important; }
 html[data-theme="dark"] #verb-tense.tense-futurSimple { background: var(--tense-futur-simple) !important; color: #cbe6f6 !important; }
 html[data-theme="dark"] #verb-tense.tense-plusQueParfait { background: var(--tense-plus-que-parfait) !important; color: #3e1422 !important; }
 html[data-theme="dark"] #verb-tense.tense-subjonctifPresent { background: var(--tense-subjonctif-present) !important; color: #e4cff2 !important; }
-html[data-theme="dark"] #verb-tense.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; color: #2c3e14 !important; }
+html[data-theme="dark"] #verb-tense.tense-conditionnelPresent { background: var(--tense-conditionnel-present) !important; color: #152307 !important; }
 html[data-theme="dark"] #dictate-btn-bottom.control-dock-btn.is-tutorial-locked:disabled,
 html[data-theme="dark"] #usage-visibility-btn.control-dock-btn.is-tutorial-locked:disabled,
 html[data-theme="dark"] .control-dock-btn.is-tutorial-locked {
@@ -5866,18 +5871,18 @@ html[data-theme="dark"] {
 /* The four morphology signals share one responsive type scale. Layout caps keep
    the largest accessibility setting usable on narrow phones. */
 #flashcard .card-content-before h1 {
-  font-size: clamp(3.2rem, calc(3.2rem * var(--font-scale, 1)), 5rem);
+  font-size: clamp(2rem, calc(3.2rem * var(--font-scale, 1)), 5rem);
   line-height: 1.02;
   letter-spacing: -.035em;
 }
 #flashcard #verb-pronoun {
-  font-size: clamp(1.25rem, calc(1.25rem * var(--font-scale, 1)), 1.85rem);
+  font-size: clamp(.85rem, calc(1.25rem * var(--font-scale, 1)), 1.85rem);
   font-weight: 730;
   line-height: 1.15;
   color: var(--text-color);
 }
 #flashcard #verb-tense {
-  font-size: clamp(1.15rem, calc(1.15rem * var(--font-scale, 1)), 1.7rem);
+  font-size: clamp(.8rem, calc(1.15rem * var(--font-scale, 1)), 1.7rem);
   font-weight: 700;
   line-height: 1.15;
 }
@@ -6024,7 +6029,7 @@ html[data-theme="dark"] {
 #flashcard .reference-plus { display: none; }
 #flashcard .meta-container:has(#verb-reference:not([hidden])) .reference-plus { display: inline; }
 #flashcard #verb-reference { flex-direction: row; align-items: center; gap: .35rem; white-space: nowrap; }
-#flashcard #verb-tense::before { content: '🕒'; font-size: .8em; margin-right: .3em; }
+#flashcard #verb-tense::before { content: none; }
 @media (max-width: 430px) {
   #flashcard .meta-container:has(#verb-reference:not([hidden])) { gap: .25rem; }
   #flashcard .meta-container:has(#verb-reference:not([hidden])) .meta-info { font-size: 1rem; padding-inline: .4rem; }
@@ -6066,7 +6071,7 @@ html[data-theme="dark"] {
 
 /* Reserve two text lines for tense names without changing row height. */
 #flashcard .meta-container {
-  min-height: calc(2.3 * clamp(1.15rem, calc(1.15rem * var(--font-scale, 1)), 1.7rem) + 10px) !important;
+  min-height: calc(2.3 * clamp(.8rem, calc(1.15rem * var(--font-scale, 1)), 1.7rem) + 10px) !important;
 }
 #flashcard #verb-tense {
   height: calc(2.3em + 10px);
@@ -6078,10 +6083,6 @@ html[data-theme="dark"] {
 }
 
 /* French Practice density experiment. Original layout remains one click away. */
-#practice-layout-choice { display:flex; align-items:center; justify-content:flex-end; gap:6px; margin:0 0 12px; font-size:.78rem; }
-#practice-layout-choice span { margin-right:auto; color:var(--meta-color); }
-#practice-layout-choice button { min-height:36px; padding:6px 10px; border:1px solid var(--border-color); border-radius:8px; background:transparent; color:var(--text-color); font:inherit; cursor:pointer; }
-#practice-layout-choice button[aria-pressed="true"] { background:var(--accent-color); color:#fff; }
 #compact-preset-select { display:none; }
 #options-view .compact-practice #compact-preset-select { display:block; width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--border-color); border-radius:8px; background:var(--card-bg); color:var(--text-color); font:inherit; font-size:.9rem; }
 #options-view .compact-practice #presets-container { display:none; }
@@ -6107,9 +6108,6 @@ html[data-theme="dark"] {
 #options-view .compact-practice .settings-v2-collapsible-meta { font-size:.75rem; }
 #options-view .compact-practice .current-drill-card { padding:8px 10px; margin:6px 0; box-shadow:none; }
 #options-view .compact-practice #settings-v2-conjugation-setup-body { display:flex; flex-direction:column; }
-#options-view .compact-practice #settings-v2-exercise-controls { order:-3; }
-#options-view .compact-practice #settings-drills-group { order:-2; }
-#options-view .compact-practice #settings-topn-group { order:-1; }
 .exercise-type-compact-label { display:none; }
 #options-view .compact-practice .exercise-type-checkboxes { display:flex; flex-wrap:wrap; gap:0 12px; padding:0; margin:0; }
 #options-view .compact-practice .exercise-type-checkboxes legend { font-size:.85rem; margin-bottom:4px; }
@@ -6122,8 +6120,6 @@ html[data-theme="dark"] {
 #options-view .compact-practice .current-drill-desc { font-size:.78rem; }
 #options-view .compact-practice .verb-pool-panel { gap:4px; }
 #options-view .compact-practice #settings-v2-conjugation-setup-body > .option-group { margin:0 0 8px !important; padding:0; }
-#options-view .compact-practice #settings-v2-verb-source-group { order:-1; }
-#options-view .compact-practice #settings-topn-group { order:0; }
 
 /* One construction followed by its examples, shared by inline and detail usage. */
 .unified-usage-item .usage-meaning { color:var(--meta-color); font-size:.95em; }
@@ -6137,3 +6133,247 @@ html[data-theme="dark"] {
 #flashcard #verb-reference.double-reference strong { display:block; overflow-wrap:anywhere; }
 .reference-count-control { display:flex; align-items:center; gap:10px; font-size:.85rem; margin:8px 0; }
 .reference-count-control select { min-height:40px; padding:6px 10px; border:1px solid var(--border-color); border-radius:8px; color:var(--text-color); background:var(--card-bg); }
+
+/* Pronunciation experiment: ornaments never change text or intercept audio taps. */
+#conjugated-verb { position: relative; }
+.liaison-word { display: inline; }
+.liaison-overlay { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.liaison-arc { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; opacity: .75; }
+.liaison-arc.optional { stroke-dasharray: 1.3 3; opacity: .55; }
+.liaison-clues-toggle { display: block; margin: .65rem auto .25rem; padding: .25rem .55rem; border: 0; background: transparent; color: var(--text-color); opacity: .65; font: inherit; font-size: .72rem; cursor: pointer; }
+.liaison-clues-toggle[hidden] { display: none; }
+.liaison-clues-toggle:hover, .liaison-clues-toggle:focus-visible { opacity: 1; }
+
+
+#verb-infinitive.has-negation-heading { white-space: nowrap; max-width: 100%; min-width: 0; }
+#verb-infinitive .negation-heading-prefix { font-size: .75em; color: #729dc0; text-decoration: none; }
+#negation-badge { position: absolute; right: calc(100% + .4rem); top: 0; white-space: nowrap; font-size: inherit; padding: .2rem .6rem; border-radius: inherit; background: var(--card-bg); color: var(--text-color); }
+
+/* Compact, shared practice choices; native radios retain keyboard navigation. */
+#options-view .practice-choice-group { border:0; padding:0; margin:14px 0; min-width:0; width:100%; }
+#options-view .practice-choice-group legend { padding:0; margin-bottom:7px; font-size:.85rem; font-weight:650; color:var(--text-color); }
+#options-view .practice-choice-grid { display:grid; grid-template-columns:repeat(var(--choice-columns),minmax(0,1fr)); gap:7px; }
+#options-view label.practice-choice { position:relative; display:block; margin:0; padding:0; min-width:0; cursor:pointer; }
+#options-view .practice-choice input { position:absolute; opacity:0; width:1px; height:1px; margin:0; }
+#options-view .practice-choice-content { display:flex; flex-direction:column; justify-content:center; gap:3px; height:100%; min-height:54px; box-sizing:border-box; padding:8px 10px; border:1px solid var(--border-color); border-radius:10px; background:var(--card-bg); color:var(--text-color); transition:background .12s,border-color .12s; }
+#options-view .practice-choice-content strong { font-size:.88rem; line-height:1.2; font-weight:650; }
+#options-view .practice-choice-content small { font-size:.73rem; line-height:1.25; opacity:.72; }
+#options-view .practice-choice input:checked + .practice-choice-content { border-color:#3498db; background:color-mix(in srgb,#3498db 14%,var(--card-bg)); box-shadow:inset 0 0 0 1px #3498db; }
+#options-view .practice-choice input:focus-visible + .practice-choice-content { outline:2px solid #3498db; outline-offset:3px; }
+#options-view .practice-choice:hover .practice-choice-content { border-color:#3498db; }
+
+/* Topics augment the frequency pool; unavailable topic-only action stays quiet. */
+#topics-only-pool-btn:disabled { opacity: .4; cursor: default; }
+
+/* Empty selections have no pronoun or tense metadata. */
+#flashcard.empty-selection .meta-container {
+  display: none !important;
+}
+
+/* Give ordinary cards the space otherwise reserved for object-pronoun pills. */
+#flashcard .meta-container:not(:has(#verb-reference:not([hidden]))) {
+  grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1.4fr);
+}
+#flashcard .meta-container:not(:has(#verb-reference:not([hidden]))) .meta-plus:not(.reference-plus) { grid-column: 2; }
+#flashcard .meta-container:not(:has(#verb-reference:not([hidden]))) #verb-tense { grid-column: 3; }
+#flashcard #verb-tense { overflow-wrap: anywhere; }
+#flashcard #verb-tense.tense-plusQueParfait {
+  font-size: clamp(1rem, calc(1rem * var(--font-scale, 1)), 1.45rem);
+}
+@media (max-width: 430px) {
+  #flashcard .meta-container:has(#verb-reference:not([hidden])) #verb-tense:is(.tense-plusQueParfait, .tense-conditionnelPresent) {
+    font-size: clamp(.7rem, 3.1vw, .84rem);
+  }
+}
+
+/* Reversible focused onboarding preview, enabled only by ?onboarding=focused. */
+.focused-intro-active #practice-type-filter,
+.focused-intro-active #daily-progress-container,
+.focused-intro-active #verb-frequency,
+.focused-intro-active #construction-pattern,
+.focused-intro-active #verb-details-dock-btn,
+.focused-intro-active #dictate-btn-bottom,
+.focused-intro-active #context-audio-btn {
+  visibility: hidden;
+}
+.focused-intro-active #tutorial-inline-hint {
+  bottom: auto; top: 43%; width: 90%; min-height: 0;
+}
+.focused-intro-active .tutorial-inline-text,
+.focused-intro-active #tutorial-inline-hint.idle-nudge-active .tutorial-inline-text {
+  animation: none; opacity: 1; min-height: 0;
+}
+.focused-intro-active .tutorial-inline-heading { color: var(--text-color, #334155); font-size: .85rem; margin-bottom: .65rem; }
+.focused-intro-active .tutorial-inline-body { color: var(--text-color, #243328); min-height: 0; font-size: 1rem; line-height: 1.5; }
+.focused-intro-active .first-question { display: block; font-size: clamp(1.35rem, 5.6vw, 1.8rem); line-height: 1.2; margin-bottom: .85rem; }
+.focused-intro-active .first-instruction { display: block; }
+.focused-intro-active .tutorial-inline-skip-btn { position: static; order: 3; margin-top: 1rem; font-size: .78rem; background: transparent; box-shadow: none; }
+.focused-intro-active #go-to-verb-btn-container { position: relative; }
+.focused-intro-active #answer-flow-btn { position: absolute; left: 50%; transform: translateX(-50%); width: min(80%, 280px); background: #216a80; color: white; border-color: #216a80; }
+.focused-intro-active #answer-flow-btn * { color: white; }
+.focused-intro-revealed #tutorial-inline-hint { top: auto; bottom: 4%; }
+.focused-onboarding .focused-refresher { pointer-events: auto; border: 0; background: transparent; color: inherit; text-decoration: underline; padding: .65rem; font: inherit; font-size: .85rem; cursor: pointer; }
+[data-theme="dark"] .focused-intro-active .tutorial-inline-body,
+[data-theme="dark"] .focused-intro-active .tutorial-inline-heading { color: #edf5fa; }
+@media (prefers-color-scheme: dark) {
+ html:not([data-theme="light"]) .focused-intro-active .tutorial-inline-body,
+ html:not([data-theme="light"]) .focused-intro-active .tutorial-inline-heading { color: #edf5fa; }
+}
+/* Override the dock's compact-button rules only during this introduction. */
+body.focused-intro-active #tutorial-inline-hint { top: 1rem !important; bottom: auto !important; }
+body.focused-intro-active #go-to-verb-btn-container { width: min(80%, 280px) !important; }
+body.focused-intro-active #go-to-verb-btn-container > :not(#answer-flow-btn) { display: none !important; }
+body.focused-intro-active #go-to-verb-btn-container #answer-flow-btn {
+  position: relative !important; left: auto !important; transform: none !important;
+  width: 100% !important; flex: 1 1 auto !important;
+  background: #216a80 !important; border-color: #216a80 !important;
+  color: white !important;
+}
+body.focused-intro-active #go-to-verb-btn-container #answer-flow-btn .control-dock-label { font-size: 1rem !important; }
+body.focused-intro-revealed #tutorial-inline-hint { top: 7rem !important; bottom: auto !important; }
+@media (max-height: 700px) {
+ body.focused-intro-active #tutorial-inline-hint { top: .25rem !important; }
+ body.focused-intro-active .tutorial-inline-heading { margin-bottom: .3rem; font-size: .75rem; }
+ body.focused-intro-active .first-question { font-size: 1.2rem; margin-bottom: .4rem; }
+ body.focused-intro-active .tutorial-inline-body { font-size: .85rem; line-height: 1.3; }
+ body.focused-intro-active .tutorial-inline-skip-btn { margin-top: .4rem; padding: .3rem .6rem; }
+ body.focused-intro-revealed #tutorial-inline-hint { top: 4.5rem !important; }
+}
+/* The first exercise works silently; offer audio setup once it is complete. */
+body.focused-intro-active #tts-warning-banner { display: none !important; }
+
+/* Focused introduction, iteration 2: action cue instead of a skip control. */
+body.focused-intro-active #tutorial-inline-skip-btn { display: none !important; }
+body.focused-intro-active .first-tap-cue {
+  display: block; margin-top: .9rem; font-weight: 700; color: inherit;
+}
+body.focused-intro-revealed .tutorial-inline-heading { display: none; }
+@media (max-height: 700px) {
+ body.focused-intro-active .first-tap-cue { margin-top: .55rem; }
+ body.focused-intro-revealed #tutorial-inline-hint { top: 6rem !important; }
+}
+
+/* Keep the conjugation centred; its caption never consumes space in the row. */
+@media (max-height: 700px) {
+}
+
+/* A single highlight on each of the first two reveals; no geometry changes. */
+@keyframes onboardingAnswerGlow {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  35% { filter: drop-shadow(0 0 8px rgba(65, 165, 225, .65)); }
+}
+#conjugated-verb.onboarding-answer-glow { animation: onboardingAnswerGlow 1.6s ease-out 1; }
+@media (prefers-reduced-motion: reduce) {
+ #conjugated-verb.onboarding-answer-glow { animation: none; }
+}
+/* Question sharing belongs to the card, never to its practice controls. */
+#question-share { position: absolute; top: .45rem; right: .55rem; z-index: 15; }
+#question-share[hidden] { display: none !important; }
+#question-share summary { display: grid; place-items: center; width: 36px; height: 36px; cursor: pointer; list-style: none; color: var(--text-color, #526579); border-radius: 50%; }
+#question-share summary::-webkit-details-marker { display: none; }
+#question-share summary svg { width: 19px; height: 19px; }
+#question-share summary:focus-visible { outline: 2px solid #3498db; }
+#flashcard:has(#question-share:not([hidden])) #verb-frequency { right: 3.1rem; }
+.question-share-menu { position: absolute; top: 40px; right: 0; width: 185px; padding: .35rem; border-radius: 12px; background: var(--card-bg, #f4f7fa); border: 1px solid var(--border-color, #b5c2ce); box-shadow: 0 6px 20px #0002; }
+.question-share-menu button { display: block; width: 100%; padding: .75rem .5rem; text-align: left; background: transparent; border: 0; color: var(--text-color, #243328); cursor: pointer; font: inherit; font-size: .9rem; }
+#shared-question-error { position: absolute; z-index: 20; left: 5%; right: 5%; top: 3rem; padding: 1rem; background: #fff3d5; color: #573d10; border-radius: 12px; }
+
+/* Let the card scroll when its content exceeds the available screen height.
+   Keep both control rows outside this scroll area. */
+#flashcard { overflow-y: auto !important; overflow-x: hidden !important; }
+#flashcard #phrase-container {
+  flex: 1 0 auto !important;
+  overflow: visible !important;
+}
+#flashcard #answer-container {
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+}
+#flashcard .conjugated-line { flex-shrink: 0; width: 100%; min-width: 0; }
+#flashcard #conjugated-verb { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+/* Guidance follows the complete answer, including liaison controls. */
+body.focused-intro-active #tutorial-inline-hint {
+  position: static; transform: none; align-self: center;
+  flex: 0 0 auto; margin: 1rem auto; order: -1;
+}
+body.focused-intro-revealed #tutorial-inline-hint { order: 1; }
+body.focused-intro-active:not(.focused-intro-revealed) #answer-container { display: none !important; }
+
+#flashcard { overflow-anchor: none; }
+#flashcard #conjugated-verb.long-answer:not(.frame-card-inline-text) {
+  font-size: clamp(1.1rem, calc(1.65rem * var(--font-scale, 1)), 3.4rem) !important;
+  line-height: 1.2;
+}
+
+/* Two-pronoun explanations stay in the answer flow and expand on demand. */
+#pronoun-explanation { flex: 0 0 auto; width: min(100%, 28rem); margin: .5rem auto 1rem; color: var(--text-color); font-size: .9rem; line-height: 1.5; text-align: left; }
+#pronoun-explanation[hidden] { display: none !important; }
+#pronoun-explanation summary { cursor: pointer; text-align: center; padding: .5rem; color: var(--accent-color); }
+#pronoun-explanation ul { margin: .35rem 0 0; padding: .75rem .75rem .75rem 1.7rem; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: .75rem; }
+#pronoun-explanation li + li { margin-top: .4rem; }
+
+/* A quiet two-level hierarchy for the first question; no competing eyebrow. */
+body.focused-intro-active:not(.focused-intro-revealed) .tutorial-inline-heading { display: none; }
+body.focused-intro-active:not(.focused-intro-revealed) .tutorial-inline-text { width: 100%; max-width: 22rem; }
+body.focused-intro-active:not(.focused-intro-revealed) .tutorial-inline-body {
+  font-size: .95rem; font-weight: 400; line-height: 1.5; text-wrap: balance;
+}
+body.focused-intro-active:not(.focused-intro-revealed) .first-question {
+  font-size: 1.25rem; font-weight: 650; line-height: 1.35; margin: 0 0 .85rem;
+  text-wrap: balance;
+}
+body.focused-intro-active:not(.focused-intro-revealed) .first-instruction { font-weight: 400; }
+body.focused-intro-active:not(.focused-intro-revealed) .first-tap-cue { font-weight: 400; margin-top: .65rem; }
+
+/* Keep voice setup help quiet until it is needed. */
+#options-view .voice-setup-help { margin: .5rem 0 1rem; }
+#options-view .voice-setup-help > summary { text-transform: none; font-size: .9rem; font-weight: 600; padding: .5rem 0; cursor: pointer; }
+#options-view .voice-setup-help > summary::after { content: '+'; }
+#options-view .voice-setup-help[open] > summary::after { content: '−'; }
+#options-view .voice-setup-help p { font-size: .9rem; line-height: 1.5; margin: .75rem 0; }
+#options-view .voice-setup-help a { color: var(--accent-color); text-decoration: underline; }
+#voice-test-result:empty { display: none; }
+
+/* One source choice for device speech and downloadable French voices. */
+.voice-source-choice { border: 0; padding: 0; margin: .75rem 0 1.25rem; display: flex; flex-wrap: wrap; gap: .8rem 1.5rem; }
+.voice-source-choice legend { font-size: .9rem; margin-bottom: .6rem; }
+.voice-source-choice label { display: flex; align-items: center; gap: .5rem; font-size: .95rem; }
+#device-voice-settings[hidden] { display: none; }
+#offline-voice-panel { border-top: 1px solid var(--border-color, #a0a8af); margin-top: 1rem; padding-top: 1rem; }
+#offline-voice-panel h4 { margin: 0 0 .5rem; font-size: 1rem; }
+#offline-voice-panel .styled-select { width: 100%; margin: .5rem 0; }
+.voice-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; }
+.voice-actions [hidden] { display: none; }
+
+/* French library search: All, Active, Expressions and Verbs. */
+
+#explorer-list-view .explorer-header{gap:.8rem;margin-bottom:.7rem}
+.search-heading{display:flex;align-items:center;justify-content:space-between}.search-heading h2{margin:0;font-size:1.45rem;color:var(--text-color)}.search-heading>span{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--meta-color);border:1px solid var(--border-color);border-radius:5px;padding:2px 7px}
+.search-input-wrap{position:relative}#search-bar::-webkit-search-cancel-button{-webkit-appearance:none}#search-bar{box-sizing:border-box;background:var(--card-bg);color:var(--text-color);padding:.9rem 2.7rem .9rem .9rem;box-shadow:none}#search-bar::placeholder{color:var(--meta-color)}#search-bar:focus{outline:2px solid var(--accent-color);outline-offset:2px}#search-clear{position:absolute;right:9px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--meta-color);font-size:1.5rem;cursor:pointer}
+#explorer-scope-toggle{display:flex;gap:6px;flex-wrap:nowrap}#explorer-scope-toggle button{flex:1;margin:0;border:1px solid var(--border-color);background:var(--card-bg);color:var(--text-color);border-radius:8px;padding:8px 10px;font-size:.86rem}#explorer-scope-toggle button.active{background:var(--accent-color);border-color:var(--accent-color);color:#132533;font-weight:700}#explorer-scope-summary{font-size:.76rem;margin:5px 0 0;color:var(--meta-color)}
+#verb-list-container{max-height:64vh;border:1px solid var(--border-color);border-radius:12px}.verb-list-item{gap:12px;padding:.85rem .9rem}.verb-list-item:hover{background:var(--primary-bg)}.verb-list-item-text{flex:1;min-width:0}.search-result-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search-expression-label{font-size:.65rem;font-weight:600;color:var(--accent-color);border:1px solid var(--border-color);padding:1px 5px;border-radius:4px}.search-result-arrow{color:var(--meta-color);font-size:1.3rem}.verb-list-item .audio-btn{flex-shrink:0;font-size:1rem;background:var(--primary-bg);border:1px solid var(--border-color);border-radius:50%;width:34px;height:34px;padding:0}.verb-list-item .translation{margin-top:3px}.verb-list-item mark{background:#f5df9e;color:#332a12;border-radius:2px}.search-empty{padding:24px;color:var(--meta-color);text-align:center}.search-empty strong{color:var(--text-color)}.search-more{padding:12px 16px;color:var(--meta-color);font-size:.8rem}
+
+#explorer-list-view .search-result-open {
+    display: block; width: 100%; border: 0; padding: 0;
+    background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+#explorer-list-view .search-result-open:focus-visible,
+#explorer-scope-toggle button:focus-visible,
+#explorer-list-view .search-more:focus-visible {
+    outline: 2px solid var(--accent-color); outline-offset: 3px;
+}
+#explorer-list-view .search-more {
+    display: block; width: calc(100% - 24px); margin: 12px;
+    border: 1px solid var(--border-color); border-radius: 8px;
+    background: var(--card-bg); color: var(--text-color); cursor: pointer;
+}
+#explorer-list-view .search-loading { padding: 10px 14px; color: var(--meta-color); font-size: .8rem; }
+
+/* Entry type and its own frequency tier, shared by Search and Details. */
+.entry-frequency-badge {
+    display: inline-block; font-size: .68rem; font-weight: 600;
+    color: var(--text-color); border: 1px solid var(--border-color);
+    padding: 2px 6px; border-radius: 5px; white-space: nowrap;
+    line-height: 1.4; letter-spacing: normal;
+}
+.detail-frequency-badge { margin-top: .4rem; }

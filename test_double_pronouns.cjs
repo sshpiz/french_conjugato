@@ -8,7 +8,7 @@ console.log('French double-pronoun order and agreement PASS');
 vm.runInContext(fs.readFileSync(path.join(__dirname,'js/verbs.full.generated.js'),'utf8')+';globalThis.data={verbs,tenses}',fr);
 let count=0;for(const v of fr.window.referenceCards.doubleVerbs){assert(fr.data.verbs.some(x=>x.infinitive===v));for(const [tense,rows]of Object.entries(fr.data.tenses)){for(const [pronoun,conjugated]of Object.entries(rows[v]||{})){for(let o=0;o<3;o++)for(let r=0;r<4;r++){const c=fr.window.referenceCards.doubleReference({verb:{infinitive:v},tense,pronoun,conjugated},o,r);assert(c, v+' '+tense);assert(!c.conjugated.includes('undefined'));count++;}}}}console.log('French',count,'loaded double combinations PASS');
 // Every supported construction supplies both a full and replaced sentence.
-for(const [repo,file,globalName,total] of [['proj1','referenceCards.js','referenceCards',44],['spanish-verbs','exercisePractice.js','exercisePractice',44],['catalan-verbs','exercisePractice.js','exercisePractice',38]]) {
+for(const [repo,file,globalName,total] of [['proj1','referenceCards.js','referenceCards',43],['spanish-verbs','exercisePractice.js','exercisePractice',44],['catalan-verbs','exercisePractice.js','exercisePractice',38]]) {
  const ctx={window:{}};vm.createContext(ctx);vm.runInContext(fs.readFileSync(path.join(root,repo,'js',file),'utf8'),ctx);
  const api=ctx.window[globalName];assert.equal(api.doubleVerbs.length,total);
  for(const verb of api.doubleVerbs) {const entries=api.doubleUsageEntries(verb);assert.equal(entries.length,2);assert.notEqual(entries[0].example_fr,entries[1].example_fr);for(const entry of entries)for(const key of ['pattern','meaning_en','example_fr','example_en'])assert(entry[key]?.trim());}
@@ -16,4 +16,4 @@ for(const [repo,file,globalName,total] of [['proj1','referenceCards.js','referen
 for(const [v,p,expected] of [['permettre','permis','permises'],['dire','dit','dites'],['écrire','écrit','écrites'],['offrir','offert','offertes'],['apprendre','appris','apprises']]) {
  assert.equal(fr.window.referenceCards.doubleReference({verb:{infinitive:v},pronoun:'nous',tense:'plusQueParfait',conjugated:'nous avions '+p},2,2).conjugated,'nous les leur avions '+expected);
 }
-console.log('PASS 126 constructions, 252 example sentences, irregular participle agreements');
+console.log('PASS 125 constructions, 250 example sentences, irregular participle agreements');

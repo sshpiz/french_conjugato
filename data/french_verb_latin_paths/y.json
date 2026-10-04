@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "shard": "y",
+    "verbs": 1
+  },
+  "verbs": {
+    "yodler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "(singing) to yodel",
+          "(intransitive) (singing) to yodel"
+        ],
+        "id": "fr:yodler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "yodler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    }
+  }
+}

@@ -1,0 +1,679 @@
+{
+  "metadata": {
+    "shard": "q",
+    "verbs": 14
+  },
+  "verbs": {
+    "quadriller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to crosshatch (mark into squares)",
+          "(of paper) to crosshatch (mark into squares)"
+        ],
+        "id": "fr:quadriller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quadriller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quadrupler": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To multiply by four.",
+              "(transitive) To multiply by four."
+            ],
+            "id": "en:quadruple:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "quadruple"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:quadruple:verb:0",
+                "id": "edge:afe6b2f51166bef3",
+                "source_template": null,
+                "to_id": "la:quadruplo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To multiply by four.",
+                  "(transitive) To multiply by four."
+                ],
+                "id": "en:quadruple:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "quadruple"
+              },
+              "to_node": {
+                "glosses": [
+                  "to quadruple, multiply by four, make fourfold"
+                ],
+                "id": "la:quadruplo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "quadruplo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to quadruple, to multiply by four"
+        ],
+        "id": "fr:quadrupler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quadrupler"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:quadrupler:verb:0",
+            "id": "edge:7359ecdc6fc2a693",
+            "source_template": null,
+            "to_id": "la:quadruplo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to quadruple, to multiply by four"
+            ],
+            "id": "fr:quadrupler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "quadrupler"
+          },
+          "to_node": {
+            "glosses": [
+              "to quadruple, multiply by four, make fourfold"
+            ],
+            "id": "la:quadruplo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "quadruplo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to quadruple, multiply by four, make fourfold"
+        ],
+        "id": "la:quadruplo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "quadruplo"
+      }
+    },
+    "qualifier": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To describe or characterize something by listing its qualities.",
+              "(transitive) To describe or characterize something by listing its qualities."
+            ],
+            "id": "en:qualify:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "qualify"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:qualify:verb:0",
+                "id": "edge:42fa9219be56f216",
+                "source_template": null,
+                "to_id": "la:qualifico:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To describe or characterize something by listing its qualities.",
+                  "(transitive) To describe or characterize something by listing its qualities."
+                ],
+                "id": "en:qualify:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "qualify"
+              },
+              "to_node": {
+                "glosses": [
+                  "to qualify (invest with a quality)",
+                  "(Medieval Latin) to qualify (invest with a quality)"
+                ],
+                "id": "la:qualifico:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "qualifico"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to qualify (of a sports team, etc.) (to compete successfully in some stage of a competition and become eligible for the next stage)",
+          "(intransitive or reflexive, sports) to qualify (of a sports team, etc.) (to compete successfully in some stage of a competition and become eligible for the next stage)"
+        ],
+        "id": "fr:qualifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "qualifier"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:qualifier:verb:0",
+            "id": "edge:e4123936ea0f1a63",
+            "source_template": null,
+            "to_id": "la:qualifico:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to qualify (of a sports team, etc.) (to compete successfully in some stage of a competition and become eligible for the next stage)",
+              "(intransitive or reflexive, sports) to qualify (of a sports team, etc.) (to compete successfully in some stage of a competition and become eligible for the next stage)"
+            ],
+            "id": "fr:qualifier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "qualifier"
+          },
+          "to_node": {
+            "glosses": [
+              "to qualify (invest with a quality)",
+              "(Medieval Latin) to qualify (invest with a quality)"
+            ],
+            "id": "la:qualifico:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "qualifico"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to qualify (invest with a quality)",
+          "(Medieval Latin) to qualify (invest with a quality)"
+        ],
+        "id": "la:qualifico:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "qualifico"
+      }
+    },
+    "quantifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to quantify"
+        ],
+        "id": "fr:quantifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quantifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quereller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to quarrel, to squabble",
+          "(reciprocal reflexive) to quarrel, to squabble"
+        ],
+        "id": "fr:quereller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quereller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "questionner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to question, interrogate",
+          "(transitive) to question, interrogate"
+        ],
+        "id": "fr:questionner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "questionner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "queuter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to push (to have the cue ball in contact with the cue and the object ball at the same time)",
+          "(snooker, billiards) to push (to have the cue ball in contact with the cue and the object ball at the same time)"
+        ],
+        "id": "fr:queuter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "queuter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quimper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "To hit on; to seduce",
+          "(slang) To hit on; to seduce"
+        ],
+        "id": "fr:quimper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quimper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quintupler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to quintuple, to multiply by five"
+        ],
+        "id": "fr:quintupler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quintupler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quittancer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to receipt, to release",
+          "(transitive) to receipt, to release"
+        ],
+        "id": "fr:quittancer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quittancer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quitter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to discharge somebody from an obligation",
+          "(transitive, law or obsolete) to discharge somebody from an obligation"
+        ],
+        "id": "fr:quitter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quitter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quémander": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to beg (for), to cadge"
+        ],
+        "id": "fr:quémander:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quémander"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "quérir": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A person who queries or asks questions; an interrogator, a questioner.",
+              "(formal) A person who queries or asks questions; an interrogator, a questioner."
+            ],
+            "id": "en:querist:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "querist"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:querist:noun:0",
+                "id": "edge:7488ff4d3b53b50f",
+                "source_template": "der",
+                "to_id": "la:quaerō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A person who queries or asks questions; an interrogator, a questioner.",
+                  "(formal) A person who queries or asks questions; an interrogator, a questioner."
+                ],
+                "id": "en:querist:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "querist"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:quaerō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "quaerō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to seek; used especially after certain verbs",
+          "(literary or archaic) to seek; used especially after certain verbs"
+        ],
+        "id": "fr:quérir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quérir"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:quérir:verb:0",
+            "id": "edge:37f44491b878cbc4",
+            "source_template": "inh",
+            "to_id": "la:quaerō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to seek; used especially after certain verbs",
+              "(literary or archaic) to seek; used especially after certain verbs"
+            ],
+            "id": "fr:quérir:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "quérir"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:quaerō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "quaerō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:quaerō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "quaerō"
+      }
+    },
+    "quêter": {
+      "english_descendants": [
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To seek or pursue a goal; to undertake a mission or job.",
+              "(intransitive) To seek or pursue a goal; to undertake a mission or job."
+            ],
+            "id": "en:quest:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "quest"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "enm:questen:verb:0",
+                "id": "edge:81ea210fe8a17849",
+                "source_template": "der",
+                "to_id": "la:quaestō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To find one's quarry or catch.",
+                  "(hunting) To find one's quarry or catch."
+                ],
+                "id": "enm:questen:verb:0",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "verb",
+                "word": "questen"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:quaestō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "quaestō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:quest:verb:1",
+                "id": "edge:9606628bf5b78989",
+                "source_template": null,
+                "to_id": "enm:questen:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To seek or pursue a goal; to undertake a mission or job.",
+                  "(intransitive) To seek or pursue a goal; to undertake a mission or job."
+                ],
+                "id": "en:quest:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "quest"
+              },
+              "to_node": {
+                "glosses": [
+                  "To find one's quarry or catch.",
+                  "(hunting) To find one's quarry or catch."
+                ],
+                "id": "enm:questen:verb:0",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "verb",
+                "word": "questen"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to search for; to look for",
+          "to beg (for money)"
+        ],
+        "id": "fr:quêter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "quêter"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:quêter:verb:0",
+            "id": "edge:39a892472804b80d",
+            "source_template": "inh",
+            "to_id": "la:quaestō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to search for; to look for",
+              "to beg (for money)"
+            ],
+            "id": "fr:quêter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "quêter"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:quaestō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "quaestō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:quaestō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "quaestō"
+      }
+    }
+  }
+}

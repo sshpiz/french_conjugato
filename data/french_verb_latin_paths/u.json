@@ -1,0 +1,1126 @@
+{
+  "metadata": {
+    "shard": "u",
+    "verbs": 13
+  },
+  "verbs": {
+    "ulcérer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To cause an ulcer to develop.",
+              "(medicine, transitive) To cause an ulcer to develop."
+            ],
+            "id": "en:ulcerate:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "ulcerate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:ulcerate:verb:2",
+                "id": "edge:6ed4a83af134539e",
+                "source_template": null,
+                "to_id": "la:ulcero:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To cause an ulcer to develop.",
+                  "(medicine, transitive) To cause an ulcer to develop."
+                ],
+                "id": "en:ulcerate:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "ulcerate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to make sore"
+                ],
+                "id": "la:ulcero:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "ulcero"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to ulcerate"
+        ],
+        "id": "fr:ulcérer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "ulcérer"
+      },
+      "french_confidence": 0.88,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.88,
+            "from_id": "fr:ulcérer:verb:0",
+            "id": "edge:6abf210f085ca3d0",
+            "source_template": "lbor",
+            "to_id": "la:ulcero:verb:0",
+            "type": "learned_borrowing_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to ulcerate"
+            ],
+            "id": "fr:ulcérer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "ulcérer"
+          },
+          "to_node": {
+            "glosses": [
+              "to make sore"
+            ],
+            "id": "la:ulcero:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "ulcero"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to make sore"
+        ],
+        "id": "la:ulcero:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "ulcero"
+      }
+    },
+    "ululer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To howl loudly or prolongedly in lamentation or joy.",
+              "To produce a rapid and prolonged series of sharp noises with one's voice."
+            ],
+            "id": "en:ululate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "ululate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:ululate:verb:0",
+                "id": "edge:a55b28dc54115991",
+                "source_template": null,
+                "to_id": "la:ululo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To howl loudly or prolongedly in lamentation or joy.",
+                  "To produce a rapid and prolonged series of sharp noises with one's voice."
+                ],
+                "id": "en:ululate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "ululate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to howl"
+                ],
+                "id": "la:ululo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "ululo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hoot (to make the cry of an owl)",
+          "(intransitive) to hoot (to make the cry of an owl)"
+        ],
+        "id": "fr:ululer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "ululer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:ululer:verb:0",
+            "id": "edge:901c12b4c8093f06",
+            "source_template": null,
+            "to_id": "la:ululo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to hoot (to make the cry of an owl)",
+              "(intransitive) to hoot (to make the cry of an owl)"
+            ],
+            "id": "fr:ululer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "ululer"
+          },
+          "to_node": {
+            "glosses": [
+              "to howl"
+            ],
+            "id": "la:ululo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "ululo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to howl"
+        ],
+        "id": "la:ululo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "ululo"
+      }
+    },
+    "unifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to unify"
+        ],
+        "id": "fr:unifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "unifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "uniformiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to make uniform, to make consistent (e.g., an aspect of a system); uniformize",
+          "to standardize"
+        ],
+        "id": "fr:uniformiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "uniformiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "unir": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To combine sets using the union operation.",
+              "(set theory) To combine sets using the union operation."
+            ],
+            "id": "en:union:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "union"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:union:verb:0",
+                "id": "edge:072a9c2635e0ac01",
+                "source_template": "der",
+                "to_id": "la:ūniō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To combine sets using the union operation.",
+                  "(set theory) To combine sets using the union operation."
+                ],
+                "id": "en:union:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "union"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ūniō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ūniō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Alternative spelling of Uniate."
+            ],
+            "id": "en:uniat:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "Uniat"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:uniat:noun:0",
+                "id": "edge:afbd708ddec4c550",
+                "source_template": "uder",
+                "to_id": "la:ūniō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Alternative spelling of Uniate."
+                ],
+                "id": "en:uniat:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "Uniat"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ūniō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ūniō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Any of the genus Unio of freshwater mussels"
+            ],
+            "id": "en:unio:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "unio"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:unio:noun:0",
+                "id": "edge:898c8660beb62b00",
+                "source_template": "der",
+                "to_id": "la:ūniō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Any of the genus Unio of freshwater mussels"
+                ],
+                "id": "en:unio:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "unio"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ūniō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ūniō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Any member of the family Unionidae or its order Unionida of freshwater mussels.",
+              "(zoology) Any member of the family Unionidae or its order Unionida of freshwater mussels."
+            ],
+            "id": "en:unionoid:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "unionoid"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:unionoid:noun:0",
+                "id": "edge:47af1c5b8fd2b519",
+                "source_template": "der",
+                "to_id": "la:ūniō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Any member of the family Unionidae or its order Unionida of freshwater mussels.",
+                  "(zoology) Any member of the family Unionidae or its order Unionida of freshwater mussels."
+                ],
+                "id": "en:unionoid:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "unionoid"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ūniō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ūniō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Resembling or characteristic of a unionid."
+            ],
+            "id": "en:unioniform:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "unioniform"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:unioniform:adj:0",
+                "id": "edge:2ce25cd9fff8a43a",
+                "source_template": "der",
+                "to_id": "la:ūniō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Resembling or characteristic of a unionid."
+                ],
+                "id": "en:unioniform:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "unioniform"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ūniō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ūniō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.807,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A monocotyledonous plant (Allium cepa), allied to garlic, used as vegetable and spice.",
+              "The bulb of such a plant."
+            ],
+            "id": "en:onion:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "onion"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "enm:onyoun:noun:0",
+                "id": "edge:dcb0fa233fe64831",
+                "source_template": "der",
+                "to_id": "la:ūniō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The onion plant (Allium cepa).",
+                  "An onion; the bulb of this plant."
+                ],
+                "id": "enm:onyoun:noun:0",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "noun",
+                "word": "onyoun"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ūniō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ūniō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "en:onion:noun:0",
+                "id": "edge:9bc3f0d436099d52",
+                "source_template": "inh",
+                "to_id": "enm:onyoun:noun:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A monocotyledonous plant (Allium cepa), allied to garlic, used as vegetable and spice.",
+                  "The bulb of such a plant."
+                ],
+                "id": "en:onion:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "onion"
+              },
+              "to_node": {
+                "glosses": [
+                  "The onion plant (Allium cepa).",
+                  "An onion; the bulb of this plant."
+                ],
+                "id": "enm:onyoun:noun:0",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "noun",
+                "word": "onyoun"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "inherited_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 6,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to unite, join",
+          "(transitive) to unite, join"
+        ],
+        "id": "fr:unir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "unir"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:unir:verb:0",
+            "id": "edge:042d239bd3213fa0",
+            "source_template": "bor",
+            "to_id": "la:ūniō:unknown:0",
+            "type": "borrowed_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to unite, join",
+              "(transitive) to unite, join"
+            ],
+            "id": "fr:unir:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "unir"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:ūniō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "ūniō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:ūniō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "ūniō"
+      }
+    },
+    "universaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to universalize",
+          "(transitive) to universalize"
+        ],
+        "id": "fr:universaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "universaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "urbaniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to urbanize",
+          "(transitive) to urbanize"
+        ],
+        "id": "fr:urbaniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "urbaniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "urger": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To press; to push; to drive; to impel; to force onward.",
+              "(transitive) To press; to push; to drive; to impel; to force onward."
+            ],
+            "id": "en:urge:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "urge"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:urge:verb:0",
+                "id": "edge:6a8aedfa2dbd8a7f",
+                "source_template": null,
+                "to_id": "la:urgeo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To press; to push; to drive; to impel; to force onward.",
+                  "(transitive) To press; to push; to drive; to impel; to force onward."
+                ],
+                "id": "en:urge:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "urge"
+              },
+              "to_node": {
+                "glosses": [
+                  "to press, push, force, drive, urge (forward); to stimulate",
+                  "to weigh down, burden, oppress"
+                ],
+                "id": "la:urgeo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "urgeo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to be urgent",
+          "(usually impersonal, informal) to be urgent"
+        ],
+        "id": "fr:urger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "urger"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:urger:verb:0",
+            "id": "edge:65bf39369ca0a2eb",
+            "source_template": null,
+            "to_id": "la:urgeo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to be urgent",
+              "(usually impersonal, informal) to be urgent"
+            ],
+            "id": "fr:urger:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "urger"
+          },
+          "to_node": {
+            "glosses": [
+              "to press, push, force, drive, urge (forward); to stimulate",
+              "to weigh down, burden, oppress"
+            ],
+            "id": "la:urgeo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "urgeo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to press, push, force, drive, urge (forward); to stimulate",
+          "to weigh down, burden, oppress"
+        ],
+        "id": "la:urgeo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "urgeo"
+      }
+    },
+    "uriner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to urinate",
+          "(intransitive) to urinate [with de ‘a substance’]"
+        ],
+        "id": "fr:uriner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "uriner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "user": {
+      "english_descendants": [
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To utilize or employ.",
+              "To employ; to apply; to utilize."
+            ],
+            "id": "en:use:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "use"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fro:user:verb:0",
+                "id": "edge:e8e86dede4a6235c",
+                "source_template": "der",
+                "to_id": "la:utor:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to use; to employ; to make use of"
+                ],
+                "id": "fro:user:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "user"
+              },
+              "to_node": {
+                "glosses": [
+                  "to use, make use of, employ",
+                  "to enjoy, indulge in, take advantage of"
+                ],
+                "id": "la:utor:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "utor"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:use:verb:0",
+                "id": "edge:1d87a53de7707c1b",
+                "source_template": null,
+                "to_id": "fro:user:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To utilize or employ.",
+                  "To employ; to apply; to utilize."
+                ],
+                "id": "en:use:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "use"
+              },
+              "to_node": {
+                "glosses": [
+                  "to use; to employ; to make use of"
+                ],
+                "id": "fro:user:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "user"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to wear, wear down, wear off, wear out, grind down, run in",
+          "to use (used with de)"
+        ],
+        "id": "fr:user:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "user"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:user:verb:0",
+            "id": "edge:27762dbf12bc2aa4",
+            "source_template": "der",
+            "to_id": "la:utor:verb:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to wear, wear down, wear off, wear out, grind down, run in",
+              "to use (used with de)"
+            ],
+            "id": "fr:user:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "user"
+          },
+          "to_node": {
+            "glosses": [
+              "to use, make use of, employ",
+              "to enjoy, indulge in, take advantage of"
+            ],
+            "id": "la:utor:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "utor"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to use, make use of, employ",
+          "to enjoy, indulge in, take advantage of"
+        ],
+        "id": "la:utor:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "utor"
+      }
+    },
+    "usiner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to machine",
+          "(transitive) to machine"
+        ],
+        "id": "fr:usiner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "usiner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "usurper": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To seize and hold or use (powers, an office, a coat of arms, a right or copyright, etc) from another, without right (usually by illegitimate means).",
+              "To take the place the place of someone or something else; to supplant."
+            ],
+            "id": "en:usurp:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "usurp"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:usurp:verb:0",
+                "id": "edge:65882dd489a40fbd",
+                "source_template": null,
+                "to_id": "la:usurpo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To seize and hold or use (powers, an office, a coat of arms, a right or copyright, etc) from another, without right (usually by illegitimate means).",
+                  "To take the place the place of someone or something else; to supplant."
+                ],
+                "id": "en:usurp:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "usurp"
+              },
+              "to_node": {
+                "glosses": [
+                  "to use, take into use, make use of, employ, apply, practise, exercise, enjoy; perform, execute",
+                  "to seize, get possession of, acquire, obtain something"
+                ],
+                "id": "la:usurpo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "usurpo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to usurp"
+        ],
+        "id": "fr:usurper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "usurper"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:usurper:verb:0",
+            "id": "edge:9f603cc00bee54ac",
+            "source_template": null,
+            "to_id": "la:usurpo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to usurp"
+            ],
+            "id": "fr:usurper:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "usurper"
+          },
+          "to_node": {
+            "glosses": [
+              "to use, take into use, make use of, employ, apply, practise, exercise, enjoy; perform, execute",
+              "to seize, get possession of, acquire, obtain something"
+            ],
+            "id": "la:usurpo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "usurpo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to use, take into use, make use of, employ, apply, practise, exercise, enjoy; perform, execute",
+          "to seize, get possession of, acquire, obtain something"
+        ],
+        "id": "la:usurpo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "usurpo"
+      }
+    },
+    "utiliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to use, to utilize"
+        ],
+        "id": "fr:utiliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "utiliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    }
+  }
+}

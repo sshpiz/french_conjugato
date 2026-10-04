@@ -75,13 +75,39 @@ function appFallbackShell(pathname) {
   });
 }
 
+// Strip redirect metadata from cached HTML before it is used for navigation.
+// Chrome rejects redirected responses for navigation requests with redirect=manual.
+function navigationSafeResponse(response) {
+  if (!response || !response.redirected) return response;
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers
+  });
+}
+
+async function repairRedirectedDocuments(cache) {
+  for (const request of await cache.keys()) {
+    const response = await cache.match(request);
+    if (response?.redirected && /text\/html/i.test(response.headers.get('Content-Type') || '')) {
+      await cache.put(request, navigationSafeResponse(response));
+    }
+  }
+}
+
 self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
+      // Repair existing document caches before any network-dependent warmup.
+      // Older active workers can then keep serving them while this update installs.
+      for (const name of await caches.keys()) {
+        if (name.startsWith(CACHE_PREFIX)) await repairRedirectedDocuments(await caches.open(name));
+      }
       for (const path of ROOT_PATHS) {
         try {
-          await cache.add(path);
+          const response = await fetch(path);
+          if (response.ok) await cache.put(path, navigationSafeResponse(response));
         } catch (_) {}
       }
     })
@@ -92,7 +118,10 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => Promise.all(
       keys.filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME).map(key => caches.delete(key))
-    )).then(() => self.clients.claim())
+    )).then(async () => {
+      await repairRedirectedDocuments(await caches.open(CACHE_NAME));
+      await self.clients.claim();
+    })
   );
 });
 
@@ -106,12 +135,15 @@ self.addEventListener('fetch', event => {
   }
 
   if (isNavigationRequest(event.request, url) && appRouteFor(url.pathname)) {
-    event.respondWith(serveAppNavigation(event.request, url));
+    event.respondWith(serveAppNavigation(event.request, url)
+      .then(navigationSafeResponse)
+      .catch(() => appFallbackShell(url.pathname)));
     return;
   }
 
   if (ROOT_PATHS.has(url.pathname)) {
-    event.respondWith(serveRootRequest(event.request, url));
+    event.respondWith(serveRootRequest(event.request, url)
+      .then(response => isNavigationRequest(event.request, url) ? navigationSafeResponse(response) : response));
   }
 });
 
@@ -121,9 +153,9 @@ async function serveRootRequest(request, url) {
   try {
     const response = await fetch(request, { cache: 'no-store' });
     if (response.ok) {
-      await cache.put(request, response.clone());
+      await cache.put(request, navigationSafeResponse(response.clone()));
       if (url.pathname === '/') {
-        await cache.put('/index.html', response.clone());
+        await cache.put('/index.html', navigationSafeResponse(response.clone()));
       }
     }
     return response;
@@ -141,9 +173,9 @@ async function serveAppNavigation(request, url) {
   try {
     const response = await fetch(request, { cache: 'no-store' });
     if (response.ok) {
-      await cache.put(request, response.clone());
+      await cache.put(request, navigationSafeResponse(response.clone()));
       if (indexPath) {
-        await cache.put(indexPath, response.clone());
+        await cache.put(indexPath, navigationSafeResponse(response.clone()));
       }
     }
     return response;

@@ -1,0 +1,23 @@
+Offline voice preview dependencies (unmodified upstream runtime binaries)
+
+ONNX Runtime Web 1.18.0 — Microsoft and contributors, MIT.
+Source: https://github.com/microsoft/onnxruntime/tree/v1.18.0
+Distribution: https://www.npmjs.com/package/onnxruntime-web/v/1.18.0
+License: ONNX-LICENSE.txt
+
+Piper WASM 1.0.0 — diffusionstudio, wrapping Piper phonemization and eSpeak NG.
+Distribution: https://www.npmjs.com/package/@diffusionstudio/piper-wasm/v/1.0.0
+Build instructions and source dependencies:
+https://github.com/diffusionstudio/piper-wasm
+https://github.com/wide-video/piper-phonemize
+https://github.com/rhasspy/espeak-ng
+Piper: MIT (PIPER-LICENSE.txt). eSpeak NG: GPL v3 or later (ESPEAK-LICENSE.txt).
+
+UPMC French voice, rhasspy/piper-voices, medium; Jessica and Pierre speakers.
+Model fetched on request from pinned revision c10ece1aade47bb51c153c893d14e5bf8e5b7117.
+Dataset source: https://github.com/marytts/upmc-pierre-data
+Dataset license: Creative Commons Attribution ShareAlike 4.0.
+https://creativecommons.org/licenses/by-sa/4.0/
+Model card:
+https://huggingface.co/rhasspy/piper-voices/blob/c10ece1aade47bb51c153c893d14e5bf8e5b7117/fr/fr_FR/upmc/medium/MODEL_CARD
+No training or changes to the model weights.

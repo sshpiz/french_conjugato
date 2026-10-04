@@ -1,0 +1,5956 @@
+{
+  "metadata": {
+    "shard": "l",
+    "verbs": 103
+  },
+  "verbs": {
+    "labelliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to label",
+          "to approve, to give official status to"
+        ],
+        "id": "fr:labelliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "labelliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "labialiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to labialize"
+        ],
+        "id": "fr:labialiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "labialiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "labourer": {
+      "english_descendants": [
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "Alternative spelling of labour.",
+              "(chiefly American spelling) Alternative spelling of labour."
+            ],
+            "id": "en:labor:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "labor"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fro:laborer:verb:0",
+                "id": "edge:1f0902e14f9d4747",
+                "source_template": "der",
+                "to_id": "la:labōrō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to work; to labor"
+                ],
+                "id": "fro:laborer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "laborer"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:labōrō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "labōrō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:labor:verb:0",
+                "id": "edge:077782c5b61600fd",
+                "source_template": null,
+                "to_id": "fro:laborer:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Alternative spelling of labour.",
+                  "(chiefly American spelling) Alternative spelling of labour."
+                ],
+                "id": "en:labor:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "labor"
+              },
+              "to_node": {
+                "glosses": [
+                  "to work; to labor"
+                ],
+                "id": "fro:laborer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "laborer"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To toil, to work.",
+              "(intransitive) To toil, to work."
+            ],
+            "id": "en:labour:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "labour"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fro:laborer:verb:0",
+                "id": "edge:1f0902e14f9d4747",
+                "source_template": "der",
+                "to_id": "la:labōrō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to work; to labor"
+                ],
+                "id": "fro:laborer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "laborer"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:labōrō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "labōrō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:labour:verb:2",
+                "id": "edge:38f266ac52066dee",
+                "source_template": null,
+                "to_id": "fro:laborer:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To toil, to work.",
+                  "(intransitive) To toil, to work."
+                ],
+                "id": "en:labour:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "labour"
+              },
+              "to_node": {
+                "glosses": [
+                  "to work; to labor"
+                ],
+                "id": "fro:laborer:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "laborer"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to plough",
+          "(transitive) to plough"
+        ],
+        "id": "fr:labourer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "labourer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:labourer:verb:0",
+            "id": "edge:252ae223099ea2a6",
+            "source_template": "bor",
+            "to_id": "la:labōrō:unknown:0",
+            "type": "borrowed_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to plough",
+              "(transitive) to plough"
+            ],
+            "id": "fr:labourer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "labourer"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:labōrō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "labōrō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:labōrō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "labōrō"
+      }
+    },
+    "labéliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "alternative form of labelliser"
+        ],
+        "id": "fr:labéliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "labéliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lacer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To fasten (something) with laces.",
+              "(ergative) To fasten (something) with laces."
+            ],
+            "id": "en:lace:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lace"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lace:verb:2",
+                "id": "edge:4cf5c9e96998e193",
+                "source_template": null,
+                "to_id": "la:laqueo:verb:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To fasten (something) with laces.",
+                  "(ergative) To fasten (something) with laces."
+                ],
+                "id": "en:lace:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lace"
+              },
+              "to_node": {
+                "glosses": [
+                  "to noose, entangle, ensnare"
+                ],
+                "id": "la:laqueo:verb:1",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "laqueo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To strike with a lash; to whip or scourge with a lash, or with something like one.",
+              "(transitive) To strike with a lash; to whip or scourge with a lash, or with something like one."
+            ],
+            "id": "en:lash:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lash"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:lacier:verb:0",
+                "id": "edge:f0e78ecb88d37491",
+                "source_template": null,
+                "to_id": "la:laqueo:verb:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to lace (tie up with laces)"
+                ],
+                "id": "fro:lacier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lacier"
+              },
+              "to_node": {
+                "glosses": [
+                  "to noose, entangle, ensnare"
+                ],
+                "id": "la:laqueo:verb:1",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "laqueo"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lash:verb:1",
+                "id": "edge:1e27e6fbaaf15d38",
+                "source_template": null,
+                "to_id": "fro:lacier:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To strike with a lash; to whip or scourge with a lash, or with something like one.",
+                  "(transitive) To strike with a lash; to whip or scourge with a lash, or with something like one."
+                ],
+                "id": "en:lash:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lash"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lace (tie up with laces)"
+                ],
+                "id": "fro:lacier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lacier"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lace, to lace up"
+        ],
+        "id": "fr:lacer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lacer"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:lacer:verb:0",
+            "id": "edge:06ab0e2dc8339bfc",
+            "source_template": "inh",
+            "to_id": "la:laqueo:verb:1",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to lace, to lace up"
+            ],
+            "id": "fr:lacer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lacer"
+          },
+          "to_node": {
+            "glosses": [
+              "to noose, entangle, ensnare"
+            ],
+            "id": "la:laqueo:verb:1",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "laqueo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to noose, entangle, ensnare"
+        ],
+        "id": "la:laqueo:verb:1",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "laqueo"
+      }
+    },
+    "lacérer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To tear, rip or wound.",
+              "(transitive) To tear, rip or wound."
+            ],
+            "id": "en:lacerate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lacerate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lacerate:verb:0",
+                "id": "edge:920f77fb7ca08f98",
+                "source_template": null,
+                "to_id": "la:lacero:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To tear, rip or wound.",
+                  "(transitive) To tear, rip or wound."
+                ],
+                "id": "en:lacerate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lacerate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to rend, tear to pieces",
+                  "to mutilate, lacerate"
+                ],
+                "id": "la:lacero:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "lacero"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "lacerate (to tear, rip or wound)"
+        ],
+        "id": "fr:lacérer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lacérer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:lacérer:verb:0",
+            "id": "edge:0cd853fea7867965",
+            "source_template": null,
+            "to_id": "la:lacero:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "lacerate (to tear, rip or wound)"
+            ],
+            "id": "fr:lacérer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lacérer"
+          },
+          "to_node": {
+            "glosses": [
+              "to rend, tear to pieces",
+              "to mutilate, lacerate"
+            ],
+            "id": "la:lacero:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "lacero"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to rend, tear to pieces",
+          "to mutilate, lacerate"
+        ],
+        "id": "la:lacero:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "lacero"
+      }
+    },
+    "laisser": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To grant a lease as a landlord; to let.",
+              "(transitive, formal, law) To grant a lease as a landlord; to let."
+            ],
+            "id": "en:lease:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lease"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:lease:verb:1",
+                "id": "edge:65bf3325804c41c2",
+                "source_template": "der",
+                "to_id": "la:laxō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To grant a lease as a landlord; to let.",
+                  "(transitive, formal, law) To grant a lease as a landlord; to let."
+                ],
+                "id": "en:lease:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lease"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:laxō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "laxō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To fasten or secure with a leash.",
+              "to curb, restrain"
+            ],
+            "id": "en:leash:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "leash"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:leash:verb:0",
+                "id": "edge:ac293c268ed111b6",
+                "source_template": "der",
+                "to_id": "la:laxō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To fasten or secure with a leash.",
+                  "to curb, restrain"
+                ],
+                "id": "en:leash:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "leash"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:laxō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "laxō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "present participle of lease (“to tell lies”)"
+            ],
+            "id": "en:leasing:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "leasing"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:lease:noun:1",
+                "id": "edge:c3013efff6df22a4",
+                "source_template": "der",
+                "to_id": "la:laxō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "An interest in land granting exclusive use or occupation of real estate for a limited period; a leasehold.",
+                  "(formal, law) An interest in land granting exclusive use or occupation of real estate for a limited period; a leasehold."
+                ],
+                "id": "en:lease:noun:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "lease"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:laxō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "laxō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:leasing:verb:2",
+                "id": "edge:df4cec6dba551cbe",
+                "source_template": null,
+                "to_id": "en:lease:noun:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "present participle of lease (“to tell lies”)"
+                ],
+                "id": "en:leasing:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "leasing"
+              },
+              "to_node": {
+                "glosses": [
+                  "An interest in land granting exclusive use or occupation of real estate for a limited period; a leasehold.",
+                  "(formal, law) An interest in land granting exclusive use or occupation of real estate for a limited period; a leasehold."
+                ],
+                "id": "en:lease:noun:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "lease"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to leave, to leave behind",
+          "(transitive) to leave, to leave behind"
+        ],
+        "id": "fr:laisser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laisser"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:laisser:verb:0",
+            "id": "edge:bc488f0e2be2232a",
+            "source_template": "inh",
+            "to_id": "la:laxō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to leave, to leave behind",
+              "(transitive) to leave, to leave behind"
+            ],
+            "id": "fr:laisser:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "laisser"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:laxō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "laxō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:laxō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "laxō"
+      }
+    },
+    "lambiner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to dawdle",
+          "(intransitive) to dawdle"
+        ],
+        "id": "fr:lambiner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lambiner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lambrisser": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The fox grape (Vitis labrusca)."
+            ],
+            "id": "en:labrusca:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "labrusca"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:labrusca:noun:0",
+                "id": "edge:fdf933cd01e9139f",
+                "source_template": "der",
+                "to_id": "la:labrusca:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The fox grape (Vitis labrusca)."
+                ],
+                "id": "en:labrusca:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "labrusca"
+              },
+              "to_node": {
+                "glosses": [
+                  "the plant of the woodland grape (Vitis vinifera subsp. sylvestris)"
+                ],
+                "id": "la:labrusca:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "labrusca"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to panel"
+        ],
+        "id": "fr:lambrisser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lambrisser"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:lambrisser:verb:0",
+            "id": "edge:70e6d017ab205327",
+            "source_template": "inh",
+            "to_id": "la:labrusca:noun:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to panel"
+            ],
+            "id": "fr:lambrisser:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lambrisser"
+          },
+          "to_node": {
+            "glosses": [
+              "the plant of the woodland grape (Vitis vinifera subsp. sylvestris)"
+            ],
+            "id": "la:labrusca:noun:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "noun",
+            "word": "labrusca"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "the plant of the woodland grape (Vitis vinifera subsp. sylvestris)"
+        ],
+        "id": "la:labrusca:noun:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "noun",
+        "word": "labrusca"
+      }
+    },
+    "lamenter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To express grief; to weep or wail; to mourn.",
+              "(intransitive) To express grief; to weep or wail; to mourn."
+            ],
+            "id": "en:lament:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lament"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lament:verb:0",
+                "id": "edge:f33c385b37b19ed1",
+                "source_template": null,
+                "to_id": "la:lamento:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To express grief; to weep or wail; to mourn.",
+                  "(intransitive) To express grief; to weep or wail; to mourn."
+                ],
+                "id": "en:lament:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lament"
+              },
+              "to_node": {
+                "glosses": [
+                  "alternative form of lāmentor",
+                  "(transitive) alternative form of lāmentor"
+                ],
+                "id": "la:lamento:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "lamento"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lament; to bewail; to bemoan",
+          "(reflexive) to lament; to bewail; to bemoan"
+        ],
+        "id": "fr:lamenter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lamenter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:lamenter:verb:0",
+            "id": "edge:0d2b2d9a994d51d5",
+            "source_template": null,
+            "to_id": "la:lamento:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to lament; to bewail; to bemoan",
+              "(reflexive) to lament; to bewail; to bemoan"
+            ],
+            "id": "fr:lamenter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lamenter"
+          },
+          "to_node": {
+            "glosses": [
+              "alternative form of lāmentor",
+              "(transitive) alternative form of lāmentor"
+            ],
+            "id": "la:lamento:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "lamento"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "alternative form of lāmentor",
+          "(transitive) alternative form of lāmentor"
+        ],
+        "id": "la:lamento:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "lamento"
+      }
+    },
+    "lamer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to flatten",
+          "(transitive) to flatten"
+        ],
+        "id": "fr:lamer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lamer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "laminer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A thin layer, plate, or scale of material.",
+              "Either of two broad, flat plates of bone of a vertebra that is fused with and extends from the pedicle to the median line of the neural arch to form the base of the spinous process and that along with the pedicle forms the posterior part of the vertebral foramen."
+            ],
+            "id": "en:lamina:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "lamina"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lamina:noun:0",
+                "id": "edge:fc1e1675bf6df92c",
+                "source_template": null,
+                "to_id": "la:lamina:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A thin layer, plate, or scale of material.",
+                  "Either of two broad, flat plates of bone of a vertebra that is fused with and extends from the pedicle to the median line of the neural arch to form the base of the spinous process and that along with the pedicle forms the posterior part of the vertebral foramen."
+                ],
+                "id": "en:lamina:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "lamina"
+              },
+              "to_node": {
+                "glosses": [
+                  "a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer",
+                  "(literally, Classical Latin) a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer"
+                ],
+                "id": "la:lamina:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "lamina"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "Small steel plates combined so as to slide one upon other and form a piece of armour: plural of lame."
+            ],
+            "id": "en:lames:noun:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "lames"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fr:lame:noun:0",
+                "id": "edge:f7bec3048286378a",
+                "source_template": null,
+                "to_id": "la:lamina:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "lamina",
+                  "blade"
+                ],
+                "id": "fr:lame:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "lame"
+              },
+              "to_node": {
+                "glosses": [
+                  "a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer",
+                  "(literally, Classical Latin) a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer"
+                ],
+                "id": "la:lamina:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "lamina"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lames:noun:2",
+                "id": "edge:9051667f06de3032",
+                "source_template": "bor",
+                "to_id": "fr:lame:noun:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Small steel plates combined so as to slide one upon other and form a piece of armour: plural of lame."
+                ],
+                "id": "en:lames:noun:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "lames"
+              },
+              "to_node": {
+                "glosses": [
+                  "lamina",
+                  "blade"
+                ],
+                "id": "fr:lame:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "lame"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to laminate",
+          "to laminate [metal]"
+        ],
+        "id": "fr:laminer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laminer"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:laminer:verb:0",
+            "id": "edge:4631aa445b6706e4",
+            "source_template": "der",
+            "to_id": "la:lamina:noun:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to laminate",
+              "to laminate [metal]"
+            ],
+            "id": "fr:laminer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "laminer"
+          },
+          "to_node": {
+            "glosses": [
+              "a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer",
+              "(literally, Classical Latin) a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer"
+            ],
+            "id": "la:lamina:noun:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "noun",
+            "word": "lamina"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer",
+          "(literally, Classical Latin) a thin piece or sheet of metal, wood, marble, etc.; a plate, leaf, layer"
+        ],
+        "id": "la:lamina:noun:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "noun",
+        "word": "lamina"
+      }
+    },
+    "lamper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to quaff, to swig",
+          "(transitive) to quaff, to swig"
+        ],
+        "id": "fr:lamper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lamper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lancer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To pierce with a lance, or with any similar weapon.",
+              "To open with a lancet; to prick or cut open with a sharp instrument; to pierce."
+            ],
+            "id": "en:lance:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lance"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lance:verb:0",
+                "id": "edge:43260871dbf0c622",
+                "source_template": null,
+                "to_id": "la:lancea:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To pierce with a lance, or with any similar weapon.",
+                  "To open with a lancet; to prick or cut open with a sharp instrument; to pierce."
+                ],
+                "id": "en:lance:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lance"
+              },
+              "to_node": {
+                "glosses": [
+                  "The Roman auxiliaries' short javelin; a light spear or lance."
+                ],
+                "id": "la:lancea:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "lancea"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "Obsolete form of lance."
+            ],
+            "id": "en:launce:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "launce"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "enm:launce:noun:1",
+                "id": "edge:9a8e64f4d9f57ef0",
+                "source_template": null,
+                "to_id": "la:lancea:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A lance (long spear).",
+                  "A javelin (throwing spear)."
+                ],
+                "id": "enm:launce:noun:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "noun",
+                "word": "launce"
+              },
+              "to_node": {
+                "glosses": [
+                  "The Roman auxiliaries' short javelin; a light spear or lance."
+                ],
+                "id": "la:lancea:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "lancea"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:launce:verb:1",
+                "id": "edge:b2112f95ae4697ed",
+                "source_template": null,
+                "to_id": "enm:launce:noun:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Obsolete form of lance."
+                ],
+                "id": "en:launce:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "launce"
+              },
+              "to_node": {
+                "glosses": [
+                  "A lance (long spear).",
+                  "A javelin (throwing spear)."
+                ],
+                "id": "enm:launce:noun:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "noun",
+                "word": "launce"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.807,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To throw like a lance; to hurl.",
+              "(transitive, archaic) To throw like a lance; to hurl."
+            ],
+            "id": "en:elance:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "elance"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fr:lancer:verb:0",
+                "id": "edge:89ccf824fc29e8a0",
+                "source_template": "inh",
+                "to_id": "la:lancea:noun:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to throw",
+                  "to start, to launch"
+                ],
+                "id": "fr:lancer:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lancer"
+              },
+              "to_node": {
+                "glosses": [
+                  "The Roman auxiliaries' short javelin; a light spear or lance."
+                ],
+                "id": "la:lancea:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "lancea"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:elance:verb:0",
+                "id": "edge:4d3ecab02f5cbdac",
+                "source_template": "uder",
+                "to_id": "fr:lancer:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To throw like a lance; to hurl.",
+                  "(transitive, archaic) To throw like a lance; to hurl."
+                ],
+                "id": "en:elance:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "elance"
+              },
+              "to_node": {
+                "glosses": [
+                  "to throw",
+                  "to start, to launch"
+                ],
+                "id": "fr:lancer:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lancer"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A car manufactured by Lancia."
+            ],
+            "id": "en:lancia:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "Lancia"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "it:lancia:unknown:0",
+                "id": "edge:2f7f5faa5895c2c9",
+                "source_template": null,
+                "to_id": "la:lancea:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [],
+                "id": "it:lancia:unknown:0",
+                "lang": null,
+                "lang_code": "it",
+                "pos": null,
+                "word": "lancia"
+              },
+              "to_node": {
+                "glosses": [
+                  "The Roman auxiliaries' short javelin; a light spear or lance."
+                ],
+                "id": "la:lancea:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "lancea"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lancia:noun:0",
+                "id": "edge:eb9f189c18607fb6",
+                "source_template": "bor",
+                "to_id": "it:lancia:unknown:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A car manufactured by Lancia."
+                ],
+                "id": "en:lancia:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "Lancia"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "it:lancia:unknown:0",
+                "lang": null,
+                "lang_code": "it",
+                "pos": null,
+                "word": "lancia"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 4,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to throw",
+          "to start, to launch"
+        ],
+        "id": "fr:lancer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lancer"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:lancer:verb:0",
+            "id": "edge:89ccf824fc29e8a0",
+            "source_template": "inh",
+            "to_id": "la:lancea:noun:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to throw",
+              "to start, to launch"
+            ],
+            "id": "fr:lancer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lancer"
+          },
+          "to_node": {
+            "glosses": [
+              "The Roman auxiliaries' short javelin; a light spear or lance."
+            ],
+            "id": "la:lancea:noun:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "noun",
+            "word": "lancea"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "The Roman auxiliaries' short javelin; a light spear or lance."
+        ],
+        "id": "la:lancea:noun:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "noun",
+        "word": "lancea"
+      }
+    },
+    "lanciner": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To pierce or stab (as with a lance); to lance.",
+              "(transitive) To pierce or stab (as with a lance); to lance."
+            ],
+            "id": "en:lancinate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lancinate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lancinate:verb:0",
+                "id": "edge:1bafd209716abaeb",
+                "source_template": null,
+                "to_id": "la:lancino:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To pierce or stab (as with a lance); to lance.",
+                  "(transitive) To pierce or stab (as with a lance); to lance."
+                ],
+                "id": "en:lancinate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lancinate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to rend, mangle, lacerate (tear to pieces)"
+                ],
+                "id": "la:lancino:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "lancino"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to inflict a sharp pain",
+          "to torment, to trouble"
+        ],
+        "id": "fr:lanciner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lanciner"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:lanciner:verb:0",
+            "id": "edge:a4081478f3663f4d",
+            "source_template": null,
+            "to_id": "la:lancino:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to inflict a sharp pain",
+              "to torment, to trouble"
+            ],
+            "id": "fr:lanciner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lanciner"
+          },
+          "to_node": {
+            "glosses": [
+              "to rend, mangle, lacerate (tear to pieces)"
+            ],
+            "id": "la:lancino:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "lancino"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to rend, mangle, lacerate (tear to pieces)"
+        ],
+        "id": "la:lancino:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "lancino"
+      }
+    },
+    "langer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to diaper (to put diapers on someone); change a baby"
+        ],
+        "id": "fr:langer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "langer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "languir": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To lose strength and become weak; to be in a state of weakness or sickness.",
+              "(intransitive) To lose strength and become weak; to be in a state of weakness or sickness."
+            ],
+            "id": "en:languish:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "languish"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:languish:verb:0",
+                "id": "edge:68885101a3927484",
+                "source_template": "der",
+                "to_id": "la:langueo:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To lose strength and become weak; to be in a state of weakness or sickness.",
+                  "(intransitive) To lose strength and become weak; to be in a state of weakness or sickness."
+                ],
+                "id": "en:languish:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "languish"
+              },
+              "to_node": {
+                "glosses": [
+                  "to be faint, weak",
+                  "to be inactive, listless, idle"
+                ],
+                "id": "la:langueo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "langueo"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to languish",
+          "(intransitive) to languish"
+        ],
+        "id": "fr:languir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "languir"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:languir:verb:0",
+            "id": "edge:bb3b82d4056e05a3",
+            "source_template": "inh",
+            "to_id": "la:langueo:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to languish",
+              "(intransitive) to languish"
+            ],
+            "id": "fr:languir:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "languir"
+          },
+          "to_node": {
+            "glosses": [
+              "to be faint, weak",
+              "to be inactive, listless, idle"
+            ],
+            "id": "la:langueo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "langueo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to be faint, weak",
+          "to be inactive, listless, idle"
+        ],
+        "id": "la:langueo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "langueo"
+      }
+    },
+    "lanterner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to dilly-dally",
+          "(intransitive) to dilly-dally"
+        ],
+        "id": "fr:lanterner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lanterner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "laper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lap (a liquid)",
+          "(transitive) to lap (a liquid)"
+        ],
+        "id": "fr:laper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lapider": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to stone; to lapidate (pelt with stones)",
+          "to attack verbally"
+        ],
+        "id": "fr:lapider:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lapider"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lapidifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lapidify"
+        ],
+        "id": "fr:lapidifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lapidifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "laquer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lacquer",
+          "(transitive) to lacquer"
+        ],
+        "id": "fr:laquer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laquer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "larder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lard; to smear food with lard",
+          "to stab; to pierce"
+        ],
+        "id": "fr:larder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "larder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "larguer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Of considerable or relatively great size or extent.",
+              "That is large (the manufactured size)."
+            ],
+            "id": "en:large:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "large"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:large:adj:0",
+                "id": "edge:116273c711600b79",
+                "source_template": null,
+                "to_id": "la:largior:verb:2",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Of considerable or relatively great size or extent.",
+                  "That is large (the manufactured size)."
+                ],
+                "id": "en:large:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "large"
+              },
+              "to_node": {
+                "glosses": [
+                  "to grant, bestow, dispense, distribute, impart",
+                  "to lavish or bestow"
+                ],
+                "id": "la:largior:verb:2",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "largior"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to unfurl",
+          "(nautical, transitive) to unfurl"
+        ],
+        "id": "fr:larguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "larguer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:larguer:verb:0",
+            "id": "edge:1360f4dd866d30f7",
+            "source_template": null,
+            "to_id": "la:largior:verb:2",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to unfurl",
+              "(nautical, transitive) to unfurl"
+            ],
+            "id": "fr:larguer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "larguer"
+          },
+          "to_node": {
+            "glosses": [
+              "to grant, bestow, dispense, distribute, impart",
+              "to lavish or bestow"
+            ],
+            "id": "la:largior:verb:2",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "largior"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to grant, bestow, dispense, distribute, impart",
+          "to lavish or bestow"
+        ],
+        "id": "la:largior:verb:2",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "largior"
+      }
+    },
+    "larmoyer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to weep, sob",
+          "(intransitive, of a person) to weep, sob"
+        ],
+        "id": "fr:larmoyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "larmoyer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lasser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to tire, weary, bore",
+          "(transitive) to tire, weary, bore"
+        ],
+        "id": "fr:lasser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lasser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "latiniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to Latinize"
+        ],
+        "id": "fr:latiniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "latiniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "latter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lath"
+        ],
+        "id": "fr:latter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "latter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "laurer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to crown, or decorate, with laurels"
+        ],
+        "id": "fr:laurer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laurer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "laver": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To wash; to wash, and to smooth with a flatiron or mangle; to wash and iron.",
+              "To lave; to wet."
+            ],
+            "id": "en:launder:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "launder"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:launder:verb:0",
+                "id": "edge:95585f3f6d1be81d",
+                "source_template": "der",
+                "to_id": "la:lavō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To wash; to wash, and to smooth with a flatiron or mangle; to wash and iron.",
+                  "To lave; to wet."
+                ],
+                "id": "en:launder:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "launder"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:lavō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "lavō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To bathe or wash (someone or something).",
+              "(transitive)"
+            ],
+            "id": "en:lave:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lave"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:lave:verb:1",
+                "id": "edge:6e0c8d62da45c405",
+                "source_template": "der",
+                "to_id": "la:lavō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To bathe or wash (someone or something).",
+                  "(transitive)"
+                ],
+                "id": "en:lave:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lave"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:lavō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "lavō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A vessel or fixture for washing, particularly",
+              "A vessel or fixture for washing, particularly:"
+            ],
+            "id": "en:lavatory:noun:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "lavatory"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:lavatory:noun:1",
+                "id": "edge:f9998c73f257b127",
+                "source_template": "der",
+                "to_id": "la:lavō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A vessel or fixture for washing, particularly",
+                  "A vessel or fixture for washing, particularly:"
+                ],
+                "id": "en:lavatory:noun:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "lavatory"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:lavō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "lavō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to wash",
+          "to wash oneself"
+        ],
+        "id": "fr:laver:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laver"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:laver:verb:0",
+            "id": "edge:7ef1a74aa1d78d1f",
+            "source_template": "inh",
+            "to_id": "la:lavō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to wash",
+              "to wash oneself"
+            ],
+            "id": "fr:laver:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "laver"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:lavō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "lavō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:lavō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "lavō"
+      }
+    },
+    "layer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to trail a path in a forest",
+          "(forestry, transitive) to trail a path in a forest"
+        ],
+        "id": "fr:layer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "layer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "laïciser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to laicize; to secularize",
+          "(transitive) to laicize; to secularize"
+        ],
+        "id": "fr:laïciser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laïciser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "laïusser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to waffle"
+        ],
+        "id": "fr:laïusser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "laïusser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lessiver": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to launder, to wash clothes",
+          "(transitive) to launder, to wash clothes"
+        ],
+        "id": "fr:lessiver:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lessiver"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lester": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to ballast",
+          "(transitive) to ballast"
+        ],
+        "id": "fr:lester:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lester"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lettrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to send a letter (to someone)",
+          "(transitive, archaic) to send a letter (to someone)"
+        ],
+        "id": "fr:lettrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lettrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "leurrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to deceive, lure"
+        ],
+        "id": "fr:leurrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "leurrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lever": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To add a leavening agent.",
+              "(transitive) To add a leavening agent."
+            ],
+            "id": "en:leaven:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "leaven"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:leaven:verb:0",
+                "id": "edge:9d8748ba28f5a75a",
+                "source_template": "der",
+                "to_id": "la:levō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To add a leavening agent.",
+                  "(transitive) To add a leavening agent."
+                ],
+                "id": "en:leaven:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "leaven"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:levō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "levō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "An easterly wind, generally in the western Mediterranean Sea.",
+              "A type of leather."
+            ],
+            "id": "en:levant:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "Levant"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:levant:noun:0",
+                "id": "edge:0c60fa5bd10b4d39",
+                "source_template": "der",
+                "to_id": "la:levō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "An easterly wind, generally in the western Mediterranean Sea.",
+                  "A type of leather."
+                ],
+                "id": "en:levant:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "Levant"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:levō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "levō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.807,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To raise; to levy.",
+              "(obsolete) To raise; to levy."
+            ],
+            "id": "en:leave:verb:5",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "leave"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fr:lever:verb:0",
+                "id": "edge:f3c47ffeffe0a5cd",
+                "source_template": "inh",
+                "to_id": "la:levō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to raise, lift",
+                  "(transitive) to raise, lift"
+                ],
+                "id": "fr:lever:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lever"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:levō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "levō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:leave:verb:5",
+                "id": "edge:089899961a551678",
+                "source_template": "der",
+                "to_id": "fr:lever:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To raise; to levy.",
+                  "(obsolete) To raise; to levy."
+                ],
+                "id": "en:leave:verb:5",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "leave"
+              },
+              "to_node": {
+                "glosses": [
+                  "to raise, lift",
+                  "(transitive) to raise, lift"
+                ],
+                "id": "fr:lever:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lever"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A levee.",
+              "(rare) A levee."
+            ],
+            "id": "en:lever:noun:3",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "lever"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fr:lever:verb:0",
+                "id": "edge:f3c47ffeffe0a5cd",
+                "source_template": "inh",
+                "to_id": "la:levō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to raise, lift",
+                  "(transitive) to raise, lift"
+                ],
+                "id": "fr:lever:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lever"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:levō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "levō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lever:noun:3",
+                "id": "edge:d0eef4917af790b8",
+                "source_template": "bor",
+                "to_id": "fr:lever:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A levee.",
+                  "(rare) A levee."
+                ],
+                "id": "en:lever:noun:3",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "lever"
+              },
+              "to_node": {
+                "glosses": [
+                  "to raise, lift",
+                  "(transitive) to raise, lift"
+                ],
+                "id": "fr:lever:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lever"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 4,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to raise, lift",
+          "(transitive) to raise, lift"
+        ],
+        "id": "fr:lever:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lever"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:lever:verb:0",
+            "id": "edge:f3c47ffeffe0a5cd",
+            "source_template": "inh",
+            "to_id": "la:levō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to raise, lift",
+              "(transitive) to raise, lift"
+            ],
+            "id": "fr:lever:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lever"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:levō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "levō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:levō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "levō"
+      }
+    },
+    "lexicaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "lexicalize (to convert to a single lexical unit)"
+        ],
+        "id": "fr:lexicaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lexicaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "liarder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to skimp (be parsimonious)",
+          "(intransitive) to skimp (be parsimonious)"
+        ],
+        "id": "fr:liarder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "liarder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "libeller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to write; make out; write out (a check)",
+          "(transitive) to write; make out; write out (a check)"
+        ],
+        "id": "fr:libeller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "libeller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "libéraliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to liberalize (to make liberal)"
+        ],
+        "id": "fr:libéraliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "libéraliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "libérer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to liberate, to set free, to release from captivity",
+          "to vacate, to move out of (e.g. a house)"
+        ],
+        "id": "fr:libérer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "libérer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "licencier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to fire, to sack (to terminate the employment of)",
+          "to license"
+        ],
+        "id": "fr:licencier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "licencier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "liciter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to auction",
+          "(transitive, law) to auction"
+        ],
+        "id": "fr:liciter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "liciter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lier": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To form an association; to unite in a league or confederacy; to combine for mutual support.",
+              "(ambitransitive) To form an association; to unite in a league or confederacy; to combine for mutual support."
+            ],
+            "id": "en:league:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "league"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:league:verb:1",
+                "id": "edge:6cd9677189623603",
+                "source_template": "der",
+                "to_id": "la:ligō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To form an association; to unite in a league or confederacy; to combine for mutual support.",
+                  "(ambitransitive) To form an association; to unite in a league or confederacy; to combine for mutual support."
+                ],
+                "id": "en:league:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "league"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A style of performance characterized by smoothly connected notes.",
+              "(music) A style of performance characterized by smoothly connected notes."
+            ],
+            "id": "en:legato:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "legato"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:legato:noun:0",
+                "id": "edge:84893b559ae655e0",
+                "source_template": "der",
+                "to_id": "la:ligō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A style of performance characterized by smoothly connected notes.",
+                  "(music) A style of performance characterized by smoothly connected notes."
+                ],
+                "id": "en:legato:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "legato"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Any of a class of transmembrane proteins that bind to neurexins",
+              "(biochemistry) Any of a class of transmembrane proteins that bind to neurexins"
+            ],
+            "id": "en:neuroligin:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "neuroligin"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:neuroligin:noun:0",
+                "id": "edge:d5c39ca7ea419bfd",
+                "source_template": "der",
+                "to_id": "la:ligō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Any of a class of transmembrane proteins that bind to neurexins",
+                  "(biochemistry) Any of a class of transmembrane proteins that bind to neurexins"
+                ],
+                "id": "en:neuroligin:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "neuroligin"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To liaise.",
+              "(proscribed) To liaise."
+            ],
+            "id": "en:liaison:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "liaison"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fr:liaison:noun:0",
+                "id": "edge:827f5fe51207b43c",
+                "source_template": "inh",
+                "to_id": "la:ligō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "link, bond",
+                  "friendship"
+                ],
+                "id": "fr:liaison:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "liaison"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:liaison:verb:0",
+                "id": "edge:bac1a5fc03e138b0",
+                "source_template": null,
+                "to_id": "fr:liaison:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To liaise.",
+                  "(proscribed) To liaise."
+                ],
+                "id": "en:liaison:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "liaison"
+              },
+              "to_node": {
+                "glosses": [
+                  "link, bond",
+                  "friendship"
+                ],
+                "id": "fr:liaison:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "liaison"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To treat with lye."
+            ],
+            "id": "en:lye:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lye"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:lier:verb:0",
+                "id": "edge:054684b413a162bd",
+                "source_template": "inh",
+                "to_id": "la:ligō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lye:verb:1",
+                "id": "edge:7b208e22f4535e2e",
+                "source_template": null,
+                "to_id": "fro:lier:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To treat with lye."
+                ],
+                "id": "en:lye:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lye"
+              },
+              "to_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.807,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To establish a liaison.",
+              "To act between parties with a view to reconciling differences."
+            ],
+            "id": "en:liaise:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "liaise"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fr:liaison:noun:0",
+                "id": "edge:827f5fe51207b43c",
+                "source_template": "inh",
+                "to_id": "la:ligō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "link, bond",
+                  "friendship"
+                ],
+                "id": "fr:liaison:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "liaison"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:liaise:verb:0",
+                "id": "edge:b941473b600c41c0",
+                "source_template": "der",
+                "to_id": "fr:liaison:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To establish a liaison.",
+                  "To act between parties with a view to reconciling differences."
+                ],
+                "id": "en:liaise:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "liaise"
+              },
+              "to_node": {
+                "glosses": [
+                  "link, bond",
+                  "friendship"
+                ],
+                "id": "fr:liaison:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "liaison"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.807,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "Bound or obliged in law or equity; responsible; answerable.",
+              "Subject; susceptible; prone."
+            ],
+            "id": "en:liable:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "liable"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:lier:verb:0",
+                "id": "edge:054684b413a162bd",
+                "source_template": "inh",
+                "to_id": "la:ligō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:liable:adj:0",
+                "id": "edge:1cc0dbe054af8fb3",
+                "source_template": "uder",
+                "to_id": "fro:lier:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Bound or obliged in law or equity; responsible; answerable.",
+                  "Subject; susceptible; prone."
+                ],
+                "id": "en:liable:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "liable"
+              },
+              "to_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "The highest division of professional football in France.",
+              "(soccer) The highest division of professional football in France."
+            ],
+            "id": "en:ligue_1:name:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "name",
+            "word": "Ligue 1"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fr:ligue:verb:0",
+                "id": "edge:a4776b29ceef0489",
+                "source_template": "der",
+                "to_id": "la:ligō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "inflection of liguer:",
+                  "first/third-person singular present indicative/subjunctive"
+                ],
+                "id": "fr:ligue:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "ligue"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:ligue_1:name:0",
+                "id": "edge:dcab425971b60c9d",
+                "source_template": "bor",
+                "to_id": "fr:ligue:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The highest division of professional football in France.",
+                  "(soccer) The highest division of professional football in France."
+                ],
+                "id": "en:ligue_1:name:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "name",
+                "word": "Ligue 1"
+              },
+              "to_node": {
+                "glosses": [
+                  "inflection of liguer:",
+                  "first/third-person singular present indicative/subjunctive"
+                ],
+                "id": "fr:ligue:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "ligue"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "borrowed_from"
+          ]
+        },
+        {
+          "confidence": 0.812,
+          "distance": 3,
+          "node": {
+            "glosses": [
+              "To rest in a horizontal position on a surface.",
+              "(intransitive) To rest in a horizontal position on a surface."
+            ],
+            "id": "en:lie:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lie"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:lier:verb:0",
+                "id": "edge:054684b413a162bd",
+                "source_template": "inh",
+                "to_id": "la:ligō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "enm:lien:verb:1",
+                "id": "edge:5b3afa2190b0e5d7",
+                "source_template": null,
+                "to_id": "fro:lier:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to lie (be in a horizontal position)"
+                ],
+                "id": "enm:lien:verb:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "verb",
+                "word": "lien"
+              },
+              "to_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "en:lie:verb:1",
+                "id": "edge:cd1c32197bad17b7",
+                "source_template": "inh",
+                "to_id": "enm:lien:verb:1",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To rest in a horizontal position on a surface.",
+                  "(intransitive) To rest in a horizontal position on a surface."
+                ],
+                "id": "en:lie:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lie"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie (be in a horizontal position)"
+                ],
+                "id": "enm:lien:verb:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "verb",
+                "word": "lien"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.769,
+          "distance": 3,
+          "node": {
+            "glosses": [
+              "To lie; be in a prostrate or recumbent position.",
+              "(intransitive, Yorkshire, Cumbria, Teesdale) To lie; be in a prostrate or recumbent position."
+            ],
+            "id": "en:lig:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lig"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:lier:verb:0",
+                "id": "edge:054684b413a162bd",
+                "source_template": "inh",
+                "to_id": "la:ligō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:ligō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "ligō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "enm:lien:verb:1",
+                "id": "edge:5b3afa2190b0e5d7",
+                "source_template": null,
+                "to_id": "fro:lier:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to lie (be in a horizontal position)"
+                ],
+                "id": "enm:lien:verb:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "verb",
+                "word": "lien"
+              },
+              "to_node": {
+                "glosses": [
+                  "to tie up; to connect with a tie"
+                ],
+                "id": "fro:lier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lier"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lig:verb:0",
+                "id": "edge:095e44b5928f20b9",
+                "source_template": null,
+                "to_id": "enm:lien:verb:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To lie; be in a prostrate or recumbent position.",
+                  "(intransitive, Yorkshire, Cumbria, Teesdale) To lie; be in a prostrate or recumbent position."
+                ],
+                "id": "en:lig:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lig"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie (be in a horizontal position)"
+                ],
+                "id": "enm:lien:verb:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "verb",
+                "word": "lien"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 10,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to link",
+          "to associate"
+        ],
+        "id": "fr:lier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lier"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:lier:verb:0",
+            "id": "edge:ce95125d096c97ab",
+            "source_template": "inh",
+            "to_id": "la:ligō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to link",
+              "to associate"
+            ],
+            "id": "fr:lier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lier"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:ligō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "ligō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:ligō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "ligō"
+      }
+    },
+    "lifter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to give a facelift to",
+          "to lift the ball (over an opponent)"
+        ],
+        "id": "fr:lifter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lifter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "ligaturer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to ligate (tie up with a ligature)",
+          "(medicine) to ligate (tie up with a ligature)"
+        ],
+        "id": "fr:ligaturer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "ligaturer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "ligner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to line, make a line (mark with a line)",
+          "to line (add lines to a surface)"
+        ],
+        "id": "fr:ligner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "ligner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lignifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lignify"
+        ],
+        "id": "fr:lignifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lignifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "ligoter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to bind, tie up",
+          "(transitive) to bind, tie up"
+        ],
+        "id": "fr:ligoter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "ligoter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "liguer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gang up; to be in league",
+          "(reflexive) to gang up; to be in league"
+        ],
+        "id": "fr:liguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "liguer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "limer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to file (for nails, to smooth with a file)",
+          "to fuck, shag, pound"
+        ],
+        "id": "fr:limer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "limer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "limiter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To restrict; to circumscribe; not to allow to go beyond a certain bound, to set boundaries.",
+              "(transitive) To restrict; to circumscribe; not to allow to go beyond a certain bound, to set boundaries."
+            ],
+            "id": "en:limit:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "limit"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:limit:verb:2",
+                "id": "edge:1e12e15184bd0a6d",
+                "source_template": null,
+                "to_id": "la:limito:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To restrict; to circumscribe; not to allow to go beyond a certain bound, to set boundaries.",
+                  "(transitive) To restrict; to circumscribe; not to allow to go beyond a certain bound, to set boundaries."
+                ],
+                "id": "en:limit:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "limit"
+              },
+              "to_node": {
+                "glosses": [
+                  "to limit, delimit, bound",
+                  "to fix, settle, determine"
+                ],
+                "id": "la:limito:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "limito"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to mark, to limit (to show a physical limit or boundary)",
+          "to limit (to state a limit for)"
+        ],
+        "id": "fr:limiter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "limiter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:limiter:verb:0",
+            "id": "edge:d831b4436ff008a3",
+            "source_template": null,
+            "to_id": "la:limito:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to mark, to limit (to show a physical limit or boundary)",
+              "to limit (to state a limit for)"
+            ],
+            "id": "fr:limiter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "limiter"
+          },
+          "to_node": {
+            "glosses": [
+              "to limit, delimit, bound",
+              "to fix, settle, determine"
+            ],
+            "id": "la:limito:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "limito"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to limit, delimit, bound",
+          "to fix, settle, determine"
+        ],
+        "id": "la:limito:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "limito"
+      }
+    },
+    "limoger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to dismiss (usually of senior staff, such as a minister, general, bishop, ambassador, etc), kick upstairs",
+          "(transitive) to dismiss (usually of senior staff, such as a minister, general, bishop, ambassador, etc), kick upstairs"
+        ],
+        "id": "fr:limoger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "limoger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "linéariser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to linearize"
+        ],
+        "id": "fr:linéariser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "linéariser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "liquider": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to liquidate, pay off, settle (a debt)",
+          "to sell off (goods)"
+        ],
+        "id": "fr:liquider:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "liquider"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "liquéfier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to liquefy/liquify"
+        ],
+        "id": "fr:liquéfier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "liquéfier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lire": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A stand with a slanted top used to support a Bible from which passages are read during a church service.",
+              "A similar stand to support a lecturer's notes."
+            ],
+            "id": "en:lectern:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "lectern"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:lectern:noun:0",
+                "id": "edge:a4559e6482c2b60d",
+                "source_template": "der",
+                "to_id": "la:legō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A stand with a slanted top used to support a Bible from which passages are read during a church service.",
+                  "A similar stand to support a lecturer's notes."
+                ],
+                "id": "en:lectern:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "lectern"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:legō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "legō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A type of discourse that has a characteristic configuration of topics, themes, and arguments."
+            ],
+            "id": "en:rhetorolect:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "rhetorolect"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:rhetorolect:noun:0",
+                "id": "edge:14e06da7d728c044",
+                "source_template": "uder",
+                "to_id": "la:legō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A type of discourse that has a characteristic configuration of topics, themes, and arguments."
+                ],
+                "id": "en:rhetorolect:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "rhetorolect"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:legō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "legō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Clear enough to be read; readable, particularly of handwriting.",
+              "Written or phrased so as to be easy to understand."
+            ],
+            "id": "en:legible:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "legible"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:legible:adj:0",
+                "id": "edge:563792b3ae5e87ca",
+                "source_template": "der",
+                "to_id": "la:legō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Clear enough to be read; readable, particularly of handwriting.",
+                  "Written or phrased so as to be easy to understand."
+                ],
+                "id": "en:legible:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "legible"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:legō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "legō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.807,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "to play the lyre",
+              "(rare) to play the lyre"
+            ],
+            "id": "en:lyre:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lyre"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:lire:verb:1",
+                "id": "edge:fb40974fc60eec3c",
+                "source_template": "inh",
+                "to_id": "la:legō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to read",
+                  "(ambitransitive) to read"
+                ],
+                "id": "fro:lire:verb:1",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lire"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:legō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "legō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:lyre:verb:0",
+                "id": "edge:c91cb5fe03efa3b4",
+                "source_template": "der",
+                "to_id": "fro:lire:verb:1",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to play the lyre",
+                  "(rare) to play the lyre"
+                ],
+                "id": "en:lyre:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lyre"
+              },
+              "to_node": {
+                "glosses": [
+                  "to read",
+                  "(ambitransitive) to read"
+                ],
+                "id": "fro:lire:verb:1",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "lire"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 4,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to read",
+          "(ambitransitive) to read"
+        ],
+        "id": "fr:lire:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lire"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:lire:verb:1",
+            "id": "edge:57a2b87a94281383",
+            "source_template": "inh",
+            "to_id": "la:legō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to read",
+              "(ambitransitive) to read"
+            ],
+            "id": "fr:lire:verb:1",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lire"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:legō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "legō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:legō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "legō"
+      }
+    },
+    "lisser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to smooth",
+          "to level"
+        ],
+        "id": "fr:lisser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lisser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lister": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "list (to create a list)"
+        ],
+        "id": "fr:lister:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lister"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lisérer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to edge with ribbon"
+        ],
+        "id": "fr:lisérer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lisérer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lithographier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to print using lithography"
+        ],
+        "id": "fr:lithographier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lithographier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "livrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to deliver (a package, merchandise etc.)",
+          "to hand over, deliver (someone to an enemy, police, etc.)"
+        ],
+        "id": "fr:livrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "livrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lober": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lob",
+          "(transitive, tennis, soccer) to lob"
+        ],
+        "id": "fr:lober:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lober"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "localiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to locate; to run to ground, to run to earth",
+          "(transitive) to locate; to run to ground, to run to earth"
+        ],
+        "id": "fr:localiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "localiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "locher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to shake, in particular a tree to get its fruits",
+          "(regional) to shake, in particular a tree to get its fruits"
+        ],
+        "id": "fr:locher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "locher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lofer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to luff",
+          "(intransitive, nautical) to luff"
+        ],
+        "id": "fr:lofer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lofer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "loger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lodge, to stay, to be lodging (to temporarily inhabit)",
+          "(intransitive) to lodge, to stay, to be lodging (to temporarily inhabit)"
+        ],
+        "id": "fr:loger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "loger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "longer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to walk along, run along"
+        ],
+        "id": "fr:longer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "longer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lorgner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to ogle",
+          "to leer"
+        ],
+        "id": "fr:lorgner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lorgner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lotionner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lotion; to apply lotion to"
+        ],
+        "id": "fr:lotionner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lotionner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lotir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to parcel out (divide into lots)",
+          "(transitive) to parcel out (divide into lots)"
+        ],
+        "id": "fr:lotir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lotir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "louanger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to praise; to laud"
+        ],
+        "id": "fr:louanger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "louanger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "loucher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to be cross-eyed, to be squint-eyed, to squint",
+          "squint (to look with eyes that are turned in different directions)"
+        ],
+        "id": "fr:loucher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "loucher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "louer": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The ability to move from place to place, or the act of doing so.",
+              "(uncountable) The ability to move from place to place, or the act of doing so."
+            ],
+            "id": "en:locomotion:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "locomotion"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:locomotion:noun:0",
+                "id": "edge:7db22339335e6652",
+                "source_template": "der",
+                "to_id": "la:locō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The ability to move from place to place, or the act of doing so.",
+                  "(uncountable) The ability to move from place to place, or the act of doing so."
+                ],
+                "id": "en:locomotion:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "locomotion"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:locō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "locō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The power unit of a train that pulls the coaches or wagons.",
+              "(rail transport) The power unit of a train that pulls the coaches or wagons."
+            ],
+            "id": "en:locomotive:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "locomotive"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:locomotive:noun:0",
+                "id": "edge:5b78ed24b27e9601",
+                "source_template": "der",
+                "to_id": "la:locō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The power unit of a train that pulls the coaches or wagons.",
+                  "(rail transport) The power unit of a train that pulls the coaches or wagons."
+                ],
+                "id": "en:locomotive:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "locomotive"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:locō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "locō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to rent",
+          "to lease"
+        ],
+        "id": "fr:louer:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "louer"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:louer:verb:1",
+            "id": "edge:b2565c80b3a84b7a",
+            "source_template": "inh",
+            "to_id": "la:locō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to rent",
+              "to lease"
+            ],
+            "id": "fr:louer:verb:1",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "louer"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:locō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "locō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:locō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "locō"
+      }
+    },
+    "louper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to miss",
+          "to fail"
+        ],
+        "id": "fr:louper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "louper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lourder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to fire someone",
+          "(slang, transitive) to fire someone"
+        ],
+        "id": "fr:lourder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lourder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "louver": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to drill a hole in a stone for the attachment of a wedge",
+          "(transitive) to drill a hole in a stone for the attachment of a wedge"
+        ],
+        "id": "fr:louver:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "louver"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "louvoyer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to tack",
+          "(nautical) to tack"
+        ],
+        "id": "fr:louvoyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "louvoyer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lover": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to coil (a rope or cord), to fake a line",
+          "to coil up, wind up; to curl up"
+        ],
+        "id": "fr:lover:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lover"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lubrifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lubricate (make slippery or smooth)",
+          "(transitive) to lubricate (make slippery or smooth)"
+        ],
+        "id": "fr:lubrifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lubrifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "luger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to luge"
+        ],
+        "id": "fr:luger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "luger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "luire": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to shine; to glimmer",
+          "(intransitive) to shine; to glimmer"
+        ],
+        "id": "fr:luire:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "luire"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "luncher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lunch"
+        ],
+        "id": "fr:luncher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "luncher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lustrer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Synonym of purify, to ritually cleanse or renew, particularly to do so with a propitiatory offering or (historical) the lustration, quinquennial ritual of the Roman censor to cleanse the city after a census.",
+              "(transitive) Synonym of purify, to ritually cleanse or renew, particularly to do so with a propitiatory offering or (historical) the lustration, quinquennial ritual of the Roman censor to cleanse the city after a census."
+            ],
+            "id": "en:lustrate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lustrate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lustrate:verb:0",
+                "id": "edge:918adc54b4c364af",
+                "source_template": null,
+                "to_id": "la:lustro:verb:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Synonym of purify, to ritually cleanse or renew, particularly to do so with a propitiatory offering or (historical) the lustration, quinquennial ritual of the Roman censor to cleanse the city after a census.",
+                  "(transitive) Synonym of purify, to ritually cleanse or renew, particularly to do so with a propitiatory offering or (historical) the lustration, quinquennial ritual of the Roman censor to cleanse the city after a census."
+                ],
+                "id": "en:lustrate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lustrate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to purify by means of a propitiatory sacrifice",
+                  "to circle, move in a circle around. (because the priest offering such sacrifice did so)"
+                ],
+                "id": "la:lustro:verb:1",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "lustro"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Alternative form of luster.",
+              "(British spelling) Alternative form of luster."
+            ],
+            "id": "en:lustre:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lustre"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lustre:verb:1",
+                "id": "edge:e79d988107759a02",
+                "source_template": null,
+                "to_id": "la:lustro:verb:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Alternative form of luster.",
+                  "(British spelling) Alternative form of luster."
+                ],
+                "id": "en:lustre:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lustre"
+              },
+              "to_node": {
+                "glosses": [
+                  "to purify by means of a propitiatory sacrifice",
+                  "to circle, move in a circle around. (because the priest offering such sacrifice did so)"
+                ],
+                "id": "la:lustro:verb:1",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "lustro"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to polish, make shinier by polishing",
+          "(transitive) to polish, make shinier by polishing"
+        ],
+        "id": "fr:lustrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lustrer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:lustrer:verb:0",
+            "id": "edge:37ad77fb94b7c8f6",
+            "source_template": null,
+            "to_id": "la:lustro:verb:1",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to polish, make shinier by polishing",
+              "(transitive) to polish, make shinier by polishing"
+            ],
+            "id": "fr:lustrer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lustrer"
+          },
+          "to_node": {
+            "glosses": [
+              "to purify by means of a propitiatory sacrifice",
+              "to circle, move in a circle around. (because the priest offering such sacrifice did so)"
+            ],
+            "id": "la:lustro:verb:1",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "lustro"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to purify by means of a propitiatory sacrifice",
+          "to circle, move in a circle around. (because the priest offering such sacrifice did so)"
+        ],
+        "id": "la:lustro:verb:1",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "lustro"
+      }
+    },
+    "lutiner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to tease, provoke"
+        ],
+        "id": "fr:lutiner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lutiner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lutter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to struggle, to fight",
+          "(intransitive) to struggle, to fight"
+        ],
+        "id": "fr:lutter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lutter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "luxer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to luxate",
+          "(transitive) to luxate"
+        ],
+        "id": "fr:luxer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "luxer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lyncher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lynch"
+        ],
+        "id": "fr:lyncher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lyncher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lyophiliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lyophilize"
+        ],
+        "id": "fr:lyophiliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lyophiliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lyser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lyse",
+          "(transitive, chemistry) to lyse"
+        ],
+        "id": "fr:lyser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lyser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lâcher": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To have loose bowels; to suffer from diarrhoea.",
+              "(intransitive, obsolete) To have loose bowels; to suffer from diarrhoea."
+            ],
+            "id": "en:lask:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lask"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:lask:verb:1",
+                "id": "edge:f67a6c90827304ef",
+                "source_template": "der",
+                "to_id": "la:laxāre:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To have loose bowels; to suffer from diarrhoea.",
+                  "(intransitive, obsolete) To have loose bowels; to suffer from diarrhoea."
+                ],
+                "id": "en:lask:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lask"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:laxāre:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "laxāre"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To make such a sudden, unsteady movement."
+            ],
+            "id": "en:lurch:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "lurch"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fr:lâcher:verb:0",
+                "id": "edge:df5157bcdef77333",
+                "source_template": "inh",
+                "to_id": "la:laxāre:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to release; to loosen; to let go",
+                  "to abandon, to let go"
+                ],
+                "id": "fr:lâcher:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lâcher"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:laxāre:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "laxāre"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:lurch:verb:1",
+                "id": "edge:c10bfe12ab0dd21d",
+                "source_template": "bor",
+                "to_id": "fr:lâcher:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To make such a sudden, unsteady movement."
+                ],
+                "id": "en:lurch:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "lurch"
+              },
+              "to_node": {
+                "glosses": [
+                  "to release; to loosen; to let go",
+                  "to abandon, to let go"
+                ],
+                "id": "fr:lâcher:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "lâcher"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to release; to loosen; to let go",
+          "to abandon, to let go"
+        ],
+        "id": "fr:lâcher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lâcher"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:lâcher:verb:0",
+            "id": "edge:df5157bcdef77333",
+            "source_template": "inh",
+            "to_id": "la:laxāre:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to release; to loosen; to let go",
+              "to abandon, to let go"
+            ],
+            "id": "fr:lâcher:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "lâcher"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:laxāre:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "laxāre"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:laxāre:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "laxāre"
+      }
+    },
+    "lécher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lick",
+          "to polish, to refine (one's work)"
+        ],
+        "id": "fr:lécher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lécher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "légaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to legalize (make legal)",
+          "(transitive) to legalize (make legal)"
+        ],
+        "id": "fr:légaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "légaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "légender": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to caption",
+          "(transitive) to caption"
+        ],
+        "id": "fr:légender:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "légender"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "légiférer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to legislate (to pass laws)"
+        ],
+        "id": "fr:légiférer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "légiférer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "légitimer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To make legitimate, lawful, or valid; especially, to put in the position or state of a legitimate person before the law, by legal means.",
+              "(transitive) To make legitimate, lawful, or valid; especially, to put in the position or state of a legitimate person before the law, by legal means."
+            ],
+            "id": "en:legitimate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "legitimate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:legitimate:verb:0",
+                "id": "edge:13f3ce90a5269f14",
+                "source_template": null,
+                "to_id": "la:legitimus:adj:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To make legitimate, lawful, or valid; especially, to put in the position or state of a legitimate person before the law, by legal means.",
+                  "(transitive) To make legitimate, lawful, or valid; especially, to put in the position or state of a legitimate person before the law, by legal means."
+                ],
+                "id": "en:legitimate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "legitimate"
+              },
+              "to_node": {
+                "glosses": [
+                  "lawful, legal, legitimate",
+                  "legal (of or pertaining to the law)"
+                ],
+                "id": "la:legitimus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "legitimus"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Legitimate; legal; allowed by the rules; valid.",
+              "(informal) Legitimate; legal; allowed by the rules; valid."
+            ],
+            "id": "en:legit:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "legit"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:legit:adj:0",
+                "id": "edge:ba9c8c06db0e42ab",
+                "source_template": null,
+                "to_id": "la:legitimus:adj:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Legitimate; legal; allowed by the rules; valid.",
+                  "(informal) Legitimate; legal; allowed by the rules; valid."
+                ],
+                "id": "en:legit:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "legit"
+              },
+              "to_node": {
+                "glosses": [
+                  "lawful, legal, legitimate",
+                  "legal (of or pertaining to the law)"
+                ],
+                "id": "la:legitimus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "legitimus"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to legitimize"
+        ],
+        "id": "fr:légitimer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "légitimer"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:légitimer:verb:0",
+            "id": "edge:80fcc5a06e039ee2",
+            "source_template": "der",
+            "to_id": "la:legitimus:adj:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to legitimize"
+            ],
+            "id": "fr:légitimer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "légitimer"
+          },
+          "to_node": {
+            "glosses": [
+              "lawful, legal, legitimate",
+              "legal (of or pertaining to the law)"
+            ],
+            "id": "la:legitimus:adj:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "adj",
+            "word": "legitimus"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "lawful, legal, legitimate",
+          "legal (of or pertaining to the law)"
+        ],
+        "id": "la:legitimus:adj:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "adj",
+        "word": "legitimus"
+      }
+    },
+    "léguer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to will, to bequeath",
+          "to hand down, pass on (traditions etc.)"
+        ],
+        "id": "fr:léguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "léguer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lénifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to assuage; to lenify"
+        ],
+        "id": "fr:lénifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lénifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "léser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to wrong; to do wrong by (someone); to harm, to hurt",
+          "(transitive) to wrong; to do wrong by (someone); to harm, to hurt"
+        ],
+        "id": "fr:léser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "léser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lésiner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to skimp, to overly limit one's spending, to be frugal to an excessive degree",
+          "(intransitive) to skimp, to overly limit one's spending, to be frugal to an excessive degree"
+        ],
+        "id": "fr:lésiner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lésiner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "lézarder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to crack",
+          "(transitive) to crack"
+        ],
+        "id": "fr:lézarder:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "lézarder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    }
+  }
+}

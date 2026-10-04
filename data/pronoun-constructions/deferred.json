@@ -1,0 +1,27 @@
+[
+  {
+    "verb": "passer",
+    "type": "double",
+    "reason": "auxiliary mismatch"
+  },
+  {
+    "verb": "rentrer",
+    "type": "direct",
+    "reason": "auxiliary mismatch"
+  },
+  {
+    "verb": "retourner",
+    "type": "double",
+    "reason": "auxiliary mismatch"
+  },
+  {
+    "verb": "sortir",
+    "type": "direct",
+    "reason": "auxiliary mismatch"
+  },
+  {
+    "verb": "descendre",
+    "type": "direct",
+    "reason": "auxiliary mismatch"
+  }
+]

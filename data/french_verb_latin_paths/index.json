@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "allowed_edge_types": [
+      "adapted_borrowing_from",
+      "borrowed_from",
+      "derived_from",
+      "descended_from",
+      "inherited_from",
+      "learned_borrowing_from",
+      "semi_learned_borrowing_from",
+      "unadapted_borrowing_from"
+    ],
+    "max_english_depth": 4,
+    "max_english_descendants": 160,
+    "max_latin_depth": 3,
+    "related_export": "data/french_verbs_related_en.json",
+    "source": "etygraph closest Latin ancestor paths",
+    "verbs_indexed": 5741,
+    "verbs_with_latin_path": 1560
+  },
+  "shards": {
+    "a": {
+      "file": "a.json",
+      "verbs": 484
+    },
+    "b": {
+      "file": "b.json",
+      "verbs": 284
+    },
+    "c": {
+      "file": "c.json",
+      "verbs": 595
+    },
+    "d": {
+      "file": "d.json",
+      "verbs": 765
+    },
+    "e": {
+      "file": "e.json",
+      "verbs": 659
+    },
+    "f": {
+      "file": "f.json",
+      "verbs": 214
+    },
+    "g": {
+      "file": "g.json",
+      "verbs": 150
+    },
+    "h": {
+      "file": "h.json",
+      "verbs": 74
+    },
+    "i": {
+      "file": "i.json",
+      "verbs": 183
+    },
+    "j": {
+      "file": "j.json",
+      "verbs": 39
+    },
+    "k": {
+      "file": "k.json",
+      "verbs": 7
+    },
+    "l": {
+      "file": "l.json",
+      "verbs": 103
+    },
+    "m": {
+      "file": "m.json",
+      "verbs": 223
+    },
+    "n": {
+      "file": "n.json",
+      "verbs": 53
+    },
+    "o": {
+      "file": "o.json",
+      "verbs": 82
+    },
+    "p": {
+      "file": "p.json",
+      "verbs": 407
+    },
+    "q": {
+      "file": "q.json",
+      "verbs": 14
+    },
+    "r": {
+      "file": "r.json",
+      "verbs": 661
+    },
+    "s": {
+      "file": "s.json",
+      "verbs": 354
+    },
+    "t": {
+      "file": "t.json",
+      "verbs": 240
+    },
+    "u": {
+      "file": "u.json",
+      "verbs": 13
+    },
+    "v": {
+      "file": "v.json",
+      "verbs": 117
+    },
+    "w": {
+      "file": "w.json",
+      "verbs": 1
+    },
+    "y": {
+      "file": "y.json",
+      "verbs": 1
+    },
+    "z": {
+      "file": "z.json",
+      "verbs": 18
+    }
+  }
+}

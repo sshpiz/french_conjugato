@@ -1,0 +1,477 @@
+{
+  "metadata": {
+    "shard": "z",
+    "verbs": 18
+  },
+  "verbs": {
+    "zapper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to channel-hop, channel surf",
+          "to dither, change one's opinion rapidly, vacillate"
+        ],
+        "id": "fr:zapper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zapper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zester": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to zest"
+        ],
+        "id": "fr:zester:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zester"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zieuter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "alternative spelling of zyeuter"
+        ],
+        "id": "fr:zieuter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zieuter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zigouiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to bump off, to do in (to kill)",
+          "(transitive, slang) to bump off, to do in (to kill)"
+        ],
+        "id": "fr:zigouiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zigouiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zigzaguer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to zigzag",
+          "(intransitive) to zigzag"
+        ],
+        "id": "fr:zigzaguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zigzaguer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zinguer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to zinc, to cover or galvanize with zinc"
+        ],
+        "id": "fr:zinguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zinguer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zinzinuler": {
+      "english_descendants": [
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A small Old World passerine bird, Emberiza cirlus, of the bunting family (Emberizidae), very similar to the yellowhammer."
+            ],
+            "id": "en:cirl_bunting:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "cirl bunting"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "it:zirlare:unknown:0",
+                "id": "edge:0b40c052682c9398",
+                "source_template": null,
+                "to_id": "la:zinzilulo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [],
+                "id": "it:zirlare:unknown:0",
+                "lang": null,
+                "lang_code": "it",
+                "pos": null,
+                "word": "zirlare"
+              },
+              "to_node": {
+                "glosses": [
+                  "to chirp"
+                ],
+                "id": "la:zinzilulo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "zinzilulo"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:cirl_bunting:noun:0",
+                "id": "edge:0b315dc7f370c4c5",
+                "source_template": "der",
+                "to_id": "it:zirlare:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A small Old World passerine bird, Emberiza cirlus, of the bunting family (Emberizidae), very similar to the yellowhammer."
+                ],
+                "id": "en:cirl_bunting:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "cirl bunting"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "it:zirlare:unknown:0",
+                "lang": null,
+                "lang_code": "it",
+                "pos": null,
+                "word": "zirlare"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to warble (make the cry of certain birds)"
+        ],
+        "id": "fr:zinzinuler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zinzinuler"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:zinzinuler:verb:0",
+            "id": "edge:40a96c5f223eaa09",
+            "source_template": null,
+            "to_id": "la:zinzilulo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to warble (make the cry of certain birds)"
+            ],
+            "id": "fr:zinzinuler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "zinzinuler"
+          },
+          "to_node": {
+            "glosses": [
+              "to chirp"
+            ],
+            "id": "la:zinzilulo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "zinzilulo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to chirp"
+        ],
+        "id": "la:zinzilulo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "zinzilulo"
+      }
+    },
+    "zipper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to zip, compress",
+          "(computing) to zip, compress"
+        ],
+        "id": "fr:zipper:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zipper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zoner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to wander around, wander about",
+          "(colloquial, intransitive) to wander around, wander about"
+        ],
+        "id": "fr:zoner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zoner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zonzonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to buzz",
+          "(rare) to buzz"
+        ],
+        "id": "fr:zonzonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zonzonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zoomer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to zoom, to zoom in",
+          "(cinematography, photography) to zoom, to zoom in"
+        ],
+        "id": "fr:zoomer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zoomer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zouker": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to zouk, dance the zouk"
+        ],
+        "id": "fr:zouker:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zouker"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zozoter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lisp",
+          "(intransitive) to lisp"
+        ],
+        "id": "fr:zozoter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zozoter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zwanzer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to joke",
+          "(Belgium) to joke"
+        ],
+        "id": "fr:zwanzer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zwanzer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zyeuter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to eye; to ogle (to watch); to squint at",
+          "(colloquial) to eye; to ogle (to watch); to squint at"
+        ],
+        "id": "fr:zyeuter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zyeuter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zébrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to stripe, to stripe like a zebra"
+        ],
+        "id": "fr:zébrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zébrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zéroter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to zero (set to zero)"
+        ],
+        "id": "fr:zéroter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zéroter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "zézayer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to pronounce \"zh\" (/ʒ/) as \"z\" (/z/) and \"sh\" (/ʃ/) as \"s\" (/s/); loosely, to lisp, to slur"
+        ],
+        "id": "fr:zézayer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "zézayer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    }
+  }
+}

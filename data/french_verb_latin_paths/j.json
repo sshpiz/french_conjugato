@@ -1,0 +1,2643 @@
+{
+  "metadata": {
+    "shard": "j",
+    "verbs": 39
+  },
+  "verbs": {
+    "jaboter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to jabber",
+          "(intransitive) to jabber"
+        ],
+        "id": "fr:jaboter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jaboter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jacasser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to caw",
+          "(intransitive, of a magpie) to caw"
+        ],
+        "id": "fr:jacasser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jacasser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jachérer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to plough fallow land"
+        ],
+        "id": "fr:jachérer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jachérer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jacter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to talk, speak",
+          "(colloquial, possibly derogatory) to talk, speak"
+        ],
+        "id": "fr:jacter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jacter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jaillir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to spurt out, gush forth",
+          "(of liquid, fire, etc.) to spurt out, gush forth"
+        ],
+        "id": "fr:jaillir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jaillir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jalonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "stake out, mark out (to mark off the limits by stakes)"
+        ],
+        "id": "fr:jalonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jalonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jalouser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to be jealous of; to envy"
+        ],
+        "id": "fr:jalouser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jalouser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "japoniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "nipponize (to make or become more Japanese)"
+        ],
+        "id": "fr:japoniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "japoniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "japper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to yap, yelp",
+          "to bark"
+        ],
+        "id": "fr:japper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "japper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jardiner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to garden; to do some gardening"
+        ],
+        "id": "fr:jardiner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jardiner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jargonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to babble"
+        ],
+        "id": "fr:jargonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jargonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jaser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to chat, to gossip"
+        ],
+        "id": "fr:jaser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jaser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jasper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to apply different colors of paint flowing together in order to make it look like jasper stone"
+        ],
+        "id": "fr:jasper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jasper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jauger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to sound (measure); to gauge by sounding"
+        ],
+        "id": "fr:jauger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jauger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jaunir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to go yellow, to turn yellow",
+          "(intransitive) to go yellow, to turn yellow"
+        ],
+        "id": "fr:jaunir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jaunir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "javelliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to disinfect using a commercial bleach, to chlorinate",
+          "(transitive) to disinfect using a commercial bleach, to chlorinate"
+        ],
+        "id": "fr:javelliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "javelliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jerker": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to dance the jerk",
+          "(intransitive) to dance the jerk"
+        ],
+        "id": "fr:jerker:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jerker"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jeter": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To eject from a boat, submarine, aircraft, spaceship or hot-air balloon, so as to lighten the load.",
+              "To let go or get rid of as being useless or defective."
+            ],
+            "id": "en:jettison:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "jettison"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:jettison:verb:0",
+                "id": "edge:617a84616070e0ac",
+                "source_template": "der",
+                "to_id": "la:iactō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To eject from a boat, submarine, aircraft, spaceship or hot-air balloon, so as to lighten the load.",
+                  "To let go or get rid of as being useless or defective."
+                ],
+                "id": "en:jettison:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "jettison"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iactō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iactō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Sometimes followed by out: to construct (a part of a building) so that it jets or projects beyond the rest.",
+              "(transitive)"
+            ],
+            "id": "en:jetty:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "jetty"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:jetty:verb:1",
+                "id": "edge:67eea67c3dc446a6",
+                "source_template": "der",
+                "to_id": "la:iactō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Sometimes followed by out: to construct (a part of a building) so that it jets or projects beyond the rest.",
+                  "(transitive)"
+                ],
+                "id": "en:jetty:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "jetty"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iactō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iactō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To coat with gypsum; to plaster, for example walls, or the interior of flues.",
+              "To paint; to cover over."
+            ],
+            "id": "en:parget:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "parget"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:parget:verb:0",
+                "id": "edge:0e1814a10448a857",
+                "source_template": "der",
+                "to_id": "la:iactō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To coat with gypsum; to plaster, for example walls, or the interior of flues.",
+                  "To paint; to cover over."
+                ],
+                "id": "en:parget:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "parget"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iactō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iactō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to throw",
+          "(transitive) to throw"
+        ],
+        "id": "fr:jeter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jeter"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:jeter:verb:0",
+            "id": "edge:86642341d9eb7679",
+            "source_template": "inh",
+            "to_id": "la:iactō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to throw",
+              "(transitive) to throw"
+            ],
+            "id": "fr:jeter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jeter"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:iactō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "iactō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:iactō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "iactō"
+      }
+    },
+    "jeûner": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Not nutritious.",
+              "(dated, now rare) Not nutritious."
+            ],
+            "id": "en:jejune:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "jejune"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:jejune:adj:0",
+                "id": "edge:6c6a364d8a71cfd6",
+                "source_template": "bor",
+                "to_id": "la:iēiūnus:unknown:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Not nutritious.",
+                  "(dated, now rare) Not nutritious."
+                ],
+                "id": "en:jejune:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "jejune"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iēiūnus:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iēiūnus"
+              }
+            }
+          ],
+          "relation_types": [
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to fast; to go without food",
+          "(intransitive) to fast; to go without food"
+        ],
+        "id": "fr:jeûner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jeûner"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:jeûner:verb:0",
+            "id": "edge:0f17670370651251",
+            "source_template": "inh",
+            "to_id": "la:iēiūnus:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to fast; to go without food",
+              "(intransitive) to fast; to go without food"
+            ],
+            "id": "fr:jeûner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jeûner"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:iēiūnus:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "iēiūnus"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:iēiūnus:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "iēiūnus"
+      }
+    },
+    "jodler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "(singing) to yodel",
+          "(intransitive) (singing) to yodel"
+        ],
+        "id": "fr:jodler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jodler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "joindre": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To connect or combine into one; to put together.",
+              "(transitive) To connect or combine into one; to put together."
+            ],
+            "id": "en:join:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "join"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:join:verb:0",
+                "id": "edge:083761edce711784",
+                "source_template": "der",
+                "to_id": "la:iungō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To connect or combine into one; to put together.",
+                  "(transitive) To connect or combine into one; to put together."
+                ],
+                "id": "en:join:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "join"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iungō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iungō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The joining of a litigant to a suit.",
+              "(law) The joining of a litigant to a suit."
+            ],
+            "id": "en:joinder:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "joinder"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:joinder:noun:0",
+                "id": "edge:4f06de000715101e",
+                "source_template": "uder",
+                "to_id": "la:iungō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The joining of a litigant to a suit.",
+                  "(law) The joining of a litigant to a suit."
+                ],
+                "id": "en:joinder:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "joinder"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iungō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iungō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to join",
+          "to join up"
+        ],
+        "id": "fr:joindre:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "joindre"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:joindre:verb:0",
+            "id": "edge:31e718febe949745",
+            "source_template": "inh",
+            "to_id": "la:iungō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to join",
+              "to join up"
+            ],
+            "id": "fr:joindre:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "joindre"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:iungō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "iungō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:iungō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "iungō"
+      }
+    },
+    "jointoyer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grout",
+          "to point (brickwork)"
+        ],
+        "id": "fr:jointoyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jointoyer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "joncher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to scatter, sprinkle (e.g. flowers)",
+          "to cover, litter, to be strewn over (be widespread, be sprawled across/around)"
+        ],
+        "id": "fr:joncher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "joncher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jongler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to juggle",
+          "to entertain"
+        ],
+        "id": "fr:jongler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jongler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jouer": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To manipulate objects, such as balls, clubs, beanbags, rings, etc. in an artful or artistic manner.",
+              "To perform various magic tricks or circus skills such as the diabolo, devil sticks, hat, and cigar box manipulation."
+            ],
+            "id": "en:juggle:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "juggle"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:juggle:verb:0",
+                "id": "edge:e21dc6cecc36f27c",
+                "source_template": "der",
+                "to_id": "la:iocor:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To manipulate objects, such as balls, clubs, beanbags, rings, etc. in an artful or artistic manner.",
+                  "To perform various magic tricks or circus skills such as the diabolo, devil sticks, hat, and cigar box manipulation."
+                ],
+                "id": "en:juggle:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "juggle"
+              },
+              "to_node": {
+                "glosses": [
+                  "to joke, jest",
+                  "to play"
+                ],
+                "id": "la:iocor:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iocor"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "An itinerant entertainer in medieval England and France; roles included song, music, acrobatics etc.; a troubadour.",
+              "A juggler; a conjurer."
+            ],
+            "id": "en:jongleur:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "jongleur"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fro:jangleor:noun:0",
+                "id": "edge:a8c31480e1c43e3f",
+                "source_template": "uder",
+                "to_id": "la:iocor:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "jongleur; raconteur; storyteller",
+                  "a liar"
+                ],
+                "id": "fro:jangleor:noun:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "jangleor"
+              },
+              "to_node": {
+                "glosses": [
+                  "to joke, jest",
+                  "to play"
+                ],
+                "id": "la:iocor:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iocor"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:jongleur:noun:0",
+                "id": "edge:121c330a30f5baf2",
+                "source_template": null,
+                "to_id": "fro:jangleor:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "An itinerant entertainer in medieval England and France; roles included song, music, acrobatics etc.; a troubadour.",
+                  "A juggler; a conjurer."
+                ],
+                "id": "en:jongleur:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "jongleur"
+              },
+              "to_node": {
+                "glosses": [
+                  "jongleur; raconteur; storyteller",
+                  "a liar"
+                ],
+                "id": "fro:jangleor:noun:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "jangleor"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "Agent noun of juggle; one who either literally juggles objects, or figuratively juggles tasks.",
+              "A person who practices juggling (trick of throwing and catching balls or similar)."
+            ],
+            "id": "en:juggler:noun:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "juggler"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fro:jangleor:noun:0",
+                "id": "edge:a8c31480e1c43e3f",
+                "source_template": "uder",
+                "to_id": "la:iocor:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "jongleur; raconteur; storyteller",
+                  "a liar"
+                ],
+                "id": "fro:jangleor:noun:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "jangleor"
+              },
+              "to_node": {
+                "glosses": [
+                  "to joke, jest",
+                  "to play"
+                ],
+                "id": "la:iocor:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iocor"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:juggler:noun:1",
+                "id": "edge:93f1547c88cd266e",
+                "source_template": null,
+                "to_id": "fro:jangleor:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Agent noun of juggle; one who either literally juggles objects, or figuratively juggles tasks.",
+                  "A person who practices juggling (trick of throwing and catching balls or similar)."
+                ],
+                "id": "en:juggler:noun:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "juggler"
+              },
+              "to_node": {
+                "glosses": [
+                  "jongleur; raconteur; storyteller",
+                  "a liar"
+                ],
+                "id": "fro:jangleor:noun:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "jangleor"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to play (engage in games or play)",
+          "to play (engage in games or play) [with à]"
+        ],
+        "id": "fr:jouer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jouer"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:jouer:verb:0",
+            "id": "edge:b14a1c931318eda0",
+            "source_template": "inh",
+            "to_id": "la:iocor:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to play (engage in games or play)",
+              "to play (engage in games or play) [with à]"
+            ],
+            "id": "fr:jouer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jouer"
+          },
+          "to_node": {
+            "glosses": [
+              "to joke, jest",
+              "to play"
+            ],
+            "id": "la:iocor:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "iocor"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to joke, jest",
+          "to play"
+        ],
+        "id": "la:iocor:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "iocor"
+      }
+    },
+    "jouir": {
+      "english_descendants": [
+        {
+          "confidence": 0.722,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A dildo.",
+              "(archaic) A dildo."
+            ],
+            "id": "en:godemiche:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "godemiche"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "fr:godemichet:noun:0",
+                "id": "edge:dee7dc11fc119f1f",
+                "source_template": "uder",
+                "to_id": "la:gaudeō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "dildo, godemiche"
+                ],
+                "id": "fr:godemichet:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "godemichet"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:gaudeō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "gaudeō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:godemiche:noun:0",
+                "id": "edge:0e6d5423d1050187",
+                "source_template": "uder",
+                "to_id": "fr:godemichet:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A dildo.",
+                  "(archaic) A dildo."
+                ],
+                "id": "en:godemiche:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "godemiche"
+              },
+              "to_node": {
+                "glosses": [
+                  "dildo, godemiche"
+                ],
+                "id": "fr:godemichet:noun:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "noun",
+                "word": "godemichet"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to enjoy",
+          "to enjoy [with de]"
+        ],
+        "id": "fr:jouir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jouir"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:jouir:verb:0",
+            "id": "edge:410f0b2029918642",
+            "source_template": "inh",
+            "to_id": "la:gaudeō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to enjoy",
+              "to enjoy [with de]"
+            ],
+            "id": "fr:jouir:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jouir"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:gaudeō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "gaudeō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:gaudeō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "gaudeō"
+      }
+    },
+    "jouter": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To bump into or brush against while in motion; to push aside.",
+              "(ambitransitive) To bump into or brush against while in motion; to push aside."
+            ],
+            "id": "en:jostle:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "jostle"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:jostle:verb:0",
+                "id": "edge:0ae8364ee363d473",
+                "source_template": "der",
+                "to_id": "la:iuxtā:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To bump into or brush against while in motion; to push aside.",
+                  "(ambitransitive) To bump into or brush against while in motion; to push aside."
+                ],
+                "id": "en:jostle:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "jostle"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iuxtā:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iuxtā"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To place side by side, especially for contrast or comparison.",
+              "(transitive) To place side by side, especially for contrast or comparison."
+            ],
+            "id": "en:juxtapose:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "juxtapose"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:juxtapose:verb:0",
+                "id": "edge:6ca6609c48202eb7",
+                "source_template": "der",
+                "to_id": "la:iuxtā:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To place side by side, especially for contrast or comparison.",
+                  "(transitive) To place side by side, especially for contrast or comparison."
+                ],
+                "id": "en:juxtapose:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "juxtapose"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iuxtā:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iuxtā"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To place in juxtaposition."
+            ],
+            "id": "en:juxtaposition:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "juxtaposition"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:juxtaposition:verb:0",
+                "id": "edge:080d1e920deef05c",
+                "source_template": "der",
+                "to_id": "la:iuxtā:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To place in juxtaposition."
+                ],
+                "id": "en:juxtaposition:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "juxtaposition"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iuxtā:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iuxtā"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To engage in mock combat on horseback, as two knights in the lists; to tilt.",
+              "To engage in verbal sparring over an important issue. (used of two people, both of whom participate more or less equally)"
+            ],
+            "id": "en:joust:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "joust"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:joste:noun:1",
+                "id": "edge:4f3f702394b62903",
+                "source_template": "inh",
+                "to_id": "la:iuxtā:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "joust (act, instance of jousting)"
+                ],
+                "id": "fro:joste:noun:1",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "joste"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iuxtā:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iuxtā"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:joust:verb:0",
+                "id": "edge:05dbd863dfebc361",
+                "source_template": null,
+                "to_id": "fro:joste:noun:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To engage in mock combat on horseback, as two knights in the lists; to tilt.",
+                  "To engage in verbal sparring over an important issue. (used of two people, both of whom participate more or less equally)"
+                ],
+                "id": "en:joust:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "joust"
+              },
+              "to_node": {
+                "glosses": [
+                  "joust (act, instance of jousting)"
+                ],
+                "id": "fro:joste:noun:1",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "joste"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 4,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to joust (participate in jousting)",
+          "(intransitive) to joust (participate in jousting)"
+        ],
+        "id": "fr:jouter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jouter"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:jouter:verb:0",
+            "id": "edge:2b72c1f5d88c6742",
+            "source_template": "inh",
+            "to_id": "la:iuxtā:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to joust (participate in jousting)",
+              "(intransitive) to joust (participate in jousting)"
+            ],
+            "id": "fr:jouter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jouter"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:iuxtā:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "iuxtā"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:iuxtā:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "iuxtā"
+      }
+    },
+    "jouxter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To modify.",
+              "(transitive) To modify."
+            ],
+            "id": "en:adjust:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "adjust"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:adjust:verb:0",
+                "id": "edge:ce98bbd3fd953fa4",
+                "source_template": null,
+                "to_id": "la:iuxtare:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To modify.",
+                  "(transitive) To modify."
+                ],
+                "id": "en:adjust:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "adjust"
+              },
+              "to_node": {
+                "glosses": [
+                  "to put alongside, to juxtapose"
+                ],
+                "id": "la:iuxtare:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iuxtare"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To engage in mock combat on horseback, as two knights in the lists; to tilt.",
+              "To engage in verbal sparring over an important issue. (used of two people, both of whom participate more or less equally)"
+            ],
+            "id": "en:joust:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "joust"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:joust:verb:0",
+                "id": "edge:3a86d061ed505897",
+                "source_template": null,
+                "to_id": "la:iuxtare:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To engage in mock combat on horseback, as two knights in the lists; to tilt.",
+                  "To engage in verbal sparring over an important issue. (used of two people, both of whom participate more or less equally)"
+                ],
+                "id": "en:joust:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "joust"
+              },
+              "to_node": {
+                "glosses": [
+                  "to put alongside, to juxtapose"
+                ],
+                "id": "la:iuxtare:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iuxtare"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To add, include.",
+              "(ambitransitive, obsolete, rare) To add, include."
+            ],
+            "id": "en:adjute:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "adjute"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:ajoster:verb:0",
+                "id": "edge:409d90dbc993ab71",
+                "source_template": null,
+                "to_id": "la:iuxtare:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to add"
+                ],
+                "id": "fro:ajoster:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "ajoster"
+              },
+              "to_node": {
+                "glosses": [
+                  "to put alongside, to juxtapose"
+                ],
+                "id": "la:iuxtare:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iuxtare"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:adjute:verb:0",
+                "id": "edge:9480000de160d249",
+                "source_template": null,
+                "to_id": "fro:ajoster:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To add, include.",
+                  "(ambitransitive, obsolete, rare) To add, include."
+                ],
+                "id": "en:adjute:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "adjute"
+              },
+              "to_node": {
+                "glosses": [
+                  "to add"
+                ],
+                "id": "fro:ajoster:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "ajoster"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To bump into or brush against while in motion; to push aside.",
+              "(ambitransitive) To bump into or brush against while in motion; to push aside."
+            ],
+            "id": "en:jostle:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "jostle"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:joster:verb:0",
+                "id": "edge:af727d02cafaf8a9",
+                "source_template": null,
+                "to_id": "la:iuxtare:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to joust (compete in a jousting tournament)",
+                  "to joust (in a battle)"
+                ],
+                "id": "fro:joster:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "joster"
+              },
+              "to_node": {
+                "glosses": [
+                  "to put alongside, to juxtapose"
+                ],
+                "id": "la:iuxtare:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iuxtare"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:jostle:verb:0",
+                "id": "edge:b0200533b535f4fd",
+                "source_template": "der",
+                "to_id": "fro:joster:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To bump into or brush against while in motion; to push aside.",
+                  "(ambitransitive) To bump into or brush against while in motion; to push aside."
+                ],
+                "id": "en:jostle:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "jostle"
+              },
+              "to_node": {
+                "glosses": [
+                  "to joust (compete in a jousting tournament)",
+                  "to joust (in a battle)"
+                ],
+                "id": "fro:joster:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "joster"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 4,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to be next to, to be adjoined to",
+          "(literary) to be next to, to be adjoined to"
+        ],
+        "id": "fr:jouxter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jouxter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:jouxter:verb:0",
+            "id": "edge:950e092858728a58",
+            "source_template": null,
+            "to_id": "la:iuxtare:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to be next to, to be adjoined to",
+              "(literary) to be next to, to be adjoined to"
+            ],
+            "id": "fr:jouxter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jouxter"
+          },
+          "to_node": {
+            "glosses": [
+              "to put alongside, to juxtapose"
+            ],
+            "id": "la:iuxtare:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "iuxtare"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to put alongside, to juxtapose"
+        ],
+        "id": "la:iuxtare:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "iuxtare"
+      }
+    },
+    "jubiler": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To show elation or triumph; to rejoice."
+            ],
+            "id": "en:jubilate:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "jubilate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:jubilate:verb:1",
+                "id": "edge:18514e4ad6378e7b",
+                "source_template": null,
+                "to_id": "la:iubilo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To show elation or triumph; to rejoice."
+                ],
+                "id": "en:jubilate:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "jubilate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to sing or shout joyfully; cheer"
+                ],
+                "id": "la:iubilo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iubilo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to be jubilant or ecstatic, to exult"
+        ],
+        "id": "fr:jubiler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jubiler"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:jubiler:verb:0",
+            "id": "edge:bacbb8b8c25a321f",
+            "source_template": null,
+            "to_id": "la:iubilo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to be jubilant or ecstatic, to exult"
+            ],
+            "id": "fr:jubiler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jubiler"
+          },
+          "to_node": {
+            "glosses": [
+              "to sing or shout joyfully; cheer"
+            ],
+            "id": "la:iubilo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "iubilo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to sing or shout joyfully; cheer"
+        ],
+        "id": "la:iubilo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "iubilo"
+      }
+    },
+    "jucher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to perch",
+          "(intransitive) to perch"
+        ],
+        "id": "fr:jucher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jucher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "judaïser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to Judaize"
+        ],
+        "id": "fr:judaïser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "judaïser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "judiciariser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to judicialize"
+        ],
+        "id": "fr:judiciariser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "judiciariser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "juger": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To sit in judgment on; to pass sentence on (a person or matter).",
+              "(transitive) To sit in judgment on; to pass sentence on (a person or matter)."
+            ],
+            "id": "en:judge:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "judge"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:judge:verb:2",
+                "id": "edge:af7a0c88d1f8c900",
+                "source_template": "der",
+                "to_id": "la:iūdicō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To sit in judgment on; to pass sentence on (a person or matter).",
+                  "(transitive) To sit in judgment on; to pass sentence on (a person or matter)."
+                ],
+                "id": "en:judge:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "judge"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iūdicō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iūdicō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The act of judging.",
+              "The power or faculty of performing such operations; especially, when unqualified, the faculty of judging or deciding rightly, justly, or wisely."
+            ],
+            "id": "en:judgment:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "judgment"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:judgment:noun:0",
+                "id": "edge:fa38f467c94770c8",
+                "source_template": "der",
+                "to_id": "la:iūdicō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The act of judging.",
+                  "The power or faculty of performing such operations; especially, when unqualified, the faculty of judging or deciding rightly, justly, or wisely."
+                ],
+                "id": "en:judgment:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "judgment"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:iūdicō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "iūdicō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to judge, to try",
+          "(law) to judge, to try"
+        ],
+        "id": "fr:juger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "juger"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:juger:verb:0",
+            "id": "edge:f3223f9ed6e1c610",
+            "source_template": "inh",
+            "to_id": "la:iūdicō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to judge, to try",
+              "(law) to judge, to try"
+            ],
+            "id": "fr:juger:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "juger"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:iūdicō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "iūdicō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:iūdicō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "iūdicō"
+      }
+    },
+    "juguler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to stamp out, kick out, do away with (to get rid of)"
+        ],
+        "id": "fr:juguler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "juguler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jumeler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to twin",
+          "(transitive) to twin"
+        ],
+        "id": "fr:jumeler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jumeler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "jurer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To judge by means of a jury."
+            ],
+            "id": "en:jury:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "jury"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:jury:verb:1",
+                "id": "edge:cde648ad4d29f779",
+                "source_template": null,
+                "to_id": "la:iuro:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To judge by means of a jury."
+                ],
+                "id": "en:jury:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "jury"
+              },
+              "to_node": {
+                "glosses": [
+                  "to confirm formally, to pronounce enforceably, to swear, to vow, to take an oath"
+                ],
+                "id": "la:iuro:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iuro"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to swear (to promise by oath)",
+          "to swear (to say a swear word)"
+        ],
+        "id": "fr:jurer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "jurer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:jurer:verb:0",
+            "id": "edge:418da75623d7c4f9",
+            "source_template": null,
+            "to_id": "la:iuro:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to swear (to promise by oath)",
+              "to swear (to say a swear word)"
+            ],
+            "id": "fr:jurer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "jurer"
+          },
+          "to_node": {
+            "glosses": [
+              "to confirm formally, to pronounce enforceably, to swear, to vow, to take an oath"
+            ],
+            "id": "la:iuro:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "iuro"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to confirm formally, to pronounce enforceably, to swear, to vow, to take an oath"
+        ],
+        "id": "la:iuro:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "iuro"
+      }
+    },
+    "justifier": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To provide an acceptable explanation for.",
+              "(transitive) To provide an acceptable explanation for."
+            ],
+            "id": "en:justify:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "justify"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:justify:verb:0",
+                "id": "edge:1f2d480abdc66c83",
+                "source_template": null,
+                "to_id": "la:iustifico:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To provide an acceptable explanation for.",
+                  "(transitive) To provide an acceptable explanation for."
+                ],
+                "id": "en:justify:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "justify"
+              },
+              "to_node": {
+                "glosses": [
+                  "to act justly (towards)",
+                  "to forgive, pardon or vindicate"
+                ],
+                "id": "la:iustifico:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iustifico"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to justify"
+        ],
+        "id": "fr:justifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "justifier"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:justifier:verb:0",
+            "id": "edge:fe85c155cf2e9069",
+            "source_template": null,
+            "to_id": "la:iustifico:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to justify"
+            ],
+            "id": "fr:justifier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "justifier"
+          },
+          "to_node": {
+            "glosses": [
+              "to act justly (towards)",
+              "to forgive, pardon or vindicate"
+            ],
+            "id": "la:iustifico:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "iustifico"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to act justly (towards)",
+          "to forgive, pardon or vindicate"
+        ],
+        "id": "la:iustifico:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "iustifico"
+      }
+    },
+    "juter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to juice, to give off juice",
+          "to cum, to spunk"
+        ],
+        "id": "fr:juter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "juter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "juxtaposer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To place side by side, especially for contrast or comparison.",
+              "(transitive) To place side by side, especially for contrast or comparison."
+            ],
+            "id": "en:juxtapose:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "juxtapose"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:juxtapose:verb:0",
+                "id": "edge:ef879e94ac628680",
+                "source_template": null,
+                "to_id": "la:iuxtapono:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To place side by side, especially for contrast or comparison.",
+                  "(transitive) To place side by side, especially for contrast or comparison."
+                ],
+                "id": "en:juxtapose:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "juxtapose"
+              },
+              "to_node": {
+                "glosses": [
+                  "I place side by side, I put next to each other, I juxtapose",
+                  "(Medieval Latin) I place side by side, I put next to each other, I juxtapose"
+                ],
+                "id": "la:iuxtapono:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iuxtapono"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to juxtapose"
+        ],
+        "id": "fr:juxtaposer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "juxtaposer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:juxtaposer:verb:0",
+            "id": "edge:fd7ff66573a27a3d",
+            "source_template": null,
+            "to_id": "la:iuxtapono:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to juxtapose"
+            ],
+            "id": "fr:juxtaposer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "juxtaposer"
+          },
+          "to_node": {
+            "glosses": [
+              "I place side by side, I put next to each other, I juxtapose",
+              "(Medieval Latin) I place side by side, I put next to each other, I juxtapose"
+            ],
+            "id": "la:iuxtapono:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "iuxtapono"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "I place side by side, I put next to each other, I juxtapose",
+          "(Medieval Latin) I place side by side, I put next to each other, I juxtapose"
+        ],
+        "id": "la:iuxtapono:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "iuxtapono"
+      }
+    }
+  }
+}

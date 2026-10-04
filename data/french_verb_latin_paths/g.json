@@ -1,0 +1,5656 @@
+{
+  "metadata": {
+    "shard": "g",
+    "verbs": 150
+  },
+  "verbs": {
+    "gaffer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to make a gaffe; to mess up; botch up",
+          "to gaffer tape"
+        ],
+        "id": "fr:gaffer:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gaffer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gager": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to guarantee",
+          "to wager or bet"
+        ],
+        "id": "fr:gager:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gager"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gagner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to win",
+          "to earn"
+        ],
+        "id": "fr:gagner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gagner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gainer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cover, sheathe"
+        ],
+        "id": "fr:gainer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gainer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "galonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to braid, galloon (trim with braid)"
+        ],
+        "id": "fr:galonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "galonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "galoper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gallop"
+        ],
+        "id": "fr:galoper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "galoper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "galvaniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to galvanize"
+        ],
+        "id": "fr:galvaniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "galvaniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "galvauder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to tarnish, sully, debase, bring into disrepute",
+          "to waste; to squander"
+        ],
+        "id": "fr:galvauder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "galvauder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gambader": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to frolic, gambol, caper",
+          "(intransitive) to frolic, gambol, caper"
+        ],
+        "id": "fr:gambader:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gambader"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gamberger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to think hard",
+          "(slang) to think hard"
+        ],
+        "id": "fr:gamberger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gamberger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gambiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to jig about",
+          "(intransitive) to jig about"
+        ],
+        "id": "fr:gambiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gambiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gaminer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to make mischief"
+        ],
+        "id": "fr:gaminer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gaminer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gangrener": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to develop gangrene",
+          "(reflexive, medicine) to develop gangrene"
+        ],
+        "id": "fr:gangrener:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gangrener"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "ganser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to border (decorate with a border)"
+        ],
+        "id": "fr:ganser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "ganser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "ganter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to glove (cover with a glove)",
+          "(transitive) to glove (cover with a glove)"
+        ],
+        "id": "fr:ganter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "ganter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "garantir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to guarantee (to assure that something will get done right)",
+          "to protect, preserve"
+        ],
+        "id": "fr:garantir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "garantir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "garder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to keep; to retain; to store; to save",
+          "(transitive) to keep; to retain; to store; to save"
+        ],
+        "id": "fr:garder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "garder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "garer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cover, shelter",
+          "to park (a vehicle)"
+        ],
+        "id": "fr:garer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "garer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gargariser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gargle",
+          "(reflexive) to gargle"
+        ],
+        "id": "fr:gargariser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gargariser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gargoter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "synonym of glouglouter (“to gurgle”)",
+          "(intransitive) synonym of glouglouter (“to gurgle”)"
+        ],
+        "id": "fr:gargoter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gargoter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gargouiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gargle",
+          "to rumble"
+        ],
+        "id": "fr:gargouiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gargouiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "garnir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to furnish (a building, a room)",
+          "to arm"
+        ],
+        "id": "fr:garnir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "garnir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "garrotter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to bind, fasten strongly",
+          "(transitive) to bind, fasten strongly"
+        ],
+        "id": "fr:garrotter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "garrotter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gasconner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to speak with a Gascon accent",
+          "to boast, brag"
+        ],
+        "id": "fr:gasconner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gasconner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gaspiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to waste"
+        ],
+        "id": "fr:gaspiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gaspiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gauchir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to dodge",
+          "(intransitive) to dodge"
+        ],
+        "id": "fr:gauchir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gauchir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gaufrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to emboss",
+          "(transitive) to emboss"
+        ],
+        "id": "fr:gaufrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gaufrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gauler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to beat, beat down (with a pole)",
+          "(transitive) to beat, beat down (with a pole)"
+        ],
+        "id": "fr:gauler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gauler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gausser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to openly mock, to scorn, to criticize harshly",
+          "(reflexive, se gausser, ~ de) to openly mock, to scorn, to criticize harshly"
+        ],
+        "id": "fr:gausser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gausser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gaver": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to force-feed",
+          "(transitive) to force-feed"
+        ],
+        "id": "fr:gaver:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gaver"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gazer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gas (exterminate using gas)",
+          "to smoke (a cigarette)"
+        ],
+        "id": "fr:gazer:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gazer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gazonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cover with sod; to turf"
+        ],
+        "id": "fr:gazonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gazonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gazouiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to chirp, to twitter",
+          "(of a bird) to chirp, to twitter"
+        ],
+        "id": "fr:gazouiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gazouiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gazéifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gasify",
+          "(chemistry) to gasify"
+        ],
+        "id": "fr:gazéifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gazéifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "geindre": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To work in a junior role (on something).",
+              "(ambitransitive) To work in a junior role (on something)."
+            ],
+            "id": "en:junior:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "junior"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:junior:verb:0",
+                "id": "edge:b345b58132dadd1b",
+                "source_template": null,
+                "to_id": "la:iunior:adj:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To work in a junior role (on something).",
+                  "(ambitransitive) To work in a junior role (on something)."
+                ],
+                "id": "en:junior:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "junior"
+              },
+              "to_node": {
+                "glosses": [
+                  "comparative degree of iuvenis"
+                ],
+                "id": "la:iunior:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "iunior"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To connect or combine into one; to put together.",
+              "(transitive) To connect or combine into one; to put together."
+            ],
+            "id": "en:join:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "join"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:joindre:verb:0",
+                "id": "edge:d7e125e1b609ef37",
+                "source_template": null,
+                "to_id": "la:iunior:adj:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to meet up with; to go and see",
+                  "to join; to join onto"
+                ],
+                "id": "fro:joindre:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "joindre"
+              },
+              "to_node": {
+                "glosses": [
+                  "comparative degree of iuvenis"
+                ],
+                "id": "la:iunior:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "iunior"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:join:verb:0",
+                "id": "edge:09d10be14d81c087",
+                "source_template": null,
+                "to_id": "fro:joindre:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To connect or combine into one; to put together.",
+                  "(transitive) To connect or combine into one; to put together."
+                ],
+                "id": "en:join:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "join"
+              },
+              "to_node": {
+                "glosses": [
+                  "to meet up with; to go and see",
+                  "to join; to join onto"
+                ],
+                "id": "fro:joindre:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "joindre"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to moan, groan"
+        ],
+        "id": "fr:geindre:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "geindre"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:geindre:verb:1",
+            "id": "edge:dc916930c5ad98ff",
+            "source_template": null,
+            "to_id": "la:iunior:adj:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to moan, groan"
+            ],
+            "id": "fr:geindre:verb:1",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "geindre"
+          },
+          "to_node": {
+            "glosses": [
+              "comparative degree of iuvenis"
+            ],
+            "id": "la:iunior:adj:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "adj",
+            "word": "iunior"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "comparative degree of iuvenis"
+        ],
+        "id": "la:iunior:adj:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "adj",
+        "word": "iunior"
+      }
+    },
+    "geler": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To coat with gelatin.",
+              "(transitive) To coat with gelatin."
+            ],
+            "id": "en:gelatin:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "gelatin"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:gelatin:verb:0",
+                "id": "edge:3f53333866d6fba4",
+                "source_template": "der",
+                "to_id": "la:gelō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To coat with gelatin.",
+                  "(transitive) To coat with gelatin."
+                ],
+                "id": "en:gelatin:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "gelatin"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:gelō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "gelō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A brand of dessert made from gelatin.",
+              "(US, Canada) A brand of dessert made from gelatin."
+            ],
+            "id": "en:jell-o:name:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "name",
+            "word": "Jell-O"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:jell-o:name:0",
+                "id": "edge:a619da0c3ccbd5ca",
+                "source_template": "der",
+                "to_id": "la:gelō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A brand of dessert made from gelatin.",
+                  "(US, Canada) A brand of dessert made from gelatin."
+                ],
+                "id": "en:jell-o:name:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "name",
+                "word": "Jell-O"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:gelō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "gelō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to freeze",
+          "(ambitransitive) to freeze"
+        ],
+        "id": "fr:geler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "geler"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:geler:verb:0",
+            "id": "edge:422ced269a121618",
+            "source_template": "inh",
+            "to_id": "la:gelō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to freeze",
+              "(ambitransitive) to freeze"
+            ],
+            "id": "fr:geler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "geler"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:gelō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "gelō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:gelō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "gelō"
+      }
+    },
+    "gerber": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to sheave",
+          "to stack"
+        ],
+        "id": "fr:gerber:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gerber"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gercer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to chap, become chapped",
+          "(ambitransitive) to chap, become chapped"
+        ],
+        "id": "fr:gercer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gercer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "germaniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to Germanize"
+        ],
+        "id": "fr:germaniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "germaniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "germer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To germinate.",
+              "To grow, as if parasitic."
+            ],
+            "id": "en:germ:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "germ"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:germ:verb:0",
+                "id": "edge:4fa1f2b46cc816d2",
+                "source_template": null,
+                "to_id": "la:germino:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To germinate.",
+                  "To grow, as if parasitic."
+                ],
+                "id": "en:germ:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "germ"
+              },
+              "to_node": {
+                "glosses": [
+                  "to sprout",
+                  "to bud"
+                ],
+                "id": "la:germino:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "germino"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Of a seed, to begin to grow, to sprout roots and leaves.",
+              "(intransitive, botany, horticulture) Of a seed, to begin to grow, to sprout roots and leaves."
+            ],
+            "id": "en:germinate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "germinate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:germinate:verb:0",
+                "id": "edge:f2309f857872180b",
+                "source_template": null,
+                "to_id": "la:germino:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Of a seed, to begin to grow, to sprout roots and leaves.",
+                  "(intransitive, botany, horticulture) Of a seed, to begin to grow, to sprout roots and leaves."
+                ],
+                "id": "en:germinate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "germinate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to sprout",
+                  "to bud"
+                ],
+                "id": "la:germino:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "germino"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A ceveratrum alkaloid.",
+              "(organic chemistry) A ceveratrum alkaloid."
+            ],
+            "id": "en:germine:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "germine"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:germine:noun:0",
+                "id": "edge:38b624065e419547",
+                "source_template": null,
+                "to_id": "la:germino:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A ceveratrum alkaloid.",
+                  "(organic chemistry) A ceveratrum alkaloid."
+                ],
+                "id": "en:germine:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "germine"
+              },
+              "to_node": {
+                "glosses": [
+                  "to sprout",
+                  "to bud"
+                ],
+                "id": "la:germino:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "germino"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to germinate"
+        ],
+        "id": "fr:germer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "germer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:germer:verb:0",
+            "id": "edge:09518faff2072842",
+            "source_template": null,
+            "to_id": "la:germino:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to germinate"
+            ],
+            "id": "fr:germer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "germer"
+          },
+          "to_node": {
+            "glosses": [
+              "to sprout",
+              "to bud"
+            ],
+            "id": "la:germino:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "germino"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to sprout",
+          "to bud"
+        ],
+        "id": "la:germino:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "germino"
+      }
+    },
+    "gesticuler": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To make gestures or motions, as in speaking.",
+              "(intransitive) To make gestures or motions, as in speaking."
+            ],
+            "id": "en:gesticulate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "gesticulate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:gesticulate:verb:0",
+                "id": "edge:111ccc28eef64f9d",
+                "source_template": "etymon",
+                "to_id": "la:gesticulor:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To make gestures or motions, as in speaking.",
+                  "(intransitive) To make gestures or motions, as in speaking."
+                ],
+                "id": "en:gesticulate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "gesticulate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to mimic, pantomime, gesticulate"
+                ],
+                "id": "la:gesticulor:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "gesticulor"
+              }
+            }
+          ],
+          "relation_types": [
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gesticulate (make gestures)"
+        ],
+        "id": "fr:gesticuler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gesticuler"
+      },
+      "french_confidence": 0.88,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.88,
+            "from_id": "fr:gesticuler:verb:0",
+            "id": "edge:46eebd0cb17429bc",
+            "source_template": "lbor",
+            "to_id": "la:gesticulor:verb:0",
+            "type": "learned_borrowing_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to gesticulate (make gestures)"
+            ],
+            "id": "fr:gesticuler:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "gesticuler"
+          },
+          "to_node": {
+            "glosses": [
+              "to mimic, pantomime, gesticulate"
+            ],
+            "id": "la:gesticulor:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "gesticulor"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to mimic, pantomime, gesticulate"
+        ],
+        "id": "la:gesticulor:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "gesticulor"
+      }
+    },
+    "giboyer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hunt game",
+          "(archaic, intransitive) to hunt game"
+        ],
+        "id": "fr:giboyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "giboyer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gicler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to squirt, to spurt"
+        ],
+        "id": "fr:gicler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gicler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gifler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to slap (on the face)",
+          "(transitive) to slap (on the face)"
+        ],
+        "id": "fr:gifler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gifler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gigoter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to wriggle (about)",
+          "(ambitransitive) to wriggle (about)"
+        ],
+        "id": "fr:gigoter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gigoter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "givrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to ice up",
+          "to glaze"
+        ],
+        "id": "fr:givrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "givrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glacer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to freeze; to turn to ice",
+          "(transitive) to freeze; to turn to ice"
+        ],
+        "id": "fr:glacer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glacer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glaiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to clay, spread clay onto"
+        ],
+        "id": "fr:glaiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glaiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glander": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to do",
+          "(slang, transitive) to do"
+        ],
+        "id": "fr:glander:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glander"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glandouiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to do nothing; to bum around all day",
+          "(intransitive) to do nothing; to bum around all day"
+        ],
+        "id": "fr:glandouiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glandouiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glaner": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To collect (fruit, grain, or other produce) from a field, an orchard, etc., after the main gathering or harvest.",
+              "(transitive)"
+            ],
+            "id": "en:glean:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "glean"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:glean:verb:1",
+                "id": "edge:234d1206e1223222",
+                "source_template": "der",
+                "to_id": "la:glenare:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To collect (fruit, grain, or other produce) from a field, an orchard, etc., after the main gathering or harvest.",
+                  "(transitive)"
+                ],
+                "id": "en:glean:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "glean"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:glenare:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "glenare"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gather, to glean"
+        ],
+        "id": "fr:glaner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glaner"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:glaner:verb:0",
+            "id": "edge:2d4531ae73fd06a3",
+            "source_template": "uder",
+            "to_id": "la:glenare:unknown:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to gather, to glean"
+            ],
+            "id": "fr:glaner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "glaner"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:glenare:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "glenare"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:glenare:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "glenare"
+      }
+    },
+    "glapir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to yelp, bark",
+          "to shriek"
+        ],
+        "id": "fr:glapir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glapir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glisser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to slip, to slide, to skid",
+          "(intransitive) to slip, to slide, to skid"
+        ],
+        "id": "fr:glisser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glisser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "globaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to globalise, to globalize"
+        ],
+        "id": "fr:globaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "globaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glorifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "laud, glorify"
+        ],
+        "id": "fr:glorifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glorifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gloser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to annotate, gloss",
+          "to ramble on (sur about)"
+        ],
+        "id": "fr:gloser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gloser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glouglouter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gobble (like a turkey)",
+          "(intransitive) to gobble (like a turkey)"
+        ],
+        "id": "fr:glouglouter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glouglouter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glousser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cluck (make the noise of a chicken)",
+          "to gobble (make the noise of a turkey)"
+        ],
+        "id": "fr:glousser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glousser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "glycériner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to glycerinate"
+        ],
+        "id": "fr:glycériner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "glycériner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gober": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to swallow whole",
+          "to believe easily, without evidence; to buy"
+        ],
+        "id": "fr:gober:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gober"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gobichonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to guzzle, gobble up, devour"
+        ],
+        "id": "fr:gobichonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gobichonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "godailler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gorge, to glut (to eat and drink in excess)",
+          "(dated, colloquial, intransitive) to gorge, to glut (to eat and drink in excess)"
+        ],
+        "id": "fr:godailler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "godailler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "godiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to scull",
+          "(transitive) to scull"
+        ],
+        "id": "fr:godiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "godiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "goinfrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "stuff (something or someone with something)",
+          "(rare) stuff (something or someone with something)"
+        ],
+        "id": "fr:goinfrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "goinfrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gominer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to apply hair gel, to style one's hair"
+        ],
+        "id": "fr:gominer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gominer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gommer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gum",
+          "to erase, rub out"
+        ],
+        "id": "fr:gommer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gommer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gondoler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "(of boats) to curve at the bow and stern like a gondola",
+          "(nautical, intransitive) (of boats) to curve at the bow and stern like a gondola"
+        ],
+        "id": "fr:gondoler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gondoler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gonfler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to inflate, to blow up",
+          "(transitive) to inflate, to blow up"
+        ],
+        "id": "fr:gonfler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gonfler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gorger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gorge oneself (eat greedily)"
+        ],
+        "id": "fr:gorger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gorger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gouacher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to paint with gouache",
+          "(art) to paint with gouache"
+        ],
+        "id": "fr:gouacher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gouacher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gouailler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to mock, to jeer at"
+        ],
+        "id": "fr:gouailler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gouailler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "goudronner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to tar; to tar up (to cover with tar)",
+          "(transitive) to tar; to tar up (to cover with tar)"
+        ],
+        "id": "fr:goudronner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "goudronner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "goupiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to pin (together)",
+          "(transitive, reflexive) to pin (together)"
+        ],
+        "id": "fr:goupiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "goupiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gourer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to goof up, to mess up, to screw up",
+          "(pronominal) to goof up, to mess up, to screw up"
+        ],
+        "id": "fr:gourer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gourer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gourmander": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to scold",
+          "(transitive) to scold"
+        ],
+        "id": "fr:gourmander:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gourmander"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gourmer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to bridle a horse by putting on a curb chain",
+          "to bridle (as of emotions)"
+        ],
+        "id": "fr:gourmer:verb:1",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gourmer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "goutter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to drip (to fall one drop at a time)"
+        ],
+        "id": "fr:goutter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "goutter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gouverner": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To make and administer the public policy and affairs of; to exercise sovereign authority in.",
+              "(transitive) To make and administer the public policy and affairs of; to exercise sovereign authority in."
+            ],
+            "id": "en:govern:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "govern"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:govern:verb:0",
+                "id": "edge:3499c11142a9d488",
+                "source_template": "der",
+                "to_id": "la:gubernō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To make and administer the public policy and affairs of; to exercise sovereign authority in.",
+                  "(transitive) To make and administer the public policy and affairs of; to exercise sovereign authority in."
+                ],
+                "id": "en:govern:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "govern"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:gubernō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "gubernō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to govern",
+          "to steer"
+        ],
+        "id": "fr:gouverner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gouverner"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:gouverner:verb:0",
+            "id": "edge:bb4245ccd9f460eb",
+            "source_template": "inh",
+            "to_id": "la:gubernō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to govern",
+              "to steer"
+            ],
+            "id": "fr:gouverner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "gouverner"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:gubernō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "gubernō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:gubernō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "gubernō"
+      }
+    },
+    "goûter": {
+      "english_descendants": [
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A light meal in the afternoon; tea.",
+              "(dated) A light meal in the afternoon; tea."
+            ],
+            "id": "en:goûter:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "goûter"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fr:goûter:verb:0",
+                "id": "edge:0da67d4183b62ec2",
+                "source_template": "inh",
+                "to_id": "la:gustō:unknown:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to taste, to try (to sample something orally)",
+                  "to taste like"
+                ],
+                "id": "fr:goûter:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "goûter"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:gustō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "gustō"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:goûter:noun:0",
+                "id": "edge:553caaaa967fe707",
+                "source_template": "bor+",
+                "to_id": "fr:goûter:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A light meal in the afternoon; tea.",
+                  "(dated) A light meal in the afternoon; tea."
+                ],
+                "id": "en:goûter:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "goûter"
+              },
+              "to_node": {
+                "glosses": [
+                  "to taste, to try (to sample something orally)",
+                  "to taste like"
+                ],
+                "id": "fr:goûter:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "goûter"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to taste, to try (to sample something orally)",
+          "to taste like"
+        ],
+        "id": "fr:goûter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "goûter"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:goûter:verb:0",
+            "id": "edge:0da67d4183b62ec2",
+            "source_template": "inh",
+            "to_id": "la:gustō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to taste, to try (to sample something orally)",
+              "to taste like"
+            ],
+            "id": "fr:goûter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "goûter"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:gustō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "gustō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:gustō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "gustō"
+      }
+    },
+    "gracier": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To adorn; to decorate; to embellish and dignify.",
+              "(transitive) To adorn; to decorate; to embellish and dignify."
+            ],
+            "id": "en:grace:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "grace"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:grace:verb:0",
+                "id": "edge:8db944b7ae5d4c08",
+                "source_template": "der",
+                "to_id": "la:grātia:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To adorn; to decorate; to embellish and dignify.",
+                  "(transitive) To adorn; to decorate; to embellish and dignify."
+                ],
+                "id": "en:grace:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "grace"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:grātia:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "grātia"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Given freely; unearned.",
+              "Unjustified or unnecessary; not called for by the circumstances."
+            ],
+            "id": "en:gratuitous:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "gratuitous"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:gratuitous:adj:0",
+                "id": "edge:3875cfe8f4bf4c06",
+                "source_template": "der",
+                "to_id": "la:grātia:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Given freely; unearned.",
+                  "Unjustified or unnecessary; not called for by the circumstances."
+                ],
+                "id": "en:gratuitous:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "gratuitous"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:grātia:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "grātia"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.769,
+          "distance": 3,
+          "node": {
+            "glosses": [
+              "To lay out on the grass; to knock down (an opponent etc.).",
+              "(transitive) To lay out on the grass; to knock down (an opponent etc.)."
+            ],
+            "id": "en:grass:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "grass"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:grace:noun:0",
+                "id": "edge:32c2ec9591c1f4d7",
+                "source_template": "bor",
+                "to_id": "la:grātia:unknown:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "grace; favor",
+                  "grace; gracefulness; elegance"
+                ],
+                "id": "fro:grace:noun:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "grace"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:grātia:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "grātia"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "enm:gras:noun:1",
+                "id": "edge:b6721d5750ac19ef",
+                "source_template": null,
+                "to_id": "fro:grace:noun:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A grass (A plant in the family Poaceae or of similar appearance to those plants)",
+                  "Any plant; especially a herbaceous one; a herb."
+                ],
+                "id": "enm:gras:noun:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "noun",
+                "word": "gras"
+              },
+              "to_node": {
+                "glosses": [
+                  "grace; favor",
+                  "grace; gracefulness; elegance"
+                ],
+                "id": "fro:grace:noun:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "noun",
+                "word": "grace"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "en:grass:verb:0",
+                "id": "edge:78a5d99bec43fdd1",
+                "source_template": "inh",
+                "to_id": "enm:gras:noun:1",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To lay out on the grass; to knock down (an opponent etc.).",
+                  "(transitive) To lay out on the grass; to knock down (an opponent etc.)."
+                ],
+                "id": "en:grass:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "grass"
+              },
+              "to_node": {
+                "glosses": [
+                  "A grass (A plant in the family Poaceae or of similar appearance to those plants)",
+                  "Any plant; especially a herbaceous one; a herb."
+                ],
+                "id": "enm:gras:noun:1",
+                "lang": "Middle English",
+                "lang_code": "enm",
+                "pos": "noun",
+                "word": "gras"
+              }
+            }
+          ],
+          "relation_types": [
+            "borrowed_from",
+            "descended_from",
+            "inherited_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to pardon, to issue a pardon to"
+        ],
+        "id": "fr:gracier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gracier"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:gracier:verb:0",
+            "id": "edge:572f21418ca9742b",
+            "source_template": "der",
+            "to_id": "la:grātia:unknown:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to pardon, to issue a pardon to"
+            ],
+            "id": "fr:gracier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "gracier"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:grātia:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "grātia"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:grātia:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "grātia"
+      }
+    },
+    "graduer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To be recognized by a school or university as having completed the requirements of a degree studied at the institution.",
+              "(intransitive, ergative) To be recognized by a school or university as having completed the requirements of a degree studied at the institution."
+            ],
+            "id": "en:graduate:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "graduate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:graduate:verb:2",
+                "id": "edge:3e81bd750de7657a",
+                "source_template": null,
+                "to_id": "la:graduo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To be recognized by a school or university as having completed the requirements of a degree studied at the institution.",
+                  "(intransitive, ergative) To be recognized by a school or university as having completed the requirements of a degree studied at the institution."
+                ],
+                "id": "en:graduate:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "graduate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to graduate",
+                  "(transitive, Medieval Latin) to graduate"
+                ],
+                "id": "la:graduo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "graduo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to graduate",
+          "(transitive) to graduate"
+        ],
+        "id": "fr:graduer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "graduer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:graduer:verb:0",
+            "id": "edge:9efeadcda4642ddc",
+            "source_template": null,
+            "to_id": "la:graduo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to graduate",
+              "(transitive) to graduate"
+            ],
+            "id": "fr:graduer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "graduer"
+          },
+          "to_node": {
+            "glosses": [
+              "to graduate",
+              "(transitive, Medieval Latin) to graduate"
+            ],
+            "id": "la:graduo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "graduo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to graduate",
+          "(transitive, Medieval Latin) to graduate"
+        ],
+        "id": "la:graduo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "graduo"
+      }
+    },
+    "grailler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nosh (eat)",
+          "(ambitransitive, informal) to nosh (eat)"
+        ],
+        "id": "fr:grailler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grailler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grainer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to granulate",
+          "to seed"
+        ],
+        "id": "fr:grainer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grainer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "graisser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grease, oil, lubricate",
+          "(transitive) to grease, oil, lubricate"
+        ],
+        "id": "fr:graisser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "graisser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grandir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grow, get bigger",
+          "(intransitive) to grow, get bigger"
+        ],
+        "id": "fr:grandir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grandir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "granuler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to granulate, to grain"
+        ],
+        "id": "fr:granuler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "granuler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "graphiter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to graphite"
+        ],
+        "id": "fr:graphiter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "graphiter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grappiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to pick (grapes in a vine after the main harvest)",
+          "to scrape together, rake together"
+        ],
+        "id": "fr:grappiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grappiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grasseyer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to pronounce uvularly",
+          "(of the phoneme /ʁ/, the letter R) to pronounce uvularly"
+        ],
+        "id": "fr:grasseyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grasseyer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gratifier": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To please.",
+              "(transitive) To please."
+            ],
+            "id": "en:gratify:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "gratify"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:gratify:verb:0",
+                "id": "edge:d73ab2bcdd1f03c1",
+                "source_template": null,
+                "to_id": "la:gratificor:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To please.",
+                  "(transitive) To please."
+                ],
+                "id": "en:gratify:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "gratify"
+              },
+              "to_node": {
+                "glosses": [
+                  "to oblige, gratify"
+                ],
+                "id": "la:gratificor:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "gratificor"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gratify",
+          "to reward"
+        ],
+        "id": "fr:gratifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gratifier"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:gratifier:verb:0",
+            "id": "edge:ba56670e0e92027f",
+            "source_template": null,
+            "to_id": "la:gratificor:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to gratify",
+              "to reward"
+            ],
+            "id": "fr:gratifier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "gratifier"
+          },
+          "to_node": {
+            "glosses": [
+              "to oblige, gratify"
+            ],
+            "id": "la:gratificor:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "gratificor"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to oblige, gratify"
+        ],
+        "id": "la:gratificor:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "gratificor"
+      }
+    },
+    "gratiner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grill; to brown",
+          "(cooking) to grill; to brown"
+        ],
+        "id": "fr:gratiner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gratiner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gratter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to scrub",
+          "to scrape"
+        ],
+        "id": "fr:gratter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gratter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "graver": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to engrave",
+          "to carve (wood)"
+        ],
+        "id": "fr:graver:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "graver"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gravir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to climb up"
+        ],
+        "id": "fr:gravir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gravir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "graviter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To move under the force of gravity.",
+              "(intransitive, astrophysics) To move under the force of gravity."
+            ],
+            "id": "en:gravitate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "gravitate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:gravitate:verb:0",
+                "id": "edge:96f2fc92e58c3004",
+                "source_template": null,
+                "to_id": "la:gravito:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To move under the force of gravity.",
+                  "(intransitive, astrophysics) To move under the force of gravity."
+                ],
+                "id": "en:gravitate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "gravitate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to gravitate, to fall under the influence of gravity",
+                  "(New Latin, Scientific Latin) to gravitate, to fall under the influence of gravity"
+                ],
+                "id": "la:gravito:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "gravito"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to orbit, gravitate"
+        ],
+        "id": "fr:graviter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "graviter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:graviter:verb:0",
+            "id": "edge:353e53fbba8203b7",
+            "source_template": null,
+            "to_id": "la:gravito:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to orbit, gravitate"
+            ],
+            "id": "fr:graviter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "graviter"
+          },
+          "to_node": {
+            "glosses": [
+              "to gravitate, to fall under the influence of gravity",
+              "(New Latin, Scientific Latin) to gravitate, to fall under the influence of gravity"
+            ],
+            "id": "la:gravito:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "gravito"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to gravitate, to fall under the influence of gravity",
+          "(New Latin, Scientific Latin) to gravitate, to fall under the influence of gravity"
+        ],
+        "id": "la:gravito:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "gravito"
+      }
+    },
+    "greffer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to transplant, to graft",
+          "(transitive) to transplant, to graft"
+        ],
+        "id": "fr:greffer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "greffer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grelotter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to shiver, tremble"
+        ],
+        "id": "fr:grelotter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grelotter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grener": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grain"
+        ],
+        "id": "fr:grener:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grener"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grever": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To cause sorrow or distress to.",
+              "(transitive) To cause sorrow or distress to."
+            ],
+            "id": "en:grieve:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "grieve"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:grieve:verb:1",
+                "id": "edge:9c1a0ec9a625ac74",
+                "source_template": null,
+                "to_id": "la:gravo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To cause sorrow or distress to.",
+                  "(transitive) To cause sorrow or distress to."
+                ],
+                "id": "en:grieve:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "grieve"
+              },
+              "to_node": {
+                "glosses": [
+                  "to burden, weigh down, oppress",
+                  "to make pregnant"
+                ],
+                "id": "la:gravo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "gravo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to burden; put a burden on",
+          "(transitive) to burden; put a burden on"
+        ],
+        "id": "fr:grever:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grever"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:grever:verb:0",
+            "id": "edge:66c0ccfc40d871df",
+            "source_template": null,
+            "to_id": "la:gravo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to burden; put a burden on",
+              "(transitive) to burden; put a burden on"
+            ],
+            "id": "fr:grever:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "grever"
+          },
+          "to_node": {
+            "glosses": [
+              "to burden, weigh down, oppress",
+              "to make pregnant"
+            ],
+            "id": "la:gravo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "gravo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to burden, weigh down, oppress",
+          "to make pregnant"
+        ],
+        "id": "la:gravo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "gravo"
+      }
+    },
+    "gribouiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to scribble (write something scruffily)",
+          "to doodle (to draw or scribble aimlessly)"
+        ],
+        "id": "fr:gribouiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gribouiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "griffer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to scratch"
+        ],
+        "id": "fr:griffer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "griffer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "griffonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to scribble, scrawl (write something scruffily)"
+        ],
+        "id": "fr:griffonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "griffonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grignoter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nibble",
+          "to snack"
+        ],
+        "id": "fr:grignoter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grignoter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grillager": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to enclose with wire netting",
+          "(transitive) to enclose with wire netting"
+        ],
+        "id": "fr:grillager:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grillager"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "griller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to toast (cook with a toaster)",
+          "to grill (cook with a grill)"
+        ],
+        "id": "fr:griller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "griller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grimacer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grimace",
+          "(intransitive) to grimace"
+        ],
+        "id": "fr:grimacer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grimacer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grimer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to make up, to paint (apply make up or face paint to)",
+          "to make (someone's face) look older"
+        ],
+        "id": "fr:grimer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grimer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grimper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "(climbing) to climb, climb up",
+          "(intransitive) (climbing) to climb, climb up"
+        ],
+        "id": "fr:grimper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grimper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grincer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to squeak (emit sound)",
+          "to creak, rasp, squeal"
+        ],
+        "id": "fr:grincer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grincer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gripper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grab, to grasp"
+        ],
+        "id": "fr:gripper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gripper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "griser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "grey (to become grey)",
+          "gray out, to make (a visual element) gray or lighter in color to indicate that it is disabled or unavailable"
+        ],
+        "id": "fr:griser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "griser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grisonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to (become) grey (especially of hair)",
+          "(intransitive) to (become) grey (especially of hair)"
+        ],
+        "id": "fr:grisonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grisonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grogner": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To grunt; to growl; to snarl; to murmur."
+            ],
+            "id": "en:groin:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "groin"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:groin:verb:2",
+                "id": "edge:be826426ced90324",
+                "source_template": "der",
+                "to_id": "la:grunniō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To grunt; to growl; to snarl; to murmur."
+                ],
+                "id": "en:groin:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "groin"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:grunniō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "grunniō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grunt (for a pig, make the sound of a pig)",
+          "to grunt (for a person, to make a snorting sound e.g. of disapproval)"
+        ],
+        "id": "fr:grogner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grogner"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:grogner:verb:0",
+            "id": "edge:c980d865a6280d23",
+            "source_template": "inh",
+            "to_id": "la:grunniō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to grunt (for a pig, make the sound of a pig)",
+              "to grunt (for a person, to make a snorting sound e.g. of disapproval)"
+            ],
+            "id": "fr:grogner:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "grogner"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:grunniō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "grunniō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:grunniō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "grunniō"
+      }
+    },
+    "grommeler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to grumble, mutter",
+          "(colloquial) to grumble, mutter"
+        ],
+        "id": "fr:grommeler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grommeler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gronder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to rumble, roar; to growl",
+          "(intransitive) to rumble, roar; to growl"
+        ],
+        "id": "fr:gronder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gronder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grossir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to increase, to make larger",
+          "(transitive) to increase, to make larger"
+        ],
+        "id": "fr:grossir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grossir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grossoyer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to engross",
+          "(business) to engross"
+        ],
+        "id": "fr:grossoyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grossoyer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grouiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to mill about, swarm with people",
+          "(intransitive) to mill about, swarm with people"
+        ],
+        "id": "fr:grouiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grouiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grouper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to group (to put together to form a group)"
+        ],
+        "id": "fr:grouper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grouper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gruger": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to dupe, con; to rob",
+          "(colloquial) to dupe, con; to rob"
+        ],
+        "id": "fr:gruger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gruger"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grumeler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to become lumpy"
+        ],
+        "id": "fr:grumeler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grumeler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gréciser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to Grecize (render Grecian)",
+          "to Grecize (translate into Greek)"
+        ],
+        "id": "fr:gréciser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gréciser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gréer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to rig",
+          "(transitive, nautical) to rig"
+        ],
+        "id": "fr:gréer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gréer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grésiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to crackle",
+          "(intransitive) to crackle"
+        ],
+        "id": "fr:grésiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grésiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "grêler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hail",
+          "(impersonal, weather) to hail"
+        ],
+        "id": "fr:grêler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "grêler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guerroyer": {
+      "english_descendants": [
+        {
+          "confidence": 0.81,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To wage war against.",
+              "(obsolete, transitive) To wage war against."
+            ],
+            "id": "en:warray:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "warray"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:guerroiier:verb:0",
+                "id": "edge:3f88ecb7f43f020e",
+                "source_template": null,
+                "to_id": "la:werrizare:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to wage war; to engage in warfare"
+                ],
+                "id": "fro:guerroiier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "guerroiier"
+              },
+              "to_node": {
+                "glosses": [
+                  "to wage war"
+                ],
+                "id": "la:werrizare:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "werrizare"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:warray:verb:0",
+                "id": "edge:fd50fc753fa5b148",
+                "source_template": null,
+                "to_id": "fro:guerroiier:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To wage war against.",
+                  "(obsolete, transitive) To wage war against."
+                ],
+                "id": "en:warray:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "warray"
+              },
+              "to_node": {
+                "glosses": [
+                  "to wage war; to engage in warfare"
+                ],
+                "id": "fro:guerroiier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "guerroiier"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A person who is actively engaged in battle, conflict or warfare; a soldier or combatant.",
+              "A person who is aggressively, courageously, or energetically involved in an activity, such as athletics."
+            ],
+            "id": "en:warrior:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "warrior"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fro:guerroiier:verb:0",
+                "id": "edge:3f88ecb7f43f020e",
+                "source_template": null,
+                "to_id": "la:werrizare:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to wage war; to engage in warfare"
+                ],
+                "id": "fro:guerroiier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "guerroiier"
+              },
+              "to_node": {
+                "glosses": [
+                  "to wage war"
+                ],
+                "id": "la:werrizare:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "werrizare"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:warrior:noun:0",
+                "id": "edge:9ec17a0435539ad8",
+                "source_template": "der",
+                "to_id": "fro:guerroiier:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A person who is actively engaged in battle, conflict or warfare; a soldier or combatant.",
+                  "A person who is aggressively, courageously, or energetically involved in an activity, such as athletics."
+                ],
+                "id": "en:warrior:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "warrior"
+              },
+              "to_node": {
+                "glosses": [
+                  "to wage war; to engage in warfare"
+                ],
+                "id": "fro:guerroiier:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "guerroiier"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to wage war",
+          "to hassle; to bother"
+        ],
+        "id": "fr:guerroyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guerroyer"
+      },
+      "french_confidence": 0.855,
+      "french_distance": 2,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:guerroyer:verb:0",
+            "id": "edge:93663a1ccdaf1359",
+            "source_template": "inh",
+            "to_id": "fro:guerroiier:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to wage war",
+              "to hassle; to bother"
+            ],
+            "id": "fr:guerroyer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "guerroyer"
+          },
+          "to_node": {
+            "glosses": [
+              "to wage war; to engage in warfare"
+            ],
+            "id": "fro:guerroiier:verb:0",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "guerroiier"
+          }
+        },
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fro:guerroiier:verb:0",
+            "id": "edge:3f88ecb7f43f020e",
+            "source_template": null,
+            "to_id": "la:werrizare:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to wage war; to engage in warfare"
+            ],
+            "id": "fro:guerroiier:verb:0",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "guerroiier"
+          },
+          "to_node": {
+            "glosses": [
+              "to wage war"
+            ],
+            "id": "la:werrizare:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "werrizare"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to wage war"
+        ],
+        "id": "la:werrizare:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "werrizare"
+      }
+    },
+    "guetter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to watch (intently), to watch for, to lie in wait",
+          "(transitive) to watch (intently), to watch for, to lie in wait"
+        ],
+        "id": "fr:guetter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guetter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gueuler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to yell, to scream",
+          "(slang, vulgar) to yell, to scream"
+        ],
+        "id": "fr:gueuler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gueuler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gueuletonner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to chow down; to munch",
+          "(colloquial) to chow down; to munch"
+        ],
+        "id": "fr:gueuletonner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gueuletonner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guider": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to guide"
+        ],
+        "id": "fr:guider:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guider"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guigner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to eye (sneak a look at)",
+          "(transitive) to eye (sneak a look at)"
+        ],
+        "id": "fr:guigner:verb:2",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guigner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guillocher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to guilloche"
+        ],
+        "id": "fr:guillocher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guillocher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guillotiner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to guillotine, to execute with a guillotine",
+          "(transitive) to guillotine, to execute with a guillotine"
+        ],
+        "id": "fr:guillotiner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guillotiner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guincher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to boogie (dance)",
+          "(informal) to boogie (dance)"
+        ],
+        "id": "fr:guincher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guincher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guinder": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to raise, erect; to hoist",
+          "(transitive) to raise, erect; to hoist"
+        ],
+        "id": "fr:guinder:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guinder"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guéer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to ford (a river etc)",
+          "to bathe"
+        ],
+        "id": "fr:guéer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guéer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "guérir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cure, to heal",
+          "(transitive) to cure, to heal"
+        ],
+        "id": "fr:guérir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "guérir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gâcher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to ruin, spoil, mar, wreck, waste",
+          "to mess up, botch, bungle"
+        ],
+        "id": "fr:gâcher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gâcher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gâter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To devastate; to destroy.",
+              "(transitive) To devastate; to destroy."
+            ],
+            "id": "en:waste:verb:3",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "waste"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:waste:verb:3",
+                "id": "edge:1ba2a5ba92e9b19e",
+                "source_template": null,
+                "to_id": "la:vasto:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To devastate; to destroy.",
+                  "(transitive) To devastate; to destroy."
+                ],
+                "id": "en:waste:verb:3",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "waste"
+              },
+              "to_node": {
+                "glosses": [
+                  "to devastate, destroy, ravage, lay waste"
+                ],
+                "id": "la:vasto:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "vasto"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [],
+            "id": "en:vastate:unknown:0",
+            "lang": null,
+            "lang_code": "en",
+            "pos": null,
+            "word": "vastate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:vastate:unknown:0",
+                "id": "edge:1174e408784a9881",
+                "source_template": null,
+                "to_id": "la:vasto:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [],
+                "id": "en:vastate:unknown:0",
+                "lang": null,
+                "lang_code": "en",
+                "pos": null,
+                "word": "vastate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to devastate, destroy, ravage, lay waste"
+                ],
+                "id": "la:vasto:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "vasto"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to spoil, ruin",
+          "to go bad, go off"
+        ],
+        "id": "fr:gâter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gâter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:gâter:verb:0",
+            "id": "edge:484c1544d07221e9",
+            "source_template": null,
+            "to_id": "la:vasto:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to spoil, ruin",
+              "to go bad, go off"
+            ],
+            "id": "fr:gâter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "gâter"
+          },
+          "to_node": {
+            "glosses": [
+              "to devastate, destroy, ravage, lay waste"
+            ],
+            "id": "la:vasto:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "vasto"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to devastate, destroy, ravage, lay waste"
+        ],
+        "id": "la:vasto:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "vasto"
+      }
+    },
+    "gélatiniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gelatinize"
+        ],
+        "id": "fr:gélatiniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gélatiniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gélifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to gel (to make into a gel)"
+        ],
+        "id": "fr:gélifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gélifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "géminer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To arrange in pairs.",
+              "To occur in pairs."
+            ],
+            "id": "en:geminate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "geminate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:geminate:verb:0",
+                "id": "edge:d772c58685ae5fe8",
+                "source_template": null,
+                "to_id": "la:gemino:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To arrange in pairs.",
+                  "To occur in pairs."
+                ],
+                "id": "en:geminate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "geminate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to double",
+                  "to repeat, do again"
+                ],
+                "id": "la:gemino:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "gemino"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to geminate"
+        ],
+        "id": "fr:géminer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "géminer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:géminer:verb:0",
+            "id": "edge:05f3a92475fc6091",
+            "source_template": null,
+            "to_id": "la:gemino:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to geminate"
+            ],
+            "id": "fr:géminer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "géminer"
+          },
+          "to_node": {
+            "glosses": [
+              "to double",
+              "to repeat, do again"
+            ],
+            "id": "la:gemino:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "gemino"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to double",
+          "to repeat, do again"
+        ],
+        "id": "la:gemino:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "gemino"
+      }
+    },
+    "gémir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to moan; to groan"
+        ],
+        "id": "fr:gémir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gémir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "généraliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to generalise (all senses)",
+          "to become common, standard, widespread; to spread"
+        ],
+        "id": "fr:généraliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "généraliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "générer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To assign a gender to (a person); to perceive as having a gender; to address using terms (pronouns, nouns, adjectives...) that express a certain gender.",
+              "(sociology) To assign a gender to (a person); to perceive as having a gender; to address using terms (pronouns, nouns, adjectives...) that express a certain gender."
+            ],
+            "id": "en:gender:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "gender"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:gender:verb:1",
+                "id": "edge:34747034a67d29cf",
+                "source_template": null,
+                "to_id": "la:genero:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To assign a gender to (a person); to perceive as having a gender; to address using terms (pronouns, nouns, adjectives...) that express a certain gender.",
+                  "(sociology) To assign a gender to (a person); to perceive as having a gender; to address using terms (pronouns, nouns, adjectives...) that express a certain gender."
+                ],
+                "id": "en:gender:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "gender"
+              },
+              "to_node": {
+                "glosses": [
+                  "to bring to life, to confer life upon: to beget, to breed, to father, to impregnate, to procreate, to sire",
+                  "to generate, to produce"
+                ],
+                "id": "la:genero:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "genero"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To bring into being; give rise to.",
+              "(transitive) To bring into being; give rise to."
+            ],
+            "id": "en:generate:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "generate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:generate:verb:1",
+                "id": "edge:da3e13c80c584c01",
+                "source_template": null,
+                "to_id": "la:genero:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To bring into being; give rise to.",
+                  "(transitive) To bring into being; give rise to."
+                ],
+                "id": "en:generate:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "generate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to bring to life, to confer life upon: to beget, to breed, to father, to impregnate, to procreate, to sire",
+                  "to generate, to produce"
+                ],
+                "id": "la:genero:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "genero"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to generate",
+          "(transitive) to generate"
+        ],
+        "id": "fr:générer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "générer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:générer:verb:0",
+            "id": "edge:3798356ac2a00cec",
+            "source_template": null,
+            "to_id": "la:genero:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to generate",
+              "(transitive) to generate"
+            ],
+            "id": "fr:générer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "générer"
+          },
+          "to_node": {
+            "glosses": [
+              "to bring to life, to confer life upon: to beget, to breed, to father, to impregnate, to procreate, to sire",
+              "to generate, to produce"
+            ],
+            "id": "la:genero:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "genero"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to bring to life, to confer life upon: to beget, to breed, to father, to impregnate, to procreate, to sire",
+          "to generate, to produce"
+        ],
+        "id": "la:genero:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "genero"
+      }
+    },
+    "géométriser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to geometrize"
+        ],
+        "id": "fr:géométriser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "géométriser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gérer": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To make a gesture or gestures.",
+              "(intransitive) To make a gesture or gestures."
+            ],
+            "id": "en:gesture:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "gesture"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:gesture:verb:0",
+                "id": "edge:71cc7ade63351668",
+                "source_template": "der",
+                "to_id": "la:gerō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To make a gesture or gestures.",
+                  "(intransitive) To make a gesture or gestures."
+                ],
+                "id": "en:gesture:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "gesture"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:gerō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "gerō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Bearing or producing."
+            ],
+            "id": "en:-gerous:suffix:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "suffix",
+            "word": "-gerous"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:-gerous:suffix:0",
+                "id": "edge:1571589d97be192e",
+                "source_template": "bor",
+                "to_id": "la:gerō:unknown:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Bearing or producing."
+                ],
+                "id": "en:-gerous:suffix:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "suffix",
+                "word": "-gerous"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:gerō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "gerō"
+              }
+            }
+          ],
+          "relation_types": [
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to manage",
+          "to rule, to rock (to excel)"
+        ],
+        "id": "fr:gérer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gérer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:gérer:verb:0",
+            "id": "edge:3550ea3dc9206e9b",
+            "source_template": "bor+",
+            "to_id": "la:gerō:unknown:0",
+            "type": "borrowed_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to manage",
+              "to rule, to rock (to excel)"
+            ],
+            "id": "fr:gérer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "gérer"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:gerō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "gerō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:gerō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "gerō"
+      }
+    },
+    "gésir": {
+      "english_descendants": [
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To extract and present the main ideas or substance, or the most essential parts of (a document, piece of writing, etc.); to abridge, to summarize.",
+              "(transitive) To extract and present the main ideas or substance, or the most essential parts of (a document, piece of writing, etc.); to abridge, to summarize."
+            ],
+            "id": "en:gist:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "gist"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:gesir:verb:0",
+                "id": "edge:5b87fff12a3df74b",
+                "source_template": "inh",
+                "to_id": "la:iaceo:verb:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to lie down (horizontally)",
+                  "(intransitive) to lie down (horizontally)"
+                ],
+                "id": "fro:gesir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "gesir"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie prostrate, lie down; recline",
+                  "to be sick, lie ill"
+                ],
+                "id": "la:iaceo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iaceo"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:gist:verb:1",
+                "id": "edge:20100ce66d90f1f4",
+                "source_template": null,
+                "to_id": "fro:gesir:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To extract and present the main ideas or substance, or the most essential parts of (a document, piece of writing, etc.); to abridge, to summarize.",
+                  "(transitive) To extract and present the main ideas or substance, or the most essential parts of (a document, piece of writing, etc.); to abridge, to summarize."
+                ],
+                "id": "en:gist:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "gist"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie down (horizontally)",
+                  "(intransitive) to lie down (horizontally)"
+                ],
+                "id": "fro:gesir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "gesir"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To fit or furnish with joists.",
+              "(transitive) To fit or furnish with joists."
+            ],
+            "id": "en:joist:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "joist"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:gesir:verb:0",
+                "id": "edge:5b87fff12a3df74b",
+                "source_template": "inh",
+                "to_id": "la:iaceo:verb:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to lie down (horizontally)",
+                  "(intransitive) to lie down (horizontally)"
+                ],
+                "id": "fro:gesir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "gesir"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie prostrate, lie down; recline",
+                  "to be sick, lie ill"
+                ],
+                "id": "la:iaceo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iaceo"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:joist:verb:0",
+                "id": "edge:046fcb867a41e4d0",
+                "source_template": null,
+                "to_id": "fro:gesir:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To fit or furnish with joists.",
+                  "(transitive) To fit or furnish with joists."
+                ],
+                "id": "en:joist:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "joist"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie down (horizontally)",
+                  "(intransitive) to lie down (horizontally)"
+                ],
+                "id": "fro:gesir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "gesir"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        },
+        {
+          "confidence": 0.769,
+          "distance": 3,
+          "node": {
+            "glosses": [
+              "A French holiday home, or a rented tourist cottage."
+            ],
+            "id": "en:gîte:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "gîte"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:gesir:verb:0",
+                "id": "edge:5b87fff12a3df74b",
+                "source_template": "inh",
+                "to_id": "la:iaceo:verb:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to lie down (horizontally)",
+                  "(intransitive) to lie down (horizontally)"
+                ],
+                "id": "fro:gesir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "gesir"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie prostrate, lie down; recline",
+                  "to be sick, lie ill"
+                ],
+                "id": "la:iaceo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "iaceo"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "fr:gîte:verb:0",
+                "id": "edge:90be113fc5210698",
+                "source_template": null,
+                "to_id": "fro:gesir:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "inflection of gîter:",
+                  "first/third-person singular present indicative/subjunctive"
+                ],
+                "id": "fr:gîte:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "gîte"
+              },
+              "to_node": {
+                "glosses": [
+                  "to lie down (horizontally)",
+                  "(intransitive) to lie down (horizontally)"
+                ],
+                "id": "fro:gesir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "gesir"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:gîte:noun:0",
+                "id": "edge:c602a176880ca1d7",
+                "source_template": "bor",
+                "to_id": "fr:gîte:verb:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A French holiday home, or a rented tourist cottage."
+                ],
+                "id": "en:gîte:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "gîte"
+              },
+              "to_node": {
+                "glosses": [
+                  "inflection of gîter:",
+                  "first/third-person singular present indicative/subjunctive"
+                ],
+                "id": "fr:gîte:verb:0",
+                "lang": "French",
+                "lang_code": "fr",
+                "pos": "verb",
+                "word": "gîte"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from",
+            "borrowed_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to lie (to be in a horizontal position), especially when dead or wounded",
+          "(intransitive, archaic or literary) to lie (to be in a horizontal position), especially when dead or wounded"
+        ],
+        "id": "fr:gésir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gésir"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:gésir:verb:0",
+            "id": "edge:0e607cbcc0fdb892",
+            "source_template": "inh",
+            "to_id": "la:iaceo:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to lie (to be in a horizontal position), especially when dead or wounded",
+              "(intransitive, archaic or literary) to lie (to be in a horizontal position), especially when dead or wounded"
+            ],
+            "id": "fr:gésir:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "gésir"
+          },
+          "to_node": {
+            "glosses": [
+              "to lie prostrate, lie down; recline",
+              "to be sick, lie ill"
+            ],
+            "id": "la:iaceo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "iaceo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to lie prostrate, lie down; recline",
+          "to be sick, lie ill"
+        ],
+        "id": "la:iaceo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "iaceo"
+      }
+    },
+    "gêner": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to hinder, hamper, bother",
+          "to bother, annoy, irritate"
+        ],
+        "id": "fr:gêner:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gêner"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "gîter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to list, heel over",
+          "(intransitive, nautical) to list, heel over"
+        ],
+        "id": "fr:gîter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "gîter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    }
+  }
+}

@@ -49,14 +49,25 @@ FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS = [
     "js/pronounFillRows.js",
     "js/pronounFillRows.passeCompose.js",
     "js/preRenderedTts.js",
+    "js/frenchVoice.js",
+    "js/offlineVoice.js",
+    "js/offlineVoiceWorker.js",
     "js/frenchHomophoneGroups.js",
     "js/french-phonetic-diff-v3.js",
     "js/vendor/espeak-ng.js",
     "js/constructionCards.js",
+    "js/pronounExplanation.js",
     "js/referenceCards.js",
+    "js/referenceInventory.js",
+    "js/referenceEnYInventory.js",
+    "js/referenceEnY.js",
+    "js/referenceExpansion.js",
+    "js/referenceNegation.js",
+    "js/liaisonClues.js",
     "js/wordFamilies.fr.js",
     "js/wordFamilyDefinitions.fr.js",
     "js/verbDetailsTabs.js",
+    "js/questionShare.js",
     "js/script.js",
 ]
 FRENCH_WEB_EXTERNAL_NON_SCRIPT_ASSETS = [
@@ -600,6 +611,18 @@ def build_french_app(force_jpeg=False):
         else:
             print(f"⚠️  Warning: {src_path} does not exist, skipping French web asset copy.")
 
+    shutil.copytree(os.path.join(ROOT_DIR, "js/offline-voice-runtime"),
+                    os.path.join(APP_DIST_DIR, "js/offline-voice-runtime"), dirs_exist_ok=True)
+
+    # Redistributable linguistic-resource source and attribution accompany the data.
+    pronoun_source = os.path.join(ROOT_DIR, "data", "pronoun-constructions")
+    pronoun_dest = os.path.join(APP_DIST_DIR, "data", "pronoun-constructions")
+    os.makedirs(os.path.join(pronoun_dest, "source"), exist_ok=True)
+    for name in ["NOTICE.txt", "LGPLLR.txt", "enabled.json", "en-y-editorial.json", "source/dicovalence_100625_utf8.txt"]:
+        copy_file(os.path.join(pronoun_source, name), os.path.join(pronoun_dest, name))
+    for name in ["scripts/audit_french_pronoun_inventory.py", "scripts/build_french_en_y.py", "scripts/en_y_examples.cjs", "verb_core_patterns.json", "js/verbs.full.generated.js", "js/referenceCards.js", "js/referenceExpansion.js", "js/referenceEnY.js", "js/referenceInventory.js", "js/referenceEnYInventory.js"]:
+        copy_file(os.path.join(ROOT_DIR, name), os.path.join(pronoun_dest, "source", os.path.basename(name)))
+
     family_provenance = os.path.join(ROOT_DIR, "data", "word-families")
     if os.path.isdir(family_provenance):
         shutil.copytree(family_provenance, os.path.join(APP_DIST_DIR, "data", "word-families"), dirs_exist_ok=True)
@@ -745,11 +768,22 @@ WATCHED_FILES = [
     "verb_usages.js",
     "js/practicePhrases.js",
     "js/preRenderedTts.js",
+    "js/frenchVoice.js",
+    "js/offlineVoice.js",
+    "js/offlineVoiceWorker.js",
     "js/constructionCards.js",
+    "js/pronounExplanation.js",
     "js/referenceCards.js",
+    "js/referenceInventory.js",
+    "js/referenceEnYInventory.js",
+    "js/referenceEnY.js",
+    "js/referenceExpansion.js",
+    "js/referenceNegation.js",
+    "js/liaisonClues.js",
     "js/wordFamilies.fr.js",
     "js/wordFamilyDefinitions.fr.js",
     "js/verbDetailsTabs.js",
+    "js/questionShare.js",
     "js/script.js",
     "generated_tts/manifest.json",
     "manifest.json",

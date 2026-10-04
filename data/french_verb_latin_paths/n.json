@@ -1,0 +1,3186 @@
+{
+  "metadata": {
+    "shard": "n",
+    "verbs": 53
+  },
+  "verbs": {
+    "nacrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to give the appearance of mother-of-pearl"
+        ],
+        "id": "fr:nacrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nacrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nager": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to swim"
+        ],
+        "id": "fr:nager:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nager"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nantir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to provide",
+          "(transitive) to provide [with direct object ‘someone’ and de ‘with something’]"
+        ],
+        "id": "fr:nantir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nantir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "napper": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cover (to cover something with sauce)",
+          "(cooking) to cover (to cover something with sauce)"
+        ],
+        "id": "fr:napper:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "napper"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "narguer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to taunt",
+          "(transitive) to taunt"
+        ],
+        "id": "fr:narguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "narguer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "narrer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To relate (a story or series of events) in speech or writing.",
+              "(transitive) To relate (a story or series of events) in speech or writing."
+            ],
+            "id": "en:narrate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "narrate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:narrate:verb:0",
+                "id": "edge:edfbcf18a0208af0",
+                "source_template": null,
+                "to_id": "la:narro:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To relate (a story or series of events) in speech or writing.",
+                  "(transitive) To relate (a story or series of events) in speech or writing."
+                ],
+                "id": "en:narrate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "narrate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to tell, say, relate",
+                  "Used to emphasise that one is speaking in earnest, or to add expressiveness."
+                ],
+                "id": "la:narro:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "narro"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to narrate, to tell (e.g. a story)",
+          "(formal) to narrate, to tell (e.g. a story)"
+        ],
+        "id": "fr:narrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "narrer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:narrer:verb:0",
+            "id": "edge:48897ab5a46e0b49",
+            "source_template": null,
+            "to_id": "la:narro:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to narrate, to tell (e.g. a story)",
+              "(formal) to narrate, to tell (e.g. a story)"
+            ],
+            "id": "fr:narrer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "narrer"
+          },
+          "to_node": {
+            "glosses": [
+              "to tell, say, relate",
+              "Used to emphasise that one is speaking in earnest, or to add expressiveness."
+            ],
+            "id": "la:narro:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "narro"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to tell, say, relate",
+          "Used to emphasise that one is speaking in earnest, or to add expressiveness."
+        ],
+        "id": "la:narro:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "narro"
+      }
+    },
+    "nasaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nasalize",
+          "(phonetics) to nasalize"
+        ],
+        "id": "fr:nasaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nasaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nasiller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nasalise, nasalize"
+        ],
+        "id": "fr:nasiller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nasiller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nationaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nationalize"
+        ],
+        "id": "fr:nationaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nationaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "natter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to plait; to braid"
+        ],
+        "id": "fr:natter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "natter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "naturaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to naturalize (all senses)",
+          "(transitive) to naturalize (all senses)"
+        ],
+        "id": "fr:naturaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "naturaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "naufrager": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to sink, go down",
+          "(archaic, intransitive, of a vessel) to sink, go down"
+        ],
+        "id": "fr:naufrager:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "naufrager"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "naviguer": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To plan, control and record the position and course of a vehicle, ship, aircraft, etc., on a journey; to follow a planned course.",
+              "(transitive) To plan, control and record the position and course of a vehicle, ship, aircraft, etc., on a journey; to follow a planned course."
+            ],
+            "id": "en:navigate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "navigate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:navigate:verb:0",
+                "id": "edge:66202c21b4254e06",
+                "source_template": null,
+                "to_id": "la:navigo:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To plan, control and record the position and course of a vehicle, ship, aircraft, etc., on a journey; to follow a planned course.",
+                  "(transitive) To plan, control and record the position and course of a vehicle, ship, aircraft, etc., on a journey; to follow a planned course."
+                ],
+                "id": "en:navigate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "navigate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to sail, navigate, seafare, embark"
+                ],
+                "id": "la:navigo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "navigo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to navigate",
+          "(intransitive) to navigate"
+        ],
+        "id": "fr:naviguer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "naviguer"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:naviguer:verb:0",
+            "id": "edge:69d9490516b8924a",
+            "source_template": null,
+            "to_id": "la:navigo:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to navigate",
+              "(intransitive) to navigate"
+            ],
+            "id": "fr:naviguer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "naviguer"
+          },
+          "to_node": {
+            "glosses": [
+              "to sail, navigate, seafare, embark"
+            ],
+            "id": "la:navigo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "navigo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to sail, navigate, seafare, embark"
+        ],
+        "id": "la:navigo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "navigo"
+      }
+    },
+    "navrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to cause great pain or affliction",
+          "(transitive) to cause great pain or affliction"
+        ],
+        "id": "fr:navrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "navrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "naître": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to be born",
+          "(intransitive) to be born"
+        ],
+        "id": "fr:naître:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "naître"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "neiger": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The seasonal microenvironment beneath the snow.",
+              "(ecology) The seasonal microenvironment beneath the snow."
+            ],
+            "id": "en:subnivium:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "subnivium"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:subnivium:noun:0",
+                "id": "edge:f651ac71a51ff410",
+                "source_template": "bor",
+                "to_id": "la:nix:noun:0",
+                "type": "borrowed_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The seasonal microenvironment beneath the snow.",
+                  "(ecology) The seasonal microenvironment beneath the snow."
+                ],
+                "id": "en:subnivium:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "subnivium"
+              },
+              "to_node": {
+                "glosses": [
+                  "snow",
+                  "white hair"
+                ],
+                "id": "la:nix:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "nix"
+              }
+            }
+          ],
+          "relation_types": [
+            "borrowed_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "A large, smothering, and destructive blizzard.",
+              "(rare) A large, smothering, and destructive blizzard."
+            ],
+            "id": "en:connixation:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "connixation"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:connixation:noun:0",
+                "id": "edge:17969cd643a8914a",
+                "source_template": "uder",
+                "to_id": "la:nix:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A large, smothering, and destructive blizzard.",
+                  "(rare) A large, smothering, and destructive blizzard."
+                ],
+                "id": "en:connixation:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "connixation"
+              },
+              "to_node": {
+                "glosses": [
+                  "snow",
+                  "white hair"
+                ],
+                "id": "la:nix:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "nix"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Synonym of zinc oxide, particularly white forms.",
+              "(chemistry, obsolete) Synonym of zinc oxide, particularly white forms."
+            ],
+            "id": "en:nihil_album:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "nihil album"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nihil_album:noun:0",
+                "id": "edge:43653075cafc243f",
+                "source_template": "der",
+                "to_id": "la:nix:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Synonym of zinc oxide, particularly white forms.",
+                  "(chemistry, obsolete) Synonym of zinc oxide, particularly white forms."
+                ],
+                "id": "en:nihil_album:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "nihil album"
+              },
+              "to_node": {
+                "glosses": [
+                  "snow",
+                  "white hair"
+                ],
+                "id": "la:nix:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "nix"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Synonym of zinc oxide, particularly white forms used in medicine and cosmetics.",
+              "(obsolete) Synonym of zinc oxide, particularly white forms used in medicine and cosmetics."
+            ],
+            "id": "en:nill:noun:3",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "nill"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nill:noun:3",
+                "id": "edge:3f2fecc4a3671302",
+                "source_template": "der",
+                "to_id": "la:nix:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Synonym of zinc oxide, particularly white forms used in medicine and cosmetics.",
+                  "(obsolete) Synonym of zinc oxide, particularly white forms used in medicine and cosmetics."
+                ],
+                "id": "en:nill:noun:3",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "nill"
+              },
+              "to_node": {
+                "glosses": [
+                  "snow",
+                  "white hair"
+                ],
+                "id": "la:nix:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "nix"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The firn or snowfield at the head of a glacier.",
+              "Young, granular snow on a glacier, which has been partially melted and refrozen since deposition, but has not yet turned into firn by surviving a full season of ablation."
+            ],
+            "id": "en:névé:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "névé"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:névé:noun:0",
+                "id": "edge:d5213569f8a89172",
+                "source_template": "der",
+                "to_id": "la:nix:noun:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The firn or snowfield at the head of a glacier.",
+                  "Young, granular snow on a glacier, which has been partially melted and refrozen since deposition, but has not yet turned into firn by surviving a full season of ablation."
+                ],
+                "id": "en:névé:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "névé"
+              },
+              "to_node": {
+                "glosses": [
+                  "snow",
+                  "white hair"
+                ],
+                "id": "la:nix:noun:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "noun",
+                "word": "nix"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 5,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to snow",
+          "(impersonal) to snow"
+        ],
+        "id": "fr:neiger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "neiger"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:neiger:verb:0",
+            "id": "edge:72447758803ce8c0",
+            "source_template": "der",
+            "to_id": "la:nix:noun:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to snow",
+              "(impersonal) to snow"
+            ],
+            "id": "fr:neiger:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "neiger"
+          },
+          "to_node": {
+            "glosses": [
+              "snow",
+              "white hair"
+            ],
+            "id": "la:nix:noun:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "noun",
+            "word": "nix"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "snow",
+          "white hair"
+        ],
+        "id": "la:nix:noun:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "noun",
+        "word": "nix"
+      }
+    },
+    "nervurer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to rib (make architectural ribs on a vault)"
+        ],
+        "id": "fr:nervurer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nervurer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nettoyer": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To receive as profit.",
+              "(transitive) To receive as profit."
+            ],
+            "id": "en:net:verb:2",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "net"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:net:verb:2",
+                "id": "edge:eb836b02f3572ff8",
+                "source_template": "der",
+                "to_id": "la:nitidus:adj:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To receive as profit.",
+                  "(transitive) To receive as profit."
+                ],
+                "id": "en:net:verb:2",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "net"
+              },
+              "to_node": {
+                "glosses": [
+                  "shining, polished, glittering",
+                  "handsome, beautiful, good-looking"
+                ],
+                "id": "la:nitidus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "nitidus"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "An artificial intelligence researcher who believes that solutions should be elegant, clear and provably correct. Compare scruffy.",
+              "(informal) An artificial intelligence researcher who believes that solutions should be elegant, clear and provably correct. Compare scruffy."
+            ],
+            "id": "en:neat:noun:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "neat"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:neat:noun:1",
+                "id": "edge:5cece81b3c0c54b5",
+                "source_template": "der",
+                "to_id": "la:nitidus:adj:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "An artificial intelligence researcher who believes that solutions should be elegant, clear and provably correct. Compare scruffy.",
+                  "(informal) An artificial intelligence researcher who believes that solutions should be elegant, clear and provably correct. Compare scruffy."
+                ],
+                "id": "en:neat:noun:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "neat"
+              },
+              "to_node": {
+                "glosses": [
+                  "shining, polished, glittering",
+                  "handsome, beautiful, good-looking"
+                ],
+                "id": "la:nitidus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "nitidus"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Having a reasonable amount of clay, but that falls apart into flat-edged geometrical forms that have shiny faces",
+              "(geology, of a soil) Having a reasonable amount of clay, but that falls apart into flat-edged geometrical forms that have shiny faces"
+            ],
+            "id": "en:nitic:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "nitic"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nitic:adj:0",
+                "id": "edge:f2d9597dc9126480",
+                "source_template": "der",
+                "to_id": "la:nitidus:adj:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Having a reasonable amount of clay, but that falls apart into flat-edged geometrical forms that have shiny faces",
+                  "(geology, of a soil) Having a reasonable amount of clay, but that falls apart into flat-edged geometrical forms that have shiny faces"
+                ],
+                "id": "en:nitic:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "nitic"
+              },
+              "to_node": {
+                "glosses": [
+                  "shining, polished, glittering",
+                  "handsome, beautiful, good-looking"
+                ],
+                "id": "la:nitidus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "nitidus"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Bright; lustrous; shining.",
+              "Festively or smartly dressed; spruce; fine."
+            ],
+            "id": "en:nitid:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "nitid"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nitid:adj:0",
+                "id": "edge:7c86544dbc221e36",
+                "source_template": "uder",
+                "to_id": "la:nitidus:adj:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Bright; lustrous; shining.",
+                  "Festively or smartly dressed; spruce; fine."
+                ],
+                "id": "en:nitid:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "nitid"
+              },
+              "to_node": {
+                "glosses": [
+                  "shining, polished, glittering",
+                  "handsome, beautiful, good-looking"
+                ],
+                "id": "la:nitidus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "nitidus"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Shining; elegant, spruce.",
+              "(obsolete, rare) Shining; elegant, spruce."
+            ],
+            "id": "en:nitty:adj:3",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "nitty"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nitty:adj:3",
+                "id": "edge:fe4061bcd9359bac",
+                "source_template": "der",
+                "to_id": "la:nitidus:adj:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Shining; elegant, spruce.",
+                  "(obsolete, rare) Shining; elegant, spruce."
+                ],
+                "id": "en:nitty:adj:3",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "nitty"
+              },
+              "to_node": {
+                "glosses": [
+                  "shining, polished, glittering",
+                  "handsome, beautiful, good-looking"
+                ],
+                "id": "la:nitidus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "nitidus"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.765,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "A surname."
+            ],
+            "id": "en:nett:name:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "name",
+            "word": "Nett"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "la:*nittus:unknown:0",
+                "id": "edge:9402685ade68186c",
+                "source_template": null,
+                "to_id": "la:nitidus:adj:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [],
+                "id": "la:*nittus:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "*nittus"
+              },
+              "to_node": {
+                "glosses": [
+                  "shining, polished, glittering",
+                  "handsome, beautiful, good-looking"
+                ],
+                "id": "la:nitidus:adj:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "adj",
+                "word": "nitidus"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nett:name:0",
+                "id": "edge:53a21108acb8cf94",
+                "source_template": "der",
+                "to_id": "la:*nittus:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "A surname."
+                ],
+                "id": "en:nett:name:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "name",
+                "word": "Nett"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:*nittus:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "*nittus"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from",
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 6,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to clean",
+          "to wipe clean"
+        ],
+        "id": "fr:nettoyer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nettoyer"
+      },
+      "french_confidence": 0.807,
+      "french_distance": 2,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:nettoyer:verb:0",
+            "id": "edge:0ee42a471161c5d6",
+            "source_template": "inh",
+            "to_id": "fro:netoiier:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to clean",
+              "to wipe clean"
+            ],
+            "id": "fr:nettoyer:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "nettoyer"
+          },
+          "to_node": {
+            "glosses": [
+              "to clean"
+            ],
+            "id": "fro:netoiier:verb:0",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "netoiier"
+          }
+        },
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fro:netoiier:verb:0",
+            "id": "edge:12e1212b845ffcad",
+            "source_template": "der",
+            "to_id": "la:nitidus:adj:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to clean"
+            ],
+            "id": "fro:netoiier:verb:0",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "netoiier"
+          },
+          "to_node": {
+            "glosses": [
+              "shining, polished, glittering",
+              "handsome, beautiful, good-looking"
+            ],
+            "id": "la:nitidus:adj:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "adj",
+            "word": "nitidus"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "shining, polished, glittering",
+          "handsome, beautiful, good-looking"
+        ],
+        "id": "la:nitidus:adj:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "adj",
+        "word": "nitidus"
+      }
+    },
+    "neutraliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to neutralise"
+        ],
+        "id": "fr:neutraliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "neutraliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "niaiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to kid",
+          "(Quebec) to kid"
+        ],
+        "id": "fr:niaiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "niaiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nicher": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nest (bird)",
+          "to nestle"
+        ],
+        "id": "fr:nicher:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nicher"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nicotiniser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nicotinize"
+        ],
+        "id": "fr:nicotiniser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nicotiniser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nidifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nidify; to make a nest"
+        ],
+        "id": "fr:nidifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nidifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nieller": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to blight (crops etc)",
+          "to niello"
+        ],
+        "id": "fr:nieller:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nieller"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nier": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To achieve or obtain (something) by complicated or deceitful methods; to finagle, to wangle.",
+              "(transitive)"
+            ],
+            "id": "en:fainaigue:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "fainaigue"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:fainaigue:verb:0",
+                "id": "edge:28d2437ab4455b9c",
+                "source_template": "der",
+                "to_id": "la:negō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To achieve or obtain (something) by complicated or deceitful methods; to finagle, to wangle.",
+                  "(transitive)"
+                ],
+                "id": "en:fainaigue:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "fainaigue"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:negō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "negō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to deny"
+        ],
+        "id": "fr:nier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nier"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:nier:verb:0",
+            "id": "edge:0fcbb937632e0d04",
+            "source_template": "inh",
+            "to_id": "la:negō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to deny"
+            ],
+            "id": "fr:nier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "nier"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:negō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "negō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:negō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "negō"
+      }
+    },
+    "nimber": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to surround with a halo or nimbus",
+          "(transitive) to surround with a halo or nimbus"
+        ],
+        "id": "fr:nimber:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nimber"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nitrater": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nitrate"
+        ],
+        "id": "fr:nitrater:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nitrater"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nitrer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nitrate"
+        ],
+        "id": "fr:nitrer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nitrer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nitrifier": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nitrify"
+        ],
+        "id": "fr:nitrifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nitrifier"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nitrurer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nitride"
+        ],
+        "id": "fr:nitrurer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nitrurer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "niveler": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to level, level out (ground)",
+          "to even, even out (put on the same level)"
+        ],
+        "id": "fr:niveler:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "niveler"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "noircir": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to blacken (make black)",
+          "to get drunk"
+        ],
+        "id": "fr:noircir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "noircir"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nomadiser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nomadize"
+        ],
+        "id": "fr:nomadiser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nomadiser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nominaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "nominalize"
+        ],
+        "id": "fr:nominaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nominaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nommer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nominate",
+          "(transitive) to nominate"
+        ],
+        "id": "fr:nommer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nommer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "normaliser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to normalise"
+        ],
+        "id": "fr:normaliser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "normaliser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "noter": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To notice with care; to observe; to remark; to heed.",
+              "(transitive) To notice with care; to observe; to remark; to heed."
+            ],
+            "id": "en:note:verb:1",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "note"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:note:verb:1",
+                "id": "edge:a31e505932356a6a",
+                "source_template": null,
+                "to_id": "la:noto:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To notice with care; to observe; to remark; to heed.",
+                  "(transitive) To notice with care; to observe; to remark; to heed."
+                ],
+                "id": "en:note:verb:1",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "note"
+              },
+              "to_node": {
+                "glosses": [
+                  "to mark, make a mark",
+                  "to write, especially in shorthand"
+                ],
+                "id": "la:noto:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "noto"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to note",
+          "to notice (become aware)"
+        ],
+        "id": "fr:noter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "noter"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:noter:verb:0",
+            "id": "edge:680bc78fa92944e6",
+            "source_template": null,
+            "to_id": "la:noto:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to note",
+              "to notice (become aware)"
+            ],
+            "id": "fr:noter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "noter"
+          },
+          "to_node": {
+            "glosses": [
+              "to mark, make a mark",
+              "to write, especially in shorthand"
+            ],
+            "id": "la:noto:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "noto"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to mark, make a mark",
+          "to write, especially in shorthand"
+        ],
+        "id": "la:noto:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "noto"
+      }
+    },
+    "notifier": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To give (someone) notice (of some event).",
+              "(transitive) To give (someone) notice (of some event)."
+            ],
+            "id": "en:notify:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "notify"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:notify:verb:0",
+                "id": "edge:a301c7a14c19c2d0",
+                "source_template": null,
+                "to_id": "la:notifico:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To give (someone) notice (of some event).",
+                  "(transitive) To give (someone) notice (of some event)."
+                ],
+                "id": "en:notify:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "notify"
+              },
+              "to_node": {
+                "glosses": [
+                  "to make known"
+                ],
+                "id": "la:notifico:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "notifico"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to notify",
+          "(transitive) to notify"
+        ],
+        "id": "fr:notifier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "notifier"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:notifier:verb:0",
+            "id": "edge:e27dfef4743d690d",
+            "source_template": null,
+            "to_id": "la:notifico:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to notify",
+              "(transitive) to notify"
+            ],
+            "id": "fr:notifier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "notifier"
+          },
+          "to_node": {
+            "glosses": [
+              "to make known"
+            ],
+            "id": "la:notifico:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "notifico"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to make known"
+        ],
+        "id": "la:notifico:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "notifico"
+      }
+    },
+    "nouer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "knot (form into a knot)",
+          "tie, bind, fasten"
+        ],
+        "id": "fr:nouer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nouer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nourrir": {
+      "english_descendants": [
+        {
+          "confidence": 0.855,
+          "distance": 2,
+          "node": {
+            "glosses": [
+              "To feed and cause to grow; to supply with food or other matter which increases weight and promotes health.",
+              "(transitive) To feed and cause to grow; to supply with food or other matter which increases weight and promotes health."
+            ],
+            "id": "en:nourish:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "nourish"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.95,
+                "from_id": "fro:norrir:verb:0",
+                "id": "edge:d50c6f5e2c4b411c",
+                "source_template": "inh",
+                "to_id": "la:nutrio:verb:0",
+                "type": "inherited_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "to feed; to nourish"
+                ],
+                "id": "fro:norrir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "norrir"
+              },
+              "to_node": {
+                "glosses": [
+                  "to suckle, breastfeed, nurse",
+                  "to feed"
+                ],
+                "id": "la:nutrio:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "nutrio"
+              }
+            },
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:nourish:verb:0",
+                "id": "edge:1a4779259c6d99ae",
+                "source_template": null,
+                "to_id": "fro:norrir:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To feed and cause to grow; to supply with food or other matter which increases weight and promotes health.",
+                  "(transitive) To feed and cause to grow; to supply with food or other matter which increases weight and promotes health."
+                ],
+                "id": "en:nourish:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "nourish"
+              },
+              "to_node": {
+                "glosses": [
+                  "to feed; to nourish"
+                ],
+                "id": "fro:norrir:verb:0",
+                "lang": "Old French",
+                "lang_code": "fro",
+                "pos": "verb",
+                "word": "norrir"
+              }
+            }
+          ],
+          "relation_types": [
+            "inherited_from",
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to feed (provide with nourishment), nourish",
+          "to nurture, to fuel"
+        ],
+        "id": "fr:nourrir:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nourrir"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:nourrir:verb:0",
+            "id": "edge:162f946762246949",
+            "source_template": "inh",
+            "to_id": "la:nutrio:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to feed (provide with nourishment), nourish",
+              "to nurture, to fuel"
+            ],
+            "id": "fr:nourrir:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "nourrir"
+          },
+          "to_node": {
+            "glosses": [
+              "to suckle, breastfeed, nurse",
+              "to feed"
+            ],
+            "id": "la:nutrio:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "nutrio"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to suckle, breastfeed, nurse",
+          "to feed"
+        ],
+        "id": "la:nutrio:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "nutrio"
+      }
+    },
+    "nover": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To replace something with something new",
+              "To replace a contract (especially a financial contract) with one or more new contracts."
+            ],
+            "id": "en:novate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "novate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:novate:verb:0",
+                "id": "edge:c25a4ac7d1593b7c",
+                "source_template": null,
+                "to_id": "la:novo:verb:1",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To replace something with something new",
+                  "To replace a contract (especially a financial contract) with one or more new contracts."
+                ],
+                "id": "en:novate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "novate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to make new, renew, refresh",
+                  "to alter, change"
+                ],
+                "id": "la:novo:verb:1",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "novo"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to novate",
+          "(transitive, law) to novate"
+        ],
+        "id": "fr:nover:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nover"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:nover:verb:0",
+            "id": "edge:abe45e7d3bed8cc1",
+            "source_template": "bor+",
+            "to_id": "la:novo:verb:1",
+            "type": "borrowed_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to novate",
+              "(transitive, law) to novate"
+            ],
+            "id": "fr:nover:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "nover"
+          },
+          "to_node": {
+            "glosses": [
+              "to make new, renew, refresh",
+              "to alter, change"
+            ],
+            "id": "la:novo:verb:1",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "novo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to make new, renew, refresh",
+          "to alter, change"
+        ],
+        "id": "la:novo:verb:1",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "novo"
+      }
+    },
+    "noyauter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to infiltrate"
+        ],
+        "id": "fr:noyauter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "noyauter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "noyer": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To make bored or listless; to weary.",
+              "(transitive) To make bored or listless; to weary."
+            ],
+            "id": "en:ennui:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "ennui"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:ennui:verb:0",
+                "id": "edge:bb37e71b1bebcf12",
+                "source_template": "der",
+                "to_id": "la:inodiō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To make bored or listless; to weary.",
+                  "(transitive) To make bored or listless; to weary."
+                ],
+                "id": "en:ennui:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "ennui"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:inodiō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "inodiō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Morally hurtful or noxious.",
+              "(literary) Morally hurtful or noxious."
+            ],
+            "id": "en:noisome:adj:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "adj",
+            "word": "noisome"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:noisome:adj:0",
+                "id": "edge:11171e7c2c922a47",
+                "source_template": "der",
+                "to_id": "la:inodiō:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Morally hurtful or noxious.",
+                  "(literary) Morally hurtful or noxious."
+                ],
+                "id": "en:noisome:adj:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "adj",
+                "word": "noisome"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:inodiō:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "inodiō"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 2,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to drown; to drown oneself",
+          "(reflexive, literal and figurative) to drown; to drown oneself"
+        ],
+        "id": "fr:noyer:verb:2",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "noyer"
+      },
+      "french_confidence": 0.902,
+      "french_distance": 2,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:noyer:verb:2",
+            "id": "edge:99b705b66491a189",
+            "source_template": "inh",
+            "to_id": "fro:noier:verb:1",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to drown; to drown oneself",
+              "(reflexive, literal and figurative) to drown; to drown oneself"
+            ],
+            "id": "fr:noyer:verb:2",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "noyer"
+          },
+          "to_node": {
+            "glosses": [
+              "to hurt; to harm; to damage"
+            ],
+            "id": "fro:noier:verb:1",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "noier"
+          }
+        },
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fro:noier:verb:1",
+            "id": "edge:f2c8942a7cea97d7",
+            "source_template": "inh",
+            "to_id": "la:inodiō:unknown:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to hurt; to harm; to damage"
+            ],
+            "id": "fro:noier:verb:1",
+            "lang": "Old French",
+            "lang_code": "fro",
+            "pos": "verb",
+            "word": "noier"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:inodiō:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "inodiō"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:inodiō:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "inodiō"
+      }
+    },
+    "nuancer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to moderate, to qualify (e.g., an opinion)"
+        ],
+        "id": "fr:nuancer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nuancer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nucléer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to nucleate"
+        ],
+        "id": "fr:nucléer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nucléer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nuer": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to match, match up",
+          "(dated, transitive) to match, match up"
+        ],
+        "id": "fr:nuer:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nuer"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nuire": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Synonym of nociceptor."
+            ],
+            "id": "en:nocireceptor:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "nocireceptor"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nocireceptor:noun:0",
+                "id": "edge:5a90805c2367a082",
+                "source_template": "der",
+                "to_id": "la:noceo:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Synonym of nociceptor."
+                ],
+                "id": "en:nocireceptor:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "nocireceptor"
+              },
+              "to_node": {
+                "glosses": [
+                  "to injure, do harm to, hurt, damage",
+                  "(with dative) to injure, do harm to, hurt, damage"
+                ],
+                "id": "la:noceo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "noceo"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Synonym of nociceptor."
+            ],
+            "id": "en:nocisensor:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "nocisensor"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:nocisensor:noun:0",
+                "id": "edge:98023d3eec1fd599",
+                "source_template": "der",
+                "to_id": "la:noceo:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Synonym of nociceptor."
+                ],
+                "id": "en:nocisensor:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "nocisensor"
+              },
+              "to_node": {
+                "glosses": [
+                  "to injure, do harm to, hurt, damage",
+                  "(with dative) to injure, do harm to, hurt, damage"
+                ],
+                "id": "la:noceo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "noceo"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "Relating to pain and its perception.",
+              "(physiology) Relating to pain and its perception."
+            ],
+            "id": "en:noci-:prefix:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "prefix",
+            "word": "noci-"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:noci-:prefix:0",
+                "id": "edge:3775137ed0cac88c",
+                "source_template": "der",
+                "to_id": "la:noceo:verb:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "Relating to pain and its perception.",
+                  "(physiology) Relating to pain and its perception."
+                ],
+                "id": "en:noci-:prefix:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "prefix",
+                "word": "noci-"
+              },
+              "to_node": {
+                "glosses": [
+                  "to injure, do harm to, hurt, damage",
+                  "(with dative) to injure, do harm to, hurt, damage"
+                ],
+                "id": "la:noceo:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "noceo"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to harm, to spoil",
+          "(intransitive) to harm, to spoil [with à]"
+        ],
+        "id": "fr:nuire:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nuire"
+      },
+      "french_confidence": 0.95,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.95,
+            "from_id": "fr:nuire:verb:0",
+            "id": "edge:f160c9d05724c271",
+            "source_template": "inh",
+            "to_id": "la:noceo:verb:0",
+            "type": "inherited_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to harm, to spoil",
+              "(intransitive) to harm, to spoil [with à]"
+            ],
+            "id": "fr:nuire:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "nuire"
+          },
+          "to_node": {
+            "glosses": [
+              "to injure, do harm to, hurt, damage",
+              "(with dative) to injure, do harm to, hurt, damage"
+            ],
+            "id": "la:noceo:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "noceo"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to injure, do harm to, hurt, damage",
+          "(with dative) to injure, do harm to, hurt, damage"
+        ],
+        "id": "la:noceo:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "noceo"
+      }
+    },
+    "numériser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to digitize",
+          "(transitive, computing) to digitize"
+        ],
+        "id": "fr:numériser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "numériser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "numéroter": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to number (to assign numbers to)",
+          "(transitive) to number (to assign numbers to)"
+        ],
+        "id": "fr:numéroter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "numéroter"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "nécessiter": {
+      "english_descendants": [
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To make necessary; to behove; to require (something) to be brought about.",
+              "(transitive) To make necessary; to behove; to require (something) to be brought about."
+            ],
+            "id": "en:necessitate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "necessitate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:necessitate:verb:0",
+                "id": "edge:b5df1d36d3b3e599",
+                "source_template": "der",
+                "to_id": "la:necessitās:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To make necessary; to behove; to require (something) to be brought about.",
+                  "(transitive) To make necessary; to behove; to require (something) to be brought about."
+                ],
+                "id": "en:necessitate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "necessitate"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:necessitās:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "necessitās"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.85,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The quality or state of being necessary, unavoidable, or absolutely requisite.",
+              "The condition of being needy; desperate need; lack."
+            ],
+            "id": "en:necessity:noun:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "noun",
+            "word": "necessity"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.85,
+                "from_id": "en:necessity:noun:0",
+                "id": "edge:6b97a8b64323e38c",
+                "source_template": "der",
+                "to_id": "la:necessitās:unknown:0",
+                "type": "derived_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The quality or state of being necessary, unavoidable, or absolutely requisite.",
+                  "The condition of being needy; desperate need; lack."
+                ],
+                "id": "en:necessity:noun:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "noun",
+                "word": "necessity"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:necessitās:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "necessitās"
+              }
+            }
+          ],
+          "relation_types": [
+            "derived_from"
+          ]
+        },
+        {
+          "confidence": 0.88,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "The personification of absolute necessity; Ananke.",
+              "(Roman mythology, Orphic theology) The personification of absolute necessity; Ananke."
+            ],
+            "id": "en:necessitas:name:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "name",
+            "word": "Necessitas"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.88,
+                "from_id": "en:necessitas:name:0",
+                "id": "edge:b19533d53ad9027d",
+                "source_template": "lbor",
+                "to_id": "la:necessitās:unknown:0",
+                "type": "learned_borrowing_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "The personification of absolute necessity; Ananke.",
+                  "(Roman mythology, Orphic theology) The personification of absolute necessity; Ananke."
+                ],
+                "id": "en:necessitas:name:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "name",
+                "word": "Necessitas"
+              },
+              "to_node": {
+                "glosses": [],
+                "id": "la:necessitās:unknown:0",
+                "lang": null,
+                "lang_code": "la",
+                "pos": null,
+                "word": "necessitās"
+              }
+            }
+          ],
+          "relation_types": [
+            "learned_borrowing_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 3,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to require",
+          "to call for"
+        ],
+        "id": "fr:nécessiter:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nécessiter"
+      },
+      "french_confidence": 0.85,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.85,
+            "from_id": "fr:nécessiter:verb:0",
+            "id": "edge:ba11b39027179acd",
+            "source_template": "der",
+            "to_id": "la:necessitās:unknown:0",
+            "type": "derived_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to require",
+              "to call for"
+            ],
+            "id": "fr:nécessiter:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "nécessiter"
+          },
+          "to_node": {
+            "glosses": [],
+            "id": "la:necessitās:unknown:0",
+            "lang": null,
+            "lang_code": "la",
+            "pos": null,
+            "word": "necessitās"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [],
+        "id": "la:necessitās:unknown:0",
+        "lang": null,
+        "lang_code": "la",
+        "pos": null,
+        "word": "necessitās"
+      }
+    },
+    "nécroser": {
+      "english_descendants": [],
+      "english_descendants_total": 0,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to necrotize"
+        ],
+        "id": "fr:nécroser:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "nécroser"
+      },
+      "french_confidence": 0,
+      "french_distance": null,
+      "french_path": [],
+      "latin_ancestor": null
+    },
+    "négliger": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To fail to care for or attend to something.",
+              "(transitive) To fail to care for or attend to something."
+            ],
+            "id": "en:neglect:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "neglect"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:neglect:verb:0",
+                "id": "edge:72bf38098008c568",
+                "source_template": null,
+                "to_id": "la:neglego:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To fail to care for or attend to something.",
+                  "(transitive) To fail to care for or attend to something."
+                ],
+                "id": "en:neglect:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "neglect"
+              },
+              "to_node": {
+                "glosses": [
+                  "to neglect, overlook, pass over",
+                  "to be indifferent to, disregard, ignore, slight, neglect"
+                ],
+                "id": "la:neglego:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "neglego"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to neglect",
+          "to ignore (a detail)"
+        ],
+        "id": "fr:négliger:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "négliger"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:négliger:verb:0",
+            "id": "edge:1d00faffe23e37bd",
+            "source_template": null,
+            "to_id": "la:neglego:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to neglect",
+              "to ignore (a detail)"
+            ],
+            "id": "fr:négliger:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "négliger"
+          },
+          "to_node": {
+            "glosses": [
+              "to neglect, overlook, pass over",
+              "to be indifferent to, disregard, ignore, slight, neglect"
+            ],
+            "id": "la:neglego:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "neglego"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to neglect, overlook, pass over",
+          "to be indifferent to, disregard, ignore, slight, neglect"
+        ],
+        "id": "la:neglego:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "neglego"
+      }
+    },
+    "négocier": {
+      "english_descendants": [
+        {
+          "confidence": 0.9,
+          "distance": 1,
+          "node": {
+            "glosses": [
+              "To confer with others in order to come to terms or reach an agreement.",
+              "(intransitive) To confer with others in order to come to terms or reach an agreement."
+            ],
+            "id": "en:negotiate:verb:0",
+            "lang": "English",
+            "lang_code": "en",
+            "pos": "verb",
+            "word": "negotiate"
+          },
+          "path": [
+            {
+              "edge": {
+                "confidence": 0.9,
+                "from_id": "en:negotiate:verb:0",
+                "id": "edge:7ad79da258a71587",
+                "source_template": null,
+                "to_id": "la:negotior:verb:0",
+                "type": "descended_from"
+              },
+              "from_node": {
+                "glosses": [
+                  "To confer with others in order to come to terms or reach an agreement.",
+                  "(intransitive) To confer with others in order to come to terms or reach an agreement."
+                ],
+                "id": "en:negotiate:verb:0",
+                "lang": "English",
+                "lang_code": "en",
+                "pos": "verb",
+                "word": "negotiate"
+              },
+              "to_node": {
+                "glosses": [
+                  "to do business",
+                  "to act as banker"
+                ],
+                "id": "la:negotior:verb:0",
+                "lang": "Latin",
+                "lang_code": "la",
+                "pos": "verb",
+                "word": "negotior"
+              }
+            }
+          ],
+          "relation_types": [
+            "descended_from"
+          ]
+        }
+      ],
+      "english_descendants_total": 1,
+      "english_descendants_truncated": false,
+      "fr_node": {
+        "glosses": [
+          "to negotiate"
+        ],
+        "id": "fr:négocier:verb:0",
+        "lang": "French",
+        "lang_code": "fr",
+        "pos": "verb",
+        "word": "négocier"
+      },
+      "french_confidence": 0.9,
+      "french_distance": 1,
+      "french_path": [
+        {
+          "edge": {
+            "confidence": 0.9,
+            "from_id": "fr:négocier:verb:0",
+            "id": "edge:c23e4f1d5d6a7b60",
+            "source_template": null,
+            "to_id": "la:negotior:verb:0",
+            "type": "descended_from"
+          },
+          "from_node": {
+            "glosses": [
+              "to negotiate"
+            ],
+            "id": "fr:négocier:verb:0",
+            "lang": "French",
+            "lang_code": "fr",
+            "pos": "verb",
+            "word": "négocier"
+          },
+          "to_node": {
+            "glosses": [
+              "to do business",
+              "to act as banker"
+            ],
+            "id": "la:negotior:verb:0",
+            "lang": "Latin",
+            "lang_code": "la",
+            "pos": "verb",
+            "word": "negotior"
+          }
+        }
+      ],
+      "latin_ancestor": {
+        "glosses": [
+          "to do business",
+          "to act as banker"
+        ],
+        "id": "la:negotior:verb:0",
+        "lang": "Latin",
+        "lang_code": "la",
+        "pos": "verb",
+        "word": "negotior"
+      }
+    }
+  }
+}

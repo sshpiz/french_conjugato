@@ -84,81 +84,71 @@
             return window.__appUpdateState;
         };
 
+        // Worker activation can arrive after a page has already loaded the new build.
+        // Only a version comparison can decide whether this document needs a reload.
+        var appVersionCheckSequence = 0;
+        window.__checkAppUpdateVersion = async function() {
+            var sequence = ++appVersionCheckSequence;
+            var controller = new AbortController();
+            var timeout = window.setTimeout(function() { controller.abort(); }, 8000);
+            try {
+                var response = await fetch('./version.json?t=' + Date.now(), {
+                    cache: 'no-store', signal: controller.signal
+                });
+                if (!response.ok) throw new Error('Version check failed: ' + response.status);
+                var payload = await response.json();
+                var latestVersion = String(payload.version || '').trim();
+                if (!latestVersion || latestVersion.includes('{{')) throw new Error('Invalid app version');
+                if (sequence !== appVersionCheckSequence) return;
+                var currentVersion = String(window.APP_BUILD_VERSION || '').trim();
+                var available = !!currentVersion && !currentVersion.includes('{{') && currentVersion !== 'dev'
+                    && latestVersion !== currentVersion;
+                window.__setAppUpdateState({
+                    status: available ? 'ready' : 'idle',
+                    updateAvailable: available,
+                    latestVersion: latestVersion,
+                    checkedAt: Date.now()
+                });
+            } catch (error) {
+                if (sequence === appVersionCheckSequence) {
+                    // An unsuccessful check does not disprove a previously confirmed update.
+                    window.__setAppUpdateState({ status: 'error' });
+                }
+            } finally {
+                window.clearTimeout(timeout);
+            }
+        };
+
         if (location.protocol !== 'file:' && 'serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js', { scope: './' })
                 .then((registration) => {
-                    console.log('[SW] Registered');
-                    var hasWaitingUpdate = !!(registration.active && registration.waiting);
-                    window.__setAppUpdateState({
-                        registration,
-                        status: hasWaitingUpdate ? 'ready' : 'idle',
-                        updateAvailable: hasWaitingUpdate
-                    });
-
-                    registration.addEventListener('updatefound', () => {
-                        var installingWorker = registration.installing;
-                        if (!installingWorker) return;
-                        var hadScopedActiveWorker = !!registration.active;
-                        var settled = false;
-
-                        function setIdleIfNoUpdate() {
-                            if (settled || window.__appUpdateState.updateAvailable) return;
-                            settled = true;
-                            window.__setAppUpdateState({
-                                registration,
-                                status: 'idle',
-                                updateAvailable: false
-                            });
-                        }
-
-                        function setReadyIfWaiting() {
-                            if (settled || !hadScopedActiveWorker || !registration.waiting) return false;
-                            settled = true;
-                            window.__setAppUpdateState({
-                                registration,
-                                status: 'ready',
-                                updateAvailable: true,
-                                lastUpdatedAt: Date.now()
-                            });
-                            return true;
-                        }
-
-                        function handleInstallingState() {
-                            if (setReadyIfWaiting()) return;
-                            if (installingWorker.state === 'installed' && !hadScopedActiveWorker) {
-                                setIdleIfNoUpdate();
-                                return;
-                            }
-                            if (installingWorker.state === 'activated' || installingWorker.state === 'redundant') {
-                                setIdleIfNoUpdate();
+                    // Refresh existing ancestor workers that can still handle app entry.
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        for (const ancestor of registrations) {
+                            if (ancestor.scope !== registration.scope && registration.scope.startsWith(ancestor.scope)) {
+                                ancestor.update().catch(() => {});
                             }
                         }
-
-                        if (hadScopedActiveWorker) {
-                            window.__setAppUpdateState({
-                                registration,
-                                status: 'checking',
-                                checkedAt: Date.now()
-                            });
-                        }
-                        installingWorker.addEventListener('statechange', handleInstallingState);
-                        handleInstallingState();
-                        window.setTimeout(function() {
-                            if (!settled) handleInstallingState();
-                            if (!settled && !registration.waiting) setIdleIfNoUpdate();
-                        }, APP_UPDATE_CHECK_MAX_MS);
-                    });
+                    }).catch(() => {});
+                    window.__setAppUpdateState({ registration });
+                    function watchInstallingWorker() {
+                        var worker = registration.installing;
+                        if (!worker) return;
+                        worker.addEventListener('statechange', function() {
+                            if (worker.state === 'installed' || worker.state === 'activated') {
+                                window.__checkAppUpdateVersion();
+                            }
+                        });
+                    }
+                    registration.addEventListener('updatefound', watchInstallingWorker);
+                    watchInstallingWorker();
+                    window.__checkAppUpdateVersion();
                 })
                 .catch(() => console.log('[SW] Registration failed'));
 
-            navigator.serviceWorker.addEventListener('message', e => {
-                if (e.data && e.data.type === 'SW_UPDATED') {
-                    console.log('[SW] New version active — reload available');
-                    window.__setAppUpdateState({
-                        status: 'ready',
-                        updateAvailable: true,
-                        lastUpdatedAt: Date.now()
-                    });
+            navigator.serviceWorker.addEventListener('message', function(event) {
+                if (event.data && event.data.type === 'SW_UPDATED') {
+                    window.__checkAppUpdateVersion();
                 }
             });
         }
@@ -480,176 +470,7 @@
         color: var(--accent-color, #3498db);
       }
     </style>
-    <!-- Tutorial Overlay -->
-<style>
-#tutorial-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  display: none;
-  cursor: pointer;
-}
-#tutorial-highlight {
-  position: fixed;
-  border-radius: 12px;
-  box-shadow: 0 0 0 9999px rgba(0,0,0,0.78);
-  border: 2px solid rgba(255,255,255,0.35);
-  transition: all 0.28s ease;
-  z-index: 10001;
-  pointer-events: none;
-  display: none;
-}
-#tutorial-tooltip {
-  position: fixed;
-  z-index: 10002;
-  background: #1a2633;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 0.85rem 1.1rem 0.7rem;
-  max-width: min(320px, 88vw);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  display: none;
-  pointer-events: none;
-}
-#tutorial-tooltip .tt-text {
-  color: #f0f4f8;
-  font-size: 1rem;
-  line-height: 1.45;
-  margin: 0 0 0.55rem;
-}
-#tutorial-tooltip .tt-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.4);
-}
-#tutorial-tooltip .tt-hint {
-  font-style: italic;
-}
-#tutorial-skip {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10003;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 8px;
-  color: rgba(255,255,255,0.6);
-  font-size: 0.8rem;
-  padding: 0.3rem 0.75rem;
-  cursor: pointer;
-  display: none;
-}
-</style>
 
-<div id="tutorial-overlay"></div>
-<div id="tutorial-highlight"></div>
-<div id="tutorial-tooltip">
-  <p class="tt-text"></p>
-  <div class="tt-footer">
-    <span class="tt-hint">tap anywhere to continue</span>
-    <span class="tt-counter"></span>
-  </div>
-</div>
-<button id="tutorial-skip">Skip</button>
-
-<script>
-(function(){
-  const steps = [
-    {
-      selector: "#verb-infinitive",
-      text: "A French verb appears here. Your challenge: conjugate it before tapping to reveal."
-    },
-    {
-      selector: ".meta-container",
-      text: "This tells you the pronoun and tense to use — e.g. nous · imparfait."
-    },
-    {
-      selector: "#phrase-container",
-      text: "Tap anywhere on the card to reveal the answer and check yourself."
-    },
-    {
-      selector: "#dictate-btn",
-      text: "Use the mic to say your answer out loud — great for pronunciation practice."
-    },
-    {
-      selector: "#options-toggle-btn",
-      text: "Customize which verbs, tenses, and difficulty levels you want to practice."
-    }
-  ];
-
-  let stepIndex = 0;
-
-  const overlay   = () => document.getElementById('tutorial-overlay');
-  const highlight = () => document.getElementById('tutorial-highlight');
-  const tooltip   = () => document.getElementById('tutorial-tooltip');
-  const skipBtn   = () => document.getElementById('tutorial-skip');
-
-  function showStep(i) {
-    const step = steps[i];
-    const el = document.querySelector(step.selector);
-    if (!el) { advance(); return; }
-
-    const PAD = 12;
-    const r = el.getBoundingClientRect();
-    const hl = highlight();
-    hl.style.left   = `${r.left - PAD}px`;
-    hl.style.top    = `${r.top - PAD}px`;
-    hl.style.width  = `${r.width + PAD * 2}px`;
-    hl.style.height = `${r.height + PAD * 2}px`;
-
-    const tt = tooltip();
-    tt.querySelector('.tt-text').textContent = step.text;
-    tt.querySelector('.tt-counter').textContent = `${i + 1} / ${steps.length}`;
-
-    // Position tooltip: below element if in top half, above if in bottom half
-    const MARGIN = 12;
-    const ttH = 110; // approx height
-    const below = r.bottom + PAD + MARGIN + ttH < window.innerHeight;
-    if (below) {
-      tt.style.top    = `${r.bottom + PAD + MARGIN}px`;
-      tt.style.bottom = 'auto';
-    } else {
-      tt.style.bottom = `${window.innerHeight - r.top + PAD + MARGIN}px`;
-      tt.style.top    = 'auto';
-    }
-    tt.style.left = `${Math.max(12, Math.min(r.left, window.innerWidth - 332))}px`;
-  }
-
-  function advance() {
-    stepIndex++;
-    if (stepIndex >= steps.length) {
-      close();
-    } else {
-      showStep(stepIndex);
-    }
-  }
-
-  function close() {
-    overlay().style.display   = 'none';
-    highlight().style.display = 'none';
-    tooltip().style.display   = 'none';
-    skipBtn().style.display   = 'none';
-    window.setAppStoredItem('tutorial_seen', 'yes');
-    stepIndex = 0;
-  }
-
-  window.startTutorial = function() {
-    stepIndex = 0;
-    overlay().style.display   = 'block';
-    highlight().style.display = 'block';
-    tooltip().style.display   = 'block';
-    skipBtn().style.display   = 'block';
-    showStep(0);
-  };
-
-  document.addEventListener('DOMContentLoaded', function() {
-    overlay().addEventListener('click', advance);
-    skipBtn().addEventListener('click', close);
-  });
-})();
-</script>
 
     <link rel="stylesheet" href="css/verb-details-tabs.css">
 </head>
@@ -698,6 +519,11 @@
                 <!-- Tutorial Button -->
                 <button id="tutorial-btn" class="tip-label000" hidden title="Show tutorial" style="display:none; position:absolute;top:0.7em;right:2.7em;z-index:20;background:var(--help-btn-bg,#eaf6fb);color:var(--help-btn-fg,#3498db);border:none;border-radius:50%;width:2em;height:2em;font-size:1.3em;box-shadow:0 1px 4px rgba(44,62,80,0.10);cursor:pointer;transition:background 0.2s;">❓</button>
 
+                <details id="question-share" hidden>
+                  <summary aria-label="Share this question" title="Share this question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></svg></summary>
+                  <div class="question-share-menu"><button type="button" id="share-question-btn">Share question…</button><button type="button" id="copy-question-link-btn">Copy question link</button></div>
+                </details>
+                <p id="shared-question-error" hidden role="status"></p>
                 <div id="daily-progress-container">
                   <span id="daily-progress-circle">
                     <svg width="32" height="32" viewBox="0 0 32 32">
@@ -790,6 +616,7 @@
                             <!-- Remove tip for conjugated verb -->
                             <h2 id="conjugated-verb" tabindex="0" role="button" aria-label="Hear conjugation" title="Tap to hear" class="tappable-audio"></h2>
                         </div>
+                        <details id="pronoun-explanation" hidden><summary>Explication</summary><ul></ul></details>
                         <!-- Usage nugget: replaces old example sentence. Falls back to phrasebook sentence if no usage data. -->
                         <div id="usage-nugget" style="display:none"></div>
 
@@ -900,13 +727,16 @@
         <div id="explorer-list-view" class="hidden">
             <div class="explorer-header">
                 <button id="back-to-flashcard-btn" class="back-link-btn">← Back to Flashcards</button>
-                <input type="text" id="search-bar" placeholder="Search for a verb (e.g. etre)...">
-                <div id="explorer-scope-row" class="explorer-scope-row hidden">
-                    <div id="explorer-scope-toggle" class="explorer-scope-toggle">
-                        <button id="explorer-scope-filtered" type="button" class="mode-toggle-btn">Filtered</button>
-                        <button id="explorer-scope-all" type="button" class="mode-toggle-btn">All</button>
+                <div class="search-heading"><h2>Search</h2></div>
+                <div class="search-input-wrap"><input type="search" id="search-bar" aria-label="Search verbs, expressions or English meanings" placeholder="Search verbs, expressions or meanings…"><button id="search-clear" aria-label="Clear search" hidden>×</button></div>
+                <div id="explorer-scope-row" class="explorer-scope-row">
+                    <div id="explorer-scope-toggle" class="explorer-scope-toggle" role="group" aria-label="Search scope">
+                      <button id="explorer-scope-all" data-search-scope="all" class="mode-toggle-btn active" aria-pressed="true">All</button>
+                      <button id="explorer-scope-filtered" data-search-scope="filtered" class="mode-toggle-btn" aria-pressed="false" title="Your current practice selection">Active</button>
+                      <button data-search-scope="expressions" class="mode-toggle-btn" aria-pressed="false">Expressions</button>
+                      <button data-search-scope="verbs" class="mode-toggle-btn" aria-pressed="false">Verbs</button>
                     </div>
-                    <p id="explorer-scope-summary" class="explorer-scope-summary"></p>
+                    <p id="explorer-scope-summary" class="explorer-scope-summary" aria-live="polite"></p>
                 </div>
             </div>
             <div style="position:relative;">
@@ -945,12 +775,12 @@
             <div id="options-container">
 
                 <div class="option-group" id="settings-mic-group">
-                    <h3>Mic to Answer</h3>
+                    <h3>Speak</h3>
                     <div class="toggle-rows">
                         <div class="toggle-row settings-mic-mode-row">
                             <div class="settings-row-copy">
                                 <label for="correct-dictation-toggle">Answer by voice</label>
-                                <p id="correct-dictation-helper" class="setting-helper-text">When off, the mic is used for pronunciation practice after reveal.</p>
+                                <p id="correct-dictation-helper" class="setting-helper-text">On: answer aloud. Off: practise saying the revealed answer.</p>
                             </div>
                             <div class="toggle-switch">
                                 <input type="checkbox" id="correct-dictation-toggle" class="toggle-input">
@@ -959,8 +789,8 @@
                         </div>
                         <div class="toggle-row settings-mic-mode-row">
                             <div class="settings-row-copy">
-                                <label for="press-to-dictate-toggle">Press to dictate</label>
-                                <p id="press-to-dictate-helper" class="setting-helper-text">Hold the mic while speaking, then release to transcribe.</p>
+                                <label for="press-to-dictate-toggle">Hold to speak</label>
+                                <p id="press-to-dictate-helper" class="setting-helper-text">Hold the mic, speak, then release.</p>
                             </div>
                             <div class="toggle-switch">
                                 <input type="checkbox" id="press-to-dictate-toggle" class="toggle-input">
@@ -1010,18 +840,38 @@
                 </details>
 
                 <details class="option-group settings-collapsible" id="tts-voice-group">
-                    <summary>Audio</summary>
+                    <summary>Listen</summary>
                     <div class="collapsible-body">
-                        <p class="option-desc">Use a native French system voice when available, or packaged audio for reliable playback.</p>
+                        <h3 class="voice-listen-heading">Listen</h3>
+                        <p class="option-desc">Choose how you hear French.</p>
+                        <fieldset class="voice-source-choice"><legend>Voice source</legend>
+                            <label><input type="radio" name="french-voice-source" id="device-voice-use" checked> Device voice</label>
+                            <label><input type="radio" name="french-voice-source" id="offline-voice-use" disabled> Downloaded voice</label>
+                        </fieldset>
+                        <div id="device-voice-settings">
                         <div class="tts-status-row" aria-live="polite">
                             <span id="tts-status-badge" class="tts-status-badge tts-status-checking">Checking audio...</span>
-                            <span id="tts-status-text" class="tts-status-text">Looking for a French system voice on this device.</span>
+                            <span id="tts-status-text" class="tts-status-text">Checking for a French voice…</span>
                         </div>
+                        <label for="voice-select">Device voice</label>
                         <select id="voice-select" class="styled-select"></select>
+                        <div class="packaged-tts-actions">
+                            <button id="test-french-voice" class="secondary-btn" type="button">Test voice</button>
+                            <button id="recheck-french-voice" class="secondary-btn" type="button">Check again</button>
+                        </div>
+                        <p id="voice-test-result" class="setting-helper-text" role="status"></p>
+                        <details class="voice-setup-help">
+                            <summary>No sound? Set up a French voice</summary>
+                            <p>On Android, search Settings for “Text-to-speech”. Open your voice engine’s settings, then “Install voice data” and choose French. <a href="https://support.google.com/accessibility/android/answer/6006983" target="_blank" rel="noopener">Android help</a></p>
+                            <p>On iPhone or iPad, look in Accessibility for “Read &amp; Speak” (or “Spoken Content”), then Voices → French. <a href="https://support.apple.com/en-ie/guide/iphone/iph96b214f0/ios" target="_blank" rel="noopener">Apple help</a></p>
+                            <p>Come back and tap Check again, then Test voice. Your browser may not offer every voice installed on your device. Still silent? Check your media volume and try opening the app in Chrome or Safari.</p>
+                        </details>
+                        </div>
+                        <div id="model-voice-slot"></div>
                         <div class="toggle-row compact-toggle-row">
                             <div class="settings-row-copy">
-                                <label for="tts-speed-slider">TTS speed</label>
-                                <p class="setting-helper-text">Affects Hear, spoken prompts, and packaged audio playback.</p>
+                                <label for="tts-speed-slider">Speaking speed</label>
+                                <p class="setting-helper-text">Make the voice slower or faster.</p>
                             </div>
                             <div class="font-size-control tts-speed-control">
                                 <span class="font-size-label">Slow</span>
@@ -1029,28 +879,7 @@
                                 <span id="tts-speed-value" class="slider-value">1.00x</span>
                             </div>
                         </div>
-                        <div class="packaged-tts-controls">
-                            <label class="packaged-tts-toggle" for="packaged-tts-enabled">
-                                <input type="checkbox" id="packaged-tts-enabled">
-                                <span>Prefer packaged French audio over browser TTS</span>
-                            </label>
-                            <p class="packaged-tts-note">If enabled, the app preloads top 20 audio and then keeps downloading missing verb packs as you practice. You can also pre-download larger sets below for offline use.</p>
-                            <details class="settings-collapsible packaged-tts-downloads">
-                                <summary>Packaged audio downloads</summary>
-                                <div class="collapsible-body">
-                                    <div class="packaged-tts-actions">
-                                        <button id="packaged-tts-download-top20-btn" class="secondary-btn" type="button">Download top 20 audio</button>
-                                        <button id="packaged-tts-download-top100-btn" class="secondary-btn" type="button">Download top 100 audio</button>
-                                        <button id="packaged-tts-download-top500-btn" class="secondary-btn" type="button">Download top 500 audio</button>
-                                        <button id="packaged-tts-download-top1000-btn" class="secondary-btn" type="button">Download top 5000 audio</button>
-                                        <button id="packaged-tts-download-rare-btn" class="secondary-btn" type="button">Download rare/outlier audio</button>
-                                        <button id="packaged-tts-download-full-btn" class="secondary-btn" type="button">Download full audio</button>
-                                        <button id="packaged-tts-remove-btn" class="secondary-btn danger-btn" type="button">Remove downloaded audio</button>
-                                    </div>
-                                    <div id="packaged-tts-status-text" class="packaged-tts-status" aria-live="polite">Packaged French audio is not enabled.</div>
-                                </div>
-                            </details>
-                        </div>
+
                     </div>
                 </details>
 
@@ -1081,6 +910,7 @@
                                 <div class="settings-row-copy">
                                     <label for="app-version-badge">Version</label>
                                     <p id="app-version-detail" class="setting-helper-text">Build information</p>
+                                    <a href="data/pronoun-constructions/NOTICE.txt" target="_blank" rel="noopener" class="setting-helper-text">Language-data credits</a>
                                 </div>
                                 <span id="app-version-badge" class="settings-meta-badge" aria-live="polite">dev</span>
                             </div>
@@ -1139,7 +969,7 @@
                                 <label for="font-size-slider">Text size</label>
                                 <div class="font-size-control">
                                     <span class="font-size-label">A</span>
-                                    <input type="range" id="font-size-slider" min="1" max="2" step="0.05" value="1">
+                                    <input type="range" id="font-size-slider" min="0.75" max="2" step="0.05" value="1">
                                     <span class="font-size-label large">A</span>
                                 </div>
                             </div>
@@ -1232,7 +1062,7 @@
               <li><b>Use Settings</b> to choose which tenses and which verb ranges are in play. If you are starting out, use <b>Top 50 verbs</b> with the most common tenses.</li>
               <li><b>Hear</b> plays the prompt before reveal and the answer after reveal. <b>Say</b> lets you answer aloud and get dictation feedback.</li>
               <li><b>Usage</b> shows or hides the example lines while you drill. Most French text is playable, including usages and verb details.</li>
-              <li><b>Search</b> opens any verb and its full conjugation table.</li>
+              <li><b>Search</b> finds verbs and expressions across the entire library. Use Active to search your current practice selection.</li>
             </ul>
 
             
@@ -1600,13 +1430,22 @@
     <script src="verb_frames.french_passe_compose.js?v=20260429a" onerror="window.verbFrames=window.verbFrames||[]"></script>
     <script src="js/pronounFillRows.js?v=20260428a" onerror="window.pronounFillRows=[]"></script>
     <script src="js/pronounFillRows.passeCompose.js?v=20260429a" onerror="window.pronounFillRows=window.pronounFillRows||[]"></script>
-    <script src="js/preRenderedTts.js?v=20260411b"></script>
+    <script src="js/frenchVoice.js"></script>
+    <script src="js/offlineVoice.js"></script>
     <script src="js/frenchHomophoneGroups.js?v=20260420a" onerror="window.frenchHomophoneGroupByAnswer={};window.frenchHomophoneGroupMeta=null;"></script>
     <script src="js/constructionCards.js"></script>
+    <script src="js/pronounExplanation.js"></script>
     <script src="js/referenceCards.js"></script>
+    <script src="js/referenceInventory.js"></script>
+    <script src="js/referenceEnYInventory.js"></script>
+    <script src="js/referenceEnY.js"></script>
+    <script src="js/referenceExpansion.js"></script>
+    <script src="js/referenceNegation.js"></script>
+    <script src="js/liaisonClues.js"></script>
     <script src="js/wordFamilies.fr.js"></script>
     <script src="js/wordFamilyDefinitions.fr.js"></script>
     <script src="js/verbDetailsTabs.js"></script>
+    <script src="js/questionShare.js"></script>
     <script src="js/script.js?v=20261001expressions"></script>
     <script>
 function getFrenchVoices() {
@@ -1623,26 +1462,29 @@ function getFrenchTtsStatus() {
         return {
             state: 'unsupported',
             available: false,
-            badge: 'Native TTS unavailable',
-            message: 'Native French text-to-speech is unavailable on this device. You should enable packaged audio and download at least top 20.'
+            badge: 'No device voice',
+            message: 'This browser has no French voice. You can download Jessica or Pierre below.'
         };
     }
 
     const frenchVoices = getFrenchVoices();
+    if (!frenchVoices.length && window.frenchVoice?.isChecking()) {
+        return {state: 'checking', available: false, badge: 'Checking…', message: 'Looking for a French voice on your device.'};
+    }
     if (!frenchVoices.length) {
         return {
             state: 'unavailable',
             available: false,
-            badge: 'No native French voice',
-            message: 'No native French voice was detected. You should probably enable packaged audio and download at least top 20.'
+            badge: 'No French voice',
+            message: 'No French voice found. Add one in your device settings, or download Jessica or Pierre below.'
         };
     }
 
     return {
         state: 'available',
         available: true,
-        badge: 'Native French TTS ready',
-        message: `Using native Text To Speech engine (${frenchVoices.length} French voice${frenchVoices.length === 1 ? '' : 's'} detected). You can override this and download our audio pack.`
+        badge: 'French voice detected',
+        message: `Tap Test voice to check that you can hear it.`
     };
 }
 
@@ -1686,8 +1528,7 @@ function showFrenchTtsFeedback(message, options) {
 
 function renderFrenchTtsStatus() {
     const status = getFrenchTtsStatus();
-    const packagedEnabled = !!(window.preRenderedFrenchTts && typeof window.preRenderedFrenchTts.isEnabled === 'function' && window.preRenderedFrenchTts.isEnabled());
-    const anyFrenchAudio = packagedEnabled || status.available;
+    const anyFrenchAudio = !!window.offlineFrenchVoice?.isEnabled() || status.available;
     const badge = document.getElementById('tts-status-badge');
     const text = document.getElementById('tts-status-text');
     const select = document.getElementById('voice-select');
@@ -1695,13 +1536,11 @@ function renderFrenchTtsStatus() {
     const bannerText = document.getElementById('tts-warning-text');
 
     if (badge) {
-        badge.textContent = packagedEnabled && !status.available ? 'Packaged French audio enabled' : status.badge;
-        badge.className = `tts-status-badge tts-status-${packagedEnabled && !status.available ? 'available' : status.state}`;
+        badge.textContent = status.badge;
+        badge.className = `tts-status-badge tts-status-${status.state}`;
     }
     if (text) {
-        text.textContent = packagedEnabled && !status.available
-            ? 'Native French TTS is not available here. Packaged French audio is enabled, so playback will use downloaded packs.'
-            : status.message;
+        text.textContent = status.message;
     }
 
     if (select) {
@@ -1714,7 +1553,7 @@ function renderFrenchTtsStatus() {
         banner.classList.toggle('hidden', !showBanner);
         if (bannerText) {
             bannerText.textContent = showBanner
-                ? 'No packaged French audio is enabled and no French browser voice is available on this device.'
+                ? 'No French voice is ready. Open Voice settings to choose one.'
                 : '';
         }
     }
@@ -1740,7 +1579,7 @@ function populateVoiceSelect() {
     defaultOption.value = '';
     defaultOption.textContent = frenchVoices.length
         ? '(Automatic French voice)'
-        : '(No French voice detected)';
+        : window.frenchVoice?.isChecking() ? '(Checking for voices…)' : '(No French voice detected)';
     voiceSelect.appendChild(defaultOption);
 
     frenchVoices.forEach(voice => {
@@ -1753,14 +1592,26 @@ function populateVoiceSelect() {
     const saved = window.getAppStoredItem('ttsVoiceName');
     if (saved && frenchVoices.some(voice => voice.name === saved)) {
         voiceSelect.value = saved;
-    } else if (saved) {
-        window.removeAppStoredItem('ttsVoiceName');
+    // Preserve the selected voice while the browser loads its voice list.
     }
 
     renderFrenchTtsStatus();
 }
 
+window.addEventListener('frenchvoicechange', () => populateVoiceSelect());
 document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('recheck-french-voice').addEventListener('click', () => window.frenchVoice.recheck());
+    document.getElementById('test-french-voice').addEventListener('click', async () => {
+        const resultEl = document.getElementById('voice-test-result');
+        resultEl.textContent = 'Listen for “Bonjour ! Je parle français.”';
+        const result = await window.frenchVoice.play('Bonjour ! Je parle français.', {
+            deviceOnly: true, voiceName: window.getAppStoredItem('ttsVoiceName') || '',
+            rate: window.getConfiguredTtsRate?.() || 1
+        });
+        if (result === 'cancelled') return;
+        resultEl.textContent = result === 'device' ? 'Did you hear it? Your device voice is ready if you did.' :
+            'No voice played. Try Check again or the setup help below.';
+    });
     populateVoiceSelect();
     renderFrenchTtsStatus();
     if (window.speechSynthesis) {
