@@ -61,7 +61,7 @@
     const answer=withSubject(subject,cluster+' '+body+tail);
     return {...card,verb:{...card.verb,translation:record.gloss},reference,referenceLabel:label,conjugated:answer,_practiceAnswer:answer,
       ...(references?{references,referenceIcons,doublePronoun:true}:{}),constructionId:record.sourceId,pronounFamily:type,
-      explanation:window.pronounExplanation?.enY(type,references,objectIndex,recipientIndex,tail),
+      explanation:references?window.pronounExplanation?.enY(type,references,objectIndex,recipientIndex,tail):window.pronounExplanation?.single(type,reference,cluster,label,tail),
       ...(type==='origin'?{referenceIcon:'📍'}:type==='quantity'?{referenceIcon:'📦'}:{})};
   };
 })();

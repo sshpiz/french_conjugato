@@ -1,0 +1,7 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');const c={window:{},TextEncoder,TextDecoder,btoa,atob};vm.createContext(c);
+for(const f of ['pronounExplanation','referenceCards','referenceInventory','referenceEnYInventory','referenceEnY','referenceExpansion','questionShare'])vm.runInContext(fs.readFileSync('js/'+f+'.js','utf8'),c);
+const base={verb:{infinitive:'faire attention'},pronoun:'elle',tense:'passeCompose',conjugated:'elle a fait attention à quelque chose'};
+const card=c.window.referenceCards.prepare(base,'cet homme');assert.equal(card.conjugated,'elle a fait attention à lui');assert(card.explanation.some(x=>x.includes('à cet homme')&&x.includes('à lui')));assert(card.explanation.some(x=>x.includes('pas la personne')));
+for(const subject of ['elle','nous']){const a=c.window.referenceCards.prepare({...base,pronoun:subject},'cette chose');assert(a.explanation.some(x=>x.includes('« y »')));assert(a.explanation.some(x=>x.includes('pas selon le sujet')));}
+for(const type of ['prepY','prepEn','location','origin','quantity']){const r=c.window.frenchEnYInventory.find(x=>x.type===type);const a=c.window.referenceCards.expansion.construct({verb:{infinitive:r.verb},pronoun:'elle',tense:'present',conjugated:'elle teste'},r,1,0);assert(a.explanation.length>=3,type);assert(a.explanation.every(x=>x.length<=300));}
+console.log('PASS single tonic, y/en object-based explanations, location/origin/quantity metadata');

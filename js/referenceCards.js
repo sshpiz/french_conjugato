@@ -1040,7 +1040,9 @@
     // Tonic complements follow the complete verb phrase (j'ai pensé à elle).
     const elideSubject = tonic ? /^[aàâäeéèêëiîïoôöuùûüyœ]/iu.test(body) : ['en', 'y'].includes(object);
     const answer = (subject === 'je' && elideSubject ? "j'" : subject + ' ') + predicate;
-    return { ...card, conjugated: answer, reference, referenceLabel: (person && spec.peopleLabel) || spec.label || card.verb.infinitive };
+    return { ...card, conjugated: answer, reference,
+      explanation: window.pronounExplanation?.single(tonic?'tonic':person?'indirect':spec.place?'location':spec.type,reference,tonic?tonicPronouns[reference]:object,(person&&spec.peopleLabel)||spec.label||card.verb.infinitive),
+      referenceLabel: (person && spec.peopleLabel) || spec.label || card.verb.infinitive };
   }
   function render(card) {
     const element = document.getElementById('verb-reference');

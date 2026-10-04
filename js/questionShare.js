@@ -25,7 +25,7 @@
     }
     if(data.explanation !== undefined) {
       if(!Array.isArray(data.explanation)||data.explanation.length>4||!data.explanation.every(line=>text(line,300)))throw Error('Invalid explanation');
-      if(data.doublePronoun===true)result.explanation=[...data.explanation];
+      result.explanation=[...data.explanation];
     }
     return result;
   }

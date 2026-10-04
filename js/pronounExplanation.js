@@ -24,13 +24,30 @@
   if(tail.trim())lines.push(`La quantité « ${tail.trim()} » reste après le verbe.`);
   return lines;
  }
+ function single(type,cue,pronoun,label,tail=''){
+  const lines=[];
+  if(type==='tonic'){
+   lines.push(`« à ${cue} » devient « à ${pronoun} ».`);
+   lines.push(`Avec « ${label} », on garde « à » devant le pronom qui désigne cette personne.`);
+   lines.push(`« ${pronoun} » désigne « ${cue} », pas la personne qui fait l’action.`);
+  }else if(['y','prepY','location'].includes(type)){
+   lines.push(`« y » reprend ${type==='location'?'le lieu':'le complément introduit par « à »'} : « ${cue} ».`);
+   lines.push('On choisit « y » selon ce qui est remplacé, pas selon le sujet.');
+  }else if(['en','prepEn','origin','quantity'].includes(type)){
+   lines.push(type==='quantity'?`« en » reprend le nom dans « ${cue} » (quantité ou article indéfini/partitif).`:`« en » reprend le complément introduit par « de » : « ${cue} ».`);
+   lines.push('On choisit « en » selon ce qui est remplacé, pas selon le sujet.');
+   if(tail.trim())lines.push(`La quantité « ${tail.trim()} » reste après le verbe.`);
+  }else lines.push(replace(cue,pronoun));
+  if(type!=='tonic')lines.push('Le pronom se place avant le verbe ; à un temps composé, avant l’auxiliaire.');
+  return lines;
+ }
  function render(card){
   const panel=document.getElementById('pronoun-explanation');if(!panel)return;
   panel.open=false;
-  const lines=card?.doublePronoun&&Array.isArray(card.explanation)?card.explanation:[];
+  const lines=Array.isArray(card?.explanation)?card.explanation:[];
   panel.hidden=!lines.length;
   const list=panel.querySelector('ul');list.replaceChildren();
   for(const line of lines){const li=document.createElement('li');li.textContent=line;list.append(li);}
  }
- window.pronounExplanation={double,enY,render};
+ window.pronounExplanation={double,enY,single,render};
 })();
