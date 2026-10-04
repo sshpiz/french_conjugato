@@ -932,7 +932,7 @@ function renderVerbCorePatterns(container, infinitive, options = {}) {
             example.className = 'core-pattern-example';
             example.addEventListener('click', event => event.stopPropagation());
             const summary = document.createElement('summary');
-            summary.textContent = "Par exemple";
+            summary.textContent = "Example";
             const sentence = document.createElement('p');
             sentence.className = 'usage-example-fr';
             sentence.textContent = entry.example_fr;
@@ -10541,7 +10541,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const topNHeading = topNGroup?.querySelector('h3');
         if (topNHeading) topNHeading.textContent = 'By frequency';
         const topNDesc = topNGroup?.querySelector('.option-desc');
-        if (topNDesc) topNDesc.textContent = 'Top N applies within each selected type. Expression ranks are approximate.';
+        if (topNDesc) topNDesc.textContent = 'Choose how many common entries to practise. Verbs and expressions have separate lists; expression ranks are approximate.';
         const tenseDesc = tenseGroup?.querySelector('.option-desc');
         if (tenseDesc) tenseDesc.textContent = 'Choose which tenses to practice for conjugation cards.';
 
@@ -10886,6 +10886,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Compact is the standard Practice presentation; the underlying controls remain authoritative.
     const refreshCompactPractice = () => {
+        queueMicrotask(() => {
+            const listen = document.getElementById('tts-voice-group');
+            const audioPanel = listen?.closest('[role="tabpanel"]');
+            if (audioPanel && audioPanel.firstElementChild !== listen) audioPanel.prepend(listen);
+            const target = document.querySelector('#app-group .collapsible-body');
+            if (!target) return;
+            let support = document.getElementById('about-support');
+            if (!support) {
+                support = document.createElement('details');
+                support.id = 'about-support';
+                support.innerHTML = '<summary>About &amp; Support</summary><div class="support-content"></div>';
+                target.appendChild(support);
+            }
+            const content = support.querySelector('.support-content');
+            const rows = [document.querySelector('.settings-version-row'), document.getElementById('settings-inventory-panel'),
+                document.querySelector('.settings-support-row'), document.querySelector('.settings-app-links')];
+            rows.filter(Boolean).forEach(row => { if (row.parentElement !== content) content.appendChild(row); });
+        });
+
         const panel = document.getElementById('settings-panel-practice');
         if (!panel) return;
         document.getElementById('practice-layout-choice')?.remove();
@@ -12995,11 +13014,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactBtn = document.getElementById('contact-btn');
     const contactModal = document.getElementById('contact-modal');
     let selectedType = null;
+    let reportReturnFocus = null;
+    document.getElementById('report-question-btn')?.addEventListener('click', () => {
+        document.getElementById('question-share')?.removeAttribute('open');
+        contactBtn?.click();
+    });
 
     // Open modal
     contactBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
+        reportReturnFocus = document.activeElement;
         contactModal.style.display = 'flex';
+        document.getElementById('contact-close')?.focus();
         selectedType = null;
         document.querySelectorAll('.report-btn').forEach(btn => btn.style.borderColor = '#e9ecef');
         document.getElementById('contact-msg').value = '';
@@ -13008,7 +13034,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close modal
     function closeModal() {
         contactModal.style.display = 'none';
+        const share = document.querySelector('#question-share summary');
+        (reportReturnFocus?.id === 'report-question-btn' ? share : reportReturnFocus)?.focus();
     }
+    contactModal?.addEventListener('keydown', event => {
+        if (event.key !== 'Tab') return;
+        const controls = Array.from(contactModal.querySelectorAll('button, textarea, a[href], input')).filter(el => !el.disabled && el.getClientRects().length);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    });
     document.getElementById('contact-close')?.addEventListener('click', closeModal);
     document.getElementById('contact-cancel')?.addEventListener('click', closeModal);
     contactModal?.addEventListener('click', (e) => e.target === contactModal && closeModal());
@@ -13031,24 +13066,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const verb = currentCard?.verb?.infinitive || 'N/A';
         const tense = currentCard?.tense || 'N/A';
         const pronoun = currentCard?.pronoun || 'N/A';
-        const sentence = currentCard?.chosenPhrase?.sentence || 'N/A';
+        const prompt = [currentCard?.question, currentCard?.chosenPhrase?.sentence,
+            document.getElementById('verb-reference')?.textContent].filter(Boolean).join(' · ') || pronoun;
+        const answer = document.getElementById('conjugated-verb')?.textContent?.trim() || currentCard?._practiceAnswer || currentCard?.conjugated || 'N/A';
         const msg = document.getElementById('contact-msg').value.trim();
-        const subject = `Les Verbes Report: ${types[selectedType]}`;
-        let text = `Les Verbes Report: ${types[selectedType]}\n\nContext:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
-        let body = `Context:\n• Verb: ${verb}\n• Tense: ${tense}\n• Pronoun: ${pronoun}\n• Sentence: ${sentence}`;
-        if (msg) text += `\n\nDetails:\n${msg}`;
-        text += '\n\nSent from Les Verbes app';
-        
-        // UTF-8 to base64 encoding (handles emojis and special characters)
-        // const encodedPayload = btoa(unescape(encodeURIComponent(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-        // const url = `https://t.me/LesVerbesBot?start=${encodedPayload}`;
-        
-        // // Try to copy to clipboard silently (no fallback)
-        // if (navigator.clipboard) {
-        //     navigator.clipboard.writeText(text).catch(() => {});
-        // }
-        
-        // window.open(url, '_blank');
+        const subject = `VerbsFirst French: ${types[selectedType]}`;
+        let body = `Context:\n• Verb: ${verb}\n• Tense: ${tense}\n• Subject: ${pronoun}\n• Prompt: ${prompt}\n• Answer: ${answer}`;
+        if (msg) body += `\n\nDetails:\n${msg}`;
+        try { body += `\n\nQuestion: ${questionLink()}`; } catch (_) { /* Some phrase cards have no share link. */ }
+
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
                          (navigator.maxTouchPoints && navigator.maxTouchPoints > 1 && /MacIntel/.test(navigator.platform));
         
@@ -13696,7 +13722,7 @@ const defaultPresets = [
   {
     id: 'most-common',
     emoji: "🎯",
-    name: "Most Crucial",
+    name: "Start here · 20 common verbs",
     desc: "présent · top 20",
     config: {
       cardGenerationOptions: buildDrillCardOptions({
@@ -14794,7 +14820,8 @@ if (importedSharedDrill) {
 
   if (!found && lastPreset) {
     const legacyPresetMap = {
-      'Master the Basics I': 'most-common',
+      'Most Crucial': 'most-common',
+            'Master the Basics I': 'most-common',
       'Master the Basics II': 'present',
       'Master the Basics III': 'explore',
       'Broaden Horizons': 'explore',

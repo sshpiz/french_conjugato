@@ -6377,3 +6377,37 @@ body.focused-intro-active:not(.focused-intro-revealed) .first-tap-cue { font-wei
     line-height: 1.4; letter-spacing: normal;
 }
 .detail-frequency-badge { margin-top: .4rem; }
+
+/* Pre-launch polish: one surface per control, with selected state and focus retained. */
+.practice-type-buttons button, .practice-type-buttons button.current-deck { box-shadow: none; }
+#go-to-verb-btn-container { box-shadow: none !important; border: 0 !important; background: transparent !important; }
+#go-to-verb-btn-container .control-dock-btn { box-shadow: none !important; background-image: none !important; }
+.practice-type-buttons button:focus-visible, .control-dock-btn:focus-visible,
+#tutorial-inline-skip-btn:focus-visible, #about-support summary:focus-visible {
+  outline: 3px solid var(--accent-color, #216a80); outline-offset: 3px;
+}
+body.focused-intro-active #tutorial-inline-skip-btn { display: inline-flex !important; min-height: 44px; align-items: center; justify-content: center; }
+body.focused-intro-active #tutorial-inline-hint { position: static; transform: none; align-self: center; flex: 0 0 auto; margin: 1rem auto; order: -1; }
+body.focused-intro-revealed #tutorial-inline-hint { order: 1; }
+body.focused-intro-active:not(.focused-intro-revealed) #answer-container { display: none !important; }
+body.focused-intro-active .first-tap-cue { display: none; }
+body.focused-intro-active .first-question { font-size: 1.25rem; font-weight: 650; line-height: 1.35; }
+body.focused-intro-active .tutorial-inline-heading:empty { display: none; }
+#about-support { margin-top: 1rem; border-top: 1px solid var(--border-color); }
+#about-support > summary { padding: 1rem 0; cursor: pointer; font-weight: 600; }
+#about-support .settings-app-links { margin-top: .5rem; }
+#daily-progress-label { font-size: .7rem; }
+@media (min-width: 701px) and (min-height: 780px) {
+  #app-container { height: min(calc(100dvh - 2rem), 740px); min-height: 0; margin-block: 1rem; }
+  #flashcard-view { min-height: 0; height: 100%; }
+}
+
+#options-view .compact-practice .option-group:has(> #verb-pool-basic-container) > .option-desc { display: block !important; margin: .35rem 0 .75rem; }
+
+/* One skip action during the introduction; normal card navigation returns afterward. */
+body.focused-intro-active #back-btn, body.focused-intro-active #next-btn { visibility: hidden; }
+
+/* On desktop, keep usage next to the answer instead of at the foot of a tall card. */
+@media (min-width: 701px) {
+  #flashcard #phrase-container { flex: 0 0 auto !important; overflow: visible !important; }
+}

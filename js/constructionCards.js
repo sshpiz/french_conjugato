@@ -77,7 +77,7 @@
       panel.dataset.patternId = id(active);
       const caption = document.createElement('div');
       caption.className = 'construction-example-label';
-      caption.textContent = 'Par exemple';
+      caption.textContent = 'Pattern';
       panel.appendChild(caption);
       const line = document.createElement('div');
       line.className = 'construction-pattern-text';
@@ -98,7 +98,7 @@
         detail.hidden = true;
         const detailLabel = document.createElement('span');
         detailLabel.className = 'construction-pattern-sample-label';
-        detailLabel.textContent = 'Par exemple';
+        detailLabel.textContent = 'Example';
         const target = document.createElement('span');
         target.className = 'construction-pattern-sample-target';
         target.textContent = sample.target;

@@ -1,4 +1,4 @@
-/* Optional details shell. Existing content and handlers are moved, never rebuilt. */
+/* Verb details tabs. Existing content and handlers are moved, never rebuilt. */
 (() => {
     'use strict';
     const FLAG = 'vf:details-tabs:v1';
@@ -6,17 +6,8 @@
     const names = ['conjugation', 'usage', 'family'];
     const read = (key) => { try { return localStorage.getItem(key); } catch (_) { return null; } };
     const write = (key, value) => { try { localStorage.setItem(key, value); } catch (_) {} };
-    let enabled = read(FLAG) !== '0';
+    let enabled = true;
     let context = null;
-    const requested = new URLSearchParams(location.search).get('detailsV2');
-    if (requested === '1' || requested === '0') {
-        enabled = requested === '1';
-        write(FLAG, enabled ? '1' : '0');
-        // Consume the preview override so the visible off switch survives a reload.
-        const url = new URL(location.href);
-        url.searchParams.delete('detailsV2');
-        history.replaceState(history.state, '', url.pathname + url.search + url.hash);
-    }
     const element = (tag, className, text) => {
         const node = document.createElement(tag);
         if (className) node.className = className;
@@ -29,22 +20,6 @@
         const toggle = document.getElementById('details-tabs-toggle');
         if (toggle) toggle.checked = enabled;
         if (context) context.rerender();
-    }
-    function mountSetting() {
-        const target = document.querySelector('#app-group .collapsible-body');
-        if (!target || document.getElementById('details-tabs-toggle')) return;
-        const row = element('div', 'toggle-row');
-        row.id = 'details-tabs-setting';
-        const copy = element('div', 'settings-row-copy');
-        const label = element('label', '', 'Tabbed verb details');
-        label.htmlFor = 'details-tabs-toggle';
-        copy.append(label, element('p', 'setting-helper-text', 'Try Conjugation, Usage and Word family tabs. Switch off to restore classic details.'));
-        const control = element('div', 'toggle-switch');
-        const input = element('input', 'toggle-input');
-        input.type = 'checkbox'; input.id = 'details-tabs-toggle'; input.checked = enabled;
-        input.addEventListener('change', () => setEnabled(input.checked));
-        const visual = element('label', 'toggle-label'); visual.htmlFor = input.id;
-        control.append(input, visual); row.append(copy, control); target.prepend(row);
     }
     function familyPanel(panel, options) {
         const data = window.VF_WORD_FAMILIES;
@@ -175,6 +150,5 @@
         select(options.tenseToFocus ? 'conjugation' : names.includes(saved) ? saved : 'conjugation', false);
     }
     window.VerbDetailsTabs = {enhance, setEnabled, isEnabled: () => enabled};
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountSetting, {once: true});
-    else mountSetting();
+
 })();
