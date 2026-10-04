@@ -20,6 +20,7 @@
 .demo-reveal .when-open{display:none}.demo-reveal[open] .when-open{display:inline}.demo-reveal[open] .when-closed{display:none}
 .demo-answer{display:flex;flex-direction:column;gap:3px;padding-top:18px}.demo-answer strong{font-size:2rem;color:#226eaa;line-height:1.25}.demo-answer>span{color:var(--muted);font-size:15px}
 @media(max-width:350px){.demo-card{padding:22px 16px}.demo-question{font-size:17px}}
+.motivation{padding-top:25px;border-top:1px solid var(--line);scroll-margin-top:24px}.motivation-intro{margin-top:12px;max-width:700px;color:var(--muted)}.motivation .features{border:0;padding-top:24px}.more{border-top:1px solid var(--line)}.more>summary{font-size:18px;min-height:44px}.more>summary span{font-weight:400;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -48,30 +49,32 @@
 <figcaption>Your first conjugation. <a href="/french/">Try another in French →</a></figcaption>
 </figure>
 </section>
-<section class="features" aria-label="Why start with verbs?">
-<div><h3>One verb. Dozens of sentences.</h3><p>I work. We work. She worked. The same verb lets you talk about different people and times.</p></div>
-<div><h3>Give your vocabulary a job.</h3><p>“Coffee” names a thing. “I want a coffee” gets you somewhere. Verbs connect the words you know to what you mean.</p></div>
-<div><h3>Less conjugating in your head.</h3><p>Practise recalling the common forms, so you spend less time searching for an ending and more time finishing your thought.</p></div>
+<section class="motivation" id="why" aria-labelledby="why-title">
+<h2 id="why-title">Practise your verbs before you need them.</h2>
+<p class="motivation-intro">Don’t wait for the lesson to catch up. Get familiar with the forms now. Put them to work in your next conversation.</p>
+<div class="features">
+<div><h3>Train your mouth. Free your brain.</h3><p>Say the forms out loud until they feel familiar. Less hesitation over endings. More confidence getting the words out.</p></div>
+<div><h3>Give your ears a head start.</h3><p>Listen to the forms as you practise. Get used to how they sound, so they’re easier to catch in natural speech.</p></div>
+<div><h3>Speak up. At every level.</h3><p>The verbs you know are the ones you can use. Build a head start, join in sooner, and spend more of the conversation talking.</p></div>
+</div>
 </section>
-<section class="more" aria-labelledby="more-title"><h2 id="more-title">More languages <span>· Early access</span></h2><p>These versions are less complete and receive fewer updates. Coverage, examples and features vary; expect rough edges.</p><div class="more-grid">
+<details class="more"><summary>More languages <span>· Early access</span></summary><p>These versions are less complete and receive fewer updates. Coverage, examples and features vary; expect rough edges.</p><div class="more-grid">
 <a class="language-link" href="/german/"><span class="language-code" aria-hidden="true">DE</span><span><strong>German</strong><small lang="de">Die Verben</small></span></a>
 <a class="language-link" href="/italian/"><span class="language-code" aria-hidden="true">IT</span><span><strong>Italian</strong><small lang="it">I Verbi</small></span></a>
 <a class="language-link" href="/greek/"><span class="language-code" aria-hidden="true">EL</span><span><strong>Greek</strong><small lang="el">Τα Ρήματα</small></span></a>
 <a class="language-link" href="/russian/"><span class="language-code" aria-hidden="true">RU</span><span><strong>Russian</strong><small lang="ru">Глаголы</small></span></a>
 <a class="language-link" href="/ukrainian/"><span class="language-code" aria-hidden="true">UK</span><span><strong>Ukrainian</strong><small lang="uk">Дієслова</small></span></a>
 <a class="language-link" href="/latvian/"><span class="language-code" aria-hidden="true">LV</span><span><strong>Latvian</strong><small lang="lv">Darbības vārdi</small></span></a>
-</div></section>
+</div></details>
 <section class="information" aria-label="About VerbsFirst">
-<details id="why"><summary>Why practise verbs?</summary><div class="body"><p>Knowing a word and finding its form mid-sentence are different things. VerbsFirst gives you a small, repeatable way to practise that recall: try an answer, reveal it, and check. The aim is less hesitation over familiar forms.</p><p>Verbs are also useful starting points for patterns: who does what, to whom, and with which preposition. Examples help connect the form to a meaning. Use this alongside listening, reading and real conversations.</p><p class="research-note">Further reading</p><ul><li><a href="https://sites.lsa.umich.edu/nickellis-new/wp-content/uploads/sites/1284/2021/07/CognitiveLinguisticsUMichOffprint.pdf">Ellis, O’Donnell &amp; Römer (2014): processing verb–argument constructions (PDF)</a> — research into associations between verbs and constructions.</li><li><a href="https://pubmed.ncbi.nlm.nih.gov/16507066/">Roediger &amp; Karpicke (2006): Test-Enhanced Learning</a> — research into retrieval and later retention.</li></ul></div></details>
+<details id="literature"><summary>Research &amp; further reading</summary><div class="body"><ul><li><a href="https://sites.lsa.umich.edu/nickellis-new/wp-content/uploads/sites/1284/2021/07/CognitiveLinguisticsUMichOffprint.pdf">Ellis, O’Donnell &amp; Römer (2014): processing verb–argument constructions (PDF)</a> — research into associations between verbs and constructions.</li><li><a href="https://pubmed.ncbi.nlm.nih.gov/16507066/">Roediger &amp; Karpicke (2006): Test-Enhanced Learning</a> — research into retrieval and later retention.</li></ul></div></details>
 <details id="privacy"><summary>Privacy</summary><div class="body"><p>No account. No username. Your practice settings and progress are saved locally in your browser.</p></div></details>
 </section>
 </main>
 <footer class="footer"><p>VerbsFirst</p><p><a href="mailto:lesverbes.support@gmail.com">Support / report an issue</a></p></footer>
 </div>
 <script>
-// A navigation link to the rationale also opens its native disclosure.
-document.querySelector('a[href="#why"]').addEventListener('click',function(){document.getElementById('why').open=true;});
-if(location.hash==='#why'||location.hash==='#privacy'){document.querySelector(location.hash).open=true;}
+if(location.hash==='#literature'||location.hash==='#privacy'){document.querySelector(location.hash).open=true;}
 if(location.protocol!=='file:'&&'serviceWorker'in navigator){navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(function(){});}
 </script>
 <!-- Existing homepage analytics; disclosed in Privacy, speech & offline use. -->
