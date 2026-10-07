@@ -393,31 +393,9 @@ dispenser|exempt someone from
 libérer|free someone from
 débarrasser|rid someone of
 consoler|console someone about''')
-add('quantityY','''acheter|buy|des livres
-vendre|sell|des livres
-trouver|find|des livres
-chercher|look for|des livres
-voir|see|des oiseaux
-prendre|take|des livres
-mettre|put|des livres
-poser|put down|des livres
-placer|place|des objets
-ranger|put away|des livres
-stocker|store|des objets
-conserver|keep|des documents
-garder|keep|des livres
-laisser|leave|des livres
-cacher|hide|des objets
-fabriquer|make|des objets
-construire|build|des maisons
-préparer|prepare|des repas
-manger|eat|des pommes
-boire|drink|du café
-planter|plant|des arbres
-cultiver|grow|des légumes
-apporter|bring|des cadeaux
-envoyer|send|des lettres
-livrer|deliver|des colis''')
+# Do not generate y + en quantity/location drills: valid combinations can be
+# marginal in contemporary usage and are unsuitable for this everyday-practice pool.
+# Keep ordinary y, en and the independently curated il y en a family.
 # Concrete neutral cues where a generic thing would obscure the verb sense.
 custom={
  'prepY':{'accéder':'cette demande','acquiescer':'cette proposition','adhérer':'cette idée','aspirer':'ce poste','assister':'cette réunion','compatir':'cette peine','conclure':'cette conclusion','cotiser':'ce fonds','contrevenir':'cette règle','déroger':'cette règle','désobéir':'cette règle','échouer':'cet examen','faillir':'ce devoir','manquer':'ce devoir','obéir':'cette règle','obtempérer':'cet ordre','parer':'ce danger','pourvoir':'ce besoin','prétendre':'ce titre','procéder':'cette vérification','réagir':'cette nouvelle','remédier':'ce problème','ressembler':'ce modèle','satisfaire':'cette exigence','souscrire':'cette idée','subvenir':'ce besoin','succomber':'cette tentation','surseoir':'cette décision','tendre':'cet objectif','veiller':'cette tâche'},

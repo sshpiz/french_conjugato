@@ -14,7 +14,7 @@
     return index%3===1?{cue:'deux '+noun,tail:' deux'}:index%3===2?{cue:'beaucoup de '+noun,tail:' beaucoup'}:{cue,tail:''};
   };
   window.constructFrenchEnY=(card,record,objectIndex=0,recipientIndex=0,agree)=>{
-    if(!card||card.reference||card.isPhraseMode||card.isFrameCard)return null;
+    if(!card||card.reference||card.isPhraseMode||card.isFrameCard||record.type==='quantityY')return null;
     const subject=card.pronoun.split('/')[0];
     const normalized=window.handleLanguageSpecificLastChange?window.handleLanguageSpecificLastChange(card.pronoun,card.conjugated):card.conjugated;
     let body=String(normalized||'').replace(/^j['’]|^(?:je|tu|il|elle|on|nous|vous|ils|elles)\s+/u,'');

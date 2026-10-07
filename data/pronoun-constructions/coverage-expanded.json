@@ -46,8 +46,7 @@
     "enYTypes": [
       "quantity",
       "directY",
-      "personY",
-      "quantityY"
+      "personY"
     ]
   },
   {
@@ -62,8 +61,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -87,8 +85,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "recipientEn",
-      "quantityY"
+      "recipientEn"
     ]
   },
   {
@@ -123,8 +120,7 @@
     "verb": "mettre",
     "playable": true,
     "enYTypes": [
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -321,8 +317,7 @@
     "verb": "cacher",
     "playable": true,
     "enYTypes": [
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -343,8 +338,7 @@
     "verb": "laisser",
     "playable": true,
     "enYTypes": [
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -410,8 +404,7 @@
     "enYTypes": [
       "quantity",
       "directY",
-      "recipientEn",
-      "quantityY"
+      "recipientEn"
     ]
   },
   {
@@ -425,8 +418,7 @@
     "enYTypes": [
       "quantity",
       "directY",
-      "personY",
-      "quantityY"
+      "personY"
     ]
   },
   {
@@ -517,8 +509,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -612,8 +603,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -662,8 +652,7 @@
     "playable": true,
     "enYTypes": [
       "location",
-      "quantity",
-      "quantityY"
+      "quantity"
     ]
   },
   {
@@ -706,8 +695,7 @@
     "verb": "boire",
     "playable": true,
     "enYTypes": [
-      "quantity",
-      "quantityY"
+      "quantity"
     ]
   },
   {
@@ -760,8 +748,7 @@
     "enYTypes": [
       "quantity",
       "directY",
-      "recipientEn",
-      "quantityY"
+      "recipientEn"
     ]
   },
   {
@@ -853,8 +840,7 @@
     "enYTypes": [
       "quantity",
       "directY",
-      "recipientEn",
-      "quantityY"
+      "recipientEn"
     ]
   },
   {
@@ -873,8 +859,7 @@
     "verb": "poser",
     "playable": true,
     "enYTypes": [
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -903,8 +888,7 @@
     "enYTypes": [
       "quantity",
       "directY",
-      "recipientEn",
-      "quantityY"
+      "recipientEn"
     ]
   },
   {
@@ -1039,8 +1023,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -2333,8 +2316,7 @@
     "verb": "placer",
     "playable": true,
     "enYTypes": [
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -2372,8 +2354,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -2810,8 +2791,7 @@
     "verb": "cultiver",
     "playable": true,
     "enYTypes": [
-      "quantity",
-      "quantityY"
+      "quantity"
     ]
   },
   {
@@ -3377,8 +3357,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -3396,8 +3375,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -3926,8 +3904,7 @@
     "enYTypes": [
       "quantity",
       "directY",
-      "recipientEn",
-      "quantityY"
+      "recipientEn"
     ]
   },
   {
@@ -4182,8 +4159,7 @@
     "playable": true,
     "enYTypes": [
       "quantity",
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {
@@ -32196,8 +32172,7 @@
     "verb": "stocker",
     "playable": true,
     "enYTypes": [
-      "directY",
-      "quantityY"
+      "directY"
     ]
   },
   {

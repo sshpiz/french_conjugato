@@ -17,6 +17,7 @@
       if (!text(data[key])) throw Error('Invalid question text');
       result[key] = data[key];
     }
+    if (result.pronounFamily === 'quantityY') throw Error('This practice construction has been retired');
     if (result.negationStyle && !['standard','spoken'].includes(result.negationStyle)) throw Error('Invalid sentence form');
     for (const key of flags) if (data[key] === true) result[key] = true;
     for (const key of ['references','referenceIcons']) if (data[key] !== undefined) {

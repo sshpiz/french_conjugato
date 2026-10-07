@@ -19,8 +19,6 @@ const fixtures=[
  ['parler','indirectEn','elle','present','elle parle',0,6,'elle nous en parle'],
  ['informer','directEn','je','passeCompose',"j'ai informé",1,0,"je l'en ai informée"],
  ['convaincre','directEn','elle','plusQueParfait','elle avait convaincu',3,0,'elle les en avait convaincues'],
- ['mettre','quantityY','nous','passeCompose','nous avons mis',1,0,'nous y en avons mis deux'],
- ['boire','quantityY','je','present','je bois',0,0,"j'y en bois"]
 ];
 for(const [v,type,p,t,f,o,r,want]of fixtures){const result=card(v,type,p,t,f,o,r);assert.equal(result.conjugated,want);assert(api.negate(result,'standard').conjugated.includes(' pas'));}
 assert.equal(card('emmener','personY','je','present',"j'emmène",0),null);
@@ -30,7 +28,7 @@ for(const r of records){
  for(const [tense,table]of Object.entries(c.tables))for(const [pronoun,conjugated]of Object.entries(table[r.verb])){
   for(let o=0;o<(r.type==='personY'?8:r.type==='directEn'?4:3);o++)for(let i=0;i<(['recipientEn','indirectEn'].includes(r.type)?8:1);i++){
    const a=api.expansion.construct({verb:{infinitive:r.verb},pronoun,tense,conjugated},r,o,i);if(!a)continue;
-   assert(!/undefined|\bnull\b|—/.test(a.conjugated),a.conjugated);assert.equal(!!a.doublePronoun,r.arity===2);assert(a.reference);count++;
+   assert(!/undefined|\bnull\b|—/.test(a.conjugated),a.conjugated);assert(!/\by en\b/.test(a.conjugated),a.conjugated);assert.equal(!!a.doublePronoun,r.arity===2);assert(a.reference);count++;
   }
  }
 }
@@ -44,3 +42,6 @@ for(const mode of ['one','two','mixed']){
  }
 }
 console.log('PASS independent y/en, quantity, cluster, agreement and negation fixtures;',count,'answer combinations;',records.length,'worked examples');
+
+assert(!records.some(r=>r.type==='quantityY'));
+assert.equal(c.window.constructFrenchEnY({verb:{infinitive:'boire'},pronoun:'je',tense:'present',conjugated:'je bois'},{type:'quantityY',verb:'boire',cue:'du café'}),null);
