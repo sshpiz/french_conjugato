@@ -5169,30 +5169,45 @@ document.addEventListener('DOMContentLoaded', () => {
         return rawTranslation.trim();
     };
 
-    // NOTE(registers): This is an intentionally small curated layer for now.
-    // Category richness and register labeling are "good enough to ship" but not exhaustive;
-    // revisit periodically as we expand built-in sets and confirm which verbs deserve
-    // verb-level labels versus more precise usage-level labels.
+    // Curated register guidance: exact expressions take priority over lemmas.
+    // Larousse: bosser/10311, bouffer/10449, ficher/33576, foutre/34904,
+    // baiser/7547, déconner/22345, merder/50604, emmerder/28792;
+    // college/piger/30797. Other entries retain the existing curated labels.
+    // Labels describe usage, not whether a word is allowed in practice.
     const VERB_REGISTER_GLOSS_LABELS = Object.freeze({
-        bachoter: 'slang',
-        bosser: 'slang',
-        bouffer: 'slang',
-        brancher: 'slang',
-        cuver: 'slang',
-        déconner: 'slang',
-        foirer: 'slang',
-        kiffer: 'slang',
-        mater: 'slang',
-        merder: 'vulgar',
-        picoler: 'slang',
-        trimballer: 'slang',
-        zoner: 'slang',
+        bachoter: 'Informal · casual speech',
+        bosser: 'Informal · casual speech',
+        bouffer: 'Informal in the eating sense',
+        brancher: 'Informal in some senses',
+        cuver: 'Informal in the drinking sense',
+        déconner: 'Very informal · can sound rude',
+        foirer: 'Informal · casual speech',
+        kiffer: 'Informal · casual speech',
+        mater: 'Informal in some senses',
+        merder: 'Very informal · can sound rude',
+        emmerder: 'Very informal · can sound rude',
+        "s'emmerder": 'Very informal · can sound rude',
+        picoler: 'Informal · casual speech',
+        piger: 'Informal · casual speech',
+        trimballer: 'Informal · casual speech',
+        zoner: 'Informal · casual speech',
+        "s'en ficher": 'Informal · casual speech',
+        "se ficher de quelqu'un": 'Informal · casual speech',
+        "s'en foutre": 'Very informal · can sound rude',
+        "se foutre de quelqu'un": 'Very informal · can sound rude',
+        baiser: 'Vulgar in the sexual sense',
     });
 
     const getVerbRegisterGlossLabel = (verbOrInfinitive) => {
-        const infinitive = typeof verbOrInfinitive === 'string'
-            ? verbOrInfinitive
-            : String(verbOrInfinitive?.infinitive || '').trim();
+        const infinitive = String(typeof verbOrInfinitive === 'string'
+            ? verbOrInfinitive : verbOrInfinitive?.infinitive || '')
+            .replace(/[’‘]/g, "'").trim();
+        if (infinitive === 'foutre') {
+            const gloss = String(verbOrInfinitive?.translation || '');
+            return /fuck|sex/i.test(gloss)
+                ? 'Vulgar · can offend'
+                : 'Very informal · can sound rude';
+        }
         return VERB_REGISTER_GLOSS_LABELS[infinitive] || '';
     };
 
@@ -9054,7 +9069,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // --- VERB CARD LOGIC ---
         const verbFrequency = card.verb.frequency || 'common'; 
-        const translation = card.verb.translationBySubject?.[card.pronoun] || formatVerbTranslationForDisplay(card.verb);
+        const translation = formatVerbTranslationForDisplay({ ...card.verb, translation: card.verb.translationBySubject?.[card.pronoun] || card.verb.translation });
         verbInfinitiveEl.textContent = card.verb.infinitive;
         verbInfinitiveEl.classList.add('tappable-audio');
         verbInfinitiveEl.dataset.audioId = lemmaAudioId(card.verb.infinitive);
@@ -9802,7 +9817,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filteredVerbs.slice(0,explorerVisibleLimit).forEach(verb => {
             const item = document.createElement('div');
             item.className = 'verb-list-item';item.dataset.infinitive = verb.infinitive;
-            item.innerHTML = `<div class="verb-list-item-text"><button type="button" class="search-result-open"><span class="search-result-title"><span class="infinitive">${highlight(verb.infinitive)}</span><span class="entry-frequency-badge${verb.verbExpression ? ' search-expression-label' : ''}" title="${verb.verbExpression ? 'Approximate frequency tier among expressions' : 'Frequency tier among verbs'}">${safe(verb.verbExpression ? getEntryFrequencyBadge(verb) : formatFrequencyLabel(verb.frequency))}</span></span><span class="translation">${highlight(cleanTranslation(verb.infinitive,verb.translation))}</span></button></div><button class="audio-btn" aria-label="Listen to ${safe(verb.infinitive)}" data-speak="${safe(verb.infinitive)}" data-audio-id="${safe(lemmaAudioId(verb.infinitive))}">🔊</button><span class="search-result-arrow" aria-hidden="true">›</span>`;
+            item.innerHTML = `<div class="verb-list-item-text"><button type="button" class="search-result-open"><span class="search-result-title"><span class="infinitive">${highlight(verb.infinitive)}</span><span class="entry-frequency-badge${verb.verbExpression ? ' search-expression-label' : ''}" title="${verb.verbExpression ? 'Approximate frequency tier among expressions' : 'Frequency tier among verbs'}">${safe(verb.verbExpression ? getEntryFrequencyBadge(verb) : formatFrequencyLabel(verb.frequency))}</span></span><span class="translation">${highlight(formatVerbTranslationForDisplay(verb))}</span></button></div><button class="audio-btn" aria-label="Listen to ${safe(verb.infinitive)}" data-speak="${safe(verb.infinitive)}" data-audio-id="${safe(lemmaAudioId(verb.infinitive))}">🔊</button><span class="search-result-arrow" aria-hidden="true">›</span>`;
             verbListContainer.appendChild(item);
         });
         if (filteredVerbs.length > explorerVisibleLimit) {

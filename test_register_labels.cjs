@@ -1,0 +1,17 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+const source=fs.readFileSync(__dirname+'/js/script.js','utf8');
+const start=source.indexOf('    const cleanTranslation =');
+const end=source.indexOf('    const infoBtn =',start);
+const context={};vm.createContext(context);
+vm.runInContext(source.slice(start,end)+';this.format=formatVerbTranslationForDisplay;',context);
+const format=(infinitive,translation)=>context.format({infinitive,translation});
+assert.match(format('foutre','to fuck'),/Vulgar · can offend/);
+assert.match(format("s’en foutre",'not to give a damn'),/Very informal/);
+assert.match(format("s'en ficher",'not to care'),/Informal · casual speech/);
+assert.equal(format('ficher','to file'),'to file');
+assert.equal(format('parler','to speak'),'to speak');
+assert.match(format('bosser','to work'),/Informal/);
+assert.match(format('baiser','to kiss; to have sex'),/Vulgar in the sexual sense/);
+assert.match(format('brancher','to connect'),/in some senses/);
+assert(!format('afficher','to display').includes('Informal'));
+console.log('PASS register guidance, expression distinction, apostrophes and neutral controls');
