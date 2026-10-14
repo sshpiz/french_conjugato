@@ -21,11 +21,18 @@ try {
   const placement=await hint.evaluate(el=>({top:el.getBoundingClientRect().top,after:document.querySelector('#phrase-container').getBoundingClientRect().bottom,border:getComputedStyle(el).borderLeftWidth}));
   assert(placement.top>=placement.after-1,language+' hint follows answer area');
   assert.equal(placement.border,'0px',language+' quiet unboxed hint');
-  // No timer/answer transition dismissal; queued hints cannot replace the current one.
+  // Reveal preserves the hint; a different tense immediately replaces it without dismissing it.
   await p.locator('#answer-flow-btn').click();await settle(p);
   assert.equal(await hint.getAttribute('data-tense'),first);
-  await p.evaluate(()=>{window.TenseUsage.encounter('missing-tense');window.TenseUsage.encounter('future');});
+  const other=language==='french'?'futurSimple':'future';
+  await p.evaluate(t=>window.TenseUsage.encounter(t),other);
+  assert.equal(await hint.getAttribute('data-tense'),other);
+  assert.equal(await hint.count(),1);
+  await p.evaluate(()=>window.TenseUsage.encounter('missing-tense'));
+  assert.equal(await hint.count(),0);
+  await p.evaluate(()=>window.TenseUsage.encounter('present'));
   assert.equal(await hint.getAttribute('data-tense'),first);
+  assert.equal(await p.evaluate(l=>localStorage.getItem(l+':tense-usage-dismissed:v1:present'),language),null);
   // Mobile and desktop flow: controls remain in viewport and accept pointer events.
   for(const [width,height] of [[320,568],[393,851],[1440,1000]]){
    await p.setViewportSize({width,height});await settle(p);
@@ -41,7 +48,11 @@ try {
   await p.setViewportSize({width:393,height:851});
   await hint.locator('button').click();
   assert.equal(await p.evaluate(l=>localStorage.getItem(l+':tense-usage-dismissed:v1:present'),language),'1');
-  if(language!=='french')assert.equal(await hint.getAttribute('data-tense'),'future');
+  assert.equal(await hint.count(),0,'Got it must not reveal a queued hint');
+  await p.evaluate(t=>window.TenseUsage.encounter(t),other);
+  assert.equal(await hint.getAttribute('data-tense'),other,'undismissed tense returns');
+  await p.evaluate(()=>window.TenseUsage.encounter('present'));
+  assert.equal(await hint.count(),0,'dismissed current tense hides preceding hint');
   if(await p.locator('#tutorial-inline-skip-btn').isVisible()) await p.locator('#tutorial-inline-skip-btn').click();
   await p.reload();await p.locator('#app-loader').waitFor({state:'hidden'});await settle(p);
   await p.evaluate(()=>window.TenseUsage.encounter('present'));
@@ -108,7 +119,7 @@ try {
   await p.screenshot({path:path.join(__dirname,language+'-reset-settings.png')});
   await p.goto(base+route);await p.locator('#app-loader').waitFor({state:'hidden'});await settle(p);
   await p.locator('#tense-usage-hint').waitFor({state:'visible'});
-  results.push({language,tenses:coverage.length,passed:['first encounter','explicit dismissal','persistence after reload','language isolation','no timer or answer dismissal','pending hints','same content via Verb Details','canonical coverage','reset all tenses from App','reset persists and isolates language/preferences','320/393/1440 controls and overflow']});
+  results.push({language,tenses:coverage.length,passed:['first encounter','explicit dismissal','persistence after reload','language isolation','no timer or answer dismissal','current-tense switching without a queue','same content via Verb Details','canonical coverage','reset all tenses from App','reset persists and isolates language/preferences','320/393/1440 controls and overflow']});
  }
  assert.deepEqual(errors,[]);
  await ctx.close();

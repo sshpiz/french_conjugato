@@ -8839,7 +8839,7 @@ document.addEventListener('DOMContentLoaded', () => {
         finalizeStudyStatsCardSession('card-replaced');
         if (!tutorialState.active && !card._sharedQuestion) card = window.constructionCards.prepare(card, getVerbCorePatternsIndex()[card?.verb?.infinitive] || []);
         currentCard = card;
-        if (card.verb && card.tense) window.TenseUsage?.encounter(card.tense);
+        window.TenseUsage?.encounter(card.verb && card.tense ? card.tense : null);
         setTimeout(() => {
             if (currentCard !== card) return;
             let text = card.isFrameCard ? (card.frameFullAnswer || getCardAnswerText(card)) : getCardAnswerText(card);

@@ -86,7 +86,6 @@
     const speechLanguage = "fr";
     const labels = window[language + 'TenseKeyToLabel'] || {};
     const dismissed = new Set();
-    const pending = [];
     let hint = null;
     const key = tense => window.getAppStorageKey
         ? window.getAppStorageKey(`tense-usage-dismissed:v1:${tense}`)
@@ -103,7 +102,6 @@
             });
             dismissed.clear();
             sessionReset = !saved;
-            pending.length = 0;
             hint?.remove();
             hint = null;
             if (lastEncounter) encounter(lastEncounter);
@@ -153,8 +151,7 @@
         return body;
     }
     function render() {
-        while (pending.length && isDismissed(pending[0])) pending.shift();
-        const tense = pending[0];
+        const tense = get(lastEncounter) && !isDismissed(lastEncounter) ? lastEncounter : null;
         if (!tense) { hint?.remove(); hint = null; return; }
         // Do not replace a visible hint on each answer/card or disturb its focus.
         if (hint?.dataset.tense === tense && hint.isConnected) return;
@@ -181,10 +178,7 @@
         anchor.after(hint);
     }
     function encounter(tense) {
-        if (!get(tense)) return;
         lastEncounter = tense;
-        if (isDismissed(tense)) return;
-        if (!pending.includes(tense)) pending.push(tense);
         render();
     }
     function appendDetails(parent, tense) {
@@ -196,7 +190,7 @@
         parent.append(disclosure);
     }
     window.addEventListener('storage', event => {
-        if (pending.some(tense => event.key === key(tense))) render();
+        if (lastEncounter && event.key === key(lastEncounter)) render();
     });
     window.TenseUsage = {encounter, appendDetails};
 })();
