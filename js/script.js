@@ -1472,6 +1472,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     populateOptions();
                     updateVerbFiltersCountLabel();
                 }
+                // A saved drill can need forms outside the initial bundle. Retry
+                // with the current settings, but never replace a playable card.
+                if (!currentCard && flashcard.classList.contains('empty-selection')) {
+                    nextCard();
+                }
                 return true;
             })
             .catch((error) => {

@@ -38,7 +38,7 @@ APP_FILES_TO_COPY = ["manifest.json", "favicon_big.png", "sw.js"]
 FRENCH_WEB_DATA_SOURCE = "js/verbs.full.generated.js"
 FRENCH_WEB_STARTER_DATA_ASSET = "js/verbs.starter.generated.js"
 FRENCH_WEB_EXTRA_DATA_ASSET = "js/verbs.extra.generated.json"
-FRENCH_STARTER_FREQUENCIES = {"top-20", "top-50", "top-100", "top-500"}
+FRENCH_STARTER_FREQUENCIES = {"top20", "top50", "top100", "top500"}
 FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS = [
     FRENCH_WEB_DATA_SOURCE,
     "verb_core_patterns.js",
@@ -288,10 +288,14 @@ def write_french_split_verb_data(app_version):
     all_tenses = extract_json_const_assignment(source_text, "tenses")
     all_pronouns = extract_json_const_assignment(source_text, "pronouns")
 
+    def normalize_frequency_key_for_build(value):
+        raw = str(value or "common").strip().lower()
+        return re.sub(r"^top-(\d+)$", r"top\1", raw)
+
     starter_infinitives = {
         verb.get("infinitive")
         for verb in all_verbs
-        if verb.get("frequency") in FRENCH_STARTER_FREQUENCIES
+        if normalize_frequency_key_for_build(verb.get("frequency")) in FRENCH_STARTER_FREQUENCIES
     }
     starter_infinitives.update(collect_french_starter_verbs_from_supporting_data())
     starter_infinitives = {verb for verb in starter_infinitives if verb}
@@ -301,10 +305,6 @@ def write_french_split_verb_data(app_version):
     # only Top 500/topic/fill-blank conjugations are in the starter payload.
     starter_verbs = all_verbs
     extra_verbs = []
-    def normalize_frequency_key_for_build(value):
-        raw = str(value or "common").strip().lower()
-        return re.sub(r"^top-(\d+)$", r"top\1", raw)
-
     all_frequency_counts = {}
     for verb in all_verbs:
         freq = normalize_frequency_key_for_build(verb.get("frequency") or "common")
