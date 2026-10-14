@@ -6411,3 +6411,86 @@ body.focused-intro-active #back-btn, body.focused-intro-active #next-btn { visib
 @media (min-width: 701px) {
   #flashcard #phrase-container { flex: 0 0 auto !important; overflow: visible !important; }
 }
+
+/* Tense guidance stays in the scrolling card, outside the fixed practice controls. */
+.tense-usage-hint, .tense-usage-details {
+  box-sizing: border-box; width: 100%; min-width: 0; flex: 0 0 auto;
+  margin: .45rem 0; padding: .5rem .65rem; text-align: left;
+  border: 1px solid var(--border-color, #b5c2ce); border-radius: 10px;
+  color: var(--text-color, #243328); font-size: .82rem; line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.tense-usage-heading { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.tense-usage-dismiss { flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: .35rem .55rem; font: inherit; color: inherit; background: transparent; border: 1px solid var(--border-color, #b5c2ce); border-radius: 8px; cursor: pointer; }
+.tense-usage-content p { margin: .3rem 0 0; font-size: inherit; line-height: inherit; }
+.tense-usage-example > span:first-child { font-weight: 600; }
+.tense-usage-details > summary { min-height: 44px; align-content: center; cursor: pointer; font-weight: 600; }
+.tense-usage-dismiss:focus-visible, .tense-usage-details > summary:focus-visible { outline: 2px solid var(--primary-color, #3498db); outline-offset: 2px; }
+
+#flashcard .tense-usage-hint {
+  order: 5; margin: .6rem 0 0; padding: .45rem .1rem 0;
+  border: 0; border-top: 1px solid var(--border-color); border-radius: 0;
+  color: var(--meta-color); font-size: calc(.78rem * var(--font-scale, 1));
+  background: transparent; box-shadow: none;
+}
+.tense-usage-hint .tense-usage-heading strong { font-size: .72rem; font-weight: 500; }
+.tense-usage-hint .tense-usage-dismiss { border: 0; padding: .25rem .4rem; font-size: .75rem; text-decoration: underline; text-underline-offset: 3px; }
+.tense-usage-hint .tense-usage-example > span:first-child { font-weight: 400; }
+.tense-usage-hint .tense-usage-translation { font-style: italic; }
+#flashcard:has(.tense-usage-hint) { overflow-y: auto !important; }
+#flashcard:has(.tense-usage-hint) #phrase-container { flex: 1 0 auto !important; overflow: visible !important; }
+
+/* Closed Usage shares the tense heading's row; expanded guidance flows below it. */
+.tense-block.has-tense-usage { position: relative; }
+.tense-block.has-tense-usage > .tense-header {
+  box-sizing: border-box; min-height: 44px; margin: 0 0 .5rem;
+  padding: 0 5.5rem 0 0; display: flex; align-items: center;
+}
+.tense-block > .tense-usage-details {
+  margin: 0; padding: 0; border: 0; border-radius: 0;
+}
+.tense-block > .tense-usage-details > summary {
+  position: absolute; right: 0; top: 0;
+  min-height: 44px; padding: 0 .65rem;
+  display: flex; align-items: center; gap: .45rem; isolation: isolate;
+  font-size: .72rem; font-weight: 500; color: var(--accent-color);
+  list-style: none; border-radius: 999px;
+}
+.tense-block > .tense-usage-details > summary::-webkit-details-marker { display: none; }
+.tense-block > .tense-usage-details > summary::before {
+  content: ''; position: absolute; inset: 7px 0; z-index: -1;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-color) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 12%, transparent);
+}
+.tense-block > .tense-usage-details > summary::after {
+  content: ''; width: 5px; height: 5px; margin-top: -3px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+.tense-block > .tense-usage-details[open] > summary::after { transform: rotate(225deg); margin-top: 3px; }
+.tense-block > .tense-usage-details > summary:hover::before,
+.tense-block > .tense-usage-details[open] > summary::before { background: color-mix(in srgb, var(--accent-color) 11%, transparent); }
+.tense-block > .tense-usage-details[open] > .tense-usage-content {
+  margin: .15rem 0 .9rem; padding: .65rem .8rem;
+  border-radius: 0 10px 10px 0;
+  border-left: 2px solid color-mix(in srgb, var(--accent-color) 30%, transparent);
+  background: color-mix(in srgb, var(--accent-color) 4%, transparent);
+  line-height: 1.55;
+}
+.tense-usage-details .tense-usage-summary { margin-top: 0; }
+.tense-usage-details .tense-usage-example { margin-top: .45rem; }
+.tense-usage-details .tense-usage-translation { color: var(--meta-color); }
+.tense-usage-details .tense-usage-more > summary { color: var(--accent-color); font-weight: 500; text-decoration: none; }
+.tense-usage-details .tense-usage-more > summary:hover { text-decoration: underline; }
+.tense-usage-more { margin: .15rem 0; }
+.tense-usage-more > summary { cursor: pointer; display: inline-block; padding: .35rem 0; color: var(--meta-color); font-size: inherit; text-decoration: underline; text-underline-offset: 3px; list-style: none; }
+.tense-usage-more > summary::-webkit-details-marker { display: none; }
+.tense-usage-more > summary:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+.tense-usage-more > p { margin-bottom: .5rem; }
+
+/* Align the icon-only share target and frequency badge on one centre line. */
+#flashcard #question-share { top: 1.5rem; right: .45rem; transform: translateY(-50%); }
+#flashcard #question-share > summary { display: grid; place-items: center; width: 44px; min-width: 44px; height: 44px; padding: 0; box-sizing: border-box; }
+#flashcard:has(#question-share:not([hidden])) #verb-frequency { top: 1.5rem; right: calc(.45rem + 48px); transform: translateY(-50%); }
+#flashcard .question-share-menu { top: 44px; }

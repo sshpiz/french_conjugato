@@ -3684,7 +3684,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const applyReopenMessagePrompt = () => {
         if (FOCUSED_ONBOARDING) {
             reopenMessageState.badge = 'Welcome back';
-            reopenMessageState.body = 'Think of the answer, then tap Show.';
+            reopenMessageState.body = `It’s been ${formatReopenElapsedText(reopenMessageState.elapsedMs)} since your last conjugation.`;
             return;
         }
         const prompt = showTipsEnabled
@@ -5780,6 +5780,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const raw = parseInt(localStorage.getItem(getDailyActiveWorkStorageKey(timestamp)) || '0', 10);
         return Number.isFinite(raw) ? Math.max(0, raw) : 0;
     };
+    const hasEnoughPracticeForRefresher = () => {
+        // Include previous days and sessions so returning learners keep eligibility.
+        const prefix = getScopedStorageKey('activeStudyMs_');
+        let totalMs = 0;
+        try {
+            for (let index = 0; index < localStorage.length; index += 1) {
+                const key = localStorage.key(index);
+                if (!key || !key.startsWith(prefix)) continue;
+                const value = Number(localStorage.getItem(key));
+                if (Number.isFinite(value) && value > 0) totalMs += value;
+                if (totalMs > 10 * 60 * 1000) return true;
+            }
+        } catch (_) {
+            // Without recorded practice time, keep the refresher hidden.
+        }
+        return false;
+    };
     const getDailyRewardStageFromMetrics = (cardCount, activeWorkMs) => {
         const cardStage = Math.floor(Math.max(0, Number(cardCount) || 0) / DAILY_REWARD_CARD_STEP);
         const timeStage = Math.floor(Math.max(0, Number(activeWorkMs) || 0) / DAILY_REWARD_ACTIVE_STEP_MS);
@@ -7336,6 +7353,8 @@ document.addEventListener('DOMContentLoaded', () => {
         returnInlineBadgeEl.textContent = badgeText;
         returnInlineBadgeEl.style.display = badgeText ? '' : 'none';
         returnInlineBodyEl.textContent = shouldShow ? reopenMessageState.body : '';
+        const refresher = returnInlineMessageEl.querySelector('.focused-refresher');
+        if (refresher) refresher.hidden = !hasEnoughPracticeForRefresher();
     };
 
     const dismissReopenMessage = () => {
@@ -8820,6 +8839,7 @@ document.addEventListener('DOMContentLoaded', () => {
         finalizeStudyStatsCardSession('card-replaced');
         if (!tutorialState.active && !card._sharedQuestion) card = window.constructionCards.prepare(card, getVerbCorePatternsIndex()[card?.verb?.infinitive] || []);
         currentCard = card;
+        if (card.verb && card.tense) window.TenseUsage?.encounter(card.tense);
         setTimeout(() => {
             if (currentCard !== card) return;
             let text = card.isFrameCard ? (card.frameFullAnswer || getCardAnswerText(card)) : getCardAnswerText(card);
@@ -9985,6 +10005,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tenseHeader.dataset.audioId = tenseAudioId(tenseName);
             tenseHeader.textContent = tenseKeyToLabel[tenseName] || tenseName;
             tenseBlock.appendChild(tenseHeader);
+            window.TenseUsage?.appendDetails(tenseBlock, tenseName);
 
             const grid = document.createElement('div');
             grid.className = 'conjugation-grid';
@@ -12433,6 +12454,7 @@ document.addEventListener('DOMContentLoaded', () => {
         refresher.type = 'button';
         refresher.className = 'focused-refresher';
         refresher.textContent = 'Quick refresher';
+        refresher.hidden = !hasEnoughPracticeForRefresher();
         refresher.addEventListener('click', event => {
             event.stopPropagation();
             dismissReopenMessage();

@@ -66,7 +66,7 @@ FRENCH_WEB_EXTERNAL_SCRIPT_ASSETS = [
     "js/liaisonClues.js",
     "js/wordFamilies.fr.js",
     "js/wordFamilyDefinitions.fr.js",
-    "js/verbDetailsTabs.js",
+    "js/tenseUsage.js", "js/verbDetailsTabs.js",
     "js/questionShare.js",
     "js/script.js",
 ]
@@ -784,7 +784,7 @@ WATCHED_FILES = [
     "js/liaisonClues.js",
     "js/wordFamilies.fr.js",
     "js/wordFamilyDefinitions.fr.js",
-    "js/verbDetailsTabs.js",
+    "js/tenseUsage.js", "js/verbDetailsTabs.js",
     "js/questionShare.js",
     "js/script.js",
     "generated_tts/manifest.json",
